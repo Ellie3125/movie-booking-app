@@ -1,0 +1,58 @@
+module.exports = [
+  {
+    key: "showtime_dune_ba_trieu_evening",
+    movieKey: "movie_dune_part_two",
+    cinemaKey: "cinema_cgv_vincom_ba_trieu",
+    roomKey: "room_cgv_vincom_ba_trieu_1",
+    startOffsetDays: 1,
+    startHour: 18,
+    startMinute: 30,
+    bookedSeats: ["A1", "A2"],
+    heldSeats: [
+      {
+        seatCode: "B3",
+        userKey: "nguyen_van_a",
+        holdMinutes: 5,
+      },
+    ],
+  },
+  {
+    key: "showtime_inside_out_aeon_morning",
+    movieKey: "movie_inside_out_2",
+    cinemaKey: "cinema_cgv_aeon_long_bien",
+    roomKey: "room_cgv_aeon_long_bien_1",
+    startOffsetDays: 2,
+    startHour: 10,
+    startMinute: 0,
+    bookedSeats: [],
+    heldSeats: [],
+  },
+  {
+    key: "showtime_interstellar_govap_night",
+    movieKey: "movie_interstellar",
+    cinemaKey: "cinema_lotte_govap",
+    roomKey: "room_lotte_govap_1",
+    startOffsetDays: 2,
+    startHour: 20,
+    startMinute: 15,
+    bookedSeats: ["C5", "C6"],
+    heldSeats: [],
+  },
+  {
+    key: "showtime_dune_da_nang_afternoon",
+    movieKey: "movie_dune_part_two",
+    cinemaKey: "cinema_cgv_vincom_da_nang",
+    roomKey: "room_cgv_vincom_da_nang_1",
+    startOffsetDays: 3,
+    startHour: 15,
+    startMinute: 45,
+    bookedSeats: [],
+    heldSeats: [
+      {
+        seatCode: "A4",
+        userKey: "tran_thi_b",
+        holdMinutes: 10,
+      },
+    ],
+  },
+];

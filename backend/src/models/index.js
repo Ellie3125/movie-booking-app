@@ -4,6 +4,7 @@ const Cinema = require("./Cinema");
 const Room = require("./Room");
 const Showtime = require("./Showtime");
 const Booking = require("./Booking");
+const Ticket = require("./Ticket");
 
 module.exports = {
   User,
@@ -12,4 +13,5 @@ module.exports = {
   Room,
   Showtime,
   Booking,
+  Ticket,
 };
