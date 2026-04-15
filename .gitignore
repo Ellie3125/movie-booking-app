@@ -92,18 +92,6 @@ out/
 *.tsbuildinfo
 
 # =========================
-# Expo / React Native (frontend)
-# =========================
-frontend/.expo/
-frontend/web-build/
-frontend/expo-env.d.ts
-frontend/.kotlin/
-frontend/.metro-health-check*
-frontend/app-example/
-frontend/ios/
-frontend/android/
-
-# =========================
 # Native / signing / local keys
 # =========================
 *.orig.*
@@ -119,3 +107,4 @@ frontend/android/
 # =========================
 .lock-wscript
 .DS_Store
+Thumbs.db
