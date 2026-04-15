@@ -9,7 +9,13 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import {
+  formatBookingStatus,
+  formatLocationName,
+  formatPaymentMethod,
+} from '@/lib/user-display';
 
 const formatDateTime = (value: string) =>
   new Date(value).toLocaleString('vi-VN', {
@@ -22,27 +28,28 @@ const formatDateTime = (value: string) =>
 export default function BookingsTabScreen() {
   const { bookings, movies, showtimes, cinemas, currentUser } = useAppStore();
   const colors = getTonePalette('user');
-  const myBookings = bookings.filter((booking) => booking.userId === currentUser.id);
+  const currentUserId = currentUser?.id ?? '';
+  const myBookings = bookings.filter((booking) => booking.userId === currentUserId);
 
   return (
     <PageScroll tone="user">
       <HeroCard
         tone="user"
-        eyebrow="My tickets"
-        title="Tab ve da mua va trang thai thanh toan."
-        description="Danh sach booking duoc dong bo tu backend khi demo session ket noi thanh cong."
+        eyebrow="Vé của tôi"
+        title="Danh sách vé đã mua và trạng thái thanh toán."
+        description="Lịch sử booking được đồng bộ từ backend ngay sau khi đăng nhập thành công."
       />
 
       <SectionTitle
         tone="user"
-        title="Lich su dat ve"
-        description="Seat label, toa do that, tong tien va trang thai thanh toan duoc lay tu luong booking that."
+        title="Lịch sử đặt vé"
+        description="Tên ghế, tọa độ thật, tổng tiền và trạng thái thanh toán đều lấy từ luồng booking thật."
       />
       {myBookings.length === 0 ? (
         <EmptyNotice
           tone="user"
-          title="Ban chua co booking nao"
-          description="Vao tab movies hoac cinemas de dat cho trong flow moi."
+          title="Bạn chưa có booking nào"
+          description="Vào tab phim hoặc rạp để bắt đầu đặt vé."
         />
       ) : (
         myBookings.map((booking) => {
@@ -53,23 +60,30 @@ export default function BookingsTabScreen() {
           return (
             <SectionCard key={booking.id} tone="user">
               <Text style={[styles.cardTitle, { color: colors.text }]}>
-                {movie?.title ?? 'Unknown movie'}
+                {movie?.title ?? 'Phim không xác định'}
               </Text>
               <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                {cinema?.brand} {cinema?.name}
+                {cinema
+                  ? `${cinema.brand} ${formatLocationName(cinema.name)}`
+                  : 'Rạp đang cập nhật'}
               </Text>
               <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                Ghe {booking.seats.map((seat) => `${seat.seatLabel} (${seat.seatCoordinate})`).join(', ')}
+                Ghế{' '}
+                {booking.seats
+                  .map((seat) => `${seat.seatLabel} (${seat.seatCoordinate})`)
+                  .join(', ')}
               </Text>
               <Text style={[styles.inlineMeta, { color: colors.text }]}>
-                {booking.status.toUpperCase()} • {formatDateTime(showtime?.startTime ?? booking.createdAt)}
+                {formatBookingStatus(booking.status)} •{' '}
+                {formatDateTime(showtime?.startTime ?? booking.createdAt)}
               </Text>
               <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                Tong tien {booking.totalPrice.toLocaleString('vi-VN')} VND • {booking.paymentMethod ?? 'pending'}
+                Tổng tiền {booking.totalPrice.toLocaleString('vi-VN')} VND •{' '}
+                {formatPaymentMethod(booking.paymentMethod)}
               </Text>
               {movie ? (
                 <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
-                  Xem phim
+                  Xem chi tiết phim
                 </Link>
               ) : null}
             </SectionCard>
@@ -83,18 +97,19 @@ export default function BookingsTabScreen() {
 const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 18,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   inlineMeta: {
     fontSize: 13,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
   link: {
     fontSize: 14,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
 });

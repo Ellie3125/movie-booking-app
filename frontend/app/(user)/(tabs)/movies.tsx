@@ -11,13 +11,19 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { type MovieStatus, useAppStore } from '@/lib/app-store';
+import {
+  formatGenres,
+  formatLanguage,
+  formatMovieDescription,
+} from '@/lib/user-display';
 
 const filters: { label: string; value: MovieStatus | 'all' }[] = [
-  { label: 'Tat ca', value: 'all' },
-  { label: 'Dang chieu', value: 'now_showing' },
-  { label: 'Sap chieu', value: 'coming_soon' },
-  { label: 'Da dong', value: 'ended' },
+  { label: 'Tất cả', value: 'all' },
+  { label: 'Đang chiếu', value: 'now_showing' },
+  { label: 'Sắp chiếu', value: 'coming_soon' },
+  { label: 'Đã đóng', value: 'ended' },
 ];
 
 export default function MoviesTabScreen() {
@@ -32,9 +38,9 @@ export default function MoviesTabScreen() {
     <PageScroll tone="user">
       <HeroCard
         tone="user"
-        eyebrow="Movie discovery"
-        title="Kho phim user-facing theo kieu app dat ve."
-        description="Tab nay tap trung phan kham pha phim, tinh trang dang chieu, sap chieu va duong dan vao lich rap.">
+        eyebrow="Khám phá phim"
+        title="Kho phim dành cho người dùng theo đúng luồng đặt vé."
+        description="Tab này tập trung vào việc khám phá phim, trạng thái đang chiếu, sắp chiếu và đường dẫn sang lịch rạp.">
         <View style={styles.chipRow}>
           {filters.map((item) => (
             <Chip
@@ -50,14 +56,14 @@ export default function MoviesTabScreen() {
 
       <SectionTitle
         tone="user"
-        title="Danh sach phim"
-        description="Moi card co the dan thang vao detail va showtime booking."
+        title="Danh sách phim"
+        description="Mỗi thẻ phim đều có thể đi thẳng vào chi tiết và luồng đặt vé."
       />
       {filteredMovies.length === 0 ? (
         <EmptyNotice
           tone="user"
-          title="Khong co phim nao o bo loc nay"
-          description="Thu doi trang thai hoac tao them phim tu giao dien admin."
+          title="Không có phim nào trong bộ lọc này"
+          description="Thử đổi trạng thái hoặc thêm phim từ khu quản trị."
         />
       ) : (
         filteredMovies.map((movie) => {
@@ -67,15 +73,18 @@ export default function MoviesTabScreen() {
             <SectionCard key={movie.id} tone="user">
               <Text style={[styles.cardTitle, { color: colors.text }]}>{movie.title}</Text>
               <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                {movie.genre.join(' • ')} • {movie.language} • {movie.duration} min
+                {formatGenres(movie.genre)} • {formatLanguage(movie.language)} •{' '}
+                {movie.duration} phút
               </Text>
-              <Text style={[styles.cardCopy, { color: colors.muted }]}>{movie.description}</Text>
+              <Text style={[styles.cardCopy, { color: colors.muted }]}>
+                {formatMovieDescription(movie.description)}
+              </Text>
               <View style={styles.rowBetween}>
                 <Text style={[styles.inlineMeta, { color: colors.text }]}>
-                  {totalShowtimes} suat dang mo
+                  {totalShowtimes} suất đang mở
                 </Text>
                 <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
-                  Xem detail
+                  Xem chi tiết
                 </Link>
               </View>
             </SectionCard>
@@ -100,18 +109,19 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   inlineMeta: {
     fontSize: 13,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
   link: {
     fontSize: 14,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
 });

@@ -10,7 +10,16 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import {
+  formatCinemaFeatures,
+  formatCity,
+  formatFeaturedNote,
+  formatGenres,
+  formatLocationName,
+  formatMovieDescription,
+} from '@/lib/user-display';
 
 const formatTime = (value: string) =>
   new Date(value).toLocaleTimeString('vi-VN', {
@@ -21,49 +30,50 @@ const formatTime = (value: string) =>
 export default function HomeTabScreen() {
   const { movies, cinemas, showtimes, bookings, currentUser } = useAppStore();
   const colors = getTonePalette('user');
+  const currentUserId = currentUser?.id ?? '';
   const nowShowing = movies.filter((movie) => movie.status === 'now_showing').slice(0, 3);
   const upcoming = movies.find((movie) => movie.status === 'coming_soon');
-  const userBookings = bookings.filter((booking) => booking.userId === currentUser.id);
+  const userBookings = bookings.filter((booking) => booking.userId === currentUserId);
 
   return (
     <PageScroll tone="user">
       <HeroCard
         tone="user"
-        eyebrow="BeatCinema users"
-        title="Dat ve nhanh, ro seat map, vao rap dung nhung suat dep."
-        description="Trang user duoc tach rieng khoi admin, co day du home, movie detail, cinema detail, chon ghe, checkout va danh sach ve da mua.">
+        eyebrow="Người dùng BeatCinema"
+        title="Đặt vé nhanh, rõ sơ đồ ghế, vào rạp đúng những suất đẹp."
+        description="Khu người dùng tách riêng khỏi quản trị, có đầy đủ trang chủ, chi tiết phim, chi tiết rạp, chọn ghế, thanh toán và danh sách vé đã mua.">
         <View style={styles.heroMetrics}>
           <MetricTile
             tone="user"
             value={String(nowShowing.length)}
-            label="Now showing"
-            helper="Phim dang mo ban trong app."
+            label="Đang chiếu"
+            helper="Phim đang mở bán trong ứng dụng."
           />
           <MetricTile
             tone="user"
             value={String(showtimes.length)}
-            label="Showtimes"
-            helper="Suat chieu dang duoc mo tren mock store."
+            label="Suất chiếu"
+            helper="Các suất chiếu hiện có trong hệ thống."
           />
           <MetricTile
             tone="user"
             value={String(userBookings.length)}
-            label="My bookings"
-            helper="Ve cua user hien tai sau moi lan thanh toan."
+            label="Vé của tôi"
+            helper="Số booking của người dùng hiện tại sau mỗi lần thanh toán."
           />
         </View>
       </HeroCard>
 
       <SectionTitle
         tone="user"
-        title="Now Showing"
-        description="Danh sach phim dang mo ban ve va co the vao flow dat cho ngay lap tuc."
+        title="Phim đang chiếu"
+        description="Danh sách phim đang mở bán vé và có thể đi vào luồng đặt chỗ ngay."
       />
       {nowShowing.length === 0 ? (
         <EmptyNotice
           tone="user"
-          title="Chua co phim dang chieu"
-          description="Them phim o khu admin se hien ngay tai day."
+          title="Chưa có phim đang chiếu"
+          description="Thêm phim ở khu quản trị thì danh sách sẽ hiện ngay tại đây."
         />
       ) : (
         nowShowing.map((movie) => {
@@ -75,17 +85,19 @@ export default function HomeTabScreen() {
                 <View style={styles.flex}>
                   <Text style={[styles.cardTitle, { color: colors.text }]}>{movie.title}</Text>
                   <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                    {movie.genre.join(' • ')} • {movie.duration} min • {movie.rating}
+                    {formatGenres(movie.genre)} • {movie.duration} phút • {movie.rating}
                   </Text>
                 </View>
                 <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
-                  Chi tiet
+                  Chi tiết
                 </Link>
               </View>
-              <Text style={[styles.cardCopy, { color: colors.muted }]}>{movie.featuredNote}</Text>
+              <Text style={[styles.cardCopy, { color: colors.muted }]}>
+                {formatFeaturedNote(movie.featuredNote)}
+              </Text>
               {firstShowtime ? (
                 <Text style={[styles.inlineMeta, { color: colors.text }]}>
-                  Suat gan nhat {formatTime(firstShowtime.startTime)}
+                  Suất gần nhất {formatTime(firstShowtime.startTime)}
                 </Text>
               ) : null}
             </SectionCard>
@@ -95,22 +107,22 @@ export default function HomeTabScreen() {
 
       <SectionTitle
         tone="user"
-        title="Featured Cinemas"
-        description="Nhanh hon cho user theo phong cach app dat ve: chon rap, xem lich, vao man hinh ghe."
+        title="Rạp nổi bật"
+        description="Đi nhanh hơn theo kiểu ứng dụng đặt vé: chọn rạp, xem lịch, vào màn hình ghế."
       />
       {cinemas.map((cinema) => (
         <SectionCard key={cinema.id} tone="user">
           <View style={styles.rowBetween}>
             <View style={styles.flex}>
               <Text style={[styles.cardTitle, { color: colors.text }]}>
-                {cinema.brand} {cinema.name}
+                {cinema.brand} {formatLocationName(cinema.name)}
               </Text>
               <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                {cinema.city} • {cinema.features.join(' • ')}
+                {formatCity(cinema.city)} • {formatCinemaFeatures(cinema.features)}
               </Text>
             </View>
             <Link href={`/cinemas/${cinema.id}`} style={[styles.link, { color: colors.accent }]}>
-              Lich rap
+              Lịch rạp
             </Link>
           </View>
         </SectionCard>
@@ -120,14 +132,16 @@ export default function HomeTabScreen() {
         <>
           <SectionTitle
             tone="user"
-            title="Coming Soon"
-            description="Trang user cung co kho phim sap chieu de user theo doi."
+            title="Sắp chiếu"
+            description="Kho phim sắp chiếu để người dùng theo dõi và chuẩn bị đặt vé."
           />
           <SectionCard tone="user">
             <Text style={[styles.cardTitle, { color: colors.text }]}>{upcoming.title}</Text>
-            <Text style={[styles.cardCopy, { color: colors.muted }]}>{upcoming.description}</Text>
+            <Text style={[styles.cardCopy, { color: colors.muted }]}>
+              {formatMovieDescription(upcoming.description)}
+            </Text>
             <Text style={[styles.inlineMeta, { color: colors.text }]}>
-              Release date {new Date(upcoming.releaseDate).toLocaleDateString('vi-VN')}
+              Khởi chiếu {new Date(upcoming.releaseDate).toLocaleDateString('vi-VN')}
             </Text>
           </SectionCard>
         </>
@@ -153,18 +167,19 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   inlineMeta: {
     fontSize: 13,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
   link: {
     fontSize: 14,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
 });

@@ -9,7 +9,14 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import {
+  formatAddress,
+  formatCinemaFeatures,
+  formatCity,
+  formatLocationName,
+} from '@/lib/user-display';
 
 export default function CinemasTabScreen() {
   const { cinemas, rooms, showtimes } = useAppStore();
@@ -19,29 +26,29 @@ export default function CinemasTabScreen() {
     <PageScroll tone="user">
       <HeroCard
         tone="user"
-        eyebrow="Cinema browsing"
-        title="User co tab rieng de xem rap va lich chieu."
-        description="Cau truc nay giong app dat ve thuc te hon: user co the di tu rap sang phim hoac phim sang rap.">
+        eyebrow="Khám phá rạp"
+        title="Người dùng có tab riêng để xem rạp và lịch chiếu."
+        description="Cấu trúc này giống ứng dụng đặt vé thực tế hơn: có thể đi từ rạp sang phim hoặc từ phim sang rạp.">
         <View style={styles.metrics}>
           <MetricTile
             tone="user"
             value={String(cinemas.length)}
-            label="Branches"
-            helper="Danh sach rap dang co trong mock store."
+            label="Chi nhánh"
+            helper="Danh sách rạp hiện có trong hệ thống."
           />
           <MetricTile
             tone="user"
             value={String(rooms.length)}
-            label="Rooms"
-            helper="Phong chieu duoc admin tao va sua layout."
+            label="Phòng chiếu"
+            helper="Phòng chiếu do quản trị viên tạo và chỉnh sơ đồ ghế."
           />
         </View>
       </HeroCard>
 
       <SectionTitle
         tone="user"
-        title="Rap dang hoat dong"
-        description="Moi rap co room count va duong dan sang lich chieu chi tiet."
+        title="Rạp đang hoạt động"
+        description="Mỗi rạp có số phòng chiếu và đường dẫn sang lịch chiếu chi tiết."
       />
       {cinemas.map((cinema) => {
         const roomCount = rooms.filter((room) => room.cinemaId === cinema.id).length;
@@ -52,19 +59,21 @@ export default function CinemasTabScreen() {
             <View style={styles.rowBetween}>
               <View style={styles.flex}>
                 <Text style={[styles.cardTitle, { color: colors.text }]}>
-                  {cinema.brand} {cinema.name}
+                  {cinema.brand} {formatLocationName(cinema.name)}
                 </Text>
-                <Text style={[styles.cardCopy, { color: colors.muted }]}>{cinema.address}</Text>
                 <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                  {cinema.city} • {cinema.features.join(' • ')}
+                  {formatAddress(cinema.address)}
+                </Text>
+                <Text style={[styles.cardCopy, { color: colors.muted }]}>
+                  {formatCity(cinema.city)} • {formatCinemaFeatures(cinema.features)}
                 </Text>
               </View>
               <Link href={`/cinemas/${cinema.id}`} style={[styles.link, { color: colors.accent }]}>
-                Xem lich
+                Xem lịch
               </Link>
             </View>
             <Text style={[styles.inlineMeta, { color: colors.text }]}>
-              {roomCount} rooms • {showtimeCount} showtimes
+              {roomCount} phòng • {showtimeCount} suất chiếu
             </Text>
           </SectionCard>
         );
@@ -90,18 +99,19 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   inlineMeta: {
     fontSize: 13,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
   link: {
     fontSize: 14,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
 });
