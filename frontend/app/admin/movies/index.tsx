@@ -1,71 +1,232 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+
+import {
+  ActionButton,
+  Chip,
+  HeroCard,
+  PageScroll,
+  SectionCard,
+  SectionTitle,
+  getTonePalette,
+} from '@/components/ui/experience';
+import { type MovieStatus, useAppStore } from '@/lib/app-store';
+
+const statuses: MovieStatus[] = ['now_showing', 'coming_soon', 'ended'];
+
+const emptyForm = {
+  id: undefined as string | undefined,
+  title: '',
+  description: '',
+  duration: '120',
+  genre: 'Action, Drama',
+  poster: 'https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=900&q=80',
+  releaseDate: '2026-05-01',
+  status: 'coming_soon' as MovieStatus,
+  language: 'English subtitle',
+  rating: 'T13',
+  formats: '2D, IMAX',
+  featuredNote: 'Marketing note',
+};
 
 export default function AdminMoviesScreen() {
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.kicker}>Admin / Movies</Text>
-        <Text style={styles.title}>Movie CRUD</Text>
-        <Text style={styles.subtitle}>
-          Placeholder screen for creating, editing, publishing, hiding, and deleting movies.
-        </Text>
+  const { movies, upsertMovie, deleteMovie } = useAppStore();
+  const colors = getTonePalette('admin');
+  const [form, setForm] = useState(emptyForm);
 
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Planned actions</Text>
-          <Text style={styles.cardText}>Create movie records with posters, genres, duration, and status.</Text>
-          <Text style={styles.cardText}>Update existing movies and control visibility in the user app.</Text>
-          <Text style={styles.cardText}>Delete or archive titles that are no longer scheduled.</Text>
+  const submit = () => {
+    if (!form.title.trim()) {
+      return;
+    }
+
+    upsertMovie({
+      id: form.id,
+      title: form.title.trim(),
+      description: form.description.trim(),
+      duration: Number(form.duration) || 0,
+      genre: form.genre.split(',').map((item) => item.trim()).filter(Boolean),
+      poster: form.poster.trim(),
+      releaseDate: form.releaseDate,
+      status: form.status,
+      language: form.language.trim(),
+      rating: form.rating.trim(),
+      formats: form.formats.split(',').map((item) => item.trim()).filter(Boolean),
+      featuredNote: form.featuredNote.trim(),
+    });
+
+    setForm(emptyForm);
+  };
+
+  return (
+    <PageScroll tone="admin">
+      <HeroCard
+        tone="admin"
+        eyebrow="Admin / Movies"
+        title="Movie CRUD with user sync"
+        description="Them, sua, xoa movie trong admin se doi ngay tab movies, home va detail ben user."
+      />
+
+      <SectionTitle
+        tone="admin"
+        title={form.id ? 'Edit movie' : 'Create movie'}
+        description="Day la form CRUD chinh cho catalog phim."
+      />
+      <SectionCard tone="admin">
+        <TextInput
+          placeholder="Movie title"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.title}
+          onChangeText={(title) => setForm((current) => ({ ...current, title }))}
+        />
+        <TextInput
+          placeholder="Description"
+          placeholderTextColor={colors.muted}
+          multiline
+          style={[styles.input, styles.textarea, { color: colors.text, borderColor: colors.border }]}
+          value={form.description}
+          onChangeText={(description) => setForm((current) => ({ ...current, description }))}
+        />
+        <TextInput
+          placeholder="Duration"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.duration}
+          keyboardType="numeric"
+          onChangeText={(duration) => setForm((current) => ({ ...current, duration }))}
+        />
+        <TextInput
+          placeholder="Genres"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.genre}
+          onChangeText={(genre) => setForm((current) => ({ ...current, genre }))}
+        />
+        <TextInput
+          placeholder="Poster URL"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.poster}
+          onChangeText={(poster) => setForm((current) => ({ ...current, poster }))}
+        />
+        <TextInput
+          placeholder="Release date YYYY-MM-DD"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.releaseDate}
+          onChangeText={(releaseDate) => setForm((current) => ({ ...current, releaseDate }))}
+        />
+        <View style={styles.chipRow}>
+          {statuses.map((status) => (
+            <Chip
+              key={status}
+              tone="admin"
+              label={status}
+              active={form.status === status}
+              onPress={() => setForm((current) => ({ ...current, status }))}
+            />
+          ))}
         </View>
-      </View>
-    </SafeAreaView>
+        <TextInput
+          placeholder="Language"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.language}
+          onChangeText={(language) => setForm((current) => ({ ...current, language }))}
+        />
+        <TextInput
+          placeholder="Rating"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.rating}
+          onChangeText={(rating) => setForm((current) => ({ ...current, rating }))}
+        />
+        <TextInput
+          placeholder="Formats"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.formats}
+          onChangeText={(formats) => setForm((current) => ({ ...current, formats }))}
+        />
+        <TextInput
+          placeholder="Featured note"
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+          value={form.featuredNote}
+          onChangeText={(featuredNote) => setForm((current) => ({ ...current, featuredNote }))}
+        />
+        <ActionButton tone="admin" label={form.id ? 'Update movie' : 'Create movie'} onPress={submit} />
+      </SectionCard>
+
+      <SectionTitle
+        tone="admin"
+        title="Movie list"
+        description="Catalog nay duoc user app doc truc tiep."
+      />
+      {movies.map((movie) => (
+        <SectionCard key={movie.id} tone="admin">
+          <Text style={[styles.cardTitle, { color: colors.text }]}>{movie.title}</Text>
+          <Text style={[styles.cardCopy, { color: colors.muted }]}>
+            {movie.genre.join(' • ')} • {movie.duration} min • {movie.status}
+          </Text>
+          <Text style={[styles.cardCopy, { color: colors.muted }]}>{movie.featuredNote}</Text>
+          <View style={styles.buttonRow}>
+            <ActionButton
+              tone="admin"
+              variant="secondary"
+              label="Edit"
+              onPress={() =>
+                setForm({
+                  id: movie.id,
+                  title: movie.title,
+                  description: movie.description,
+                  duration: String(movie.duration),
+                  genre: movie.genre.join(', '),
+                  poster: movie.poster,
+                  releaseDate: movie.releaseDate.slice(0, 10),
+                  status: movie.status,
+                  language: movie.language,
+                  rating: movie.rating,
+                  formats: movie.formats.join(', '),
+                  featuredNote: movie.featuredNote,
+                })
+              }
+            />
+            <ActionButton tone="admin" label="Delete" onPress={() => deleteMovie(movie.id)} />
+          </View>
+        </SectionCard>
+      ))}
+    </PageScroll>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#020617',
-  },
-  container: {
-    flex: 1,
-    padding: 24,
-    gap: 16,
-  },
-  kicker: {
-    fontSize: 12,
-    letterSpacing: 1.4,
-    textTransform: 'uppercase',
-    color: '#38BDF8',
-    fontWeight: '700',
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#F8FAFC',
-  },
-  subtitle: {
-    fontSize: 15,
-    color: '#CBD5E1',
-    lineHeight: 22,
-    maxWidth: 480,
-  },
-  card: {
-    marginTop: 8,
-    borderRadius: 20,
-    padding: 18,
-    backgroundColor: '#111827',
-    borderWidth: 1,
-    borderColor: '#1E293B',
+  chipRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 10,
+  },
+  input: {
+    minHeight: 48,
+    borderWidth: 1,
+    borderRadius: 14,
+    paddingHorizontal: 14,
+  },
+  textarea: {
+    minHeight: 96,
+    paddingVertical: 12,
+    textAlignVertical: 'top',
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '700',
-    color: '#F8FAFC',
+    fontWeight: '800',
   },
-  cardText: {
+  cardCopy: {
     fontSize: 14,
-    color: '#CBD5E1',
     lineHeight: 20,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    gap: 10,
   },
 });

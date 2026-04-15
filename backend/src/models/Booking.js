@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const BOOKING_STATUS = {
-  PENDING: "pending",
+  HELD: "held",
   PAID: "paid",
   CANCELLED: "cancelled",
 };
@@ -11,6 +11,60 @@ const PAYMENT_METHOD = {
   MOMO_SANDBOX: "momo_sandbox",
   VNPAY_SANDBOX: "vnpay_sandbox",
 };
+
+const SEAT_TYPE = {
+  STANDARD: "standard",
+  VIP: "vip",
+  COUPLE: "couple",
+  ACCESSIBLE: "accessible",
+};
+
+const BOOKED_SEAT_STATUS = {
+  HELD: "held",
+  PAID: "paid",
+};
+
+const BookingSeatSchema = new mongoose.Schema(
+  {
+    seatCoordinate: {
+      type: String,
+      required: [true, "Toạ độ thật của ghế là bắt buộc"],
+      trim: true,
+      uppercase: true,
+    },
+    seatLabel: {
+      type: String,
+      required: [true, "Tên ghế hiển thị là bắt buộc"],
+      trim: true,
+      uppercase: true,
+    },
+    seatType: {
+      type: String,
+      enum: {
+        values: Object.values(SEAT_TYPE),
+        message: "Loại ghế không hợp lệ: {VALUE}",
+      },
+      required: [true, "Loại ghế là bắt buộc"],
+    },
+    status: {
+      type: String,
+      enum: {
+        values: Object.values(BOOKED_SEAT_STATUS),
+        message: "Trạng thái ghế trong booking không hợp lệ: {VALUE}",
+      },
+      required: [true, "Trạng thái ghế là bắt buộc"],
+    },
+    price: {
+      type: Number,
+      required: [true, "Giá ghế là bắt buộc"],
+      min: [0, "Giá ghế không được âm"],
+    },
+  },
+  {
+    _id: false,
+    versionKey: false,
+  },
+);
 
 const BookingSchema = new mongoose.Schema(
   {
@@ -34,14 +88,8 @@ const BookingSchema = new mongoose.Schema(
       ref: "Room",
       required: [true, "Phòng chiếu là bắt buộc"],
     },
-    seatCodes: {
-      type: [
-        {
-          type: String,
-          required: [true, "Mã ghế là bắt buộc"],
-          trim: true,
-        },
-      ],
+    seats: {
+      type: [BookingSeatSchema],
       validate: {
         validator: (value) => Array.isArray(value) && value.length > 0,
         message: "Danh sách ghế phải có ít nhất 1 ghế",
@@ -58,7 +106,7 @@ const BookingSchema = new mongoose.Schema(
         values: Object.values(BOOKING_STATUS),
         message: "Trạng thái đặt vé không hợp lệ: {VALUE}",
       },
-      default: BOOKING_STATUS.PENDING,
+      default: BOOKING_STATUS.HELD,
       index: true,
     },
     paymentMethod: {
@@ -68,6 +116,10 @@ const BookingSchema = new mongoose.Schema(
         message: "Phương thức thanh toán không hợp lệ: {VALUE}",
       },
       default: PAYMENT_METHOD.CASH,
+    },
+    paidAt: {
+      type: Date,
+      default: null,
     },
   },
   {

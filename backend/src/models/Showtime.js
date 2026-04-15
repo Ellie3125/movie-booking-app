@@ -1,20 +1,71 @@
 const mongoose = require("mongoose");
 
-const HeldSeatSchema = new mongoose.Schema(
+const SEAT_TYPE = {
+  STANDARD: "standard",
+  VIP: "vip",
+  COUPLE: "couple",
+  ACCESSIBLE: "accessible",
+};
+
+const SEAT_STATUS = {
+  AVAILABLE: "available",
+  HELD: "held",
+  RESERVED: "reserved",
+  PAID: "paid",
+};
+
+const ShowtimeSeatStateSchema = new mongoose.Schema(
   {
-    seatCode: {
+    seatCoordinate: {
       type: String,
-      required: [true, "Mã ghế giữ chỗ là bắt buộc"],
+      required: [true, "Toạ độ thật của ghế là bắt buộc"],
       trim: true,
+      uppercase: true,
+    },
+    seatLabel: {
+      type: String,
+      required: [true, "Tên ghế hiển thị là bắt buộc"],
+      trim: true,
+      uppercase: true,
+    },
+    seatType: {
+      type: String,
+      enum: {
+        values: Object.values(SEAT_TYPE),
+        message: "Loại ghế không hợp lệ: {VALUE}",
+      },
+      required: [true, "Loại ghế là bắt buộc"],
+    },
+    status: {
+      type: String,
+      enum: {
+        values: Object.values(SEAT_STATUS),
+        message: "Trạng thái ghế không hợp lệ: {VALUE}",
+      },
+      default: SEAT_STATUS.AVAILABLE,
+      index: true,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: [true, "Người giữ chỗ là bắt buộc"],
+      default: null,
     },
-    expiresAt: {
+    bookingId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Booking",
+      default: null,
+    },
+    heldAt: {
       type: Date,
-      required: [true, "Thời gian hết hạn giữ chỗ là bắt buộc"],
+      default: null,
+    },
+    holdExpiresAt: {
+      type: Date,
+      default: null,
+    },
+    paidAt: {
+      type: Date,
+      default: null,
     },
   },
   {
@@ -54,17 +105,8 @@ const ShowtimeSchema = new mongoose.Schema(
         message: "Thời gian kết thúc phải sau thời gian bắt đầu",
       },
     },
-    bookedSeats: {
-      type: [
-        {
-          type: String,
-          trim: true,
-        },
-      ],
-      default: [],
-    },
-    heldSeats: {
-      type: [HeldSeatSchema],
+    seatStates: {
+      type: [ShowtimeSeatStateSchema],
       default: [],
     },
   },
@@ -76,5 +118,6 @@ const ShowtimeSchema = new mongoose.Schema(
 
 ShowtimeSchema.index({ movieId: 1, cinemaId: 1, startTime: 1 });
 ShowtimeSchema.index({ roomId: 1, startTime: 1 });
+ShowtimeSchema.index({ roomId: 1, "seatStates.seatCoordinate": 1 });
 
 module.exports = mongoose.model("Showtime", ShowtimeSchema);

@@ -20,69 +20,71 @@ const formatSession = (value: string) =>
     minute: '2-digit',
   });
 
-export default function MovieDetailScreen() {
+export default function CinemaDetailScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
-  const { movies, showtimes, cinemas, rooms } = useAppStore();
+  const { cinemas, rooms, showtimes, movies } = useAppStore();
   const colors = getTonePalette('user');
-  const movie = movies.find((item) => item.id === id);
-  const movieShowtimes = showtimes.filter((item) => item.movieId === movie?.id);
+  const cinema = cinemas.find((item) => item.id === id);
+  const cinemaShowtimes = showtimes.filter((item) => item.cinemaId === cinema?.id);
 
   return (
     <PageScroll tone="user">
-      <Stack.Screen options={{ title: movie?.title ?? 'Movie Details' }} />
-      {!movie ? (
+      <Stack.Screen options={{ title: cinema?.name ?? 'Cinema Details' }} />
+      {!cinema ? (
         <EmptyNotice
           tone="user"
-          title="Khong tim thay phim"
-          description="Duong dan movie detail dang tro toi mot phim khong ton tai."
+          title="Khong tim thay rap"
+          description="Duong dan cinema detail dang tro toi rap khong ton tai."
         />
       ) : (
         <>
           <HeroCard
             tone="user"
-            eyebrow="Movie detail"
-            title={movie.title}
-            description={movie.description}
+            eyebrow="Cinema detail"
+            title={`${cinema.brand} ${cinema.name}`}
+            description={`${cinema.address}. Hotline ${cinema.hotline}.`}
           />
 
           <SectionCard tone="user">
-            <Text style={[styles.cardTitle, { color: colors.text }]}>Thong tin phim</Text>
+            <Text style={[styles.cardTitle, { color: colors.text }]}>Tien ich</Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              {movie.genre.join(' • ')} • {movie.duration} min • {movie.language}
+              {cinema.features.join(' • ')}
             </Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              Format {movie.formats.join(' • ')} • Rating {movie.rating}
+              Rooms {rooms.filter((room) => room.cinemaId === cinema.id).length}
             </Text>
           </SectionCard>
 
           <SectionTitle
             tone="user"
-            title="Showtimes"
-            description="Chon suat chieu se vao man hinh ghe co phan biet toa do that va ten ghe hien thi."
+            title="Lich chieu tai rap"
+            description="Flow user co the bat dau tu rap roi chon phim va ghe."
           />
-          {movieShowtimes.length === 0 ? (
+          {cinemaShowtimes.length === 0 ? (
             <EmptyNotice
               tone="user"
-              title="Chua mo suat chieu"
-              description="Sau khi co showtime tu backend hoac store, user se book tu day."
+              title="Rap nay chua co suat"
+              description="Them showtime vao store hoac backend de lich chieu hien ra."
             />
           ) : (
-            movieShowtimes.map((showtime) => {
-              const cinema = cinemas.find((item) => item.id === showtime.cinemaId);
+            cinemaShowtimes.map((showtime) => {
+              const movie = movies.find((item) => item.id === showtime.movieId);
               const room = rooms.find((item) => item.id === showtime.roomId);
 
               return (
                 <SectionCard key={showtime.id} tone="user">
                   <Text style={[styles.cardTitle, { color: colors.text }]}>
-                    {cinema?.brand} {cinema?.name}
+                    {movie?.title ?? 'Unknown movie'}
                   </Text>
                   <Text style={[styles.cardCopy, { color: colors.muted }]}>
                     {room?.name} • {showtime.format} • {formatSession(showtime.startTime)}
                   </Text>
                   <View style={styles.rowBetween}>
-                    <Text style={[styles.inlineMeta, { color: colors.text }]}>
-                      Gia tu {showtime.basePrice.toLocaleString('vi-VN')} VND
-                    </Text>
+                    {movie ? (
+                      <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
+                        Chi tiet phim
+                      </Link>
+                    ) : <View />}
                     <Link
                       href={{
                         pathname: '/booking/seats',
@@ -116,10 +118,6 @@ const styles = StyleSheet.create({
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
-  },
-  inlineMeta: {
-    fontSize: 13,
-    fontWeight: '700',
   },
   link: {
     fontSize: 14,

@@ -9,9 +9,35 @@ const SEAT_TYPE = {
   STANDARD: "standard",
   VIP: "vip",
   COUPLE: "couple",
+  ACCESSIBLE: "accessible",
 };
 
-const SeatCellSchema = new mongoose.Schema(
+const SeatCoordinateSchema = new mongoose.Schema(
+  {
+    rowIndex: {
+      type: Number,
+      required: [true, "Chỉ số hàng là bắt buộc"],
+      min: [0, "Chỉ số hàng không hợp lệ"],
+    },
+    columnIndex: {
+      type: Number,
+      required: [true, "Chỉ số cột là bắt buộc"],
+      min: [0, "Chỉ số cột không hợp lệ"],
+    },
+    coordinateLabel: {
+      type: String,
+      required: [true, "Toạ độ thật của ô ghế là bắt buộc"],
+      trim: true,
+      uppercase: true,
+    },
+  },
+  {
+    _id: false,
+    versionKey: false,
+  },
+);
+
+const RoomSeatSchema = new mongoose.Schema(
   {
     cellType: {
       type: String,
@@ -21,9 +47,14 @@ const SeatCellSchema = new mongoose.Schema(
       },
       required: [true, "Loại ô ghế là bắt buộc"],
     },
-    seatCode: {
+    coordinate: {
+      type: SeatCoordinateSchema,
+      required: [true, "Toạ độ ô ghế là bắt buộc"],
+    },
+    seatLabel: {
       type: String,
       trim: true,
+      uppercase: true,
       default: null,
       required: function () {
         return this.cellType === SEAT_CELL_TYPE.SEAT;
@@ -39,6 +70,11 @@ const SeatCellSchema = new mongoose.Schema(
       required: function () {
         return this.cellType === SEAT_CELL_TYPE.SEAT;
       },
+    },
+    priceModifier: {
+      type: Number,
+      default: 1,
+      min: [0, "Hệ số giá ghế không hợp lệ"],
     },
   },
   {
@@ -61,32 +97,47 @@ const RoomSchema = new mongoose.Schema(
     },
     screenLabel: {
       type: String,
-      default: "M\u00c0N H\u00ccNH",
+      default: "MÀN HÌNH",
       trim: true,
+    },
+    totalRows: {
+      type: Number,
+      required: [true, "Tổng số hàng là bắt buộc"],
+      min: [1, "Tổng số hàng phải lớn hơn 0"],
     },
     totalColumns: {
       type: Number,
       required: [true, "Tổng số cột là bắt buộc"],
       min: [1, "Tổng số cột phải lớn hơn 0"],
     },
+    activeSeatCount: {
+      type: Number,
+      default: 0,
+      min: [0, "Số ghế khả dụng không hợp lệ"],
+    },
     seatLayout: {
-      type: [[SeatCellSchema]],
+      type: [[RoomSeatSchema]],
       required: [true, "Sơ đồ ghế là bắt buộc"],
       validate: {
         validator: function (value) {
           return (
             Array.isArray(value) &&
-            value.length > 0 &&
+            value.length === this.totalRows &&
             value.every(
               (row) =>
                 Array.isArray(row) &&
-                row.length > 0 &&
-                row.length === this.totalColumns,
+                row.length === this.totalColumns &&
+                row.every(
+                  (cell) =>
+                    cell &&
+                    cell.coordinate &&
+                    typeof cell.coordinate.coordinateLabel === "string",
+                ),
             )
           );
         },
         message:
-          "Sơ đồ ghế phải có dữ liệu và mỗi hàng phải khớp tổng số cột",
+          "Sơ đồ ghế phải khớp tổng số hàng/cột và từng ô phải có toạ độ thật",
       },
     },
   },
@@ -95,6 +146,16 @@ const RoomSchema = new mongoose.Schema(
     versionKey: false,
   },
 );
+
+RoomSchema.pre("validate", function (next) {
+  if (Array.isArray(this.seatLayout)) {
+    this.activeSeatCount = this.seatLayout
+      .flat()
+      .filter((cell) => cell && cell.cellType === SEAT_CELL_TYPE.SEAT).length;
+  }
+
+  next();
+});
 
 RoomSchema.index({ cinemaId: 1, name: 1 });
 

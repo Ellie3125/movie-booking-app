@@ -6,6 +6,42 @@ const TICKET_STATUS = {
   CANCELLED: "cancelled",
 };
 
+const SEAT_TYPE = {
+  STANDARD: "standard",
+  VIP: "vip",
+  COUPLE: "couple",
+  ACCESSIBLE: "accessible",
+};
+
+const TicketSeatSchema = new mongoose.Schema(
+  {
+    seatCoordinate: {
+      type: String,
+      required: [true, "Toạ độ thật của ghế là bắt buộc"],
+      trim: true,
+      uppercase: true,
+    },
+    seatLabel: {
+      type: String,
+      required: [true, "Tên ghế hiển thị là bắt buộc"],
+      trim: true,
+      uppercase: true,
+    },
+    seatType: {
+      type: String,
+      enum: {
+        values: Object.values(SEAT_TYPE),
+        message: "Loại ghế không hợp lệ: {VALUE}",
+      },
+      required: [true, "Loại ghế là bắt buộc"],
+    },
+  },
+  {
+    _id: false,
+    versionKey: false,
+  },
+);
+
 const TicketSchema = new mongoose.Schema(
   {
     bookingId: {
@@ -33,10 +69,9 @@ const TicketSchema = new mongoose.Schema(
       ref: "Room",
       required: [true, "Phòng chiếu là bắt buộc"],
     },
-    seatCode: {
-      type: String,
-      required: [true, "Mã ghế là bắt buộc"],
-      trim: true,
+    seat: {
+      type: TicketSeatSchema,
+      required: [true, "Thông tin ghế là bắt buộc"],
     },
     price: {
       type: Number,
@@ -70,7 +105,7 @@ const TicketSchema = new mongoose.Schema(
   },
 );
 
-TicketSchema.index({ bookingId: 1, seatCode: 1 }, { unique: true });
+TicketSchema.index({ bookingId: 1, "seat.seatCoordinate": 1 }, { unique: true });
 TicketSchema.index({ userId: 1, createdAt: -1 });
 TicketSchema.index({ showtimeId: 1, status: 1 });
 
