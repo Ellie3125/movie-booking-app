@@ -1,6 +1,8 @@
 import { Tabs } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
+import { Fonts } from '@/constants/theme';
+
 export default function UsersTabsLayout() {
   return (
     <Tabs
@@ -17,13 +19,13 @@ export default function UsersTabsLayout() {
         },
         tabBarLabelStyle: {
           fontSize: 11,
-          fontWeight: '700',
+          fontFamily: Fonts.sansBold,
         },
       }}>
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          title: 'Trang chủ',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons color={color} name="home-variant" size={22} />
           ),
@@ -32,7 +34,7 @@ export default function UsersTabsLayout() {
       <Tabs.Screen
         name="movies"
         options={{
-          title: 'Movies',
+          title: 'Phim',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons color={color} name="movie-open" size={22} />
           ),
@@ -41,7 +43,7 @@ export default function UsersTabsLayout() {
       <Tabs.Screen
         name="cinemas"
         options={{
-          title: 'Cinemas',
+          title: 'Rạp',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons color={color} name="office-building" size={22} />
           ),
@@ -50,7 +52,7 @@ export default function UsersTabsLayout() {
       <Tabs.Screen
         name="bookings"
         options={{
-          title: 'Tickets',
+          title: 'Vé',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons color={color} name="ticket-confirmation" size={22} />
           ),
@@ -59,7 +61,7 @@ export default function UsersTabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+          title: 'Tài khoản',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons color={color} name="account-circle" size={22} />
           ),
