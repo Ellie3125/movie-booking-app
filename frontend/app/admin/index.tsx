@@ -46,7 +46,7 @@ export default function AdminDashboardScreen() {
         <Link href="/admin/rooms" style={[styles.link, { color: colors.accent }]}>
           Room CRUD + seat builder
         </Link>
-        <Link href="/" style={[styles.link, { color: colors.muted }]}>
+        <Link href=".." style={[styles.link, { color: colors.muted }]}>
           Back to login
         </Link>
       </SectionCard>
