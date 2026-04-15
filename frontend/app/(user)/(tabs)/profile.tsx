@@ -1,4 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import {
   HeroCard,
@@ -8,49 +10,97 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import { formatLocationName, formatRoleLabel } from '@/lib/user-display';
 
 export default function ProfileTabScreen() {
-  const { currentUser, bookings, cinemas } = useAppStore();
+  const router = useRouter();
+  const { currentUser, bookings, cinemas, logout } = useAppStore();
   const colors = getTonePalette('user');
-  const myBookings = bookings.filter((booking) => booking.userId === currentUser.id);
-  const totalSpent = myBookings.reduce((sum, booking) => sum + booking.totalPrice, 0);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const currentUserId = currentUser?.id ?? '';
+  const myBookings = bookings.filter((booking) => booking.userId === currentUserId);
+  const totalSpent = myBookings
+    .filter((booking) => booking.status === 'paid')
+    .reduce((sum, booking) => sum + booking.totalPrice, 0);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    await logout();
+    setIsLoggingOut(false);
+    router.replace('/');
+  };
 
   return (
     <PageScroll tone="user">
       <HeroCard
         tone="user"
-        eyebrow="Account"
-        title={currentUser.name}
-        description="Trang profile cho user gom thong tin tai khoan, thong ke dat ve va rap yeu thich.">
+        eyebrow="Tài khoản"
+        title={currentUser?.name ?? 'Phiên người dùng'}
+        description="Trang hồ sơ hiển thị thông tin tài khoản thật, thống kê đặt vé và thao tác đăng xuất khỏi phiên hiện tại.">
         <View style={styles.metrics}>
           <MetricTile
             tone="user"
             value={String(myBookings.length)}
-            label="Bookings"
-            helper="So booking user da thanh toan trong session hien tai."
+            label="Lượt đặt"
+            helper="Số booking backend của người dùng hiện tại."
           />
           <MetricTile
             tone="user"
             value={totalSpent.toLocaleString('vi-VN')}
-            label="Total spend"
-            helper="Tong chi phi tren mock store."
+            label="Tổng chi"
+            helper="Tổng chi phí của các booking đã thanh toán."
           />
         </View>
       </HeroCard>
 
       <SectionTitle
         tone="user"
-        title="Thong tin tai khoan"
-        description="Tach rieng khoi admin, user chi thay du lieu lien quan den dat ve."
+        title="Thông tin tài khoản"
+        description="Ứng dụng người dùng đã dùng auth thật và lưu phiên giữa các lần mở app."
       />
       <SectionCard tone="user">
         <Text style={[styles.cardTitle, { color: colors.text }]}>Email</Text>
-        <Text style={[styles.cardCopy, { color: colors.muted }]}>{currentUser.email}</Text>
-        <Text style={[styles.cardTitle, { color: colors.text }]}>Rap goi y</Text>
         <Text style={[styles.cardCopy, { color: colors.muted }]}>
-          {cinemas.slice(0, 2).map((cinema) => `${cinema.brand} ${cinema.name}`).join(' • ')}
+          {currentUser?.email ?? 'Đang cập nhật phiên đăng nhập...'}
         </Text>
+        <Text style={[styles.cardTitle, { color: colors.text }]}>Vai trò</Text>
+        <Text style={[styles.cardCopy, { color: colors.muted }]}>
+          {formatRoleLabel(currentUser?.role ?? 'user')}
+        </Text>
+        <Text style={[styles.cardTitle, { color: colors.text }]}>Rạp gợi ý</Text>
+        <Text style={[styles.cardCopy, { color: colors.muted }]}>
+          {cinemas
+            .slice(0, 2)
+            .map((cinema) => `${cinema.brand} ${formatLocationName(cinema.name)}`)
+            .join(' • ')}
+        </Text>
+      </SectionCard>
+
+      <SectionTitle
+        tone="user"
+        title="Đăng xuất"
+        description="Thoát khỏi tài khoản sẽ xóa token đã lưu và hủy booking nháp nếu backend vẫn đang giữ ghế."
+      />
+      <SectionCard tone="user">
+        <Pressable
+          style={({ pressed }) => [
+            styles.logoutButton,
+            { backgroundColor: colors.accent },
+            pressed && !isLoggingOut ? styles.logoutButtonPressed : null,
+            isLoggingOut ? styles.logoutButtonDisabled : null,
+          ]}
+          disabled={isLoggingOut}
+          onPress={handleLogout}>
+          {isLoggingOut ? (
+            <ActivityIndicator color="#FFFDF8" size="small" />
+          ) : null}
+          <Text style={styles.logoutText}>
+            {isLoggingOut ? 'Đang đăng xuất...' : 'Đăng xuất'}
+          </Text>
+        </Pressable>
       </SectionCard>
     </PageScroll>
   );
@@ -64,10 +114,31 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
+  },
+  logoutButton: {
+    minHeight: 52,
+    borderRadius: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    paddingHorizontal: 16,
+  },
+  logoutButtonPressed: {
+    opacity: 0.92,
+  },
+  logoutButtonDisabled: {
+    opacity: 0.72,
+  },
+  logoutText: {
+    color: '#FFFDF8',
+    fontSize: 15,
+    fontFamily: Fonts.sansBold,
   },
 });

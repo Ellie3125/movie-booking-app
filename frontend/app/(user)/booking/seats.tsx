@@ -12,8 +12,14 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { SeatLayoutGrid } from '@/components/ui/seat-layout-grid';
 import { type RoomSeat, useAppStore } from '@/lib/app-store';
+import {
+  formatLocationName,
+  formatRoomName,
+  formatScreenLabel,
+} from '@/lib/user-display';
 
 const formatSession = (value: string) =>
   new Date(value).toLocaleString('vi-VN', {
@@ -30,6 +36,7 @@ export default function SeatSelectionScreen() {
   const colors = getTonePalette('user');
   const [selectedCoordinates, setSelectedCoordinates] = useState<string[]>([]);
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const showtime = showtimes.find((item) => item.id === showtimeId);
   const movie = movies.find((item) => item.id === showtime?.movieId);
@@ -55,15 +62,17 @@ export default function SeatSelectionScreen() {
     );
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (!showtime) {
       return;
     }
 
-    const result = startCheckout(showtime.id, selectedCoordinates);
+    setSubmitting(true);
+    const result = await startCheckout(showtime.id, selectedCoordinates);
+    setSubmitting(false);
 
     if (!result.ok) {
-      setError(result.error ?? 'Khong the tam giu ghe.');
+      setError(result.error ?? 'Không thể tạm giữ ghế.');
       return;
     }
 
@@ -76,33 +85,35 @@ export default function SeatSelectionScreen() {
 
   return (
     <PageScroll tone="user">
-      <Stack.Screen options={{ title: movie?.title ?? 'Seat Selection' }} />
+      <Stack.Screen options={{ title: movie?.title ?? 'Chọn ghế' }} />
       {!showtime || !room || !movie || !cinema ? (
         <EmptyNotice
           tone="user"
-          title="Khong tim thay du lieu dat ghe"
-          description="Suat chieu hoac phong chieu dang bi thieu du lieu."
+          title="Không tìm thấy dữ liệu đặt ghế"
+          description="Suất chiếu hoặc phòng chiếu đang bị thiếu dữ liệu."
         />
       ) : (
         <>
           <HeroCard
             tone="user"
-            eyebrow="Seat selection"
-            title={`${movie.title} • ${room.name}`}
-            description={`${cinema.brand} ${cinema.name} • ${formatSession(showtime.startTime)}`}
+            eyebrow="Chọn ghế"
+            title={`${movie.title} • ${formatRoomName(room.name)}`}
+            description={`${cinema.brand} ${formatLocationName(cinema.name)} • ${formatSession(showtime.startTime)}`}
           />
 
           <SectionCard tone="user">
-            <Text style={[styles.cardTitle, { color: colors.text }]}>{room.screenLabel}</Text>
+            <Text style={[styles.cardTitle, { color: colors.text }]}>
+              {formatScreenLabel(room.screenLabel)}
+            </Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              Toa do that va seat label duoc tach rieng. Vi du A2 co the hien la ghe A1 neu A1 la o trong.
+              Tọa độ thật và tên ghế hiển thị được tách riêng. Ví dụ A2 có thể hiện là ghế A1 nếu A1 là ô trống.
             </Text>
           </SectionCard>
 
           <SectionTitle
             tone="user"
-            title="Seat map"
-            description="Mau ghe: xanh la trong, vang la held, do la paid, xam la reserved, xanh duong la dang chon."
+            title="Sơ đồ ghế"
+            description="Màu ghế: xanh là trống, vàng là đang giữ, đỏ là đã thanh toán, xám là đã khóa, xanh dương là đang chọn."
           />
           <SectionCard tone="user">
             <SeatLayoutGrid
@@ -115,10 +126,10 @@ export default function SeatSelectionScreen() {
           </SectionCard>
 
           <SectionCard tone="user">
-            <Text style={[styles.cardTitle, { color: colors.text }]}>Ghe dang chon</Text>
+            <Text style={[styles.cardTitle, { color: colors.text }]}>Ghế đang chọn</Text>
             <View style={styles.chipRow}>
               {selectedCoordinates.length === 0 ? (
-                <Chip tone="user" label="Chua chon ghe" />
+                <Chip tone="user" label="Chưa chọn ghế" />
               ) : (
                 selectedCoordinates.map((coordinate) => {
                   const seatState = showtime.seatStates.find(
@@ -141,8 +152,9 @@ export default function SeatSelectionScreen() {
             ) : null}
             <ActionButton
               tone="user"
-              label="Tam giu ghe va tiep tuc"
+              label={submitting ? 'Đang tạm giữ ghế...' : 'Tạm giữ ghế và tiếp tục'}
               onPress={handleContinue}
+              disabled={submitting}
             />
           </SectionCard>
         </>
@@ -154,11 +166,12 @@ export default function SeatSelectionScreen() {
 const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 17,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   chipRow: {
     flexDirection: 'row',
@@ -167,6 +180,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 13,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
 });

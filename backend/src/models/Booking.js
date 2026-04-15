@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const mongoose = require("mongoose");
 
 const BOOKING_STATUS = {
@@ -6,10 +7,21 @@ const BOOKING_STATUS = {
   CANCELLED: "cancelled",
 };
 
+const PAYMENT_STATUS = {
+  PENDING: "pending",
+  PAID: "paid",
+  FAILED: "failed",
+  EXPIRED: "expired",
+};
+
 const PAYMENT_METHOD = {
   CASH: "cash",
   MOMO_SANDBOX: "momo_sandbox",
   VNPAY_SANDBOX: "vnpay_sandbox",
+};
+
+const PAYMENT_CURRENCY = {
+  VND: "VND",
 };
 
 const SEAT_TYPE = {
@@ -23,6 +35,48 @@ const BOOKED_SEAT_STATUS = {
   HELD: "held",
   PAID: "paid",
 };
+
+const createBookingCode = () =>
+  `BK-${Date.now().toString(36).toUpperCase()}-${crypto
+    .randomBytes(3)
+    .toString("hex")
+    .toUpperCase()}`;
+
+const PaymentSnapshotSchema = new mongoose.Schema(
+  {
+    paidAmount: {
+      type: Number,
+      required: [true, "Số tiền thanh toán là bắt buộc"],
+      min: [0, "Số tiền thanh toán không được âm"],
+    },
+    currency: {
+      type: String,
+      enum: {
+        values: Object.values(PAYMENT_CURRENCY),
+        message: "Đơn vị tiền tệ không hợp lệ: {VALUE}",
+      },
+      required: [true, "Đơn vị tiền tệ là bắt buộc"],
+    },
+    timestamp: {
+      type: Number,
+      required: [true, "Timestamp thanh toán là bắt buộc"],
+      min: [1, "Timestamp thanh toán không hợp lệ"],
+    },
+    signature: {
+      type: String,
+      required: [true, "Chữ ký thanh toán là bắt buộc"],
+      trim: true,
+    },
+    verifiedAt: {
+      type: Date,
+      required: [true, "Thời gian xác thực thanh toán là bắt buộc"],
+    },
+  },
+  {
+    _id: false,
+    versionKey: false,
+  },
+);
 
 const BookingSeatSchema = new mongoose.Schema(
   {
@@ -73,6 +127,13 @@ const BookingSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Người đặt vé là bắt buộc"],
     },
+    bookingCode: {
+      type: String,
+      default: createBookingCode,
+      trim: true,
+      unique: true,
+      index: true,
+    },
     movieId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Movie",
@@ -109,16 +170,54 @@ const BookingSchema = new mongoose.Schema(
       default: BOOKING_STATUS.HELD,
       index: true,
     },
+    paymentStatus: {
+      type: String,
+      enum: {
+        values: Object.values(PAYMENT_STATUS),
+        message: "Trạng thái thanh toán không hợp lệ: {VALUE}",
+      },
+      default: function () {
+        return this.status === BOOKING_STATUS.PAID || this.paidAt
+          ? PAYMENT_STATUS.PAID
+          : PAYMENT_STATUS.PENDING;
+      },
+      index: true,
+    },
     paymentMethod: {
       type: String,
       enum: {
-        values: Object.values(PAYMENT_METHOD),
+        values: [...Object.values(PAYMENT_METHOD), null],
         message: "Phương thức thanh toán không hợp lệ: {VALUE}",
       },
-      default: PAYMENT_METHOD.CASH,
+      default: null,
+    },
+    currency: {
+      type: String,
+      enum: {
+        values: Object.values(PAYMENT_CURRENCY),
+        message: "Đơn vị tiền tệ không hợp lệ: {VALUE}",
+      },
+      default: PAYMENT_CURRENCY.VND,
+    },
+    paymentExpiresAt: {
+      type: Date,
+      default: null,
+      index: true,
     },
     paidAt: {
       type: Date,
+      default: null,
+    },
+    transactionCode: {
+      type: String,
+      trim: true,
+      default: null,
+      unique: true,
+      sparse: true,
+      index: true,
+    },
+    paymentSnapshot: {
+      type: PaymentSnapshotSchema,
       default: null,
     },
   },
@@ -130,5 +229,6 @@ const BookingSchema = new mongoose.Schema(
 
 BookingSchema.index({ userId: 1, createdAt: -1 });
 BookingSchema.index({ showtimeId: 1, status: 1 });
+BookingSchema.index({ paymentStatus: 1, paymentExpiresAt: 1 });
 
 module.exports = mongoose.model("Booking", BookingSchema);

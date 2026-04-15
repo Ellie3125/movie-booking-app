@@ -227,17 +227,18 @@ export function ActionButton({
 } & PressableProps) {
   const colors = palette[tone];
   const primary = variant === 'primary';
+  const { style: pressableStyle, ...restPressableProps } = pressableProps;
 
   return (
     <Pressable
-      {...pressableProps}
-      style={[
+      {...restPressableProps}
+      style={(state) => [
         styles.actionButton,
         {
           backgroundColor: primary ? colors.accent : colors.panelAlt,
           borderColor: primary ? colors.accent : colors.border,
         },
-        pressableProps.style,
+        typeof pressableStyle === 'function' ? pressableStyle(state) : pressableStyle,
       ]}>
       <Text
         style={[
@@ -315,29 +316,29 @@ const styles = StyleSheet.create({
     fontSize: 12,
     letterSpacing: 1.4,
     textTransform: 'uppercase',
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   heroTitle: {
     fontSize: 30,
     lineHeight: 36,
     fontFamily: Fonts.rounded,
-    fontWeight: '800',
   },
   heroDescription: {
     fontSize: 15,
     lineHeight: 22,
+    fontFamily: Fonts.sans,
   },
   sectionTitle: {
     gap: 4,
   },
   sectionHeadline: {
     fontSize: 22,
-    fontWeight: '800',
     fontFamily: Fonts.rounded,
   },
   sectionDescription: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   sectionCard: {
     borderWidth: 1,
@@ -355,15 +356,16 @@ const styles = StyleSheet.create({
   },
   metricValue: {
     fontSize: 24,
-    fontWeight: '800',
+    fontFamily: Fonts.rounded,
   },
   metricLabel: {
     fontSize: 13,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
   metricHelper: {
     fontSize: 12,
     lineHeight: 18,
+    fontFamily: Fonts.sans,
   },
   chip: {
     borderRadius: 999,
@@ -373,7 +375,7 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 12,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
   actionButton: {
     minHeight: 48,
@@ -385,7 +387,7 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     fontSize: 15,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   emptyNotice: {
     borderWidth: 1,
@@ -395,10 +397,11 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     fontSize: 16,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   emptyDescription: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
 });

@@ -12,10 +12,12 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { type PaymentMethod, useAppStore } from '@/lib/app-store';
+import { formatLocationName, formatPaymentMethod } from '@/lib/user-display';
 
 const paymentMethods: { label: string; value: PaymentMethod }[] = [
-  { label: 'Cash', value: 'cash' },
+  { label: 'Tiền mặt', value: 'cash' },
   { label: 'MoMo Sandbox', value: 'momo_sandbox' },
   { label: 'VNPay Sandbox', value: 'vnpay_sandbox' },
 ];
@@ -31,54 +33,70 @@ export default function CheckoutScreen() {
   } = useAppStore();
   const colors = getTonePalette('user');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('momo_sandbox');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const movie = movies.find((item) => item.id === draftCheckout?.movieId);
   const showtime = showtimes.find((item) => item.id === draftCheckout?.showtimeId);
   const cinema = cinemas.find((item) => item.id === showtime?.cinemaId);
 
-  const handleCancel = () => {
-    releaseDraftCheckout();
+  const handleCancel = async () => {
+    setSubmitting(true);
+    await releaseDraftCheckout();
+    setSubmitting(false);
     router.back();
   };
 
-  const handleConfirm = () => {
-    const booking = confirmDraftCheckout(paymentMethod);
+  const handleConfirm = async () => {
+    try {
+      setSubmitting(true);
+      setError('');
+      const booking = await confirmDraftCheckout(paymentMethod);
 
-    if (!booking) {
-      return;
+      if (!booking) {
+        return;
+      }
+
+      router.replace('/bookings');
+    } catch (checkoutError) {
+      setError(
+        checkoutError instanceof Error
+          ? checkoutError.message
+          : 'Thanh toán thất bại. Vui lòng thử lại.',
+      );
+    } finally {
+      setSubmitting(false);
     }
-
-    router.replace('/bookings');
   };
 
   return (
     <PageScroll tone="user">
-      <Stack.Screen options={{ title: 'Checkout' }} />
+      <Stack.Screen options={{ title: 'Thanh toán' }} />
       {!draftCheckout || !movie || !showtime || !cinema ? (
         <EmptyNotice
           tone="user"
-          title="Khong co phien checkout"
-          description="Chon ghe truoc khi vao man hinh thanh toan."
+          title="Không có phiên thanh toán"
+          description="Chọn ghế trước khi vào màn hình thanh toán."
         />
       ) : (
         <>
           <HeroCard
             tone="user"
-            eyebrow="Checkout"
+            eyebrow="Thanh toán"
             title={movie.title}
-            description={`${cinema.brand} ${cinema.name} • ${new Date(showtime.startTime).toLocaleString('vi-VN')}`}
+            description={`${cinema.brand} ${formatLocationName(cinema.name)} • ${new Date(showtime.startTime).toLocaleString('vi-VN')}`}
           />
 
           <SectionTitle
             tone="user"
-            title="Thong tin ghe"
-            description="Seat label va toa do that duoc luu song song trong draft checkout."
+            title="Thông tin ghế"
+            description="Tên ghế và tọa độ thật được lưu song song trong phiên thanh toán nháp."
           />
           <SectionCard tone="user">
             {draftCheckout.seats.map((seat) => (
               <View key={seat.seatCoordinate} style={styles.rowBetween}>
                 <Text style={[styles.cardTitle, { color: colors.text }]}>
-                  Ghe {seat.seatLabel}
+                  Ghế {seat.seatLabel}
                 </Text>
                 <Text style={[styles.cardCopy, { color: colors.muted }]}>
                   {seat.seatCoordinate} • {seat.price.toLocaleString('vi-VN')} VND
@@ -86,14 +104,17 @@ export default function CheckoutScreen() {
               </View>
             ))}
             <Text style={[styles.totalPrice, { color: colors.text }]}>
-              Tong tien {draftCheckout.totalPrice.toLocaleString('vi-VN')} VND
+              Tổng tiền {draftCheckout.totalPrice.toLocaleString('vi-VN')} VND
+            </Text>
+            <Text style={[styles.cardCopy, { color: colors.muted }]}>
+              Giữ ghế đến {new Date(draftCheckout.heldUntil).toLocaleString('vi-VN')}
             </Text>
           </SectionCard>
 
           <SectionTitle
             tone="user"
-            title="Phuong thuc thanh toan"
-            description="Trang thai seat se chuyen tu held sang paid sau khi confirm."
+            title="Phương thức thanh toán"
+            description="Trạng thái ghế sẽ chuyển từ đang giữ sang đã thanh toán sau khi xác nhận."
           />
           <SectionCard tone="user">
             <View style={styles.chipRow}>
@@ -101,18 +122,27 @@ export default function CheckoutScreen() {
                 <Chip
                   key={method.value}
                   tone="user"
-                  label={method.label}
+                  label={formatPaymentMethod(method.value)}
                   active={paymentMethod === method.value}
                   onPress={() => setPaymentMethod(method.value)}
                 />
               ))}
             </View>
-            <ActionButton tone="user" label="Thanh toan va xuat ve" onPress={handleConfirm} />
+            {error ? (
+              <Text style={[styles.cardCopy, { color: colors.accent }]}>{error}</Text>
+            ) : null}
             <ActionButton
               tone="user"
-              label="Huy phien giu ghe"
+              label={submitting ? 'Đang thanh toán...' : 'Thanh toán và xuất vé'}
+              onPress={handleConfirm}
+              disabled={submitting}
+            />
+            <ActionButton
+              tone="user"
+              label={submitting ? 'Đang xử lý...' : 'Hủy phiên giữ ghế'}
               variant="secondary"
               onPress={handleCancel}
+              disabled={submitting}
             />
           </SectionCard>
         </>
@@ -135,14 +165,15 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   totalPrice: {
     fontSize: 16,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
 });

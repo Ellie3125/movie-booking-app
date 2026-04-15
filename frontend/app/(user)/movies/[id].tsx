@@ -9,7 +9,17 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import {
+  formatFormats,
+  formatLanguage,
+  formatLocationName,
+  formatMovieDescription,
+  formatGenres,
+  formatRoomName,
+  formatShowtimeFormat,
+} from '@/lib/user-display';
 
 const formatSession = (value: string) =>
   new Date(value).toLocaleString('vi-VN', {
@@ -29,42 +39,43 @@ export default function MovieDetailScreen() {
 
   return (
     <PageScroll tone="user">
-      <Stack.Screen options={{ title: movie?.title ?? 'Movie Details' }} />
+      <Stack.Screen options={{ title: movie?.title ?? 'Chi tiết phim' }} />
       {!movie ? (
         <EmptyNotice
           tone="user"
-          title="Khong tim thay phim"
-          description="Duong dan movie detail dang tro toi mot phim khong ton tai."
+          title="Không tìm thấy phim"
+          description="Đường dẫn chi tiết phim đang trỏ tới một phim không tồn tại."
         />
       ) : (
         <>
           <HeroCard
             tone="user"
-            eyebrow="Movie detail"
+            eyebrow="Chi tiết phim"
             title={movie.title}
-            description={movie.description}
+            description={formatMovieDescription(movie.description)}
           />
 
           <SectionCard tone="user">
-            <Text style={[styles.cardTitle, { color: colors.text }]}>Thong tin phim</Text>
+            <Text style={[styles.cardTitle, { color: colors.text }]}>Thông tin phim</Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              {movie.genre.join(' • ')} • {movie.duration} min • {movie.language}
+              {formatGenres(movie.genre)} • {movie.duration} phút •{' '}
+              {formatLanguage(movie.language)}
             </Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              Format {movie.formats.join(' • ')} • Rating {movie.rating}
+              Định dạng {formatFormats(movie.formats)} • Xếp loại {movie.rating}
             </Text>
           </SectionCard>
 
           <SectionTitle
             tone="user"
-            title="Showtimes"
-            description="Chon suat chieu se vao man hinh ghe co phan biet toa do that va ten ghe hien thi."
+            title="Suất chiếu"
+            description="Chọn suất chiếu sẽ đưa bạn vào màn hình ghế có phân biệt tọa độ thật và tên ghế hiển thị."
           />
           {movieShowtimes.length === 0 ? (
             <EmptyNotice
               tone="user"
-              title="Chua mo suat chieu"
-              description="Sau khi co showtime tu backend hoac store, user se book tu day."
+              title="Chưa mở suất chiếu"
+              description="Khi có showtime từ backend, người dùng sẽ đặt vé trực tiếp từ đây."
             />
           ) : (
             movieShowtimes.map((showtime) => {
@@ -74,14 +85,17 @@ export default function MovieDetailScreen() {
               return (
                 <SectionCard key={showtime.id} tone="user">
                   <Text style={[styles.cardTitle, { color: colors.text }]}>
-                    {cinema?.brand} {cinema?.name}
+                    {cinema
+                      ? `${cinema.brand} ${formatLocationName(cinema.name)}`
+                      : 'Rạp đang cập nhật'}
                   </Text>
                   <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                    {room?.name} • {showtime.format} • {formatSession(showtime.startTime)}
+                    {room ? formatRoomName(room.name) : 'Phòng đang cập nhật'} •{' '}
+                    {formatShowtimeFormat(showtime.format)} • {formatSession(showtime.startTime)}
                   </Text>
                   <View style={styles.rowBetween}>
                     <Text style={[styles.inlineMeta, { color: colors.text }]}>
-                      Gia tu {showtime.basePrice.toLocaleString('vi-VN')} VND
+                      Giá từ {showtime.basePrice.toLocaleString('vi-VN')} VND
                     </Text>
                     <Link
                       href={{
@@ -89,7 +103,7 @@ export default function MovieDetailScreen() {
                         params: { showtimeId: showtime.id },
                       }}
                       style={[styles.link, { color: colors.accent }]}>
-                      Chon ghe
+                      Chọn ghế
                     </Link>
                   </View>
                 </SectionCard>
@@ -111,18 +125,19 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   inlineMeta: {
     fontSize: 13,
-    fontWeight: '700',
+    fontFamily: Fonts.sansBold,
   },
   link: {
     fontSize: 14,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
 });
