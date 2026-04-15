@@ -9,7 +9,15 @@ import {
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
+import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import {
+  formatAddress,
+  formatCinemaFeatures,
+  formatLocationName,
+  formatRoomName,
+  formatShowtimeFormat,
+} from '@/lib/user-display';
 
 const formatSession = (value: string) =>
   new Date(value).toLocaleString('vi-VN', {
@@ -29,42 +37,44 @@ export default function CinemaDetailScreen() {
 
   return (
     <PageScroll tone="user">
-      <Stack.Screen options={{ title: cinema?.name ?? 'Cinema Details' }} />
+      <Stack.Screen
+        options={{ title: cinema ? formatLocationName(cinema.name) : 'Chi tiết rạp' }}
+      />
       {!cinema ? (
         <EmptyNotice
           tone="user"
-          title="Khong tim thay rap"
-          description="Duong dan cinema detail dang tro toi rap khong ton tai."
+          title="Không tìm thấy rạp"
+          description="Đường dẫn chi tiết rạp đang trỏ tới một rạp không tồn tại."
         />
       ) : (
         <>
           <HeroCard
             tone="user"
-            eyebrow="Cinema detail"
-            title={`${cinema.brand} ${cinema.name}`}
-            description={`${cinema.address}. Hotline ${cinema.hotline}.`}
+            eyebrow="Chi tiết rạp"
+            title={`${cinema.brand} ${formatLocationName(cinema.name)}`}
+            description={`${formatAddress(cinema.address)}. Hotline ${cinema.hotline}.`}
           />
 
           <SectionCard tone="user">
-            <Text style={[styles.cardTitle, { color: colors.text }]}>Tien ich</Text>
+            <Text style={[styles.cardTitle, { color: colors.text }]}>Tiện ích</Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              {cinema.features.join(' • ')}
+              {formatCinemaFeatures(cinema.features)}
             </Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              Rooms {rooms.filter((room) => room.cinemaId === cinema.id).length}
+              Số phòng chiếu {rooms.filter((room) => room.cinemaId === cinema.id).length}
             </Text>
           </SectionCard>
 
           <SectionTitle
             tone="user"
-            title="Lich chieu tai rap"
-            description="Flow user co the bat dau tu rap roi chon phim va ghe."
+            title="Lịch chiếu tại rạp"
+            description="Người dùng có thể bắt đầu từ rạp rồi chọn phim và chọn ghế."
           />
           {cinemaShowtimes.length === 0 ? (
             <EmptyNotice
               tone="user"
-              title="Rap nay chua co suat"
-              description="Them showtime vao store hoac backend de lich chieu hien ra."
+              title="Rạp này chưa có suất chiếu"
+              description="Thêm showtime từ backend để lịch chiếu hiện ra tại đây."
             />
           ) : (
             cinemaShowtimes.map((showtime) => {
@@ -74,24 +84,29 @@ export default function CinemaDetailScreen() {
               return (
                 <SectionCard key={showtime.id} tone="user">
                   <Text style={[styles.cardTitle, { color: colors.text }]}>
-                    {movie?.title ?? 'Unknown movie'}
+                    {movie?.title ?? 'Phim không xác định'}
                   </Text>
                   <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                    {room?.name} • {showtime.format} • {formatSession(showtime.startTime)}
+                    {room ? formatRoomName(room.name) : 'Phòng đang cập nhật'} •{' '}
+                    {formatShowtimeFormat(showtime.format)} • {formatSession(showtime.startTime)}
                   </Text>
                   <View style={styles.rowBetween}>
                     {movie ? (
-                      <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
-                        Chi tiet phim
+                      <Link
+                        href={`/movies/${movie.id}`}
+                        style={[styles.link, { color: colors.accent }]}>
+                        Chi tiết phim
                       </Link>
-                    ) : <View />}
+                    ) : (
+                      <View />
+                    )}
                     <Link
                       href={{
                         pathname: '/booking/seats',
                         params: { showtimeId: showtime.id },
                       }}
                       style={[styles.link, { color: colors.accent }]}>
-                      Chon ghe
+                      Chọn ghế
                     </Link>
                   </View>
                 </SectionCard>
@@ -113,14 +128,15 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
   cardCopy: {
     fontSize: 14,
     lineHeight: 20,
+    fontFamily: Fonts.sans,
   },
   link: {
     fontSize: 14,
-    fontWeight: '800',
+    fontFamily: Fonts.sansBold,
   },
 });
