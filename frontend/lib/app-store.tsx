@@ -5,6 +5,7 @@ import {
   useState,
   type PropsWithChildren,
 } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   ApiRequestError,
@@ -20,8 +21,9 @@ import {
   fetchRooms,
   fetchShowtimeById,
   fetchShowtimes,
-  loginDemoUser,
+  loginUser,
   payBookingBill,
+  registerUser,
   type BackendBooking,
   type BackendCinema,
   type BackendMovie,
@@ -36,6 +38,7 @@ export type SeatType = 'standard' | 'vip' | 'couple' | 'accessible';
 export type SeatReservationStatus = 'available' | 'held' | 'reserved' | 'paid';
 export type BookingStatus = 'held' | 'paid' | 'cancelled';
 export type PaymentMethod = 'cash' | 'momo_sandbox' | 'vnpay_sandbox';
+export type AuthStatus = 'bootstrapping' | 'authenticated' | 'unauthenticated';
 
 export type UserProfile = {
   id: string;
@@ -170,9 +173,19 @@ type SaveRoomLayoutInput = {
   hiddenCoordinates: string[];
 };
 
+type AuthActionResult = {
+  ok: boolean;
+  error?: string;
+  user?: UserProfile;
+};
+
 type AppStoreValue = {
   adminUser: UserProfile;
-  currentUser: UserProfile;
+  currentUser: UserProfile | null;
+  authToken: string | null;
+  authStatus: AuthStatus;
+  isAuthenticated: boolean;
+  isAdmin: boolean;
   users: UserProfile[];
   movies: Movie[];
   cinemas: Cinema[];
@@ -180,6 +193,18 @@ type AppStoreValue = {
   showtimes: Showtime[];
   bookings: Booking[];
   draftCheckout: DraftCheckout | null;
+  login: (input: {
+    email: string;
+    password: string;
+    persistSession?: boolean;
+  }) => Promise<AuthActionResult>;
+  register: (input: {
+    name: string;
+    email: string;
+    password: string;
+    persistSession?: boolean;
+  }) => Promise<AuthActionResult>;
+  logout: () => Promise<void>;
   upsertMovie: (input: MovieInput) => void;
   deleteMovie: (movieId: string) => void;
   upsertCinema: (input: CinemaInput) => void;
@@ -207,6 +232,8 @@ const seatPriceMap: Record<SeatType, number> = {
   standard: 90000,
   vip: 120000,
 };
+
+const AUTH_TOKEN_STORAGE_KEY = 'beatcinema.auth-token';
 
 const appStoreContext = createContext<AppStoreValue | null>(null);
 
@@ -884,6 +911,9 @@ const sortByDateAscending = <T extends { startTime: string }>(items: T[]) =>
       new Date(first.startTime).getTime() - new Date(second.startTime).getTime(),
   );
 
+const getRequestErrorMessage = (error: unknown, fallback: string) =>
+  error instanceof ApiRequestError ? error.message : fallback;
+
 export function AppStoreProvider({ children }: PropsWithChildren) {
   const [movies, setMovies] = useState<Movie[]>(initialMovies);
   const [cinemas, setCinemas] = useState<Cinema[]>(initialCinemas);
@@ -891,10 +921,45 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   const [showtimes, setShowtimes] = useState<Showtime[]>(initialShowtimes);
   const [bookings, setBookings] = useState<Booking[]>(initialBookings);
   const [draftCheckout, setDraftCheckout] = useState<DraftCheckout | null>(null);
-  const [currentUser, setCurrentUser] = useState<UserProfile>(USERS[1]);
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [authToken, setAuthToken] = useState<string | null>(null);
+  const [authStatus, setAuthStatus] = useState<AuthStatus>('bootstrapping');
 
   const adminUser = USERS[0];
+  const isAuthenticated = authStatus === 'authenticated' && !!authToken && !!currentUser;
+  const isAdmin = isAuthenticated && currentUser?.role === 'admin';
+
+  const resetLocalDomainState = () => {
+    setMovies(initialMovies);
+    setCinemas(initialCinemas);
+    setRooms(initialRooms);
+    setShowtimes(initialShowtimes);
+    setBookings(initialBookings);
+    setDraftCheckout(null);
+  };
+
+  const clearSessionState = () => {
+    setAuthToken(null);
+    setCurrentUser(null);
+    setAuthStatus('unauthenticated');
+    resetLocalDomainState();
+  };
+
+  const persistAuthToken = async (token: string) => {
+    try {
+      await AsyncStorage.setItem(AUTH_TOKEN_STORAGE_KEY, token);
+    } catch (error) {
+      console.warn(getRequestErrorMessage(error, 'Không thể lưu phiên đăng nhập.'));
+    }
+  };
+
+  const removePersistedAuthToken = async () => {
+    try {
+      await AsyncStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+    } catch (error) {
+      console.warn(getRequestErrorMessage(error, 'Không thể xóa phiên đăng nhập đã lưu.'));
+    }
+  };
 
   const clearDraftIfMatchesShowtime = (showtimeId: string) => {
     setDraftCheckout((currentDraft) =>
@@ -959,37 +1024,141 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   };
 
   const refreshRemoteState = async () => {
-    if (!authToken) {
+    if (!authToken || !currentUser) {
       return;
     }
 
     await syncRemoteState(authToken, currentUser);
   };
 
+  const authenticateWithToken = async (
+    token: string,
+    options: { persistSession?: boolean } = {},
+  ) => {
+    const remoteUser = await fetchCurrentUser(token);
+    const nextUser = normalizeUserProfile(remoteUser);
+    const persistSession = options.persistSession ?? true;
+
+    try {
+      await syncRemoteState(token, nextUser);
+    } catch (error) {
+      const message = getRequestErrorMessage(
+        error,
+        'Không thể đồng bộ dữ liệu backend sau khi đăng nhập.',
+      );
+      console.warn(message);
+    }
+
+    setAuthToken(token);
+    setCurrentUser(nextUser);
+    setAuthStatus('authenticated');
+    if (persistSession) {
+      await persistAuthToken(token);
+    } else {
+      await removePersistedAuthToken();
+    }
+
+    return nextUser;
+  };
+
+  const login = async (input: {
+    email: string;
+    password: string;
+    persistSession?: boolean;
+  }): Promise<AuthActionResult> => {
+    try {
+      const response = await loginUser({
+        email: input.email,
+        password: input.password,
+      });
+      const user = await authenticateWithToken(response.accessToken, {
+        persistSession: input.persistSession,
+      });
+      return { ok: true, user };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể đăng nhập vào hệ thống.'),
+      };
+    }
+  };
+
+  const register = async (input: {
+    name: string;
+    email: string;
+    password: string;
+    persistSession?: boolean;
+  }): Promise<AuthActionResult> => {
+    try {
+      const response = await registerUser({
+        name: input.name,
+        email: input.email,
+        password: input.password,
+      });
+      const user = await authenticateWithToken(response.accessToken, {
+        persistSession: input.persistSession,
+      });
+      return { ok: true, user };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể tạo tài khoản mới.'),
+      };
+    }
+  };
+
+  const logout = async () => {
+    if (authToken && draftCheckout) {
+      try {
+        await cancelBookingRequest(authToken, draftCheckout.id);
+      } catch (error) {
+        console.warn(getRequestErrorMessage(error, 'Không thể hủy phiên giữ ghế trên backend.'));
+      }
+    }
+
+    await removePersistedAuthToken();
+    clearSessionState();
+  };
+
   useEffect(() => {
     let active = true;
 
-    const bootstrapRemoteState = async () => {
+    const bootstrapAuthState = async () => {
       try {
-        const loginResponse = await loginDemoUser();
-        const remoteUser = await fetchCurrentUser(loginResponse.accessToken);
-        const nextUser = normalizeUserProfile(remoteUser);
+        const storedToken = await AsyncStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
 
         if (!active) {
           return;
         }
 
-        setAuthToken(loginResponse.accessToken);
-        setCurrentUser(nextUser);
-        await syncRemoteState(loginResponse.accessToken, nextUser);
+        if (!storedToken) {
+          setAuthStatus('unauthenticated');
+          resetLocalDomainState();
+          return;
+        }
+
+        try {
+          await authenticateWithToken(storedToken);
+        } catch (error) {
+          console.warn(getRequestErrorMessage(error, 'Phiên đăng nhập đã hết hạn hoặc không hợp lệ.'));
+          await removePersistedAuthToken();
+
+          if (!active) {
+            return;
+          }
+
+          clearSessionState();
+        }
       } catch (error) {
-        const message =
-          error instanceof ApiRequestError ? error.message : 'Unknown bootstrap error';
-        console.warn(`BeatCinema frontend is using mock fallback data: ${message}`);
+        console.warn(getRequestErrorMessage(error, 'Không thể khởi tạo phiên đăng nhập đã lưu.'));
+
+        if (active) {
+          clearSessionState();
+        }
       }
     };
 
-    bootstrapRemoteState();
+    bootstrapAuthState();
 
     return () => {
       active = false;
@@ -1195,9 +1364,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         await refreshRemoteState();
         return;
       } catch (error) {
-        const message =
-          error instanceof ApiRequestError ? error.message : 'Khong the huy phien giu ghe.';
-        console.warn(message);
+        console.warn(getRequestErrorMessage(error, 'Không thể hủy phiên giữ ghế.'));
       }
     }
 
@@ -1216,7 +1383,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
           seatStates: showtime.seatStates.map((seat) =>
             seatCoordinateSet.has(seat.seatCoordinate.toUpperCase()) &&
             seat.status === 'held' &&
-            seat.userId === currentUser.id
+            seat.userId === draftCheckout.userId
               ? {
                   ...seat,
                   status: 'available',
@@ -1234,20 +1401,28 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   };
 
   const startCheckout = async (showtimeId: string, seatCoordinates: string[]) => {
+    if (!currentUser) {
+      return {
+        ok: false,
+        error: 'Cần đăng nhập để đặt vé.',
+      };
+    }
+
+    const activeUser = currentUser;
     const showtime = showtimes.find((item) => item.id === showtimeId);
     const room = rooms.find((item) => item.id === showtime?.roomId);
 
     if (!showtime || !room) {
       return {
         ok: false,
-        error: 'Khong tim thay suat chieu hoac phong chieu.',
+        error: 'Không tìm thấy suất chiếu hoặc phòng chiếu.',
       };
     }
 
     if (seatCoordinates.length === 0) {
       return {
         ok: false,
-        error: 'Can chon it nhat mot ghe de tiep tuc.',
+        error: 'Cần chọn ít nhất một ghế để tiếp tục.',
       };
     }
 
@@ -1261,7 +1436,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     if (unavailableSeat) {
       return {
         ok: false,
-        error: `Ghe ${unavailableSeat.seatLabel} dang khong kha dung.`,
+        error: `Ghế ${unavailableSeat.seatLabel} hiện không khả dụng.`,
       };
     }
 
@@ -1275,12 +1450,12 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
           showtimeId,
           seatCoordinates,
         });
-        const remoteDraftCheckout = mapBackendDraftCheckout(remoteBooking, currentUser.id);
+        const remoteDraftCheckout = mapBackendDraftCheckout(remoteBooking, activeUser.id);
 
         if (!remoteDraftCheckout) {
           return {
             ok: false,
-            error: 'Khong the tao du lieu checkout tu backend.',
+            error: 'Không thể tạo dữ liệu thanh toán từ backend.',
           };
         }
 
@@ -1289,19 +1464,14 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         try {
           await refreshRemoteState();
         } catch (error) {
-          const message =
-            error instanceof ApiRequestError ? error.message : 'Khong the dong bo lai du lieu.';
-          console.warn(message);
+          console.warn(getRequestErrorMessage(error, 'Không thể đồng bộ lại dữ liệu.'));
         }
 
         return { ok: true };
       } catch (error) {
         return {
           ok: false,
-          error:
-            error instanceof ApiRequestError
-              ? error.message
-              : 'Khong the tam giu ghe tren backend.',
+          error: getRequestErrorMessage(error, 'Không thể tạm giữ ghế trên backend.'),
         };
       }
     }
@@ -1318,7 +1488,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
                   ? {
                       ...seat,
                       status: 'held',
-                      userId: currentUser.id,
+                      userId: activeUser.id,
                       heldAt: toIsoDate(new Date()),
                       holdExpiresAt: heldUntil,
                     }
@@ -1337,7 +1507,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
     setDraftCheckout({
       id: makeId('draft'),
-      userId: currentUser.id,
+      userId: activeUser.id,
       showtimeId,
       movieId: movie?.id ?? '',
       roomId: room.id,
@@ -1354,6 +1524,12 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     if (!draftCheckout) {
       return null;
     }
+
+    if (!currentUser) {
+      return null;
+    }
+
+    const activeUser = currentUser;
 
     if (authToken) {
       const latestBill = await fetchPaymentBill(authToken, draftCheckout.id);
@@ -1372,12 +1548,10 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       try {
         await refreshRemoteState();
       } catch (error) {
-        const message =
-          error instanceof ApiRequestError ? error.message : 'Khong the dong bo lai du lieu.';
-        console.warn(message);
+        console.warn(getRequestErrorMessage(error, 'Không thể đồng bộ lại dữ liệu.'));
       }
 
-      return mapBackendBooking(confirmedBooking, currentUser.id);
+      return mapBackendBooking(confirmedBooking, activeUser.id);
     }
 
     const bookingId = makeId('booking');
@@ -1397,7 +1571,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
                       ...seat,
                       status: 'paid',
                       bookingId,
-                      userId: currentUser.id,
+                      userId: activeUser.id,
                       paidAt,
                       holdExpiresAt: null,
                     }
@@ -1410,7 +1584,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
     const booking: Booking = {
       id: bookingId,
-      userId: currentUser.id,
+      userId: activeUser.id,
       movieId: draftCheckout.movieId,
       showtimeId: draftCheckout.showtimeId,
       roomId: draftCheckout.roomId,
@@ -1431,7 +1605,11 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   const value: AppStoreValue = {
     adminUser,
     currentUser,
-    users: [adminUser, currentUser],
+    authToken,
+    authStatus,
+    isAuthenticated,
+    isAdmin,
+    users: currentUser ? [adminUser, currentUser] : [adminUser],
     movies,
     cinemas,
     rooms,
@@ -1441,6 +1619,9 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         new Date(second.createdAt).getTime() - new Date(first.createdAt).getTime(),
     ),
     draftCheckout,
+    login,
+    register,
+    logout,
     upsertMovie,
     deleteMovie,
     upsertCinema,

@@ -45,6 +45,11 @@ export type BackendUser = {
   updatedAt?: string;
 };
 
+export type BackendAuthResponse = {
+  user: BackendUser;
+  accessToken: string;
+};
+
 export type BackendMovie = {
   _id: string;
   title: string;
@@ -314,9 +319,6 @@ const resolveBaseUrl = () => {
 
 const API_BASE_URL = resolveBaseUrl();
 
-const demoUserEmail = process.env.EXPO_PUBLIC_DEMO_USER_EMAIL || 'user1@gmail.com';
-const demoUserPassword = process.env.EXPO_PUBLIC_DEMO_USER_PASSWORD || '123456';
-
 async function apiRequest<T>(
   path: string,
   options: RequestInit & { token?: string } = {},
@@ -354,16 +356,21 @@ async function apiRequest<T>(
   return responseBody.data;
 }
 
-export async function loginDemoUser() {
-  return apiRequest<{
-    user: BackendUser;
-    accessToken: string;
-  }>('/auth/login', {
+export async function registerUser(payload: {
+  name: string;
+  email: string;
+  password: string;
+}) {
+  return apiRequest<BackendAuthResponse>('/auth/register', {
     method: 'POST',
-    body: JSON.stringify({
-      email: demoUserEmail,
-      password: demoUserPassword,
-    }),
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function loginUser(payload: { email: string; password: string }) {
+  return apiRequest<BackendAuthResponse>('/auth/login', {
+    method: 'POST',
+    body: JSON.stringify(payload),
   });
 }
 
