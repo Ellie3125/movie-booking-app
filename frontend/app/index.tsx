@@ -37,8 +37,9 @@ export default function EntryScreen() {
               <Text style={styles.eyebrow}>BeatCinema Workspace</Text>
               <Text style={styles.title}>Chọn giao diện làm việc</Text>
               <Text style={styles.subtitle}>
-                Vì hiện chưa có auth thật nên không cần giữ riêng route group `(auth)`.
-                Landing page này chỉ làm cổng vào cho `Users` và `Admin`.
+                Users app se tu dang nhap bang demo account de goi backend that cho
+                catalog, booking va fake payment. Landing page nay van giu hai cong vao
+                rieng cho `Users` va `Admin`.
               </Text>
 
               <Pressable style={styles.primaryButton} onPress={() => router.replace('/home')}>

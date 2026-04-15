@@ -30,13 +30,13 @@ export default function BookingsTabScreen() {
         tone="user"
         eyebrow="My tickets"
         title="Tab ve da mua va trang thai thanh toan."
-        description="Sau khi qua checkout, booking se duoc ghi vao day ngay va ghe se chuyen sang trang thai paid tren so do suat chieu."
+        description="Danh sach booking duoc dong bo tu backend khi demo session ket noi thanh cong."
       />
 
       <SectionTitle
         tone="user"
         title="Lich su dat ve"
-        description="Mock store dang luu seat label, toa do that, tong tien va phuong thuc thanh toan."
+        description="Seat label, toa do that, tong tien va trang thai thanh toan duoc lay tu luong booking that."
       />
       {myBookings.length === 0 ? (
         <EmptyNotice
@@ -65,7 +65,7 @@ export default function BookingsTabScreen() {
                 {booking.status.toUpperCase()} • {formatDateTime(showtime?.startTime ?? booking.createdAt)}
               </Text>
               <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                Tong tien {booking.totalPrice.toLocaleString('vi-VN')} VND • {booking.paymentMethod}
+                Tong tien {booking.totalPrice.toLocaleString('vi-VN')} VND • {booking.paymentMethod ?? 'pending'}
               </Text>
               {movie ? (
                 <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>

@@ -31,24 +31,40 @@ export default function CheckoutScreen() {
   } = useAppStore();
   const colors = getTonePalette('user');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('momo_sandbox');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const movie = movies.find((item) => item.id === draftCheckout?.movieId);
   const showtime = showtimes.find((item) => item.id === draftCheckout?.showtimeId);
   const cinema = cinemas.find((item) => item.id === showtime?.cinemaId);
 
-  const handleCancel = () => {
-    releaseDraftCheckout();
+  const handleCancel = async () => {
+    setSubmitting(true);
+    await releaseDraftCheckout();
+    setSubmitting(false);
     router.back();
   };
 
-  const handleConfirm = () => {
-    const booking = confirmDraftCheckout(paymentMethod);
+  const handleConfirm = async () => {
+    try {
+      setSubmitting(true);
+      setError('');
+      const booking = await confirmDraftCheckout(paymentMethod);
 
-    if (!booking) {
-      return;
+      if (!booking) {
+        return;
+      }
+
+      router.replace('/bookings');
+    } catch (checkoutError) {
+      setError(
+        checkoutError instanceof Error
+          ? checkoutError.message
+          : 'Thanh toan that bai. Vui long thu lai.',
+      );
+    } finally {
+      setSubmitting(false);
     }
-
-    router.replace('/bookings');
   };
 
   return (
@@ -88,6 +104,9 @@ export default function CheckoutScreen() {
             <Text style={[styles.totalPrice, { color: colors.text }]}>
               Tong tien {draftCheckout.totalPrice.toLocaleString('vi-VN')} VND
             </Text>
+            <Text style={[styles.cardCopy, { color: colors.muted }]}>
+              Giu ghe den {new Date(draftCheckout.heldUntil).toLocaleString('vi-VN')}
+            </Text>
           </SectionCard>
 
           <SectionTitle
@@ -107,12 +126,21 @@ export default function CheckoutScreen() {
                 />
               ))}
             </View>
-            <ActionButton tone="user" label="Thanh toan va xuat ve" onPress={handleConfirm} />
+            {error ? (
+              <Text style={[styles.cardCopy, { color: colors.accent }]}>{error}</Text>
+            ) : null}
             <ActionButton
               tone="user"
-              label="Huy phien giu ghe"
+              label={submitting ? 'Dang thanh toan...' : 'Thanh toan va xuat ve'}
+              onPress={handleConfirm}
+              disabled={submitting}
+            />
+            <ActionButton
+              tone="user"
+              label={submitting ? 'Dang xu ly...' : 'Huy phien giu ghe'}
               variant="secondary"
               onPress={handleCancel}
+              disabled={submitting}
             />
           </SectionCard>
         </>

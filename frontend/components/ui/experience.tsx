@@ -227,17 +227,18 @@ export function ActionButton({
 } & PressableProps) {
   const colors = palette[tone];
   const primary = variant === 'primary';
+  const { style: pressableStyle, ...restPressableProps } = pressableProps;
 
   return (
     <Pressable
-      {...pressableProps}
-      style={[
+      {...restPressableProps}
+      style={(state) => [
         styles.actionButton,
         {
           backgroundColor: primary ? colors.accent : colors.panelAlt,
           borderColor: primary ? colors.accent : colors.border,
         },
-        pressableProps.style,
+        typeof pressableStyle === 'function' ? pressableStyle(state) : pressableStyle,
       ]}>
       <Text
         style={[

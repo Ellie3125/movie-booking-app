@@ -30,6 +30,7 @@ export default function SeatSelectionScreen() {
   const colors = getTonePalette('user');
   const [selectedCoordinates, setSelectedCoordinates] = useState<string[]>([]);
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const showtime = showtimes.find((item) => item.id === showtimeId);
   const movie = movies.find((item) => item.id === showtime?.movieId);
@@ -55,12 +56,14 @@ export default function SeatSelectionScreen() {
     );
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (!showtime) {
       return;
     }
 
-    const result = startCheckout(showtime.id, selectedCoordinates);
+    setSubmitting(true);
+    const result = await startCheckout(showtime.id, selectedCoordinates);
+    setSubmitting(false);
 
     if (!result.ok) {
       setError(result.error ?? 'Khong the tam giu ghe.');
@@ -141,8 +144,9 @@ export default function SeatSelectionScreen() {
             ) : null}
             <ActionButton
               tone="user"
-              label="Tam giu ghe va tiep tuc"
+              label={submitting ? 'Dang tam giu ghe...' : 'Tam giu ghe va tiep tuc'}
               onPress={handleContinue}
+              disabled={submitting}
             />
           </SectionCard>
         </>

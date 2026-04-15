@@ -14,7 +14,9 @@ export default function ProfileTabScreen() {
   const { currentUser, bookings, cinemas } = useAppStore();
   const colors = getTonePalette('user');
   const myBookings = bookings.filter((booking) => booking.userId === currentUser.id);
-  const totalSpent = myBookings.reduce((sum, booking) => sum + booking.totalPrice, 0);
+  const totalSpent = myBookings
+    .filter((booking) => booking.status === 'paid')
+    .reduce((sum, booking) => sum + booking.totalPrice, 0);
 
   return (
     <PageScroll tone="user">
@@ -34,7 +36,7 @@ export default function ProfileTabScreen() {
             tone="user"
             value={totalSpent.toLocaleString('vi-VN')}
             label="Total spend"
-            helper="Tong chi phi tren mock store."
+            helper="Tong chi phi cua cac booking da thanh toan."
           />
         </View>
       </HeroCard>

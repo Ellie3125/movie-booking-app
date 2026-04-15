@@ -1,9 +1,34 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type PropsWithChildren,
 } from 'react';
+
+import {
+  ApiRequestError,
+  cancelBooking as cancelBookingRequest,
+  createBooking as createBookingRequest,
+  fetchCinemas,
+  fetchCurrentUser,
+  fetchMovies,
+  fetchMyBookingById,
+  fetchMyBookings,
+  fetchPaymentBill,
+  fetchRoomById,
+  fetchRooms,
+  fetchShowtimeById,
+  fetchShowtimes,
+  loginDemoUser,
+  payBookingBill,
+  type BackendBooking,
+  type BackendCinema,
+  type BackendMovie,
+  type BackendRoom,
+  type BackendShowtimeDetail,
+  type BackendUser,
+} from '@/lib/backend-api';
 
 export type MovieStatus = 'now_showing' | 'coming_soon' | 'ended';
 export type SeatCellType = 'seat' | 'empty';
@@ -110,9 +135,10 @@ export type Booking = {
   seats: BookingSeatSnapshot[];
   totalPrice: number;
   status: BookingStatus;
-  paymentMethod: PaymentMethod;
+  paymentMethod: PaymentMethod | null;
   createdAt: string;
   paidAt: string | null;
+  paymentExpiresAt?: string | null;
 };
 
 export type DraftCheckout = {
@@ -161,12 +187,12 @@ type AppStoreValue = {
   upsertRoom: (input: RoomInput) => Room;
   deleteRoom: (roomId: string) => void;
   saveRoomLayout: (input: SaveRoomLayoutInput) => void;
-  startCheckout: (showtimeId: string, seatCoordinates: string[]) => {
+  startCheckout: (showtimeId: string, seatCoordinates: string[]) => Promise<{
     ok: boolean;
     error?: string;
-  };
-  releaseDraftCheckout: () => void;
-  confirmDraftCheckout: (paymentMethod: PaymentMethod) => Booking | null;
+  }>;
+  releaseDraftCheckout: () => Promise<void>;
+  confirmDraftCheckout: (paymentMethod: PaymentMethod) => Promise<Booking | null>;
 };
 
 const USERS: UserProfile[] = [
@@ -679,6 +705,179 @@ const initialBookings: Booking[] = [
   },
 ];
 
+const movieFallbackMap = new Map(initialMovies.map((movie) => [movie.title, movie]));
+const cinemaFallbackMap = new Map(
+  initialCinemas.map((cinema) => [`${cinema.brand}::${cinema.name}`, cinema]),
+);
+const showtimeFallbackMap = new Map(
+  initialShowtimes.map((showtime) => [`${showtime.movieId}::${showtime.startTime}`, showtime]),
+);
+
+const normalizeUserProfile = (user: BackendUser): UserProfile => ({
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  role: user.role,
+});
+
+const buildRoomSeatId = (cell: {
+  cellType: 'seat' | 'empty';
+  coordinate: { coordinateLabel: string };
+}) => `${cell.cellType}_${cell.coordinate.coordinateLabel.toUpperCase()}`;
+
+const mapBackendMovie = (movie: BackendMovie): Movie => {
+  const fallback = movieFallbackMap.get(movie.title);
+
+  return {
+    id: movie._id,
+    title: movie.title,
+    description: movie.description || fallback?.description || '',
+    duration: movie.duration,
+    genre: movie.genre || fallback?.genre || [],
+    poster: movie.poster || fallback?.poster || '',
+    releaseDate: movie.releaseDate,
+    status: movie.status,
+    language: fallback?.language || 'Phụ đề',
+    rating: fallback?.rating || 'T13',
+    formats: fallback?.formats || ['2D'],
+    featuredNote: fallback?.featuredNote || 'Đang mở bán trên hệ thống.',
+  };
+};
+
+const mapBackendCinema = (cinema: BackendCinema): Cinema => {
+  const fallback = cinemaFallbackMap.get(`${cinema.brand}::${cinema.name}`);
+
+  return {
+    id: cinema._id,
+    brand: cinema.brand,
+    name: cinema.name,
+    city: cinema.city,
+    address: cinema.address,
+    hotline: fallback?.hotline || 'Đang cập nhật',
+    features: fallback?.features || ['Đang cập nhật tiện ích'],
+  };
+};
+
+const mapBackendRoom = (room: BackendRoom): Room => ({
+  id: room._id,
+  cinemaId: room.cinemaId,
+  name: room.name,
+  screenLabel: room.screenLabel,
+  totalRows: room.totalRows,
+  totalColumns: room.totalColumns,
+  activeSeatCount: room.activeSeatCount,
+  seatLayout: room.seatLayout.map((row) =>
+    row.map((cell) => ({
+      id: buildRoomSeatId(cell),
+      cellType: cell.cellType,
+      coordinate: {
+        rowIndex: cell.coordinate.rowIndex,
+        columnIndex: cell.coordinate.columnIndex,
+        coordinateLabel: cell.coordinate.coordinateLabel.toUpperCase(),
+      },
+      seatLabel: cell.seatLabel,
+      seatType: cell.seatType,
+      priceModifier: cell.priceModifier,
+    })),
+  ),
+});
+
+const getMinimumSeatPrice = (room: Room | undefined) => {
+  if (!room) {
+    return seatPriceMap.standard;
+  }
+
+  const prices = room.seatLayout
+    .flat()
+    .filter((cell) => cell.cellType === 'seat' && cell.seatType)
+    .map((cell) => seatPriceMap[cell.seatType as SeatType]);
+
+  return prices.length > 0 ? Math.min(...prices) : seatPriceMap.standard;
+};
+
+const mapBackendShowtime = (
+  showtime: BackendShowtimeDetail,
+  room: Room | undefined,
+): Showtime => {
+  const fallback = showtimeFallbackMap.get(`${showtime.movie._id}::${showtime.startTime}`);
+
+  return {
+    id: showtime._id,
+    movieId: showtime.movie._id,
+    cinemaId: showtime.cinema._id,
+    roomId: showtime.room._id,
+    startTime: showtime.startTime,
+    endTime: showtime.endTime,
+    format: fallback?.format || '2D',
+    language: fallback?.language || 'Phụ đề',
+    basePrice: fallback?.basePrice || getMinimumSeatPrice(room),
+    seatStates: (showtime.seatStates || []).map((seatState) => ({
+      seatCoordinate: seatState.seatCoordinate.toUpperCase(),
+      seatLabel: seatState.seatLabel,
+      seatType: seatState.seatType,
+      status: seatState.status,
+      userId: seatState.userId,
+      bookingId: seatState.bookingId,
+      heldAt: seatState.heldAt,
+      holdExpiresAt: seatState.holdExpiresAt,
+      paidAt: seatState.paidAt,
+    })),
+  };
+};
+
+const mapBackendBooking = (
+  booking: BackendBooking,
+  currentUserId: string,
+): Booking => ({
+  id: booking.bookingId,
+  userId: currentUserId,
+  movieId: booking.movie?.id || '',
+  showtimeId: booking.showtime?.id || '',
+  roomId: booking.room?.id || '',
+  seats: booking.seats.map((seat) => ({
+    seatCoordinate: seat.seatCoordinate.toUpperCase(),
+    seatLabel: seat.seatLabel,
+    seatType: seat.seatType,
+    status: seat.status,
+    price: seat.price,
+  })),
+  totalPrice: booking.totalPrice,
+  status: booking.status,
+  paymentMethod: booking.paymentMethod,
+  createdAt: booking.createdAt,
+  paidAt: booking.paidAt,
+  paymentExpiresAt: booking.paymentExpiresAt,
+});
+
+const mapBackendDraftCheckout = (
+  booking: BackendBooking,
+  currentUserId: string,
+): DraftCheckout | null => {
+  if (!booking.movie || !booking.showtime || !booking.room) {
+    return null;
+  }
+
+  return {
+    id: booking.bookingId,
+    userId: currentUserId,
+    showtimeId: booking.showtime.id,
+    movieId: booking.movie.id,
+    roomId: booking.room.id,
+    seatCoordinates: booking.seats.map((seat) => seat.seatCoordinate.toUpperCase()),
+    seats: booking.seats.map((seat) => ({
+      seatCoordinate: seat.seatCoordinate.toUpperCase(),
+      seatLabel: seat.seatLabel,
+      seatType: seat.seatType,
+      status: seat.status,
+      price: seat.price,
+    })),
+    totalPrice: booking.totalPrice,
+    heldUntil: booking.paymentExpiresAt || toIsoDate(new Date(Date.now() + 5 * 60 * 1000)),
+  };
+};
+
+const isBackendObjectId = (value: string) => /^[a-fA-F0-9]{24}$/.test(value);
+
 const sortByDateAscending = <T extends { startTime: string }>(items: T[]) =>
   [...items].sort(
     (first, second) =>
@@ -692,9 +891,10 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   const [showtimes, setShowtimes] = useState<Showtime[]>(initialShowtimes);
   const [bookings, setBookings] = useState<Booking[]>(initialBookings);
   const [draftCheckout, setDraftCheckout] = useState<DraftCheckout | null>(null);
+  const [currentUser, setCurrentUser] = useState<UserProfile>(USERS[1]);
+  const [authToken, setAuthToken] = useState<string | null>(null);
 
   const adminUser = USERS[0];
-  const currentUser = USERS[1];
 
   const clearDraftIfMatchesShowtime = (showtimeId: string) => {
     setDraftCheckout((currentDraft) =>
@@ -721,6 +921,80 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         : currentDraft,
     );
   };
+
+  const syncRemoteState = async (token: string, user: UserProfile) => {
+    const [moviesResponse, cinemasResponse, roomsResponse, showtimesResponse, bookingsResponse] =
+      await Promise.all([
+        fetchMovies(),
+        fetchCinemas(),
+        fetchRooms(),
+        fetchShowtimes(),
+        fetchMyBookings(token),
+      ]);
+
+    const nextMovies = moviesResponse.items.map(mapBackendMovie);
+    const nextCinemas = cinemasResponse.items.map(mapBackendCinema);
+    const nextRoomDetails = await Promise.all(
+      roomsResponse.items.map((room) => fetchRoomById(room._id)),
+    );
+    const nextRooms = nextRoomDetails.map(mapBackendRoom);
+    const roomMap = new Map(nextRooms.map((room) => [room.id, room]));
+    const nextShowtimeDetails = await Promise.all(
+      showtimesResponse.items.map((showtime) => fetchShowtimeById(showtime._id)),
+    );
+    const nextShowtimes = sortByDateAscending(
+      nextShowtimeDetails.map((showtime) =>
+        mapBackendShowtime(showtime, roomMap.get(showtime.room._id)),
+      ),
+    );
+    const nextBookings = bookingsResponse.items.map((booking) =>
+      mapBackendBooking(booking, user.id),
+    );
+
+    setMovies(nextMovies);
+    setCinemas(nextCinemas);
+    setRooms(nextRooms);
+    setShowtimes(nextShowtimes);
+    setBookings(nextBookings);
+  };
+
+  const refreshRemoteState = async () => {
+    if (!authToken) {
+      return;
+    }
+
+    await syncRemoteState(authToken, currentUser);
+  };
+
+  useEffect(() => {
+    let active = true;
+
+    const bootstrapRemoteState = async () => {
+      try {
+        const loginResponse = await loginDemoUser();
+        const remoteUser = await fetchCurrentUser(loginResponse.accessToken);
+        const nextUser = normalizeUserProfile(remoteUser);
+
+        if (!active) {
+          return;
+        }
+
+        setAuthToken(loginResponse.accessToken);
+        setCurrentUser(nextUser);
+        await syncRemoteState(loginResponse.accessToken, nextUser);
+      } catch (error) {
+        const message =
+          error instanceof ApiRequestError ? error.message : 'Unknown bootstrap error';
+        console.warn(`BeatCinema frontend is using mock fallback data: ${message}`);
+      }
+    };
+
+    bootstrapRemoteState();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const upsertMovie = (input: MovieInput) => {
     setMovies((current) => {
@@ -909,9 +1183,22 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     );
   };
 
-  const releaseDraftCheckout = () => {
+  const releaseDraftCheckout = async () => {
     if (!draftCheckout) {
       return;
+    }
+
+    if (authToken) {
+      try {
+        await cancelBookingRequest(authToken, draftCheckout.id);
+        setDraftCheckout(null);
+        await refreshRemoteState();
+        return;
+      } catch (error) {
+        const message =
+          error instanceof ApiRequestError ? error.message : 'Khong the huy phien giu ghe.';
+        console.warn(message);
+      }
     }
 
     const seatCoordinateSet = new Set(
@@ -946,7 +1233,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setDraftCheckout(null);
   };
 
-  const startCheckout = (showtimeId: string, seatCoordinates: string[]) => {
+  const startCheckout = async (showtimeId: string, seatCoordinates: string[]) => {
     const showtime = showtimes.find((item) => item.id === showtimeId);
     const room = rooms.find((item) => item.id === showtime?.roomId);
 
@@ -979,7 +1266,44 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     }
 
     if (draftCheckout) {
-      releaseDraftCheckout();
+      await releaseDraftCheckout();
+    }
+
+    if (authToken) {
+      try {
+        const remoteBooking = await createBookingRequest(authToken, {
+          showtimeId,
+          seatCoordinates,
+        });
+        const remoteDraftCheckout = mapBackendDraftCheckout(remoteBooking, currentUser.id);
+
+        if (!remoteDraftCheckout) {
+          return {
+            ok: false,
+            error: 'Khong the tao du lieu checkout tu backend.',
+          };
+        }
+
+        setDraftCheckout(remoteDraftCheckout);
+
+        try {
+          await refreshRemoteState();
+        } catch (error) {
+          const message =
+            error instanceof ApiRequestError ? error.message : 'Khong the dong bo lai du lieu.';
+          console.warn(message);
+        }
+
+        return { ok: true };
+      } catch (error) {
+        return {
+          ok: false,
+          error:
+            error instanceof ApiRequestError
+              ? error.message
+              : 'Khong the tam giu ghe tren backend.',
+        };
+      }
     }
 
     const heldUntil = toIsoDate(new Date(Date.now() + 5 * 60 * 1000));
@@ -1026,9 +1350,34 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     return { ok: true };
   };
 
-  const confirmDraftCheckout = (paymentMethod: PaymentMethod) => {
+  const confirmDraftCheckout = async (paymentMethod: PaymentMethod) => {
     if (!draftCheckout) {
       return null;
+    }
+
+    if (authToken) {
+      const latestBill = await fetchPaymentBill(authToken, draftCheckout.id);
+
+      await payBookingBill(authToken, draftCheckout.id, {
+        paymentMethod,
+        paidAmount: latestBill.paymentAuth.paidAmount,
+        currency: latestBill.paymentAuth.currency,
+        timestamp: latestBill.paymentAuth.timestamp,
+        signature: latestBill.paymentAuth.signature,
+      });
+
+      const confirmedBooking = await fetchMyBookingById(authToken, draftCheckout.id);
+      setDraftCheckout(null);
+
+      try {
+        await refreshRemoteState();
+      } catch (error) {
+        const message =
+          error instanceof ApiRequestError ? error.message : 'Khong the dong bo lai du lieu.';
+        console.warn(message);
+      }
+
+      return mapBackendBooking(confirmedBooking, currentUser.id);
     }
 
     const bookingId = makeId('booking');
@@ -1082,7 +1431,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   const value: AppStoreValue = {
     adminUser,
     currentUser,
-    users: USERS,
+    users: [adminUser, currentUser],
     movies,
     cinemas,
     rooms,
