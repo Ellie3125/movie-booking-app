@@ -1,83 +1,67 @@
 import { Link } from 'expo-router';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import {
+  HeroCard,
+  MetricTile,
+  PageScroll,
+  SectionCard,
+  SectionTitle,
+  getTonePalette,
+} from '@/components/ui/experience';
+import { useAppStore } from '@/lib/app-store';
 
 export default function AdminDashboardScreen() {
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.kicker}>Admin workspace</Text>
-        <Text style={styles.title}>Cinema Operations</Text>
-        <Text style={styles.subtitle}>
-          Separate admin area for CRUD operations and room seat-layout configuration.
-        </Text>
+  const { movies, cinemas, rooms, showtimes, bookings } = useAppStore();
+  const colors = getTonePalette('admin');
 
-        <View style={styles.actions}>
-          <Link href="/admin/movies" style={styles.link}>
-            Manage movies
-          </Link>
-          <Link href="/admin/rooms" style={styles.link}>
-            Manage rooms
-          </Link>
-          <Link href="/admin/rooms/room-a/seat-layout" style={styles.link}>
-            Edit sample seat layout
-          </Link>
-          <Link href="/" style={styles.secondaryLink}>
-            Back to login
-          </Link>
+  return (
+    <PageScroll tone="admin">
+      <HeroCard
+        tone="admin"
+        eyebrow="Admin workspace"
+        title="BeatCinema control tower"
+        description="Frontend app da duoc tach ro hai nhanh: admin de quan ly domain va users de dat ve. Dashboard nay tong hop toan bo thuc the chinh tren store hien tai.">
+        <View style={styles.metricRow}>
+          <MetricTile tone="admin" value={String(movies.length)} label="Movies" helper="CRUD title, status, genre, release plan." />
+          <MetricTile tone="admin" value={String(cinemas.length)} label="Cinemas" helper="Branch, city, address, service mix." />
+          <MetricTile tone="admin" value={String(rooms.length)} label="Rooms" helper="Room metadata plus seat layout editor." />
+          <MetricTile tone="admin" value={String(showtimes.length)} label="Showtimes" helper="Used by user booking flow and seat states." />
+          <MetricTile tone="admin" value={String(bookings.length)} label="Bookings" helper="Paid bookings update seat status immediately." />
         </View>
-      </View>
-    </SafeAreaView>
+      </HeroCard>
+
+      <SectionTitle
+        tone="admin"
+        title="Quick Access"
+        description="Tung man quan ly se thao tac truc tiep len cung mot data store voi phan user."
+      />
+      <SectionCard tone="admin">
+        <Link href="/admin/movies" style={[styles.link, { color: colors.accent }]}>
+          Movie CRUD
+        </Link>
+        <Link href="/admin/cinemas" style={[styles.link, { color: colors.accent }]}>
+          Cinema CRUD
+        </Link>
+        <Link href="/admin/rooms" style={[styles.link, { color: colors.accent }]}>
+          Room CRUD + seat builder
+        </Link>
+        <Link href="/" style={[styles.link, { color: colors.muted }]}>
+          Back to login
+        </Link>
+      </SectionCard>
+    </PageScroll>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#020617',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 24,
-    gap: 14,
-  },
-  kicker: {
-    fontSize: 12,
-    letterSpacing: 1.6,
-    textTransform: 'uppercase',
-    color: '#38BDF8',
-    fontWeight: '700',
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: '700',
-    color: '#F8FAFC',
-  },
-  subtitle: {
-    fontSize: 15,
-    lineHeight: 22,
-    color: '#CBD5E1',
-    maxWidth: 420,
-  },
-  actions: {
-    marginTop: 8,
+  metricRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 12,
   },
   link: {
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    borderRadius: 16,
-    backgroundColor: '#111827',
-    color: '#E2E8F0',
-    borderWidth: 1,
-    borderColor: '#1E293B',
     fontSize: 15,
-    fontWeight: '600',
-  },
-  secondaryLink: {
-    marginTop: 8,
-    color: '#7DD3FC',
-    fontSize: 14,
-    fontWeight: '600',
+    fontWeight: '800',
   },
 });

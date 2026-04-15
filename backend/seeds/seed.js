@@ -13,6 +13,7 @@ const roomsData = require("./data/rooms.data");
 const showtimesData = require("./data/showtimes.data");
 const bookingsData = require("./data/bookings.data");
 const ticketsData = require("./data/tickets.data");
+const { buildSeatStates } = require("./data/seat-layout.helper");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -104,10 +105,11 @@ const seedShowtimes = async (movieLookup, cinemaLookup, roomLookup, userLookup) 
       startOffsetDays,
       startHour,
       startMinute = 0,
-      heldSeats = [],
+      seatStates = [],
       ...showtime
     }) => {
       const movie = getRequiredDoc(movieLookup, movieKey, "movie");
+      const room = getRequiredDoc(roomLookup, roomKey, "room");
       const startTime = buildShowtimeStart(startOffsetDays, startHour, startMinute);
       const endTime = new Date(startTime.getTime() + movie.duration * 60 * 1000);
 
@@ -115,14 +117,25 @@ const seedShowtimes = async (movieLookup, cinemaLookup, roomLookup, userLookup) 
         ...showtime,
         movieId: movie._id,
         cinemaId: getRequiredDoc(cinemaLookup, cinemaKey, "cinema")._id,
-        roomId: getRequiredDoc(roomLookup, roomKey, "room")._id,
+        roomId: room._id,
         startTime,
         endTime,
-        heldSeats: heldSeats.map(({ userKey, holdMinutes = 5, ...seat }) => ({
-          ...seat,
-          userId: getRequiredDoc(userLookup, userKey, "user")._id,
-          expiresAt: new Date(Date.now() + holdMinutes * 60 * 1000),
-        })),
+        seatStates: buildSeatStates(
+          room.seatLayout,
+          seatStates.map(({ userKey, holdMinutes = 5, ...seatState }) => ({
+            ...seatState,
+            userId: userKey
+              ? getRequiredDoc(userLookup, userKey, "user")._id
+              : null,
+            heldAt:
+              seatState.status === "held" ? new Date() : null,
+            holdExpiresAt:
+              seatState.status === "held"
+                ? new Date(Date.now() + holdMinutes * 60 * 1000)
+                : null,
+            paidAt: seatState.status === "paid" ? new Date() : null,
+          })),
+        ),
       };
     },
   );

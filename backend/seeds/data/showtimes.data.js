@@ -7,12 +7,27 @@ module.exports = [
     startOffsetDays: 1,
     startHour: 18,
     startMinute: 30,
-    bookedSeats: ["A1", "A2"],
-    heldSeats: [
+    seatStates: [
       {
-        seatCode: "B3",
+        seatCoordinate: "A2",
+        status: "paid",
         userKey: "nguyen_van_a",
+      },
+      {
+        seatCoordinate: "A3",
+        status: "paid",
+        userKey: "nguyen_van_a",
+      },
+      {
+        seatCoordinate: "B3",
+        status: "held",
+        userKey: "tran_thi_b",
         holdMinutes: 5,
+      },
+      {
+        seatCoordinate: "F10",
+        status: "reserved",
+        userKey: "admin",
       },
     ],
   },
@@ -24,8 +39,7 @@ module.exports = [
     startOffsetDays: 2,
     startHour: 10,
     startMinute: 0,
-    bookedSeats: [],
-    heldSeats: [],
+    seatStates: [],
   },
   {
     key: "showtime_interstellar_govap_night",
@@ -35,8 +49,18 @@ module.exports = [
     startOffsetDays: 2,
     startHour: 20,
     startMinute: 15,
-    bookedSeats: ["C5", "C6"],
-    heldSeats: [],
+    seatStates: [
+      {
+        seatCoordinate: "C7",
+        status: "paid",
+        userKey: "tran_thi_b",
+      },
+      {
+        seatCoordinate: "C8",
+        status: "paid",
+        userKey: "tran_thi_b",
+      },
+    ],
   },
   {
     key: "showtime_dune_da_nang_afternoon",
@@ -46,10 +70,10 @@ module.exports = [
     startOffsetDays: 3,
     startHour: 15,
     startMinute: 45,
-    bookedSeats: [],
-    heldSeats: [
+    seatStates: [
       {
-        seatCode: "A4",
+        seatCoordinate: "A4",
+        status: "held",
         userKey: "tran_thi_b",
         holdMinutes: 10,
       },

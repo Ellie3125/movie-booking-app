@@ -1,47 +1,68 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function UserTabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function UsersTabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarActiveTintColor: '#E87A22',
+        tabBarInactiveTintColor: '#9A7B67',
+        tabBarStyle: {
+          backgroundColor: '#FFFDF7',
+          borderTopColor: 'rgba(140, 104, 86, 0.18)',
+          height: 68,
+          paddingTop: 8,
+          paddingBottom: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '700',
+        },
       }}>
       <Tabs.Screen
         name="home"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons color={color} name="home-variant" size={22} />
+          ),
         }}
       />
       <Tabs.Screen
         name="movies"
         options={{
           title: 'Movies',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="film.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons color={color} name="movie-open" size={22} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="cinemas"
+        options={{
+          title: 'Cinemas',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons color={color} name="office-building" size={22} />
+          ),
         }}
       />
       <Tabs.Screen
         name="bookings"
         options={{
-          title: 'Bookings',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="ticket.fill" color={color} />,
+          title: 'Tickets',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons color={color} name="ticket-confirmation" size={22} />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons color={color} name="account-circle" size={22} />
+          ),
         }}
       />
     </Tabs>
