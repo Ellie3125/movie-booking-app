@@ -24,6 +24,7 @@ module.exports = [
     totalPrice: 180000,
     status: "paid",
     paymentMethod: "momo_sandbox",
+    transactionCode: "MOMO-SEED-DUNE-20260415-080000",
     paidAt: "2026-04-15T08:00:00.000Z",
   },
   {
@@ -51,6 +52,7 @@ module.exports = [
     totalPrice: 270000,
     status: "paid",
     paymentMethod: "cash",
+    transactionCode: "CASH-SEED-INTERSTELLAR-20260415-081000",
     paidAt: "2026-04-15T08:10:00.000Z",
   },
 ];

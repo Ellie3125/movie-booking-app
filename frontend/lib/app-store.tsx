@@ -8,6 +8,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
+  API_BASE_URL,
   ApiRequestError,
   cancelBooking as cancelBookingRequest,
   createBooking as createBookingRequest,
@@ -911,8 +912,26 @@ const sortByDateAscending = <T extends { startTime: string }>(items: T[]) =>
       new Date(first.startTime).getTime() - new Date(second.startTime).getTime(),
   );
 
-const getRequestErrorMessage = (error: unknown, fallback: string) =>
-  error instanceof ApiRequestError ? error.message : fallback;
+const getRequestErrorMessage = (error: unknown, fallback: string) => {
+  if (error instanceof ApiRequestError) {
+    return error.message;
+  }
+
+  if (error instanceof Error) {
+    const normalizedMessage = error.message.toLowerCase();
+
+    if (
+      normalizedMessage.includes('network request failed') ||
+      normalizedMessage.includes('failed to fetch')
+    ) {
+      return `Không kết nối được tới backend (${API_BASE_URL}). Kiểm tra backend đã chạy chưa và URL API của frontend đã đúng chưa.`;
+    }
+
+    return error.message;
+  }
+
+  return fallback;
+};
 
 export function AppStoreProvider({ children }: PropsWithChildren) {
   const [movies, setMovies] = useState<Movie[]>(initialMovies);

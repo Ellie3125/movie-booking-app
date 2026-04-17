@@ -147,14 +147,13 @@ const RoomSchema = new mongoose.Schema(
   },
 );
 
-RoomSchema.pre("validate", function (next) {
+RoomSchema.pre("validate", function () {
   if (Array.isArray(this.seatLayout)) {
     this.activeSeatCount = this.seatLayout
       .flat()
       .filter((cell) => cell && cell.cellType === SEAT_CELL_TYPE.SEAT).length;
   }
 
-  next();
 });
 
 RoomSchema.index({ cinemaId: 1, name: 1 });
