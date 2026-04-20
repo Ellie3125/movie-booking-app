@@ -5,6 +5,7 @@ const Room = require("./Room");
 const Showtime = require("./Showtime");
 const Booking = require("./Booking");
 const Ticket = require("./Ticket");
+const Session = require("./Session");
 
 module.exports = {
   User,
@@ -14,4 +15,5 @@ module.exports = {
   Showtime,
   Booking,
   Ticket,
+  Session,
 };
