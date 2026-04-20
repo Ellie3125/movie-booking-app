@@ -18,6 +18,14 @@ const passwordSchema = Joi.string()
     'string.max': 'password must be at most 128 characters',
   });
 
+const refreshTokenSchema = Joi.string()
+  .trim()
+  .min(20)
+  .required()
+  .label('refreshToken');
+
+const rememberMeSchema = Joi.boolean().default(false).label('rememberMe');
+
 const registerSchema = {
   body: strictObject({
     name: Joi.string().trim().min(2).max(120).required().label('name').messages({
@@ -26,6 +34,7 @@ const registerSchema = {
     }),
     email: emailSchema,
     password: passwordSchema,
+    rememberMe: rememberMeSchema,
   }),
 };
 
@@ -33,10 +42,33 @@ const loginSchema = {
   body: strictObject({
     email: emailSchema,
     password: passwordSchema,
+    rememberMe: rememberMeSchema,
+  }),
+};
+
+const refreshTokenRequestSchema = {
+  body: strictObject({
+    refreshToken: refreshTokenSchema,
+  }),
+};
+
+const logoutSchema = {
+  body: strictObject({
+    refreshToken: refreshTokenSchema,
+  }),
+};
+
+const changePasswordSchema = {
+  body: strictObject({
+    currentPassword: passwordSchema.label('currentPassword'),
+    newPassword: passwordSchema.label('newPassword'),
   }),
 };
 
 module.exports = {
+  changePasswordSchema,
+  refreshTokenRequestSchema,
   registerSchema,
   loginSchema,
+  logoutSchema,
 };

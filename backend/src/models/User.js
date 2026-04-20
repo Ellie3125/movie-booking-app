@@ -33,6 +33,15 @@ const UserSchema = new mongoose.Schema(
       default: USER_ROLE.USER,
       index: true,
     },
+    authVersion: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    passwordChangedAt: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
