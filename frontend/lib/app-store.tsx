@@ -12,6 +12,8 @@ import {
   ApiRequestError,
   cancelBooking as cancelBookingRequest,
   createBooking as createBookingRequest,
+  createRoom as createRoomRequest,
+  deleteRoom as deleteRoomRequest,
   fetchCinemas,
   fetchCurrentUser,
   fetchMovies,
@@ -25,6 +27,7 @@ import {
   loginUser,
   payBookingBill,
   registerUser,
+  updateRoom as updateRoomRequest,
   type BackendBooking,
   type BackendCinema,
   type BackendMovie,
@@ -180,6 +183,17 @@ type AuthActionResult = {
   user?: UserProfile;
 };
 
+type RoomMutationResult = {
+  ok: boolean;
+  error?: string;
+  room?: Room;
+};
+
+type DeleteRoomResult = {
+  ok: boolean;
+  error?: string;
+};
+
 type AppStoreValue = {
   adminUser: UserProfile;
   currentUser: UserProfile | null;
@@ -210,9 +224,9 @@ type AppStoreValue = {
   deleteMovie: (movieId: string) => void;
   upsertCinema: (input: CinemaInput) => void;
   deleteCinema: (cinemaId: string) => void;
-  upsertRoom: (input: RoomInput) => Room;
-  deleteRoom: (roomId: string) => void;
-  saveRoomLayout: (input: SaveRoomLayoutInput) => void;
+  upsertRoom: (input: RoomInput) => Promise<RoomMutationResult>;
+  deleteRoom: (roomId: string) => Promise<DeleteRoomResult>;
+  saveRoomLayout: (input: SaveRoomLayoutInput) => Promise<RoomMutationResult>;
   startCheckout: (showtimeId: string, seatCoordinates: string[]) => Promise<{
     ok: boolean;
     error?: string;
@@ -367,6 +381,12 @@ const buildRoom = ({
     seatLayout,
   };
 };
+
+const getHiddenCoordinatesFromRoom = (room: Room) =>
+  room.seatLayout
+    .flat()
+    .filter((seat) => seat.cellType === 'empty')
+    .map((seat) => seat.coordinate.coordinateLabel.toUpperCase());
 
 const buildSeatStates = (
   room: Room,
@@ -953,7 +973,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setCinemas(initialCinemas);
     setRooms(initialRooms);
     setShowtimes(initialShowtimes);
-    setBookings(initialBookings);
+    setBookings([]);
     setDraftCheckout(null);
   };
 
@@ -961,7 +981,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setAuthToken(null);
     setCurrentUser(null);
     setAuthStatus('unauthenticated');
-    resetLocalDomainState();
+    setBookings([]);
+    setDraftCheckout(null);
   };
 
   const persistAuthToken = async (token: string) => {
@@ -1006,16 +1027,9 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     );
   };
 
-  const syncRemoteState = async (token: string, user: UserProfile) => {
-    const [moviesResponse, cinemasResponse, roomsResponse, showtimesResponse, bookingsResponse] =
-      await Promise.all([
-        fetchMovies(),
-        fetchCinemas(),
-        fetchRooms(),
-        fetchShowtimes(),
-        fetchMyBookings(token),
-      ]);
-
+  const syncCatalogState = async () => {
+    const [moviesResponse, cinemasResponse, roomsResponse, showtimesResponse] =
+      await Promise.all([fetchMovies(), fetchCinemas(), fetchRooms(), fetchShowtimes()]);
     const nextMovies = moviesResponse.items.map(mapBackendMovie);
     const nextCinemas = cinemasResponse.items.map(mapBackendCinema);
     const nextRoomDetails = await Promise.all(
@@ -1031,14 +1045,22 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         mapBackendShowtime(showtime, roomMap.get(showtime.room._id)),
       ),
     );
-    const nextBookings = bookingsResponse.items.map((booking) =>
-      mapBackendBooking(booking, user.id),
-    );
 
     setMovies(nextMovies);
     setCinemas(nextCinemas);
     setRooms(nextRooms);
     setShowtimes(nextShowtimes);
+  };
+
+  const syncRemoteState = async (token: string, user: UserProfile) => {
+    const [, bookingsResponse] = await Promise.all([
+      syncCatalogState(),
+      fetchMyBookings(token),
+    ]);
+    const nextBookings = bookingsResponse.items.map((booking) =>
+      mapBackendBooking(booking, user.id),
+    );
+
     setBookings(nextBookings);
   };
 
@@ -1048,6 +1070,17 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     }
 
     await syncRemoteState(authToken, currentUser);
+  };
+
+  const loadPublicCatalogState = async () => {
+    try {
+      await syncCatalogState();
+      setBookings([]);
+      setDraftCheckout(null);
+    } catch (error) {
+      console.warn(getRequestErrorMessage(error, 'Không thể đồng bộ dữ liệu public từ backend.'));
+      resetLocalDomainState();
+    }
   };
 
   const authenticateWithToken = async (
@@ -1137,6 +1170,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
     await removePersistedAuthToken();
     clearSessionState();
+    await loadPublicCatalogState();
   };
 
   useEffect(() => {
@@ -1151,8 +1185,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         }
 
         if (!storedToken) {
-          setAuthStatus('unauthenticated');
-          resetLocalDomainState();
+          clearSessionState();
+          await loadPublicCatalogState();
           return;
         }
 
@@ -1167,12 +1201,14 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
           }
 
           clearSessionState();
+          await loadPublicCatalogState();
         }
       } catch (error) {
         console.warn(getRequestErrorMessage(error, 'Không thể khởi tạo phiên đăng nhập đã lưu.'));
 
         if (active) {
           clearSessionState();
+          await loadPublicCatalogState();
         }
       }
     };
@@ -1232,143 +1268,117 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     cascadeDeleteShowtimes(relatedShowtimeIds);
   };
 
-  const upsertRoom = (input: RoomInput) => {
-    let nextRoom = rooms.find((room) => room.id === input.id) ?? null;
-
-    setRooms((current) => {
-      if (!input.id) {
-        const createdRoom = buildRoom({
-          id: makeId('room'),
-          cinemaId: input.cinemaId,
-          name: input.name,
-          screenLabel: input.screenLabel,
-          totalRows: input.totalRows,
-          totalColumns: input.totalColumns,
-        });
-
-        nextRoom = createdRoom;
-        return [...current, createdRoom];
-      }
-
-      const currentRoom = current.find((room) => room.id === input.id);
-      const existingHiddenCoordinates =
-        currentRoom?.seatLayout
-          .flat()
-          .filter((seat) => seat.cellType === 'empty')
-          .map((seat) => seat.coordinate.coordinateLabel) ?? [];
-
-      const rebuiltRoom = buildRoom({
-        id: input.id,
-        cinemaId: input.cinemaId,
-        name: input.name,
-        screenLabel: input.screenLabel,
-        totalRows: input.totalRows,
-        totalColumns: input.totalColumns,
-        hiddenCoordinates: existingHiddenCoordinates,
-      });
-
-      nextRoom = rebuiltRoom;
-
-      return current.map((room) => (room.id === input.id ? rebuiltRoom : room));
-    });
-
-    if (!nextRoom) {
-      throw new Error('Room was not created');
+  const upsertRoom = async (input: RoomInput): Promise<RoomMutationResult> => {
+    if (!authToken || !currentUser || currentUser.role !== 'admin') {
+      return {
+        ok: false,
+        error: 'Cần đăng nhập bằng tài khoản admin để lưu phòng chiếu.',
+      };
     }
 
-    setShowtimes((current) =>
-      current.map((showtime) =>
-        showtime.roomId === nextRoom!.id
-          ? {
-              ...showtime,
-              cinemaId: nextRoom!.cinemaId,
-              seatStates: syncSeatStatesWithRoom(nextRoom!, showtime.seatStates),
-            }
-          : showtime,
-      ),
-    );
+    const currentRoom = input.id ? rooms.find((room) => room.id === input.id) : null;
+    const hiddenCoordinates = currentRoom ? getHiddenCoordinatesFromRoom(currentRoom) : [];
 
-    return nextRoom;
+    try {
+      const remoteRoom = input.id
+        ? await updateRoomRequest(authToken, input.id, {
+            cinemaId: input.cinemaId,
+            name: input.name,
+            screenLabel: input.screenLabel,
+            totalRows: input.totalRows,
+            totalColumns: input.totalColumns,
+            hiddenCoordinates,
+          })
+        : await createRoomRequest(authToken, {
+            cinemaId: input.cinemaId,
+            name: input.name,
+            screenLabel: input.screenLabel,
+            totalRows: input.totalRows,
+            totalColumns: input.totalColumns,
+            hiddenCoordinates,
+          });
+
+      await refreshRemoteState();
+
+      return {
+        ok: true,
+        room: mapBackendRoom(remoteRoom),
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể lưu phòng chiếu.'),
+      };
+    }
   };
 
-  const deleteRoom = (roomId: string) => {
-    setRooms((current) => current.filter((room) => room.id !== roomId));
-    const relatedShowtimeIds = showtimes
-      .filter((showtime) => showtime.roomId === roomId)
-      .map((showtime) => showtime.id);
-    cascadeDeleteShowtimes(relatedShowtimeIds);
+  const deleteRoom = async (roomId: string): Promise<DeleteRoomResult> => {
+    if (!authToken || !currentUser || currentUser.role !== 'admin') {
+      return {
+        ok: false,
+        error: 'Cần đăng nhập bằng tài khoản admin để xóa phòng chiếu.',
+      };
+    }
+
+    try {
+      await deleteRoomRequest(authToken, roomId);
+      await refreshRemoteState();
+      return { ok: true };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể xóa phòng chiếu.'),
+      };
+    }
   };
 
-  const saveRoomLayout = ({
+  const saveRoomLayout = async ({
     roomId,
     totalRows,
     totalColumns,
     hiddenCoordinates,
-  }: SaveRoomLayoutInput) => {
-    let updatedRoom: Room | null = null;
-
-    setRooms((current) =>
-      current.map((room) => {
-        if (room.id !== roomId) {
-          return room;
-        }
-
-        updatedRoom = buildRoom({
-          id: room.id,
-          cinemaId: room.cinemaId,
-          name: room.name,
-          screenLabel: room.screenLabel,
-          totalRows,
-          totalColumns,
-          hiddenCoordinates,
-        });
-
-        return updatedRoom;
-      }),
-    );
-
-    if (!updatedRoom) {
-      return;
+  }: SaveRoomLayoutInput): Promise<RoomMutationResult> => {
+    if (!authToken || !currentUser || currentUser.role !== 'admin') {
+      return {
+        ok: false,
+        error: 'Cần đăng nhập bằng tài khoản admin để lưu sơ đồ ghế.',
+      };
     }
 
-    setShowtimes((current) =>
-      current.map((showtime) =>
-        showtime.roomId === roomId
-          ? {
-              ...showtime,
-              seatStates: syncSeatStatesWithRoom(updatedRoom!, showtime.seatStates),
-            }
-          : showtime,
-      ),
-    );
+    const room = rooms.find((item) => item.id === roomId);
 
-    setBookings((current) =>
-      current.map((booking) => {
-        if (booking.roomId !== roomId) {
-          return booking;
-        }
+    if (!room) {
+      return {
+        ok: false,
+        error: 'Không tìm thấy phòng chiếu để lưu.',
+      };
+    }
 
-        const nextSeats = booking.seats
-          .map((seat) =>
-            seatSnapshotFromRoom(
-              updatedRoom!,
-              seat.seatCoordinate,
-              booking.status === 'paid' ? 'paid' : 'held',
-            ),
-          )
-          .filter(Boolean) as BookingSeatSnapshot[];
+    try {
+      const remoteRoom = await updateRoomRequest(authToken, roomId, {
+        cinemaId: room.cinemaId,
+        name: room.name,
+        screenLabel: room.screenLabel,
+        totalRows,
+        totalColumns,
+        hiddenCoordinates,
+      });
 
-        return {
-          ...booking,
-          seats: nextSeats,
-          totalPrice: nextSeats.reduce((sum, seat) => sum + seat.price, 0),
-        };
-      }),
-    );
+      clearDraftIfMatchesShowtime(
+        showtimes.find((showtime) => showtime.roomId === roomId)?.id ?? '',
+      );
+      await refreshRemoteState();
 
-    clearDraftIfMatchesShowtime(
-      showtimes.find((showtime) => showtime.roomId === roomId)?.id ?? '',
-    );
+      return {
+        ok: true,
+        room: mapBackendRoom(remoteRoom),
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể lưu sơ đồ ghế.'),
+      };
+    }
   };
 
   const releaseDraftCheckout = async () => {

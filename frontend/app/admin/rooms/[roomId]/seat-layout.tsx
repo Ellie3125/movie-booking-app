@@ -72,6 +72,8 @@ export default function AdminSeatLayoutScreen() {
   const [rows, setRows] = useState(room ? String(room.totalRows) : '6');
   const [columns, setColumns] = useState(room ? String(room.totalColumns) : '10');
   const [hiddenCoordinates, setHiddenCoordinates] = useState<string[]>([]);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     if (!room) {
@@ -115,17 +117,27 @@ export default function AdminSeatLayoutScreen() {
     setHiddenCoordinates([]);
   };
 
-  const saveLayout = () => {
+  const saveLayout = async () => {
     if (!room) {
       return;
     }
 
-    saveRoomLayout({
+    setIsSaving(true);
+    setFeedback(null);
+
+    const result = await saveRoomLayout({
       roomId: room.id,
       totalRows,
       totalColumns,
       hiddenCoordinates,
     });
+
+    setIsSaving(false);
+    setFeedback(
+      result.ok
+        ? 'Đã lưu sơ đồ ghế vào backend.'
+        : result.error || 'Không thể lưu sơ đồ ghế.'
+    );
   };
 
   return (
@@ -201,7 +213,12 @@ export default function AdminSeatLayoutScreen() {
                 ))
               )}
             </View>
-            <ActionButton tone="admin" label="Save layout" onPress={saveLayout} />
+            {feedback ? <Text style={[styles.feedback, { color: colors.accent }]}>{feedback}</Text> : null}
+            <ActionButton
+              tone="admin"
+              label={isSaving ? 'Saving...' : 'Save layout'}
+              onPress={saveLayout}
+            />
           </SectionCard>
         </>
       )}
@@ -233,5 +250,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 10,
+  },
+  feedback: {
+    fontSize: 14,
+    fontWeight: '700',
   },
 });

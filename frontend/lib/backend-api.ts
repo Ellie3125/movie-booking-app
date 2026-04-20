@@ -48,6 +48,7 @@ export type BackendUser = {
 export type BackendAuthResponse = {
   user: BackendUser;
   accessToken: string;
+  refreshToken?: string;
 };
 
 export type BackendMovie = {
@@ -93,6 +94,15 @@ export type BackendRoom = {
 };
 
 export type BackendRoomSummary = Omit<BackendRoom, 'seatLayout'>;
+
+export type BackendRoomMutationPayload = {
+  cinemaId: string;
+  name: string;
+  screenLabel: string;
+  totalRows: number;
+  totalColumns: number;
+  hiddenCoordinates: string[];
+};
 
 export type BackendShowtimeSeatState = {
   seatCoordinate: string;
@@ -392,6 +402,33 @@ export async function fetchRooms() {
 
 export async function fetchRoomById(roomId: string) {
   return apiRequest<BackendRoom>(`/rooms/${roomId}`);
+}
+
+export async function createRoom(token: string, payload: BackendRoomMutationPayload) {
+  return apiRequest<BackendRoom>('/rooms', {
+    method: 'POST',
+    token,
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function updateRoom(
+  token: string,
+  roomId: string,
+  payload: BackendRoomMutationPayload,
+) {
+  return apiRequest<BackendRoom>(`/rooms/${roomId}`, {
+    method: 'PUT',
+    token,
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function deleteRoom(token: string, roomId: string) {
+  return apiRequest<null>(`/rooms/${roomId}`, {
+    method: 'DELETE',
+    token,
+  });
 }
 
 export async function fetchShowtimes() {
