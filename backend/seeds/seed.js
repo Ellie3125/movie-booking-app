@@ -4,7 +4,16 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const { User, Movie, Cinema, Room, Showtime, Booking, Ticket } = require("../src/models");
+const {
+  User,
+  Movie,
+  Cinema,
+  Room,
+  Showtime,
+  Booking,
+  Ticket,
+  Session,
+} = require("../src/models");
 
 const usersData = require("./data/users.data");
 const moviesData = require("./data/movies.data");
@@ -39,6 +48,7 @@ const buildShowtimeStart = (offsetDays, hour, minute = 0) => {
 
 const clearCollections = async () => {
   await Promise.all([
+    Session.deleteMany({}),
     Ticket.deleteMany({}),
     Booking.deleteMany({}),
     Showtime.deleteMany({}),
