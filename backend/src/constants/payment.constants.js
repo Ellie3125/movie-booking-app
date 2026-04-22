@@ -1,0 +1,101 @@
+const BOOKING_STATUS = {
+  PENDING_PAYMENT: 'PENDING_PAYMENT',
+  CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED',
+};
+
+const PAYMENT_STATUS = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED',
+};
+
+const PAYMENT_METHOD = {
+  CASH: 'CASH',
+  MOMO_SANDBOX: 'MOMO_SANDBOX',
+  VNPAY_SANDBOX: 'VNPAY_SANDBOX',
+  MOCK_GATEWAY: 'MOCK_GATEWAY',
+};
+
+const PAYMENT_CURRENCY = {
+  VND: 'VND',
+};
+
+const BOOKED_SEAT_STATUS = {
+  PENDING_PAYMENT: 'PENDING_PAYMENT',
+  ISSUED: 'ISSUED',
+};
+
+const SHOWTIME_SEAT_STATUS = {
+  AVAILABLE: 'available',
+  HELD: 'held',
+  RESERVED: 'reserved',
+  PAID: 'paid',
+};
+
+const TICKET_STATUS = {
+  ISSUED: 'ISSUED',
+  USED: 'USED',
+  CANCELLED: 'CANCELLED',
+};
+
+const PAYMENT_TRANSACTION_STATUS = {
+  PENDING: 'PENDING',
+  GATEWAY_OPENED: 'GATEWAY_OPENED',
+  CALLBACK_PENDING: 'CALLBACK_PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED',
+};
+
+const MOCK_BANK_ACCOUNT_STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+};
+
+const CALLBACK_LOG_STATUS = {
+  RECEIVED: 'RECEIVED',
+  PROCESSED: 'PROCESSED',
+  DUPLICATE: 'DUPLICATE',
+  REJECTED: 'REJECTED',
+  FAILED: 'FAILED',
+};
+
+const GATEWAY_PAYMENT_FIELDS = [
+  'paymentId',
+  'bookingId',
+  'amount',
+  'currency',
+  'expiredAt',
+  'receiverAccountNo',
+  'callbackUrl',
+  'returnUrl',
+];
+
+const PAYMENT_CALLBACK_FIELDS = [
+  'paymentId',
+  'bookingId',
+  'paidAmount',
+  'currency',
+  'transactionCode',
+  'status',
+  'paidAt',
+  'sourceAccountNo',
+  'receiverAccountNo',
+];
+
+module.exports = {
+  BOOKING_STATUS,
+  PAYMENT_STATUS,
+  PAYMENT_METHOD,
+  PAYMENT_CURRENCY,
+  BOOKED_SEAT_STATUS,
+  SHOWTIME_SEAT_STATUS,
+  TICKET_STATUS,
+  PAYMENT_TRANSACTION_STATUS,
+  MOCK_BANK_ACCOUNT_STATUS,
+  CALLBACK_LOG_STATUS,
+  GATEWAY_PAYMENT_FIELDS,
+  PAYMENT_CALLBACK_FIELDS,
+};

@@ -32,4 +32,12 @@ router.post(
   paymentController.payBill
 );
 
+router.post(
+  '/callback',
+  validate(paymentValidation.callbackSchema),
+  paymentController.paymentCallback
+);
+
+router.get('/result', paymentController.paymentResultPage);
+
 module.exports = router;

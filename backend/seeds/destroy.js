@@ -12,6 +12,9 @@ const {
   Booking,
   Ticket,
   Session,
+  PaymentTransaction,
+  MockBankAccount,
+  PaymentCallbackLog,
 } = require("../src/models");
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -26,6 +29,9 @@ const destroy = async () => {
     console.log("MongoDB connected for destroy");
 
     await Promise.all([
+      PaymentCallbackLog.deleteMany({}),
+      PaymentTransaction.deleteMany({}),
+      MockBankAccount.deleteMany({}),
       Session.deleteMany({}),
       Ticket.deleteMany({}),
       Booking.deleteMany({}),

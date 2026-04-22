@@ -41,11 +41,7 @@ export default function CinemaDetailScreen() {
         options={{ title: cinema ? formatLocationName(cinema.name) : 'Chi tiết rạp' }}
       />
       {!cinema ? (
-        <EmptyNotice
-          tone="user"
-          title="Không tìm thấy rạp"
-          description="Đường dẫn chi tiết rạp đang trỏ tới một rạp không tồn tại."
-        />
+        <EmptyNotice tone="user" title="Không tìm thấy rạp" />
       ) : (
         <>
           <HeroCard
@@ -65,17 +61,9 @@ export default function CinemaDetailScreen() {
             </Text>
           </SectionCard>
 
-          <SectionTitle
-            tone="user"
-            title="Lịch chiếu tại rạp"
-            description="Người dùng có thể bắt đầu từ rạp rồi chọn phim và chọn ghế."
-          />
+          <SectionTitle tone="user" title="Lịch chiếu tại rạp" />
           {cinemaShowtimes.length === 0 ? (
-            <EmptyNotice
-              tone="user"
-              title="Rạp này chưa có suất chiếu"
-              description="Thêm showtime từ backend để lịch chiếu hiện ra tại đây."
-            />
+            <EmptyNotice tone="user" title="Rạp này chưa có suất chiếu" />
           ) : (
             cinemaShowtimes.map((showtime) => {
               const movie = movies.find((item) => item.id === showtime.movieId);

@@ -3,6 +3,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const connectDB = require("../src/config/db");
 
 const {
   User,
@@ -13,6 +14,9 @@ const {
   Booking,
   Ticket,
   Session,
+  PaymentTransaction,
+  MockBankAccount,
+  PaymentCallbackLog,
 } = require("../src/models");
 
 const usersData = require("./data/users.data");
@@ -22,6 +26,7 @@ const roomsData = require("./data/rooms.data");
 const showtimesData = require("./data/showtimes.data");
 const bookingsData = require("./data/bookings.data");
 const ticketsData = require("./data/tickets.data");
+const mockBankAccountsData = require("./data/mock-bank-accounts.data");
 const { buildSeatStates } = require("./data/seat-layout.helper");
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -48,6 +53,9 @@ const buildShowtimeStart = (offsetDays, hour, minute = 0) => {
 
 const clearCollections = async () => {
   await Promise.all([
+    PaymentCallbackLog.deleteMany({}),
+    PaymentTransaction.deleteMany({}),
+    MockBankAccount.deleteMany({}),
     Session.deleteMany({}),
     Ticket.deleteMany({}),
     Booking.deleteMany({}),
@@ -57,6 +65,11 @@ const clearCollections = async () => {
     Movie.deleteMany({}),
     User.deleteMany({}),
   ]);
+};
+
+const seedMockBankAccounts = async () => {
+  const docs = await MockBankAccount.insertMany(mockBankAccountsData);
+  return mapInsertedByKey(mockBankAccountsData, docs);
 };
 
 const seedUsers = async () => {
@@ -196,13 +209,14 @@ const seed = async () => {
       throw new Error("Thiếu cấu hình MONGODB_URI");
     }
 
-    await mongoose.connect(MONGODB_URI);
+    await connectDB();
     console.log("MongoDB connected for seed");
 
     await clearCollections();
     console.log("Old data deleted");
 
     const userLookup = await seedUsers();
+    await seedMockBankAccounts();
     const movieLookup = await seedMovies();
     const cinemaLookup = await seedCinemas();
     const roomLookup = await seedRooms(cinemaLookup);

@@ -87,11 +87,7 @@ export default function SeatSelectionScreen() {
     <PageScroll tone="user">
       <Stack.Screen options={{ title: movie?.title ?? 'Chọn ghế' }} />
       {!showtime || !room || !movie || !cinema ? (
-        <EmptyNotice
-          tone="user"
-          title="Không tìm thấy dữ liệu đặt ghế"
-          description="Suất chiếu hoặc phòng chiếu đang bị thiếu dữ liệu."
-        />
+        <EmptyNotice tone="user" title="Không tìm thấy dữ liệu đặt ghế" />
       ) : (
         <>
           <HeroCard
@@ -105,16 +101,9 @@ export default function SeatSelectionScreen() {
             <Text style={[styles.cardTitle, { color: colors.text }]}>
               {formatScreenLabel(room.screenLabel)}
             </Text>
-            <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              Tọa độ thật và tên ghế hiển thị được tách riêng. Ví dụ A2 có thể hiện là ghế A1 nếu A1 là ô trống.
-            </Text>
           </SectionCard>
 
-          <SectionTitle
-            tone="user"
-            title="Sơ đồ ghế"
-            description="Màu ghế: xanh là trống, vàng là đang giữ, đỏ là đã thanh toán, xám là đã khóa, xanh dương là đang chọn."
-          />
+          <SectionTitle tone="user" title="Sơ đồ ghế" />
           <SectionCard tone="user">
             <SeatLayoutGrid
               layout={room.seatLayout}

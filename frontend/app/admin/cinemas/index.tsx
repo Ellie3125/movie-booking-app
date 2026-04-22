@@ -55,14 +55,9 @@ export default function AdminCinemasScreen() {
         tone="admin"
         eyebrow="Admin / Cinemas"
         title="CRUD cinema branches"
-        description="Quan ly brand, city, address, hotline va bo dich vu cua tung rap."
       />
 
-      <SectionTitle
-        tone="admin"
-        title={form.id ? 'Edit cinema' : 'Create cinema'}
-        description="Moi cinema moi se hien ngay trong tab cinemas ben user app."
-      />
+      <SectionTitle tone="admin" title={form.id ? 'Edit cinema' : 'Create cinema'} />
       <SectionCard tone="admin">
         <View style={styles.chipRow}>
           {brands.map((brand) => (
@@ -113,11 +108,7 @@ export default function AdminCinemasScreen() {
         <ActionButton tone="admin" label={form.id ? 'Update cinema' : 'Create cinema'} onPress={submit} />
       </SectionCard>
 
-      <SectionTitle
-        tone="admin"
-        title="Branch list"
-        description="Edit hoac xoa branch se cap nhat ngay phia user."
-      />
+      <SectionTitle tone="admin" title="Branch list" />
       {cinemas.map((cinema) => (
         <SectionCard key={cinema.id} tone="admin">
           <Text style={[styles.cardTitle, { color: colors.text }]}>

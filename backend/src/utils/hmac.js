@@ -2,13 +2,18 @@ const crypto = require('crypto');
 const env = require('../config/env');
 const ApiError = require('./apiError');
 
+const PAYMENT_HMAC_ALGORITHM = 'HMAC-SHA256';
 const PAYMENT_HMAC_FIELDS = [
+  'billId',
   'bookingId',
   'userId',
   'paidAmount',
   'currency',
-  'timestamp',
+  'issuedAt',
+  'expiresAt',
 ];
+
+let hasWarnedAboutFallbackSecret = false;
 
 const getPaymentHmacSecret = () => {
   if (!env.paymentHmacSecret) {
@@ -18,11 +23,22 @@ const getPaymentHmacSecret = () => {
     );
   }
 
+  if (
+    env.paymentHmacSecretSource === 'access_or_jwt_fallback' &&
+    env.nodeEnv !== 'production' &&
+    !hasWarnedAboutFallbackSecret
+  ) {
+    hasWarnedAboutFallbackSecret = true;
+    console.warn(
+      '[payment-hmac] PAYMENT_HMAC_SECRET is not set. Falling back to ACCESS_TOKEN_SECRET/JWT_SECRET in non-production.'
+    );
+  }
+
   return env.paymentHmacSecret;
 };
 
 const buildPaymentRawData = (payload) =>
-  PAYMENT_HMAC_FIELDS.map((field) => `${field}=${payload[field]}`).join('&');
+  PAYMENT_HMAC_FIELDS.map((field) => `${field}=${String(payload[field])}`).join('&');
 
 const generatePaymentSignature = (payload) =>
   crypto
@@ -43,6 +59,7 @@ const verifyPaymentSignature = (payload, providedSignature) => {
 };
 
 module.exports = {
+  PAYMENT_HMAC_ALGORITHM,
   PAYMENT_HMAC_FIELDS,
   buildPaymentRawData,
   generatePaymentSignature,

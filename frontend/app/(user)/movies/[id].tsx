@@ -41,11 +41,7 @@ export default function MovieDetailScreen() {
     <PageScroll tone="user">
       <Stack.Screen options={{ title: movie?.title ?? 'Chi tiết phim' }} />
       {!movie ? (
-        <EmptyNotice
-          tone="user"
-          title="Không tìm thấy phim"
-          description="Đường dẫn chi tiết phim đang trỏ tới một phim không tồn tại."
-        />
+        <EmptyNotice tone="user" title="Không tìm thấy phim" />
       ) : (
         <>
           <HeroCard
@@ -66,17 +62,9 @@ export default function MovieDetailScreen() {
             </Text>
           </SectionCard>
 
-          <SectionTitle
-            tone="user"
-            title="Suất chiếu"
-            description="Chọn suất chiếu sẽ đưa bạn vào màn hình ghế có phân biệt tọa độ thật và tên ghế hiển thị."
-          />
+          <SectionTitle tone="user" title="Suất chiếu" />
           {movieShowtimes.length === 0 ? (
-            <EmptyNotice
-              tone="user"
-              title="Chưa mở suất chiếu"
-              description="Khi có showtime từ backend, người dùng sẽ đặt vé trực tiếp từ đây."
-            />
+            <EmptyNotice tone="user" title="Chưa mở suất chiếu" />
           ) : (
             movieShowtimes.map((showtime) => {
               const cinema = cinemas.find((item) => item.id === showtime.cinemaId);

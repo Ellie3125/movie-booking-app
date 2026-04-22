@@ -1565,9 +1565,11 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
       await payBookingBill(authToken, draftCheckout.id, {
         paymentMethod,
+        billId: latestBill.paymentAuth.billId,
         paidAmount: latestBill.paymentAuth.paidAmount,
         currency: latestBill.paymentAuth.currency,
-        timestamp: latestBill.paymentAuth.timestamp,
+        issuedAt: latestBill.paymentAuth.issuedAt,
+        expiresAt: latestBill.paymentAuth.expiresAt,
         signature: latestBill.paymentAuth.signature,
       });
 

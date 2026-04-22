@@ -82,14 +82,9 @@ export default function AdminRoomsScreen() {
         tone="admin"
         eyebrow="Admin / Rooms"
         title="Room CRUD and seat layout builder"
-        description="Room luu so hang, so cot va seat layout. Admin chon o nao khong phai ghe thi o do se bien mat ben user."
       />
 
-      <SectionTitle
-        tone="admin"
-        title={form.id ? 'Edit room' : 'Create room'}
-        description="Sau khi tao room, vao seat layout de scan ra bang ghe va toggle o trong."
-      />
+      <SectionTitle tone="admin" title={form.id ? 'Edit room' : 'Create room'} />
       <SectionCard tone="admin">
         <View style={styles.chipRow}>
           {cinemas.map((cinema) => (
@@ -142,11 +137,7 @@ export default function AdminRoomsScreen() {
         />
       </SectionCard>
 
-      <SectionTitle
-        tone="admin"
-        title="Room list"
-        description="Mo seat builder de tao ma tran ghe va mapping toa do / ten ghe."
-      />
+      <SectionTitle tone="admin" title="Room list" />
       {rooms.map((room) => {
         const cinema = cinemas.find((item) => item.id === room.cinemaId);
 

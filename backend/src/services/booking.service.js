@@ -1,29 +1,17 @@
 const mongoose = require('mongoose');
 const Booking = require('../models/Booking');
 const Showtime = require('../models/Showtime');
+const PaymentTransaction = require('../models/PaymentTransaction');
 const ApiError = require('../utils/apiError');
 const env = require('../config/env');
 const { SEAT_PRICE_MAP } = require('../config/seatPricing');
-
-const BOOKING_STATUS = {
-  HELD: 'held',
-  PAID: 'paid',
-  CANCELLED: 'cancelled',
-};
-
-const PAYMENT_STATUS = {
-  PENDING: 'pending',
-  PAID: 'paid',
-  FAILED: 'failed',
-  EXPIRED: 'expired',
-};
-
-const SHOWTIME_SEAT_STATUS = {
-  AVAILABLE: 'available',
-  HELD: 'held',
-  RESERVED: 'reserved',
-  PAID: 'paid',
-};
+const {
+  BOOKED_SEAT_STATUS,
+  BOOKING_STATUS,
+  PAYMENT_STATUS,
+  PAYMENT_TRANSACTION_STATUS,
+  SHOWTIME_SEAT_STATUS,
+} = require('../constants/payment.constants');
 
 const BOOKING_POPULATE = [
   {
@@ -65,7 +53,10 @@ const getOwnedBookingOrThrow = async (bookingId, userId) => {
     .then((items) => items[0] || null);
 
   if (!booking) {
-    const existingBooking = await Booking.findById(bookingId).select('_id userId').lean().exec();
+    const existingBooking = await Booking.findById(bookingId)
+      .select('_id userId')
+      .lean()
+      .exec();
 
     if (!existingBooking) {
       throw ApiError.notFound('Booking not found', 'BOOKING_NOT_FOUND');
@@ -107,12 +98,12 @@ const getSeatPrice = (seatType) => {
 };
 
 const getEffectivePaymentStatus = (booking) => {
-  if (booking.paymentStatus === PAYMENT_STATUS.PAID || booking.paidAt) {
-    return PAYMENT_STATUS.PAID;
+  if (booking.paymentStatus === PAYMENT_STATUS.SUCCESS || booking.paidAt) {
+    return PAYMENT_STATUS.SUCCESS;
   }
 
   if (
-    booking.paymentStatus !== PAYMENT_STATUS.PAID &&
+    booking.paymentStatus !== PAYMENT_STATUS.SUCCESS &&
     booking.paymentExpiresAt &&
     new Date(booking.paymentExpiresAt).getTime() <= Date.now()
   ) {
@@ -129,11 +120,13 @@ const mapBookingResponse = (booking) => ({
   paymentStatus: getEffectivePaymentStatus(booking),
   paymentMethod: booking.paymentMethod || null,
   currency: booking.currency || env.paymentCurrency,
-  totalPrice: booking.totalPrice,
+  totalAmount: booking.totalAmount,
+  totalPrice: booking.totalAmount,
   ticketCount: Array.isArray(booking.seats) ? booking.seats.length : 0,
   createdAt: booking.createdAt,
   paidAt: booking.paidAt,
   paymentExpiresAt: booking.paymentExpiresAt,
+  paymentSummary: booking.paymentSummary || null,
   movie: booking.movieId
     ? {
         id: String(booking.movieId._id),
@@ -177,6 +170,31 @@ const mapBookingResponse = (booking) => ({
   })),
 });
 
+const markBookingTransactionsAsExpired = async (bookingIds) => {
+  if (!Array.isArray(bookingIds) || bookingIds.length === 0) {
+    return;
+  }
+
+  await PaymentTransaction.updateMany(
+    {
+      bookingId: { $in: bookingIds },
+      status: {
+        $in: [
+          PAYMENT_TRANSACTION_STATUS.PENDING,
+          PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED,
+          PAYMENT_TRANSACTION_STATUS.CALLBACK_PENDING,
+        ],
+      },
+    },
+    {
+      $set: {
+        status: PAYMENT_TRANSACTION_STATUS.EXPIRED,
+        failureReason: 'Booking payment window expired',
+      },
+    }
+  ).exec();
+};
+
 const cleanupExpiredHeldSeats = async (showtime) => {
   const expiredBookingIds = new Set();
   let hasChanges = false;
@@ -207,10 +225,12 @@ const cleanupExpiredHeldSeats = async (showtime) => {
   }
 
   if (expiredBookingIds.size > 0) {
+    const bookingIds = [...expiredBookingIds];
+
     await Booking.updateMany(
       {
-        _id: { $in: [...expiredBookingIds] },
-        status: BOOKING_STATUS.HELD,
+        _id: { $in: bookingIds },
+        status: BOOKING_STATUS.PENDING_PAYMENT,
       },
       {
         $set: {
@@ -219,6 +239,8 @@ const cleanupExpiredHeldSeats = async (showtime) => {
         },
       }
     ).exec();
+
+    await markBookingTransactionsAsExpired(bookingIds);
   }
 };
 
@@ -292,7 +314,7 @@ const createBooking = async ({ userId, showtimeId, seatCoordinates }) => {
       seatCoordinate,
       seatLabel: roomSeat.seatLabel,
       seatType: roomSeat.seatType,
-      status: BOOKING_STATUS.HELD,
+      status: BOOKED_SEAT_STATUS.PENDING_PAYMENT,
       price: getSeatPrice(roomSeat.seatType),
     };
   });
@@ -308,8 +330,8 @@ const createBooking = async ({ userId, showtimeId, seatCoordinates }) => {
     showtimeId: showtime._id,
     roomId: getEntityId(showtime.roomId),
     seats,
-    totalPrice: seats.reduce((sum, seat) => sum + seat.price, 0),
-    status: BOOKING_STATUS.HELD,
+    totalAmount: seats.reduce((sum, seat) => sum + seat.price, 0),
+    status: BOOKING_STATUS.PENDING_PAYMENT,
     paymentStatus: PAYMENT_STATUS.PENDING,
     currency: env.paymentCurrency,
     paymentExpiresAt,
@@ -370,13 +392,13 @@ const cancelBooking = async ({ bookingId, userId }) => {
   const booking = await getOwnedBookingOrThrow(bookingId, userId);
 
   if (
-    booking.status === BOOKING_STATUS.PAID ||
-    booking.paymentStatus === PAYMENT_STATUS.PAID ||
+    booking.status === BOOKING_STATUS.CONFIRMED ||
+    booking.paymentStatus === PAYMENT_STATUS.SUCCESS ||
     booking.paidAt
   ) {
     throw ApiError.conflict(
-      'Paid booking cannot be cancelled by the hold release endpoint',
-      'BOOKING_ALREADY_PAID'
+      'Confirmed booking cannot be cancelled by the hold release endpoint',
+      'BOOKING_ALREADY_CONFIRMED'
     );
   }
 
@@ -390,7 +412,10 @@ const cancelBooking = async ({ bookingId, userId }) => {
   const showtime = await Showtime.findById(getEntityId(booking.showtimeId)).exec();
 
   if (!showtime) {
-    throw ApiError.notFound('Showtime not found for this booking', 'SHOWTIME_NOT_FOUND');
+    throw ApiError.notFound(
+      'Showtime not found for this booking',
+      'SHOWTIME_NOT_FOUND'
+    );
   }
 
   const bookingSeatCoordinates = new Set(
@@ -419,7 +444,28 @@ const cancelBooking = async ({ bookingId, userId }) => {
       : PAYMENT_STATUS.FAILED;
   booking.paymentExpiresAt = null;
 
-  await Promise.all([booking.save(), showtime.save()]);
+  await Promise.all([
+    booking.save(),
+    showtime.save(),
+    PaymentTransaction.updateMany(
+      {
+        bookingId: booking._id,
+        status: {
+          $in: [
+            PAYMENT_TRANSACTION_STATUS.PENDING,
+            PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED,
+            PAYMENT_TRANSACTION_STATUS.CALLBACK_PENDING,
+          ],
+        },
+      },
+      {
+        $set: {
+          status: PAYMENT_TRANSACTION_STATUS.FAILED,
+          failureReason: 'Booking cancelled by user',
+        },
+      }
+    ).exec(),
+  ]);
 
   return mapBookingResponse(booking.toObject ? booking.toObject() : booking);
 };

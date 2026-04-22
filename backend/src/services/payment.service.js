@@ -3,48 +3,52 @@ const mongoose = require('mongoose');
 const Booking = require('../models/Booking');
 const Showtime = require('../models/Showtime');
 const Ticket = require('../models/Ticket');
+const PaymentTransaction = require('../models/PaymentTransaction');
+const PaymentCallbackLog = require('../models/PaymentCallbackLog');
 const env = require('../config/env');
 const ApiError = require('../utils/apiError');
+const { signHmacSha256, verifyHmacSha256 } = require('../utils/paymentHmac');
 const {
-  PAYMENT_HMAC_FIELDS,
-  generatePaymentSignature,
-  verifyPaymentSignature,
-} = require('../utils/hmac');
+  CALLBACK_LOG_STATUS,
+  BOOKED_SEAT_STATUS,
+  BOOKING_STATUS,
+  GATEWAY_PAYMENT_FIELDS,
+  PAYMENT_CALLBACK_FIELDS,
+  PAYMENT_METHOD,
+  PAYMENT_STATUS,
+  PAYMENT_TRANSACTION_STATUS,
+  SHOWTIME_SEAT_STATUS,
+  TICKET_STATUS,
+} = require('../constants/payment.constants');
+const {
+  getPaymentReceiverAccount,
+  buildGatewayPayload,
+} = require('../utils/paymentPayloads');
 
-const BOOKING_STATUS = {
-  HELD: 'held',
-  PAID: 'paid',
-  CANCELLED: 'cancelled',
-};
+const GATEWAY_SECRET_LABEL = 'PAYMENT_GATEWAY_SECRET';
+const CALLBACK_SECRET_LABEL = 'PAYMENT_CALLBACK_SECRET';
 
-const PAYMENT_STATUS = {
-  PENDING: 'pending',
-  PAID: 'paid',
-  FAILED: 'failed',
-  EXPIRED: 'expired',
-};
+const ACTIVE_GATEWAY_TRANSACTION_STATUSES = [
+  PAYMENT_TRANSACTION_STATUS.PENDING,
+  PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED,
+];
 
-const SHOWTIME_SEAT_STATUS = {
-  AVAILABLE: 'available',
-  HELD: 'held',
-  RESERVED: 'reserved',
-  PAID: 'paid',
-};
+const PENDING_TRANSACTION_STATUSES = [
+  PAYMENT_TRANSACTION_STATUS.PENDING,
+  PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED,
+  PAYMENT_TRANSACTION_STATUS.CALLBACK_PENDING,
+];
 
-const getCurrentPaymentStatus = (booking) => {
-  if (booking.paymentStatus) {
-    return booking.paymentStatus;
-  }
+const getEntityId = (value) => (value && value._id ? value._id : value);
 
-  if (booking.paidAt || booking.status === BOOKING_STATUS.PAID) {
-    return PAYMENT_STATUS.PAID;
-  }
-
-  return PAYMENT_STATUS.PENDING;
-};
+const createPaymentId = () =>
+  `PAY-${Date.now().toString(36).toUpperCase()}-${crypto
+    .randomBytes(4)
+    .toString('hex')
+    .toUpperCase()}`;
 
 const createTransactionCode = () =>
-  `TXN-${Date.now().toString(36).toUpperCase()}-${crypto
+  `MOCKTX-${Date.now().toString(36).toUpperCase()}-${crypto
     .randomBytes(4)
     .toString('hex')
     .toUpperCase()}`;
@@ -55,7 +59,11 @@ const createTicketCode = () =>
     .toString('hex')
     .toUpperCase()}`;
 
-const getEntityId = (value) => (value && value._id ? value._id : value);
+const createIdempotencyKey = (canonicalString, signature) =>
+  crypto
+    .createHash('sha256')
+    .update(`${canonicalString}|${String(signature || '')}`)
+    .digest('hex');
 
 const validateObjectId = (id, resourceName) => {
   if (!mongoose.isValidObjectId(id)) {
@@ -69,7 +77,7 @@ const validateObjectId = (id, resourceName) => {
 const getBookingPopulateQuery = (bookingId) =>
   Booking.findById(bookingId)
     .populate('movieId', 'title duration poster status')
-    .populate('roomId', 'name screenLabel totalRows totalColumns activeSeatCount')
+    .populate('roomId', 'name screenLabel totalRows totalColumns')
     .populate({
       path: 'showtimeId',
       select: 'startTime endTime cinemaId roomId seatStates',
@@ -104,6 +112,21 @@ const getOwnedBooking = async (bookingId, userId) => {
   return booking;
 };
 
+const getBookingByIdOrThrow = async (bookingId) => {
+  validateObjectId(bookingId, 'Booking');
+
+  const booking = await getBookingPopulateQuery(bookingId).exec();
+
+  if (!booking) {
+    throw ApiError.notFound('Booking not found', 'BOOKING_NOT_FOUND');
+  }
+
+  return booking;
+};
+
+const isExpired = (dateValue) =>
+  Boolean(dateValue) && new Date(dateValue).getTime() <= Date.now();
+
 const findBookingSeatStates = (booking, showtime) => {
   const bookingSeatCoordinates = new Set(
     booking.seats.map((seat) => seat.seatCoordinate.toUpperCase())
@@ -114,126 +137,24 @@ const findBookingSeatStates = (booking, showtime) => {
   );
 };
 
-const resolvePaymentExpiresAt = (booking, showtime) => {
-  if (booking.paymentExpiresAt) {
-    return booking.paymentExpiresAt;
-  }
-
-  const matchedSeatStates = findBookingSeatStates(booking, showtime);
-  const expiryDates = matchedSeatStates
-    .map((seatState) => seatState.holdExpiresAt)
-    .filter(Boolean)
-    .map((value) => new Date(value));
-
-  if (!expiryDates.length) {
-    return null;
-  }
-
-  return new Date(Math.min(...expiryDates.map((date) => date.getTime())));
-};
-
-const isExpired = (expiresAt) =>
-  Boolean(expiresAt) && new Date(expiresAt).getTime() <= Date.now();
-
-const assertBookingIsAwaitingPayment = (booking, expiresAt) => {
-  const paymentStatus = getCurrentPaymentStatus(booking);
-
-  if (booking.status === BOOKING_STATUS.CANCELLED) {
-    throw ApiError.conflict(
-      'Booking has already been cancelled',
-      'BOOKING_CANCELLED'
-    );
-  }
-
-  if (
-    booking.status === BOOKING_STATUS.PAID ||
-    paymentStatus === PAYMENT_STATUS.PAID ||
-    booking.paidAt
-  ) {
-    throw ApiError.conflict(
-      'Booking has already been paid',
-      'BOOKING_ALREADY_PAID'
-    );
-  }
-
-  if (paymentStatus === PAYMENT_STATUS.EXPIRED || isExpired(expiresAt)) {
-    throw ApiError.conflict(
-      'Booking payment window has expired',
-      'BOOKING_PAYMENT_EXPIRED'
-    );
-  }
-
-  if (booking.status !== BOOKING_STATUS.HELD) {
-    throw ApiError.conflict(
-      'Booking is not awaiting payment',
-      'BOOKING_NOT_AWAITING_PAYMENT'
-    );
-  }
-};
-
-const buildPaymentSignaturePayload = ({
-  bookingId,
-  userId,
-  paidAmount,
-  currency,
-  timestamp,
-}) => ({
-  bookingId: String(bookingId),
-  userId: String(userId),
-  paidAmount: Number(paidAmount),
-  currency,
-  timestamp: Number(timestamp),
-});
-
-const validateTimestamp = (timestamp) => {
-  const now = Date.now();
-  const ageInSeconds = Math.abs(now - Number(timestamp)) / 1000;
-
-  if (ageInSeconds > env.paymentSignatureTtlSeconds) {
-    throw ApiError.badRequest(
-      'Payment timestamp has expired',
-      'PAYMENT_TIMESTAMP_EXPIRED'
-    );
-  }
-};
-
-const ensurePaymentHoldsAreStillValid = (booking, showtime, userId) => {
-  const matchedSeatStates = findBookingSeatStates(booking, showtime);
-
-  if (matchedSeatStates.length !== booking.seats.length) {
-    throw ApiError.conflict(
-      'Booking seat states are inconsistent with the showtime data',
-      'BOOKING_SEAT_STATE_MISMATCH'
-    );
-  }
-
-  matchedSeatStates.forEach((seatState) => {
-    if (seatState.status !== SHOWTIME_SEAT_STATUS.HELD) {
-      throw ApiError.conflict(
-        'One or more booking seats are no longer held for payment',
-        'BOOKING_SEATS_NOT_HELD'
-      );
+const expirePendingTransactionsForBooking = async (bookingId, reason) => {
+  await PaymentTransaction.updateMany(
+    {
+      bookingId,
+      status: {
+        $in: PENDING_TRANSACTION_STATUSES,
+      },
+    },
+    {
+      $set: {
+        status: PAYMENT_TRANSACTION_STATUS.EXPIRED,
+        failureReason: reason,
+      },
     }
-
-    if (seatState.userId && String(seatState.userId) !== String(userId)) {
-      throw ApiError.conflict(
-        'One or more booking seats are held by another user',
-        'BOOKING_SEAT_HOLD_OWNERSHIP_MISMATCH'
-      );
-    }
-
-    if (seatState.holdExpiresAt && new Date(seatState.holdExpiresAt) <= new Date()) {
-      throw ApiError.conflict(
-        'One or more booking seats have passed the hold timeout',
-        'BOOKING_SEAT_HOLD_EXPIRED'
-      );
-    }
-  });
-
-  return matchedSeatStates;
+  ).exec();
 };
 
-const releaseHeldSeatsForExpiredBooking = async (booking, showtime) => {
+const releaseHeldSeatsForBooking = (booking, showtime) => {
   const bookingSeatCoordinates = new Set(
     booking.seats.map((seat) => seat.seatCoordinate.toUpperCase())
   );
@@ -251,54 +172,340 @@ const releaseHeldSeatsForExpiredBooking = async (booking, showtime) => {
       seatState.paidAt = null;
     }
   });
-
-  booking.status = BOOKING_STATUS.CANCELLED;
-  booking.paymentStatus = PAYMENT_STATUS.EXPIRED;
-
-  await Promise.all([booking.save(), showtime.save()]);
 };
 
-const markBookingAndSeatsAsPaid = async ({
-  booking,
-  showtime,
-  matchedSeatStates,
-  paymentMethod,
-  paidAmount,
-  currency,
-  timestamp,
-  signature,
-  verifiedAt,
-  transactionCode,
-}) => {
-  booking.status = BOOKING_STATUS.PAID;
-  booking.paymentStatus = PAYMENT_STATUS.PAID;
-  booking.paymentMethod = paymentMethod;
-  booking.currency = currency;
-  booking.paymentExpiresAt = null;
-  booking.paidAt = verifiedAt;
-  booking.transactionCode = transactionCode;
-  booking.paymentSnapshot = {
-    paidAmount,
-    currency,
-    timestamp,
-    signature,
-    verifiedAt,
-  };
+const expireBookingIfNeeded = async ({ booking, showtime }) => {
+  if (!isExpired(booking.paymentExpiresAt)) {
+    return false;
+  }
 
-  booking.seats.forEach((seat) => {
-    seat.status = 'paid';
-  });
+  releaseHeldSeatsForBooking(booking, showtime);
+  booking.status = BOOKING_STATUS.CANCELLED;
+  booking.paymentStatus = PAYMENT_STATUS.EXPIRED;
+  booking.paymentExpiresAt = null;
+
+  await Promise.all([
+    booking.save(),
+    showtime.save(),
+    expirePendingTransactionsForBooking(
+      booking._id,
+      'Booking payment window expired'
+    ),
+  ]);
+
+  return true;
+};
+
+const assertBookingIsAwaitingPayment = (booking) => {
+  if (booking.status === BOOKING_STATUS.CANCELLED) {
+    throw ApiError.conflict(
+      'Booking has already been cancelled',
+      'BOOKING_CANCELLED'
+    );
+  }
+
+  if (
+    booking.status === BOOKING_STATUS.CONFIRMED ||
+    booking.paymentStatus === PAYMENT_STATUS.SUCCESS ||
+    booking.paidAt
+  ) {
+    throw ApiError.conflict(
+      'Booking has already been paid',
+      'BOOKING_ALREADY_PAID'
+    );
+  }
+
+  if (
+    booking.paymentStatus === PAYMENT_STATUS.EXPIRED ||
+    isExpired(booking.paymentExpiresAt)
+  ) {
+    throw ApiError.conflict(
+      'Booking payment window has expired',
+      'BOOKING_PAYMENT_EXPIRED'
+    );
+  }
+
+  if (booking.status !== BOOKING_STATUS.PENDING_PAYMENT) {
+    throw ApiError.conflict(
+      'Booking is not awaiting payment',
+      'BOOKING_NOT_AWAITING_PAYMENT'
+    );
+  }
+};
+
+const ensurePaymentHoldsAreStillValid = (booking, showtime) => {
+  const matchedSeatStates = findBookingSeatStates(booking, showtime);
+
+  if (matchedSeatStates.length !== booking.seats.length) {
+    throw ApiError.conflict(
+      'Booking seat states are inconsistent with the showtime data',
+      'BOOKING_SEAT_STATE_MISMATCH'
+    );
+  }
 
   matchedSeatStates.forEach((seatState) => {
-    seatState.status = SHOWTIME_SEAT_STATUS.PAID;
-    seatState.bookingId = booking._id;
-    seatState.userId = booking.userId;
-    seatState.heldAt = null;
-    seatState.holdExpiresAt = null;
-    seatState.paidAt = verifiedAt;
+    if (seatState.status !== SHOWTIME_SEAT_STATUS.HELD) {
+      throw ApiError.conflict(
+        'One or more booking seats are no longer held for payment',
+        'BOOKING_SEATS_NOT_HELD'
+      );
+    }
+
+    if (
+      seatState.bookingId &&
+      String(seatState.bookingId) !== String(booking._id)
+    ) {
+      throw ApiError.conflict(
+        'One or more booking seats are attached to another booking',
+        'BOOKING_SEAT_HOLD_OWNERSHIP_MISMATCH'
+      );
+    }
+
+    if (seatState.holdExpiresAt && new Date(seatState.holdExpiresAt) <= new Date()) {
+      throw ApiError.conflict(
+        'One or more booking seats have passed the hold timeout',
+        'BOOKING_SEAT_HOLD_EXPIRED'
+      );
+    }
   });
 
-  await Promise.all([booking.save(), showtime.save()]);
+  return matchedSeatStates;
+};
+
+const mapBillResponse = (booking) => ({
+  bookingId: String(booking._id),
+  seats: booking.seats.map((seat) => ({
+    seatCoordinate: seat.seatCoordinate,
+    seatLabel: seat.seatLabel,
+    seatType: seat.seatType,
+    price: seat.price,
+  })),
+  amount: booking.totalAmount,
+  currency: booking.currency || env.paymentCurrency,
+  expiredAt: booking.paymentExpiresAt,
+});
+
+const getActiveGatewayTransaction = async (bookingId) =>
+  PaymentTransaction.findOne({
+    bookingId,
+    status: { $in: ACTIVE_GATEWAY_TRANSACTION_STATUSES },
+    expiredAt: { $gt: new Date() },
+  })
+    .sort({ createdAt: -1 })
+    .exec();
+
+const getProcessingTransaction = async (bookingId) =>
+  PaymentTransaction.findOne({
+    bookingId,
+    status: PAYMENT_TRANSACTION_STATUS.CALLBACK_PENDING,
+    expiredAt: { $gt: new Date() },
+  })
+    .sort({ createdAt: -1 })
+    .exec();
+
+const markOldGatewayTransactionsExpired = async (bookingId) => {
+  await PaymentTransaction.updateMany(
+    {
+      bookingId,
+      status: { $in: ACTIVE_GATEWAY_TRANSACTION_STATUSES },
+    },
+    {
+      $set: {
+        status: PAYMENT_TRANSACTION_STATUS.EXPIRED,
+        failureReason: 'Replaced by a newer payment attempt',
+      },
+    }
+  ).exec();
+};
+
+const getPaymentReturnUrl = (baseUrl) =>
+  env.paymentAppReturnUrl || `${baseUrl}/api/v1/payments/result`;
+
+const createPaymentTransaction = async ({ booking, baseUrl }) => {
+  const processingTransaction = await getProcessingTransaction(booking._id);
+
+  if (processingTransaction) {
+    throw ApiError.conflict(
+      'A payment callback is currently being processed for this booking',
+      'PAYMENT_CALLBACK_IN_PROGRESS'
+    );
+  }
+
+  const reusableTransaction = await getActiveGatewayTransaction(booking._id);
+
+  if (reusableTransaction) {
+    return reusableTransaction;
+  }
+
+  await markOldGatewayTransactionsExpired(booking._id);
+
+  const receiverAccount = getPaymentReceiverAccount();
+  const transaction = new PaymentTransaction({
+    bookingId: booking._id,
+    userId: booking.userId,
+    paymentId: createPaymentId(),
+    amount: booking.totalAmount,
+    currency: booking.currency || env.paymentCurrency,
+    status: PAYMENT_TRANSACTION_STATUS.PENDING,
+    receiverAccount,
+    callbackUrl: `${baseUrl}/api/v1/payments/callback`,
+    returnUrl: getPaymentReturnUrl(baseUrl),
+    paymentUrl: '',
+    expiredAt: booking.paymentExpiresAt,
+    requestSignature: {
+      canonicalString: '',
+      signature: '',
+      fields: GATEWAY_PAYMENT_FIELDS,
+    },
+  });
+
+  const gatewayPayload = buildGatewayPayload(transaction);
+  const { canonicalString, signature } = signHmacSha256({
+    payload: gatewayPayload,
+    fields: GATEWAY_PAYMENT_FIELDS,
+    secret: env.paymentGatewaySecret,
+    secretLabel: GATEWAY_SECRET_LABEL,
+  });
+
+  transaction.requestSignature = {
+    algorithm: 'HMAC-SHA256',
+    fields: GATEWAY_PAYMENT_FIELDS,
+    canonicalString,
+    signature,
+  };
+  transaction.paymentUrl = `${baseUrl}/mock-gateway/pay?paymentId=${encodeURIComponent(
+    transaction.paymentId
+  )}&signature=${encodeURIComponent(signature)}`;
+
+  await transaction.save();
+
+  return transaction;
+};
+
+const getBill = async ({ bookingId, userId }) => {
+  const booking = await getOwnedBooking(bookingId, userId);
+  const showtime = booking.showtimeId;
+
+  if (!showtime) {
+    throw ApiError.notFound(
+      'Showtime not found for this booking',
+      'SHOWTIME_NOT_FOUND'
+    );
+  }
+
+  if (await expireBookingIfNeeded({ booking, showtime })) {
+    throw ApiError.conflict(
+      'Booking payment window has expired',
+      'BOOKING_PAYMENT_EXPIRED'
+    );
+  }
+
+  assertBookingIsAwaitingPayment(booking);
+
+  return mapBillResponse(booking);
+};
+
+const payBill = async ({ bookingId, userId, baseUrl }) => {
+  const booking = await getOwnedBooking(bookingId, userId);
+  const showtime = booking.showtimeId;
+
+  if (!showtime) {
+    throw ApiError.notFound(
+      'Showtime not found for this booking',
+      'SHOWTIME_NOT_FOUND'
+    );
+  }
+
+  if (await expireBookingIfNeeded({ booking, showtime })) {
+    throw ApiError.conflict(
+      'Booking payment window has expired',
+      'BOOKING_PAYMENT_EXPIRED'
+    );
+  }
+
+  assertBookingIsAwaitingPayment(booking);
+
+  const transaction = await createPaymentTransaction({
+    booking,
+    baseUrl,
+  });
+
+  return {
+    bookingId: String(booking._id),
+    paymentId: transaction.paymentId,
+    amount: transaction.amount,
+    currency: transaction.currency,
+    expiredAt: transaction.expiredAt,
+    paymentUrl: transaction.paymentUrl,
+  };
+};
+
+const getPaymentTransactionForGateway = async ({ paymentId, signature }) => {
+  const transaction = await PaymentTransaction.findOne({ paymentId }).exec();
+
+  if (!transaction) {
+    throw ApiError.notFound('Payment transaction not found', 'PAYMENT_NOT_FOUND');
+  }
+
+  const gatewayPayload = buildGatewayPayload(transaction);
+  const isValidSignature = verifyHmacSha256({
+    payload: gatewayPayload,
+    fields: GATEWAY_PAYMENT_FIELDS,
+    secret: env.paymentGatewaySecret,
+    signature,
+    secretLabel: GATEWAY_SECRET_LABEL,
+  });
+
+  if (!isValidSignature) {
+    throw ApiError.badRequest(
+      'Payment signature is invalid',
+      'INVALID_PAYMENT_SIGNATURE'
+    );
+  }
+
+  if (isExpired(transaction.expiredAt)) {
+    transaction.status = PAYMENT_TRANSACTION_STATUS.EXPIRED;
+    transaction.failureReason = 'Payment transaction expired before gateway access';
+    await transaction.save();
+
+    throw ApiError.conflict(
+      'Payment transaction has expired',
+      'PAYMENT_TRANSACTION_EXPIRED'
+    );
+  }
+
+  if (transaction.status === PAYMENT_TRANSACTION_STATUS.SUCCESS) {
+    throw ApiError.conflict(
+      'Payment transaction has already succeeded',
+      'PAYMENT_TRANSACTION_ALREADY_SUCCESS'
+    );
+  }
+
+  if (transaction.status === PAYMENT_TRANSACTION_STATUS.FAILED) {
+    throw ApiError.conflict(
+      'Payment transaction has already failed',
+      'PAYMENT_TRANSACTION_FAILED'
+    );
+  }
+
+  if (transaction.status === PAYMENT_TRANSACTION_STATUS.EXPIRED) {
+    throw ApiError.conflict(
+      'Payment transaction has expired',
+      'PAYMENT_TRANSACTION_EXPIRED'
+    );
+  }
+
+  return transaction;
+};
+
+const markGatewayOpened = async (transaction) => {
+  if (transaction.status === PAYMENT_TRANSACTION_STATUS.PENDING) {
+    transaction.status = PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED;
+    transaction.gatewayOpenedAt = new Date();
+    await transaction.save();
+  }
+
+  return transaction;
 };
 
 const upsertTicketsForBooking = async (booking, paidAt) => {
@@ -312,23 +519,6 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
 
   const bulkOperations = booking.seats.map((seat) => {
     const existingTicket = existingTicketMap.get(seat.seatCoordinate.toUpperCase());
-    const generatedTicketCode = createTicketCode();
-
-    const updateDocument = {
-      bookingId: booking._id,
-      userId: booking.userId,
-      movieId: getEntityId(booking.movieId),
-      showtimeId: getEntityId(booking.showtimeId),
-      roomId: getEntityId(booking.roomId),
-      seat: {
-        seatCoordinate: seat.seatCoordinate,
-        seatLabel: seat.seatLabel,
-        seatType: seat.seatType,
-      },
-      price: seat.price,
-      status: 'active',
-      issuedAt: existingTicket ? existingTicket.issuedAt : paidAt,
-    };
 
     return {
       updateOne: {
@@ -339,9 +529,23 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
               'seat.seatCoordinate': seat.seatCoordinate,
             },
         update: {
-          $set: updateDocument,
+          $set: {
+            bookingId: booking._id,
+            userId: booking.userId,
+            movieId: getEntityId(booking.movieId),
+            showtimeId: getEntityId(booking.showtimeId),
+            roomId: getEntityId(booking.roomId),
+            seat: {
+              seatCoordinate: seat.seatCoordinate,
+              seatLabel: seat.seatLabel,
+              seatType: seat.seatType,
+            },
+            price: seat.price,
+            status: TICKET_STATUS.ISSUED,
+            issuedAt: existingTicket ? existingTicket.issuedAt : paidAt,
+          },
           $setOnInsert: {
-            ticketCode: generatedTicketCode,
+            ticketCode: createTicketCode(),
           },
         },
         upsert: true,
@@ -354,186 +558,158 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
   }
 
   return Ticket.find({ bookingId: booking._id })
-    .select('ticketCode status seat price issuedAt')
+    .select('-_id ticketCode status seat price issuedAt')
     .lean()
     .exec();
 };
 
-const mapBillResponse = ({ booking, expiresAt, signatureData }) => ({
-  bookingId: String(booking._id),
-  bookingCode: booking.bookingCode || null,
-  movie: booking.movieId
-    ? {
-        id: String(booking.movieId._id),
-        title: booking.movieId.title,
-        duration: booking.movieId.duration,
-        poster: booking.movieId.poster,
-        status: booking.movieId.status,
-      }
-    : null,
-  cinema: booking.showtimeId?.cinemaId
-    ? {
-        id: String(booking.showtimeId.cinemaId._id),
-        name: booking.showtimeId.cinemaId.name,
-        brand: booking.showtimeId.cinemaId.brand,
-        city: booking.showtimeId.cinemaId.city,
-        address: booking.showtimeId.cinemaId.address,
-      }
-    : null,
-  room: booking.roomId
-    ? {
-        id: String(booking.roomId._id),
-        name: booking.roomId.name,
-        screenLabel: booking.roomId.screenLabel,
-        totalRows: booking.roomId.totalRows,
-        totalColumns: booking.roomId.totalColumns,
-      }
-    : null,
-  showtime: booking.showtimeId
-    ? {
-        id: String(booking.showtimeId._id),
-        startTime: booking.showtimeId.startTime,
-        endTime: booking.showtimeId.endTime,
-      }
-    : null,
-  seats: booking.seats.map((seat) => ({
-    seatCoordinate: seat.seatCoordinate,
-    seatLabel: seat.seatLabel,
-    seatType: seat.seatType,
-    price: seat.price,
-    status: seat.status,
-  })),
-  ticketCount: booking.seats.length,
-  totalPrice: booking.totalPrice,
-  currency: booking.currency || env.paymentCurrency,
-  status: booking.status,
-  paymentStatus: getCurrentPaymentStatus(booking),
-  paymentExpiresAt: expiresAt,
-  paymentAuth: {
-    algorithm: 'HMAC-SHA256',
-    fields: PAYMENT_HMAC_FIELDS,
-    paidAmount: signatureData.paidAmount,
-    currency: signatureData.currency,
-    timestamp: signatureData.timestamp,
-    signature: signatureData.signature,
-  },
-});
-
-const getBill = async ({ bookingId, userId }) => {
-  const booking = await getOwnedBooking(bookingId, userId);
-  const showtime = booking.showtimeId;
-  const expiresAt = resolvePaymentExpiresAt(booking, showtime);
-
-  assertBookingIsAwaitingPayment(booking, expiresAt);
-
-  const timestamp = Date.now();
-  const signaturePayload = buildPaymentSignaturePayload({
-    bookingId: booking._id,
-    userId,
-    paidAmount: booking.totalPrice,
-    currency: booking.currency || env.paymentCurrency,
-    timestamp,
-  });
-
-  return mapBillResponse({
-    booking,
-    expiresAt,
-    signatureData: {
-      ...signaturePayload,
-      signature: generatePaymentSignature(signaturePayload),
-    },
-  });
-};
-
-const payBill = async ({
-  bookingId,
-  userId,
-  paymentMethod,
-  paidAmount,
-  currency,
-  timestamp,
-  signature,
+const finalizeSuccessfulPayment = async ({
+  transaction,
+  callbackPayload,
+  callbackSignature,
+  callbackCanonicalString,
+  callbackLog,
 }) => {
-  const booking = await getOwnedBooking(bookingId, userId);
-  const showtime = await Showtime.findById(booking.showtimeId._id).exec();
+  const booking = await getBookingByIdOrThrow(callbackPayload.bookingId);
+  const showtime = await Showtime.findById(getEntityId(booking.showtimeId)).exec();
 
   if (!showtime) {
-    throw ApiError.notFound('Showtime not found for this booking', 'SHOWTIME_NOT_FOUND');
+    throw ApiError.notFound(
+      'Showtime not found for this booking',
+      'SHOWTIME_NOT_FOUND'
+    );
   }
 
-  const expiresAt = resolvePaymentExpiresAt(booking, showtime);
-
-  if (isExpired(expiresAt)) {
-    await releaseHeldSeatsForExpiredBooking(booking, showtime);
-
+  if (await expireBookingIfNeeded({ booking, showtime })) {
     throw ApiError.conflict(
       'Booking payment window has expired',
       'BOOKING_PAYMENT_EXPIRED'
     );
   }
 
-  assertBookingIsAwaitingPayment(booking, expiresAt);
+  assertBookingIsAwaitingPayment(booking);
 
-  if (Number(paidAmount) !== Number(booking.totalPrice)) {
+  if (String(transaction.bookingId) !== String(booking._id)) {
+    throw ApiError.conflict(
+      'Payment transaction does not belong to the booking',
+      'PAYMENT_BOOKING_MISMATCH'
+    );
+  }
+
+  if (Number(callbackPayload.paidAmount) !== Number(transaction.amount)) {
     throw ApiError.badRequest(
-      'Paid amount does not match the booking total price',
+      'paidAmount does not match the original payment amount',
       'PAYMENT_AMOUNT_MISMATCH'
     );
   }
 
-  if (currency !== (booking.currency || env.paymentCurrency)) {
+  if (Number(callbackPayload.paidAmount) !== Number(booking.totalAmount)) {
     throw ApiError.badRequest(
-      'Payment currency does not match the booking currency',
+      'paidAmount does not match the booking amount',
+      'BOOKING_AMOUNT_MISMATCH'
+    );
+  }
+
+  if (callbackPayload.currency !== transaction.currency) {
+    throw ApiError.badRequest(
+      'currency does not match the original payment currency',
       'PAYMENT_CURRENCY_MISMATCH'
     );
   }
 
-  validateTimestamp(timestamp);
-
-  const signaturePayload = buildPaymentSignaturePayload({
-    bookingId: booking._id,
-    userId,
-    paidAmount,
-    currency,
-    timestamp,
-  });
-
-  if (!verifyPaymentSignature(signaturePayload, signature)) {
+  if (
+    callbackPayload.receiverAccountNo !== transaction.receiverAccount.accountNo
+  ) {
     throw ApiError.badRequest(
-      'Payment signature is invalid',
-      'INVALID_PAYMENT_SIGNATURE'
+      'receiverAccountNo does not match the configured receiver account',
+      'PAYMENT_RECEIVER_ACCOUNT_MISMATCH'
     );
   }
 
-  const matchedSeatStates = ensurePaymentHoldsAreStillValid(booking, showtime, userId);
-  const paidAt = new Date();
-  const transactionCode = createTransactionCode();
+  if (
+    transaction.transactionCode &&
+    transaction.transactionCode !== callbackPayload.transactionCode
+  ) {
+    throw ApiError.badRequest(
+      'transactionCode does not match the gateway transaction code',
+      'PAYMENT_TRANSACTION_CODE_MISMATCH'
+    );
+  }
 
-  await markBookingAndSeatsAsPaid({
-    booking,
-    showtime,
-    matchedSeatStates,
-    paymentMethod,
-    paidAmount,
-    currency,
-    timestamp,
-    signature,
-    verifiedAt: paidAt,
-    transactionCode,
+  if (
+    transaction.sourceAccount &&
+    transaction.sourceAccount.accountNo !== callbackPayload.sourceAccountNo
+  ) {
+    throw ApiError.badRequest(
+      'sourceAccountNo does not match the gateway source account',
+      'PAYMENT_SOURCE_ACCOUNT_MISMATCH'
+    );
+  }
+
+  const matchedSeatStates = ensurePaymentHoldsAreStillValid(booking, showtime);
+  const paidAt = new Date(callbackPayload.paidAt);
+  const verifiedAt = new Date();
+
+  booking.status = BOOKING_STATUS.CONFIRMED;
+  booking.paymentStatus = PAYMENT_STATUS.SUCCESS;
+  booking.paymentMethod = PAYMENT_METHOD.MOCK_GATEWAY;
+  booking.paymentExpiresAt = null;
+  booking.paidAt = paidAt;
+  booking.transactionCode = callbackPayload.transactionCode;
+  booking.paymentSummary = {
+    paymentId: transaction.paymentId,
+    transactionCode: callbackPayload.transactionCode,
+    paidAmount: callbackPayload.paidAmount,
+    currency: callbackPayload.currency,
+    sourceAccountNo: callbackPayload.sourceAccountNo,
+    receiverAccountNo: callbackPayload.receiverAccountNo,
+    paidAt,
+    verifiedAt,
+  };
+
+  booking.seats.forEach((seat) => {
+    seat.status = BOOKED_SEAT_STATUS.ISSUED;
   });
 
-  const tickets = await upsertTicketsForBooking(booking, paidAt);
+  matchedSeatStates.forEach((seatState) => {
+    seatState.status = SHOWTIME_SEAT_STATUS.PAID;
+    seatState.bookingId = booking._id;
+    seatState.userId = booking.userId;
+    seatState.heldAt = null;
+    seatState.holdExpiresAt = null;
+    seatState.paidAt = paidAt;
+  });
+
+  transaction.status = PAYMENT_TRANSACTION_STATUS.SUCCESS;
+  transaction.transactionCode = callbackPayload.transactionCode;
+  transaction.paidAt = paidAt;
+  transaction.callbackReceivedAt = verifiedAt;
+  transaction.callbackProcessedAt = verifiedAt;
+  transaction.callbackAttempts += 1;
+  transaction.callbackSignature = {
+    algorithm: 'HMAC-SHA256',
+    fields: PAYMENT_CALLBACK_FIELDS,
+    canonicalString: callbackCanonicalString,
+    signature: callbackSignature,
+  };
+  transaction.failureReason = null;
+
+  callbackLog.status = CALLBACK_LOG_STATUS.PROCESSED;
+  callbackLog.processedAt = verifiedAt;
+  callbackLog.reason = 'Payment callback processed successfully';
+
+  const ticketsPromise = upsertTicketsForBooking(booking, paidAt);
+
+  await Promise.all([booking.save(), showtime.save(), transaction.save()]);
+  const tickets = await ticketsPromise;
+  await callbackLog.save();
 
   return {
     bookingId: String(booking._id),
-    bookingCode: booking.bookingCode || null,
-    transactionCode,
+    paymentId: transaction.paymentId,
+    transactionCode: transaction.transactionCode,
     status: booking.status,
     paymentStatus: booking.paymentStatus,
-    paymentMethod: booking.paymentMethod,
-    paidAmount: booking.totalPrice,
-    currency: booking.currency,
-    paidAt: booking.paidAt,
     ticketCount: tickets.length,
     tickets: tickets.map((ticket) => ({
       ticketCode: ticket.ticketCode,
@@ -545,7 +721,207 @@ const payBill = async ({
   };
 };
 
+const handlePaymentCallback = async ({
+  paymentId,
+  bookingId,
+  paidAmount,
+  currency,
+  transactionCode,
+  status,
+  paidAt,
+  sourceAccountNo,
+  receiverAccountNo,
+  signature,
+}) => {
+  const callbackPayload = {
+    paymentId: String(paymentId),
+    bookingId: String(bookingId),
+    paidAmount: Number(paidAmount),
+    currency,
+    transactionCode: String(transactionCode),
+    status,
+    paidAt: new Date(paidAt).toISOString(),
+    sourceAccountNo: String(sourceAccountNo),
+    receiverAccountNo: String(receiverAccountNo),
+  };
+
+  const { canonicalString } = signHmacSha256({
+    payload: callbackPayload,
+    fields: PAYMENT_CALLBACK_FIELDS,
+    secret: env.paymentCallbackSecret,
+    secretLabel: CALLBACK_SECRET_LABEL,
+  });
+  const idempotencyKey = createIdempotencyKey(canonicalString, signature);
+
+  const existingLog = await PaymentCallbackLog.findOne({ idempotencyKey }).exec();
+
+  if (existingLog) {
+    if (
+      existingLog.status === CALLBACK_LOG_STATUS.PROCESSED ||
+      existingLog.status === CALLBACK_LOG_STATUS.DUPLICATE
+    ) {
+      return {
+        paymentId: callbackPayload.paymentId,
+        transactionCode: callbackPayload.transactionCode,
+        idempotent: true,
+      };
+    }
+
+    throw ApiError.conflict(
+      'This callback has already been handled',
+      'CALLBACK_ALREADY_HANDLED'
+    );
+  }
+
+  const callbackLog = await PaymentCallbackLog.create({
+    paymentId: callbackPayload.paymentId,
+    bookingId: callbackPayload.bookingId,
+    transactionCode: callbackPayload.transactionCode,
+    idempotencyKey,
+    signature,
+    canonicalString,
+    payload: callbackPayload,
+    status: CALLBACK_LOG_STATUS.RECEIVED,
+  });
+
+  try {
+    const isValidSignature = verifyHmacSha256({
+      payload: callbackPayload,
+      fields: PAYMENT_CALLBACK_FIELDS,
+      secret: env.paymentCallbackSecret,
+      signature,
+      secretLabel: CALLBACK_SECRET_LABEL,
+    });
+
+    if (!isValidSignature) {
+      throw ApiError.badRequest(
+        'Callback signature is invalid',
+        'INVALID_CALLBACK_SIGNATURE'
+      );
+    }
+
+    const transaction = await PaymentTransaction.findOne({
+      paymentId: callbackPayload.paymentId,
+    }).exec();
+
+    if (!transaction) {
+      throw ApiError.notFound(
+        'Payment transaction not found',
+        'PAYMENT_NOT_FOUND'
+      );
+    }
+
+    if (transaction.status === PAYMENT_TRANSACTION_STATUS.SUCCESS) {
+      callbackLog.status = CALLBACK_LOG_STATUS.DUPLICATE;
+      callbackLog.processedAt = new Date();
+      callbackLog.reason = 'Payment transaction was already confirmed';
+      await callbackLog.save();
+
+      return {
+        paymentId: callbackPayload.paymentId,
+        transactionCode: callbackPayload.transactionCode,
+        idempotent: true,
+      };
+    }
+
+    return await finalizeSuccessfulPayment({
+      transaction,
+      callbackPayload,
+      callbackSignature: signature,
+      callbackCanonicalString: canonicalString,
+      callbackLog,
+    });
+  } catch (error) {
+    callbackLog.status =
+      error.statusCode && error.statusCode < 500
+        ? CALLBACK_LOG_STATUS.REJECTED
+        : CALLBACK_LOG_STATUS.FAILED;
+    callbackLog.reason = error.message;
+    callbackLog.processedAt = new Date();
+    await callbackLog.save();
+    throw error;
+  }
+};
+
+const renderPaymentResultPage = ({ status, paymentId, bookingId, transactionCode }) => {
+  const safeStatus = String(status || 'unknown').toLowerCase();
+  const isSuccess = safeStatus === 'success';
+  const heading = isSuccess ? 'Thanh toan thanh cong' : 'Thanh toan chua hoan tat';
+  const description = isSuccess
+    ? 'He thong da nhan callback va xac nhan booking.'
+    : 'He thong chua the xac nhan giao dich. Vui long kiem tra lai booking.';
+
+  return `<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment Result</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #eef6ff, #fff6e8);
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        color: #1a1f36;
+      }
+      .card {
+        width: min(92vw, 560px);
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.16);
+      }
+      h1 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+      p {
+        line-height: 1.6;
+      }
+      .meta {
+        margin-top: 24px;
+        padding: 16px;
+        border-radius: 16px;
+        background: #f8fafc;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 10px;
+      }
+      .row:last-child {
+        margin-bottom: 0;
+      }
+      .label {
+        color: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>${heading}</h1>
+      <p>${description}</p>
+      <section class="meta">
+        <div class="row"><span class="label">paymentId</span><strong>${paymentId || '-'}</strong></div>
+        <div class="row"><span class="label">bookingId</span><strong>${bookingId || '-'}</strong></div>
+        <div class="row"><span class="label">transactionCode</span><strong>${transactionCode || '-'}</strong></div>
+        <div class="row"><span class="label">status</span><strong>${safeStatus}</strong></div>
+      </section>
+    </main>
+  </body>
+</html>`;
+};
+
 module.exports = {
   getBill,
   payBill,
+  getPaymentTransactionForGateway,
+  markGatewayOpened,
+  handlePaymentCallback,
+  createTransactionCode,
+  renderPaymentResultPage,
 };

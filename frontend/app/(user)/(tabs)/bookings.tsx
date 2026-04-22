@@ -37,20 +37,11 @@ export default function BookingsTabScreen() {
         tone="user"
         eyebrow="Vé của tôi"
         title="Danh sách vé đã mua và trạng thái thanh toán."
-        description="Lịch sử booking được đồng bộ từ backend ngay sau khi đăng nhập thành công."
       />
 
-      <SectionTitle
-        tone="user"
-        title="Lịch sử đặt vé"
-        description="Tên ghế, tọa độ thật, tổng tiền và trạng thái thanh toán đều lấy từ luồng booking thật."
-      />
+      <SectionTitle tone="user" title="Lịch sử đặt vé" />
       {myBookings.length === 0 ? (
-        <EmptyNotice
-          tone="user"
-          title="Bạn chưa có booking nào"
-          description="Vào tab phim hoặc rạp để bắt đầu đặt vé."
-        />
+        <EmptyNotice tone="user" title="Bạn chưa có booking nào" />
       ) : (
         myBookings.map((booking) => {
           const movie = movies.find((item) => item.id === booking.movieId);

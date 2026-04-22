@@ -63,14 +63,9 @@ export default function AdminMoviesScreen() {
         tone="admin"
         eyebrow="Admin / Movies"
         title="Movie CRUD with user sync"
-        description="Them, sua, xoa movie trong admin se doi ngay tab movies, home va detail ben user."
       />
 
-      <SectionTitle
-        tone="admin"
-        title={form.id ? 'Edit movie' : 'Create movie'}
-        description="Day la form CRUD chinh cho catalog phim."
-      />
+      <SectionTitle tone="admin" title={form.id ? 'Edit movie' : 'Create movie'} />
       <SectionCard tone="admin">
         <TextInput
           placeholder="Movie title"
@@ -158,11 +153,7 @@ export default function AdminMoviesScreen() {
         <ActionButton tone="admin" label={form.id ? 'Update movie' : 'Create movie'} onPress={submit} />
       </SectionCard>
 
-      <SectionTitle
-        tone="admin"
-        title="Movie list"
-        description="Catalog nay duoc user app doc truc tiep."
-      />
+      <SectionTitle tone="admin" title="Movie list" />
       {movies.map((movie) => (
         <SectionCard key={movie.id} tone="admin">
           <Text style={[styles.cardTitle, { color: colors.text }]}>{movie.title}</Text>

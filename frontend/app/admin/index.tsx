@@ -20,22 +20,17 @@ export default function AdminDashboardScreen() {
       <HeroCard
         tone="admin"
         eyebrow="Admin workspace"
-        title="BeatCinema control tower"
-        description="Frontend app da duoc tach ro hai nhanh: admin de quan ly domain va users de dat ve. Dashboard nay tong hop toan bo thuc the chinh tren store hien tai.">
+        title="BeatCinema control tower">
         <View style={styles.metricRow}>
-          <MetricTile tone="admin" value={String(movies.length)} label="Movies" helper="CRUD title, status, genre, release plan." />
-          <MetricTile tone="admin" value={String(cinemas.length)} label="Cinemas" helper="Branch, city, address, service mix." />
-          <MetricTile tone="admin" value={String(rooms.length)} label="Rooms" helper="Room metadata plus seat layout editor." />
-          <MetricTile tone="admin" value={String(showtimes.length)} label="Showtimes" helper="Used by user booking flow and seat states." />
-          <MetricTile tone="admin" value={String(bookings.length)} label="Bookings" helper="Paid bookings update seat status immediately." />
+          <MetricTile tone="admin" value={String(movies.length)} label="Movies" />
+          <MetricTile tone="admin" value={String(cinemas.length)} label="Cinemas" />
+          <MetricTile tone="admin" value={String(rooms.length)} label="Rooms" />
+          <MetricTile tone="admin" value={String(showtimes.length)} label="Showtimes" />
+          <MetricTile tone="admin" value={String(bookings.length)} label="Bookings" />
         </View>
       </HeroCard>
 
-      <SectionTitle
-        tone="admin"
-        title="Quick Access"
-        description="Tung man quan ly se thao tac truc tiep len cung mot data store voi phan user."
-      />
+      <SectionTitle tone="admin" title="Quick Access" />
       <SectionCard tone="admin">
         <Link href="/admin/movies" style={[styles.link, { color: colors.accent }]}>
           Movie CRUD

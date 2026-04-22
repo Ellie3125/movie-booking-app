@@ -39,8 +39,7 @@ export default function MoviesTabScreen() {
       <HeroCard
         tone="user"
         eyebrow="Khám phá phim"
-        title="Kho phim dành cho người dùng theo đúng luồng đặt vé."
-        description="Tab này tập trung vào việc khám phá phim, trạng thái đang chiếu, sắp chiếu và đường dẫn sang lịch rạp.">
+        title="Kho phim dành cho người dùng theo đúng luồng đặt vé.">
         <View style={styles.chipRow}>
           {filters.map((item) => (
             <Chip
@@ -54,17 +53,9 @@ export default function MoviesTabScreen() {
         </View>
       </HeroCard>
 
-      <SectionTitle
-        tone="user"
-        title="Danh sách phim"
-        description="Mỗi thẻ phim đều có thể đi thẳng vào chi tiết và luồng đặt vé."
-      />
+      <SectionTitle tone="user" title="Danh sách phim" />
       {filteredMovies.length === 0 ? (
-        <EmptyNotice
-          tone="user"
-          title="Không có phim nào trong bộ lọc này"
-          description="Thử đổi trạng thái hoặc thêm phim từ khu quản trị."
-        />
+        <EmptyNotice tone="user" title="Không có phim nào trong bộ lọc này" />
       ) : (
         filteredMovies.map((movie) => {
           const totalShowtimes = showtimes.filter((showtime) => showtime.movieId === movie.id).length;

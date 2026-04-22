@@ -234,9 +234,12 @@ export type BackendBill = {
   paymentAuth: {
     algorithm: 'HMAC-SHA256';
     fields: string[];
+    billId: string;
     paidAmount: number;
     currency: string;
-    timestamp: number;
+    issuedAt: number;
+    expiresAt: number;
+    rawData: string;
     signature: string;
   };
 };
@@ -480,9 +483,11 @@ export async function payBookingBill(
   bookingId: string,
   payload: {
     paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox';
+    billId: string;
     paidAmount: number;
     currency: string;
-    timestamp: number;
+    issuedAt: number;
+    expiresAt: number;
     signature: string;
   },
 ) {

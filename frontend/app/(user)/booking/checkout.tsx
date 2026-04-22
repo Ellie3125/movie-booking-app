@@ -73,11 +73,7 @@ export default function CheckoutScreen() {
     <PageScroll tone="user">
       <Stack.Screen options={{ title: 'Thanh toán' }} />
       {!draftCheckout || !movie || !showtime || !cinema ? (
-        <EmptyNotice
-          tone="user"
-          title="Không có phiên thanh toán"
-          description="Chọn ghế trước khi vào màn hình thanh toán."
-        />
+        <EmptyNotice tone="user" title="Không có phiên thanh toán" />
       ) : (
         <>
           <HeroCard
@@ -87,11 +83,7 @@ export default function CheckoutScreen() {
             description={`${cinema.brand} ${formatLocationName(cinema.name)} • ${new Date(showtime.startTime).toLocaleString('vi-VN')}`}
           />
 
-          <SectionTitle
-            tone="user"
-            title="Thông tin ghế"
-            description="Tên ghế và tọa độ thật được lưu song song trong phiên thanh toán nháp."
-          />
+          <SectionTitle tone="user" title="Thông tin ghế" />
           <SectionCard tone="user">
             {draftCheckout.seats.map((seat) => (
               <View key={seat.seatCoordinate} style={styles.rowBetween}>
@@ -111,11 +103,7 @@ export default function CheckoutScreen() {
             </Text>
           </SectionCard>
 
-          <SectionTitle
-            tone="user"
-            title="Phương thức thanh toán"
-            description="Trạng thái ghế sẽ chuyển từ đang giữ sang đã thanh toán sau khi xác nhận."
-          />
+          <SectionTitle tone="user" title="Phương thức thanh toán" />
           <SectionCard tone="user">
             <View style={styles.chipRow}>
               {paymentMethods.map((method) => (

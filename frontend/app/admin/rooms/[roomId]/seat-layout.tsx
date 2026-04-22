@@ -144,18 +144,13 @@ export default function AdminSeatLayoutScreen() {
     <PageScroll tone="admin">
       <Stack.Screen options={{ title: room?.name ?? 'Seat Layout' }} />
       {!room ? (
-        <EmptyNotice
-          tone="admin"
-          title="Khong tim thay room"
-          description="Chon room tu trang CRUD truoc khi mo seat builder."
-        />
+        <EmptyNotice tone="admin" title="Khong tim thay room" />
       ) : (
         <>
           <HeroCard
             tone="admin"
             eyebrow="Admin / Seat Layout"
             title={`${room.name} • ${cinema?.brand ?? ''} ${cinema?.name ?? ''}`}
-            description="Nhap so hang, so cot roi scan ra bang. Tap vao o nao thi o do khong phai ghe va se bien mat o giao dien dat ve."
           />
 
           <SectionCard tone="admin">
@@ -185,20 +180,13 @@ export default function AdminSeatLayoutScreen() {
             />
           </SectionCard>
 
-          <SectionTitle
-            tone="admin"
-            title="Seat builder"
-            description="O mau xam la no-seat. O mau xanh la seat se duoc ban o phia user."
-          />
+          <SectionTitle tone="admin" title="Seat builder" />
           <SectionCard tone="admin">
             <SeatLayoutGrid layout={previewLayout} mode="admin" onPressSeat={handleSeatPress} />
           </SectionCard>
 
           <SectionCard tone="admin">
             <Text style={[styles.cardTitle, { color: colors.text }]}>Mapping preview</Text>
-            <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              He thong tu dong tach coordinate that va seat label hien thi. Neu bo trong o dau hang, ten ghe se duoc danh lai lien tuc.
-            </Text>
             <View style={styles.chipRow}>
               {remappedSeats.length === 0 ? (
                 <Chip tone="admin" label="Khong co seat remap" />
