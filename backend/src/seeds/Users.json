@@ -1,0 +1,3414 @@
+[
+  {
+    "_id": "ObjectId_000000000000000000000001",
+    "name": "Pham An",
+    "email": "phaman1@example.com",
+    "phone": "0439958838",
+    "passwordHash": "$2b$10$e6c3da5b206634d7f3f3586d747ffdb36b5c675757b380c6a5fe5",
+    "role": "admin",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 12"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-09-23T17:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000002",
+    "name": "Nguyen Chau",
+    "email": "nguyenchau2@example.com",
+    "phone": "0313999315",
+    "passwordHash": "$2b$10$1ba3d16e9881959f8c9a9762854f72c6e6321cdd44358a10a4e93",
+    "role": "admin",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001033"
+    ],
+    "createdAt": "2025-06-08T18:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000003",
+    "name": "Lam An",
+    "email": "laman3@example.com",
+    "phone": "0897226012",
+    "passwordHash": "$2b$10$3acb59306ef6e660cf832d1d34c4fba3d88d616f0bb5c2a9e0f82",
+    "role": "admin",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001029"
+    ],
+    "createdAt": "2025-11-18T05:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000004",
+    "name": "Mai Lan",
+    "email": "mailan4@example.com",
+    "phone": "0931429110",
+    "passwordHash": "$2b$10$a417b5dc3d06d15d91c6687e27fc1705ebc56b3b2d813abe03066",
+    "role": "staff",
+    "address": {
+      "city": "Hue",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001014"
+    ],
+    "createdAt": "2026-04-07T06:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000005",
+    "name": "Duong Dung",
+    "email": "duongdung5@example.com",
+    "phone": "0622981052",
+    "passwordHash": "$2b$10$0eeac8171768d0cdef3a20fee6db4362d019c91e10662a6b55186",
+    "role": "staff",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001017",
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001047",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2026-02-03T11:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000006",
+    "name": "Nguyen Dung",
+    "email": "nguyendung6@example.com",
+    "phone": "0384093639",
+    "passwordHash": "$2b$10$5c4950c94a3461441c356afa783f76b83b38fd65f730f291403ef",
+    "role": "staff",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001024",
+      "ObjectId_000000000000000000001037",
+      "ObjectId_000000000000000000001013",
+      "ObjectId_000000000000000000001046"
+    ],
+    "createdAt": "2025-07-10T08:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000007",
+    "name": "Le Binh",
+    "email": "lebinh7@example.com",
+    "phone": "0948840994",
+    "passwordHash": "$2b$10$1526f5e0e31d42fe1c3664ce923ac22ac1333417a90b32043797a",
+    "role": "staff",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 4"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-28T01:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000008",
+    "name": "Dinh Lan",
+    "email": "dinhlan8@example.com",
+    "phone": "0858966946",
+    "passwordHash": "$2b$10$c8fea5b0b76dc690feaf5544749f99b40e78e2a37c0e867a08669",
+    "role": "staff",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001014",
+      "ObjectId_000000000000000000001043"
+    ],
+    "createdAt": "2025-05-16T20:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000009",
+    "name": "Do Chau",
+    "email": "dochau9@example.com",
+    "phone": "0742857966",
+    "passwordHash": "$2b$10$2d4589473fb3f4581d7452cd25182159d68d2a50056a0cce35a52",
+    "role": "staff",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001045"
+    ],
+    "createdAt": "2025-12-08T09:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000010",
+    "name": "Nguyen Khanh",
+    "email": "nguyenkhanh10@example.com",
+    "phone": "0917507864",
+    "passwordHash": "$2b$10$b35892cb8b089e03e4420b94df688122a2b76d4ad0f8b94ad2080",
+    "role": "staff",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001018"
+    ],
+    "createdAt": "2025-08-18T20:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000011",
+    "name": "Le Hung",
+    "email": "lehung11@example.com",
+    "phone": "0497971488",
+    "passwordHash": "$2b$10$8057f787ebd8b4f9d40f53d7fbbfcbdde7067c1a074435b68f525",
+    "role": "staff",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001017",
+      "ObjectId_000000000000000000001009",
+      "ObjectId_000000000000000000001016"
+    ],
+    "createdAt": "2025-08-25T20:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000012",
+    "name": "Nguyen Thanh",
+    "email": "nguyenthanh12@example.com",
+    "phone": "0888461803",
+    "passwordHash": "$2b$10$fdac810d0c09f25c5ddcee9976ab1f1ae1973dba7c65152d95b09",
+    "role": "staff",
+    "address": {
+      "city": "Hue",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001024",
+      "ObjectId_000000000000000000001015",
+      "ObjectId_000000000000000000001009"
+    ],
+    "createdAt": "2025-10-02T16:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000013",
+    "name": "Dao Quang",
+    "email": "daoquang13@example.com",
+    "phone": "0916323852",
+    "passwordHash": "$2b$10$1e53de2a2b4ab888cc24002ef8832d433b21956ab83ddeef989c8",
+    "role": "staff",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001011",
+      "ObjectId_000000000000000000001044",
+      "ObjectId_000000000000000000001028",
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001005"
+    ],
+    "createdAt": "2026-02-04T19:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000014",
+    "name": "Dinh Nam",
+    "email": "dinhnam14@example.com",
+    "phone": "0743744231",
+    "passwordHash": "$2b$10$b78f24953963ac5ed773d6ec83120e3b1a65510201dc09ed2ed9e",
+    "role": "staff",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001047",
+      "ObjectId_000000000000000000001008",
+      "ObjectId_000000000000000000001044",
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001049"
+    ],
+    "createdAt": "2025-05-06T04:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000015",
+    "name": "Do Long",
+    "email": "dolong15@example.com",
+    "phone": "0568353204",
+    "passwordHash": "$2b$10$b5a4ec869015095060b1171791334513f741177c4011e2c5c36e3",
+    "role": "staff",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 8"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-01-20T18:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000016",
+    "name": "Do Son",
+    "email": "doson16@example.com",
+    "phone": "0724282218",
+    "passwordHash": "$2b$10$f0c28ba3fd9e0dcdcd0470acfcb98cc5a58d7d93422dbbefb9304",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001013",
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001024"
+    ],
+    "createdAt": "2025-12-02T21:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000017",
+    "name": "Vu Thanh",
+    "email": "vuthanh17@example.com",
+    "phone": "0753507489",
+    "passwordHash": "$2b$10$4a6b7fa040bcfc734a113fee84d3789c0a626d70d029afad0d1c3",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 1"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-04-11T14:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000018",
+    "name": "Ly Linh",
+    "email": "lylinh18@example.com",
+    "phone": "0342329237",
+    "passwordHash": "$2b$10$b99ddd77e59c96b13b64b3abe1902db4c0a76dabf8622aa6c71f8",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 2"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-19T15:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000019",
+    "name": "Truong Chau",
+    "email": "truongchau19@example.com",
+    "phone": "0498550256",
+    "passwordHash": "$2b$10$871431053023291d24b403f1f9d761c6f01b3050a0a83cd9d9759",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001017"
+    ],
+    "createdAt": "2026-01-10T10:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000020",
+    "name": "Dao Tuan",
+    "email": "daotuan20@example.com",
+    "phone": "0482383095",
+    "passwordHash": "$2b$10$51d11024031a8951b4722671adfc8587538f5e5417206e7862e60",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001043"
+    ],
+    "createdAt": "2025-06-07T21:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000021",
+    "name": "Ly Phuong",
+    "email": "lyphuong21@example.com",
+    "phone": "0343273328",
+    "passwordHash": "$2b$10$2d6b3bb57cb9e22fa36516172ef096b30ae00d08eedc1499c599b",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001002",
+      "ObjectId_000000000000000000001038"
+    ],
+    "createdAt": "2025-05-18T05:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000022",
+    "name": "Nguyen Khanh",
+    "email": "nguyenkhanh22@example.com",
+    "phone": "0319528530",
+    "passwordHash": "$2b$10$d0f82756c4d40d20e1fdbc90cf4da4adff02fe23b355687525880",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 4"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-11-02T15:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000023",
+    "name": "Tran Long",
+    "email": "tranlong23@example.com",
+    "phone": "0741944441",
+    "passwordHash": "$2b$10$8893186d24cce07e1c82f2e020d41177e699318b4be9535483fdf",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001014",
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001009"
+    ],
+    "createdAt": "2026-02-19T09:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000024",
+    "name": "Mai Thu",
+    "email": "maithu24@example.com",
+    "phone": "0473481353",
+    "passwordHash": "$2b$10$cafdc894eacc597ad76db1a750ccb876d4ed69c73b7d3d23f5e3a",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 4"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-05-02T19:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000025",
+    "name": "Pham Ngoc",
+    "email": "phamngoc25@example.com",
+    "phone": "0665177213",
+    "passwordHash": "$2b$10$0028e1c0d2c60966390545414567d33bca9f0165fece6d0109c59",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 12"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-07-28T00:13:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000026",
+    "name": "Pham Binh",
+    "email": "phambinh26@example.com",
+    "phone": "0855540424",
+    "passwordHash": "$2b$10$45e17065ddc6fb3a682f7732df5804652952dbe1f5ca5377a6615",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001013"
+    ],
+    "createdAt": "2025-06-22T19:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000027",
+    "name": "Nguyen Phuong",
+    "email": "nguyenphuong27@example.com",
+    "phone": "0634627347",
+    "passwordHash": "$2b$10$43b3ec9ea3961a319d37b4cc775d3f43f68709b62a93db10dd6c5",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001005"
+    ],
+    "createdAt": "2025-12-30T22:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000028",
+    "name": "Cao Thanh",
+    "email": "caothanh28@example.com",
+    "phone": "0397529405",
+    "passwordHash": "$2b$10$034a0cdf079dfa3ca924e07e3c509bbf50768d1949b021c0ea003",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 1"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-01-30T16:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000029",
+    "name": "Bui Hoa",
+    "email": "buihoa29@example.com",
+    "phone": "0674606833",
+    "passwordHash": "$2b$10$53f6f072e26d36b9e55d5dc828872856d5286f18ce3818d367f9e",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 7"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-06-20T01:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000030",
+    "name": "Vu Nam",
+    "email": "vunam30@example.com",
+    "phone": "0645594951",
+    "passwordHash": "$2b$10$85fcbe6bf830f23209ea6a932921e8da31a653a24a20cb84e75c4",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001045",
+      "ObjectId_000000000000000000001047",
+      "ObjectId_000000000000000000001036"
+    ],
+    "createdAt": "2026-04-10T10:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000031",
+    "name": "Truong Giang",
+    "email": "truonggiang31@example.com",
+    "phone": "0539219319",
+    "passwordHash": "$2b$10$3b3ad733c8571384c133694595c33d96c638b36f08a484bd0ad38",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001004",
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001021",
+      "ObjectId_000000000000000000001004"
+    ],
+    "createdAt": "2025-11-24T17:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000032",
+    "name": "Tran Thu",
+    "email": "tranthu32@example.com",
+    "phone": "0781286543",
+    "passwordHash": "$2b$10$451a8149ebd58dbd064e3337c6de5d4f4bb08cd70bbbd48d62a20",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001012",
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001039"
+    ],
+    "createdAt": "2025-04-29T19:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000033",
+    "name": "Le Khanh",
+    "email": "lekhanh33@example.com",
+    "phone": "0386460539",
+    "passwordHash": "$2b$10$0756810289814362efbea8bb826fea0a7bc4318a7f22a4b27b482",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001040",
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001027"
+    ],
+    "createdAt": "2025-06-21T23:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000034",
+    "name": "Mai Thu",
+    "email": "maithu34@example.com",
+    "phone": "0537415205",
+    "passwordHash": "$2b$10$94cd5db06baf087fd56c0042adc1deb162d271acfb8b3eb027706",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001009"
+    ],
+    "createdAt": "2025-08-24T15:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000035",
+    "name": "Ngo Phuong",
+    "email": "ngophuong35@example.com",
+    "phone": "0919736572",
+    "passwordHash": "$2b$10$5a66c7ba1398dd71c92a77cc7647c4183e6bf97b227e441bb2674",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001037",
+      "ObjectId_000000000000000000001007",
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001035"
+    ],
+    "createdAt": "2025-08-24T18:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000036",
+    "name": "Dang Son",
+    "email": "dangson36@example.com",
+    "phone": "0456843172",
+    "passwordHash": "$2b$10$133f8a05107e5442771c85da3dec70050ae5f3273849326b4a4e2",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001019",
+      "ObjectId_000000000000000000001011"
+    ],
+    "createdAt": "2025-09-30T21:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000037",
+    "name": "Cao Thanh",
+    "email": "caothanh37@example.com",
+    "phone": "0797775215",
+    "passwordHash": "$2b$10$1a31ac086ebf1341c916929e6d982767cd8568887d7c930ba8abd",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001036",
+      "ObjectId_000000000000000000001020",
+      "ObjectId_000000000000000000001043",
+      "ObjectId_000000000000000000001007",
+      "ObjectId_000000000000000000001009"
+    ],
+    "createdAt": "2025-09-03T17:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000038",
+    "name": "Do Dung",
+    "email": "dodung38@example.com",
+    "phone": "0884252420",
+    "passwordHash": "$2b$10$b64171fda74426604480b9bf7c10ccdc2ebc80266c8667c42346f",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001014"
+    ],
+    "createdAt": "2026-01-24T01:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000039",
+    "name": "Duong Hung",
+    "email": "duonghung39@example.com",
+    "phone": "0775569635",
+    "passwordHash": "$2b$10$099646084abbbc2c403c480bea87e7de23ce18db73a3e28251eff",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 1"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-01T18:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000040",
+    "name": "Ha Lan",
+    "email": "halan40@example.com",
+    "phone": "0354769200",
+    "passwordHash": "$2b$10$d88a53cd8ffe65ab18d2c62882479559aa781642ce7a8d340b22f",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001011",
+      "ObjectId_000000000000000000001048"
+    ],
+    "createdAt": "2026-03-10T21:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000041",
+    "name": "Cao Thanh",
+    "email": "caothanh41@example.com",
+    "phone": "0711297845",
+    "passwordHash": "$2b$10$a8a5146b1f97c2c8987ccb3a87d2f30b8aa258c2a32cb96115bf3",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001024",
+      "ObjectId_000000000000000000001038"
+    ],
+    "createdAt": "2025-06-04T13:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000042",
+    "name": "Nguyen Giang",
+    "email": "nguyengiang42@example.com",
+    "phone": "0415614174",
+    "passwordHash": "$2b$10$de3543c757d459090b9adaf9a80a54d54724a0f1600d4c77d6017",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 6"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-06-03T00:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000043",
+    "name": "Ly Hung",
+    "email": "lyhung43@example.com",
+    "phone": "0823796726",
+    "passwordHash": "$2b$10$db9aa0719dbf5cac40e44b268042014e9bc28b4134df9051a35f8",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001040",
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001010"
+    ],
+    "createdAt": "2025-10-12T07:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000044",
+    "name": "Bui Hoa",
+    "email": "buihoa44@example.com",
+    "phone": "0613326769",
+    "passwordHash": "$2b$10$147eb7dd0f4c59120be8adb20f9dc4d4a0ccb27a0d48d7546dfa1",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001027",
+      "ObjectId_000000000000000000001043"
+    ],
+    "createdAt": "2025-12-04T01:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000045",
+    "name": "Bui Lan",
+    "email": "builan45@example.com",
+    "phone": "0924508349",
+    "passwordHash": "$2b$10$64bf83fcf172a284e3db6b4cc76bb175184ee9dd57e77f0421e3e",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001015",
+      "ObjectId_000000000000000000001013",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-12-17T01:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000046",
+    "name": "Ly Linh",
+    "email": "lylinh46@example.com",
+    "phone": "0413176186",
+    "passwordHash": "$2b$10$3f1b954c84d8216e09ae793664571dedb1e1bcc9a2bfdc2b6dc58",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001005"
+    ],
+    "createdAt": "2025-10-28T06:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000047",
+    "name": "Do Minh",
+    "email": "dominh47@example.com",
+    "phone": "0881969657",
+    "passwordHash": "$2b$10$dbb70b94b6b192a1085e8056872daa4eb24002d47c82e88b1323f",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 1"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-06-24T23:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000048",
+    "name": "Do Hoa",
+    "email": "dohoa48@example.com",
+    "phone": "0324549543",
+    "passwordHash": "$2b$10$ffe4daf45af0e803fbe1fba2de5c7f7644f30b71ddb082100779d",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001047",
+      "ObjectId_000000000000000000001021"
+    ],
+    "createdAt": "2025-09-30T16:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000049",
+    "name": "Ha Tuan",
+    "email": "hatuan49@example.com",
+    "phone": "0687388337",
+    "passwordHash": "$2b$10$a0c69ae7ad7629347d41a89d9a558b26bd9b126a3a183f3498444",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 5"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-01-17T18:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000050",
+    "name": "Ha An",
+    "email": "haan50@example.com",
+    "phone": "0567887757",
+    "passwordHash": "$2b$10$be46e03449534372e45f1abf511f78148625cf11d99f2f550e2f3",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001040",
+      "ObjectId_000000000000000000001021"
+    ],
+    "createdAt": "2025-11-19T12:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000051",
+    "name": "Pham Linh",
+    "email": "phamlinh51@example.com",
+    "phone": "0864813568",
+    "passwordHash": "$2b$10$cc35e4b303c84633f2e64c1fe30a9c2f9e0f1dcdd53d1a748451b",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001019",
+      "ObjectId_000000000000000000001036",
+      "ObjectId_000000000000000000001009",
+      "ObjectId_000000000000000000001013",
+      "ObjectId_000000000000000000001027"
+    ],
+    "createdAt": "2025-08-29T18:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000052",
+    "name": "Dinh Hoa",
+    "email": "dinhhoa52@example.com",
+    "phone": "0683542887",
+    "passwordHash": "$2b$10$f511f615cd867553edd2fc66f4dc34441851f699cc1457f767c5e",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001014",
+      "ObjectId_000000000000000000001028"
+    ],
+    "createdAt": "2025-09-04T20:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000053",
+    "name": "Mai Tuan",
+    "email": "maituan53@example.com",
+    "phone": "0669295515",
+    "passwordHash": "$2b$10$f75b853a4521962ca5d349e4ca4cb69dce2dbfef61731cb9d14f1",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001033"
+    ],
+    "createdAt": "2025-08-20T08:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000054",
+    "name": "Truong Hoa",
+    "email": "truonghoa54@example.com",
+    "phone": "0579182797",
+    "passwordHash": "$2b$10$db383db8666c1c7f372e49b801a0405e0dd4193ab772163521b16",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 6"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-02-09T06:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000055",
+    "name": "Bui Linh",
+    "email": "builinh55@example.com",
+    "phone": "0936726767",
+    "passwordHash": "$2b$10$d6f7adababfd90706cc787591cdaf547f91d53abcb9008a180d90",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 1"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-30T10:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000056",
+    "name": "Bui Quang",
+    "email": "buiquang56@example.com",
+    "phone": "0665625330",
+    "passwordHash": "$2b$10$bacb5d03bee1af445b7cc73ba8db52a7fc01d474327c87899831f",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001045",
+      "ObjectId_000000000000000000001025",
+      "ObjectId_000000000000000000001032",
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001016"
+    ],
+    "createdAt": "2026-02-17T23:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000057",
+    "name": "Hoang An",
+    "email": "hoangan57@example.com",
+    "phone": "0967062156",
+    "passwordHash": "$2b$10$3b356cdbaeb3d03a6b6f713a048489d62fd63b4a8fd0c70a976cb",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001034",
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001004",
+      "ObjectId_000000000000000000001036",
+      "ObjectId_000000000000000000001016"
+    ],
+    "createdAt": "2026-01-24T09:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000058",
+    "name": "Pham Phuong",
+    "email": "phamphuong58@example.com",
+    "phone": "0972363359",
+    "passwordHash": "$2b$10$daa7c4bc3f1506b52b2bcc7864db9a96aee3ec1a8a68b29c5db60",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001021",
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001029",
+      "ObjectId_000000000000000000001040"
+    ],
+    "createdAt": "2026-01-04T21:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000059",
+    "name": "Dao Ngoc",
+    "email": "daongoc59@example.com",
+    "phone": "0473709724",
+    "passwordHash": "$2b$10$e5e0e771c99778aef6f0046adb86a3d3e3ede2c68f43aae6b4ee9",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001041"
+    ],
+    "createdAt": "2025-05-22T07:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000060",
+    "name": "Do Son",
+    "email": "doson60@example.com",
+    "phone": "0842111036",
+    "passwordHash": "$2b$10$598ed9422e3d9c328f48cafc2c66a66a3d393b64290f7741d60e6",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 8"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-04-24T03:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000061",
+    "name": "Ngo Khanh",
+    "email": "ngokhanh61@example.com",
+    "phone": "0552910691",
+    "passwordHash": "$2b$10$da3df0f1c138cc7b9e79e218587a605e12b7a9b9ac24e1287da5e",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010"
+    ],
+    "createdAt": "2025-09-26T03:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000062",
+    "name": "Bui Nam",
+    "email": "buinam62@example.com",
+    "phone": "0838716269",
+    "passwordHash": "$2b$10$9b857dc1d1dc03b131bdb429b972f5f28c7d72b8466a22d54c359",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001022",
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-12-21T17:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000063",
+    "name": "Ha Binh",
+    "email": "habinh63@example.com",
+    "phone": "0966390708",
+    "passwordHash": "$2b$10$7e251ea07d59cd5fc9d7d1dc4225104e474b93d6c6881797dfbfa",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001002",
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001037",
+      "ObjectId_000000000000000000001025",
+      "ObjectId_000000000000000000001031"
+    ],
+    "createdAt": "2025-11-12T09:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000064",
+    "name": "Nguyen Minh",
+    "email": "nguyenminh64@example.com",
+    "phone": "0962343121",
+    "passwordHash": "$2b$10$51031e17ce0a58242bf97f01a2883d077c6dd21f22674ee500dbf",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001015",
+      "ObjectId_000000000000000000001032"
+    ],
+    "createdAt": "2025-09-06T13:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000065",
+    "name": "Bui Lan",
+    "email": "builan65@example.com",
+    "phone": "0613895645",
+    "passwordHash": "$2b$10$3c62426f46ebb414ff53540c6f1af32639c28b434126ae98b9f16",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001044",
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001047",
+      "ObjectId_000000000000000000001011",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-05-29T15:13:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000066",
+    "name": "Hoang Tuan",
+    "email": "hoangtuan66@example.com",
+    "phone": "0689442503",
+    "passwordHash": "$2b$10$06599c96e52ff54f21e65cec89df4b96ce519704136d6f7246a56",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 11"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-03-23T08:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000067",
+    "name": "Le Ngoc",
+    "email": "lengoc67@example.com",
+    "phone": "0971968116",
+    "passwordHash": "$2b$10$8a110e75a8142ab756babe02160548ed6c254ae3fd931b297aa4e",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001025",
+      "ObjectId_000000000000000000001021"
+    ],
+    "createdAt": "2026-01-03T04:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000068",
+    "name": "Dang Phuong",
+    "email": "dangphuong68@example.com",
+    "phone": "0560885459",
+    "passwordHash": "$2b$10$5a583fab00aa1c17acaad80b2b9b5a16a8563e7e66808bf4b4acb",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001031"
+    ],
+    "createdAt": "2025-08-16T23:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000069",
+    "name": "Nguyen Thanh",
+    "email": "nguyenthanh69@example.com",
+    "phone": "0540094589",
+    "passwordHash": "$2b$10$667d45d6d55c4fe6a7239bb554854e3b8fc0b392abea73864e911",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 11"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-03-05T01:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000070",
+    "name": "Nguyen Khanh",
+    "email": "nguyenkhanh70@example.com",
+    "phone": "0912735359",
+    "passwordHash": "$2b$10$44b6dadf9835ff29d5342da14dfaf76e3d828081a1704b131baa3",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001009"
+    ],
+    "createdAt": "2025-11-17T19:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000071",
+    "name": "Truong Dung",
+    "email": "truongdung71@example.com",
+    "phone": "0644392446",
+    "passwordHash": "$2b$10$a06afaf373a81a1bcd1641fdd0f8b9c2c0d7104171abafbd80d11",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001046",
+      "ObjectId_000000000000000000001008"
+    ],
+    "createdAt": "2025-11-04T06:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000072",
+    "name": "Vu Linh",
+    "email": "vulinh72@example.com",
+    "phone": "0713446499",
+    "passwordHash": "$2b$10$79db1e22563af60be55a3717827926b76139d2428cbe693eba164",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001025",
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001046",
+      "ObjectId_000000000000000000001013",
+      "ObjectId_000000000000000000001005"
+    ],
+    "createdAt": "2026-01-23T06:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000073",
+    "name": "Mai Khanh",
+    "email": "maikhanh73@example.com",
+    "phone": "0850477742",
+    "passwordHash": "$2b$10$25ac9b17f8113ceda4e3b18b639ac0c5821fa6cf61e31a4b2cafe",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001023",
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001028"
+    ],
+    "createdAt": "2026-01-27T19:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000074",
+    "name": "Ly Chau",
+    "email": "lychau74@example.com",
+    "phone": "0366379329",
+    "passwordHash": "$2b$10$efacf97ed63d8d618e5c1f03e2fbd3656ed4c97ba04abf6db7915",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001024",
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-08-06T12:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000075",
+    "name": "Hoang Ngoc",
+    "email": "hoangngoc75@example.com",
+    "phone": "0880027662",
+    "passwordHash": "$2b$10$aaa88f12093ddca8064cdb97bf7635d7cd82c94d264121133f79f",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001050",
+      "ObjectId_000000000000000000001031",
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001028"
+    ],
+    "createdAt": "2025-12-04T17:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000076",
+    "name": "Mai Lan",
+    "email": "mailan76@example.com",
+    "phone": "0942949803",
+    "passwordHash": "$2b$10$55e315face2c7bcfc4b1d43be3a863e3bbb565ad3dafe30a9dd45",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001016",
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-08-20T07:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000077",
+    "name": "Mai Tuan",
+    "email": "maituan77@example.com",
+    "phone": "0513852048",
+    "passwordHash": "$2b$10$2590d18604c282ff195459db33d0ae2caab98b14d4cbfdfd4dc3e",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001032"
+    ],
+    "createdAt": "2025-07-10T00:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000078",
+    "name": "Dang Minh",
+    "email": "dangminh78@example.com",
+    "phone": "0547535126",
+    "passwordHash": "$2b$10$70dfb731f9ecfb0c9015b28838281e2a3cde900a791c45532154d",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001036",
+      "ObjectId_000000000000000000001001"
+    ],
+    "createdAt": "2025-10-05T20:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000079",
+    "name": "Dao Hung",
+    "email": "daohung79@example.com",
+    "phone": "0464549859",
+    "passwordHash": "$2b$10$f46c534ea1cb330122334be00303592a10bcbbc238d1b11e1b498",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001045"
+    ],
+    "createdAt": "2026-02-08T15:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000080",
+    "name": "Truong Quang",
+    "email": "truongquang80@example.com",
+    "phone": "0912314351",
+    "passwordHash": "$2b$10$a5276c24114971eceb4d5149894034741bcf22825b30c39942ff6",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001026"
+    ],
+    "createdAt": "2025-05-20T15:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000081",
+    "name": "Bui Linh",
+    "email": "builinh81@example.com",
+    "phone": "0684285882",
+    "passwordHash": "$2b$10$7137bc5132a11c4937a830c4f594a551b18d0764f66f8478de3db",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001036",
+      "ObjectId_000000000000000000001022"
+    ],
+    "createdAt": "2025-07-17T06:55:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000082",
+    "name": "Ly Phuong",
+    "email": "lyphuong82@example.com",
+    "phone": "0543742830",
+    "passwordHash": "$2b$10$ca619acdadd8eb0f598c954031b5f359a2fbd4fe0179eb02acfea",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001013",
+      "ObjectId_000000000000000000001021",
+      "ObjectId_000000000000000000001008",
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001035"
+    ],
+    "createdAt": "2025-09-26T17:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000083",
+    "name": "Vu Hung",
+    "email": "vuhung83@example.com",
+    "phone": "0874988034",
+    "passwordHash": "$2b$10$dd76076f40644e9e57f7459bfc37b2ef8b7084bda5a3127c24a62",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001034",
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001019"
+    ],
+    "createdAt": "2025-11-05T10:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000084",
+    "name": "Pham Hung",
+    "email": "phamhung84@example.com",
+    "phone": "0458436637",
+    "passwordHash": "$2b$10$11ee91bdbb90b967d18e45226bd3bc17d72a85a4486315b3568d0",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 5"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-09-08T06:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000085",
+    "name": "Nguyen Giang",
+    "email": "nguyengiang85@example.com",
+    "phone": "0317318358",
+    "passwordHash": "$2b$10$cfecdf5846f8e8279f4dcf79a2135308e11c0d283175a2fb79b33",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001009",
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001032",
+      "ObjectId_000000000000000000001007"
+    ],
+    "createdAt": "2025-09-24T06:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000086",
+    "name": "Nguyen Thu",
+    "email": "nguyenthu86@example.com",
+    "phone": "0674251933",
+    "passwordHash": "$2b$10$3c0c8e2f0527574ed275f4fc831af606b283370490f9c39c7389f",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001004"
+    ],
+    "createdAt": "2025-09-16T22:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000087",
+    "name": "Do Quang",
+    "email": "doquang87@example.com",
+    "phone": "0918770247",
+    "passwordHash": "$2b$10$4a2efe616f41f27f583d7e1e628a7b019f2b2603677ae0216d145",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 8"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-01-18T22:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000088",
+    "name": "Mai Binh",
+    "email": "maibinh88@example.com",
+    "phone": "0485543051",
+    "passwordHash": "$2b$10$1d45a36925bcb8f729f8f06ee0ec689f440cc6b08c3a0573ed12e",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001008"
+    ],
+    "createdAt": "2025-12-22T12:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000089",
+    "name": "Nguyen Ngoc",
+    "email": "nguyenngoc89@example.com",
+    "phone": "0980138498",
+    "passwordHash": "$2b$10$9d57ee06aac896609727855add2cfc3d9c50cd545395974cdee21",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001020",
+      "ObjectId_000000000000000000001038",
+      "ObjectId_000000000000000000001028"
+    ],
+    "createdAt": "2025-10-29T15:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000090",
+    "name": "Ngo Thu",
+    "email": "ngothu90@example.com",
+    "phone": "0723318904",
+    "passwordHash": "$2b$10$a4273f882cab7a89e7fa8e5a1298799b62233ada8a93f880f58bb",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001017"
+    ],
+    "createdAt": "2026-02-27T03:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000091",
+    "name": "Le Hoa",
+    "email": "lehoa91@example.com",
+    "phone": "0484087145",
+    "passwordHash": "$2b$10$7f6ceca338f7fe1bb409870c95cbf5009115df953af77a91ef912",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 3"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-19T08:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000092",
+    "name": "Ha Phuong",
+    "email": "haphuong92@example.com",
+    "phone": "0514380847",
+    "passwordHash": "$2b$10$905026a6ddab21a9d1dca17cc4f47b843eccd1c4806f7f3c59b88",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001019",
+      "ObjectId_000000000000000000001045",
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001044"
+    ],
+    "createdAt": "2025-05-04T19:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000093",
+    "name": "Bui Lan",
+    "email": "builan93@example.com",
+    "phone": "0625405014",
+    "passwordHash": "$2b$10$3dcc4d43a91ae471be9fb0dfb7e7a44dcbaf8125b389d65d38604",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001004"
+    ],
+    "createdAt": "2025-11-18T22:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000094",
+    "name": "Vu Linh",
+    "email": "vulinh94@example.com",
+    "phone": "0626690465",
+    "passwordHash": "$2b$10$3fdd6e2fcae488c7c7818992ad08249cd0f6576f6ff846bcecaa8",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001045",
+      "ObjectId_000000000000000000001026"
+    ],
+    "createdAt": "2025-09-13T20:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000095",
+    "name": "Do Son",
+    "email": "doson95@example.com",
+    "phone": "0620796722",
+    "passwordHash": "$2b$10$b3f20ff60a6e1eda26f8c412e7173c7ee7f5b3a1124b87a38d3de",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001021",
+      "ObjectId_000000000000000000001039"
+    ],
+    "createdAt": "2025-04-17T10:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000096",
+    "name": "Do An",
+    "email": "doan96@example.com",
+    "phone": "0487201917",
+    "passwordHash": "$2b$10$38ee64c8e2536e41e2543266f6a5216747b24c8b8ada7d5f7cfba",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001037",
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001049"
+    ],
+    "createdAt": "2026-02-04T11:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000097",
+    "name": "Vu Quang",
+    "email": "vuquang97@example.com",
+    "phone": "0534359060",
+    "passwordHash": "$2b$10$7f5106053c87018f57187a0a485dedacb2ef37f08f05ab2313f23",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001032",
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001031",
+      "ObjectId_000000000000000000001023",
+      "ObjectId_000000000000000000001027"
+    ],
+    "createdAt": "2025-05-24T23:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000098",
+    "name": "Duong Long",
+    "email": "duonglong98@example.com",
+    "phone": "0931585546",
+    "passwordHash": "$2b$10$125e175312b42ca54475207f1ad47df9ac421dd758fcc5c2ab19a",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001032",
+      "ObjectId_000000000000000000001019",
+      "ObjectId_000000000000000000001043",
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001049"
+    ],
+    "createdAt": "2026-01-25T20:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000099",
+    "name": "Nguyen Binh",
+    "email": "nguyenbinh99@example.com",
+    "phone": "0352213778",
+    "passwordHash": "$2b$10$ab2f50fe825bc3a9a8b649f173af23be3a052db9b410fcb0127e5",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 6"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-05-15T19:21:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000100",
+    "name": "Dinh Son",
+    "email": "dinhson100@example.com",
+    "phone": "0882825679",
+    "passwordHash": "$2b$10$29bf72f8d89f83e2fca11f01a530b0c39058b8fd0b0563aca173d",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 7"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-04-11T03:54:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000101",
+    "name": "Dang Son",
+    "email": "dangson101@example.com",
+    "phone": "0776906611",
+    "passwordHash": "$2b$10$2bd2a833384945be5a4d05109f418acbc78cc41d7640842f0e881",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018"
+    ],
+    "createdAt": "2025-07-22T13:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000102",
+    "name": "Nguyen Giang",
+    "email": "nguyengiang102@example.com",
+    "phone": "0675056916",
+    "passwordHash": "$2b$10$68b5aa742a3c02d41ca5c6582f9eb685ae72218e0c93680f91d51",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001016",
+      "ObjectId_000000000000000000001046",
+      "ObjectId_000000000000000000001011",
+      "ObjectId_000000000000000000001020"
+    ],
+    "createdAt": "2025-09-14T06:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000103",
+    "name": "Nguyen An",
+    "email": "nguyenan103@example.com",
+    "phone": "0340158811",
+    "passwordHash": "$2b$10$9e436b2455b7d1b818d56b04b8985d84ac27e7fb45630e579f7b0",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 8"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-06-18T21:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000104",
+    "name": "Hoang Quang",
+    "email": "hoangquang104@example.com",
+    "phone": "0746698468",
+    "passwordHash": "$2b$10$34158b36b0dccb351ad920cf5ebb74820d7825119c647b16db4f5",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001016",
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001036"
+    ],
+    "createdAt": "2025-09-11T11:21:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000105",
+    "name": "Hoang Nam",
+    "email": "hoangnam105@example.com",
+    "phone": "0778214937",
+    "passwordHash": "$2b$10$acb3085ac0fa0ce03af7e46da8e5ac3bbb2c03d6a28cfa95c778d",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001050",
+      "ObjectId_000000000000000000001027"
+    ],
+    "createdAt": "2025-11-24T04:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000106",
+    "name": "Duong Son",
+    "email": "duongson106@example.com",
+    "phone": "0910344303",
+    "passwordHash": "$2b$10$d0f775036f29ba7540be994605826ab25b7f153a1d8157e5e0921",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001038",
+      "ObjectId_000000000000000000001038"
+    ],
+    "createdAt": "2025-09-29T10:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000107",
+    "name": "Truong Giang",
+    "email": "truonggiang107@example.com",
+    "phone": "0775007200",
+    "passwordHash": "$2b$10$225adbca5f1445b65f065079fd6b3fdda829b6e660554b6200e86",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001035",
+      "ObjectId_000000000000000000001025",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-05-21T20:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000108",
+    "name": "Duong Hung",
+    "email": "duonghung108@example.com",
+    "phone": "0761401477",
+    "passwordHash": "$2b$10$02548935a13223836dc0fdfa7574d4adc6bd5b60a99296cc54cef",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 7"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-20T02:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000109",
+    "name": "Duong Quang",
+    "email": "duongquang109@example.com",
+    "phone": "0699078806",
+    "passwordHash": "$2b$10$cf78821e30a469451bbb37eb5bd9976ea68d77ea3dd54ac3dfd83",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 8"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-07-08T09:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000110",
+    "name": "Hoang Son",
+    "email": "hoangson110@example.com",
+    "phone": "0923470708",
+    "passwordHash": "$2b$10$8f3b97e5c348a48d4cde1cf58b7746221cc4f23b1471cb7b530a4",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001001",
+      "ObjectId_000000000000000000001047",
+      "ObjectId_000000000000000000001010"
+    ],
+    "createdAt": "2025-08-13T05:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000111",
+    "name": "Ha Giang",
+    "email": "hagiang111@example.com",
+    "phone": "0645570755",
+    "passwordHash": "$2b$10$b2c56341cc2b9f8bf898bd7528dd39e641b51c4fbd51f241b46ad",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001042",
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001022",
+      "ObjectId_000000000000000000001044"
+    ],
+    "createdAt": "2026-02-16T12:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000112",
+    "name": "Nguyen Nam",
+    "email": "nguyennam112@example.com",
+    "phone": "0875491202",
+    "passwordHash": "$2b$10$a1f5626f394c753975a9060627b1894e2c82436d7d9fb6103f584",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001016",
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001044"
+    ],
+    "createdAt": "2025-08-24T09:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000113",
+    "name": "Ngo Khanh",
+    "email": "ngokhanh113@example.com",
+    "phone": "0623212812",
+    "passwordHash": "$2b$10$d2d8fdd3e123c147ca908c7fec41c7fe5746e7cc1b90e3507859a",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001045"
+    ],
+    "createdAt": "2026-02-05T04:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000114",
+    "name": "Ngo An",
+    "email": "ngoan114@example.com",
+    "phone": "0517532195",
+    "passwordHash": "$2b$10$6a4ca776c3ef0c0d69107200ff1ff66217511aab72e032962fb5d",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001028",
+      "ObjectId_000000000000000000001010"
+    ],
+    "createdAt": "2026-03-09T12:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000115",
+    "name": "Bui Son",
+    "email": "buison115@example.com",
+    "phone": "0734166826",
+    "passwordHash": "$2b$10$62fbf022ff434c1cf42eed2a12c109388af61ea661a1cf75e8a16",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 3"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-06-15T22:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000116",
+    "name": "Lam Nam",
+    "email": "lamnam116@example.com",
+    "phone": "0688270025",
+    "passwordHash": "$2b$10$747ff88fd5750ff3ff02e7b5bd02508eb0c9dbaee5bb5d472fc93",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001017",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-10-18T15:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000117",
+    "name": "Do An",
+    "email": "doan117@example.com",
+    "phone": "0583363160",
+    "passwordHash": "$2b$10$96a194c82bf3b9e984cf3740c3a29632c9f2ac55a35d46a5c719c",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001023",
+      "ObjectId_000000000000000000001038",
+      "ObjectId_000000000000000000001020"
+    ],
+    "createdAt": "2025-05-08T05:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000118",
+    "name": "Ha Lan",
+    "email": "halan118@example.com",
+    "phone": "0950550084",
+    "passwordHash": "$2b$10$b48166b6083b5cc4becda5bf00282abf57c1166b1d4e9c65f59be",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001007",
+      "ObjectId_000000000000000000001016",
+      "ObjectId_000000000000000000001025"
+    ],
+    "createdAt": "2025-05-14T08:13:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000119",
+    "name": "Mai Minh",
+    "email": "maiminh119@example.com",
+    "phone": "0849625201",
+    "passwordHash": "$2b$10$3f5a78fdff13749416cd1f00e6919427a387c843f78e3fe11dda1",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001001",
+      "ObjectId_000000000000000000001037"
+    ],
+    "createdAt": "2025-09-08T13:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000120",
+    "name": "Tran Tuan",
+    "email": "trantuan120@example.com",
+    "phone": "0948412328",
+    "passwordHash": "$2b$10$8fca772f847cd309ee9f795d10aa141ac4bef4d87f4b80272e257",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001015",
+      "ObjectId_000000000000000000001041"
+    ],
+    "createdAt": "2025-04-15T07:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000121",
+    "name": "Dang Tuan",
+    "email": "dangtuan121@example.com",
+    "phone": "0898473848",
+    "passwordHash": "$2b$10$3fe239dfb6207aa4e467245cabc3a8221e5f15f0414b3b60371ef",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 11"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-11T11:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000122",
+    "name": "Tran Linh",
+    "email": "tranlinh122@example.com",
+    "phone": "0387789079",
+    "passwordHash": "$2b$10$882363cd1c89dc3169b92a33947bb42ad60e975b8a4d177989c6a",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001006"
+    ],
+    "createdAt": "2025-05-26T00:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000123",
+    "name": "Ngo Long",
+    "email": "ngolong123@example.com",
+    "phone": "0436950221",
+    "passwordHash": "$2b$10$9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001034",
+      "ObjectId_000000000000000000001033"
+    ],
+    "createdAt": "2025-06-13T10:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000124",
+    "name": "Do Hoa",
+    "email": "dohoa124@example.com",
+    "phone": "0974672520",
+    "passwordHash": "$2b$10$67da66db02bbd90735c73e948bd5b8222a60a884554b217eb066f",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001008",
+      "ObjectId_000000000000000000001030"
+    ],
+    "createdAt": "2025-10-06T21:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000125",
+    "name": "Le Giang",
+    "email": "legiang125@example.com",
+    "phone": "0963339667",
+    "passwordHash": "$2b$10$51e126a6e7bdec24c7e7b07e1c86c5fd6d1fc674ed560c5b21333",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 6"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-10-29T17:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000126",
+    "name": "Dinh An",
+    "email": "dinhan126@example.com",
+    "phone": "0726587799",
+    "passwordHash": "$2b$10$94fdd9e803f50ad10e634eed483d01f83db8326aa393a68cedb6e",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001044",
+      "ObjectId_000000000000000000001017",
+      "ObjectId_000000000000000000001038",
+      "ObjectId_000000000000000000001025"
+    ],
+    "createdAt": "2025-10-01T10:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000127",
+    "name": "Ly Dung",
+    "email": "lydung127@example.com",
+    "phone": "0613358751",
+    "passwordHash": "$2b$10$b2aa39291446250a4963b308653abb9fc746c72777759f3e6708f",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001040",
+      "ObjectId_000000000000000000001015"
+    ],
+    "createdAt": "2025-10-23T17:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000128",
+    "name": "Le Phuong",
+    "email": "lephuong128@example.com",
+    "phone": "0864800542",
+    "passwordHash": "$2b$10$c9148c9fd5a65e12b6d924efdba0f36195c78b9c1c7cdd4755817",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 3"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-09-03T22:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000129",
+    "name": "Tran Linh",
+    "email": "tranlinh129@example.com",
+    "phone": "0323044889",
+    "passwordHash": "$2b$10$2a8eccf0310f27a038297a74b99fe76a7887ce332d8f73610cab8",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001025"
+    ],
+    "createdAt": "2025-04-18T06:46:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000130",
+    "name": "Cao Minh",
+    "email": "caominh130@example.com",
+    "phone": "0730739712",
+    "passwordHash": "$2b$10$6f3c808b0c349bf9310731e29aae8beb5c978a73878e4d3cdc5c7",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 11"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-06-10T19:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000131",
+    "name": "Truong Tuan",
+    "email": "truongtuan131@example.com",
+    "phone": "0514391105",
+    "passwordHash": "$2b$10$c1d095050623a101f1be6e2da08f4da86227310fb360dc566551d",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001029",
+      "ObjectId_000000000000000000001016",
+      "ObjectId_000000000000000000001024"
+    ],
+    "createdAt": "2025-06-18T19:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000132",
+    "name": "Pham Minh",
+    "email": "phamminh132@example.com",
+    "phone": "0363437398",
+    "passwordHash": "$2b$10$309379267483b31fea2fa71be956c1b5992f9107ae601d46e1527",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 4"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-07-24T19:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000133",
+    "name": "Cao Chau",
+    "email": "caochau133@example.com",
+    "phone": "0895831286",
+    "passwordHash": "$2b$10$b842b6339c1900efb74f09fd8dc048bb50c1e7bcb179964ed3120",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 1"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-11-08T13:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000134",
+    "name": "Duong Khanh",
+    "email": "duongkhanh134@example.com",
+    "phone": "0985776373",
+    "passwordHash": "$2b$10$2e8f49f90946f2de44e4e900d85ad1da5887c5feaff24e467f067",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001014",
+      "ObjectId_000000000000000000001038",
+      "ObjectId_000000000000000000001014",
+      "ObjectId_000000000000000000001015"
+    ],
+    "createdAt": "2026-01-10T07:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000135",
+    "name": "Duong Giang",
+    "email": "duonggiang135@example.com",
+    "phone": "0529419691",
+    "passwordHash": "$2b$10$9b1b6a52450435b5c61acfc1765542d8bb8d4e023327b2a87827f",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001012",
+      "ObjectId_000000000000000000001008"
+    ],
+    "createdAt": "2026-04-09T22:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000136",
+    "name": "Nguyen Giang",
+    "email": "nguyengiang136@example.com",
+    "phone": "0541934639",
+    "passwordHash": "$2b$10$4450bf0c02623f832c7f7f93fc067f085bc95162d345fe1e95e64",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 6"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-04-01T04:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000137",
+    "name": "Vu Lan",
+    "email": "vulan137@example.com",
+    "phone": "0466500369",
+    "passwordHash": "$2b$10$00f78aff5b35171a4a10ac9bad5eccc121ac4e678cb74bab0e71b",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001031",
+      "ObjectId_000000000000000000001029",
+      "ObjectId_000000000000000000001050",
+      "ObjectId_000000000000000000001024"
+    ],
+    "createdAt": "2026-03-04T20:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000138",
+    "name": "Dao Thu",
+    "email": "daothu138@example.com",
+    "phone": "0677624084",
+    "passwordHash": "$2b$10$bc647ef28b901e09e8b5c373eca43ba2c64611247d70ecc973dbb",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 10"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-01-22T14:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000139",
+    "name": "Dao Linh",
+    "email": "daolinh139@example.com",
+    "phone": "0814180968",
+    "passwordHash": "$2b$10$b883dc59e83d063f0ad1c5fc917d5c95df10349c2a5eaa0054d40",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001028",
+      "ObjectId_000000000000000000001044",
+      "ObjectId_000000000000000000001007"
+    ],
+    "createdAt": "2025-05-13T11:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000140",
+    "name": "Truong Phuong",
+    "email": "truongphuong140@example.com",
+    "phone": "0353233116",
+    "passwordHash": "$2b$10$c5585b8e6481359e9115ee634e6e7d347fdd2cce19c36a450f388",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 3"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-02-17T11:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000141",
+    "name": "Hoang Lan",
+    "email": "hoanglan141@example.com",
+    "phone": "0690180577",
+    "passwordHash": "$2b$10$cd75d9010f6f120a32361ba9e26396fdab2f2122602fabe818321",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001033",
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001028"
+    ],
+    "createdAt": "2025-08-18T04:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000142",
+    "name": "Pham Dung",
+    "email": "phamdung142@example.com",
+    "phone": "0670606674",
+    "passwordHash": "$2b$10$b2db914133c89e6a0798c08136a40e0810b869816c44aab5f2c98",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001026"
+    ],
+    "createdAt": "2025-11-06T10:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000143",
+    "name": "Ha Dung",
+    "email": "hadung143@example.com",
+    "phone": "0651946203",
+    "passwordHash": "$2b$10$c3b87469726089da03985e426738badfc40b00048c383caeb8784",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001044"
+    ],
+    "createdAt": "2025-08-27T09:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000144",
+    "name": "Truong Chau",
+    "email": "truongchau144@example.com",
+    "phone": "0921457410",
+    "passwordHash": "$2b$10$8a46261b0b1a264e19114bfa09c64b289dc93819d9978349177cb",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 7"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-02-04T13:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000145",
+    "name": "Ly Giang",
+    "email": "lygiang145@example.com",
+    "phone": "0785374852",
+    "passwordHash": "$2b$10$0738f94c476bddc7e78c286ebe8836875e9a247b192badf4a1cda",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001008",
+      "ObjectId_000000000000000000001027",
+      "ObjectId_000000000000000000001023",
+      "ObjectId_000000000000000000001043",
+      "ObjectId_000000000000000000001049"
+    ],
+    "createdAt": "2026-02-27T07:46:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000146",
+    "name": "Ha Binh",
+    "email": "habinh146@example.com",
+    "phone": "0751936181",
+    "passwordHash": "$2b$10$2b9a57088cbdf4386bafedc5a3653538613587198532c24e7a40d",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001033",
+      "ObjectId_000000000000000000001014",
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001043"
+    ],
+    "createdAt": "2025-09-14T13:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000147",
+    "name": "Truong Khanh",
+    "email": "truongkhanh147@example.com",
+    "phone": "0584660688",
+    "passwordHash": "$2b$10$7a6ae0b891d5473f1d239c21d41bbf01c9fb3c9e9f6579fda7960",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001037",
+      "ObjectId_000000000000000000001015"
+    ],
+    "createdAt": "2026-01-23T04:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000148",
+    "name": "Ha Thanh",
+    "email": "hathanh148@example.com",
+    "phone": "0798292612",
+    "passwordHash": "$2b$10$228410cc8b122eb4ad2d8ec3b82a98e9f931ffd51f4b6d4631b44",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018"
+    ],
+    "createdAt": "2026-03-23T21:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000149",
+    "name": "Ngo Long",
+    "email": "ngolong149@example.com",
+    "phone": "0334347841",
+    "passwordHash": "$2b$10$8518dd4530c31281599093e6ff42f50024e516ed208eda80c8fef",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001026",
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001041"
+    ],
+    "createdAt": "2025-07-30T09:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000150",
+    "name": "Nguyen Chau",
+    "email": "nguyenchau150@example.com",
+    "phone": "0666348963",
+    "passwordHash": "$2b$10$963f65f9d1a9bf30cf2102f2e6efcff7c9899537acc7831ce5270",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001024"
+    ],
+    "createdAt": "2025-11-06T08:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000151",
+    "name": "Ngo Long",
+    "email": "ngolong151@example.com",
+    "phone": "0330881581",
+    "passwordHash": "$2b$10$b9d7319cf037dc2cd01704356fe3671b449829653c56e8c93ef37",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 10"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-02-09T03:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000152",
+    "name": "Le Lan",
+    "email": "lelan152@example.com",
+    "phone": "0866910299",
+    "passwordHash": "$2b$10$e9488e9209629f0b61ba2f2cac89bc4741bd4fb21d3e408a012bc",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001027",
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001014"
+    ],
+    "createdAt": "2025-05-24T08:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000153",
+    "name": "Dao Dung",
+    "email": "daodung153@example.com",
+    "phone": "0624883373",
+    "passwordHash": "$2b$10$5419cfef2fdf2c0e240adc340b7930d43857389e775c5fb2cc369",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001038",
+      "ObjectId_000000000000000000001032",
+      "ObjectId_000000000000000000001034",
+      "ObjectId_000000000000000000001043",
+      "ObjectId_000000000000000000001020"
+    ],
+    "createdAt": "2025-08-03T15:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000154",
+    "name": "Tran Khanh",
+    "email": "trankhanh154@example.com",
+    "phone": "0717352710",
+    "passwordHash": "$2b$10$cd16fa43071d6cfa25884d2caced1ce52efa59b92dfc99ab83681",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001014",
+      "ObjectId_000000000000000000001050"
+    ],
+    "createdAt": "2025-06-28T04:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000155",
+    "name": "Hoang Lan",
+    "email": "hoanglan155@example.com",
+    "phone": "0526104026",
+    "passwordHash": "$2b$10$f1d4adbad69cc4f1271b9c9682db410a1741300d5ccc632f90fae",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001028",
+      "ObjectId_000000000000000000001012",
+      "ObjectId_000000000000000000001009",
+      "ObjectId_000000000000000000001025",
+      "ObjectId_000000000000000000001035"
+    ],
+    "createdAt": "2025-09-13T05:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000156",
+    "name": "Bui Son",
+    "email": "buison156@example.com",
+    "phone": "0363293990",
+    "passwordHash": "$2b$10$b90397a77e0f5216feffa1392c9aea5d1cec0f513d237726725db",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 7"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-07-28T02:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000157",
+    "name": "Cao Chau",
+    "email": "caochau157@example.com",
+    "phone": "0767617561",
+    "passwordHash": "$2b$10$67977a0a44852851c4b5f8efa40815f304e1bb4648c0ff0412ba9",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001027",
+      "ObjectId_000000000000000000001019",
+      "ObjectId_000000000000000000001008",
+      "ObjectId_000000000000000000001026"
+    ],
+    "createdAt": "2025-08-27T00:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000158",
+    "name": "Nguyen Long",
+    "email": "nguyenlong158@example.com",
+    "phone": "0992963368",
+    "passwordHash": "$2b$10$da8977c150aeb01f6fd84d48fa7d2e4807bdd3512e03b9e9dff85",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001028"
+    ],
+    "createdAt": "2025-12-07T20:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000159",
+    "name": "Pham Khanh",
+    "email": "phamkhanh159@example.com",
+    "phone": "0763747464",
+    "passwordHash": "$2b$10$444420659b079015d309e33d983c0466134da01b5884c18f6dace",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001020",
+      "ObjectId_000000000000000000001048",
+      "ObjectId_000000000000000000001022"
+    ],
+    "createdAt": "2025-05-29T18:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000160",
+    "name": "Bui Long",
+    "email": "builong160@example.com",
+    "phone": "0378515906",
+    "passwordHash": "$2b$10$00c1956e5d6c5de46388b9875730b0afa1d3107c9d1c9ac1dc072",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001013",
+      "ObjectId_000000000000000000001050",
+      "ObjectId_000000000000000000001023",
+      "ObjectId_000000000000000000001023"
+    ],
+    "createdAt": "2025-12-10T13:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000161",
+    "name": "Hoang Khanh",
+    "email": "hoangkhanh161@example.com",
+    "phone": "0444355473",
+    "passwordHash": "$2b$10$1971d8d564c23ec092839d6ea9fd36deecc0451a437d368fdf22b",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001042"
+    ],
+    "createdAt": "2026-01-27T03:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000162",
+    "name": "Le Hoa",
+    "email": "lehoa162@example.com",
+    "phone": "0685663295",
+    "passwordHash": "$2b$10$ce0cc5d6aa577f8b966b4d738a85522a641734b4cd0eb96fac1fb",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001037",
+      "ObjectId_000000000000000000001042",
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001040",
+      "ObjectId_000000000000000000001021"
+    ],
+    "createdAt": "2025-04-17T04:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000163",
+    "name": "Duong Giang",
+    "email": "duonggiang163@example.com",
+    "phone": "0372937522",
+    "passwordHash": "$2b$10$14970d5553628849705c327b02159358c048af6b5b3d10154cb21",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001038"
+    ],
+    "createdAt": "2025-05-26T18:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000164",
+    "name": "Tran Minh",
+    "email": "tranminh164@example.com",
+    "phone": "0571974027",
+    "passwordHash": "$2b$10$4f40d5ea6bba1e84c6f18448cd1a7a316fc31b82c616843a4f312",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 1"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-02-16T23:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000165",
+    "name": "Ly Linh",
+    "email": "lylinh165@example.com",
+    "phone": "0822119391",
+    "passwordHash": "$2b$10$d185f2b0f80fa3187ced69ddd858127703af6ada6c73188921e71",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001025",
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001038",
+      "ObjectId_000000000000000000001036"
+    ],
+    "createdAt": "2026-02-15T03:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000166",
+    "name": "Tran Phuong",
+    "email": "tranphuong166@example.com",
+    "phone": "0591202508",
+    "passwordHash": "$2b$10$c40832c56bc9882a6972a3aeee7beaa56bbfd68f2476800f01fac",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001004"
+    ],
+    "createdAt": "2025-11-25T22:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000167",
+    "name": "Cao Dung",
+    "email": "caodung167@example.com",
+    "phone": "0821318464",
+    "passwordHash": "$2b$10$f119146b406bd7b72461cc675b8a61e9e082e7e124f6e944a9825",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001003"
+    ],
+    "createdAt": "2025-08-04T22:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000168",
+    "name": "Bui Phuong",
+    "email": "buiphuong168@example.com",
+    "phone": "0780162053",
+    "passwordHash": "$2b$10$5cba853b36ccafb52b3ad11d0c218dcff589c9168218c620a18fa",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001024",
+      "ObjectId_000000000000000000001019"
+    ],
+    "createdAt": "2025-05-27T00:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000169",
+    "name": "Dinh Ngoc",
+    "email": "dinhngoc169@example.com",
+    "phone": "0890246882",
+    "passwordHash": "$2b$10$4af8d9659200e8d30d8a056a14b3eae088d64dd151fcff72ffcf3",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001022",
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001022",
+      "ObjectId_000000000000000000001007",
+      "ObjectId_000000000000000000001036"
+    ],
+    "createdAt": "2025-08-08T14:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000170",
+    "name": "Dinh Linh",
+    "email": "dinhlinh170@example.com",
+    "phone": "0898122539",
+    "passwordHash": "$2b$10$f08c71d147cc34f4b144866232758aa35238d29f336aaa8f89c76",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001038"
+    ],
+    "createdAt": "2025-10-10T12:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000171",
+    "name": "Hoang Minh",
+    "email": "hoangminh171@example.com",
+    "phone": "0898870276",
+    "passwordHash": "$2b$10$a8e746a7f23319a9f705297e700980fd003907151770b570200bd",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001046",
+      "ObjectId_000000000000000000001006",
+      "ObjectId_000000000000000000001020",
+      "ObjectId_000000000000000000001036"
+    ],
+    "createdAt": "2025-08-29T02:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000172",
+    "name": "Dinh Long",
+    "email": "dinhlong172@example.com",
+    "phone": "0880651318",
+    "passwordHash": "$2b$10$4e198562e9846d7db9edd6cf77fdff9330db7a23279d6d04ffcbc",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001028",
+      "ObjectId_000000000000000000001033",
+      "ObjectId_000000000000000000001024",
+      "ObjectId_000000000000000000001002",
+      "ObjectId_000000000000000000001024"
+    ],
+    "createdAt": "2026-01-08T22:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000173",
+    "name": "Ngo Hoa",
+    "email": "ngohoa173@example.com",
+    "phone": "0575266178",
+    "passwordHash": "$2b$10$d20ffef6f9b9969c6a99eb65268a0d457f1631195375a3fc9ea27",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010"
+    ],
+    "createdAt": "2025-11-07T00:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000174",
+    "name": "Le Linh",
+    "email": "lelinh174@example.com",
+    "phone": "0782446804",
+    "passwordHash": "$2b$10$3c970d58b00bbfbd11be99238412b8dc8c95392524057a7c79987",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001022",
+      "ObjectId_000000000000000000001050",
+      "ObjectId_000000000000000000001040",
+      "ObjectId_000000000000000000001009",
+      "ObjectId_000000000000000000001039"
+    ],
+    "createdAt": "2026-01-28T08:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000175",
+    "name": "Dinh Giang",
+    "email": "dinhgiang175@example.com",
+    "phone": "0493851247",
+    "passwordHash": "$2b$10$5aaf677bd8cfe27d494b927b5cd69431ddf92b3b037aac21889c4",
+    "role": "user",
+    "address": {
+      "city": "Da Nang",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001027",
+      "ObjectId_000000000000000000001024"
+    ],
+    "createdAt": "2025-12-14T20:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000176",
+    "name": "Bui Phuong",
+    "email": "buiphuong176@example.com",
+    "phone": "0970254091",
+    "passwordHash": "$2b$10$104266cc04dadae9683358555fa193734617b15804913ef965c74",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001020"
+    ],
+    "createdAt": "2025-09-16T12:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000177",
+    "name": "Truong Hung",
+    "email": "truonghung177@example.com",
+    "phone": "0886560394",
+    "passwordHash": "$2b$10$5cd72b9bba9a46617799dd18304322f82e0e66e9fa3fcd3da9cdc",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 8"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001050",
+      "ObjectId_000000000000000000001025"
+    ],
+    "createdAt": "2025-07-18T03:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000178",
+    "name": "Dao Son",
+    "email": "daoson178@example.com",
+    "phone": "0436802975",
+    "passwordHash": "$2b$10$956faeec27b882d8aa972d50bfa99b11ab6f7856f67ab9ffafbe1",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001004",
+      "ObjectId_000000000000000000001042"
+    ],
+    "createdAt": "2025-06-11T03:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000179",
+    "name": "Truong Minh",
+    "email": "truongminh179@example.com",
+    "phone": "0879244185",
+    "passwordHash": "$2b$10$8e8225ca92553c420aea93fc2f8b5a143b9c9c1fc78f84e6a25dd",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 5"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-01-27T07:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000180",
+    "name": "Vu Lan",
+    "email": "vulan180@example.com",
+    "phone": "0729776801",
+    "passwordHash": "$2b$10$450bf5e97fa8f4f04d50d84ce7398963e5df9278226aa57c29884",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001029"
+    ],
+    "createdAt": "2025-05-19T19:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000181",
+    "name": "Ly An",
+    "email": "lyan181@example.com",
+    "phone": "0363211150",
+    "passwordHash": "$2b$10$e60f65cdc15dc09ab7e182cb569c1e4296dad5eb9540e75542eb4",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001025"
+    ],
+    "createdAt": "2025-06-13T21:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000182",
+    "name": "Le Minh",
+    "email": "leminh182@example.com",
+    "phone": "0352773159",
+    "passwordHash": "$2b$10$5a258638f0a176640f9bd9a0faa8daeb403b83fcdf2deb2d4686d",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 12"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001022",
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001009",
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001019"
+    ],
+    "createdAt": "2025-10-30T11:55:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000183",
+    "name": "Truong Giang",
+    "email": "truonggiang183@example.com",
+    "phone": "0692590645",
+    "passwordHash": "$2b$10$7714695bf057d6baa0e352409c96efd190286db4a2cbda4b22559",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 2"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-05-05T09:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000184",
+    "name": "Do Hung",
+    "email": "dohung184@example.com",
+    "phone": "0791722503",
+    "passwordHash": "$2b$10$a459eec8f81e241c105297bf0ace06d2810c5c0c3d2f6c30f6249",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 7"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-12-24T02:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000185",
+    "name": "Ngo Khanh",
+    "email": "ngokhanh185@example.com",
+    "phone": "0316408822",
+    "passwordHash": "$2b$10$deef99d335bbd310f5c6986922090e2ac487005ba1e84001a36f0",
+    "role": "user",
+    "address": {
+      "city": "Hai Phong",
+      "district": "District 7"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001040",
+      "ObjectId_000000000000000000001030",
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001008",
+      "ObjectId_000000000000000000001032"
+    ],
+    "createdAt": "2025-09-04T17:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000186",
+    "name": "Lam Thanh",
+    "email": "lamthanh186@example.com",
+    "phone": "0879172559",
+    "passwordHash": "$2b$10$7dfb019cb9a337a188ddb4fee0b8e679c9d2479ac6b94c7c83bf9",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 4"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001019",
+      "ObjectId_000000000000000000001028",
+      "ObjectId_000000000000000000001001",
+      "ObjectId_000000000000000000001040"
+    ],
+    "createdAt": "2026-03-31T00:47:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000187",
+    "name": "Ly Khanh",
+    "email": "lykhanh187@example.com",
+    "phone": "0499170406",
+    "passwordHash": "$2b$10$1bf3064b71d17cdbe7a756d45913e9715e93f6dbdb470dabe37f4",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 9"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001005",
+      "ObjectId_000000000000000000001034"
+    ],
+    "createdAt": "2025-06-12T15:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000188",
+    "name": "Nguyen Son",
+    "email": "nguyenson188@example.com",
+    "phone": "0673100462",
+    "passwordHash": "$2b$10$4de66ca94812977400f463080d0f81a0016dc5ce29f4778009f4f",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001024",
+      "ObjectId_000000000000000000001017",
+      "ObjectId_000000000000000000001048"
+    ],
+    "createdAt": "2026-03-28T04:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000189",
+    "name": "Nguyen Minh",
+    "email": "nguyenminh189@example.com",
+    "phone": "0542363373",
+    "passwordHash": "$2b$10$1915ea8a41f31bdbb0b879253783585c0a001b84911f045bf150c",
+    "role": "user",
+    "address": {
+      "city": "Ho Chi Minh City",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001049",
+      "ObjectId_000000000000000000001022",
+      "ObjectId_000000000000000000001009",
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001023"
+    ],
+    "createdAt": "2026-02-21T19:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000190",
+    "name": "Nguyen Long",
+    "email": "nguyenlong190@example.com",
+    "phone": "0972360629",
+    "passwordHash": "$2b$10$7759c9a5a8b5474b76c7b5c00b3c04d6ca6cdeabbbc52e25f9a54",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 11"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001009"
+    ],
+    "createdAt": "2025-12-05T12:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000191",
+    "name": "Le Phuong",
+    "email": "lephuong191@example.com",
+    "phone": "0537057085",
+    "passwordHash": "$2b$10$6d5b63fbb2a973497bdc9dc4a0c8010792bd51a8eb330491dc572",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 4"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2026-03-16T01:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000192",
+    "name": "Duong Linh",
+    "email": "duonglinh192@example.com",
+    "phone": "0982884346",
+    "passwordHash": "$2b$10$4a31314b88ab8c6b07d92caaa0e4a7005592b1428057fe9529a74",
+    "role": "user",
+    "address": {
+      "city": "Nha Trang",
+      "district": "District 5"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-06-26T00:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000193",
+    "name": "Dang Linh",
+    "email": "danglinh193@example.com",
+    "phone": "0916416148",
+    "passwordHash": "$2b$10$d99d67863f59e7edeba66002be4db1c98e286b60cfadbcb51698b",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 5"
+    },
+    "favoriteMovies": [],
+    "createdAt": "2025-07-26T01:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000194",
+    "name": "Ly Ngoc",
+    "email": "lyngoc194@example.com",
+    "phone": "0869020451",
+    "passwordHash": "$2b$10$e4c911e848bec00ba411ecd205d27b6491afb7ab09827d2e53371",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001032"
+    ],
+    "createdAt": "2025-06-24T17:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000195",
+    "name": "Truong Minh",
+    "email": "truongminh195@example.com",
+    "phone": "0921087928",
+    "passwordHash": "$2b$10$e3f983a118f5555062edb40c37e8b4530bfb87c6c89c76004dd3c",
+    "role": "user",
+    "address": {
+      "city": "Hue",
+      "district": "District 2"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001012",
+      "ObjectId_000000000000000000001035"
+    ],
+    "createdAt": "2025-09-29T18:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000196",
+    "name": "Ngo Long",
+    "email": "ngolong196@example.com",
+    "phone": "0354012664",
+    "passwordHash": "$2b$10$45bd6b371d1011e47bb740399a7e081a7fcf9b75658a59407ece7",
+    "role": "user",
+    "address": {
+      "city": "Can Tho",
+      "district": "District 5"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001039",
+      "ObjectId_000000000000000000001046",
+      "ObjectId_000000000000000000001028"
+    ],
+    "createdAt": "2026-01-27T06:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000197",
+    "name": "Vu Phuong",
+    "email": "vuphuong197@example.com",
+    "phone": "0615684813",
+    "passwordHash": "$2b$10$f0ce3dcabde8d6c2bb2db2f4855722a0de8086f0d25e938faf192",
+    "role": "user",
+    "address": {
+      "city": "Bien Hoa",
+      "district": "District 10"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001018",
+      "ObjectId_000000000000000000001041",
+      "ObjectId_000000000000000000001004"
+    ],
+    "createdAt": "2025-07-30T00:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000198",
+    "name": "Le Nam",
+    "email": "lenam198@example.com",
+    "phone": "0731473054",
+    "passwordHash": "$2b$10$409531cd7d31812ab58a30b6b8eb25642cf68dc4c8929a100b231",
+    "role": "user",
+    "address": {
+      "city": "Hanoi",
+      "district": "District 3"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001044",
+      "ObjectId_000000000000000000001029",
+      "ObjectId_000000000000000000001003",
+      "ObjectId_000000000000000000001009"
+    ],
+    "createdAt": "2025-07-21T10:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000199",
+    "name": "Le Khanh",
+    "email": "lekhanh199@example.com",
+    "phone": "0561385847",
+    "passwordHash": "$2b$10$0eaa0730cc0ee0f8c888a00450006d514664d528688c87cf42047",
+    "role": "user",
+    "address": {
+      "city": "Quy Nhon",
+      "district": "District 1"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001010",
+      "ObjectId_000000000000000000001044",
+      "ObjectId_000000000000000000001029",
+      "ObjectId_000000000000000000001024"
+    ],
+    "createdAt": "2025-07-19T05:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000000200",
+    "name": "Ly Phuong",
+    "email": "lyphuong200@example.com",
+    "phone": "0728481124",
+    "passwordHash": "$2b$10$311514b6345cd997bdb96acb5da71813c1f086ac3ee3319d74a0e",
+    "role": "user",
+    "address": {
+      "city": "Vung Tau",
+      "district": "District 6"
+    },
+    "favoriteMovies": [
+      "ObjectId_000000000000000000001021",
+      "ObjectId_000000000000000000001042",
+      "ObjectId_000000000000000000001018"
+    ],
+    "createdAt": "2026-02-15T00:20:00.000Z"
+  }
+]

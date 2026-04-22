@@ -1,0 +1,302 @@
+[
+  {
+    "_id": "ObjectId_000000000000000000002001",
+    "name": "Galaxy Cinema Hanoi Times City",
+    "city": "Hanoi",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        105.8346,
+        21.0311
+      ]
+    },
+    "phone": "0258-8075-4043",
+    "amenities": [
+      "parking",
+      "game_zone",
+      "atm",
+      "baby_room",
+      "vip_lounge"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002002",
+    "name": "Lotte Cinema Hanoi Times City",
+    "city": "Hanoi",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        105.8042,
+        21.0227
+      ]
+    },
+    "phone": "0259-6188-6909",
+    "amenities": [
+      "parking",
+      "baby_room"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002003",
+    "name": "Galaxy Cinema Hanoi Royal City",
+    "city": "Hanoi",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        105.8552,
+        21.042
+      ]
+    },
+    "phone": "0221-4070-8061",
+    "amenities": [
+      "game_zone",
+      "baby_room",
+      "vip_lounge",
+      "parking",
+      "atm"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002004",
+    "name": "Dcine Hanoi Vincom",
+    "city": "Hanoi",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        105.8319,
+        21.0057
+      ]
+    },
+    "phone": "0259-1202-5781",
+    "amenities": [
+      "vip_lounge",
+      "parking",
+      "food_court",
+      "atm",
+      "game_zone"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002005",
+    "name": "Lotte Cinema Hanoi Aeon",
+    "city": "Hanoi",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        105.8154,
+        21.0354
+      ]
+    },
+    "phone": "0228-2036-3739",
+    "amenities": [
+      "atm",
+      "vip_lounge",
+      "baby_room",
+      "food_court",
+      "parking"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002006",
+    "name": "Lotte Cinema Ho Centre",
+    "city": "Ho Chi Minh City",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.7025,
+        10.7719
+      ]
+    },
+    "phone": "0235-8501-2752",
+    "amenities": [
+      "atm",
+      "parking",
+      "vip_lounge"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002007",
+    "name": "Dcine Ho Times City",
+    "city": "Ho Chi Minh City",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.6861,
+        10.7766
+      ]
+    },
+    "phone": "0252-8055-3230",
+    "amenities": [
+      "atm",
+      "game_zone",
+      "food_court",
+      "vip_lounge"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002008",
+    "name": "Galaxy Cinema Ho Royal City",
+    "city": "Ho Chi Minh City",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.7158,
+        10.7639
+      ]
+    },
+    "phone": "0272-4971-6339",
+    "amenities": [
+      "atm",
+      "vip_lounge",
+      "baby_room",
+      "parking",
+      "game_zone"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002009",
+    "name": "Dcine Ho Aeon",
+    "city": "Ho Chi Minh City",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.6536,
+        10.801
+      ]
+    },
+    "phone": "0269-4434-8183",
+    "amenities": [
+      "baby_room",
+      "parking",
+      "vip_lounge",
+      "atm"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002010",
+    "name": "MegaGS Ho Royal City",
+    "city": "Ho Chi Minh City",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.7348,
+        10.7532
+      ]
+    },
+    "phone": "0264-7176-2211",
+    "amenities": [
+      "game_zone",
+      "vip_lounge",
+      "baby_room",
+      "atm",
+      "food_court"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002011",
+    "name": "BHD Star Da Centre",
+    "city": "Da Nang",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        108.2279,
+        16.0707
+      ]
+    },
+    "phone": "0291-2392-2791",
+    "amenities": [
+      "baby_room",
+      "atm",
+      "food_court"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002012",
+    "name": "CGV Hai Landmark",
+    "city": "Hai Phong",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        106.6897,
+        20.8635
+      ]
+    },
+    "phone": "0261-6432-8052",
+    "amenities": [
+      "parking",
+      "baby_room"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002013",
+    "name": "Dcine Hanoi Centre",
+    "city": "Hanoi",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        105.6804,
+        20.8416
+      ]
+    },
+    "phone": "0283-4621-8303",
+    "amenities": [
+      "vip_lounge",
+      "baby_room",
+      "food_court",
+      "game_zone"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002014",
+    "name": "Galaxy Cinema Da Vincom",
+    "city": "Da Nang",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        107.1759,
+        16.0684
+      ]
+    },
+    "phone": "0220-2901-3321",
+    "amenities": [
+      "atm",
+      "baby_room",
+      "vip_lounge",
+      "parking"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": "ObjectId_000000000000000000002015",
+    "name": "BHD Star Nha Times City",
+    "city": "Nha Trang",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        109.182,
+        12.2544
+      ]
+    },
+    "phone": "0267-6225-2100",
+    "amenities": [
+      "parking",
+      "baby_room",
+      "game_zone",
+      "food_court"
+    ],
+    "isActive": true
+  }
+]

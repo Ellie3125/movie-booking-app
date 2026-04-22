@@ -1,0 +1,4502 @@
+[
+  {
+    "_id": "ObjectId_000000000000000000007001",
+    "userId": "ObjectId_000000000000000000000158",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 6,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 129,
+    "createdAt": "2026-03-02T19:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007002",
+    "userId": "ObjectId_000000000000000000000144",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 6,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 22,
+    "createdAt": "2026-03-05T07:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007003",
+    "userId": "ObjectId_000000000000000000000169",
+    "movieId": "ObjectId_000000000000000000001012",
+    "rating": 5,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 103,
+    "createdAt": "2026-03-23T09:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007004",
+    "userId": "ObjectId_000000000000000000000136",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 5,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 62,
+    "createdAt": "2026-03-26T09:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007005",
+    "userId": "ObjectId_000000000000000000000197",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 7,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 72,
+    "createdAt": "2025-10-25T18:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007006",
+    "userId": "ObjectId_000000000000000000000189",
+    "movieId": "ObjectId_000000000000000000001016",
+    "rating": 3,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 53,
+    "createdAt": "2025-11-15T02:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007007",
+    "userId": "ObjectId_000000000000000000000039",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 3,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 108,
+    "createdAt": "2025-12-06T21:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007008",
+    "userId": "ObjectId_000000000000000000000109",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 9,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 79,
+    "createdAt": "2025-11-21T05:54:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007009",
+    "userId": "ObjectId_000000000000000000000116",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 5,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 42,
+    "createdAt": "2026-02-10T08:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007010",
+    "userId": "ObjectId_000000000000000000000200",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 3,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 0,
+    "createdAt": "2025-12-11T01:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007011",
+    "userId": "ObjectId_000000000000000000000026",
+    "movieId": "ObjectId_000000000000000000001003",
+    "rating": 3,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 139,
+    "createdAt": "2025-12-07T12:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007012",
+    "userId": "ObjectId_000000000000000000000116",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 2,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 170,
+    "createdAt": "2026-04-02T23:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007013",
+    "userId": "ObjectId_000000000000000000000112",
+    "movieId": "ObjectId_000000000000000000001002",
+    "rating": 2,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 6,
+    "createdAt": "2026-02-12T19:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007014",
+    "userId": "ObjectId_000000000000000000000159",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 5,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 36,
+    "createdAt": "2026-02-09T11:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007015",
+    "userId": "ObjectId_000000000000000000000142",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 4,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 165,
+    "createdAt": "2026-01-29T01:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007016",
+    "userId": "ObjectId_000000000000000000000194",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 4,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 107,
+    "createdAt": "2026-03-06T22:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007017",
+    "userId": "ObjectId_000000000000000000000183",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 10,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 3,
+    "createdAt": "2026-02-01T13:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007018",
+    "userId": "ObjectId_000000000000000000000038",
+    "movieId": "ObjectId_000000000000000000001004",
+    "rating": 1,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 13,
+    "createdAt": "2026-04-01T15:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007019",
+    "userId": "ObjectId_000000000000000000000150",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 4,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 141,
+    "createdAt": "2025-12-25T20:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007020",
+    "userId": "ObjectId_000000000000000000000129",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 1,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 136,
+    "createdAt": "2026-03-22T06:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007021",
+    "userId": "ObjectId_000000000000000000000027",
+    "movieId": "ObjectId_000000000000000000001012",
+    "rating": 4,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 178,
+    "createdAt": "2026-01-06T02:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007022",
+    "userId": "ObjectId_000000000000000000000087",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 193,
+    "createdAt": "2026-02-09T23:55:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007023",
+    "userId": "ObjectId_000000000000000000000062",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 1,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 189,
+    "createdAt": "2025-12-08T16:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007024",
+    "userId": "ObjectId_000000000000000000000074",
+    "movieId": "ObjectId_000000000000000000001004",
+    "rating": 5,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 162,
+    "createdAt": "2025-10-25T21:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007025",
+    "userId": "ObjectId_000000000000000000000129",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 2,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 197,
+    "createdAt": "2026-01-24T16:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007026",
+    "userId": "ObjectId_000000000000000000000122",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 9,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 131,
+    "createdAt": "2026-03-11T23:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007027",
+    "userId": "ObjectId_000000000000000000000037",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 3,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 133,
+    "createdAt": "2025-10-14T16:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007028",
+    "userId": "ObjectId_000000000000000000000033",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 10,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 199,
+    "createdAt": "2025-11-07T16:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007029",
+    "userId": "ObjectId_000000000000000000000133",
+    "movieId": "ObjectId_000000000000000000001045",
+    "rating": 5,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 0,
+    "createdAt": "2025-10-15T08:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007030",
+    "userId": "ObjectId_000000000000000000000104",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 2,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 9,
+    "createdAt": "2026-03-02T21:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007031",
+    "userId": "ObjectId_000000000000000000000105",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 4,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 2,
+    "createdAt": "2026-01-02T03:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007032",
+    "userId": "ObjectId_000000000000000000000172",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 4,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 114,
+    "createdAt": "2026-01-11T11:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007033",
+    "userId": "ObjectId_000000000000000000000174",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 3,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 142,
+    "createdAt": "2026-02-18T04:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007034",
+    "userId": "ObjectId_000000000000000000000165",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 5,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 170,
+    "createdAt": "2025-11-27T00:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007035",
+    "userId": "ObjectId_000000000000000000000124",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 8,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 187,
+    "createdAt": "2026-02-28T14:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007036",
+    "userId": "ObjectId_000000000000000000000107",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 2,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 124,
+    "createdAt": "2026-04-06T18:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007037",
+    "userId": "ObjectId_000000000000000000000125",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 2,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 126,
+    "createdAt": "2025-12-07T09:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007038",
+    "userId": "ObjectId_000000000000000000000138",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 3,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 138,
+    "createdAt": "2025-11-04T16:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007039",
+    "userId": "ObjectId_000000000000000000000071",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 4,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 139,
+    "createdAt": "2025-10-25T06:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007040",
+    "userId": "ObjectId_000000000000000000000150",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 6,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 22,
+    "createdAt": "2025-12-11T14:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007041",
+    "userId": "ObjectId_000000000000000000000183",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 3,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 102,
+    "createdAt": "2025-11-02T23:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007042",
+    "userId": "ObjectId_000000000000000000000060",
+    "movieId": "ObjectId_000000000000000000001038",
+    "rating": 3,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 110,
+    "createdAt": "2026-03-14T01:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007043",
+    "userId": "ObjectId_000000000000000000000127",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 9,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 145,
+    "createdAt": "2026-01-08T07:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007044",
+    "userId": "ObjectId_000000000000000000000195",
+    "movieId": "ObjectId_000000000000000000001045",
+    "rating": 8,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 21,
+    "createdAt": "2026-03-07T13:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007045",
+    "userId": "ObjectId_000000000000000000000117",
+    "movieId": "ObjectId_000000000000000000001021",
+    "rating": 3,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 164,
+    "createdAt": "2026-03-12T05:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007046",
+    "userId": "ObjectId_000000000000000000000170",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 0,
+    "createdAt": "2025-10-31T14:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007047",
+    "userId": "ObjectId_000000000000000000000134",
+    "movieId": "ObjectId_000000000000000000001019",
+    "rating": 10,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 81,
+    "createdAt": "2025-12-27T06:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007048",
+    "userId": "ObjectId_000000000000000000000160",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 3,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 87,
+    "createdAt": "2026-03-23T16:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007049",
+    "userId": "ObjectId_000000000000000000000175",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 8,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 111,
+    "createdAt": "2026-01-14T13:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007050",
+    "userId": "ObjectId_000000000000000000000098",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 8,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 75,
+    "createdAt": "2025-11-10T19:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007051",
+    "userId": "ObjectId_000000000000000000000022",
+    "movieId": "ObjectId_000000000000000000001036",
+    "rating": 4,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 94,
+    "createdAt": "2025-11-10T08:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007052",
+    "userId": "ObjectId_000000000000000000000152",
+    "movieId": "ObjectId_000000000000000000001002",
+    "rating": 1,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 181,
+    "createdAt": "2026-02-13T06:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007053",
+    "userId": "ObjectId_000000000000000000000090",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 8,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 199,
+    "createdAt": "2025-11-22T05:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007054",
+    "userId": "ObjectId_000000000000000000000115",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 9,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 48,
+    "createdAt": "2026-01-14T02:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007055",
+    "userId": "ObjectId_000000000000000000000162",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 3,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 90,
+    "createdAt": "2025-10-20T10:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007056",
+    "userId": "ObjectId_000000000000000000000117",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 2,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 136,
+    "createdAt": "2025-11-17T02:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007057",
+    "userId": "ObjectId_000000000000000000000128",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 2,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 134,
+    "createdAt": "2025-12-14T23:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007058",
+    "userId": "ObjectId_000000000000000000000125",
+    "movieId": "ObjectId_000000000000000000001003",
+    "rating": 6,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 1,
+    "createdAt": "2026-04-01T18:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007059",
+    "userId": "ObjectId_000000000000000000000199",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 5,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 152,
+    "createdAt": "2026-03-09T13:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007060",
+    "userId": "ObjectId_000000000000000000000196",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 9,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 143,
+    "createdAt": "2026-03-10T01:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007061",
+    "userId": "ObjectId_000000000000000000000141",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 8,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 160,
+    "createdAt": "2025-12-16T14:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007062",
+    "userId": "ObjectId_000000000000000000000075",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 3,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 50,
+    "createdAt": "2026-04-08T23:13:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007063",
+    "userId": "ObjectId_000000000000000000000020",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 3,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 162,
+    "createdAt": "2026-03-24T11:47:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007064",
+    "userId": "ObjectId_000000000000000000000019",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 9,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 160,
+    "createdAt": "2025-12-15T19:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007065",
+    "userId": "ObjectId_000000000000000000000025",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 3,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 193,
+    "createdAt": "2026-02-20T21:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007066",
+    "userId": "ObjectId_000000000000000000000021",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 10,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 38,
+    "createdAt": "2025-12-12T13:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007067",
+    "userId": "ObjectId_000000000000000000000062",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 4,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 154,
+    "createdAt": "2026-03-01T15:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007068",
+    "userId": "ObjectId_000000000000000000000069",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 9,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 98,
+    "createdAt": "2025-12-17T14:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007069",
+    "userId": "ObjectId_000000000000000000000059",
+    "movieId": "ObjectId_000000000000000000001003",
+    "rating": 8,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 5,
+    "createdAt": "2026-04-09T12:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007070",
+    "userId": "ObjectId_000000000000000000000050",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 3,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 166,
+    "createdAt": "2025-11-20T00:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007071",
+    "userId": "ObjectId_000000000000000000000197",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 5,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 115,
+    "createdAt": "2026-03-17T17:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007072",
+    "userId": "ObjectId_000000000000000000000109",
+    "movieId": "ObjectId_000000000000000000001016",
+    "rating": 5,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 178,
+    "createdAt": "2026-01-16T12:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007073",
+    "userId": "ObjectId_000000000000000000000099",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 2,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 78,
+    "createdAt": "2025-11-02T01:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007074",
+    "userId": "ObjectId_000000000000000000000168",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 7,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 65,
+    "createdAt": "2025-10-29T22:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007075",
+    "userId": "ObjectId_000000000000000000000028",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 9,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 53,
+    "createdAt": "2026-02-01T17:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007076",
+    "userId": "ObjectId_000000000000000000000108",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 5,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 56,
+    "createdAt": "2026-02-15T16:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007077",
+    "userId": "ObjectId_000000000000000000000081",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 2,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 97,
+    "createdAt": "2025-12-01T02:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007078",
+    "userId": "ObjectId_000000000000000000000183",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 9,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 169,
+    "createdAt": "2025-10-30T19:55:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007079",
+    "userId": "ObjectId_000000000000000000000123",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 9,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 170,
+    "createdAt": "2025-10-25T03:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007080",
+    "userId": "ObjectId_000000000000000000000084",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 5,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 189,
+    "createdAt": "2026-03-06T21:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007081",
+    "userId": "ObjectId_000000000000000000000074",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 6,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 109,
+    "createdAt": "2025-10-22T22:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007082",
+    "userId": "ObjectId_000000000000000000000177",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 7,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 55,
+    "createdAt": "2025-11-07T09:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007083",
+    "userId": "ObjectId_000000000000000000000127",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 5,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 80,
+    "createdAt": "2025-11-11T22:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007084",
+    "userId": "ObjectId_000000000000000000000077",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 8,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 93,
+    "createdAt": "2026-04-06T16:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007085",
+    "userId": "ObjectId_000000000000000000000150",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 74,
+    "createdAt": "2026-04-11T04:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007086",
+    "userId": "ObjectId_000000000000000000000078",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 7,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 143,
+    "createdAt": "2025-11-22T06:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007087",
+    "userId": "ObjectId_000000000000000000000071",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 5,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 62,
+    "createdAt": "2025-11-12T01:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007088",
+    "userId": "ObjectId_000000000000000000000126",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 6,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 8,
+    "createdAt": "2025-12-07T07:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007089",
+    "userId": "ObjectId_000000000000000000000107",
+    "movieId": "ObjectId_000000000000000000001002",
+    "rating": 5,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 15,
+    "createdAt": "2025-11-24T01:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007090",
+    "userId": "ObjectId_000000000000000000000108",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 10,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 136,
+    "createdAt": "2026-04-06T04:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007091",
+    "userId": "ObjectId_000000000000000000000084",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 3,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 13,
+    "createdAt": "2026-01-17T15:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007092",
+    "userId": "ObjectId_000000000000000000000133",
+    "movieId": "ObjectId_000000000000000000001013",
+    "rating": 3,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 194,
+    "createdAt": "2026-02-19T23:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007093",
+    "userId": "ObjectId_000000000000000000000066",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 8,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 58,
+    "createdAt": "2026-04-03T16:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007094",
+    "userId": "ObjectId_000000000000000000000141",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 10,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 69,
+    "createdAt": "2025-11-09T06:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007095",
+    "userId": "ObjectId_000000000000000000000178",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 1,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 143,
+    "createdAt": "2025-12-11T14:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007096",
+    "userId": "ObjectId_000000000000000000000023",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 3,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 143,
+    "createdAt": "2026-01-25T05:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007097",
+    "userId": "ObjectId_000000000000000000000105",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 1,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 176,
+    "createdAt": "2026-02-06T11:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007098",
+    "userId": "ObjectId_000000000000000000000194",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 5,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 5,
+    "createdAt": "2026-04-11T02:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007099",
+    "userId": "ObjectId_000000000000000000000184",
+    "movieId": "ObjectId_000000000000000000001012",
+    "rating": 9,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 79,
+    "createdAt": "2025-10-19T08:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007100",
+    "userId": "ObjectId_000000000000000000000069",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 2,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 118,
+    "createdAt": "2026-03-01T16:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007101",
+    "userId": "ObjectId_000000000000000000000168",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 4,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 192,
+    "createdAt": "2025-11-22T12:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007102",
+    "userId": "ObjectId_000000000000000000000141",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 6,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 20,
+    "createdAt": "2025-11-06T17:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007103",
+    "userId": "ObjectId_000000000000000000000200",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 2,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 36,
+    "createdAt": "2025-10-29T03:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007104",
+    "userId": "ObjectId_000000000000000000000077",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 10,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 70,
+    "createdAt": "2026-02-06T19:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007105",
+    "userId": "ObjectId_000000000000000000000058",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 3,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 67,
+    "createdAt": "2026-02-05T20:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007106",
+    "userId": "ObjectId_000000000000000000000054",
+    "movieId": "ObjectId_000000000000000000001036",
+    "rating": 7,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 170,
+    "createdAt": "2026-01-22T23:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007107",
+    "userId": "ObjectId_000000000000000000000104",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 1,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 93,
+    "createdAt": "2025-12-07T01:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007108",
+    "userId": "ObjectId_000000000000000000000142",
+    "movieId": "ObjectId_000000000000000000001015",
+    "rating": 4,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 183,
+    "createdAt": "2026-01-05T18:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007109",
+    "userId": "ObjectId_000000000000000000000189",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 5,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 20,
+    "createdAt": "2026-02-07T13:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007110",
+    "userId": "ObjectId_000000000000000000000082",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 7,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 154,
+    "createdAt": "2025-11-25T06:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007111",
+    "userId": "ObjectId_000000000000000000000176",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 4,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 24,
+    "createdAt": "2025-12-26T13:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007112",
+    "userId": "ObjectId_000000000000000000000036",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 5,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 91,
+    "createdAt": "2025-12-11T20:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007113",
+    "userId": "ObjectId_000000000000000000000096",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 4,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 178,
+    "createdAt": "2025-12-08T10:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007114",
+    "userId": "ObjectId_000000000000000000000024",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 3,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 47,
+    "createdAt": "2026-01-25T22:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007115",
+    "userId": "ObjectId_000000000000000000000155",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 8,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 63,
+    "createdAt": "2026-01-26T07:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007116",
+    "userId": "ObjectId_000000000000000000000129",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 2,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 22,
+    "createdAt": "2026-01-31T20:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007117",
+    "userId": "ObjectId_000000000000000000000186",
+    "movieId": "ObjectId_000000000000000000001021",
+    "rating": 8,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 108,
+    "createdAt": "2025-11-11T19:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007118",
+    "userId": "ObjectId_000000000000000000000058",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 5,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 44,
+    "createdAt": "2026-01-24T13:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007119",
+    "userId": "ObjectId_000000000000000000000124",
+    "movieId": "ObjectId_000000000000000000001002",
+    "rating": 5,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 30,
+    "createdAt": "2026-01-08T11:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007120",
+    "userId": "ObjectId_000000000000000000000146",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 7,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 3,
+    "createdAt": "2026-01-21T12:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007121",
+    "userId": "ObjectId_000000000000000000000166",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 1,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 146,
+    "createdAt": "2025-10-24T04:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007122",
+    "userId": "ObjectId_000000000000000000000075",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 7,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 5,
+    "createdAt": "2025-12-23T03:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007123",
+    "userId": "ObjectId_000000000000000000000076",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 6,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 111,
+    "createdAt": "2025-12-24T04:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007124",
+    "userId": "ObjectId_000000000000000000000142",
+    "movieId": "ObjectId_000000000000000000001004",
+    "rating": 6,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 182,
+    "createdAt": "2026-02-14T10:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007125",
+    "userId": "ObjectId_000000000000000000000100",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 10,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 36,
+    "createdAt": "2025-12-20T22:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007126",
+    "userId": "ObjectId_000000000000000000000048",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 7,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 58,
+    "createdAt": "2025-12-04T20:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007127",
+    "userId": "ObjectId_000000000000000000000189",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 3,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 71,
+    "createdAt": "2025-10-21T11:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007128",
+    "userId": "ObjectId_000000000000000000000074",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 9,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 9,
+    "createdAt": "2026-01-05T07:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007129",
+    "userId": "ObjectId_000000000000000000000094",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 2,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 166,
+    "createdAt": "2026-02-08T08:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007130",
+    "userId": "ObjectId_000000000000000000000054",
+    "movieId": "ObjectId_000000000000000000001004",
+    "rating": 6,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 62,
+    "createdAt": "2026-03-16T13:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007131",
+    "userId": "ObjectId_000000000000000000000118",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 1,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 141,
+    "createdAt": "2026-02-04T07:46:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007132",
+    "userId": "ObjectId_000000000000000000000060",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 2,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 65,
+    "createdAt": "2026-02-27T18:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007133",
+    "userId": "ObjectId_000000000000000000000049",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 6,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 96,
+    "createdAt": "2026-02-05T03:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007134",
+    "userId": "ObjectId_000000000000000000000135",
+    "movieId": "ObjectId_000000000000000000001012",
+    "rating": 10,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 28,
+    "createdAt": "2025-12-22T14:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007135",
+    "userId": "ObjectId_000000000000000000000199",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 10,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 191,
+    "createdAt": "2026-02-17T16:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007136",
+    "userId": "ObjectId_000000000000000000000089",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 4,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 133,
+    "createdAt": "2026-02-23T21:28:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007137",
+    "userId": "ObjectId_000000000000000000000197",
+    "movieId": "ObjectId_000000000000000000001013",
+    "rating": 5,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 111,
+    "createdAt": "2025-12-15T05:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007138",
+    "userId": "ObjectId_000000000000000000000173",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 2,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 175,
+    "createdAt": "2026-03-02T00:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007139",
+    "userId": "ObjectId_000000000000000000000183",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 10,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 123,
+    "createdAt": "2025-12-12T00:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007140",
+    "userId": "ObjectId_000000000000000000000046",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 2,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 4,
+    "createdAt": "2025-12-16T00:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007141",
+    "userId": "ObjectId_000000000000000000000120",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 10,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 172,
+    "createdAt": "2025-12-08T14:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007142",
+    "userId": "ObjectId_000000000000000000000135",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 7,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 16,
+    "createdAt": "2026-03-19T23:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007143",
+    "userId": "ObjectId_000000000000000000000131",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 3,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 28,
+    "createdAt": "2025-11-06T22:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007144",
+    "userId": "ObjectId_000000000000000000000125",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 10,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 190,
+    "createdAt": "2025-12-08T05:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007145",
+    "userId": "ObjectId_000000000000000000000029",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 8,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 158,
+    "createdAt": "2026-01-10T08:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007146",
+    "userId": "ObjectId_000000000000000000000055",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 10,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 63,
+    "createdAt": "2026-03-25T04:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007147",
+    "userId": "ObjectId_000000000000000000000117",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 2,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 113,
+    "createdAt": "2025-10-30T04:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007148",
+    "userId": "ObjectId_000000000000000000000071",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 7,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 29,
+    "createdAt": "2026-01-18T04:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007149",
+    "userId": "ObjectId_000000000000000000000022",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 10,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 174,
+    "createdAt": "2026-03-18T01:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007150",
+    "userId": "ObjectId_000000000000000000000131",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 8,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 88,
+    "createdAt": "2026-04-11T19:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007151",
+    "userId": "ObjectId_000000000000000000000168",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 2,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 50,
+    "createdAt": "2025-12-20T08:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007152",
+    "userId": "ObjectId_000000000000000000000030",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 6,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 2,
+    "createdAt": "2026-02-21T02:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007153",
+    "userId": "ObjectId_000000000000000000000061",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 7,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 62,
+    "createdAt": "2026-03-19T03:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007154",
+    "userId": "ObjectId_000000000000000000000159",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 10,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 54,
+    "createdAt": "2025-12-31T23:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007155",
+    "userId": "ObjectId_000000000000000000000095",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 1,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 152,
+    "createdAt": "2026-02-07T23:21:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007156",
+    "userId": "ObjectId_000000000000000000000096",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 8,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 12,
+    "createdAt": "2026-01-29T05:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007157",
+    "userId": "ObjectId_000000000000000000000076",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 1,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 2,
+    "createdAt": "2025-11-21T04:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007158",
+    "userId": "ObjectId_000000000000000000000170",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 4,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 104,
+    "createdAt": "2025-12-02T03:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007159",
+    "userId": "ObjectId_000000000000000000000191",
+    "movieId": "ObjectId_000000000000000000001045",
+    "rating": 6,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 160,
+    "createdAt": "2026-01-18T09:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007160",
+    "userId": "ObjectId_000000000000000000000033",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 3,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 108,
+    "createdAt": "2025-12-03T13:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007161",
+    "userId": "ObjectId_000000000000000000000154",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 1,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 62,
+    "createdAt": "2026-03-25T11:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007162",
+    "userId": "ObjectId_000000000000000000000156",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 8,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 18,
+    "createdAt": "2026-03-18T22:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007163",
+    "userId": "ObjectId_000000000000000000000028",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 2,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 62,
+    "createdAt": "2026-02-13T21:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007164",
+    "userId": "ObjectId_000000000000000000000087",
+    "movieId": "ObjectId_000000000000000000001025",
+    "rating": 2,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 79,
+    "createdAt": "2026-04-01T01:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007165",
+    "userId": "ObjectId_000000000000000000000056",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 2,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 137,
+    "createdAt": "2026-04-11T11:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007166",
+    "userId": "ObjectId_000000000000000000000184",
+    "movieId": "ObjectId_000000000000000000001036",
+    "rating": 6,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 44,
+    "createdAt": "2026-03-12T05:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007167",
+    "userId": "ObjectId_000000000000000000000024",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 4,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 192,
+    "createdAt": "2026-01-01T20:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007168",
+    "userId": "ObjectId_000000000000000000000188",
+    "movieId": "ObjectId_000000000000000000001025",
+    "rating": 2,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 56,
+    "createdAt": "2026-01-06T19:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007169",
+    "userId": "ObjectId_000000000000000000000122",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 9,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 173,
+    "createdAt": "2026-02-27T18:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007170",
+    "userId": "ObjectId_000000000000000000000186",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 8,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 188,
+    "createdAt": "2026-03-27T08:28:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007171",
+    "userId": "ObjectId_000000000000000000000113",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 8,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 151,
+    "createdAt": "2026-04-09T16:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007172",
+    "userId": "ObjectId_000000000000000000000196",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 8,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 123,
+    "createdAt": "2025-12-15T00:47:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007173",
+    "userId": "ObjectId_000000000000000000000063",
+    "movieId": "ObjectId_000000000000000000001003",
+    "rating": 1,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 33,
+    "createdAt": "2026-04-04T05:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007174",
+    "userId": "ObjectId_000000000000000000000036",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 2,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 121,
+    "createdAt": "2025-12-05T19:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007175",
+    "userId": "ObjectId_000000000000000000000018",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 7,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 68,
+    "createdAt": "2026-03-22T05:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007176",
+    "userId": "ObjectId_000000000000000000000159",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 1,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 155,
+    "createdAt": "2025-11-04T08:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007177",
+    "userId": "ObjectId_000000000000000000000098",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 4,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 1,
+    "createdAt": "2026-03-10T04:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007178",
+    "userId": "ObjectId_000000000000000000000151",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 2,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 192,
+    "createdAt": "2026-03-28T06:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007179",
+    "userId": "ObjectId_000000000000000000000036",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 5,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 66,
+    "createdAt": "2026-02-22T18:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007180",
+    "userId": "ObjectId_000000000000000000000109",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 8,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 157,
+    "createdAt": "2025-12-22T18:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007181",
+    "userId": "ObjectId_000000000000000000000102",
+    "movieId": "ObjectId_000000000000000000001025",
+    "rating": 2,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 47,
+    "createdAt": "2025-11-13T05:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007182",
+    "userId": "ObjectId_000000000000000000000132",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 2,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 112,
+    "createdAt": "2026-01-11T05:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007183",
+    "userId": "ObjectId_000000000000000000000130",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 2,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 128,
+    "createdAt": "2025-12-08T10:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007184",
+    "userId": "ObjectId_000000000000000000000122",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 7,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 149,
+    "createdAt": "2026-03-17T06:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007185",
+    "userId": "ObjectId_000000000000000000000106",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 3,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 195,
+    "createdAt": "2026-03-23T14:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007186",
+    "userId": "ObjectId_000000000000000000000113",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 9,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 6,
+    "createdAt": "2026-01-21T18:55:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007187",
+    "userId": "ObjectId_000000000000000000000111",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 4,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 25,
+    "createdAt": "2026-01-11T23:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007188",
+    "userId": "ObjectId_000000000000000000000066",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 9,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 191,
+    "createdAt": "2025-11-08T23:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007189",
+    "userId": "ObjectId_000000000000000000000089",
+    "movieId": "ObjectId_000000000000000000001003",
+    "rating": 3,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 175,
+    "createdAt": "2026-03-12T19:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007190",
+    "userId": "ObjectId_000000000000000000000183",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 5,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 17,
+    "createdAt": "2025-11-24T09:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007191",
+    "userId": "ObjectId_000000000000000000000093",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 7,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 45,
+    "createdAt": "2025-11-19T15:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007192",
+    "userId": "ObjectId_000000000000000000000142",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 4,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 75,
+    "createdAt": "2026-03-05T17:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007193",
+    "userId": "ObjectId_000000000000000000000190",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 8,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 199,
+    "createdAt": "2026-03-29T23:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007194",
+    "userId": "ObjectId_000000000000000000000040",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 3,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 95,
+    "createdAt": "2026-02-16T17:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007195",
+    "userId": "ObjectId_000000000000000000000063",
+    "movieId": "ObjectId_000000000000000000001019",
+    "rating": 4,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 153,
+    "createdAt": "2026-01-08T21:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007196",
+    "userId": "ObjectId_000000000000000000000117",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 7,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 106,
+    "createdAt": "2025-11-28T19:28:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007197",
+    "userId": "ObjectId_000000000000000000000083",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 5,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 80,
+    "createdAt": "2026-04-07T01:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007198",
+    "userId": "ObjectId_000000000000000000000112",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 10,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 151,
+    "createdAt": "2025-10-16T03:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007199",
+    "userId": "ObjectId_000000000000000000000146",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 1,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 96,
+    "createdAt": "2025-10-25T06:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007200",
+    "userId": "ObjectId_000000000000000000000157",
+    "movieId": "ObjectId_000000000000000000001036",
+    "rating": 4,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 7,
+    "createdAt": "2025-11-21T02:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007201",
+    "userId": "ObjectId_000000000000000000000087",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 8,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 164,
+    "createdAt": "2026-03-02T23:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007202",
+    "userId": "ObjectId_000000000000000000000074",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 4,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 195,
+    "createdAt": "2025-11-30T07:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007203",
+    "userId": "ObjectId_000000000000000000000104",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 3,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 199,
+    "createdAt": "2025-10-16T09:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007204",
+    "userId": "ObjectId_000000000000000000000196",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 3,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 14,
+    "createdAt": "2026-03-22T07:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007205",
+    "userId": "ObjectId_000000000000000000000114",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 4,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 16,
+    "createdAt": "2025-12-24T01:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007206",
+    "userId": "ObjectId_000000000000000000000027",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 7,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 148,
+    "createdAt": "2026-04-02T22:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007207",
+    "userId": "ObjectId_000000000000000000000040",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 8,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 32,
+    "createdAt": "2026-01-03T02:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007208",
+    "userId": "ObjectId_000000000000000000000147",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 8,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 132,
+    "createdAt": "2026-02-19T21:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007209",
+    "userId": "ObjectId_000000000000000000000065",
+    "movieId": "ObjectId_000000000000000000001002",
+    "rating": 9,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 114,
+    "createdAt": "2026-03-27T01:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007210",
+    "userId": "ObjectId_000000000000000000000194",
+    "movieId": "ObjectId_000000000000000000001038",
+    "rating": 7,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 122,
+    "createdAt": "2025-11-22T08:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007211",
+    "userId": "ObjectId_000000000000000000000101",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 186,
+    "createdAt": "2026-01-20T09:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007212",
+    "userId": "ObjectId_000000000000000000000149",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 10,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 72,
+    "createdAt": "2026-02-25T02:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007213",
+    "userId": "ObjectId_000000000000000000000164",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 10,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 14,
+    "createdAt": "2026-01-20T07:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007214",
+    "userId": "ObjectId_000000000000000000000096",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 3,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 125,
+    "createdAt": "2025-10-24T17:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007215",
+    "userId": "ObjectId_000000000000000000000047",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 9,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 85,
+    "createdAt": "2026-02-20T04:21:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007216",
+    "userId": "ObjectId_000000000000000000000122",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 2,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 158,
+    "createdAt": "2026-01-07T22:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007217",
+    "userId": "ObjectId_000000000000000000000152",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 1,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 19,
+    "createdAt": "2026-03-24T10:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007218",
+    "userId": "ObjectId_000000000000000000000142",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 6,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 62,
+    "createdAt": "2025-12-17T23:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007219",
+    "userId": "ObjectId_000000000000000000000040",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 2,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 152,
+    "createdAt": "2026-03-06T13:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007220",
+    "userId": "ObjectId_000000000000000000000134",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 6,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 45,
+    "createdAt": "2025-11-11T09:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007221",
+    "userId": "ObjectId_000000000000000000000122",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 10,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 155,
+    "createdAt": "2026-01-25T19:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007222",
+    "userId": "ObjectId_000000000000000000000121",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 9,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 18,
+    "createdAt": "2026-01-13T03:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007223",
+    "userId": "ObjectId_000000000000000000000038",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 4,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 176,
+    "createdAt": "2025-11-10T05:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007224",
+    "userId": "ObjectId_000000000000000000000197",
+    "movieId": "ObjectId_000000000000000000001038",
+    "rating": 10,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 13,
+    "createdAt": "2025-12-14T23:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007225",
+    "userId": "ObjectId_000000000000000000000116",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 3,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 29,
+    "createdAt": "2025-10-15T22:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007226",
+    "userId": "ObjectId_000000000000000000000069",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 1,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 19,
+    "createdAt": "2025-11-13T02:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007227",
+    "userId": "ObjectId_000000000000000000000125",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 4,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 29,
+    "createdAt": "2026-02-07T15:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007228",
+    "userId": "ObjectId_000000000000000000000115",
+    "movieId": "ObjectId_000000000000000000001015",
+    "rating": 4,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 30,
+    "createdAt": "2025-11-16T21:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007229",
+    "userId": "ObjectId_000000000000000000000077",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 10,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 84,
+    "createdAt": "2026-01-16T09:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007230",
+    "userId": "ObjectId_000000000000000000000084",
+    "movieId": "ObjectId_000000000000000000001038",
+    "rating": 1,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 176,
+    "createdAt": "2026-04-05T07:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007231",
+    "userId": "ObjectId_000000000000000000000170",
+    "movieId": "ObjectId_000000000000000000001004",
+    "rating": 8,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 153,
+    "createdAt": "2026-02-26T19:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007232",
+    "userId": "ObjectId_000000000000000000000107",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 6,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 198,
+    "createdAt": "2026-02-17T03:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007233",
+    "userId": "ObjectId_000000000000000000000101",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 6,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 60,
+    "createdAt": "2026-03-02T01:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007234",
+    "userId": "ObjectId_000000000000000000000190",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 10,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 194,
+    "createdAt": "2025-10-27T01:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007235",
+    "userId": "ObjectId_000000000000000000000047",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 5,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 154,
+    "createdAt": "2026-01-14T06:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007236",
+    "userId": "ObjectId_000000000000000000000177",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 6,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 27,
+    "createdAt": "2026-03-16T12:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007237",
+    "userId": "ObjectId_000000000000000000000128",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 10,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 82,
+    "createdAt": "2026-03-30T07:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007238",
+    "userId": "ObjectId_000000000000000000000158",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 5,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 107,
+    "createdAt": "2025-12-18T10:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007239",
+    "userId": "ObjectId_000000000000000000000061",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 3,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 103,
+    "createdAt": "2025-11-13T22:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007240",
+    "userId": "ObjectId_000000000000000000000025",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 9,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 59,
+    "createdAt": "2025-12-06T06:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007241",
+    "userId": "ObjectId_000000000000000000000162",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 6,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 25,
+    "createdAt": "2026-02-23T11:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007242",
+    "userId": "ObjectId_000000000000000000000069",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 9,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 81,
+    "createdAt": "2025-11-22T08:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007243",
+    "userId": "ObjectId_000000000000000000000075",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 7,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 198,
+    "createdAt": "2026-02-13T20:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007244",
+    "userId": "ObjectId_000000000000000000000029",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 1,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 153,
+    "createdAt": "2026-02-26T21:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007245",
+    "userId": "ObjectId_000000000000000000000118",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 6,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 11,
+    "createdAt": "2025-12-12T13:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007246",
+    "userId": "ObjectId_000000000000000000000182",
+    "movieId": "ObjectId_000000000000000000001038",
+    "rating": 5,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 148,
+    "createdAt": "2026-01-23T23:13:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007247",
+    "userId": "ObjectId_000000000000000000000153",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 5,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 143,
+    "createdAt": "2026-03-18T07:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007248",
+    "userId": "ObjectId_000000000000000000000172",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 3,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 117,
+    "createdAt": "2025-11-05T07:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007249",
+    "userId": "ObjectId_000000000000000000000139",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 4,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 166,
+    "createdAt": "2025-11-21T15:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007250",
+    "userId": "ObjectId_000000000000000000000039",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 9,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 17,
+    "createdAt": "2026-01-29T02:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007251",
+    "userId": "ObjectId_000000000000000000000068",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 10,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 49,
+    "createdAt": "2025-10-18T16:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007252",
+    "userId": "ObjectId_000000000000000000000125",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 8,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 30,
+    "createdAt": "2026-04-06T18:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007253",
+    "userId": "ObjectId_000000000000000000000138",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 5,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 180,
+    "createdAt": "2026-03-01T19:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007254",
+    "userId": "ObjectId_000000000000000000000062",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 3,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 188,
+    "createdAt": "2026-03-18T20:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007255",
+    "userId": "ObjectId_000000000000000000000085",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 10,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 184,
+    "createdAt": "2025-12-07T16:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007256",
+    "userId": "ObjectId_000000000000000000000121",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 4,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 187,
+    "createdAt": "2025-10-27T21:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007257",
+    "userId": "ObjectId_000000000000000000000076",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 5,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 24,
+    "createdAt": "2026-02-14T01:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007258",
+    "userId": "ObjectId_000000000000000000000182",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 5,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 75,
+    "createdAt": "2026-02-18T04:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007259",
+    "userId": "ObjectId_000000000000000000000157",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 1,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 177,
+    "createdAt": "2026-03-14T17:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007260",
+    "userId": "ObjectId_000000000000000000000087",
+    "movieId": "ObjectId_000000000000000000001016",
+    "rating": 6,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 178,
+    "createdAt": "2025-11-15T19:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007261",
+    "userId": "ObjectId_000000000000000000000169",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 7,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 179,
+    "createdAt": "2026-01-22T01:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007262",
+    "userId": "ObjectId_000000000000000000000039",
+    "movieId": "ObjectId_000000000000000000001008",
+    "rating": 9,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 168,
+    "createdAt": "2025-12-11T08:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007263",
+    "userId": "ObjectId_000000000000000000000032",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 5,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 156,
+    "createdAt": "2026-01-26T04:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007264",
+    "userId": "ObjectId_000000000000000000000163",
+    "movieId": "ObjectId_000000000000000000001019",
+    "rating": 5,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 89,
+    "createdAt": "2026-03-24T05:47:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007265",
+    "userId": "ObjectId_000000000000000000000065",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 10,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 49,
+    "createdAt": "2026-01-03T20:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007266",
+    "userId": "ObjectId_000000000000000000000135",
+    "movieId": "ObjectId_000000000000000000001003",
+    "rating": 5,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 76,
+    "createdAt": "2026-02-12T18:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007267",
+    "userId": "ObjectId_000000000000000000000099",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 10,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 130,
+    "createdAt": "2025-12-08T09:55:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007268",
+    "userId": "ObjectId_000000000000000000000061",
+    "movieId": "ObjectId_000000000000000000001025",
+    "rating": 2,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 6,
+    "createdAt": "2025-11-06T10:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007269",
+    "userId": "ObjectId_000000000000000000000180",
+    "movieId": "ObjectId_000000000000000000001013",
+    "rating": 7,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 157,
+    "createdAt": "2026-02-13T01:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007270",
+    "userId": "ObjectId_000000000000000000000084",
+    "movieId": "ObjectId_000000000000000000001012",
+    "rating": 10,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 44,
+    "createdAt": "2025-11-26T14:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007271",
+    "userId": "ObjectId_000000000000000000000025",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 3,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 122,
+    "createdAt": "2025-10-19T19:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007272",
+    "userId": "ObjectId_000000000000000000000113",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 7,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 169,
+    "createdAt": "2026-02-01T12:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007273",
+    "userId": "ObjectId_000000000000000000000060",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 10,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 59,
+    "createdAt": "2026-03-12T10:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007274",
+    "userId": "ObjectId_000000000000000000000075",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 2,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 64,
+    "createdAt": "2026-02-01T03:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007275",
+    "userId": "ObjectId_000000000000000000000039",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 9,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 155,
+    "createdAt": "2025-12-19T04:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007276",
+    "userId": "ObjectId_000000000000000000000189",
+    "movieId": "ObjectId_000000000000000000001002",
+    "rating": 10,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 200,
+    "createdAt": "2025-11-10T20:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007277",
+    "userId": "ObjectId_000000000000000000000094",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 3,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 0,
+    "createdAt": "2026-02-19T22:44:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007278",
+    "userId": "ObjectId_000000000000000000000112",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 3,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 190,
+    "createdAt": "2025-12-10T10:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007279",
+    "userId": "ObjectId_000000000000000000000064",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 4,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 76,
+    "createdAt": "2026-01-27T08:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007280",
+    "userId": "ObjectId_000000000000000000000188",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 10,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 60,
+    "createdAt": "2026-01-03T21:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007281",
+    "userId": "ObjectId_000000000000000000000081",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 6,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 188,
+    "createdAt": "2026-01-15T23:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007282",
+    "userId": "ObjectId_000000000000000000000150",
+    "movieId": "ObjectId_000000000000000000001025",
+    "rating": 10,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 187,
+    "createdAt": "2026-01-22T14:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007283",
+    "userId": "ObjectId_000000000000000000000025",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 6,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 44,
+    "createdAt": "2026-01-22T20:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007284",
+    "userId": "ObjectId_000000000000000000000088",
+    "movieId": "ObjectId_000000000000000000001016",
+    "rating": 9,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 98,
+    "createdAt": "2025-11-30T13:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007285",
+    "userId": "ObjectId_000000000000000000000174",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 6,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 5,
+    "createdAt": "2026-01-01T01:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007286",
+    "userId": "ObjectId_000000000000000000000131",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 6,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 147,
+    "createdAt": "2026-03-05T19:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007287",
+    "userId": "ObjectId_000000000000000000000104",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 9,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 159,
+    "createdAt": "2025-10-16T16:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007288",
+    "userId": "ObjectId_000000000000000000000111",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 8,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 63,
+    "createdAt": "2026-02-21T11:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007289",
+    "userId": "ObjectId_000000000000000000000161",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 10,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 72,
+    "createdAt": "2025-11-16T03:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007290",
+    "userId": "ObjectId_000000000000000000000099",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 10,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 120,
+    "createdAt": "2026-02-12T06:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007291",
+    "userId": "ObjectId_000000000000000000000119",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 5,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 31,
+    "createdAt": "2026-04-03T20:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007292",
+    "userId": "ObjectId_000000000000000000000156",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 1,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 195,
+    "createdAt": "2026-03-06T08:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007293",
+    "userId": "ObjectId_000000000000000000000167",
+    "movieId": "ObjectId_000000000000000000001038",
+    "rating": 5,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 140,
+    "createdAt": "2026-02-09T01:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007294",
+    "userId": "ObjectId_000000000000000000000146",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 5,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 189,
+    "createdAt": "2026-03-04T08:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007295",
+    "userId": "ObjectId_000000000000000000000172",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 7,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 111,
+    "createdAt": "2026-01-28T19:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007296",
+    "userId": "ObjectId_000000000000000000000126",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 148,
+    "createdAt": "2025-12-25T18:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007297",
+    "userId": "ObjectId_000000000000000000000082",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 7,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 117,
+    "createdAt": "2026-04-09T00:21:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007298",
+    "userId": "ObjectId_000000000000000000000195",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 7,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 13,
+    "createdAt": "2026-04-07T22:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007299",
+    "userId": "ObjectId_000000000000000000000037",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 8,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 20,
+    "createdAt": "2025-12-19T21:50:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007300",
+    "userId": "ObjectId_000000000000000000000022",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 9,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 183,
+    "createdAt": "2026-03-03T21:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007301",
+    "userId": "ObjectId_000000000000000000000130",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 7,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 91,
+    "createdAt": "2026-02-09T16:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007302",
+    "userId": "ObjectId_000000000000000000000123",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 6,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 167,
+    "createdAt": "2025-11-30T11:47:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007303",
+    "userId": "ObjectId_000000000000000000000102",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 9,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 5,
+    "createdAt": "2026-01-03T04:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007304",
+    "userId": "ObjectId_000000000000000000000191",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 8,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 66,
+    "createdAt": "2026-02-01T00:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007305",
+    "userId": "ObjectId_000000000000000000000160",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 3,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 72,
+    "createdAt": "2025-12-08T15:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007306",
+    "userId": "ObjectId_000000000000000000000193",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 6,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 163,
+    "createdAt": "2025-10-17T11:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007307",
+    "userId": "ObjectId_000000000000000000000127",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 6,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 71,
+    "createdAt": "2026-01-07T20:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007308",
+    "userId": "ObjectId_000000000000000000000098",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 1,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 200,
+    "createdAt": "2025-10-28T11:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007309",
+    "userId": "ObjectId_000000000000000000000120",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 10,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 124,
+    "createdAt": "2025-11-07T00:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007310",
+    "userId": "ObjectId_000000000000000000000103",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 3,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 45,
+    "createdAt": "2026-04-03T16:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007311",
+    "userId": "ObjectId_000000000000000000000159",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 8,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 150,
+    "createdAt": "2026-03-29T21:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007312",
+    "userId": "ObjectId_000000000000000000000058",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 8,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 76,
+    "createdAt": "2025-11-17T02:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007313",
+    "userId": "ObjectId_000000000000000000000024",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 1,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 137,
+    "createdAt": "2026-02-10T20:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007314",
+    "userId": "ObjectId_000000000000000000000098",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 7,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 193,
+    "createdAt": "2026-01-12T16:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007315",
+    "userId": "ObjectId_000000000000000000000112",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 2,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 194,
+    "createdAt": "2026-01-08T09:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007316",
+    "userId": "ObjectId_000000000000000000000079",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 5,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 62,
+    "createdAt": "2025-12-15T05:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007317",
+    "userId": "ObjectId_000000000000000000000120",
+    "movieId": "ObjectId_000000000000000000001036",
+    "rating": 1,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 50,
+    "createdAt": "2025-11-04T22:54:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007318",
+    "userId": "ObjectId_000000000000000000000098",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 4,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 184,
+    "createdAt": "2026-02-07T03:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007319",
+    "userId": "ObjectId_000000000000000000000037",
+    "movieId": "ObjectId_000000000000000000001002",
+    "rating": 2,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 112,
+    "createdAt": "2025-11-22T20:47:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007320",
+    "userId": "ObjectId_000000000000000000000156",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 10,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 21,
+    "createdAt": "2026-02-02T07:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007321",
+    "userId": "ObjectId_000000000000000000000069",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 5,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 94,
+    "createdAt": "2025-11-24T19:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007322",
+    "userId": "ObjectId_000000000000000000000053",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 8,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 134,
+    "createdAt": "2026-01-12T20:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007323",
+    "userId": "ObjectId_000000000000000000000112",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 1,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 99,
+    "createdAt": "2026-01-15T13:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007324",
+    "userId": "ObjectId_000000000000000000000099",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 1,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 191,
+    "createdAt": "2026-03-16T07:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007325",
+    "userId": "ObjectId_000000000000000000000124",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 5,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 54,
+    "createdAt": "2026-02-24T19:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007326",
+    "userId": "ObjectId_000000000000000000000176",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 7,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 199,
+    "createdAt": "2026-02-24T00:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007327",
+    "userId": "ObjectId_000000000000000000000169",
+    "movieId": "ObjectId_000000000000000000001025",
+    "rating": 4,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 26,
+    "createdAt": "2025-11-26T23:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007328",
+    "userId": "ObjectId_000000000000000000000153",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 3,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 56,
+    "createdAt": "2025-12-10T06:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007329",
+    "userId": "ObjectId_000000000000000000000110",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 7,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 122,
+    "createdAt": "2025-12-09T06:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007330",
+    "userId": "ObjectId_000000000000000000000198",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 1,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 56,
+    "createdAt": "2025-10-29T18:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007331",
+    "userId": "ObjectId_000000000000000000000047",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 5,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 118,
+    "createdAt": "2026-02-16T02:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007332",
+    "userId": "ObjectId_000000000000000000000134",
+    "movieId": "ObjectId_000000000000000000001028",
+    "rating": 7,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 99,
+    "createdAt": "2026-03-11T11:54:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007333",
+    "userId": "ObjectId_000000000000000000000078",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 9,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 178,
+    "createdAt": "2026-01-21T01:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007334",
+    "userId": "ObjectId_000000000000000000000026",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 125,
+    "createdAt": "2025-12-21T04:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007335",
+    "userId": "ObjectId_000000000000000000000142",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 8,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 156,
+    "createdAt": "2025-11-20T08:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007336",
+    "userId": "ObjectId_000000000000000000000085",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 4,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 128,
+    "createdAt": "2026-02-18T18:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007337",
+    "userId": "ObjectId_000000000000000000000198",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 10,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 48,
+    "createdAt": "2026-03-17T19:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007338",
+    "userId": "ObjectId_000000000000000000000130",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 5,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 192,
+    "createdAt": "2026-01-18T07:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007339",
+    "userId": "ObjectId_000000000000000000000077",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 8,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 142,
+    "createdAt": "2026-01-31T03:10:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007340",
+    "userId": "ObjectId_000000000000000000000137",
+    "movieId": "ObjectId_000000000000000000001019",
+    "rating": 5,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 5,
+    "createdAt": "2026-04-07T10:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007341",
+    "userId": "ObjectId_000000000000000000000138",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 6,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 78,
+    "createdAt": "2026-01-16T22:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007342",
+    "userId": "ObjectId_000000000000000000000168",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 4,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 22,
+    "createdAt": "2026-02-07T03:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007343",
+    "userId": "ObjectId_000000000000000000000035",
+    "movieId": "ObjectId_000000000000000000001021",
+    "rating": 8,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 166,
+    "createdAt": "2025-11-25T16:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007344",
+    "userId": "ObjectId_000000000000000000000069",
+    "movieId": "ObjectId_000000000000000000001004",
+    "rating": 10,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 8,
+    "createdAt": "2025-12-19T18:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007345",
+    "userId": "ObjectId_000000000000000000000180",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 10,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 189,
+    "createdAt": "2026-04-03T12:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007346",
+    "userId": "ObjectId_000000000000000000000024",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 7,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 185,
+    "createdAt": "2026-02-03T04:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007347",
+    "userId": "ObjectId_000000000000000000000145",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 5,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 87,
+    "createdAt": "2026-02-26T21:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007348",
+    "userId": "ObjectId_000000000000000000000078",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 6,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 93,
+    "createdAt": "2025-10-15T00:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007349",
+    "userId": "ObjectId_000000000000000000000078",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 3,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 173,
+    "createdAt": "2025-10-20T08:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007350",
+    "userId": "ObjectId_000000000000000000000049",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 1,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 9,
+    "createdAt": "2026-01-23T18:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007351",
+    "userId": "ObjectId_000000000000000000000023",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 2,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 15,
+    "createdAt": "2025-11-28T20:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007352",
+    "userId": "ObjectId_000000000000000000000078",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 6,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 19,
+    "createdAt": "2025-12-26T12:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007353",
+    "userId": "ObjectId_000000000000000000000036",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 10,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 145,
+    "createdAt": "2025-12-07T11:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007354",
+    "userId": "ObjectId_000000000000000000000167",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 6,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 22,
+    "createdAt": "2026-01-29T08:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007355",
+    "userId": "ObjectId_000000000000000000000156",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 6,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 55,
+    "createdAt": "2025-12-08T16:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007356",
+    "userId": "ObjectId_000000000000000000000130",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 7,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 79,
+    "createdAt": "2026-01-28T20:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007357",
+    "userId": "ObjectId_000000000000000000000094",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 7,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 130,
+    "createdAt": "2026-01-20T07:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007358",
+    "userId": "ObjectId_000000000000000000000180",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 7,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 124,
+    "createdAt": "2025-12-15T01:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007359",
+    "userId": "ObjectId_000000000000000000000187",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 8,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 105,
+    "createdAt": "2026-02-19T21:46:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007360",
+    "userId": "ObjectId_000000000000000000000118",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 7,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 37,
+    "createdAt": "2025-12-14T12:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007361",
+    "userId": "ObjectId_000000000000000000000197",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 6,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 94,
+    "createdAt": "2026-04-09T02:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007362",
+    "userId": "ObjectId_000000000000000000000169",
+    "movieId": "ObjectId_000000000000000000001038",
+    "rating": 1,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 164,
+    "createdAt": "2026-02-02T17:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007363",
+    "userId": "ObjectId_000000000000000000000174",
+    "movieId": "ObjectId_000000000000000000001005",
+    "rating": 3,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 177,
+    "createdAt": "2026-02-20T17:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007364",
+    "userId": "ObjectId_000000000000000000000075",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 3,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 180,
+    "createdAt": "2025-11-30T02:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007365",
+    "userId": "ObjectId_000000000000000000000063",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 5,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 80,
+    "createdAt": "2026-01-25T00:43:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007366",
+    "userId": "ObjectId_000000000000000000000087",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 4,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 136,
+    "createdAt": "2025-12-09T03:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007367",
+    "userId": "ObjectId_000000000000000000000124",
+    "movieId": "ObjectId_000000000000000000001012",
+    "rating": 3,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 64,
+    "createdAt": "2025-10-27T11:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007368",
+    "userId": "ObjectId_000000000000000000000030",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 4,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 136,
+    "createdAt": "2026-03-30T18:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007369",
+    "userId": "ObjectId_000000000000000000000115",
+    "movieId": "ObjectId_000000000000000000001025",
+    "rating": 5,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 78,
+    "createdAt": "2026-04-06T03:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007370",
+    "userId": "ObjectId_000000000000000000000131",
+    "movieId": "ObjectId_000000000000000000001016",
+    "rating": 9,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 23,
+    "createdAt": "2026-03-04T04:28:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007371",
+    "userId": "ObjectId_000000000000000000000080",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 9,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 42,
+    "createdAt": "2025-11-29T12:28:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007372",
+    "userId": "ObjectId_000000000000000000000092",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 3,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 48,
+    "createdAt": "2025-11-12T08:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007373",
+    "userId": "ObjectId_000000000000000000000099",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 5,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 4,
+    "createdAt": "2026-02-23T05:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007374",
+    "userId": "ObjectId_000000000000000000000188",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 4,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 123,
+    "createdAt": "2025-10-27T04:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007375",
+    "userId": "ObjectId_000000000000000000000181",
+    "movieId": "ObjectId_000000000000000000001015",
+    "rating": 6,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 137,
+    "createdAt": "2025-11-10T09:24:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007376",
+    "userId": "ObjectId_000000000000000000000190",
+    "movieId": "ObjectId_000000000000000000001045",
+    "rating": 7,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 79,
+    "createdAt": "2025-11-25T14:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007377",
+    "userId": "ObjectId_000000000000000000000143",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 2,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 23,
+    "createdAt": "2026-02-15T22:36:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007378",
+    "userId": "ObjectId_000000000000000000000068",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 9,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 2,
+    "createdAt": "2026-03-29T02:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007379",
+    "userId": "ObjectId_000000000000000000000052",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 6,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 68,
+    "createdAt": "2026-01-08T09:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007380",
+    "userId": "ObjectId_000000000000000000000123",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 9,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 89,
+    "createdAt": "2026-02-13T01:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007381",
+    "userId": "ObjectId_000000000000000000000069",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 9,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 93,
+    "createdAt": "2025-10-23T16:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007382",
+    "userId": "ObjectId_000000000000000000000179",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 2,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 140,
+    "createdAt": "2025-12-06T16:54:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007383",
+    "userId": "ObjectId_000000000000000000000170",
+    "movieId": "ObjectId_000000000000000000001021",
+    "rating": 10,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 14,
+    "createdAt": "2026-02-08T10:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007384",
+    "userId": "ObjectId_000000000000000000000163",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 2,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 141,
+    "createdAt": "2026-02-15T17:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007385",
+    "userId": "ObjectId_000000000000000000000112",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 9,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 96,
+    "createdAt": "2026-02-05T06:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007386",
+    "userId": "ObjectId_000000000000000000000133",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 10,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 55,
+    "createdAt": "2025-11-25T00:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007387",
+    "userId": "ObjectId_000000000000000000000153",
+    "movieId": "ObjectId_000000000000000000001014",
+    "rating": 2,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 56,
+    "createdAt": "2025-10-22T10:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007388",
+    "userId": "ObjectId_000000000000000000000095",
+    "movieId": "ObjectId_000000000000000000001035",
+    "rating": 10,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 140,
+    "createdAt": "2025-11-24T05:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007389",
+    "userId": "ObjectId_000000000000000000000199",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 1,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 136,
+    "createdAt": "2026-04-04T12:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007390",
+    "userId": "ObjectId_000000000000000000000032",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 7,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 66,
+    "createdAt": "2025-11-05T07:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007391",
+    "userId": "ObjectId_000000000000000000000048",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 3,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 40,
+    "createdAt": "2025-12-22T13:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007392",
+    "userId": "ObjectId_000000000000000000000042",
+    "movieId": "ObjectId_000000000000000000001045",
+    "rating": 6,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 118,
+    "createdAt": "2025-12-22T06:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007393",
+    "userId": "ObjectId_000000000000000000000077",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 1,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 188,
+    "createdAt": "2025-11-08T19:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007394",
+    "userId": "ObjectId_000000000000000000000042",
+    "movieId": "ObjectId_000000000000000000001012",
+    "rating": 9,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 39,
+    "createdAt": "2026-03-31T11:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007395",
+    "userId": "ObjectId_000000000000000000000136",
+    "movieId": "ObjectId_000000000000000000001013",
+    "rating": 2,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 75,
+    "createdAt": "2026-02-17T06:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007396",
+    "userId": "ObjectId_000000000000000000000118",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 4,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 85,
+    "createdAt": "2026-03-07T04:52:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007397",
+    "userId": "ObjectId_000000000000000000000180",
+    "movieId": "ObjectId_000000000000000000001023",
+    "rating": 4,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 16,
+    "createdAt": "2026-02-05T00:28:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007398",
+    "userId": "ObjectId_000000000000000000000098",
+    "movieId": "ObjectId_000000000000000000001015",
+    "rating": 4,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 78,
+    "createdAt": "2026-04-04T21:39:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007399",
+    "userId": "ObjectId_000000000000000000000091",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 8,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 22,
+    "createdAt": "2026-01-20T02:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007400",
+    "userId": "ObjectId_000000000000000000000187",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 1,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 189,
+    "createdAt": "2026-03-24T19:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007401",
+    "userId": "ObjectId_000000000000000000000120",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 9,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 169,
+    "createdAt": "2025-12-21T05:47:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007402",
+    "userId": "ObjectId_000000000000000000000096",
+    "movieId": "ObjectId_000000000000000000001021",
+    "rating": 7,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 60,
+    "createdAt": "2026-01-18T21:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007403",
+    "userId": "ObjectId_000000000000000000000094",
+    "movieId": "ObjectId_000000000000000000001021",
+    "rating": 5,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 200,
+    "createdAt": "2025-10-14T03:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007404",
+    "userId": "ObjectId_000000000000000000000158",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 3,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 151,
+    "createdAt": "2025-10-16T17:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007405",
+    "userId": "ObjectId_000000000000000000000041",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 10,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 68,
+    "createdAt": "2026-01-27T23:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007406",
+    "userId": "ObjectId_000000000000000000000103",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 7,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 175,
+    "createdAt": "2026-04-01T23:23:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007407",
+    "userId": "ObjectId_000000000000000000000037",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 2,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 107,
+    "createdAt": "2025-10-27T00:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007408",
+    "userId": "ObjectId_000000000000000000000113",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 10,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 4,
+    "createdAt": "2026-02-01T17:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007409",
+    "userId": "ObjectId_000000000000000000000031",
+    "movieId": "ObjectId_000000000000000000001049",
+    "rating": 9,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 40,
+    "createdAt": "2025-11-01T07:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007410",
+    "userId": "ObjectId_000000000000000000000186",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 2,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 137,
+    "createdAt": "2026-03-18T14:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007411",
+    "userId": "ObjectId_000000000000000000000052",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 9,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 38,
+    "createdAt": "2025-11-12T22:54:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007412",
+    "userId": "ObjectId_000000000000000000000191",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 8,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 163,
+    "createdAt": "2025-12-17T19:11:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007413",
+    "userId": "ObjectId_000000000000000000000118",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 7,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 145,
+    "createdAt": "2025-12-14T14:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007414",
+    "userId": "ObjectId_000000000000000000000113",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 9,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 161,
+    "createdAt": "2026-04-06T10:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007415",
+    "userId": "ObjectId_000000000000000000000085",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 2,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 2,
+    "createdAt": "2025-12-28T16:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007416",
+    "userId": "ObjectId_000000000000000000000074",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 6,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 33,
+    "createdAt": "2025-12-12T11:28:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007417",
+    "userId": "ObjectId_000000000000000000000049",
+    "movieId": "ObjectId_000000000000000000001036",
+    "rating": 8,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 180,
+    "createdAt": "2025-12-18T19:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007418",
+    "userId": "ObjectId_000000000000000000000067",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 1,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 165,
+    "createdAt": "2026-03-16T11:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007419",
+    "userId": "ObjectId_000000000000000000000185",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 5,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 86,
+    "createdAt": "2025-10-27T19:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007420",
+    "userId": "ObjectId_000000000000000000000173",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 3,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 48,
+    "createdAt": "2025-11-29T04:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007421",
+    "userId": "ObjectId_000000000000000000000158",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 2,
+    "comment": "Hơi dài nhưng xứng đáng.",
+    "likes": 156,
+    "createdAt": "2025-10-23T00:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007422",
+    "userId": "ObjectId_000000000000000000000105",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 6,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 183,
+    "createdAt": "2026-02-17T06:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007423",
+    "userId": "ObjectId_000000000000000000000027",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 9,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 180,
+    "createdAt": "2025-12-09T18:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007424",
+    "userId": "ObjectId_000000000000000000000053",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 9,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 4,
+    "createdAt": "2025-10-21T11:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007425",
+    "userId": "ObjectId_000000000000000000000113",
+    "movieId": "ObjectId_000000000000000000001003",
+    "rating": 9,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 44,
+    "createdAt": "2026-02-18T13:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007426",
+    "userId": "ObjectId_000000000000000000000062",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 7,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 76,
+    "createdAt": "2026-04-09T16:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007427",
+    "userId": "ObjectId_000000000000000000000138",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 7,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 87,
+    "createdAt": "2026-01-19T20:53:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007428",
+    "userId": "ObjectId_000000000000000000000026",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 1,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 21,
+    "createdAt": "2025-12-27T11:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007429",
+    "userId": "ObjectId_000000000000000000000178",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 10,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 84,
+    "createdAt": "2025-10-17T01:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007430",
+    "userId": "ObjectId_000000000000000000000192",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 1,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 99,
+    "createdAt": "2026-03-05T19:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007431",
+    "userId": "ObjectId_000000000000000000000100",
+    "movieId": "ObjectId_000000000000000000001041",
+    "rating": 6,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 34,
+    "createdAt": "2025-11-09T21:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007432",
+    "userId": "ObjectId_000000000000000000000072",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 8,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 130,
+    "createdAt": "2025-12-31T06:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007433",
+    "userId": "ObjectId_000000000000000000000146",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 7,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 108,
+    "createdAt": "2025-11-30T11:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007434",
+    "userId": "ObjectId_000000000000000000000194",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 4,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 52,
+    "createdAt": "2025-12-19T12:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007435",
+    "userId": "ObjectId_000000000000000000000115",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 1,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 165,
+    "createdAt": "2025-10-19T10:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007436",
+    "userId": "ObjectId_000000000000000000000048",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 10,
+    "comment": "Phim hay, kịch bản chặt chẽ!",
+    "likes": 22,
+    "createdAt": "2025-11-09T11:22:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007437",
+    "userId": "ObjectId_000000000000000000000041",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 4,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 97,
+    "createdAt": "2025-11-04T23:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007438",
+    "userId": "ObjectId_000000000000000000000018",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 10,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 170,
+    "createdAt": "2026-01-14T06:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007439",
+    "userId": "ObjectId_000000000000000000000130",
+    "movieId": "ObjectId_000000000000000000001006",
+    "rating": 10,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 3,
+    "createdAt": "2025-11-25T19:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007440",
+    "userId": "ObjectId_000000000000000000000070",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 4,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 31,
+    "createdAt": "2026-04-08T23:09:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007441",
+    "userId": "ObjectId_000000000000000000000081",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 6,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 143,
+    "createdAt": "2025-12-26T03:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007442",
+    "userId": "ObjectId_000000000000000000000059",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 5,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 18,
+    "createdAt": "2025-12-29T07:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007443",
+    "userId": "ObjectId_000000000000000000000166",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 2,
+    "comment": "Âm nhạc hay, lồng ghép khéo.",
+    "likes": 117,
+    "createdAt": "2025-11-25T19:59:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007444",
+    "userId": "ObjectId_000000000000000000000028",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 5,
+    "comment": "CGI đỉnh, xứng đáng xem IMAX.",
+    "likes": 32,
+    "createdAt": "2026-02-28T12:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007445",
+    "userId": "ObjectId_000000000000000000000159",
+    "movieId": "ObjectId_000000000000000000001016",
+    "rating": 6,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 188,
+    "createdAt": "2025-12-25T20:42:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007446",
+    "userId": "ObjectId_000000000000000000000120",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 1,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 84,
+    "createdAt": "2026-03-03T20:26:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007447",
+    "userId": "ObjectId_000000000000000000000072",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 7,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 2,
+    "createdAt": "2025-12-13T07:19:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007448",
+    "userId": "ObjectId_000000000000000000000158",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 9,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 103,
+    "createdAt": "2025-11-05T14:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007449",
+    "userId": "ObjectId_000000000000000000000176",
+    "movieId": "ObjectId_000000000000000000001034",
+    "rating": 7,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 97,
+    "createdAt": "2025-11-26T19:01:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007450",
+    "userId": "ObjectId_000000000000000000000192",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 10,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 94,
+    "createdAt": "2026-03-15T19:56:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007451",
+    "userId": "ObjectId_000000000000000000000185",
+    "movieId": "ObjectId_000000000000000000001043",
+    "rating": 3,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 134,
+    "createdAt": "2026-01-04T15:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007452",
+    "userId": "ObjectId_000000000000000000000058",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 1,
+    "comment": "Tuyệt vời, xem lại vẫn hay!",
+    "likes": 134,
+    "createdAt": "2026-01-04T07:55:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007453",
+    "userId": "ObjectId_000000000000000000000071",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 6,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 10,
+    "createdAt": "2026-02-26T07:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007454",
+    "userId": "ObjectId_000000000000000000000127",
+    "movieId": "ObjectId_000000000000000000001033",
+    "rating": 6,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 137,
+    "createdAt": "2026-01-08T09:16:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007455",
+    "userId": "ObjectId_000000000000000000000092",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 7,
+    "comment": "Ending làm tôi khóc 😢",
+    "likes": 104,
+    "createdAt": "2025-10-22T11:49:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007456",
+    "userId": "ObjectId_000000000000000000000179",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 1,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 102,
+    "createdAt": "2026-01-10T13:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007457",
+    "userId": "ObjectId_000000000000000000000087",
+    "movieId": "ObjectId_000000000000000000001021",
+    "rating": 9,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 122,
+    "createdAt": "2025-11-17T01:17:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007458",
+    "userId": "ObjectId_000000000000000000000084",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 10,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 147,
+    "createdAt": "2026-02-19T21:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007459",
+    "userId": "ObjectId_000000000000000000000137",
+    "movieId": "ObjectId_000000000000000000001022",
+    "rating": 2,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 91,
+    "createdAt": "2026-03-16T07:41:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007460",
+    "userId": "ObjectId_000000000000000000000178",
+    "movieId": "ObjectId_000000000000000000001013",
+    "rating": 8,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 88,
+    "createdAt": "2026-03-28T05:25:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007461",
+    "userId": "ObjectId_000000000000000000000191",
+    "movieId": "ObjectId_000000000000000000001046",
+    "rating": 10,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 128,
+    "createdAt": "2026-02-10T23:18:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007462",
+    "userId": "ObjectId_000000000000000000000195",
+    "movieId": "ObjectId_000000000000000000001040",
+    "rating": 5,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 181,
+    "createdAt": "2026-01-13T01:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007463",
+    "userId": "ObjectId_000000000000000000000133",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 2,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 134,
+    "createdAt": "2026-03-27T03:58:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007464",
+    "userId": "ObjectId_000000000000000000000114",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 3,
+    "comment": "Phim cho cả gia đình xem được.",
+    "likes": 113,
+    "createdAt": "2025-11-01T11:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007465",
+    "userId": "ObjectId_000000000000000000000046",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 2,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 158,
+    "createdAt": "2025-12-14T07:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007466",
+    "userId": "ObjectId_000000000000000000000073",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 7,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 81,
+    "createdAt": "2025-12-21T09:13:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007467",
+    "userId": "ObjectId_000000000000000000000034",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 7,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 28,
+    "createdAt": "2026-02-05T19:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007468",
+    "userId": "ObjectId_000000000000000000000172",
+    "movieId": "ObjectId_000000000000000000001026",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 109,
+    "createdAt": "2026-01-21T19:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007469",
+    "userId": "ObjectId_000000000000000000000076",
+    "movieId": "ObjectId_000000000000000000001047",
+    "rating": 1,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 52,
+    "createdAt": "2026-04-10T13:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007470",
+    "userId": "ObjectId_000000000000000000000105",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 3,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 28,
+    "createdAt": "2026-01-10T04:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007471",
+    "userId": "ObjectId_000000000000000000000117",
+    "movieId": "ObjectId_000000000000000000001013",
+    "rating": 1,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 194,
+    "createdAt": "2025-11-10T14:34:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007472",
+    "userId": "ObjectId_000000000000000000000099",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 3,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 71,
+    "createdAt": "2026-01-15T10:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007473",
+    "userId": "ObjectId_000000000000000000000053",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 5,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 190,
+    "createdAt": "2026-01-06T13:12:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007474",
+    "userId": "ObjectId_000000000000000000000071",
+    "movieId": "ObjectId_000000000000000000001020",
+    "rating": 10,
+    "comment": "Cảnh hành động mãn nhãn.",
+    "likes": 122,
+    "createdAt": "2025-11-22T09:48:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007475",
+    "userId": "ObjectId_000000000000000000000113",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 1,
+    "comment": "Sẽ giới thiệu cho bạn bè xem.",
+    "likes": 160,
+    "createdAt": "2026-01-01T06:37:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007476",
+    "userId": "ObjectId_000000000000000000000149",
+    "movieId": "ObjectId_000000000000000000001050",
+    "rating": 7,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 21,
+    "createdAt": "2026-02-24T18:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007477",
+    "userId": "ObjectId_000000000000000000000024",
+    "movieId": "ObjectId_000000000000000000001018",
+    "rating": 4,
+    "comment": "Kết phim bất ngờ, thích!",
+    "likes": 76,
+    "createdAt": "2026-04-10T12:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007478",
+    "userId": "ObjectId_000000000000000000000157",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 6,
+    "comment": "Diễn viên chính diễn tốt lắm.",
+    "likes": 112,
+    "createdAt": "2026-03-29T21:29:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007479",
+    "userId": "ObjectId_000000000000000000000077",
+    "movieId": "ObjectId_000000000000000000001024",
+    "rating": 9,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 102,
+    "createdAt": "2025-11-18T08:31:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007480",
+    "userId": "ObjectId_000000000000000000000140",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 6,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 66,
+    "createdAt": "2025-10-24T23:08:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007481",
+    "userId": "ObjectId_000000000000000000000085",
+    "movieId": "ObjectId_000000000000000000001027",
+    "rating": 1,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 62,
+    "createdAt": "2025-11-02T15:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007482",
+    "userId": "ObjectId_000000000000000000000165",
+    "movieId": "ObjectId_000000000000000000001010",
+    "rating": 7,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 157,
+    "createdAt": "2025-10-31T12:38:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007483",
+    "userId": "ObjectId_000000000000000000000127",
+    "movieId": "ObjectId_000000000000000000001032",
+    "rating": 5,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 162,
+    "createdAt": "2025-11-07T05:00:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007484",
+    "userId": "ObjectId_000000000000000000000195",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 3,
+    "comment": "Diễn xuất xuất sắc, rất cảm xúc.",
+    "likes": 161,
+    "createdAt": "2026-01-11T17:57:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007485",
+    "userId": "ObjectId_000000000000000000000101",
+    "movieId": "ObjectId_000000000000000000001048",
+    "rating": 7,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 159,
+    "createdAt": "2026-03-05T11:04:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007486",
+    "userId": "ObjectId_000000000000000000000043",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 3,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 89,
+    "createdAt": "2025-12-07T05:32:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007487",
+    "userId": "ObjectId_000000000000000000000120",
+    "movieId": "ObjectId_000000000000000000001029",
+    "rating": 3,
+    "comment": "Không hay như trailer hứa hẹn.",
+    "likes": 93,
+    "createdAt": "2025-11-28T11:46:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007488",
+    "userId": "ObjectId_000000000000000000000026",
+    "movieId": "ObjectId_000000000000000000001011",
+    "rating": 2,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 82,
+    "createdAt": "2025-10-15T09:27:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007489",
+    "userId": "ObjectId_000000000000000000000200",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 4,
+    "comment": "Nhịp phim nhanh, không chán.",
+    "likes": 62,
+    "createdAt": "2025-11-10T08:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007490",
+    "userId": "ObjectId_000000000000000000000021",
+    "movieId": "ObjectId_000000000000000000001044",
+    "rating": 8,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 81,
+    "createdAt": "2026-01-11T12:02:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007491",
+    "userId": "ObjectId_000000000000000000000156",
+    "movieId": "ObjectId_000000000000000000001009",
+    "rating": 3,
+    "comment": "Xem xong nghĩ mãi không thôi.",
+    "likes": 46,
+    "createdAt": "2026-03-26T17:40:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007492",
+    "userId": "ObjectId_000000000000000000000122",
+    "movieId": "ObjectId_000000000000000000001017",
+    "rating": 10,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 101,
+    "createdAt": "2026-03-03T09:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007493",
+    "userId": "ObjectId_000000000000000000000138",
+    "movieId": "ObjectId_000000000000000000001042",
+    "rating": 5,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 191,
+    "createdAt": "2026-01-08T19:03:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007494",
+    "userId": "ObjectId_000000000000000000000117",
+    "movieId": "ObjectId_000000000000000000001001",
+    "rating": 9,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 198,
+    "createdAt": "2026-01-20T20:14:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007495",
+    "userId": "ObjectId_000000000000000000000021",
+    "movieId": "ObjectId_000000000000000000001031",
+    "rating": 6,
+    "comment": "Hình ảnh đẹp nhưng cốt truyện hơi nhạt.",
+    "likes": 170,
+    "createdAt": "2025-11-11T21:05:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007496",
+    "userId": "ObjectId_000000000000000000000160",
+    "movieId": "ObjectId_000000000000000000001045",
+    "rating": 2,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 129,
+    "createdAt": "2025-12-29T07:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007497",
+    "userId": "ObjectId_000000000000000000000032",
+    "movieId": "ObjectId_000000000000000000001030",
+    "rating": 6,
+    "comment": "Storyline sáng tạo, hiếm có.",
+    "likes": 17,
+    "createdAt": "2026-01-14T00:33:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007498",
+    "userId": "ObjectId_000000000000000000000055",
+    "movieId": "ObjectId_000000000000000000001037",
+    "rating": 5,
+    "comment": "Có vài cảnh hơi slow nhưng ổn.",
+    "likes": 24,
+    "createdAt": "2025-12-09T15:35:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007499",
+    "userId": "ObjectId_000000000000000000000094",
+    "movieId": "ObjectId_000000000000000000001039",
+    "rating": 3,
+    "comment": "Phim này không như kỳ vọng.",
+    "likes": 52,
+    "createdAt": "2025-11-20T20:51:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000007500",
+    "userId": "ObjectId_000000000000000000000188",
+    "movieId": "ObjectId_000000000000000000001007",
+    "rating": 5,
+    "comment": "Lần đầu xem mà nghiện luôn.",
+    "likes": 138,
+    "createdAt": "2026-01-23T19:44:00.000Z"
+  }
+]

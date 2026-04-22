@@ -1,0 +1,6362 @@
+[
+  {
+    "_id": "ObjectId_000000000000000000006001",
+    "bookingId": "ObjectId_000000000000000000005001",
+    "userId": "ObjectId_000000000000000000000037",
+    "amount": 480000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006001",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-08T07:18:34.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006002",
+    "bookingId": "ObjectId_000000000000000000005002",
+    "userId": "ObjectId_000000000000000000000168",
+    "amount": 255000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006002",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-03T10:42:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006003",
+    "bookingId": "ObjectId_000000000000000000005003",
+    "userId": "ObjectId_000000000000000000000040",
+    "amount": 300000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006003",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-03T06:07:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006004",
+    "bookingId": "ObjectId_000000000000000000005004",
+    "userId": "ObjectId_000000000000000000000037",
+    "amount": 120000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006004",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-16T00:19:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006005",
+    "bookingId": "ObjectId_000000000000000000005006",
+    "userId": "ObjectId_000000000000000000000095",
+    "amount": 85000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006005",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-13T02:51:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006006",
+    "bookingId": "ObjectId_000000000000000000005007",
+    "userId": "ObjectId_000000000000000000000186",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006006",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-24T11:36:28.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006007",
+    "bookingId": "ObjectId_000000000000000000005009",
+    "userId": "ObjectId_000000000000000000000171",
+    "amount": 255000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006007",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-03T16:30:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006008",
+    "bookingId": "ObjectId_000000000000000000005010",
+    "userId": "ObjectId_000000000000000000000199",
+    "amount": 180000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006008",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-20T21:21:34.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006009",
+    "bookingId": "ObjectId_000000000000000000005012",
+    "userId": "ObjectId_000000000000000000000154",
+    "amount": 300000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006009",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-11T14:26:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006010",
+    "bookingId": "ObjectId_000000000000000000005013",
+    "userId": "ObjectId_000000000000000000000130",
+    "amount": 290000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006010",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-30T04:42:15.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006011",
+    "bookingId": "ObjectId_000000000000000000005014",
+    "userId": "ObjectId_000000000000000000000104",
+    "amount": 120000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006011",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-19T03:31:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006012",
+    "bookingId": "ObjectId_000000000000000000005015",
+    "userId": "ObjectId_000000000000000000000050",
+    "amount": 180000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006012",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-05T12:55:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006013",
+    "bookingId": "ObjectId_000000000000000000005016",
+    "userId": "ObjectId_000000000000000000000072",
+    "amount": 480000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006013",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-28T11:44:08.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006014",
+    "bookingId": "ObjectId_000000000000000000005018",
+    "userId": "ObjectId_000000000000000000000176",
+    "amount": 350000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006014",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-16T21:25:42.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006015",
+    "bookingId": "ObjectId_000000000000000000005019",
+    "userId": "ObjectId_000000000000000000000117",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006015",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-28T17:00:20.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006016",
+    "bookingId": "ObjectId_000000000000000000005020",
+    "userId": "ObjectId_000000000000000000000072",
+    "amount": 290000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006016",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-07T02:40:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006017",
+    "bookingId": "ObjectId_000000000000000000005021",
+    "userId": "ObjectId_000000000000000000000159",
+    "amount": 205000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006017",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-09T07:23:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006018",
+    "bookingId": "ObjectId_000000000000000000005022",
+    "userId": "ObjectId_000000000000000000000060",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006018",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-04T02:49:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006019",
+    "bookingId": "ObjectId_000000000000000000005024",
+    "userId": "ObjectId_000000000000000000000018",
+    "amount": 360000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006019",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-14T14:19:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006020",
+    "bookingId": "ObjectId_000000000000000000005026",
+    "userId": "ObjectId_000000000000000000000178",
+    "amount": 540000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006020",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-21T11:12:28.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006021",
+    "bookingId": "ObjectId_000000000000000000005027",
+    "userId": "ObjectId_000000000000000000000143",
+    "amount": 170000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006021",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-29T10:50:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006022",
+    "bookingId": "ObjectId_000000000000000000005028",
+    "userId": "ObjectId_000000000000000000000105",
+    "amount": 375000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006022",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-27T14:42:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006023",
+    "bookingId": "ObjectId_000000000000000000005033",
+    "userId": "ObjectId_000000000000000000000091",
+    "amount": 450000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006023",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-06T12:47:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006024",
+    "bookingId": "ObjectId_000000000000000000005037",
+    "userId": "ObjectId_000000000000000000000112",
+    "amount": 300000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006024",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-04T02:21:13.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006025",
+    "bookingId": "ObjectId_000000000000000000005039",
+    "userId": "ObjectId_000000000000000000000020",
+    "amount": 560000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006025",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-31T17:48:34.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006026",
+    "bookingId": "ObjectId_000000000000000000005040",
+    "userId": "ObjectId_000000000000000000000197",
+    "amount": 480000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006026",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-22T15:40:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006027",
+    "bookingId": "ObjectId_000000000000000000005042",
+    "userId": "ObjectId_000000000000000000000144",
+    "amount": 250000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006027",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-22T22:06:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006028",
+    "bookingId": "ObjectId_000000000000000000005043",
+    "userId": "ObjectId_000000000000000000000166",
+    "amount": 100000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006028",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-06T03:02:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006029",
+    "bookingId": "ObjectId_000000000000000000005045",
+    "userId": "ObjectId_000000000000000000000062",
+    "amount": 240000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006029",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-09T05:29:28.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006030",
+    "bookingId": "ObjectId_000000000000000000005047",
+    "userId": "ObjectId_000000000000000000000046",
+    "amount": 410000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006030",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-21T04:23:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006031",
+    "bookingId": "ObjectId_000000000000000000005049",
+    "userId": "ObjectId_000000000000000000000067",
+    "amount": 480000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006031",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-07T11:54:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006032",
+    "bookingId": "ObjectId_000000000000000000005053",
+    "userId": "ObjectId_000000000000000000000106",
+    "amount": 260000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006032",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-19T11:44:40.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006033",
+    "bookingId": "ObjectId_000000000000000000005054",
+    "userId": "ObjectId_000000000000000000000181",
+    "amount": 450000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006033",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-13T18:46:27.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006034",
+    "bookingId": "ObjectId_000000000000000000005056",
+    "userId": "ObjectId_000000000000000000000021",
+    "amount": 240000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006034",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-02T14:56:21.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006035",
+    "bookingId": "ObjectId_000000000000000000005060",
+    "userId": "ObjectId_000000000000000000000166",
+    "amount": 340000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006035",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-22T06:20:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006036",
+    "bookingId": "ObjectId_000000000000000000005061",
+    "userId": "ObjectId_000000000000000000000102",
+    "amount": 85000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006036",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-04T20:14:53.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006037",
+    "bookingId": "ObjectId_000000000000000000005062",
+    "userId": "ObjectId_000000000000000000000043",
+    "amount": 170000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006037",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-21T05:07:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006038",
+    "bookingId": "ObjectId_000000000000000000005063",
+    "userId": "ObjectId_000000000000000000000199",
+    "amount": 360000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006038",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-09T03:18:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006039",
+    "bookingId": "ObjectId_000000000000000000005066",
+    "userId": "ObjectId_000000000000000000000082",
+    "amount": 400000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006039",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-05T23:13:02.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006040",
+    "bookingId": "ObjectId_000000000000000000005067",
+    "userId": "ObjectId_000000000000000000000192",
+    "amount": 200000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006040",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-30T01:46:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006041",
+    "bookingId": "ObjectId_000000000000000000005069",
+    "userId": "ObjectId_000000000000000000000115",
+    "amount": 90000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006041",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-11T03:04:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006042",
+    "bookingId": "ObjectId_000000000000000000005074",
+    "userId": "ObjectId_000000000000000000000027",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006042",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-05T12:22:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006043",
+    "bookingId": "ObjectId_000000000000000000005075",
+    "userId": "ObjectId_000000000000000000000200",
+    "amount": 435000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006043",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-21T23:13:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006044",
+    "bookingId": "ObjectId_000000000000000000005076",
+    "userId": "ObjectId_000000000000000000000173",
+    "amount": 200000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006044",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-03T17:50:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006045",
+    "bookingId": "ObjectId_000000000000000000005079",
+    "userId": "ObjectId_000000000000000000000047",
+    "amount": 400000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006045",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-01T21:11:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006046",
+    "bookingId": "ObjectId_000000000000000000005080",
+    "userId": "ObjectId_000000000000000000000035",
+    "amount": 550000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006046",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-21T16:30:25.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006047",
+    "bookingId": "ObjectId_000000000000000000005081",
+    "userId": "ObjectId_000000000000000000000160",
+    "amount": 90000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006047",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-10T00:39:31.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006048",
+    "bookingId": "ObjectId_000000000000000000005082",
+    "userId": "ObjectId_000000000000000000000112",
+    "amount": 85000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006048",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-16T12:32:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006049",
+    "bookingId": "ObjectId_000000000000000000005084",
+    "userId": "ObjectId_000000000000000000000124",
+    "amount": 540000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006049",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-06T02:50:36.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006050",
+    "bookingId": "ObjectId_000000000000000000005085",
+    "userId": "ObjectId_000000000000000000000022",
+    "amount": 300000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006050",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-28T18:46:30.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006051",
+    "bookingId": "ObjectId_000000000000000000005086",
+    "userId": "ObjectId_000000000000000000000114",
+    "amount": 570000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006051",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-23T07:09:01.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006052",
+    "bookingId": "ObjectId_000000000000000000005088",
+    "userId": "ObjectId_000000000000000000000091",
+    "amount": 270000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006052",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-01T05:20:04.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006053",
+    "bookingId": "ObjectId_000000000000000000005089",
+    "userId": "ObjectId_000000000000000000000114",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006053",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-12T18:01:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006054",
+    "bookingId": "ObjectId_000000000000000000005090",
+    "userId": "ObjectId_000000000000000000000116",
+    "amount": 480000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006054",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-07T20:15:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006055",
+    "bookingId": "ObjectId_000000000000000000005093",
+    "userId": "ObjectId_000000000000000000000069",
+    "amount": 400000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006055",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-10T09:45:33.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006056",
+    "bookingId": "ObjectId_000000000000000000005097",
+    "userId": "ObjectId_000000000000000000000076",
+    "amount": 90000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006056",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-09T16:35:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006057",
+    "bookingId": "ObjectId_000000000000000000005098",
+    "userId": "ObjectId_000000000000000000000170",
+    "amount": 240000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006057",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-18T10:03:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006058",
+    "bookingId": "ObjectId_000000000000000000005099",
+    "userId": "ObjectId_000000000000000000000037",
+    "amount": 450000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006058",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-14T09:31:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006059",
+    "bookingId": "ObjectId_000000000000000000005100",
+    "userId": "ObjectId_000000000000000000000183",
+    "amount": 310000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006059",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-27T21:14:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006060",
+    "bookingId": "ObjectId_000000000000000000005102",
+    "userId": "ObjectId_000000000000000000000166",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006060",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-23T00:59:34.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006061",
+    "bookingId": "ObjectId_000000000000000000005103",
+    "userId": "ObjectId_000000000000000000000062",
+    "amount": 265000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006061",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-31T03:30:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006062",
+    "bookingId": "ObjectId_000000000000000000005106",
+    "userId": "ObjectId_000000000000000000000110",
+    "amount": 360000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006062",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-02T07:10:04.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006063",
+    "bookingId": "ObjectId_000000000000000000005107",
+    "userId": "ObjectId_000000000000000000000030",
+    "amount": 300000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006063",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-16T16:54:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006064",
+    "bookingId": "ObjectId_000000000000000000005111",
+    "userId": "ObjectId_000000000000000000000161",
+    "amount": 120000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006064",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-18T18:38:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006065",
+    "bookingId": "ObjectId_000000000000000000005113",
+    "userId": "ObjectId_000000000000000000000131",
+    "amount": 120000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006065",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-04T16:28:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006066",
+    "bookingId": "ObjectId_000000000000000000005117",
+    "userId": "ObjectId_000000000000000000000128",
+    "amount": 300000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006066",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-20T11:12:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006067",
+    "bookingId": "ObjectId_000000000000000000005118",
+    "userId": "ObjectId_000000000000000000000072",
+    "amount": 90000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006067",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-13T09:55:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006068",
+    "bookingId": "ObjectId_000000000000000000005120",
+    "userId": "ObjectId_000000000000000000000073",
+    "amount": 480000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006068",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-26T14:28:21.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006069",
+    "bookingId": "ObjectId_000000000000000000005121",
+    "userId": "ObjectId_000000000000000000000038",
+    "amount": 100000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006069",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-22T18:43:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006070",
+    "bookingId": "ObjectId_000000000000000000005122",
+    "userId": "ObjectId_000000000000000000000028",
+    "amount": 740000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006070",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-04T19:00:33.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006071",
+    "bookingId": "ObjectId_000000000000000000005123",
+    "userId": "ObjectId_000000000000000000000181",
+    "amount": 170000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006071",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-20T16:03:29.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006072",
+    "bookingId": "ObjectId_000000000000000000005126",
+    "userId": "ObjectId_000000000000000000000121",
+    "amount": 250000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006072",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-11T01:40:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006073",
+    "bookingId": "ObjectId_000000000000000000005127",
+    "userId": "ObjectId_000000000000000000000042",
+    "amount": 250000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006073",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-27T21:41:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006074",
+    "bookingId": "ObjectId_000000000000000000005128",
+    "userId": "ObjectId_000000000000000000000035",
+    "amount": 350000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006074",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-19T10:09:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006075",
+    "bookingId": "ObjectId_000000000000000000005130",
+    "userId": "ObjectId_000000000000000000000079",
+    "amount": 220000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006075",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-20T17:32:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006076",
+    "bookingId": "ObjectId_000000000000000000005131",
+    "userId": "ObjectId_000000000000000000000026",
+    "amount": 255000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006076",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-12T20:11:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006077",
+    "bookingId": "ObjectId_000000000000000000005134",
+    "userId": "ObjectId_000000000000000000000159",
+    "amount": 200000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006077",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-20T15:34:17.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006078",
+    "bookingId": "ObjectId_000000000000000000005135",
+    "userId": "ObjectId_000000000000000000000057",
+    "amount": 240000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006078",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-17T02:41:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006079",
+    "bookingId": "ObjectId_000000000000000000005139",
+    "userId": "ObjectId_000000000000000000000116",
+    "amount": 260000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006079",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-30T00:33:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006080",
+    "bookingId": "ObjectId_000000000000000000005140",
+    "userId": "ObjectId_000000000000000000000143",
+    "amount": 205000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006080",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-01T03:41:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006081",
+    "bookingId": "ObjectId_000000000000000000005141",
+    "userId": "ObjectId_000000000000000000000111",
+    "amount": 260000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006081",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-08T01:23:46.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006082",
+    "bookingId": "ObjectId_000000000000000000005143",
+    "userId": "ObjectId_000000000000000000000103",
+    "amount": 120000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006082",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-26T13:09:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006083",
+    "bookingId": "ObjectId_000000000000000000005144",
+    "userId": "ObjectId_000000000000000000000035",
+    "amount": 250000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006083",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-09T02:34:56.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006084",
+    "bookingId": "ObjectId_000000000000000000005145",
+    "userId": "ObjectId_000000000000000000000118",
+    "amount": 480000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006084",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-29T05:50:30.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006085",
+    "bookingId": "ObjectId_000000000000000000005147",
+    "userId": "ObjectId_000000000000000000000174",
+    "amount": 120000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006085",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-22T04:48:22.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006086",
+    "bookingId": "ObjectId_000000000000000000005148",
+    "userId": "ObjectId_000000000000000000000162",
+    "amount": 170000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006086",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-18T13:21:12.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006087",
+    "bookingId": "ObjectId_000000000000000000005150",
+    "userId": "ObjectId_000000000000000000000032",
+    "amount": 200000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006087",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-11T02:23:29.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006088",
+    "bookingId": "ObjectId_000000000000000000005151",
+    "userId": "ObjectId_000000000000000000000085",
+    "amount": 220000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006088",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-21T08:43:04.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006089",
+    "bookingId": "ObjectId_000000000000000000005152",
+    "userId": "ObjectId_000000000000000000000028",
+    "amount": 480000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006089",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-30T07:03:29.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006090",
+    "bookingId": "ObjectId_000000000000000000005153",
+    "userId": "ObjectId_000000000000000000000170",
+    "amount": 300000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006090",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-03T12:04:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006091",
+    "bookingId": "ObjectId_000000000000000000005154",
+    "userId": "ObjectId_000000000000000000000076",
+    "amount": 255000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006091",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-11T07:52:21.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006092",
+    "bookingId": "ObjectId_000000000000000000005155",
+    "userId": "ObjectId_000000000000000000000154",
+    "amount": 400000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006092",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-18T16:55:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006093",
+    "bookingId": "ObjectId_000000000000000000005156",
+    "userId": "ObjectId_000000000000000000000069",
+    "amount": 240000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006093",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-03T20:48:01.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006094",
+    "bookingId": "ObjectId_000000000000000000005157",
+    "userId": "ObjectId_000000000000000000000107",
+    "amount": 85000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006094",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-12T00:43:24.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006095",
+    "bookingId": "ObjectId_000000000000000000005158",
+    "userId": "ObjectId_000000000000000000000154",
+    "amount": 290000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006095",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-23T16:42:04.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006096",
+    "bookingId": "ObjectId_000000000000000000005159",
+    "userId": "ObjectId_000000000000000000000144",
+    "amount": 200000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006096",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-13T19:36:31.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006097",
+    "bookingId": "ObjectId_000000000000000000005162",
+    "userId": "ObjectId_000000000000000000000179",
+    "amount": 350000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006097",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-07T08:13:32.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006098",
+    "bookingId": "ObjectId_000000000000000000005163",
+    "userId": "ObjectId_000000000000000000000056",
+    "amount": 220000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006098",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-02T07:52:50.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006099",
+    "bookingId": "ObjectId_000000000000000000005164",
+    "userId": "ObjectId_000000000000000000000106",
+    "amount": 480000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006099",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-20T17:09:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006100",
+    "bookingId": "ObjectId_000000000000000000005165",
+    "userId": "ObjectId_000000000000000000000166",
+    "amount": 255000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006100",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-10T20:22:12.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006101",
+    "bookingId": "ObjectId_000000000000000000005166",
+    "userId": "ObjectId_000000000000000000000059",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006101",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-16T20:08:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006102",
+    "bookingId": "ObjectId_000000000000000000005167",
+    "userId": "ObjectId_000000000000000000000060",
+    "amount": 100000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006102",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-10T18:45:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006103",
+    "bookingId": "ObjectId_000000000000000000005168",
+    "userId": "ObjectId_000000000000000000000183",
+    "amount": 480000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006103",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-08T09:10:29.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006104",
+    "bookingId": "ObjectId_000000000000000000005169",
+    "userId": "ObjectId_000000000000000000000118",
+    "amount": 290000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006104",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-10T02:46:31.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006105",
+    "bookingId": "ObjectId_000000000000000000005170",
+    "userId": "ObjectId_000000000000000000000063",
+    "amount": 500000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006105",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-15T01:42:32.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006106",
+    "bookingId": "ObjectId_000000000000000000005171",
+    "userId": "ObjectId_000000000000000000000037",
+    "amount": 200000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006106",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-24T17:29:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006107",
+    "bookingId": "ObjectId_000000000000000000005172",
+    "userId": "ObjectId_000000000000000000000061",
+    "amount": 240000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006107",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-03T11:28:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006108",
+    "bookingId": "ObjectId_000000000000000000005173",
+    "userId": "ObjectId_000000000000000000000167",
+    "amount": 660000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006108",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-22T20:43:13.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006109",
+    "bookingId": "ObjectId_000000000000000000005174",
+    "userId": "ObjectId_000000000000000000000140",
+    "amount": 85000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006109",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-06T14:16:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006110",
+    "bookingId": "ObjectId_000000000000000000005175",
+    "userId": "ObjectId_000000000000000000000044",
+    "amount": 540000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006110",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-07T10:07:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006111",
+    "bookingId": "ObjectId_000000000000000000005176",
+    "userId": "ObjectId_000000000000000000000197",
+    "amount": 310000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006111",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-22T05:30:50.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006112",
+    "bookingId": "ObjectId_000000000000000000005178",
+    "userId": "ObjectId_000000000000000000000188",
+    "amount": 200000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006112",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-01T13:38:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006113",
+    "bookingId": "ObjectId_000000000000000000005179",
+    "userId": "ObjectId_000000000000000000000174",
+    "amount": 310000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006113",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-15T17:23:45.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006114",
+    "bookingId": "ObjectId_000000000000000000005180",
+    "userId": "ObjectId_000000000000000000000067",
+    "amount": 90000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006114",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-11T05:42:31.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006115",
+    "bookingId": "ObjectId_000000000000000000005181",
+    "userId": "ObjectId_000000000000000000000089",
+    "amount": 240000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006115",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-28T18:35:45.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006116",
+    "bookingId": "ObjectId_000000000000000000005182",
+    "userId": "ObjectId_000000000000000000000115",
+    "amount": 300000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006116",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-09T02:54:40.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006117",
+    "bookingId": "ObjectId_000000000000000000005185",
+    "userId": "ObjectId_000000000000000000000041",
+    "amount": 440000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006117",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-14T23:28:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006118",
+    "bookingId": "ObjectId_000000000000000000005186",
+    "userId": "ObjectId_000000000000000000000060",
+    "amount": 300000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006118",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-16T21:07:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006119",
+    "bookingId": "ObjectId_000000000000000000005187",
+    "userId": "ObjectId_000000000000000000000129",
+    "amount": 310000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006119",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-25T20:10:50.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006120",
+    "bookingId": "ObjectId_000000000000000000005188",
+    "userId": "ObjectId_000000000000000000000084",
+    "amount": 360000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006120",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-18T21:17:02.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006121",
+    "bookingId": "ObjectId_000000000000000000005190",
+    "userId": "ObjectId_000000000000000000000153",
+    "amount": 240000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006121",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-30T13:15:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006122",
+    "bookingId": "ObjectId_000000000000000000005191",
+    "userId": "ObjectId_000000000000000000000161",
+    "amount": 420000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006122",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-24T23:55:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006123",
+    "bookingId": "ObjectId_000000000000000000005193",
+    "userId": "ObjectId_000000000000000000000016",
+    "amount": 420000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006123",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-12T07:28:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006124",
+    "bookingId": "ObjectId_000000000000000000005194",
+    "userId": "ObjectId_000000000000000000000096",
+    "amount": 350000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006124",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-17T15:39:13.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006125",
+    "bookingId": "ObjectId_000000000000000000005196",
+    "userId": "ObjectId_000000000000000000000138",
+    "amount": 120000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006125",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-04T02:30:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006126",
+    "bookingId": "ObjectId_000000000000000000005200",
+    "userId": "ObjectId_000000000000000000000049",
+    "amount": 400000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006126",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-05T21:23:53.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006127",
+    "bookingId": "ObjectId_000000000000000000005202",
+    "userId": "ObjectId_000000000000000000000171",
+    "amount": 180000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006127",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-29T10:19:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006128",
+    "bookingId": "ObjectId_000000000000000000005203",
+    "userId": "ObjectId_000000000000000000000194",
+    "amount": 150000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006128",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-23T22:42:42.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006129",
+    "bookingId": "ObjectId_000000000000000000005204",
+    "userId": "ObjectId_000000000000000000000026",
+    "amount": 435000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006129",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-10T03:25:09.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006130",
+    "bookingId": "ObjectId_000000000000000000005206",
+    "userId": "ObjectId_000000000000000000000129",
+    "amount": 360000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006130",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-09T12:57:51.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006131",
+    "bookingId": "ObjectId_000000000000000000005211",
+    "userId": "ObjectId_000000000000000000000162",
+    "amount": 170000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006131",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-27T14:37:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006132",
+    "bookingId": "ObjectId_000000000000000000005213",
+    "userId": "ObjectId_000000000000000000000179",
+    "amount": 180000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006132",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-01T13:14:21.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006133",
+    "bookingId": "ObjectId_000000000000000000005214",
+    "userId": "ObjectId_000000000000000000000181",
+    "amount": 400000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006133",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-02T16:53:14.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006134",
+    "bookingId": "ObjectId_000000000000000000005217",
+    "userId": "ObjectId_000000000000000000000164",
+    "amount": 320000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006134",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-14T23:05:34.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006135",
+    "bookingId": "ObjectId_000000000000000000005218",
+    "userId": "ObjectId_000000000000000000000161",
+    "amount": 200000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006135",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-19T20:45:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006136",
+    "bookingId": "ObjectId_000000000000000000005219",
+    "userId": "ObjectId_000000000000000000000195",
+    "amount": 240000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006136",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-03T18:28:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006137",
+    "bookingId": "ObjectId_000000000000000000005220",
+    "userId": "ObjectId_000000000000000000000017",
+    "amount": 480000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006137",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-17T13:03:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006138",
+    "bookingId": "ObjectId_000000000000000000005221",
+    "userId": "ObjectId_000000000000000000000023",
+    "amount": 220000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006138",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-13T06:07:49.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006139",
+    "bookingId": "ObjectId_000000000000000000005222",
+    "userId": "ObjectId_000000000000000000000179",
+    "amount": 120000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006139",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-17T07:22:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006140",
+    "bookingId": "ObjectId_000000000000000000005223",
+    "userId": "ObjectId_000000000000000000000160",
+    "amount": 375000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006140",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-26T15:36:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006141",
+    "bookingId": "ObjectId_000000000000000000005224",
+    "userId": "ObjectId_000000000000000000000103",
+    "amount": 400000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006141",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-15T17:30:40.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006142",
+    "bookingId": "ObjectId_000000000000000000005225",
+    "userId": "ObjectId_000000000000000000000085",
+    "amount": 420000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006142",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-05T03:31:14.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006143",
+    "bookingId": "ObjectId_000000000000000000005226",
+    "userId": "ObjectId_000000000000000000000153",
+    "amount": 450000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006143",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-13T07:08:40.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006144",
+    "bookingId": "ObjectId_000000000000000000005228",
+    "userId": "ObjectId_000000000000000000000151",
+    "amount": 130000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006144",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-08T10:47:02.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006145",
+    "bookingId": "ObjectId_000000000000000000005229",
+    "userId": "ObjectId_000000000000000000000080",
+    "amount": 240000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006145",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-03T12:32:44.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006146",
+    "bookingId": "ObjectId_000000000000000000005230",
+    "userId": "ObjectId_000000000000000000000067",
+    "amount": 130000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006146",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-27T16:18:56.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006147",
+    "bookingId": "ObjectId_000000000000000000005231",
+    "userId": "ObjectId_000000000000000000000169",
+    "amount": 540000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006147",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-07T15:26:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006148",
+    "bookingId": "ObjectId_000000000000000000005233",
+    "userId": "ObjectId_000000000000000000000032",
+    "amount": 240000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006148",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-22T21:13:04.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006149",
+    "bookingId": "ObjectId_000000000000000000005234",
+    "userId": "ObjectId_000000000000000000000122",
+    "amount": 240000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006149",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-23T01:47:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006150",
+    "bookingId": "ObjectId_000000000000000000005235",
+    "userId": "ObjectId_000000000000000000000023",
+    "amount": 85000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006150",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-29T14:17:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006151",
+    "bookingId": "ObjectId_000000000000000000005236",
+    "userId": "ObjectId_000000000000000000000184",
+    "amount": 380000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006151",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-12T14:35:40.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006152",
+    "bookingId": "ObjectId_000000000000000000005237",
+    "userId": "ObjectId_000000000000000000000177",
+    "amount": 120000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006152",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-04T20:52:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006153",
+    "bookingId": "ObjectId_000000000000000000005239",
+    "userId": "ObjectId_000000000000000000000059",
+    "amount": 540000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006153",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-08T23:51:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006154",
+    "bookingId": "ObjectId_000000000000000000005240",
+    "userId": "ObjectId_000000000000000000000020",
+    "amount": 85000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006154",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-06T20:02:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006155",
+    "bookingId": "ObjectId_000000000000000000005241",
+    "userId": "ObjectId_000000000000000000000060",
+    "amount": 200000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006155",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-17T11:08:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006156",
+    "bookingId": "ObjectId_000000000000000000005242",
+    "userId": "ObjectId_000000000000000000000099",
+    "amount": 450000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006156",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-19T23:15:20.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006157",
+    "bookingId": "ObjectId_000000000000000000005243",
+    "userId": "ObjectId_000000000000000000000149",
+    "amount": 450000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006157",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-11T03:09:43.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006158",
+    "bookingId": "ObjectId_000000000000000000005244",
+    "userId": "ObjectId_000000000000000000000057",
+    "amount": 290000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006158",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-17T16:53:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006159",
+    "bookingId": "ObjectId_000000000000000000005246",
+    "userId": "ObjectId_000000000000000000000161",
+    "amount": 540000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006159",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-11T22:22:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006160",
+    "bookingId": "ObjectId_000000000000000000005247",
+    "userId": "ObjectId_000000000000000000000091",
+    "amount": 340000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006160",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-08T04:14:06.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006161",
+    "bookingId": "ObjectId_000000000000000000005250",
+    "userId": "ObjectId_000000000000000000000085",
+    "amount": 220000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006161",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-19T03:00:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006162",
+    "bookingId": "ObjectId_000000000000000000005253",
+    "userId": "ObjectId_000000000000000000000151",
+    "amount": 325000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006162",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-09T01:34:01.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006163",
+    "bookingId": "ObjectId_000000000000000000005254",
+    "userId": "ObjectId_000000000000000000000161",
+    "amount": 205000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006163",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-19T15:37:31.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006164",
+    "bookingId": "ObjectId_000000000000000000005255",
+    "userId": "ObjectId_000000000000000000000150",
+    "amount": 170000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006164",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-19T16:45:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006165",
+    "bookingId": "ObjectId_000000000000000000005256",
+    "userId": "ObjectId_000000000000000000000018",
+    "amount": 375000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006165",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-17T21:37:29.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006166",
+    "bookingId": "ObjectId_000000000000000000005259",
+    "userId": "ObjectId_000000000000000000000118",
+    "amount": 520000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006166",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-03T12:25:51.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006167",
+    "bookingId": "ObjectId_000000000000000000005261",
+    "userId": "ObjectId_000000000000000000000080",
+    "amount": 220000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006167",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-24T18:51:15.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006168",
+    "bookingId": "ObjectId_000000000000000000005262",
+    "userId": "ObjectId_000000000000000000000064",
+    "amount": 100000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006168",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-31T12:39:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006169",
+    "bookingId": "ObjectId_000000000000000000005263",
+    "userId": "ObjectId_000000000000000000000023",
+    "amount": 120000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006169",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-15T22:16:49.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006170",
+    "bookingId": "ObjectId_000000000000000000005265",
+    "userId": "ObjectId_000000000000000000000094",
+    "amount": 205000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006170",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-19T15:58:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006171",
+    "bookingId": "ObjectId_000000000000000000005267",
+    "userId": "ObjectId_000000000000000000000142",
+    "amount": 240000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006171",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-21T12:40:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006172",
+    "bookingId": "ObjectId_000000000000000000005268",
+    "userId": "ObjectId_000000000000000000000024",
+    "amount": 400000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006172",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-30T16:13:44.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006173",
+    "bookingId": "ObjectId_000000000000000000005269",
+    "userId": "ObjectId_000000000000000000000018",
+    "amount": 250000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006173",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-26T09:06:44.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006174",
+    "bookingId": "ObjectId_000000000000000000005270",
+    "userId": "ObjectId_000000000000000000000075",
+    "amount": 480000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006174",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-02T16:38:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006175",
+    "bookingId": "ObjectId_000000000000000000005271",
+    "userId": "ObjectId_000000000000000000000082",
+    "amount": 540000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006175",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-22T09:42:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006176",
+    "bookingId": "ObjectId_000000000000000000005272",
+    "userId": "ObjectId_000000000000000000000017",
+    "amount": 540000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006176",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-14T23:09:30.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006177",
+    "bookingId": "ObjectId_000000000000000000005274",
+    "userId": "ObjectId_000000000000000000000180",
+    "amount": 310000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006177",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-15T00:39:56.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006178",
+    "bookingId": "ObjectId_000000000000000000005275",
+    "userId": "ObjectId_000000000000000000000046",
+    "amount": 180000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006178",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-05T09:40:01.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006179",
+    "bookingId": "ObjectId_000000000000000000005276",
+    "userId": "ObjectId_000000000000000000000139",
+    "amount": 325000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006179",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-07T06:52:30.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006180",
+    "bookingId": "ObjectId_000000000000000000005277",
+    "userId": "ObjectId_000000000000000000000142",
+    "amount": 250000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006180",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-11T04:23:46.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006181",
+    "bookingId": "ObjectId_000000000000000000005279",
+    "userId": "ObjectId_000000000000000000000165",
+    "amount": 85000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006181",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-24T01:38:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006182",
+    "bookingId": "ObjectId_000000000000000000005281",
+    "userId": "ObjectId_000000000000000000000091",
+    "amount": 270000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006182",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-15T13:51:24.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006183",
+    "bookingId": "ObjectId_000000000000000000005283",
+    "userId": "ObjectId_000000000000000000000096",
+    "amount": 85000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006183",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-28T04:26:46.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006184",
+    "bookingId": "ObjectId_000000000000000000005284",
+    "userId": "ObjectId_000000000000000000000035",
+    "amount": 120000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006184",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-28T02:37:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006185",
+    "bookingId": "ObjectId_000000000000000000005285",
+    "userId": "ObjectId_000000000000000000000192",
+    "amount": 290000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006185",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-11T03:59:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006186",
+    "bookingId": "ObjectId_000000000000000000005286",
+    "userId": "ObjectId_000000000000000000000153",
+    "amount": 290000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006186",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-08T02:13:51.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006187",
+    "bookingId": "ObjectId_000000000000000000005287",
+    "userId": "ObjectId_000000000000000000000081",
+    "amount": 120000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006187",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-24T16:20:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006188",
+    "bookingId": "ObjectId_000000000000000000005289",
+    "userId": "ObjectId_000000000000000000000131",
+    "amount": 255000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006188",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-16T04:21:42.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006189",
+    "bookingId": "ObjectId_000000000000000000005290",
+    "userId": "ObjectId_000000000000000000000117",
+    "amount": 500000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006189",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-10T23:25:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006190",
+    "bookingId": "ObjectId_000000000000000000005291",
+    "userId": "ObjectId_000000000000000000000019",
+    "amount": 255000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006190",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-21T21:24:02.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006191",
+    "bookingId": "ObjectId_000000000000000000005292",
+    "userId": "ObjectId_000000000000000000000020",
+    "amount": 170000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006191",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-21T07:30:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006192",
+    "bookingId": "ObjectId_000000000000000000005293",
+    "userId": "ObjectId_000000000000000000000036",
+    "amount": 85000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006192",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-23T23:28:56.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006193",
+    "bookingId": "ObjectId_000000000000000000005294",
+    "userId": "ObjectId_000000000000000000000116",
+    "amount": 200000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006193",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-08T08:51:25.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006194",
+    "bookingId": "ObjectId_000000000000000000005295",
+    "userId": "ObjectId_000000000000000000000111",
+    "amount": 400000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006194",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-21T19:20:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006195",
+    "bookingId": "ObjectId_000000000000000000005296",
+    "userId": "ObjectId_000000000000000000000116",
+    "amount": 240000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006195",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-12T05:52:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006196",
+    "bookingId": "ObjectId_000000000000000000005297",
+    "userId": "ObjectId_000000000000000000000113",
+    "amount": 360000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006196",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-30T23:27:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006197",
+    "bookingId": "ObjectId_000000000000000000005299",
+    "userId": "ObjectId_000000000000000000000126",
+    "amount": 90000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006197",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-15T22:10:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006198",
+    "bookingId": "ObjectId_000000000000000000005300",
+    "userId": "ObjectId_000000000000000000000026",
+    "amount": 205000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006198",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-16T10:30:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006199",
+    "bookingId": "ObjectId_000000000000000000005301",
+    "userId": "ObjectId_000000000000000000000039",
+    "amount": 325000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006199",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-24T19:46:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006200",
+    "bookingId": "ObjectId_000000000000000000005302",
+    "userId": "ObjectId_000000000000000000000053",
+    "amount": 540000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006200",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-20T14:54:01.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006201",
+    "bookingId": "ObjectId_000000000000000000005303",
+    "userId": "ObjectId_000000000000000000000028",
+    "amount": 200000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006201",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-21T01:40:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006202",
+    "bookingId": "ObjectId_000000000000000000005304",
+    "userId": "ObjectId_000000000000000000000046",
+    "amount": 450000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006202",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-29T15:32:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006203",
+    "bookingId": "ObjectId_000000000000000000005305",
+    "userId": "ObjectId_000000000000000000000073",
+    "amount": 375000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006203",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-18T04:26:44.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006204",
+    "bookingId": "ObjectId_000000000000000000005306",
+    "userId": "ObjectId_000000000000000000000087",
+    "amount": 540000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006204",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-22T14:15:22.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006205",
+    "bookingId": "ObjectId_000000000000000000005307",
+    "userId": "ObjectId_000000000000000000000189",
+    "amount": 240000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006205",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-04T17:31:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006206",
+    "bookingId": "ObjectId_000000000000000000005309",
+    "userId": "ObjectId_000000000000000000000163",
+    "amount": 375000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006206",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-05T22:02:50.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006207",
+    "bookingId": "ObjectId_000000000000000000005312",
+    "userId": "ObjectId_000000000000000000000130",
+    "amount": 265000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006207",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-23T22:48:40.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006208",
+    "bookingId": "ObjectId_000000000000000000005313",
+    "userId": "ObjectId_000000000000000000000100",
+    "amount": 375000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006208",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-11T05:47:50.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006209",
+    "bookingId": "ObjectId_000000000000000000005314",
+    "userId": "ObjectId_000000000000000000000049",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006209",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-13T08:42:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006210",
+    "bookingId": "ObjectId_000000000000000000005315",
+    "userId": "ObjectId_000000000000000000000018",
+    "amount": 150000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006210",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-23T07:31:53.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006211",
+    "bookingId": "ObjectId_000000000000000000005316",
+    "userId": "ObjectId_000000000000000000000167",
+    "amount": 250000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006211",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-12T19:53:36.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006212",
+    "bookingId": "ObjectId_000000000000000000005317",
+    "userId": "ObjectId_000000000000000000000109",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006212",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-12T03:37:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006213",
+    "bookingId": "ObjectId_000000000000000000005318",
+    "userId": "ObjectId_000000000000000000000067",
+    "amount": 340000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006213",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-16T14:59:24.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006214",
+    "bookingId": "ObjectId_000000000000000000005319",
+    "userId": "ObjectId_000000000000000000000044",
+    "amount": 250000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006214",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-07T11:53:52.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006215",
+    "bookingId": "ObjectId_000000000000000000005320",
+    "userId": "ObjectId_000000000000000000000152",
+    "amount": 90000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006215",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-28T19:42:22.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006216",
+    "bookingId": "ObjectId_000000000000000000005321",
+    "userId": "ObjectId_000000000000000000000142",
+    "amount": 360000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006216",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-13T15:25:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006217",
+    "bookingId": "ObjectId_000000000000000000005322",
+    "userId": "ObjectId_000000000000000000000051",
+    "amount": 255000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006217",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-15T22:25:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006218",
+    "bookingId": "ObjectId_000000000000000000005323",
+    "userId": "ObjectId_000000000000000000000089",
+    "amount": 250000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006218",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-31T16:25:25.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006219",
+    "bookingId": "ObjectId_000000000000000000005324",
+    "userId": "ObjectId_000000000000000000000177",
+    "amount": 200000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006219",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-21T02:59:32.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006220",
+    "bookingId": "ObjectId_000000000000000000005326",
+    "userId": "ObjectId_000000000000000000000117",
+    "amount": 380000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006220",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-09T05:35:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006221",
+    "bookingId": "ObjectId_000000000000000000005327",
+    "userId": "ObjectId_000000000000000000000142",
+    "amount": 375000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006221",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-10T21:46:13.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006222",
+    "bookingId": "ObjectId_000000000000000000005328",
+    "userId": "ObjectId_000000000000000000000120",
+    "amount": 360000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006222",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-09T05:27:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006223",
+    "bookingId": "ObjectId_000000000000000000005329",
+    "userId": "ObjectId_000000000000000000000091",
+    "amount": 180000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006223",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-06T00:55:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006224",
+    "bookingId": "ObjectId_000000000000000000005330",
+    "userId": "ObjectId_000000000000000000000066",
+    "amount": 120000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006224",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-25T03:07:09.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006225",
+    "bookingId": "ObjectId_000000000000000000005331",
+    "userId": "ObjectId_000000000000000000000034",
+    "amount": 250000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006225",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-05T19:48:27.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006226",
+    "bookingId": "ObjectId_000000000000000000005333",
+    "userId": "ObjectId_000000000000000000000096",
+    "amount": 85000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006226",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-23T01:48:06.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006227",
+    "bookingId": "ObjectId_000000000000000000005334",
+    "userId": "ObjectId_000000000000000000000031",
+    "amount": 200000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006227",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-15T11:49:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006228",
+    "bookingId": "ObjectId_000000000000000000005335",
+    "userId": "ObjectId_000000000000000000000078",
+    "amount": 420000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006228",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-18T20:28:14.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006229",
+    "bookingId": "ObjectId_000000000000000000005336",
+    "userId": "ObjectId_000000000000000000000112",
+    "amount": 290000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006229",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-13T21:21:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006230",
+    "bookingId": "ObjectId_000000000000000000005337",
+    "userId": "ObjectId_000000000000000000000135",
+    "amount": 85000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006230",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-01T02:45:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006231",
+    "bookingId": "ObjectId_000000000000000000005338",
+    "userId": "ObjectId_000000000000000000000036",
+    "amount": 470000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006231",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-06T04:14:14.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006232",
+    "bookingId": "ObjectId_000000000000000000005339",
+    "userId": "ObjectId_000000000000000000000125",
+    "amount": 340000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006232",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-15T17:31:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006233",
+    "bookingId": "ObjectId_000000000000000000005340",
+    "userId": "ObjectId_000000000000000000000176",
+    "amount": 400000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006233",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-28T08:10:14.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006234",
+    "bookingId": "ObjectId_000000000000000000005341",
+    "userId": "ObjectId_000000000000000000000063",
+    "amount": 470000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006234",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-18T20:21:53.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006235",
+    "bookingId": "ObjectId_000000000000000000005342",
+    "userId": "ObjectId_000000000000000000000017",
+    "amount": 85000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006235",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-26T02:39:46.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006236",
+    "bookingId": "ObjectId_000000000000000000005343",
+    "userId": "ObjectId_000000000000000000000170",
+    "amount": 480000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006236",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-29T22:11:34.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006237",
+    "bookingId": "ObjectId_000000000000000000005344",
+    "userId": "ObjectId_000000000000000000000170",
+    "amount": 375000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006237",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-23T20:33:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006238",
+    "bookingId": "ObjectId_000000000000000000005345",
+    "userId": "ObjectId_000000000000000000000119",
+    "amount": 290000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006238",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-30T20:42:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006239",
+    "bookingId": "ObjectId_000000000000000000005346",
+    "userId": "ObjectId_000000000000000000000057",
+    "amount": 340000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006239",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-25T23:53:20.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006240",
+    "bookingId": "ObjectId_000000000000000000005347",
+    "userId": "ObjectId_000000000000000000000128",
+    "amount": 200000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006240",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-28T11:50:20.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006241",
+    "bookingId": "ObjectId_000000000000000000005348",
+    "userId": "ObjectId_000000000000000000000152",
+    "amount": 360000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006241",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-21T07:35:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006242",
+    "bookingId": "ObjectId_000000000000000000005349",
+    "userId": "ObjectId_000000000000000000000021",
+    "amount": 100000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006242",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-11T23:45:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006243",
+    "bookingId": "ObjectId_000000000000000000005350",
+    "userId": "ObjectId_000000000000000000000173",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006243",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-17T14:48:49.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006244",
+    "bookingId": "ObjectId_000000000000000000005351",
+    "userId": "ObjectId_000000000000000000000070",
+    "amount": 540000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006244",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-23T04:35:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006245",
+    "bookingId": "ObjectId_000000000000000000005352",
+    "userId": "ObjectId_000000000000000000000171",
+    "amount": 400000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006245",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-11T20:45:07.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006246",
+    "bookingId": "ObjectId_000000000000000000005353",
+    "userId": "ObjectId_000000000000000000000115",
+    "amount": 480000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006246",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-15T13:00:12.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006247",
+    "bookingId": "ObjectId_000000000000000000005355",
+    "userId": "ObjectId_000000000000000000000116",
+    "amount": 200000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006247",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-28T22:07:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006248",
+    "bookingId": "ObjectId_000000000000000000005356",
+    "userId": "ObjectId_000000000000000000000126",
+    "amount": 205000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006248",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-02T02:26:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006249",
+    "bookingId": "ObjectId_000000000000000000005357",
+    "userId": "ObjectId_000000000000000000000071",
+    "amount": 85000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006249",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-24T22:17:43.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006250",
+    "bookingId": "ObjectId_000000000000000000005358",
+    "userId": "ObjectId_000000000000000000000024",
+    "amount": 400000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006250",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-11T16:35:25.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006251",
+    "bookingId": "ObjectId_000000000000000000005359",
+    "userId": "ObjectId_000000000000000000000108",
+    "amount": 205000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006251",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-12T12:05:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006252",
+    "bookingId": "ObjectId_000000000000000000005360",
+    "userId": "ObjectId_000000000000000000000059",
+    "amount": 350000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006252",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-08T13:57:01.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006253",
+    "bookingId": "ObjectId_000000000000000000005361",
+    "userId": "ObjectId_000000000000000000000197",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006253",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-25T20:21:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006254",
+    "bookingId": "ObjectId_000000000000000000005362",
+    "userId": "ObjectId_000000000000000000000188",
+    "amount": 360000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006254",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-04T01:02:49.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006255",
+    "bookingId": "ObjectId_000000000000000000005363",
+    "userId": "ObjectId_000000000000000000000051",
+    "amount": 100000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006255",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-28T10:47:22.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006256",
+    "bookingId": "ObjectId_000000000000000000005365",
+    "userId": "ObjectId_000000000000000000000119",
+    "amount": 450000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006256",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-14T07:47:46.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006257",
+    "bookingId": "ObjectId_000000000000000000005367",
+    "userId": "ObjectId_000000000000000000000194",
+    "amount": 580000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006257",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-04T23:03:49.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006258",
+    "bookingId": "ObjectId_000000000000000000005368",
+    "userId": "ObjectId_000000000000000000000196",
+    "amount": 400000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006258",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-14T11:04:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006259",
+    "bookingId": "ObjectId_000000000000000000005369",
+    "userId": "ObjectId_000000000000000000000088",
+    "amount": 170000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006259",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-03T06:26:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006260",
+    "bookingId": "ObjectId_000000000000000000005370",
+    "userId": "ObjectId_000000000000000000000048",
+    "amount": 180000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006260",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-08T07:44:42.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006261",
+    "bookingId": "ObjectId_000000000000000000005371",
+    "userId": "ObjectId_000000000000000000000041",
+    "amount": 120000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006261",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-02T12:10:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006262",
+    "bookingId": "ObjectId_000000000000000000005372",
+    "userId": "ObjectId_000000000000000000000089",
+    "amount": 310000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006262",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-11T15:11:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006263",
+    "bookingId": "ObjectId_000000000000000000005374",
+    "userId": "ObjectId_000000000000000000000196",
+    "amount": 435000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006263",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-11T23:08:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006264",
+    "bookingId": "ObjectId_000000000000000000005376",
+    "userId": "ObjectId_000000000000000000000048",
+    "amount": 375000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006264",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-12T23:30:21.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006265",
+    "bookingId": "ObjectId_000000000000000000005377",
+    "userId": "ObjectId_000000000000000000000090",
+    "amount": 500000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006265",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-24T19:15:30.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006266",
+    "bookingId": "ObjectId_000000000000000000005378",
+    "userId": "ObjectId_000000000000000000000081",
+    "amount": 300000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006266",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-18T16:02:20.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006267",
+    "bookingId": "ObjectId_000000000000000000005379",
+    "userId": "ObjectId_000000000000000000000085",
+    "amount": 120000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006267",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-13T11:04:28.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006268",
+    "bookingId": "ObjectId_000000000000000000005381",
+    "userId": "ObjectId_000000000000000000000174",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006268",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-01T03:22:22.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006269",
+    "bookingId": "ObjectId_000000000000000000005382",
+    "userId": "ObjectId_000000000000000000000155",
+    "amount": 250000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006269",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-08T00:50:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006270",
+    "bookingId": "ObjectId_000000000000000000005383",
+    "userId": "ObjectId_000000000000000000000017",
+    "amount": 480000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006270",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-24T21:25:31.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006271",
+    "bookingId": "ObjectId_000000000000000000005384",
+    "userId": "ObjectId_000000000000000000000087",
+    "amount": 340000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006271",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-26T01:53:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006272",
+    "bookingId": "ObjectId_000000000000000000005385",
+    "userId": "ObjectId_000000000000000000000060",
+    "amount": 600000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006272",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-07T20:01:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006273",
+    "bookingId": "ObjectId_000000000000000000005386",
+    "userId": "ObjectId_000000000000000000000102",
+    "amount": 500000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006273",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-10T11:23:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006274",
+    "bookingId": "ObjectId_000000000000000000005388",
+    "userId": "ObjectId_000000000000000000000093",
+    "amount": 85000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006274",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-17T09:56:06.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006275",
+    "bookingId": "ObjectId_000000000000000000005392",
+    "userId": "ObjectId_000000000000000000000092",
+    "amount": 180000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006275",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-12T11:27:51.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006276",
+    "bookingId": "ObjectId_000000000000000000005394",
+    "userId": "ObjectId_000000000000000000000073",
+    "amount": 420000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006276",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-18T12:08:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006277",
+    "bookingId": "ObjectId_000000000000000000005395",
+    "userId": "ObjectId_000000000000000000000019",
+    "amount": 375000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006277",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-18T04:17:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006278",
+    "bookingId": "ObjectId_000000000000000000005396",
+    "userId": "ObjectId_000000000000000000000055",
+    "amount": 350000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006278",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-07T13:47:08.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006279",
+    "bookingId": "ObjectId_000000000000000000005397",
+    "userId": "ObjectId_000000000000000000000150",
+    "amount": 310000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006279",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-24T08:58:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006280",
+    "bookingId": "ObjectId_000000000000000000005398",
+    "userId": "ObjectId_000000000000000000000112",
+    "amount": 540000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006280",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-12T17:33:25.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006281",
+    "bookingId": "ObjectId_000000000000000000005400",
+    "userId": "ObjectId_000000000000000000000027",
+    "amount": 400000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006281",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-18T09:45:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006282",
+    "bookingId": "ObjectId_000000000000000000005401",
+    "userId": "ObjectId_000000000000000000000027",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006282",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-22T17:15:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006283",
+    "bookingId": "ObjectId_000000000000000000005403",
+    "userId": "ObjectId_000000000000000000000055",
+    "amount": 220000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006283",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-01T03:33:08.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006284",
+    "bookingId": "ObjectId_000000000000000000005404",
+    "userId": "ObjectId_000000000000000000000152",
+    "amount": 510000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006284",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-14T21:33:45.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006285",
+    "bookingId": "ObjectId_000000000000000000005405",
+    "userId": "ObjectId_000000000000000000000124",
+    "amount": 270000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006285",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-28T12:46:15.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006286",
+    "bookingId": "ObjectId_000000000000000000005406",
+    "userId": "ObjectId_000000000000000000000144",
+    "amount": 200000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006286",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-12T15:02:17.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006287",
+    "bookingId": "ObjectId_000000000000000000005407",
+    "userId": "ObjectId_000000000000000000000117",
+    "amount": 290000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006287",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-28T12:21:12.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006288",
+    "bookingId": "ObjectId_000000000000000000005408",
+    "userId": "ObjectId_000000000000000000000072",
+    "amount": 540000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006288",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-21T01:35:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006289",
+    "bookingId": "ObjectId_000000000000000000005409",
+    "userId": "ObjectId_000000000000000000000175",
+    "amount": 300000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006289",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-27T06:17:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006290",
+    "bookingId": "ObjectId_000000000000000000005410",
+    "userId": "ObjectId_000000000000000000000148",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006290",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-25T11:42:07.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006291",
+    "bookingId": "ObjectId_000000000000000000005411",
+    "userId": "ObjectId_000000000000000000000114",
+    "amount": 290000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006291",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-23T13:22:51.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006292",
+    "bookingId": "ObjectId_000000000000000000005413",
+    "userId": "ObjectId_000000000000000000000151",
+    "amount": 100000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006292",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-21T18:26:42.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006293",
+    "bookingId": "ObjectId_000000000000000000005415",
+    "userId": "ObjectId_000000000000000000000160",
+    "amount": 680000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006293",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-21T13:31:22.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006294",
+    "bookingId": "ObjectId_000000000000000000005416",
+    "userId": "ObjectId_000000000000000000000052",
+    "amount": 520000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006294",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-18T06:39:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006295",
+    "bookingId": "ObjectId_000000000000000000005417",
+    "userId": "ObjectId_000000000000000000000054",
+    "amount": 380000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006295",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-18T19:54:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006296",
+    "bookingId": "ObjectId_000000000000000000005418",
+    "userId": "ObjectId_000000000000000000000197",
+    "amount": 520000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006296",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-12T22:50:22.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006297",
+    "bookingId": "ObjectId_000000000000000000005419",
+    "userId": "ObjectId_000000000000000000000187",
+    "amount": 270000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006297",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-19T09:17:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006298",
+    "bookingId": "ObjectId_000000000000000000005421",
+    "userId": "ObjectId_000000000000000000000155",
+    "amount": 85000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006298",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-23T21:02:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006299",
+    "bookingId": "ObjectId_000000000000000000005422",
+    "userId": "ObjectId_000000000000000000000032",
+    "amount": 120000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006299",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-26T00:38:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006300",
+    "bookingId": "ObjectId_000000000000000000005423",
+    "userId": "ObjectId_000000000000000000000158",
+    "amount": 300000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006300",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-13T21:55:08.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006301",
+    "bookingId": "ObjectId_000000000000000000005424",
+    "userId": "ObjectId_000000000000000000000119",
+    "amount": 240000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006301",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-20T21:34:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006302",
+    "bookingId": "ObjectId_000000000000000000005425",
+    "userId": "ObjectId_000000000000000000000121",
+    "amount": 90000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006302",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-10T11:08:15.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006303",
+    "bookingId": "ObjectId_000000000000000000005426",
+    "userId": "ObjectId_000000000000000000000118",
+    "amount": 170000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006303",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-06T16:12:29.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006304",
+    "bookingId": "ObjectId_000000000000000000005428",
+    "userId": "ObjectId_000000000000000000000156",
+    "amount": 85000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006304",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-19T09:16:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006305",
+    "bookingId": "ObjectId_000000000000000000005430",
+    "userId": "ObjectId_000000000000000000000022",
+    "amount": 500000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006305",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-01T05:21:15.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006306",
+    "bookingId": "ObjectId_000000000000000000005431",
+    "userId": "ObjectId_000000000000000000000166",
+    "amount": 290000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006306",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-29T15:30:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006307",
+    "bookingId": "ObjectId_000000000000000000005432",
+    "userId": "ObjectId_000000000000000000000052",
+    "amount": 170000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006307",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-24T10:59:44.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006308",
+    "bookingId": "ObjectId_000000000000000000005437",
+    "userId": "ObjectId_000000000000000000000184",
+    "amount": 90000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006308",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-13T00:49:08.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006309",
+    "bookingId": "ObjectId_000000000000000000005438",
+    "userId": "ObjectId_000000000000000000000026",
+    "amount": 350000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006309",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-31T10:46:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006310",
+    "bookingId": "ObjectId_000000000000000000005439",
+    "userId": "ObjectId_000000000000000000000150",
+    "amount": 170000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006310",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-17T12:02:25.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006311",
+    "bookingId": "ObjectId_000000000000000000005440",
+    "userId": "ObjectId_000000000000000000000095",
+    "amount": 260000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006311",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-14T15:57:31.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006312",
+    "bookingId": "ObjectId_000000000000000000005442",
+    "userId": "ObjectId_000000000000000000000098",
+    "amount": 180000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006312",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-02T14:16:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006313",
+    "bookingId": "ObjectId_000000000000000000005443",
+    "userId": "ObjectId_000000000000000000000176",
+    "amount": 600000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006313",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-14T18:19:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006314",
+    "bookingId": "ObjectId_000000000000000000005444",
+    "userId": "ObjectId_000000000000000000000029",
+    "amount": 180000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006314",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-13T21:08:53.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006315",
+    "bookingId": "ObjectId_000000000000000000005447",
+    "userId": "ObjectId_000000000000000000000125",
+    "amount": 180000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006315",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-03T16:24:33.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006316",
+    "bookingId": "ObjectId_000000000000000000005448",
+    "userId": "ObjectId_000000000000000000000050",
+    "amount": 360000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006316",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-24T22:42:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006317",
+    "bookingId": "ObjectId_000000000000000000005449",
+    "userId": "ObjectId_000000000000000000000046",
+    "amount": 400000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006317",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-29T14:18:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006318",
+    "bookingId": "ObjectId_000000000000000000005451",
+    "userId": "ObjectId_000000000000000000000100",
+    "amount": 360000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006318",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-22T09:00:10.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006319",
+    "bookingId": "ObjectId_000000000000000000005453",
+    "userId": "ObjectId_000000000000000000000153",
+    "amount": 450000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006319",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-24T03:13:02.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006320",
+    "bookingId": "ObjectId_000000000000000000005455",
+    "userId": "ObjectId_000000000000000000000162",
+    "amount": 310000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006320",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-26T16:04:44.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006321",
+    "bookingId": "ObjectId_000000000000000000005457",
+    "userId": "ObjectId_000000000000000000000058",
+    "amount": 120000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006321",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-19T14:51:35.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006322",
+    "bookingId": "ObjectId_000000000000000000005460",
+    "userId": "ObjectId_000000000000000000000068",
+    "amount": 375000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006322",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-31T07:32:42.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006323",
+    "bookingId": "ObjectId_000000000000000000005461",
+    "userId": "ObjectId_000000000000000000000200",
+    "amount": 450000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006323",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-29T05:01:26.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006324",
+    "bookingId": "ObjectId_000000000000000000005462",
+    "userId": "ObjectId_000000000000000000000178",
+    "amount": 90000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006324",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-12T05:19:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006325",
+    "bookingId": "ObjectId_000000000000000000005463",
+    "userId": "ObjectId_000000000000000000000197",
+    "amount": 100000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006325",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-25T20:02:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006326",
+    "bookingId": "ObjectId_000000000000000000005466",
+    "userId": "ObjectId_000000000000000000000116",
+    "amount": 290000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006326",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-31T08:29:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006327",
+    "bookingId": "ObjectId_000000000000000000005467",
+    "userId": "ObjectId_000000000000000000000194",
+    "amount": 420000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006327",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-08T09:34:43.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006328",
+    "bookingId": "ObjectId_000000000000000000005468",
+    "userId": "ObjectId_000000000000000000000069",
+    "amount": 360000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006328",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-10T09:50:43.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006329",
+    "bookingId": "ObjectId_000000000000000000005469",
+    "userId": "ObjectId_000000000000000000000020",
+    "amount": 540000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006329",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-29T09:05:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006330",
+    "bookingId": "ObjectId_000000000000000000005470",
+    "userId": "ObjectId_000000000000000000000086",
+    "amount": 90000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006330",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-16T06:21:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006331",
+    "bookingId": "ObjectId_000000000000000000005471",
+    "userId": "ObjectId_000000000000000000000058",
+    "amount": 380000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006331",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-06T07:14:07.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006332",
+    "bookingId": "ObjectId_000000000000000000005473",
+    "userId": "ObjectId_000000000000000000000044",
+    "amount": 480000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006332",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-23T03:25:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006333",
+    "bookingId": "ObjectId_000000000000000000005475",
+    "userId": "ObjectId_000000000000000000000179",
+    "amount": 400000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006333",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-15T19:46:29.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006334",
+    "bookingId": "ObjectId_000000000000000000005476",
+    "userId": "ObjectId_000000000000000000000022",
+    "amount": 290000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006334",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-11T18:15:43.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006335",
+    "bookingId": "ObjectId_000000000000000000005477",
+    "userId": "ObjectId_000000000000000000000200",
+    "amount": 270000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006335",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-21T00:00:14.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006336",
+    "bookingId": "ObjectId_000000000000000000005479",
+    "userId": "ObjectId_000000000000000000000075",
+    "amount": 255000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006336",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-04T09:17:08.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006337",
+    "bookingId": "ObjectId_000000000000000000005480",
+    "userId": "ObjectId_000000000000000000000139",
+    "amount": 205000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006337",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-03T13:23:04.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006338",
+    "bookingId": "ObjectId_000000000000000000005481",
+    "userId": "ObjectId_000000000000000000000194",
+    "amount": 340000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006338",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-14T04:02:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006339",
+    "bookingId": "ObjectId_000000000000000000005482",
+    "userId": "ObjectId_000000000000000000000050",
+    "amount": 120000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006339",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-10T17:38:46.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006340",
+    "bookingId": "ObjectId_000000000000000000005483",
+    "userId": "ObjectId_000000000000000000000089",
+    "amount": 340000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006340",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-04-03T09:04:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006341",
+    "bookingId": "ObjectId_000000000000000000005485",
+    "userId": "ObjectId_000000000000000000000153",
+    "amount": 300000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006341",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-24T05:46:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006342",
+    "bookingId": "ObjectId_000000000000000000005486",
+    "userId": "ObjectId_000000000000000000000099",
+    "amount": 90000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006342",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-22T04:09:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006343",
+    "bookingId": "ObjectId_000000000000000000005488",
+    "userId": "ObjectId_000000000000000000000035",
+    "amount": 740000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006343",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-06T02:31:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006344",
+    "bookingId": "ObjectId_000000000000000000005489",
+    "userId": "ObjectId_000000000000000000000097",
+    "amount": 290000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006344",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-07T04:33:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006345",
+    "bookingId": "ObjectId_000000000000000000005491",
+    "userId": "ObjectId_000000000000000000000184",
+    "amount": 240000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006345",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-19T00:55:33.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006346",
+    "bookingId": "ObjectId_000000000000000000005492",
+    "userId": "ObjectId_000000000000000000000066",
+    "amount": 440000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006346",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-07T01:39:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006347",
+    "bookingId": "ObjectId_000000000000000000005493",
+    "userId": "ObjectId_000000000000000000000144",
+    "amount": 290000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006347",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-30T10:23:17.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006348",
+    "bookingId": "ObjectId_000000000000000000005494",
+    "userId": "ObjectId_000000000000000000000040",
+    "amount": 420000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006348",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-05T18:56:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006349",
+    "bookingId": "ObjectId_000000000000000000005496",
+    "userId": "ObjectId_000000000000000000000160",
+    "amount": 130000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006349",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-06T10:22:49.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006350",
+    "bookingId": "ObjectId_000000000000000000005497",
+    "userId": "ObjectId_000000000000000000000079",
+    "amount": 180000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006350",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-30T13:33:32.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006351",
+    "bookingId": "ObjectId_000000000000000000005498",
+    "userId": "ObjectId_000000000000000000000024",
+    "amount": 200000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006351",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-31T03:02:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006352",
+    "bookingId": "ObjectId_000000000000000000005499",
+    "userId": "ObjectId_000000000000000000000061",
+    "amount": 420000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006352",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-04-09T12:01:20.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006353",
+    "bookingId": "ObjectId_000000000000000000005501",
+    "userId": "ObjectId_000000000000000000000081",
+    "amount": 360000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006353",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-02T19:23:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006354",
+    "bookingId": "ObjectId_000000000000000000005503",
+    "userId": "ObjectId_000000000000000000000056",
+    "amount": 255000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006354",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-17T05:09:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006355",
+    "bookingId": "ObjectId_000000000000000000005505",
+    "userId": "ObjectId_000000000000000000000092",
+    "amount": 375000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006355",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-18T23:56:34.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006356",
+    "bookingId": "ObjectId_000000000000000000005507",
+    "userId": "ObjectId_000000000000000000000165",
+    "amount": 180000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006356",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-01T16:46:28.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006357",
+    "bookingId": "ObjectId_000000000000000000005508",
+    "userId": "ObjectId_000000000000000000000137",
+    "amount": 170000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006357",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-18T20:36:37.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006358",
+    "bookingId": "ObjectId_000000000000000000005509",
+    "userId": "ObjectId_000000000000000000000176",
+    "amount": 240000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006358",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-21T21:13:33.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006359",
+    "bookingId": "ObjectId_000000000000000000005512",
+    "userId": "ObjectId_000000000000000000000179",
+    "amount": 90000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006359",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-05T02:02:38.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006360",
+    "bookingId": "ObjectId_000000000000000000005513",
+    "userId": "ObjectId_000000000000000000000042",
+    "amount": 360000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006360",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-18T01:36:17.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006361",
+    "bookingId": "ObjectId_000000000000000000005514",
+    "userId": "ObjectId_000000000000000000000056",
+    "amount": 340000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006361",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-21T18:27:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006362",
+    "bookingId": "ObjectId_000000000000000000005515",
+    "userId": "ObjectId_000000000000000000000159",
+    "amount": 520000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006362",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-18T12:29:20.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006363",
+    "bookingId": "ObjectId_000000000000000000005517",
+    "userId": "ObjectId_000000000000000000000197",
+    "amount": 375000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006363",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-02T14:34:36.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006364",
+    "bookingId": "ObjectId_000000000000000000005518",
+    "userId": "ObjectId_000000000000000000000036",
+    "amount": 480000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006364",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-14T02:10:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006365",
+    "bookingId": "ObjectId_000000000000000000005519",
+    "userId": "ObjectId_000000000000000000000073",
+    "amount": 360000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006365",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-21T01:46:28.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006366",
+    "bookingId": "ObjectId_000000000000000000005520",
+    "userId": "ObjectId_000000000000000000000125",
+    "amount": 100000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006366",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-02T18:56:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006367",
+    "bookingId": "ObjectId_000000000000000000005521",
+    "userId": "ObjectId_000000000000000000000153",
+    "amount": 270000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006367",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-12T20:19:53.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006368",
+    "bookingId": "ObjectId_000000000000000000005522",
+    "userId": "ObjectId_000000000000000000000171",
+    "amount": 90000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006368",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-03T05:56:41.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006369",
+    "bookingId": "ObjectId_000000000000000000005524",
+    "userId": "ObjectId_000000000000000000000147",
+    "amount": 200000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006369",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-04-03T23:04:42.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006370",
+    "bookingId": "ObjectId_000000000000000000005525",
+    "userId": "ObjectId_000000000000000000000021",
+    "amount": 180000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006370",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-08T11:02:06.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006371",
+    "bookingId": "ObjectId_000000000000000000005526",
+    "userId": "ObjectId_000000000000000000000192",
+    "amount": 150000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006371",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-18T01:47:53.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006372",
+    "bookingId": "ObjectId_000000000000000000005527",
+    "userId": "ObjectId_000000000000000000000124",
+    "amount": 100000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006372",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-30T06:20:32.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006373",
+    "bookingId": "ObjectId_000000000000000000005529",
+    "userId": "ObjectId_000000000000000000000117",
+    "amount": 300000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006373",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-06T21:11:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006374",
+    "bookingId": "ObjectId_000000000000000000005530",
+    "userId": "ObjectId_000000000000000000000180",
+    "amount": 180000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006374",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-16T00:15:59.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006375",
+    "bookingId": "ObjectId_000000000000000000005531",
+    "userId": "ObjectId_000000000000000000000119",
+    "amount": 290000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006375",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-01T03:07:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006376",
+    "bookingId": "ObjectId_000000000000000000005532",
+    "userId": "ObjectId_000000000000000000000165",
+    "amount": 290000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006376",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-18T21:06:15.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006377",
+    "bookingId": "ObjectId_000000000000000000005533",
+    "userId": "ObjectId_000000000000000000000186",
+    "amount": 85000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006377",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-12T13:31:48.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006378",
+    "bookingId": "ObjectId_000000000000000000005534",
+    "userId": "ObjectId_000000000000000000000114",
+    "amount": 290000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006378",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-14T12:46:27.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006379",
+    "bookingId": "ObjectId_000000000000000000005535",
+    "userId": "ObjectId_000000000000000000000188",
+    "amount": 360000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006379",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-23T02:52:11.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006380",
+    "bookingId": "ObjectId_000000000000000000005536",
+    "userId": "ObjectId_000000000000000000000169",
+    "amount": 150000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006380",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-07T12:52:23.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006381",
+    "bookingId": "ObjectId_000000000000000000005538",
+    "userId": "ObjectId_000000000000000000000079",
+    "amount": 310000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006381",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-04T14:32:45.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006382",
+    "bookingId": "ObjectId_000000000000000000005541",
+    "userId": "ObjectId_000000000000000000000155",
+    "amount": 390000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006382",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-03T11:42:07.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006383",
+    "bookingId": "ObjectId_000000000000000000005542",
+    "userId": "ObjectId_000000000000000000000071",
+    "amount": 85000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006383",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-21T10:46:06.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006384",
+    "bookingId": "ObjectId_000000000000000000005543",
+    "userId": "ObjectId_000000000000000000000118",
+    "amount": 390000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006384",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-14T15:32:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006385",
+    "bookingId": "ObjectId_000000000000000000005545",
+    "userId": "ObjectId_000000000000000000000119",
+    "amount": 130000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006385",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-14T11:53:36.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006386",
+    "bookingId": "ObjectId_000000000000000000005546",
+    "userId": "ObjectId_000000000000000000000079",
+    "amount": 300000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006386",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-24T17:57:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006387",
+    "bookingId": "ObjectId_000000000000000000005547",
+    "userId": "ObjectId_000000000000000000000100",
+    "amount": 310000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006387",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-03-13T22:43:54.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006388",
+    "bookingId": "ObjectId_000000000000000000005548",
+    "userId": "ObjectId_000000000000000000000124",
+    "amount": 450000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006388",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-17T03:35:18.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006389",
+    "bookingId": "ObjectId_000000000000000000005550",
+    "userId": "ObjectId_000000000000000000000041",
+    "amount": 100000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006389",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-25T21:41:16.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006390",
+    "bookingId": "ObjectId_000000000000000000005552",
+    "userId": "ObjectId_000000000000000000000020",
+    "amount": 310000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006390",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-23T14:29:33.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006391",
+    "bookingId": "ObjectId_000000000000000000005553",
+    "userId": "ObjectId_000000000000000000000183",
+    "amount": 350000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006391",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-22T10:24:56.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006392",
+    "bookingId": "ObjectId_000000000000000000005554",
+    "userId": "ObjectId_000000000000000000000177",
+    "amount": 420000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006392",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-15T16:49:30.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006393",
+    "bookingId": "ObjectId_000000000000000000005555",
+    "userId": "ObjectId_000000000000000000000127",
+    "amount": 255000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006393",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-03T23:35:24.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006394",
+    "bookingId": "ObjectId_000000000000000000005556",
+    "userId": "ObjectId_000000000000000000000034",
+    "amount": 120000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006394",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-13T00:08:46.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006395",
+    "bookingId": "ObjectId_000000000000000000005557",
+    "userId": "ObjectId_000000000000000000000173",
+    "amount": 450000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006395",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-20T07:04:45.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006396",
+    "bookingId": "ObjectId_000000000000000000005558",
+    "userId": "ObjectId_000000000000000000000046",
+    "amount": 350000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006396",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-21T09:18:15.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006397",
+    "bookingId": "ObjectId_000000000000000000005560",
+    "userId": "ObjectId_000000000000000000000063",
+    "amount": 85000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006397",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-21T03:12:51.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006398",
+    "bookingId": "ObjectId_000000000000000000005561",
+    "userId": "ObjectId_000000000000000000000104",
+    "amount": 200000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006398",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-11T07:05:58.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006399",
+    "bookingId": "ObjectId_000000000000000000005562",
+    "userId": "ObjectId_000000000000000000000095",
+    "amount": 180000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006399",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-02-13T09:18:43.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006400",
+    "bookingId": "ObjectId_000000000000000000005563",
+    "userId": "ObjectId_000000000000000000000140",
+    "amount": 85000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006400",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-02-17T20:55:19.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006401",
+    "bookingId": "ObjectId_000000000000000000005564",
+    "userId": "ObjectId_000000000000000000000196",
+    "amount": 270000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006401",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-04T05:37:55.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006402",
+    "bookingId": "ObjectId_000000000000000000005565",
+    "userId": "ObjectId_000000000000000000000088",
+    "amount": 260000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006402",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-09T09:26:36.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006403",
+    "bookingId": "ObjectId_000000000000000000005566",
+    "userId": "ObjectId_000000000000000000000176",
+    "amount": 270000,
+    "method": "vnpay",
+    "transactionId": "TXN_VNPAY_0000006403",
+    "status": "success",
+    "metadata": {
+      "gateway": "VNPAY",
+      "responseCode": "00",
+      "bankCode": "VNPAY"
+    },
+    "paidAt": "2026-03-06T10:06:00.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006404",
+    "bookingId": "ObjectId_000000000000000000005567",
+    "userId": "ObjectId_000000000000000000000109",
+    "amount": 500000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006404",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-26T05:34:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006405",
+    "bookingId": "ObjectId_000000000000000000005569",
+    "userId": "ObjectId_000000000000000000000108",
+    "amount": 420000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006405",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-04-11T06:37:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006406",
+    "bookingId": "ObjectId_000000000000000000005571",
+    "userId": "ObjectId_000000000000000000000044",
+    "amount": 120000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006406",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-02-24T15:33:43.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006407",
+    "bookingId": "ObjectId_000000000000000000005574",
+    "userId": "ObjectId_000000000000000000000041",
+    "amount": 170000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006407",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-04-11T07:10:51.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006408",
+    "bookingId": "ObjectId_000000000000000000005576",
+    "userId": "ObjectId_000000000000000000000184",
+    "amount": 180000,
+    "method": "zalopay",
+    "transactionId": "TXN_ZALOPAY_0000006408",
+    "status": "success",
+    "metadata": {
+      "gateway": "ZALOPAY",
+      "responseCode": "00",
+      "bankCode": "ZALOPAY"
+    },
+    "paidAt": "2026-02-20T17:46:21.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006409",
+    "bookingId": "ObjectId_000000000000000000005577",
+    "userId": "ObjectId_000000000000000000000060",
+    "amount": 250000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006409",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-22T05:03:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006410",
+    "bookingId": "ObjectId_000000000000000000005578",
+    "userId": "ObjectId_000000000000000000000099",
+    "amount": 240000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006410",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-17T04:51:21.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006411",
+    "bookingId": "ObjectId_000000000000000000005579",
+    "userId": "ObjectId_000000000000000000000024",
+    "amount": 420000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006411",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-20T13:21:12.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006412",
+    "bookingId": "ObjectId_000000000000000000005581",
+    "userId": "ObjectId_000000000000000000000079",
+    "amount": 100000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006412",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-14T09:11:27.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006413",
+    "bookingId": "ObjectId_000000000000000000005584",
+    "userId": "ObjectId_000000000000000000000158",
+    "amount": 400000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006413",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-21T19:29:06.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006414",
+    "bookingId": "ObjectId_000000000000000000005585",
+    "userId": "ObjectId_000000000000000000000034",
+    "amount": 385000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006414",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-13T00:24:08.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006415",
+    "bookingId": "ObjectId_000000000000000000005586",
+    "userId": "ObjectId_000000000000000000000035",
+    "amount": 360000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006415",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-02-11T07:26:40.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006416",
+    "bookingId": "ObjectId_000000000000000000005587",
+    "userId": "ObjectId_000000000000000000000136",
+    "amount": 450000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006416",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-27T01:08:05.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006417",
+    "bookingId": "ObjectId_000000000000000000005589",
+    "userId": "ObjectId_000000000000000000000143",
+    "amount": 120000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006417",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-02-28T16:57:39.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006418",
+    "bookingId": "ObjectId_000000000000000000005592",
+    "userId": "ObjectId_000000000000000000000157",
+    "amount": 360000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006418",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-04-10T02:36:06.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006419",
+    "bookingId": "ObjectId_000000000000000000005593",
+    "userId": "ObjectId_000000000000000000000087",
+    "amount": 100000,
+    "method": "momo",
+    "transactionId": "TXN_MOMO_0000006419",
+    "status": "success",
+    "metadata": {
+      "gateway": "MOMO",
+      "responseCode": "00",
+      "bankCode": "MOMO"
+    },
+    "paidAt": "2026-03-04T20:30:47.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006420",
+    "bookingId": "ObjectId_000000000000000000005594",
+    "userId": "ObjectId_000000000000000000000126",
+    "amount": 90000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006420",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-15T21:02:27.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006421",
+    "bookingId": "ObjectId_000000000000000000005595",
+    "userId": "ObjectId_000000000000000000000055",
+    "amount": 550000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006421",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-07T15:22:03.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006422",
+    "bookingId": "ObjectId_000000000000000000005596",
+    "userId": "ObjectId_000000000000000000000133",
+    "amount": 170000,
+    "method": "cash",
+    "transactionId": "TXN_CASH_0000006422",
+    "status": "success",
+    "metadata": {
+      "gateway": "CASH",
+      "responseCode": "00",
+      "bankCode": "CASH"
+    },
+    "paidAt": "2026-03-09T05:03:57.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006423",
+    "bookingId": "ObjectId_000000000000000000005599",
+    "userId": "ObjectId_000000000000000000000030",
+    "amount": 310000,
+    "method": "visa",
+    "transactionId": "TXN_VISA_0000006423",
+    "status": "success",
+    "metadata": {
+      "gateway": "VISA",
+      "responseCode": "00",
+      "bankCode": "VISA"
+    },
+    "paidAt": "2026-03-17T11:40:14.000Z"
+  },
+  {
+    "_id": "ObjectId_000000000000000000006424",
+    "bookingId": "ObjectId_000000000000000000005600",
+    "userId": "ObjectId_000000000000000000000118",
+    "amount": 170000,
+    "method": "mastercard",
+    "transactionId": "TXN_MASTERCARD_0000006424",
+    "status": "success",
+    "metadata": {
+      "gateway": "MASTERCARD",
+      "responseCode": "00",
+      "bankCode": "MASTERCARD"
+    },
+    "paidAt": "2026-03-18T11:44:16.000Z"
+  }
+]

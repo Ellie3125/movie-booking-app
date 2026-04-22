@@ -1,0 +1,1187 @@
+[
+  {
+    "_id": "ObjectId_000000000000000000001001",
+    "title": "Inception",
+    "description": "An epic story about adventure set in a world where heroes are made not born.",
+    "duration": 136,
+    "genres": [
+      "Drama",
+      "Crime",
+      "Sci-Fi"
+    ],
+    "cast": [
+      "Will",
+      "Son Tung MTP",
+      "Isaac",
+      "Hoang Yen Chibi",
+      "Leonardo DiCaprio",
+      "Khoa Nguyen"
+    ],
+    "director": "Park Chan-wook",
+    "language": "vi",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/inception.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1001",
+    "rating": 7.6,
+    "releaseDate": "2025-10-11T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001002",
+    "title": "Interstellar",
+    "description": "An epic story about redemption set in a world where heroes are made not born.",
+    "duration": 147,
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Comedy"
+    ],
+    "cast": [
+      "Isaac",
+      "Son Tung MTP",
+      "Scarlett Johansson",
+      "Brad Pitt"
+    ],
+    "director": "Ridley Scott",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/interstellar.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1002",
+    "rating": 8.1,
+    "releaseDate": "2025-08-27T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001003",
+    "title": "The Dark Knight",
+    "description": "An epic story about survival set in a world where every choice matters.",
+    "duration": 128,
+    "genres": [
+      "Sci-Fi",
+      "Drama",
+      "Crime"
+    ],
+    "cast": [
+      "Hoang Yen Chibi",
+      "Jack Nguyen",
+      "Angelina Jolie",
+      "Truong Giang"
+    ],
+    "director": "Quentin Tarantino",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/the_dark_knight.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1003",
+    "rating": 5.7,
+    "releaseDate": "2025-03-26T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001004",
+    "title": "Avengers: Doomsday",
+    "description": "An epic story about mystery set in a world where heroes are made not born.",
+    "duration": 101,
+    "genres": [
+      "Adventure"
+    ],
+    "cast": [
+      "Chi Pu",
+      "Scarlett Johansson",
+      "Robert Downey Jr.",
+      "Leonardo DiCaprio",
+      "Khoa Nguyen"
+    ],
+    "director": "Martin Scorsese",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/avengers:_doomsday.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1004",
+    "rating": 7.9,
+    "releaseDate": "2025-09-15T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001005",
+    "title": "Parasite",
+    "description": "An epic story about mystery set in a world where the past haunts the present.",
+    "duration": 123,
+    "genres": [
+      "Adventure",
+      "Action",
+      "Animation"
+    ],
+    "cast": [
+      "Truong Giang",
+      "Will",
+      "Cate Blanchett",
+      "Ninh Duong Lan Ngoc",
+      "Khoa Nguyen"
+    ],
+    "director": "Victor Vu",
+    "language": "vi",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/parasite.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1005",
+    "rating": 5.9,
+    "releaseDate": "2025-11-30T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001006",
+    "title": "Oldboy",
+    "description": "An epic story about adventure set in a world where the past haunts the present.",
+    "duration": 178,
+    "genres": [
+      "Horror",
+      "Romance"
+    ],
+    "cast": [
+      "Kieu Minh Tuan",
+      "Khoa Nguyen",
+      "Thu Trang",
+      "Ninh Duong Lan Ngoc"
+    ],
+    "director": "Steven Spielberg",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/oldboy.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1006",
+    "rating": 5.7,
+    "releaseDate": "2025-01-31T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001007",
+    "title": "Mad Max: Fury Road",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 155,
+    "genres": [
+      "Sci-Fi"
+    ],
+    "cast": [
+      "Cate Blanchett",
+      "Angelina Jolie",
+      "Brad Pitt",
+      "Scarlett Johansson",
+      "Truong Giang",
+      "Meryl Streep"
+    ],
+    "director": "Quentin Tarantino",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/mad_max:_fury_road.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1007",
+    "rating": 5.5,
+    "releaseDate": "2025-10-15T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001008",
+    "title": "Blade Runner 2049",
+    "description": "An epic story about redemption set in a world where every choice matters.",
+    "duration": 121,
+    "genres": [
+      "Comedy"
+    ],
+    "cast": [
+      "Son Tung MTP",
+      "Jun Pham",
+      "Will",
+      "Truong Giang",
+      "Hoang Yen Chibi",
+      "Robert Downey Jr."
+    ],
+    "director": "James Cameron",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/blade_runner_2049.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1008",
+    "rating": 9.1,
+    "releaseDate": "2026-03-20T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001009",
+    "title": "The Shawshank Redemption",
+    "description": "An epic story about survival set in a world where every choice matters.",
+    "duration": 154,
+    "genres": [
+      "Action"
+    ],
+    "cast": [
+      "Will",
+      "Khoa Nguyen",
+      "Truong Giang",
+      "Robert Downey Jr.",
+      "Brad Pitt"
+    ],
+    "director": "Nguyen Quang Dung",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/the_shawshank_redemption.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1009",
+    "rating": 9.4,
+    "releaseDate": "2025-08-23T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001010",
+    "title": "Pulp Fiction",
+    "description": "An epic story about adventure set in a world where every choice matters.",
+    "duration": 123,
+    "genres": [
+      "Thriller"
+    ],
+    "cast": [
+      "Chi Pu",
+      "Hoang Yen Chibi",
+      "Meryl Streep"
+    ],
+    "director": "Park Chan-wook",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/pulp_fiction.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1010",
+    "rating": 6.6,
+    "releaseDate": "2026-01-08T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001011",
+    "title": "Fight Club",
+    "description": "An epic story about adventure set in a world where every choice matters.",
+    "duration": 126,
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Drama"
+    ],
+    "cast": [
+      "Brad Pitt",
+      "Ninh Duong Lan Ngoc",
+      "Thu Trang",
+      "Kieu Minh Tuan"
+    ],
+    "director": "Ridley Scott",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/fight_club.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1011",
+    "rating": 6.7,
+    "releaseDate": "2025-02-07T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001012",
+    "title": "The Matrix",
+    "description": "An epic story about adventure set in a world where nothing is what it seems.",
+    "duration": 108,
+    "genres": [
+      "Action"
+    ],
+    "cast": [
+      "Kieu Minh Tuan",
+      "Will",
+      "Son Tung MTP",
+      "Jun Pham"
+    ],
+    "director": "Steven Spielberg",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/the_matrix.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1012",
+    "rating": 7.7,
+    "releaseDate": "2025-04-12T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001013",
+    "title": "Forrest Gump",
+    "description": "An epic story about mystery set in a world where every choice matters.",
+    "duration": 155,
+    "genres": [
+      "Thriller"
+    ],
+    "cast": [
+      "Chi Pu",
+      "Kieu Minh Tuan",
+      "Son Tung MTP",
+      "Hoang Yen Chibi",
+      "Will"
+    ],
+    "director": "Wes Anderson",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/forrest_gump.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1013",
+    "rating": 6.5,
+    "releaseDate": "2025-03-13T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001014",
+    "title": "The Silence of the Lambs",
+    "description": "An epic story about redemption set in a world where every choice matters.",
+    "duration": 128,
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Fantasy"
+    ],
+    "cast": [
+      "Robert Downey Jr.",
+      "Will",
+      "Jack Nguyen",
+      "Cate Blanchett",
+      "Scarlett Johansson"
+    ],
+    "director": "Quentin Tarantino",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/the_silence_of_the_lambs.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1014",
+    "rating": 8.7,
+    "releaseDate": "2025-09-01T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001015",
+    "title": "Schindler's List",
+    "description": "An epic story about mystery set in a world where the past haunts the present.",
+    "duration": 111,
+    "genres": [
+      "Adventure"
+    ],
+    "cast": [
+      "Scarlett Johansson",
+      "Chi Pu",
+      "Brad Pitt",
+      "Meryl Streep"
+    ],
+    "director": "Christopher Nolan",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/schindler's_list.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1015",
+    "rating": 7.8,
+    "releaseDate": "2025-09-26T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001016",
+    "title": "Spirited Away",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 130,
+    "genres": [
+      "Fantasy",
+      "Animation",
+      "Action"
+    ],
+    "cast": [
+      "Son Tung MTP",
+      "Meryl Streep",
+      "Hoang Yen Chibi",
+      "Kieu Minh Tuan"
+    ],
+    "director": "Martin Scorsese",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/spirited_away.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1016",
+    "rating": 5.7,
+    "releaseDate": "2025-08-03T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001017",
+    "title": "Your Name",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 157,
+    "genres": [
+      "Romance",
+      "Documentary",
+      "Crime"
+    ],
+    "cast": [
+      "Khoa Nguyen",
+      "Will",
+      "Meryl Streep",
+      "Cate Blanchett",
+      "Jack Nguyen"
+    ],
+    "director": "Ridley Scott",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/your_name.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1017",
+    "rating": 6.4,
+    "releaseDate": "2025-07-12T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001018",
+    "title": "Demon Slayer: Infinity Train",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 118,
+    "genres": [
+      "Animation",
+      "Romance"
+    ],
+    "cast": [
+      "Truong Giang",
+      "Brad Pitt",
+      "Hoang Yen Chibi",
+      "Ninh Duong Lan Ngoc",
+      "Son Tung MTP"
+    ],
+    "director": "Park Chan-wook",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/demon_slayer:_infinity_train.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1018",
+    "rating": 8.5,
+    "releaseDate": "2025-06-02T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001019",
+    "title": "Train to Busan",
+    "description": "An epic story about love set in a world where every choice matters.",
+    "duration": 127,
+    "genres": [
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "cast": [
+      "Meryl Streep",
+      "Khoa Nguyen",
+      "Hoang Yen Chibi",
+      "Jack Nguyen",
+      "Son Tung MTP",
+      "Leonardo DiCaprio"
+    ],
+    "director": "James Cameron",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/train_to_busan.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1019",
+    "rating": 6.3,
+    "releaseDate": "2025-01-22T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001020",
+    "title": "Along with the Gods",
+    "description": "An epic story about mystery set in a world where heroes are made not born.",
+    "duration": 165,
+    "genres": [
+      "Horror",
+      "Action",
+      "Drama"
+    ],
+    "cast": [
+      "Kieu Minh Tuan",
+      "Will",
+      "Brad Pitt",
+      "Angelina Jolie",
+      "Robert Downey Jr.",
+      "Jack Nguyen"
+    ],
+    "director": "Steven Spielberg",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/along_with_the_gods.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1020",
+    "rating": 6.1,
+    "releaseDate": "2025-05-03T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001021",
+    "title": "Em va Trinh",
+    "description": "An epic story about adventure set in a world where the past haunts the present.",
+    "duration": 173,
+    "genres": [
+      "Horror",
+      "Sci-Fi",
+      "Romance"
+    ],
+    "cast": [
+      "Scarlett Johansson",
+      "Leonardo DiCaprio",
+      "Cate Blanchett",
+      "Khoa Nguyen",
+      "Tom Hanks"
+    ],
+    "director": "Nguyen Quang Dung",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/em_va_trinh.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1021",
+    "rating": 9.0,
+    "releaseDate": "2026-04-24T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001022",
+    "title": "Nguoi Tinh",
+    "description": "An epic story about adventure set in a world where heroes are made not born.",
+    "duration": 94,
+    "genres": [
+      "Sci-Fi",
+      "Action",
+      "Adventure"
+    ],
+    "cast": [
+      "Chi Pu",
+      "Brad Pitt",
+      "Kieu Minh Tuan",
+      "Truong Giang",
+      "Jun Pham"
+    ],
+    "director": "Martin Scorsese",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/nguoi_tinh.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1022",
+    "rating": 6.8,
+    "releaseDate": "2026-03-05T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001023",
+    "title": "Bo Gia",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 157,
+    "genres": [
+      "Horror",
+      "Drama"
+    ],
+    "cast": [
+      "Tom Hanks",
+      "Jun Pham",
+      "Jack Nguyen",
+      "Khoa Nguyen",
+      "Robert Downey Jr."
+    ],
+    "director": "Wes Anderson",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/bo_gia.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1023",
+    "rating": 9.0,
+    "releaseDate": "2025-09-10T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001024",
+    "title": "Gai Gia Lam Chieu",
+    "description": "An epic story about survival set in a world where heroes are made not born.",
+    "duration": 127,
+    "genres": [
+      "Adventure",
+      "Thriller",
+      "Crime"
+    ],
+    "cast": [
+      "Leonardo DiCaprio",
+      "Ninh Duong Lan Ngoc",
+      "Brad Pitt",
+      "Tom Hanks",
+      "Angelina Jolie"
+    ],
+    "director": "Victor Vu",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/gai_gia_lam_chieu.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1024",
+    "rating": 8.0,
+    "releaseDate": "2025-10-18T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001025",
+    "title": "Mat Biec",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 121,
+    "genres": [
+      "Romance",
+      "Sci-Fi"
+    ],
+    "cast": [
+      "Jack Nguyen",
+      "Thu Trang",
+      "Cate Blanchett"
+    ],
+    "director": "Christopher Nolan",
+    "language": "vi",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/mat_biec.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1025",
+    "rating": 6.2,
+    "releaseDate": "2025-01-04T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001026",
+    "title": "Tiec Trang Mau",
+    "description": "An epic story about mystery set in a world where every choice matters.",
+    "duration": 149,
+    "genres": [
+      "Drama",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "cast": [
+      "Khoa Nguyen",
+      "Cate Blanchett",
+      "Chi Pu",
+      "Angelina Jolie",
+      "Will"
+    ],
+    "director": "Steven Spielberg",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/tiec_trang_mau.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1026",
+    "rating": 5.7,
+    "releaseDate": "2025-06-07T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001027",
+    "title": "Hai Phuong",
+    "description": "An epic story about mystery set in a world where the past haunts the present.",
+    "duration": 167,
+    "genres": [
+      "Adventure",
+      "Horror",
+      "Crime"
+    ],
+    "cast": [
+      "Son Tung MTP",
+      "Jun Pham",
+      "Khoa Nguyen"
+    ],
+    "director": "Wes Anderson",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/hai_phuong.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1027",
+    "rating": 6.9,
+    "releaseDate": "2025-07-11T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001028",
+    "title": "Cu Ly Tinh Yeu",
+    "description": "An epic story about love set in a world where heroes are made not born.",
+    "duration": 99,
+    "genres": [
+      "Documentary",
+      "Comedy",
+      "Adventure"
+    ],
+    "cast": [
+      "Son Tung MTP",
+      "Jun Pham",
+      "Brad Pitt",
+      "Meryl Streep",
+      "Will"
+    ],
+    "director": "James Cameron",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/cu_ly_tinh_yeu.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1028",
+    "rating": 7.5,
+    "releaseDate": "2026-04-15T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001029",
+    "title": "Nhung Ke Noi Doi",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 147,
+    "genres": [
+      "Fantasy",
+      "Action"
+    ],
+    "cast": [
+      "Truong Giang",
+      "Robert Downey Jr.",
+      "Ninh Duong Lan Ngoc",
+      "Jack Nguyen",
+      "Chi Pu",
+      "Thu Trang"
+    ],
+    "director": "Denis Villeneuve",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/nhung_ke_noi_doi.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1029",
+    "rating": 5.3,
+    "releaseDate": "2026-02-19T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001030",
+    "title": "Tro Tan Ruc Ro",
+    "description": "An epic story about love set in a world where nothing is what it seems.",
+    "duration": 99,
+    "genres": [
+      "Animation"
+    ],
+    "cast": [
+      "Truong Giang",
+      "Isaac",
+      "Tom Hanks"
+    ],
+    "director": "Steven Spielberg",
+    "language": "ko_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/tro_tan_ruc_ro.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1030",
+    "rating": 6.9,
+    "releaseDate": "2025-01-24T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001031",
+    "title": "Dune: Part Two",
+    "description": "An epic story about adventure set in a world where the past haunts the present.",
+    "duration": 137,
+    "genres": [
+      "Adventure"
+    ],
+    "cast": [
+      "Thu Trang",
+      "Brad Pitt",
+      "Tom Hanks",
+      "Ninh Duong Lan Ngoc"
+    ],
+    "director": "Ridley Scott",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/dune:_part_two.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1031",
+    "rating": 6.7,
+    "releaseDate": "2026-04-02T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001032",
+    "title": "Oppenheimer",
+    "description": "An epic story about love set in a world where every choice matters.",
+    "duration": 118,
+    "genres": [
+      "Adventure",
+      "Documentary"
+    ],
+    "cast": [
+      "Hoang Yen Chibi",
+      "Ninh Duong Lan Ngoc",
+      "Cate Blanchett",
+      "Khoa Nguyen",
+      "Jun Pham",
+      "Tom Hanks"
+    ],
+    "director": "Steven Spielberg",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/oppenheimer.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1032",
+    "rating": 5.0,
+    "releaseDate": "2026-03-04T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001033",
+    "title": "Barbie",
+    "description": "An epic story about love set in a world where nothing is what it seems.",
+    "duration": 114,
+    "genres": [
+      "Thriller",
+      "Fantasy",
+      "Action"
+    ],
+    "cast": [
+      "Meryl Streep",
+      "Leonardo DiCaprio",
+      "Brad Pitt",
+      "Scarlett Johansson"
+    ],
+    "director": "Victor Vu",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/barbie.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1033",
+    "rating": 8.9,
+    "releaseDate": "2026-04-25T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001034",
+    "title": "The Batman",
+    "description": "An epic story about survival set in a world where nothing is what it seems.",
+    "duration": 176,
+    "genres": [
+      "Animation",
+      "Horror"
+    ],
+    "cast": [
+      "Scarlett Johansson",
+      "Angelina Jolie",
+      "Son Tung MTP",
+      "Truong Giang"
+    ],
+    "director": "Denis Villeneuve",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/the_batman.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1034",
+    "rating": 8.9,
+    "releaseDate": "2025-12-27T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001035",
+    "title": "Top Gun: Maverick",
+    "description": "An epic story about redemption set in a world where heroes are made not born.",
+    "duration": 130,
+    "genres": [
+      "Comedy",
+      "Adventure"
+    ],
+    "cast": [
+      "Isaac",
+      "Truong Giang",
+      "Jack Nguyen",
+      "Scarlett Johansson"
+    ],
+    "director": "Ridley Scott",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/top_gun:_maverick.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1035",
+    "rating": 7.7,
+    "releaseDate": "2025-10-23T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001036",
+    "title": "Everything Everywhere All at Once",
+    "description": "An epic story about mystery set in a world where the past haunts the present.",
+    "duration": 112,
+    "genres": [
+      "Romance"
+    ],
+    "cast": [
+      "Son Tung MTP",
+      "Kieu Minh Tuan",
+      "Isaac",
+      "Hoang Yen Chibi",
+      "Angelina Jolie",
+      "Will"
+    ],
+    "director": "Nguyen Quang Dung",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/everything_everywhere_all_at_once.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1036",
+    "rating": 8.1,
+    "releaseDate": "2025-11-17T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001037",
+    "title": "Glass Onion",
+    "description": "An epic story about survival set in a world where every choice matters.",
+    "duration": 158,
+    "genres": [
+      "Comedy",
+      "Animation",
+      "Action"
+    ],
+    "cast": [
+      "Isaac",
+      "Hoang Yen Chibi",
+      "Son Tung MTP",
+      "Angelina Jolie",
+      "Ninh Duong Lan Ngoc",
+      "Brad Pitt"
+    ],
+    "director": "Bong Joon-ho",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/glass_onion.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1037",
+    "rating": 6.1,
+    "releaseDate": "2025-08-31T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001038",
+    "title": "Nope",
+    "description": "An epic story about adventure set in a world where every choice matters.",
+    "duration": 132,
+    "genres": [
+      "Documentary"
+    ],
+    "cast": [
+      "Scarlett Johansson",
+      "Jack Nguyen",
+      "Ninh Duong Lan Ngoc",
+      "Khoa Nguyen"
+    ],
+    "director": "James Cameron",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/nope.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1038",
+    "rating": 5.4,
+    "releaseDate": "2025-11-28T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001039",
+    "title": "Babylon",
+    "description": "An epic story about survival set in a world where the past haunts the present.",
+    "duration": 165,
+    "genres": [
+      "Romance"
+    ],
+    "cast": [
+      "Robert Downey Jr.",
+      "Meryl Streep",
+      "Chi Pu",
+      "Brad Pitt",
+      "Will"
+    ],
+    "director": "Denis Villeneuve",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/babylon.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1039",
+    "rating": 8.0,
+    "releaseDate": "2026-01-06T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001040",
+    "title": "Tar",
+    "description": "An epic story about survival set in a world where every choice matters.",
+    "duration": 180,
+    "genres": [
+      "Thriller",
+      "Animation"
+    ],
+    "cast": [
+      "Truong Giang",
+      "Jack Nguyen",
+      "Thu Trang",
+      "Son Tung MTP",
+      "Will"
+    ],
+    "director": "Victor Vu",
+    "language": "vi",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/tar.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1040",
+    "rating": 6.8,
+    "releaseDate": "2025-04-15T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001041",
+    "title": "The Whale",
+    "description": "An epic story about survival set in a world where every choice matters.",
+    "duration": 150,
+    "genres": [
+      "Thriller",
+      "Action"
+    ],
+    "cast": [
+      "Angelina Jolie",
+      "Robert Downey Jr.",
+      "Jack Nguyen",
+      "Isaac"
+    ],
+    "director": "Bong Joon-ho",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/the_whale.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1041",
+    "rating": 8.8,
+    "releaseDate": "2026-01-25T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001042",
+    "title": "Women Talking",
+    "description": "An epic story about mystery set in a world where heroes are made not born.",
+    "duration": 115,
+    "genres": [
+      "Documentary",
+      "Adventure"
+    ],
+    "cast": [
+      "Jack Nguyen",
+      "Will",
+      "Chi Pu",
+      "Jun Pham",
+      "Tom Hanks"
+    ],
+    "director": "Wes Anderson",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/women_talking.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1042",
+    "rating": 6.0,
+    "releaseDate": "2025-06-18T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001043",
+    "title": "All Quiet on the Western Front",
+    "description": "An epic story about adventure set in a world where heroes are made not born.",
+    "duration": 111,
+    "genres": [
+      "Adventure",
+      "Action",
+      "Documentary"
+    ],
+    "cast": [
+      "Leonardo DiCaprio",
+      "Scarlett Johansson",
+      "Robert Downey Jr."
+    ],
+    "director": "Nguyen Quang Dung",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/all_quiet_on_the_western_front.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1043",
+    "rating": 8.2,
+    "releaseDate": "2025-03-13T00:00:00.000Z",
+    "status": "ended"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001044",
+    "title": "Decision to Leave",
+    "description": "An epic story about survival set in a world where nothing is what it seems.",
+    "duration": 170,
+    "genres": [
+      "Documentary"
+    ],
+    "cast": [
+      "Thu Trang",
+      "Scarlett Johansson",
+      "Will",
+      "Hoang Yen Chibi",
+      "Robert Downey Jr.",
+      "Son Tung MTP"
+    ],
+    "director": "Ridley Scott",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/decision_to_leave.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1044",
+    "rating": 5.3,
+    "releaseDate": "2025-04-29T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001045",
+    "title": "The Menu",
+    "description": "An epic story about redemption set in a world where every choice matters.",
+    "duration": 142,
+    "genres": [
+      "Documentary"
+    ],
+    "cast": [
+      "Tom Hanks",
+      "Brad Pitt",
+      "Chi Pu",
+      "Son Tung MTP",
+      "Angelina Jolie",
+      "Hoang Yen Chibi"
+    ],
+    "director": "Denis Villeneuve",
+    "language": "ja_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/the_menu.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1045",
+    "rating": 5.1,
+    "releaseDate": "2025-01-07T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001046",
+    "title": "Prey",
+    "description": "An epic story about redemption set in a world where the past haunts the present.",
+    "duration": 157,
+    "genres": [
+      "Romance"
+    ],
+    "cast": [
+      "Jun Pham",
+      "Chi Pu",
+      "Cate Blanchett",
+      "Hoang Yen Chibi",
+      "Truong Giang",
+      "Kieu Minh Tuan"
+    ],
+    "director": "James Cameron",
+    "language": "vi",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/prey.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1046",
+    "rating": 8.7,
+    "releaseDate": "2025-05-10T00:00:00.000Z",
+    "status": "coming_soon"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001047",
+    "title": "Bullet Train",
+    "description": "An epic story about mystery set in a world where the past haunts the present.",
+    "duration": 101,
+    "genres": [
+      "Adventure"
+    ],
+    "cast": [
+      "Tom Hanks",
+      "Leonardo DiCaprio",
+      "Will"
+    ],
+    "director": "Nguyen Quang Dung",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/bullet_train.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1047",
+    "rating": 6.7,
+    "releaseDate": "2025-07-27T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001048",
+    "title": "Elvis",
+    "description": "An epic story about mystery set in a world where nothing is what it seems.",
+    "duration": 162,
+    "genres": [
+      "Horror"
+    ],
+    "cast": [
+      "Jack Nguyen",
+      "Scarlett Johansson",
+      "Leonardo DiCaprio",
+      "Khoa Nguyen",
+      "Chi Pu",
+      "Hoang Yen Chibi"
+    ],
+    "director": "Park Chan-wook",
+    "language": "vi",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/elvis.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1048",
+    "rating": 9.4,
+    "releaseDate": "2026-03-16T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001049",
+    "title": "Avatar: The Way of Water",
+    "description": "An epic story about adventure set in a world where nothing is what it seems.",
+    "duration": 116,
+    "genres": [
+      "Comedy",
+      "Fantasy"
+    ],
+    "cast": [
+      "Chi Pu",
+      "Ninh Duong Lan Ngoc",
+      "Hoang Yen Chibi",
+      "Kieu Minh Tuan"
+    ],
+    "director": "Nguyen Quang Dung",
+    "language": "en",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/avatar:_the_way_of_water.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1049",
+    "rating": 5.6,
+    "releaseDate": "2025-10-28T00:00:00.000Z",
+    "status": "now_showing"
+  },
+  {
+    "_id": "ObjectId_000000000000000000001050",
+    "title": "Black Panther: Wakanda Forever",
+    "description": "An epic story about redemption set in a world where nothing is what it seems.",
+    "duration": 178,
+    "genres": [
+      "Thriller"
+    ],
+    "cast": [
+      "Leonardo DiCaprio",
+      "Kieu Minh Tuan",
+      "Ninh Duong Lan Ngoc",
+      "Chi Pu"
+    ],
+    "director": "Christopher Nolan",
+    "language": "en_sub",
+    "posterUrl": "https://cdn.moviebooking.vn/posters/black_panther:_wakanda_forever.jpg",
+    "trailerUrl": "https://youtube.com/watch?v=trailer1050",
+    "rating": 5.4,
+    "releaseDate": "2026-01-06T00:00:00.000Z",
+    "status": "now_showing"
+  }
+]
