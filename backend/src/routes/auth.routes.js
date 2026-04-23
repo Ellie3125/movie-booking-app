@@ -51,6 +51,13 @@ router.post(
   validate(authValidation.changePasswordSchema),
   authController.changePassword
 );
+router.post(
+  '/admins',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.authorizeRoles('admin'),
+  validate(authValidation.createAdminSchema),
+  authController.createAdmin
+);
 router.get('/me', authMiddleware.verifyAccessToken, authController.getCurrentUser);
 
 module.exports = router;

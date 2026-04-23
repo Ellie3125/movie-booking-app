@@ -8,7 +8,7 @@ const mapValidationDetails = (details = []) =>
     message: detail.message,
   }));
 
-module.exports = (schemaMap) => (req, res, next) => {
+module.exports = (schemaMap) => (req, _res, next) => {
   try {
     REQUEST_SEGMENTS.forEach((segment) => {
       const schema = schemaMap[segment];

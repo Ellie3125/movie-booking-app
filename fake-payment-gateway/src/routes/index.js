@@ -4,7 +4,7 @@ const gatewayPageRoutes = require('./gatewayPage.routes');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
   res.json({
     success: true,
     message: 'Fake Payment Gateway is running',

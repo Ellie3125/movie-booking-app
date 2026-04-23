@@ -97,23 +97,23 @@ module.exports = {
   nodeEnv,
   trustProxy: parseTrustProxy(process.env.TRUST_PROXY),
   rateLimitWindowMs: Number(process.env.RATE_LIMIT_WINDOW_MS || 60000),
-  rateLimitMaxRequests: Number(process.env.RATE_LIMIT_MAX_REQUESTS || 120),
+  rateLimitMaxRequests: Number(process.env.RATE_LIMIT_MAX_REQUESTS || 600),
   authRateLimitWindowMs: Number(
     process.env.AUTH_RATE_LIMIT_WINDOW_MS || 60000
   ),
   authRateLimitMaxRequests: Number(
-    process.env.AUTH_RATE_LIMIT_MAX_REQUESTS || 10
+    process.env.AUTH_RATE_LIMIT_MAX_REQUESTS || 60
   ),
   bookingRateLimitWindowMs: Number(
     process.env.BOOKING_RATE_LIMIT_WINDOW_MS || 60000
   ),
   bookingRateLimitMaxRequests: Number(
-    process.env.BOOKING_RATE_LIMIT_MAX_REQUESTS || 8
+    process.env.BOOKING_RATE_LIMIT_MAX_REQUESTS || 50
   ),
   paymentRateLimitWindowMs: Number(
     process.env.PAYMENT_RATE_LIMIT_WINDOW_MS || 60000
   ),
   paymentRateLimitMaxRequests: Number(
-    process.env.PAYMENT_RATE_LIMIT_MAX_REQUESTS || 5
+    process.env.PAYMENT_RATE_LIMIT_MAX_REQUESTS || 40
   )
 };

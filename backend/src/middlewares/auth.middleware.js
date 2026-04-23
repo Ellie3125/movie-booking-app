@@ -28,7 +28,7 @@ const verifyPasswordChangeState = (user, decoded) => {
   }
 };
 
-const verifyAccess = async (req, res, next) => {
+const verifyAccess = async (req, _res, next) => {
   try {
     const token = extractBearerToken(req.headers.authorization);
 
@@ -85,7 +85,7 @@ const verifyAccess = async (req, res, next) => {
   }
 };
 
-const authorizeRoles = (...allowedRoles) => (req, res, next) => {
+const authorizeRoles = (...allowedRoles) => (req, _res, next) => {
   if (!req.user) {
     return next(
       ApiError.unauthorized(

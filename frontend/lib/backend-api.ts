@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
 type ApiSuccessResponse<T> = {
@@ -78,7 +79,7 @@ export type BackendRoomSeat = {
     coordinateLabel: string;
   };
   seatLabel: string | null;
-  seatType: 'standard' | 'vip' | 'couple' | 'accessible' | null;
+  seatType: 'standard' | 'couple' | null;
   priceModifier: number;
 };
 
@@ -107,7 +108,7 @@ export type BackendRoomMutationPayload = {
 export type BackendShowtimeSeatState = {
   seatCoordinate: string;
   seatLabel: string;
-  seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+  seatType: 'standard' | 'couple';
   status: 'available' | 'held' | 'reserved' | 'paid';
   userId: string | null;
   bookingId: string | null;
@@ -149,7 +150,7 @@ export type BackendShowtimeDetail = BackendShowtimeListItem & {
 export type BackendBookingSeat = {
   seatCoordinate: string;
   seatLabel: string;
-  seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+  seatType: 'standard' | 'couple';
   status: 'held' | 'paid';
   price: number;
 };
@@ -159,7 +160,7 @@ export type BackendBooking = {
   bookingCode: string | null;
   status: 'held' | 'paid' | 'cancelled';
   paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-  paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox' | null;
+  paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY' | null;
   currency: string;
   totalPrice: number;
   ticketCount: number;
@@ -250,7 +251,7 @@ export type BackendPaymentResult = {
   transactionCode: string;
   status: 'held' | 'paid' | 'cancelled';
   paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-  paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox';
+  paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY';
   paidAmount: number;
   currency: string;
   paidAt: string;
@@ -261,7 +262,7 @@ export type BackendPaymentResult = {
     seat: {
       seatCoordinate: string;
       seatLabel: string;
-      seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+      seatType: 'standard' | 'couple';
     };
     price: number;
     issuedAt: string;
@@ -277,14 +278,14 @@ export type BackendTicket = {
   seat: {
     seatCoordinate: string;
     seatLabel: string;
-    seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+    seatType: 'standard' | 'couple';
   };
   booking: {
     id: string;
     bookingCode: string | null;
     status: 'held' | 'paid' | 'cancelled';
     paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-    paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox' | null;
+    paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY' | null;
     totalPrice: number;
     currency: string;
     paidAt: string | null;
@@ -318,6 +319,18 @@ export type BackendTicket = {
   } | null;
 };
 
+const resolveExpoHost = () => {
+  const rawHostUri = Constants.expoConfig?.hostUri ?? Constants.linkingUri ?? '';
+  const normalizedHostUri = rawHostUri.replace(/^[a-z]+:\/\//i, '');
+  const host = normalizedHostUri.split('/')[0]?.split(':')[0]?.trim();
+
+  if (!host || host === 'localhost' || host === '127.0.0.1') {
+    return null;
+  }
+
+  return host;
+};
+
 const resolveBaseUrl = () => {
   const configuredBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL?.trim();
 
@@ -325,9 +338,15 @@ const resolveBaseUrl = () => {
     return configuredBaseUrl.replace(/\/$/, '');
   }
 
+  const expoHost = resolveExpoHost();
+
+  if (expoHost) {
+    return `http://${expoHost}:5000/api/v1`;
+  }
+
   return Platform.OS === 'android'
     ? 'http://10.0.2.2:5000/api/v1'
-    : 'http://localhost:5000/api/v1';
+    : 'http://127.0.0.1:5000/api/v1';
 };
 
 const API_BASE_URL = resolveBaseUrl();
@@ -376,6 +395,21 @@ export async function registerUser(payload: {
 }) {
   return apiRequest<BackendAuthResponse>('/auth/register', {
     method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function createAdminUser(
+  token: string,
+  payload: {
+    name: string;
+    email: string;
+    password: string;
+  },
+) {
+  return apiRequest<BackendUser>('/auth/admins', {
+    method: 'POST',
+    token,
     body: JSON.stringify(payload),
   });
 }
@@ -482,7 +516,7 @@ export async function payBookingBill(
   token: string,
   bookingId: string,
   payload: {
-    paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox';
+    paymentMethod: 'momo_sandbox' | 'vnpay_sandbox';
     billId: string;
     paidAmount: number;
     currency: string;

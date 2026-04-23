@@ -84,6 +84,80 @@ const buildRoomSeatMap = (room) =>
     ])
   );
 
+const buildEdgeSeatConflictMessage = (seatLabel) =>
+  `Không thể để trống ghế ngoài cùng ${seatLabel}. Hãy chọn thêm ${seatLabel} hoặc đổi ghế khác.`;
+
+const getEdgeSeatSelectionConflict = ({
+  seatLayout = [],
+  seatStates = [],
+  selectedCoordinates = [],
+}) => {
+  const stateMap = new Map(
+    seatStates.map((seatState) => [
+      String(seatState.seatCoordinate).trim().toUpperCase(),
+      seatState,
+    ])
+  );
+  const selectedSet = new Set(
+    selectedCoordinates.map((seatCoordinate) =>
+      String(seatCoordinate).trim().toUpperCase()
+    )
+  );
+
+  for (const row of seatLayout) {
+    const rowSeats = row
+      .filter((seat) => seat && seat.cellType === 'seat' && seat.coordinate)
+      .map((seat) => {
+        const coordinate = String(seat.coordinate.coordinateLabel)
+          .trim()
+          .toUpperCase();
+
+        return {
+          coordinate,
+          label: seat.seatLabel || coordinate,
+          isSelected: selectedSet.has(coordinate),
+          status: stateMap.get(coordinate)?.status || SHOWTIME_SEAT_STATUS.AVAILABLE,
+        };
+      });
+
+    if (rowSeats.length < 2) {
+      continue;
+    }
+
+    const firstSeat = rowSeats[0];
+    const secondSeat = rowSeats[1];
+
+    if (
+      firstSeat.status === SHOWTIME_SEAT_STATUS.AVAILABLE &&
+      !firstSeat.isSelected &&
+      secondSeat.isSelected
+    ) {
+      return {
+        side: 'left',
+        seatLabel: firstSeat.label,
+        message: buildEdgeSeatConflictMessage(firstSeat.label),
+      };
+    }
+
+    const lastSeat = rowSeats[rowSeats.length - 1];
+    const beforeLastSeat = rowSeats[rowSeats.length - 2];
+
+    if (
+      lastSeat.status === SHOWTIME_SEAT_STATUS.AVAILABLE &&
+      !lastSeat.isSelected &&
+      beforeLastSeat.isSelected
+    ) {
+      return {
+        side: 'right',
+        seatLabel: lastSeat.label,
+        message: buildEdgeSeatConflictMessage(lastSeat.label),
+      };
+    }
+  }
+
+  return null;
+};
+
 const getSeatPrice = (seatType) => {
   const price = SEAT_PRICE_MAP[seatType];
 
@@ -291,6 +365,24 @@ const createBooking = async ({ userId, showtimeId, seatCoordinates }) => {
     ])
   );
   const normalizedSeatCoordinates = normalizeSeatCoordinates(seatCoordinates);
+  const edgeSeatConflict = getEdgeSeatSelectionConflict({
+    seatLayout: room.seatLayout,
+    seatStates: showtime.seatStates,
+    selectedCoordinates: normalizedSeatCoordinates,
+  });
+
+  if (edgeSeatConflict) {
+    throw ApiError.badRequest(
+      edgeSeatConflict.message,
+      'EDGE_SEAT_SELECTION_CONFLICT',
+      [
+        {
+          path: 'seatCoordinates',
+          message: edgeSeatConflict.message,
+        },
+      ]
+    );
+  }
 
   const seats = normalizedSeatCoordinates.map((seatCoordinate) => {
     const roomSeat = roomSeatMap.get(seatCoordinate);

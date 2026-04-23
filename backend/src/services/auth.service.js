@@ -91,7 +91,7 @@ const assertUserCanAuthenticate = (user) => {
   }
 };
 
-const register = async ({ name, email, password, rememberMe = false }, metadata) => {
+const createUserAccount = async ({ name, email, password, role = 'user' }) => {
   const existingUser = await User.findOne({ email }).lean().exec();
 
   if (existingUser) {
@@ -99,16 +99,44 @@ const register = async ({ name, email, password, rememberMe = false }, metadata)
   }
 
   const hashedPassword = await bcrypt.hash(password, PASSWORD_SALT_ROUNDS);
-  const user = await User.create({
+  return User.create({
     name,
     email,
     password: hashedPassword,
+    role,
+  });
+};
+
+const register = async ({ name, email, password, rememberMe = false }, metadata) => {
+  const user = await createUserAccount({
+    name,
+    email,
+    password,
+    role: 'user',
   });
 
   return buildAuthResponse(user, {
     rememberMe,
     metadata,
   });
+};
+
+const createAdmin = async ({ name, email, password }, currentUser) => {
+  if (currentUser?.role !== 'admin') {
+    throw ApiError.forbidden(
+      'Only admins can create another admin account',
+      'ADMIN_REQUIRED'
+    );
+  }
+
+  const user = await createUserAccount({
+    name,
+    email,
+    password,
+    role: 'admin',
+  });
+
+  return sanitizeUser(user);
 };
 
 const login = async ({ email, password, rememberMe = false }, metadata) => {
@@ -339,6 +367,7 @@ const getCurrentUser = async (userId) => {
 
 module.exports = {
   changePassword,
+  createAdmin,
   getCurrentUser,
   login,
   logout,

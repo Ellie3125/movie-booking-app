@@ -26,14 +26,14 @@ const palette = {
     border: 'rgba(159, 176, 208, 0.16)',
   },
   user: {
-    canvas: '#FFF7E8',
-    panel: '#FFFDF7',
-    panelAlt: '#FFF1D6',
-    text: '#4B2E22',
-    muted: '#8C6856',
-    accent: '#E87A22',
-    accentSoft: 'rgba(232, 122, 34, 0.12)',
-    border: 'rgba(140, 104, 86, 0.16)',
+    canvas: '#FFF8EF',
+    panel: '#FFFFFF',
+    panelAlt: '#FFF9F0',
+    text: '#2F2018',
+    muted: '#7C6655',
+    accent: '#F58220',
+    accentSoft: 'rgba(245, 130, 32, 0.12)',
+    border: 'rgba(188, 132, 82, 0.18)',
   },
 } as const;
 
@@ -50,6 +50,7 @@ export function PageScroll({
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.canvas }]}>
       <View
+        pointerEvents="none"
         style={[
           styles.glow,
           styles.glowPrimary,
@@ -57,6 +58,7 @@ export function PageScroll({
         ]}
       />
       <View
+        pointerEvents="none"
         style={[
           styles.glow,
           styles.glowSecondary,

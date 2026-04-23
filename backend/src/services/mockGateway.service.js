@@ -389,7 +389,7 @@ const postJson = (targetUrl, payload) =>
 
           try {
             parsedBody = responseBody ? JSON.parse(responseBody) : null;
-          } catch (error) {
+          } catch {
             parsedBody = null;
           }
 

@@ -17,6 +17,16 @@ const register = asyncHandler(async (req, res) => {
   });
 });
 
+const createAdmin = asyncHandler(async (req, res) => {
+  const data = await authService.createAdmin(req.body, req.user);
+
+  return sendApiResponse(res, {
+    statusCode: 201,
+    message: 'Admin account created successfully',
+    data,
+  });
+});
+
 const login = asyncHandler(async (req, res) => {
   const data = await authService.login(req.body, getRequestMetadata(req));
 
@@ -76,6 +86,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 module.exports = {
   changePassword,
+  createAdmin,
   register,
   login,
   logout,

@@ -17,7 +17,6 @@ Skill này không bao gồm:
 - business config cho nghiệp vụ
 - payment config
 - booking config
-- recommendation config
 - chatbot config
 - third-party integration config
 - frontend config

@@ -16,6 +16,52 @@ import { SeatLayoutGrid } from '@/components/ui/seat-layout-grid';
 import { type RoomSeat, useAppStore } from '@/lib/app-store';
 
 const rowLetter = (rowIndex: number) => String.fromCharCode(65 + rowIndex);
+const OUTER_COLUMN_MESSAGE = 'Không thể để trống ghế ở cột 1 hoặc cột cuối.';
+
+const parseSeatCoordinate = (coordinate: string) => {
+  const normalizedCoordinate = coordinate.trim().toUpperCase();
+  const match = normalizedCoordinate.match(/^([A-Z])(\d+)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    coordinate: normalizedCoordinate,
+    rowIndex: match[1].charCodeAt(0) - 65,
+    columnNumber: Number(match[2]),
+  };
+};
+
+const findOuterColumnHiddenCoordinates = ({
+  totalRows,
+  totalColumns,
+  hiddenCoordinates,
+}: {
+  totalRows: number;
+  totalColumns: number;
+  hiddenCoordinates: string[];
+}) =>
+  [...new Set(hiddenCoordinates.map((item) => item.toUpperCase()))].filter((coordinate) => {
+    const parsedCoordinate = parseSeatCoordinate(coordinate);
+
+    if (!parsedCoordinate) {
+      return false;
+    }
+
+    const withinRowRange =
+      parsedCoordinate.rowIndex >= 0 && parsedCoordinate.rowIndex < totalRows;
+    const withinColumnRange =
+      parsedCoordinate.columnNumber >= 1 &&
+      parsedCoordinate.columnNumber <= totalColumns;
+
+    return (
+      withinRowRange &&
+      withinColumnRange &&
+      (parsedCoordinate.columnNumber === 1 ||
+        parsedCoordinate.columnNumber === totalColumns)
+    );
+  });
 
 const buildPreviewLayout = (
   totalRows: number,
@@ -105,6 +151,17 @@ export default function AdminSeatLayoutScreen() {
 
   const handleSeatPress = (seat: RoomSeat) => {
     const coordinate = seat.coordinate.coordinateLabel.toUpperCase();
+    const isCurrentlyHidden = hiddenCoordinates.includes(coordinate);
+    const isOuterColumn =
+      seat.coordinate.columnIndex === 0 ||
+      seat.coordinate.columnIndex === totalColumns - 1;
+
+    if (!isCurrentlyHidden && isOuterColumn) {
+      setFeedback(OUTER_COLUMN_MESSAGE);
+      return;
+    }
+
+    setFeedback(null);
 
     setHiddenCoordinates((current) =>
       current.includes(coordinate)
@@ -114,11 +171,26 @@ export default function AdminSeatLayoutScreen() {
   };
 
   const applyGrid = () => {
+    setFeedback(null);
     setHiddenCoordinates([]);
   };
 
   const saveLayout = async () => {
     if (!room) {
+      return;
+    }
+
+    const blockedCoordinates = findOuterColumnHiddenCoordinates({
+      totalRows,
+      totalColumns,
+      hiddenCoordinates,
+    });
+
+    if (blockedCoordinates.length > 0) {
+      const blockedPreview = blockedCoordinates.slice(0, 4).join(', ');
+      setFeedback(
+        `${OUTER_COLUMN_MESSAGE} (${blockedPreview}${blockedCoordinates.length > 4 ? ', ...' : ''})`,
+      );
       return;
     }
 
@@ -161,7 +233,10 @@ export default function AdminSeatLayoutScreen() {
                 keyboardType="numeric"
                 style={[styles.input, { color: colors.text, borderColor: colors.border }]}
                 value={rows}
-                onChangeText={setRows}
+                onChangeText={(value) => {
+                  setFeedback(null);
+                  setRows(value);
+                }}
               />
               <TextInput
                 placeholder="Columns"
@@ -169,7 +244,10 @@ export default function AdminSeatLayoutScreen() {
                 keyboardType="numeric"
                 style={[styles.input, { color: colors.text, borderColor: colors.border }]}
                 value={columns}
-                onChangeText={setColumns}
+                onChangeText={(value) => {
+                  setFeedback(null);
+                  setColumns(value);
+                }}
               />
             </View>
             <ActionButton
@@ -180,7 +258,11 @@ export default function AdminSeatLayoutScreen() {
             />
           </SectionCard>
 
-          <SectionTitle tone="admin" title="Seat builder" />
+          <SectionTitle
+            tone="admin"
+            title="Seat builder"
+            description="Nhấn vào ghế để ẩn hoặc khôi phục. Cột 1 và cột cuối luôn phải có ghế."
+          />
           <SectionCard tone="admin">
             <SeatLayoutGrid layout={previewLayout} mode="admin" onPressSeat={handleSeatPress} />
           </SectionCard>

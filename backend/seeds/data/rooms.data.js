@@ -2,21 +2,18 @@ const { createSeatLayout } = require("./seat-layout.helper");
 
 const createRoomTemplate = () => ({
   totalRows: 6,
-  totalColumns: 10,
-  seatLayout: createSeatLayout({
-    totalRows: 6,
     totalColumns: 10,
-    hiddenCoordinates: ["A1", "A6", "B6", "C1", "C6", "D6", "E6", "F1"],
-    seatTypeOverrides: {
-      D9: "vip",
-      D10: "vip",
-      E9: "couple",
-      E10: "couple",
-      F8: "vip",
-      F9: "couple",
-      F10: "couple",
-    },
-  }),
+    seatLayout: createSeatLayout({
+      totalRows: 6,
+      totalColumns: 10,
+      hiddenCoordinates: ["A5", "A6", "B6", "C5", "C6", "D6", "E6", "F5"],
+      seatTypeOverrides: {
+        E9: "couple",
+        E10: "couple",
+        F9: "couple",
+        F10: "couple",
+      },
+    }),
 });
 
 const createLargeRoomTemplate = () => ({
@@ -26,8 +23,8 @@ const createLargeRoomTemplate = () => ({
     totalRows: 8,
     totalColumns: 12,
     hiddenCoordinates: [
-      "A1",
-      "A12",
+      "A6",
+      "A7",
       "B6",
       "B7",
       "C6",
@@ -38,16 +35,10 @@ const createLargeRoomTemplate = () => ({
       "E7",
       "F6",
       "F7",
-      "G1",
-      "G12",
+      "G6",
+      "G7",
     ],
     seatTypeOverrides: {
-      A2: "accessible",
-      A11: "accessible",
-      E10: "vip",
-      E11: "vip",
-      F10: "vip",
-      F11: "vip",
       G9: "couple",
       G10: "couple",
       G11: "couple",
@@ -67,11 +58,6 @@ const createCompactRoomTemplate = () => ({
     totalColumns: 8,
     hiddenCoordinates: ["A4", "B4", "C4", "D4", "E4"],
     seatTypeOverrides: {
-      A1: "accessible",
-      D7: "vip",
-      D8: "vip",
-      E5: "vip",
-      E6: "vip",
       E7: "couple",
       E8: "couple",
     },
@@ -86,11 +72,6 @@ const createPremiumRoomTemplate = () => ({
     totalColumns: 6,
     hiddenCoordinates: ["A3", "B3", "C3", "D3", "E3"],
     seatTypeOverrides: {
-      A1: "accessible",
-      B5: "vip",
-      B6: "vip",
-      C5: "vip",
-      C6: "vip",
       D5: "couple",
       D6: "couple",
       E5: "couple",
@@ -154,10 +135,6 @@ module.exports = [
       totalColumns: 8,
       hiddenCoordinates: ["A4", "B4", "C4", "D4"],
       seatTypeOverrides: {
-        A7: "vip",
-        A8: "vip",
-        B7: "vip",
-        B8: "vip",
         C7: "couple",
         C8: "couple",
         D7: "couple",

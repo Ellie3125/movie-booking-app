@@ -3,9 +3,7 @@ const { TICKET_STATUS } = require('../constants/payment.constants');
 
 const SEAT_TYPE = {
   STANDARD: 'standard',
-  VIP: 'vip',
   COUPLE: 'couple',
-  ACCESSIBLE: 'accessible',
 };
 
 const TicketSeatSchema = new mongoose.Schema(

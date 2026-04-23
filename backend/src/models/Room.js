@@ -7,9 +7,7 @@ const SEAT_CELL_TYPE = {
 
 const SEAT_TYPE = {
   STANDARD: "standard",
-  VIP: "vip",
   COUPLE: "couple",
-  ACCESSIBLE: "accessible",
 };
 
 const SeatCoordinateSchema = new mongoose.Schema(

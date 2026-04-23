@@ -38,6 +38,17 @@ const registerSchema = {
   }),
 };
 
+const createAdminSchema = {
+  body: strictObject({
+    name: Joi.string().trim().min(2).max(120).required().label('name').messages({
+      'string.min': 'name must be at least 2 characters',
+      'string.max': 'name must be at most 120 characters',
+    }),
+    email: emailSchema,
+    password: passwordSchema,
+  }),
+};
+
 const loginSchema = {
   body: strictObject({
     email: emailSchema,
@@ -67,6 +78,7 @@ const changePasswordSchema = {
 
 module.exports = {
   changePasswordSchema,
+  createAdminSchema,
   refreshTokenRequestSchema,
   registerSchema,
   loginSchema,

@@ -76,7 +76,7 @@ const seedUsers = async () => {
   const passwordCache = new Map();
 
   const preparedUsers = await Promise.all(
-    usersData.map(async ({ key, password, ...user }) => {
+    usersData.map(async ({ key: _key, password, ...user }) => {
       if (!passwordCache.has(password)) {
         passwordCache.set(password, await bcrypt.hash(password, 10));
       }
@@ -93,7 +93,7 @@ const seedUsers = async () => {
 };
 
 const seedMovies = async () => {
-  const preparedMovies = moviesData.map(({ key, releaseDate, ...movie }) => ({
+  const preparedMovies = moviesData.map(({ key: _key, releaseDate, ...movie }) => ({
     ...movie,
     releaseDate: new Date(releaseDate),
   }));
@@ -103,13 +103,13 @@ const seedMovies = async () => {
 };
 
 const seedCinemas = async () => {
-  const preparedCinemas = cinemasData.map(({ key, ...cinema }) => cinema);
+  const preparedCinemas = cinemasData.map(({ key: _key, ...cinema }) => cinema);
   const docs = await Cinema.insertMany(preparedCinemas);
   return mapInsertedByKey(cinemasData, docs);
 };
 
 const seedRooms = async (cinemaLookup) => {
-  const preparedRooms = roomsData.map(({ key, cinemaKey, ...room }) => ({
+  const preparedRooms = roomsData.map(({ key: _key, cinemaKey, ...room }) => ({
     ...room,
     cinemaId: getRequiredDoc(cinemaLookup, cinemaKey, "cinema")._id,
   }));
@@ -121,7 +121,7 @@ const seedRooms = async (cinemaLookup) => {
 const seedShowtimes = async (movieLookup, cinemaLookup, roomLookup, userLookup) => {
   const preparedShowtimes = showtimesData.map(
     ({
-      key,
+      key: _key,
       movieKey,
       cinemaKey,
       roomKey,
@@ -169,7 +169,7 @@ const seedShowtimes = async (movieLookup, cinemaLookup, roomLookup, userLookup) 
 
 const seedBookings = async (userLookup, movieLookup, showtimeLookup, roomLookup) => {
   const preparedBookings = bookingsData.map(
-    ({ key, userKey, movieKey, showtimeKey, roomKey, ...booking }) => ({
+    ({ key: _key, userKey, movieKey, showtimeKey, roomKey, ...booking }) => ({
       ...booking,
       userId: getRequiredDoc(userLookup, userKey, "user")._id,
       movieId: getRequiredDoc(movieLookup, movieKey, "movie")._id,
@@ -190,7 +190,7 @@ const seedTickets = async (
   roomLookup,
 ) => {
   const preparedTickets = ticketsData.map(
-    ({ key, bookingKey, userKey, movieKey, showtimeKey, roomKey, ...ticket }) => ({
+    ({ key: _key, bookingKey, userKey, movieKey, showtimeKey, roomKey, ...ticket }) => ({
       ...ticket,
       bookingId: getRequiredDoc(bookingLookup, bookingKey, "booking")._id,
       userId: getRequiredDoc(userLookup, userKey, "user")._id,

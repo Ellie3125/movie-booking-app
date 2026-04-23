@@ -43,8 +43,81 @@ const ensureCinemaExists = async (cinemaId) => {
 const normalizeHiddenCoordinates = (hiddenCoordinates = []) =>
   [...new Set(hiddenCoordinates.map((coordinate) => coordinate.toUpperCase()))];
 
+const parseSeatCoordinate = (coordinate) => {
+  const normalizedCoordinate = String(coordinate).trim().toUpperCase();
+  const match = normalizedCoordinate.match(/^([A-Z])(\d+)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    coordinate: normalizedCoordinate,
+    rowIndex: match[1].charCodeAt(0) - 65,
+    columnNumber: Number(match[2]),
+  };
+};
+
+const findOuterColumnHiddenCoordinates = ({
+  totalRows,
+  totalColumns,
+  hiddenCoordinates = [],
+}) =>
+  normalizeHiddenCoordinates(hiddenCoordinates).filter((coordinate) => {
+    const parsedCoordinate = parseSeatCoordinate(coordinate);
+
+    if (!parsedCoordinate) {
+      return false;
+    }
+
+    const withinRowRange =
+      parsedCoordinate.rowIndex >= 0 && parsedCoordinate.rowIndex < totalRows;
+    const withinColumnRange =
+      parsedCoordinate.columnNumber >= 1 &&
+      parsedCoordinate.columnNumber <= totalColumns;
+
+    return (
+      withinRowRange &&
+      withinColumnRange &&
+      (parsedCoordinate.columnNumber === 1 ||
+        parsedCoordinate.columnNumber === totalColumns)
+    );
+  });
+
+const assertNoOuterColumnSeatsAreHidden = ({
+  totalRows,
+  totalColumns,
+  hiddenCoordinates = [],
+}) => {
+  const blockedCoordinates = findOuterColumnHiddenCoordinates({
+    totalRows,
+    totalColumns,
+    hiddenCoordinates,
+  });
+
+  if (blockedCoordinates.length === 0) {
+    return;
+  }
+
+  const blockedPreview = blockedCoordinates.slice(0, 4).join(', ');
+
+  throw ApiError.badRequest(
+    `Seats in the first and last columns cannot be hidden (${blockedPreview}${blockedCoordinates.length > 4 ? ', ...' : ''})`,
+    'ROOM_EDGE_SEATS_MUST_EXIST',
+    blockedCoordinates.map((coordinate) => ({
+      path: 'hiddenCoordinates',
+      message: `Seat ${coordinate} cannot be hidden because it is in the first or last column.`,
+    }))
+  );
+};
+
 const buildRoomPayload = (payload, currentRoom = null) => {
   const hiddenCoordinates = normalizeHiddenCoordinates(payload.hiddenCoordinates);
+  assertNoOuterColumnSeatsAreHidden({
+    totalRows: payload.totalRows,
+    totalColumns: payload.totalColumns,
+    hiddenCoordinates,
+  });
   const seatTypeOverrides = currentRoom
     ? extractSeatTypeOverrides(currentRoom.seatLayout)
     : {};

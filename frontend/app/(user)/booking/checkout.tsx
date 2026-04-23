@@ -17,7 +17,6 @@ import { type PaymentMethod, useAppStore } from '@/lib/app-store';
 import { formatLocationName, formatPaymentMethod } from '@/lib/user-display';
 
 const paymentMethods: { label: string; value: PaymentMethod }[] = [
-  { label: 'Tiền mặt', value: 'cash' },
   { label: 'MoMo Sandbox', value: 'momo_sandbox' },
   { label: 'VNPay Sandbox', value: 'vnpay_sandbox' },
 ];
@@ -57,7 +56,10 @@ export default function CheckoutScreen() {
         return;
       }
 
-      router.replace('/bookings');
+      router.replace({
+        pathname: '/(user)/bookings/[bookingId]',
+        params: { bookingId: booking.id },
+      });
     } catch (checkoutError) {
       setError(
         checkoutError instanceof Error
@@ -73,7 +75,11 @@ export default function CheckoutScreen() {
     <PageScroll tone="user">
       <Stack.Screen options={{ title: 'Thanh toán' }} />
       {!draftCheckout || !movie || !showtime || !cinema ? (
-        <EmptyNotice tone="user" title="Không có phiên thanh toán" />
+        <EmptyNotice
+          tone="user"
+          title="Không có phiên thanh toán"
+          description="Hãy quay lại màn chọn ghế để bắt đầu lại phiên thanh toán."
+        />
       ) : (
         <>
           <HeroCard
@@ -99,7 +105,8 @@ export default function CheckoutScreen() {
               Tổng tiền {draftCheckout.totalPrice.toLocaleString('vi-VN')} VND
             </Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              Giữ ghế đến {new Date(draftCheckout.heldUntil).toLocaleString('vi-VN')}
+              Hoàn tất thanh toán trước{' '}
+              {new Date(draftCheckout.heldUntil).toLocaleString('vi-VN')}
             </Text>
           </SectionCard>
 
@@ -127,7 +134,7 @@ export default function CheckoutScreen() {
             />
             <ActionButton
               tone="user"
-              label={submitting ? 'Đang xử lý...' : 'Hủy phiên giữ ghế'}
+              label={submitting ? 'Đang xử lý...' : 'Hủy thanh toán'}
               variant="secondary"
               onPress={handleCancel}
               disabled={submitting}

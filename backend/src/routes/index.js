@@ -11,7 +11,7 @@ const mockGatewayRoutes = require('./mockGateway.routes');
 
 const router = express.Router();
 
-router.get('/api/v1', (req, res) => {
+router.get('/api/v1', (_req, res) => {
   res.json({
     success: true,
     message: 'Movie Booking API v1 is running',

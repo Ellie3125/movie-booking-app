@@ -12,8 +12,7 @@ const createSeatCell = (rowIndex, columnIndex, seatNumber, seatType) => ({
   },
   seatLabel: `${rowLetter(rowIndex)}${seatNumber}`,
   seatType,
-  priceModifier:
-    seatType === 'vip' ? 1.25 : seatType === 'couple' ? 1.5 : 1,
+  priceModifier: seatType === 'couple' ? 1.5 : 1,
 });
 
 const createEmptyCell = (rowIndex, columnIndex) => ({
@@ -49,14 +48,7 @@ const createSeatLayout = ({
       }
 
       visibleSeatIndex += 1;
-      const seatType =
-        seatTypeOverrides[coordinateLabel] ??
-        (rowIndex === totalRows - 1
-          ? 'vip'
-          : rowIndex === totalRows - 2 &&
-              columnIndex >= Math.max(0, totalColumns - 2)
-            ? 'couple'
-            : 'standard');
+      const seatType = seatTypeOverrides[coordinateLabel] ?? 'standard';
 
       return createSeatCell(rowIndex, columnIndex, visibleSeatIndex, seatType);
     });
