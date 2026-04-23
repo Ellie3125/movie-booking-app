@@ -20,7 +20,6 @@ Skill này không bao gồm:
 - booking
 - payment
 - seat processing
-- recommendation
 - chatbot
 - frontend
 - mobile

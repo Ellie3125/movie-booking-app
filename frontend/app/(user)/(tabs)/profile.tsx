@@ -38,29 +38,14 @@ export default function ProfileTabScreen() {
       <HeroCard
         tone="user"
         eyebrow="Tài khoản"
-        title={currentUser?.name ?? 'Phiên người dùng'}
-        description="Trang hồ sơ hiển thị thông tin tài khoản thật, thống kê đặt vé và thao tác đăng xuất khỏi phiên hiện tại.">
+        title={currentUser?.name ?? 'Phiên người dùng'}>
         <View style={styles.metrics}>
-          <MetricTile
-            tone="user"
-            value={String(myBookings.length)}
-            label="Lượt đặt"
-            helper="Số booking backend của người dùng hiện tại."
-          />
-          <MetricTile
-            tone="user"
-            value={totalSpent.toLocaleString('vi-VN')}
-            label="Tổng chi"
-            helper="Tổng chi phí của các booking đã thanh toán."
-          />
+          <MetricTile tone="user" value={String(myBookings.length)} label="Lượt đặt" />
+          <MetricTile tone="user" value={totalSpent.toLocaleString('vi-VN')} label="Tổng chi" />
         </View>
       </HeroCard>
 
-      <SectionTitle
-        tone="user"
-        title="Thông tin tài khoản"
-        description="Ứng dụng người dùng đã dùng auth thật và lưu phiên giữa các lần mở app."
-      />
+      <SectionTitle tone="user" title="Thông tin tài khoản" />
       <SectionCard tone="user">
         <Text style={[styles.cardTitle, { color: colors.text }]}>Email</Text>
         <Text style={[styles.cardCopy, { color: colors.muted }]}>
@@ -79,11 +64,7 @@ export default function ProfileTabScreen() {
         </Text>
       </SectionCard>
 
-      <SectionTitle
-        tone="user"
-        title="Đăng xuất"
-        description="Thoát khỏi tài khoản sẽ xóa token đã lưu và hủy booking nháp nếu backend vẫn đang giữ ghế."
-      />
+      <SectionTitle tone="user" title="Đăng xuất" />
       <SectionCard tone="user">
         <Pressable
           style={({ pressed }) => [

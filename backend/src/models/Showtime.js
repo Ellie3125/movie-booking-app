@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 
 const SEAT_TYPE = {
   STANDARD: "standard",
-  VIP: "vip",
   COUPLE: "couple",
-  ACCESSIBLE: "accessible",
 };
 
 const SEAT_STATUS = {

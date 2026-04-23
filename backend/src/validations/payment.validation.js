@@ -1,54 +1,58 @@
-const Booking = require('../models/Booking');
 const env = require('../config/env');
-const { Joi, strictObject } = require('./common.validation');
+const { Joi, strictObject, objectId } = require('./common.validation');
 const bookingValidation = require('./booking.validation');
 
-const paymentMethodValues = Booking.schema
-  .path('paymentMethod')
-  .enumValues.filter(Boolean);
+const hmacSignatureSchema = Joi.string()
+  .trim()
+  .pattern(/^[a-fA-F0-9]{64}$/)
+  .required()
+  .label('signature')
+  .messages({
+    'string.pattern.base': 'signature must be a 64-character hex string',
+  });
 
 const payBillSchema = {
   params: bookingValidation.bookingIdParamSchema,
+};
+
+const callbackSchema = {
   body: strictObject({
-    paymentMethod: Joi.string()
-      .valid(...paymentMethodValues)
-      .required()
-      .label('paymentMethod'),
+    paymentId: Joi.string().trim().required().label('paymentId'),
+    bookingId: objectId.required().label('bookingId'),
     paidAmount: Joi.number()
       .integer()
       .positive()
       .required()
-      .label('paidAmount')
-      .messages({
-        'number.base': 'paidAmount must be a number',
-        'number.integer': 'paidAmount must be an integer',
-        'number.positive': 'paidAmount must be greater than 0',
-      }),
+      .label('paidAmount'),
     currency: Joi.string()
       .valid(env.paymentCurrency)
-      .default(env.paymentCurrency)
+      .required()
       .label('currency'),
-    timestamp: Joi.number()
-      .integer()
-      .positive()
-      .required()
-      .label('timestamp')
-      .messages({
-        'number.base': 'timestamp must be a number',
-        'number.integer': 'timestamp must be an integer',
-        'number.positive': 'timestamp must be greater than 0',
-      }),
-    signature: Joi.string()
-      .trim()
-      .pattern(/^[a-fA-F0-9]{64}$/)
-      .required()
-      .label('signature')
-      .messages({
-        'string.pattern.base': 'signature must be a 64-character hex string',
-      }),
+    transactionCode: Joi.string().trim().required().label('transactionCode'),
+    status: Joi.string().valid('SUCCESS').required().label('status'),
+    paidAt: Joi.date().iso().required().label('paidAt'),
+    sourceAccountNo: Joi.string().trim().required().label('sourceAccountNo'),
+    receiverAccountNo: Joi.string().trim().required().label('receiverAccountNo'),
+    signature: hmacSignatureSchema,
+  }),
+};
+
+const gatewayQuerySchema = strictObject({
+  paymentId: Joi.string().trim().required().label('paymentId'),
+  signature: hmacSignatureSchema,
+});
+
+const gatewaySubmitSchema = {
+  body: strictObject({
+    paymentId: Joi.string().trim().required().label('paymentId'),
+    signature: hmacSignatureSchema,
+    sourceAccountId: objectId.required().label('sourceAccountId'),
   }),
 };
 
 module.exports = {
   payBillSchema,
+  callbackSchema,
+  gatewayQuerySchema,
+  gatewaySubmitSchema,
 };

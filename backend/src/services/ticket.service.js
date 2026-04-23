@@ -5,7 +5,7 @@ const ApiError = require('../utils/apiError');
 const TICKET_POPULATE = [
   {
     path: 'bookingId',
-    select: 'bookingCode status paymentStatus paymentMethod totalPrice currency paidAt createdAt',
+    select: 'bookingCode status paymentStatus paymentMethod totalAmount currency paidAt createdAt',
   },
   {
     path: 'movieId',
@@ -49,13 +49,14 @@ const mapTicketResponse = (ticket) => ({
   booking: ticket.bookingId
     ? {
         id: String(ticket.bookingId._id),
-        bookingCode: ticket.bookingId.bookingCode || null,
-        status: ticket.bookingId.status,
-        paymentStatus: ticket.bookingId.paymentStatus,
-        paymentMethod: ticket.bookingId.paymentMethod || null,
-        totalPrice: ticket.bookingId.totalPrice,
-        currency: ticket.bookingId.currency,
-        paidAt: ticket.bookingId.paidAt,
+      bookingCode: ticket.bookingId.bookingCode || null,
+      status: ticket.bookingId.status,
+      paymentStatus: ticket.bookingId.paymentStatus,
+      paymentMethod: ticket.bookingId.paymentMethod || null,
+      totalAmount: ticket.bookingId.totalAmount,
+      totalPrice: ticket.bookingId.totalAmount,
+      currency: ticket.bookingId.currency,
+      paidAt: ticket.bookingId.paidAt,
         createdAt: ticket.bookingId.createdAt,
       }
     : null,

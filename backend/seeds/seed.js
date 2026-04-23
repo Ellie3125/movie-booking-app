@@ -3,8 +3,21 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const connectDB = require("../src/config/db");
 
-const { User, Movie, Cinema, Room, Showtime, Booking, Ticket } = require("../src/models");
+const {
+  User,
+  Movie,
+  Cinema,
+  Room,
+  Showtime,
+  Booking,
+  Ticket,
+  Session,
+  PaymentTransaction,
+  MockBankAccount,
+  PaymentCallbackLog,
+} = require("../src/models");
 
 const usersData = require("./data/users.data");
 const moviesData = require("./data/movies.data");
@@ -13,6 +26,7 @@ const roomsData = require("./data/rooms.data");
 const showtimesData = require("./data/showtimes.data");
 const bookingsData = require("./data/bookings.data");
 const ticketsData = require("./data/tickets.data");
+const mockBankAccountsData = require("./data/mock-bank-accounts.data");
 const { buildSeatStates } = require("./data/seat-layout.helper");
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -39,6 +53,10 @@ const buildShowtimeStart = (offsetDays, hour, minute = 0) => {
 
 const clearCollections = async () => {
   await Promise.all([
+    PaymentCallbackLog.deleteMany({}),
+    PaymentTransaction.deleteMany({}),
+    MockBankAccount.deleteMany({}),
+    Session.deleteMany({}),
     Ticket.deleteMany({}),
     Booking.deleteMany({}),
     Showtime.deleteMany({}),
@@ -49,11 +67,16 @@ const clearCollections = async () => {
   ]);
 };
 
+const seedMockBankAccounts = async () => {
+  const docs = await MockBankAccount.insertMany(mockBankAccountsData);
+  return mapInsertedByKey(mockBankAccountsData, docs);
+};
+
 const seedUsers = async () => {
   const passwordCache = new Map();
 
   const preparedUsers = await Promise.all(
-    usersData.map(async ({ key, password, ...user }) => {
+    usersData.map(async ({ key: _key, password, ...user }) => {
       if (!passwordCache.has(password)) {
         passwordCache.set(password, await bcrypt.hash(password, 10));
       }
@@ -70,7 +93,7 @@ const seedUsers = async () => {
 };
 
 const seedMovies = async () => {
-  const preparedMovies = moviesData.map(({ key, releaseDate, ...movie }) => ({
+  const preparedMovies = moviesData.map(({ key: _key, releaseDate, ...movie }) => ({
     ...movie,
     releaseDate: new Date(releaseDate),
   }));
@@ -80,13 +103,13 @@ const seedMovies = async () => {
 };
 
 const seedCinemas = async () => {
-  const preparedCinemas = cinemasData.map(({ key, ...cinema }) => cinema);
+  const preparedCinemas = cinemasData.map(({ key: _key, ...cinema }) => cinema);
   const docs = await Cinema.insertMany(preparedCinemas);
   return mapInsertedByKey(cinemasData, docs);
 };
 
 const seedRooms = async (cinemaLookup) => {
-  const preparedRooms = roomsData.map(({ key, cinemaKey, ...room }) => ({
+  const preparedRooms = roomsData.map(({ key: _key, cinemaKey, ...room }) => ({
     ...room,
     cinemaId: getRequiredDoc(cinemaLookup, cinemaKey, "cinema")._id,
   }));
@@ -98,7 +121,7 @@ const seedRooms = async (cinemaLookup) => {
 const seedShowtimes = async (movieLookup, cinemaLookup, roomLookup, userLookup) => {
   const preparedShowtimes = showtimesData.map(
     ({
-      key,
+      key: _key,
       movieKey,
       cinemaKey,
       roomKey,
@@ -146,7 +169,7 @@ const seedShowtimes = async (movieLookup, cinemaLookup, roomLookup, userLookup) 
 
 const seedBookings = async (userLookup, movieLookup, showtimeLookup, roomLookup) => {
   const preparedBookings = bookingsData.map(
-    ({ key, userKey, movieKey, showtimeKey, roomKey, ...booking }) => ({
+    ({ key: _key, userKey, movieKey, showtimeKey, roomKey, ...booking }) => ({
       ...booking,
       userId: getRequiredDoc(userLookup, userKey, "user")._id,
       movieId: getRequiredDoc(movieLookup, movieKey, "movie")._id,
@@ -167,7 +190,7 @@ const seedTickets = async (
   roomLookup,
 ) => {
   const preparedTickets = ticketsData.map(
-    ({ key, bookingKey, userKey, movieKey, showtimeKey, roomKey, ...ticket }) => ({
+    ({ key: _key, bookingKey, userKey, movieKey, showtimeKey, roomKey, ...ticket }) => ({
       ...ticket,
       bookingId: getRequiredDoc(bookingLookup, bookingKey, "booking")._id,
       userId: getRequiredDoc(userLookup, userKey, "user")._id,
@@ -186,13 +209,14 @@ const seed = async () => {
       throw new Error("Thiếu cấu hình MONGODB_URI");
     }
 
-    await mongoose.connect(MONGODB_URI);
+    await connectDB();
     console.log("MongoDB connected for seed");
 
     await clearCollections();
     console.log("Old data deleted");
 
     const userLookup = await seedUsers();
+    await seedMockBankAccounts();
     const movieLookup = await seedMovies();
     const cinemaLookup = await seedCinemas();
     const roomLookup = await seedRooms(cinemaLookup);

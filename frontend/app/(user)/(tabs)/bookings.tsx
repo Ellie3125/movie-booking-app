@@ -36,20 +36,16 @@ export default function BookingsTabScreen() {
       <HeroCard
         tone="user"
         eyebrow="Vé của tôi"
-        title="Danh sách vé đã mua và trạng thái thanh toán."
-        description="Lịch sử booking được đồng bộ từ backend ngay sau khi đăng nhập thành công."
+        title="Danh sách vé của bạn"
+        description="Theo dõi vé đã mua, trạng thái thanh toán và xem lại thông tin từng vé."
       />
 
-      <SectionTitle
-        tone="user"
-        title="Lịch sử đặt vé"
-        description="Tên ghế, tọa độ thật, tổng tiền và trạng thái thanh toán đều lấy từ luồng booking thật."
-      />
+      <SectionTitle tone="user" title="Lịch sử đặt vé" />
       {myBookings.length === 0 ? (
         <EmptyNotice
           tone="user"
           title="Bạn chưa có booking nào"
-          description="Vào tab phim hoặc rạp để bắt đầu đặt vé."
+          description="Sau khi thanh toán thành công, vé sẽ xuất hiện tại đây để bạn xem lại chi tiết."
         />
       ) : (
         myBookings.map((booking) => {
@@ -81,11 +77,14 @@ export default function BookingsTabScreen() {
                 Tổng tiền {booking.totalPrice.toLocaleString('vi-VN')} VND •{' '}
                 {formatPaymentMethod(booking.paymentMethod)}
               </Text>
-              {movie ? (
-                <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
-                  Xem chi tiết phim
-                </Link>
-              ) : null}
+              <Link
+                href={{
+                  pathname: '/(user)/bookings/[bookingId]',
+                  params: { bookingId: booking.id },
+                }}
+                style={[styles.link, { color: colors.accent }]}>
+                Chi tiết vé
+              </Link>
             </SectionCard>
           );
         })

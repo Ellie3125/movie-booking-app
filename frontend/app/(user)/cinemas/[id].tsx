@@ -16,17 +16,10 @@ import {
   formatCinemaFeatures,
   formatLocationName,
   formatRoomName,
-  formatShowtimeFormat,
+  formatScreenLabel,
+  formatShowtimeDayLabel,
+  formatShowtimeTime,
 } from '@/lib/user-display';
-
-const formatSession = (value: string) =>
-  new Date(value).toLocaleString('vi-VN', {
-    weekday: 'short',
-    day: '2-digit',
-    month: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
 
 export default function CinemaDetailScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
@@ -44,7 +37,7 @@ export default function CinemaDetailScreen() {
         <EmptyNotice
           tone="user"
           title="Không tìm thấy rạp"
-          description="Đường dẫn chi tiết rạp đang trỏ tới một rạp không tồn tại."
+          description="Rạp này không còn trong danh sách. Hãy quay lại tab rạp và chọn lại."
         />
       ) : (
         <>
@@ -68,13 +61,13 @@ export default function CinemaDetailScreen() {
           <SectionTitle
             tone="user"
             title="Lịch chiếu tại rạp"
-            description="Người dùng có thể bắt đầu từ rạp rồi chọn phim và chọn ghế."
+            description="Từ màn hình rạp, người dùng vẫn sẽ đi qua bước chọn ngày và chọn suất trên màn hình phim để giữ flow booking nhất quán."
           />
           {cinemaShowtimes.length === 0 ? (
             <EmptyNotice
               tone="user"
               title="Rạp này chưa có suất chiếu"
-              description="Thêm showtime từ backend để lịch chiếu hiện ra tại đây."
+              description="Hãy quay lại sau hoặc chọn một rạp khác để đặt vé."
             />
           ) : (
             cinemaShowtimes.map((showtime) => {
@@ -87,27 +80,30 @@ export default function CinemaDetailScreen() {
                     {movie?.title ?? 'Phim không xác định'}
                   </Text>
                   <Text style={[styles.cardCopy, { color: colors.muted }]}>
+                    {formatShowtimeDayLabel(showtime.startTime)} • {formatShowtimeTime(showtime.startTime)}
+                  </Text>
+                  <Text style={[styles.cardCopy, { color: colors.muted }]}>
                     {room ? formatRoomName(room.name) : 'Phòng đang cập nhật'} •{' '}
-                    {formatShowtimeFormat(showtime.format)} • {formatSession(showtime.startTime)}
+                    {room ? formatScreenLabel(room.screenLabel) : 'Màn hình đang cập nhật'}
                   </Text>
                   <View style={styles.rowBetween}>
                     {movie ? (
-                      <Link
-                        href={`/movies/${movie.id}`}
-                        style={[styles.link, { color: colors.accent }]}>
+                      <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
                         Chi tiết phim
                       </Link>
                     ) : (
                       <View />
                     )}
-                    <Link
-                      href={{
-                        pathname: '/booking/seats',
-                        params: { showtimeId: showtime.id },
-                      }}
-                      style={[styles.link, { color: colors.accent }]}>
-                      Chọn ghế
-                    </Link>
+                    {movie ? (
+                      <Link
+                        href={{
+                          pathname: '/movies/[id]',
+                          params: { id: movie.id, cinemaId: cinema.id },
+                        }}
+                        style={[styles.link, { color: colors.accent }]}>
+                        Chọn ngày và suất
+                      </Link>
+                    ) : null}
                   </View>
                 </SectionCard>
               );

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #fee2e2, #fff7ed);
+        color: #111827;
+      }
+      .card {
+        width: min(92vw, 560px);
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.16);
+      }
+      h1 {
+        margin-top: 0;
+      }
+      code {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #fef2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>Fake Payment Gateway Error</h1>
+      <p><strong>Status:</strong> <%= statusCode %></p>
+      <p><strong>Message:</strong> <%= message %></p>
+      <code><%= code %></code>
+    </main>
+  </body>
+</html>

@@ -15,7 +15,20 @@ const extractBearerToken = (authorizationHeader = '') => {
 const getUserIdFromTokenPayload = (payload = {}) =>
   payload.userId || payload.id || payload.sub || null;
 
-const protect = async (req, res, next) => {
+const verifyPasswordChangeState = (user, decoded) => {
+  const passwordChangedAt = user.passwordChangedAt
+    ? Math.floor(new Date(user.passwordChangedAt).getTime() / 1000)
+    : null;
+
+  if (passwordChangedAt && decoded.iat && decoded.iat < passwordChangedAt) {
+    throw ApiError.unauthorized(
+      'Access token is no longer valid. Please log in again.',
+      'ACCESS_TOKEN_REVOKED'
+    );
+  }
+};
+
+const verifyAccess = async (req, _res, next) => {
   try {
     const token = extractBearerToken(req.headers.authorization);
 
@@ -37,7 +50,7 @@ const protect = async (req, res, next) => {
     }
 
     const user = await User.findById(userId)
-      .select('_id name email role')
+      .select('_id name email role authVersion passwordChangedAt')
       .lean()
       .exec();
 
@@ -54,7 +67,17 @@ const protect = async (req, res, next) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      authVersion: user.authVersion || 0,
     };
+
+    if ((decoded.authVersion || 0) !== req.user.authVersion) {
+      throw ApiError.unauthorized(
+        'Access token is no longer valid. Please log in again.',
+        'ACCESS_TOKEN_REVOKED'
+      );
+    }
+
+    verifyPasswordChangeState(user, decoded);
 
     next();
   } catch (error) {
@@ -62,7 +85,7 @@ const protect = async (req, res, next) => {
   }
 };
 
-const authorizeRoles = (...allowedRoles) => (req, res, next) => {
+const authorizeRoles = (...allowedRoles) => (req, _res, next) => {
   if (!req.user) {
     return next(
       ApiError.unauthorized(
@@ -85,6 +108,7 @@ const authorizeRoles = (...allowedRoles) => (req, res, next) => {
 };
 
 module.exports = {
-  protect,
+  protect: verifyAccess,
+  verifyAccessToken: verifyAccess,
   authorizeRoles,
 };

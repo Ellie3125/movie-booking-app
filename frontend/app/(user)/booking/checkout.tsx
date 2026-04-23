@@ -17,7 +17,6 @@ import { type PaymentMethod, useAppStore } from '@/lib/app-store';
 import { formatLocationName, formatPaymentMethod } from '@/lib/user-display';
 
 const paymentMethods: { label: string; value: PaymentMethod }[] = [
-  { label: 'Tiền mặt', value: 'cash' },
   { label: 'MoMo Sandbox', value: 'momo_sandbox' },
   { label: 'VNPay Sandbox', value: 'vnpay_sandbox' },
 ];
@@ -57,7 +56,10 @@ export default function CheckoutScreen() {
         return;
       }
 
-      router.replace('/bookings');
+      router.replace({
+        pathname: '/(user)/bookings/[bookingId]',
+        params: { bookingId: booking.id },
+      });
     } catch (checkoutError) {
       setError(
         checkoutError instanceof Error
@@ -76,7 +78,7 @@ export default function CheckoutScreen() {
         <EmptyNotice
           tone="user"
           title="Không có phiên thanh toán"
-          description="Chọn ghế trước khi vào màn hình thanh toán."
+          description="Hãy quay lại màn chọn ghế để bắt đầu lại phiên thanh toán."
         />
       ) : (
         <>
@@ -87,11 +89,7 @@ export default function CheckoutScreen() {
             description={`${cinema.brand} ${formatLocationName(cinema.name)} • ${new Date(showtime.startTime).toLocaleString('vi-VN')}`}
           />
 
-          <SectionTitle
-            tone="user"
-            title="Thông tin ghế"
-            description="Tên ghế và tọa độ thật được lưu song song trong phiên thanh toán nháp."
-          />
+          <SectionTitle tone="user" title="Thông tin ghế" />
           <SectionCard tone="user">
             {draftCheckout.seats.map((seat) => (
               <View key={seat.seatCoordinate} style={styles.rowBetween}>
@@ -107,15 +105,12 @@ export default function CheckoutScreen() {
               Tổng tiền {draftCheckout.totalPrice.toLocaleString('vi-VN')} VND
             </Text>
             <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              Giữ ghế đến {new Date(draftCheckout.heldUntil).toLocaleString('vi-VN')}
+              Hoàn tất thanh toán trước{' '}
+              {new Date(draftCheckout.heldUntil).toLocaleString('vi-VN')}
             </Text>
           </SectionCard>
 
-          <SectionTitle
-            tone="user"
-            title="Phương thức thanh toán"
-            description="Trạng thái ghế sẽ chuyển từ đang giữ sang đã thanh toán sau khi xác nhận."
-          />
+          <SectionTitle tone="user" title="Phương thức thanh toán" />
           <SectionCard tone="user">
             <View style={styles.chipRow}>
               {paymentMethods.map((method) => (
@@ -139,7 +134,7 @@ export default function CheckoutScreen() {
             />
             <ActionButton
               tone="user"
-              label={submitting ? 'Đang xử lý...' : 'Hủy phiên giữ ghế'}
+              label={submitting ? 'Đang xử lý...' : 'Hủy thanh toán'}
               variant="secondary"
               onPress={handleCancel}
               disabled={submitting}

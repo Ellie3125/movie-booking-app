@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
 type ApiSuccessResponse<T> = {
@@ -48,6 +49,7 @@ export type BackendUser = {
 export type BackendAuthResponse = {
   user: BackendUser;
   accessToken: string;
+  refreshToken?: string;
 };
 
 export type BackendMovie = {
@@ -77,7 +79,7 @@ export type BackendRoomSeat = {
     coordinateLabel: string;
   };
   seatLabel: string | null;
-  seatType: 'standard' | 'vip' | 'couple' | 'accessible' | null;
+  seatType: 'standard' | 'couple' | null;
   priceModifier: number;
 };
 
@@ -94,10 +96,19 @@ export type BackendRoom = {
 
 export type BackendRoomSummary = Omit<BackendRoom, 'seatLayout'>;
 
+export type BackendRoomMutationPayload = {
+  cinemaId: string;
+  name: string;
+  screenLabel: string;
+  totalRows: number;
+  totalColumns: number;
+  hiddenCoordinates: string[];
+};
+
 export type BackendShowtimeSeatState = {
   seatCoordinate: string;
   seatLabel: string;
-  seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+  seatType: 'standard' | 'couple';
   status: 'available' | 'held' | 'reserved' | 'paid';
   userId: string | null;
   bookingId: string | null;
@@ -139,7 +150,7 @@ export type BackendShowtimeDetail = BackendShowtimeListItem & {
 export type BackendBookingSeat = {
   seatCoordinate: string;
   seatLabel: string;
-  seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+  seatType: 'standard' | 'couple';
   status: 'held' | 'paid';
   price: number;
 };
@@ -149,7 +160,7 @@ export type BackendBooking = {
   bookingCode: string | null;
   status: 'held' | 'paid' | 'cancelled';
   paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-  paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox' | null;
+  paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY' | null;
   currency: string;
   totalPrice: number;
   ticketCount: number;
@@ -224,9 +235,12 @@ export type BackendBill = {
   paymentAuth: {
     algorithm: 'HMAC-SHA256';
     fields: string[];
+    billId: string;
     paidAmount: number;
     currency: string;
-    timestamp: number;
+    issuedAt: number;
+    expiresAt: number;
+    rawData: string;
     signature: string;
   };
 };
@@ -237,7 +251,7 @@ export type BackendPaymentResult = {
   transactionCode: string;
   status: 'held' | 'paid' | 'cancelled';
   paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-  paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox';
+  paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY';
   paidAmount: number;
   currency: string;
   paidAt: string;
@@ -248,7 +262,7 @@ export type BackendPaymentResult = {
     seat: {
       seatCoordinate: string;
       seatLabel: string;
-      seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+      seatType: 'standard' | 'couple';
     };
     price: number;
     issuedAt: string;
@@ -264,14 +278,14 @@ export type BackendTicket = {
   seat: {
     seatCoordinate: string;
     seatLabel: string;
-    seatType: 'standard' | 'vip' | 'couple' | 'accessible';
+    seatType: 'standard' | 'couple';
   };
   booking: {
     id: string;
     bookingCode: string | null;
     status: 'held' | 'paid' | 'cancelled';
     paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-    paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox' | null;
+    paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY' | null;
     totalPrice: number;
     currency: string;
     paidAt: string | null;
@@ -305,6 +319,18 @@ export type BackendTicket = {
   } | null;
 };
 
+const resolveExpoHost = () => {
+  const rawHostUri = Constants.expoConfig?.hostUri ?? Constants.linkingUri ?? '';
+  const normalizedHostUri = rawHostUri.replace(/^[a-z]+:\/\//i, '');
+  const host = normalizedHostUri.split('/')[0]?.split(':')[0]?.trim();
+
+  if (!host || host === 'localhost' || host === '127.0.0.1') {
+    return null;
+  }
+
+  return host;
+};
+
 const resolveBaseUrl = () => {
   const configuredBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL?.trim();
 
@@ -312,9 +338,15 @@ const resolveBaseUrl = () => {
     return configuredBaseUrl.replace(/\/$/, '');
   }
 
+  const expoHost = resolveExpoHost();
+
+  if (expoHost) {
+    return `http://${expoHost}:5000/api/v1`;
+  }
+
   return Platform.OS === 'android'
     ? 'http://10.0.2.2:5000/api/v1'
-    : 'http://localhost:5000/api/v1';
+    : 'http://127.0.0.1:5000/api/v1';
 };
 
 const API_BASE_URL = resolveBaseUrl();
@@ -367,6 +399,21 @@ export async function registerUser(payload: {
   });
 }
 
+export async function createAdminUser(
+  token: string,
+  payload: {
+    name: string;
+    email: string;
+    password: string;
+  },
+) {
+  return apiRequest<BackendUser>('/auth/admins', {
+    method: 'POST',
+    token,
+    body: JSON.stringify(payload),
+  });
+}
+
 export async function loginUser(payload: { email: string; password: string }) {
   return apiRequest<BackendAuthResponse>('/auth/login', {
     method: 'POST',
@@ -392,6 +439,33 @@ export async function fetchRooms() {
 
 export async function fetchRoomById(roomId: string) {
   return apiRequest<BackendRoom>(`/rooms/${roomId}`);
+}
+
+export async function createRoom(token: string, payload: BackendRoomMutationPayload) {
+  return apiRequest<BackendRoom>('/rooms', {
+    method: 'POST',
+    token,
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function updateRoom(
+  token: string,
+  roomId: string,
+  payload: BackendRoomMutationPayload,
+) {
+  return apiRequest<BackendRoom>(`/rooms/${roomId}`, {
+    method: 'PUT',
+    token,
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function deleteRoom(token: string, roomId: string) {
+  return apiRequest<null>(`/rooms/${roomId}`, {
+    method: 'DELETE',
+    token,
+  });
 }
 
 export async function fetchShowtimes() {
@@ -442,10 +516,12 @@ export async function payBookingBill(
   token: string,
   bookingId: string,
   payload: {
-    paymentMethod: 'cash' | 'momo_sandbox' | 'vnpay_sandbox';
+    paymentMethod: 'momo_sandbox' | 'vnpay_sandbox';
+    billId: string;
     paidAmount: number;
     currency: string;
-    timestamp: number;
+    issuedAt: number;
+    expiresAt: number;
     signature: string;
   },
 ) {

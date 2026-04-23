@@ -28,9 +28,7 @@ const createSeatLayout = ({
       }
 
       visibleSeatIndex += 1;
-      const seatType =
-        seatTypeOverrides[coordinateLabel] ??
-        (rowIndex === totalRows - 1 ? "vip" : "standard");
+      const seatType = seatTypeOverrides[coordinateLabel] ?? "standard";
 
       return {
         cellType: "seat",
@@ -41,8 +39,7 @@ const createSeatLayout = ({
         },
         seatLabel: `${rowLabel}${visibleSeatIndex}`,
         seatType,
-        priceModifier:
-          seatType === "vip" ? 1.25 : seatType === "couple" ? 1.5 : 1,
+        priceModifier: seatType === "couple" ? 1.5 : 1,
       };
     });
   });

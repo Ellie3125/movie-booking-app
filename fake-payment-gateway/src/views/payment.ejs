@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <style>
+      :root {
+        --bg-a: #e0f2fe;
+        --bg-b: #fff7ed;
+        --card: rgba(255, 255, 255, 0.96);
+        --line: #e2e8f0;
+        --text: #0f172a;
+        --muted: #64748b;
+        --brand: #0f766e;
+        --danger: #dc2626;
+        --warning: #d97706;
+        --success: #166534;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(15, 118, 110, 0.18), transparent 26%),
+          radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.16), transparent 24%),
+          linear-gradient(135deg, var(--bg-a), var(--bg-b));
+      }
+      .page {
+        width: min(1180px, calc(100vw - 32px));
+        margin: 24px auto;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 24px;
+      }
+      .card {
+        background: var(--card);
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: 0 20px 70px rgba(15, 23, 42, 0.14);
+        backdrop-filter: blur(12px);
+      }
+      .eyebrow {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--brand);
+        margin-bottom: 10px;
+      }
+      h1, h2 {
+        margin-top: 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .meta {
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: #f8fafc;
+        border: 1px solid var(--line);
+      }
+      .meta .label {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+      .meta strong {
+        font-size: 15px;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+      .status.pending {
+        color: var(--warning);
+        background: #fffbeb;
+      }
+      .status.success {
+        color: var(--success);
+        background: #f0fdf4;
+      }
+      .status.failed,
+      .status.cancelled,
+      .status.expired {
+        color: var(--danger);
+        background: #fef2f2;
+      }
+      .countdown {
+        margin: 18px 0 0;
+        color: var(--danger);
+        font-weight: 700;
+      }
+      .receiver {
+        margin-top: 18px;
+        padding: 18px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #ffffff, #f8fafc);
+        border: 1px solid var(--line);
+      }
+      .receiver p {
+        margin: 0 0 8px;
+      }
+      .amount {
+        font-size: 34px;
+        font-weight: 800;
+        margin: 10px 0 18px;
+      }
+      .qr-box {
+        display: grid;
+        place-items: center;
+        padding: 22px;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: #ffffff;
+        margin-bottom: 16px;
+      }
+      form {
+        display: grid;
+        gap: 14px;
+      }
+      .account-card {
+        display: grid;
+        gap: 6px;
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: #ffffff;
+      }
+      .account-card input {
+        margin: 0 0 6px;
+      }
+      .account-name {
+        font-weight: 700;
+      }
+      .account-meta,
+      .account-balance {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 10px;
+      }
+      .btn {
+        border: none;
+        border-radius: 16px;
+        padding: 15px 18px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn-success {
+        background: var(--brand);
+        color: #ffffff;
+      }
+      .btn-failed {
+        background: #e2e8f0;
+        color: var(--text);
+      }
+      .btn-cancel {
+        background: #fee2e2;
+        color: var(--danger);
+      }
+      .notice {
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 18px;
+        background: #fff7ed;
+        color: #9a3412;
+      }
+      @media (max-width: 920px) {
+        .page {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <div class="eyebrow">Fake Payment Gateway</div>
+        <div
+          class="status <%= payment.status.toLowerCase() %>"
+        >
+          Trang thai: <%= payment.status %>
+        </div>
+        <h1>Thanh toan booking phim</h1>
+        <div class="grid">
+          <div class="meta">
+            <span class="label">paymentId</span>
+            <strong><%= payment.paymentId %></strong>
+          </div>
+          <div class="meta">
+            <span class="label">bookingId</span>
+            <strong><%= payment.bookingId %></strong>
+          </div>
+          <div class="meta">
+            <span class="label">Currency</span>
+            <strong><%= payment.currency %></strong>
+          </div>
+          <div class="meta">
+            <span class="label">Het han thanh toan</span>
+            <strong><%= new Date(payment.expiredAt).toLocaleString('vi-VN') %></strong>
+          </div>
+        </div>
+
+        <div class="amount">
+          <%= Number(payment.amount).toLocaleString('vi-VN') %> <%= payment.currency %>
+        </div>
+
+        <div class="receiver">
+          <p><strong>Tai khoan nhan tien co dinh</strong></p>
+          <p>Bank: <%= payment.receiverBankCode %></p>
+          <p>Account Number: <%= payment.receiverAccountNumber %></p>
+          <p>Account Name: <%= payment.receiverAccountName %></p>
+        </div>
+
+        <p class="countdown" id="countdown" data-expired-at="<%= new Date(payment.expiredAt).toISOString() %>">
+          Dang tinh thoi gian con lai...
+        </p>
+
+        <% if (payment.failureReason) { %>
+          <div class="notice">
+            Ly do: <%= payment.failureReason %>
+          </div>
+        <% } %>
+      </section>
+
+      <section class="card">
+        <div class="qr-box">
+          <img src="<%= qrCodeDataUrl %>" alt="Fake QR code" width="280" height="280" />
+        </div>
+
+        <h2>Chon tai khoan chuyen tien gia lap</h2>
+        <form method="post" action="/gateway/pay/<%= payment.paymentId %>/action">
+          <% mockAccounts.forEach((account, index) => { %>
+            <label class="account-card">
+              <input
+                type="radio"
+                name="payerAccountNumber"
+                value="<%= account.accountNumber %>"
+                <%= index === 0 ? 'checked' : '' %>
+                <%= payment.status !== 'PENDING' ? 'disabled' : '' %>
+              />
+              <span class="account-name"><%= account.accountName %></span>
+              <span class="account-meta">
+                <%= account.bankCode %> - <%= account.accountNumber %>
+              </span>
+              <span class="account-balance">
+                So du: <%= Number(account.balance).toLocaleString('vi-VN') %> VND
+              </span>
+            </label>
+          <% }) %>
+
+          <div class="actions">
+            <button
+              class="btn btn-success"
+              type="submit"
+              name="action"
+              value="SUCCESS"
+              <%= payment.status !== 'PENDING' ? 'disabled' : '' %>
+            >
+              Xac nhan thanh toan thanh cong
+            </button>
+            <button
+              class="btn btn-failed"
+              type="submit"
+              name="action"
+              value="FAILED"
+              <%= payment.status !== 'PENDING' ? 'disabled' : '' %>
+            >
+              Gia lap thanh toan that bai
+            </button>
+            <button
+              class="btn btn-cancel"
+              type="submit"
+              name="action"
+              value="CANCELLED"
+              <%= payment.status !== 'PENDING' ? 'disabled' : '' %>
+            >
+              Huy thanh toan
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const countdownElement = document.getElementById('countdown');
+
+        if (!countdownElement) {
+          return;
+        }
+
+        const expiredAt = new Date(countdownElement.dataset.expiredAt).getTime();
+
+        const render = () => {
+          const diff = expiredAt - Date.now();
+
+          if (diff <= 0) {
+            countdownElement.textContent = 'Thanh toan da het han.';
+            return;
+          }
+
+          const totalSeconds = Math.floor(diff / 1000);
+          const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+          const seconds = String(totalSeconds % 60).padStart(2, '0');
+
+          countdownElement.textContent = `Con lai ${minutes}:${seconds} de thanh toan.`;
+        };
+
+        render();
+        setInterval(render, 1000);
+      })();
+    </script>
+  </body>
+</html>

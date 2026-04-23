@@ -49,6 +49,10 @@ export default function UsersLayout() {
         name="booking/checkout"
         options={{ headerShown: true, title: 'Thanh toán', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
       />
+      <Stack.Screen
+        name="bookings/[bookingId]"
+        options={{ headerShown: true, title: 'Chi tiết vé', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
+      />
     </Stack>
   );
 }

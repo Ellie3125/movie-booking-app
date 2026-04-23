@@ -7,9 +7,7 @@ const SEAT_CELL_TYPE = {
 
 const SEAT_TYPE = {
   STANDARD: "standard",
-  VIP: "vip",
   COUPLE: "couple",
-  ACCESSIBLE: "accessible",
 };
 
 const SeatCoordinateSchema = new mongoose.Schema(
@@ -147,14 +145,13 @@ const RoomSchema = new mongoose.Schema(
   },
 );
 
-RoomSchema.pre("validate", function (next) {
+RoomSchema.pre("validate", function () {
   if (Array.isArray(this.seatLayout)) {
     this.activeSeatCount = this.seatLayout
       .flat()
       .filter((cell) => cell && cell.cellType === SEAT_CELL_TYPE.SEAT).length;
   }
 
-  next();
 });
 
 RoomSchema.index({ cinemaId: 1, name: 1 });

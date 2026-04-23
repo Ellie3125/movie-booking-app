@@ -42,6 +42,7 @@ export default function AdminLayout() {
         },
       }}>
       <Stack.Screen name="index" options={{ title: 'Bảng điều khiển' }} />
+      <Stack.Screen name="admins/index" options={{ title: 'Tài khoản admin' }} />
       <Stack.Screen name="movies/index" options={{ title: 'Quản lý phim' }} />
       <Stack.Screen name="cinemas/index" options={{ title: 'Quản lý rạp' }} />
       <Stack.Screen name="rooms/index" options={{ title: 'Quản lý phòng chiếu' }} />

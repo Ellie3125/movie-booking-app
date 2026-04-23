@@ -40,41 +40,17 @@ export default function HomeTabScreen() {
       <HeroCard
         tone="user"
         eyebrow="Người dùng BeatCinema"
-        title="Đặt vé nhanh, rõ sơ đồ ghế, vào rạp đúng những suất đẹp."
-        description="Khu người dùng tách riêng khỏi quản trị, có đầy đủ trang chủ, chi tiết phim, chi tiết rạp, chọn ghế, thanh toán và danh sách vé đã mua.">
+        title="Đặt vé nhanh, rõ sơ đồ ghế, vào rạp đúng những suất đẹp.">
         <View style={styles.heroMetrics}>
-          <MetricTile
-            tone="user"
-            value={String(nowShowing.length)}
-            label="Đang chiếu"
-            helper="Phim đang mở bán trong ứng dụng."
-          />
-          <MetricTile
-            tone="user"
-            value={String(showtimes.length)}
-            label="Suất chiếu"
-            helper="Các suất chiếu hiện có trong hệ thống."
-          />
-          <MetricTile
-            tone="user"
-            value={String(userBookings.length)}
-            label="Vé của tôi"
-            helper="Số booking của người dùng hiện tại sau mỗi lần thanh toán."
-          />
+          <MetricTile tone="user" value={String(nowShowing.length)} label="Đang chiếu" />
+          <MetricTile tone="user" value={String(showtimes.length)} label="Suất chiếu" />
+          <MetricTile tone="user" value={String(userBookings.length)} label="Vé của tôi" />
         </View>
       </HeroCard>
 
-      <SectionTitle
-        tone="user"
-        title="Phim đang chiếu"
-        description="Danh sách phim đang mở bán vé và có thể đi vào luồng đặt chỗ ngay."
-      />
+      <SectionTitle tone="user" title="Phim đang chiếu" />
       {nowShowing.length === 0 ? (
-        <EmptyNotice
-          tone="user"
-          title="Chưa có phim đang chiếu"
-          description="Thêm phim ở khu quản trị thì danh sách sẽ hiện ngay tại đây."
-        />
+        <EmptyNotice tone="user" title="Chưa có phim đang chiếu" />
       ) : (
         nowShowing.map((movie) => {
           const firstShowtime = showtimes.find((showtime) => showtime.movieId === movie.id);
@@ -105,11 +81,7 @@ export default function HomeTabScreen() {
         })
       )}
 
-      <SectionTitle
-        tone="user"
-        title="Rạp nổi bật"
-        description="Đi nhanh hơn theo kiểu ứng dụng đặt vé: chọn rạp, xem lịch, vào màn hình ghế."
-      />
+      <SectionTitle tone="user" title="Rạp nổi bật" />
       {cinemas.map((cinema) => (
         <SectionCard key={cinema.id} tone="user">
           <View style={styles.rowBetween}>
@@ -133,7 +105,6 @@ export default function HomeTabScreen() {
           <SectionTitle
             tone="user"
             title="Sắp chiếu"
-            description="Kho phim sắp chiếu để người dùng theo dõi và chuẩn bị đặt vé."
           />
           <SectionCard tone="user">
             <Text style={[styles.cardTitle, { color: colors.text }]}>{upcoming.title}</Text>

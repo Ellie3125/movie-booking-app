@@ -16,6 +16,52 @@ import { SeatLayoutGrid } from '@/components/ui/seat-layout-grid';
 import { type RoomSeat, useAppStore } from '@/lib/app-store';
 
 const rowLetter = (rowIndex: number) => String.fromCharCode(65 + rowIndex);
+const OUTER_COLUMN_MESSAGE = 'Không thể để trống ghế ở cột 1 hoặc cột cuối.';
+
+const parseSeatCoordinate = (coordinate: string) => {
+  const normalizedCoordinate = coordinate.trim().toUpperCase();
+  const match = normalizedCoordinate.match(/^([A-Z])(\d+)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    coordinate: normalizedCoordinate,
+    rowIndex: match[1].charCodeAt(0) - 65,
+    columnNumber: Number(match[2]),
+  };
+};
+
+const findOuterColumnHiddenCoordinates = ({
+  totalRows,
+  totalColumns,
+  hiddenCoordinates,
+}: {
+  totalRows: number;
+  totalColumns: number;
+  hiddenCoordinates: string[];
+}) =>
+  [...new Set(hiddenCoordinates.map((item) => item.toUpperCase()))].filter((coordinate) => {
+    const parsedCoordinate = parseSeatCoordinate(coordinate);
+
+    if (!parsedCoordinate) {
+      return false;
+    }
+
+    const withinRowRange =
+      parsedCoordinate.rowIndex >= 0 && parsedCoordinate.rowIndex < totalRows;
+    const withinColumnRange =
+      parsedCoordinate.columnNumber >= 1 &&
+      parsedCoordinate.columnNumber <= totalColumns;
+
+    return (
+      withinRowRange &&
+      withinColumnRange &&
+      (parsedCoordinate.columnNumber === 1 ||
+        parsedCoordinate.columnNumber === totalColumns)
+    );
+  });
 
 const buildPreviewLayout = (
   totalRows: number,
@@ -72,6 +118,8 @@ export default function AdminSeatLayoutScreen() {
   const [rows, setRows] = useState(room ? String(room.totalRows) : '6');
   const [columns, setColumns] = useState(room ? String(room.totalColumns) : '10');
   const [hiddenCoordinates, setHiddenCoordinates] = useState<string[]>([]);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     if (!room) {
@@ -103,6 +151,17 @@ export default function AdminSeatLayoutScreen() {
 
   const handleSeatPress = (seat: RoomSeat) => {
     const coordinate = seat.coordinate.coordinateLabel.toUpperCase();
+    const isCurrentlyHidden = hiddenCoordinates.includes(coordinate);
+    const isOuterColumn =
+      seat.coordinate.columnIndex === 0 ||
+      seat.coordinate.columnIndex === totalColumns - 1;
+
+    if (!isCurrentlyHidden && isOuterColumn) {
+      setFeedback(OUTER_COLUMN_MESSAGE);
+      return;
+    }
+
+    setFeedback(null);
 
     setHiddenCoordinates((current) =>
       current.includes(coordinate)
@@ -112,38 +171,58 @@ export default function AdminSeatLayoutScreen() {
   };
 
   const applyGrid = () => {
+    setFeedback(null);
     setHiddenCoordinates([]);
   };
 
-  const saveLayout = () => {
+  const saveLayout = async () => {
     if (!room) {
       return;
     }
 
-    saveRoomLayout({
+    const blockedCoordinates = findOuterColumnHiddenCoordinates({
+      totalRows,
+      totalColumns,
+      hiddenCoordinates,
+    });
+
+    if (blockedCoordinates.length > 0) {
+      const blockedPreview = blockedCoordinates.slice(0, 4).join(', ');
+      setFeedback(
+        `${OUTER_COLUMN_MESSAGE} (${blockedPreview}${blockedCoordinates.length > 4 ? ', ...' : ''})`,
+      );
+      return;
+    }
+
+    setIsSaving(true);
+    setFeedback(null);
+
+    const result = await saveRoomLayout({
       roomId: room.id,
       totalRows,
       totalColumns,
       hiddenCoordinates,
     });
+
+    setIsSaving(false);
+    setFeedback(
+      result.ok
+        ? 'Đã lưu sơ đồ ghế vào backend.'
+        : result.error || 'Không thể lưu sơ đồ ghế.'
+    );
   };
 
   return (
     <PageScroll tone="admin">
       <Stack.Screen options={{ title: room?.name ?? 'Seat Layout' }} />
       {!room ? (
-        <EmptyNotice
-          tone="admin"
-          title="Khong tim thay room"
-          description="Chon room tu trang CRUD truoc khi mo seat builder."
-        />
+        <EmptyNotice tone="admin" title="Khong tim thay room" />
       ) : (
         <>
           <HeroCard
             tone="admin"
             eyebrow="Admin / Seat Layout"
             title={`${room.name} • ${cinema?.brand ?? ''} ${cinema?.name ?? ''}`}
-            description="Nhap so hang, so cot roi scan ra bang. Tap vao o nao thi o do khong phai ghe va se bien mat o giao dien dat ve."
           />
 
           <SectionCard tone="admin">
@@ -154,7 +233,10 @@ export default function AdminSeatLayoutScreen() {
                 keyboardType="numeric"
                 style={[styles.input, { color: colors.text, borderColor: colors.border }]}
                 value={rows}
-                onChangeText={setRows}
+                onChangeText={(value) => {
+                  setFeedback(null);
+                  setRows(value);
+                }}
               />
               <TextInput
                 placeholder="Columns"
@@ -162,7 +244,10 @@ export default function AdminSeatLayoutScreen() {
                 keyboardType="numeric"
                 style={[styles.input, { color: colors.text, borderColor: colors.border }]}
                 value={columns}
-                onChangeText={setColumns}
+                onChangeText={(value) => {
+                  setFeedback(null);
+                  setColumns(value);
+                }}
               />
             </View>
             <ActionButton
@@ -176,7 +261,7 @@ export default function AdminSeatLayoutScreen() {
           <SectionTitle
             tone="admin"
             title="Seat builder"
-            description="O mau xam la no-seat. O mau xanh la seat se duoc ban o phia user."
+            description="Nhấn vào ghế để ẩn hoặc khôi phục. Cột 1 và cột cuối luôn phải có ghế."
           />
           <SectionCard tone="admin">
             <SeatLayoutGrid layout={previewLayout} mode="admin" onPressSeat={handleSeatPress} />
@@ -184,9 +269,6 @@ export default function AdminSeatLayoutScreen() {
 
           <SectionCard tone="admin">
             <Text style={[styles.cardTitle, { color: colors.text }]}>Mapping preview</Text>
-            <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              He thong tu dong tach coordinate that va seat label hien thi. Neu bo trong o dau hang, ten ghe se duoc danh lai lien tuc.
-            </Text>
             <View style={styles.chipRow}>
               {remappedSeats.length === 0 ? (
                 <Chip tone="admin" label="Khong co seat remap" />
@@ -201,7 +283,12 @@ export default function AdminSeatLayoutScreen() {
                 ))
               )}
             </View>
-            <ActionButton tone="admin" label="Save layout" onPress={saveLayout} />
+            {feedback ? <Text style={[styles.feedback, { color: colors.accent }]}>{feedback}</Text> : null}
+            <ActionButton
+              tone="admin"
+              label={isSaving ? 'Saving...' : 'Save layout'}
+              onPress={saveLayout}
+            />
           </SectionCard>
         </>
       )}
@@ -233,5 +320,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 10,
+  },
+  feedback: {
+    fontSize: 14,
+    fontWeight: '700',
   },
 });

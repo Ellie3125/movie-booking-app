@@ -1,4 +1,4 @@
-module.exports = (err, req, res, next) => {
+module.exports = (err, _req, res, _next) => {
   console.error(err);
 
   const responseBody = {

@@ -3,7 +3,19 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const mongoose = require("mongoose");
 
-const { User, Movie, Cinema, Room, Showtime, Booking, Ticket } = require("../src/models");
+const {
+  User,
+  Movie,
+  Cinema,
+  Room,
+  Showtime,
+  Booking,
+  Ticket,
+  Session,
+  PaymentTransaction,
+  MockBankAccount,
+  PaymentCallbackLog,
+} = require("../src/models");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -17,6 +29,10 @@ const destroy = async () => {
     console.log("MongoDB connected for destroy");
 
     await Promise.all([
+      PaymentCallbackLog.deleteMany({}),
+      PaymentTransaction.deleteMany({}),
+      MockBankAccount.deleteMany({}),
+      Session.deleteMany({}),
       Ticket.deleteMany({}),
       Booking.deleteMany({}),
       Showtime.deleteMany({}),

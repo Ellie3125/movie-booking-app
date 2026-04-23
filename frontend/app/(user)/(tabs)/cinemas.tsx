@@ -27,29 +27,14 @@ export default function CinemasTabScreen() {
       <HeroCard
         tone="user"
         eyebrow="Khám phá rạp"
-        title="Người dùng có tab riêng để xem rạp và lịch chiếu."
-        description="Cấu trúc này giống ứng dụng đặt vé thực tế hơn: có thể đi từ rạp sang phim hoặc từ phim sang rạp.">
+        title="Người dùng có tab riêng để xem rạp và lịch chiếu.">
         <View style={styles.metrics}>
-          <MetricTile
-            tone="user"
-            value={String(cinemas.length)}
-            label="Chi nhánh"
-            helper="Danh sách rạp hiện có trong hệ thống."
-          />
-          <MetricTile
-            tone="user"
-            value={String(rooms.length)}
-            label="Phòng chiếu"
-            helper="Phòng chiếu do quản trị viên tạo và chỉnh sơ đồ ghế."
-          />
+          <MetricTile tone="user" value={String(cinemas.length)} label="Chi nhánh" />
+          <MetricTile tone="user" value={String(rooms.length)} label="Phòng chiếu" />
         </View>
       </HeroCard>
 
-      <SectionTitle
-        tone="user"
-        title="Rạp đang hoạt động"
-        description="Mỗi rạp có số phòng chiếu và đường dẫn sang lịch chiếu chi tiết."
-      />
+      <SectionTitle tone="user" title="Rạp đang hoạt động" />
       {cinemas.map((cinema) => {
         const roomCount = rooms.filter((room) => room.cinemaId === cinema.id).length;
         const showtimeCount = showtimes.filter((showtime) => showtime.cinemaId === cinema.id).length;

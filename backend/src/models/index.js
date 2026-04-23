@@ -5,6 +5,10 @@ const Room = require("./Room");
 const Showtime = require("./Showtime");
 const Booking = require("./Booking");
 const Ticket = require("./Ticket");
+const Session = require("./Session");
+const PaymentTransaction = require("./PaymentTransaction");
+const MockBankAccount = require("./MockBankAccount");
+const PaymentCallbackLog = require("./PaymentCallbackLog");
 
 module.exports = {
   User,
@@ -14,4 +18,8 @@ module.exports = {
   Showtime,
   Booking,
   Ticket,
+  Session,
+  PaymentTransaction,
+  MockBankAccount,
+  PaymentCallbackLog,
 };

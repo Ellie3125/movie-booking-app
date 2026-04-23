@@ -25,17 +25,23 @@ const emptyForm = {
 export default function AdminRoomsScreen() {
   const { rooms, cinemas, upsertRoom, deleteRoom } = useAppStore();
   const colors = getTonePalette('admin');
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     ...emptyForm,
     cinemaId: cinemas[0]?.id ?? '',
   });
 
-  const submit = () => {
+  const submit = async () => {
     if (!form.name.trim() || !form.cinemaId) {
+      setFeedback('Cần chọn rạp và nhập tên phòng chiếu.');
       return;
     }
 
-    upsertRoom({
+    setIsSubmitting(true);
+    setFeedback(null);
+
+    const result = await upsertRoom({
       id: form.id,
       cinemaId: form.cinemaId,
       name: form.name.trim(),
@@ -44,10 +50,30 @@ export default function AdminRoomsScreen() {
       totalColumns: Number(form.totalColumns) || 1,
     });
 
+    setIsSubmitting(false);
+
+    if (!result.ok) {
+      setFeedback(result.error || 'Không thể lưu phòng chiếu.');
+      return;
+    }
+
     setForm({
       ...emptyForm,
       cinemaId: cinemas[0]?.id ?? '',
     });
+    setFeedback(form.id ? 'Đã cập nhật phòng chiếu.' : 'Đã tạo phòng chiếu mới.');
+  };
+
+  const handleDeleteRoom = async (roomId: string) => {
+    setFeedback(null);
+    const result = await deleteRoom(roomId);
+
+    if (!result.ok) {
+      setFeedback(result.error || 'Không thể xóa phòng chiếu.');
+      return;
+    }
+
+    setFeedback('Đã xóa phòng chiếu.');
   };
 
   return (
@@ -56,14 +82,9 @@ export default function AdminRoomsScreen() {
         tone="admin"
         eyebrow="Admin / Rooms"
         title="Room CRUD and seat layout builder"
-        description="Room luu so hang, so cot va seat layout. Admin chon o nao khong phai ghe thi o do se bien mat ben user."
       />
 
-      <SectionTitle
-        tone="admin"
-        title={form.id ? 'Edit room' : 'Create room'}
-        description="Sau khi tao room, vao seat layout de scan ra bang ghe va toggle o trong."
-      />
+      <SectionTitle tone="admin" title={form.id ? 'Edit room' : 'Create room'} />
       <SectionCard tone="admin">
         <View style={styles.chipRow}>
           {cinemas.map((cinema) => (
@@ -108,14 +129,15 @@ export default function AdminRoomsScreen() {
             onChangeText={(totalColumns) => setForm((current) => ({ ...current, totalColumns }))}
           />
         </View>
-        <ActionButton tone="admin" label={form.id ? 'Update room' : 'Create room'} onPress={submit} />
+        {feedback ? <Text style={[styles.feedback, { color: colors.accent }]}>{feedback}</Text> : null}
+        <ActionButton
+          tone="admin"
+          label={isSubmitting ? 'Saving...' : form.id ? 'Update room' : 'Create room'}
+          onPress={submit}
+        />
       </SectionCard>
 
-      <SectionTitle
-        tone="admin"
-        title="Room list"
-        description="Mo seat builder de tao ma tran ghe va mapping toa do / ten ghe."
-      />
+      <SectionTitle tone="admin" title="Room list" />
       {rooms.map((room) => {
         const cinema = cinemas.find((item) => item.id === room.cinemaId);
 
@@ -146,7 +168,7 @@ export default function AdminRoomsScreen() {
               <Link href={`/admin/rooms/${room.id}/seat-layout`} style={[styles.link, { color: colors.accent }]}>
                 Seat layout
               </Link>
-              <ActionButton tone="admin" label="Delete" onPress={() => deleteRoom(room.id)} />
+              <ActionButton tone="admin" label="Delete" onPress={() => void handleDeleteRoom(room.id)} />
             </View>
           </SectionCard>
         );
@@ -186,5 +208,9 @@ const styles = StyleSheet.create({
   link: {
     fontSize: 14,
     fontWeight: '800',
+  },
+  feedback: {
+    fontSize: 14,
+    fontWeight: '700',
   },
 });
