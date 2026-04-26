@@ -45,6 +45,25 @@ const MovieSchema = new mongoose.Schema(
       default: MOVIE_STATUS.COMING_SOON,
       index: true,
     },
+    language: {
+      type: String,
+      default: "Phụ đề",
+      trim: true,
+    },
+    rating: {
+      type: String,
+      default: "T13",
+      trim: true,
+    },
+    formats: {
+      type: [{ type: String, trim: true }],
+      default: ["2D"],
+    },
+    featuredNote: {
+      type: String,
+      default: "",
+      trim: true,
+    },
   },
   {
     timestamps: true,

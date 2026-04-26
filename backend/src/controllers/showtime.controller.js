@@ -15,6 +15,16 @@ const listShowtimes = asyncHandler(async (req, res) => {
   });
 });
 
+const createShowtimeSchedule = asyncHandler(async (req, res) => {
+  const data = await showtimeService.createShowtimeSchedule(req.body);
+
+  return sendApiResponse(res, {
+    statusCode: 201,
+    message: 'Showtime schedule created successfully',
+    data,
+  });
+});
+
 const getShowtimeById = asyncHandler(async (req, res) => {
   const data = await showtimeService.getShowtimeById(req.params.id);
 
@@ -25,6 +35,7 @@ const getShowtimeById = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  createShowtimeSchedule,
   listShowtimes,
   getShowtimeById,
 };
