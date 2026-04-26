@@ -107,8 +107,11 @@ const authorizeRoles = (...allowedRoles) => (req, _res, next) => {
   return next();
 };
 
+const requireRole = authorizeRoles;
+
 module.exports = {
   protect: verifyAccess,
   verifyAccessToken: verifyAccess,
   authorizeRoles,
+  requireRole,
 };

@@ -12,6 +12,13 @@ const {
 } = require('../utils/jwt');
 
 const PASSWORD_SALT_ROUNDS = 10;
+const ADMIN_PORTAL_ROLES = ['admin', 'staff'];
+const ADMIN_ACCOUNT_LOGIN_MESSAGE =
+  'Tài khoản quản trị vui lòng đăng nhập tại trang admin';
+const ADMIN_LOGIN_FORBIDDEN_MESSAGE =
+  'Bạn không có quyền truy cập trang quản trị';
+
+const isAdminPortalRole = (role) => ADMIN_PORTAL_ROLES.includes(role);
 
 const sanitizeUser = (user) => ({
   id: String(user._id),
@@ -30,12 +37,12 @@ const buildTokenPayload = (user) => ({
 });
 
 const getAccessTokenExpiresIn = (user) =>
-  user.role === 'admin'
+  isAdminPortalRole(user.role)
     ? env.adminAccessTokenExpiresIn
     : env.accessTokenExpiresIn;
 
 const getRefreshTokenExpiresIn = (user, rememberMe) => {
-  if (user.role === 'admin') {
+  if (isAdminPortalRole(user.role)) {
     return env.adminRefreshTokenExpiresIn;
   }
 
@@ -140,6 +147,38 @@ const createAdmin = async ({ name, email, password }, currentUser) => {
 };
 
 const login = async ({ email, password, rememberMe = false }, metadata) => {
+  const user = await authenticateWithPassword({ email, password });
+
+  if (user.role !== 'user') {
+    throw ApiError.forbidden(
+      ADMIN_ACCOUNT_LOGIN_MESSAGE,
+      'ADMIN_LOGIN_REQUIRED'
+    );
+  }
+
+  return buildAuthResponse(user, {
+    rememberMe,
+    metadata,
+  });
+};
+
+const adminLogin = async ({ email, password, rememberMe = false }, metadata) => {
+  const user = await authenticateWithPassword({ email, password });
+
+  if (!isAdminPortalRole(user.role)) {
+    throw ApiError.forbidden(
+      ADMIN_LOGIN_FORBIDDEN_MESSAGE,
+      'ADMIN_ACCESS_FORBIDDEN'
+    );
+  }
+
+  return buildAuthResponse(user, {
+    rememberMe,
+    metadata,
+  });
+};
+
+const authenticateWithPassword = async ({ email, password }) => {
   const user = await User.findOne({ email }).exec();
 
   assertUserCanAuthenticate(user);
@@ -153,10 +192,7 @@ const login = async ({ email, password, rememberMe = false }, metadata) => {
     );
   }
 
-  return buildAuthResponse(user, {
-    rememberMe,
-    metadata,
-  });
+  return user;
 };
 
 const validateSessionOwner = (decoded, currentUser) => {
@@ -366,6 +402,7 @@ const getCurrentUser = async (userId) => {
 };
 
 module.exports = {
+  adminLogin,
   changePassword,
   createAdmin,
   getCurrentUser,

@@ -29,6 +29,12 @@ router.post(
   authController.login
 );
 router.post(
+  '/admin/login',
+  authRateLimiter,
+  validate(authValidation.loginSchema),
+  authController.adminLogin
+);
+router.post(
   '/refresh-token',
   authRateLimiter,
   validate(authValidation.refreshTokenRequestSchema),
@@ -54,7 +60,7 @@ router.post(
 router.post(
   '/admins',
   authMiddleware.verifyAccessToken,
-  authMiddleware.authorizeRoles('admin'),
+  authMiddleware.requireRole('admin'),
   validate(authValidation.createAdminSchema),
   authController.createAdmin
 );

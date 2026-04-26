@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const USER_ROLE = {
   USER: "user",
+  STAFF: "staff",
   ADMIN: "admin",
 };
 

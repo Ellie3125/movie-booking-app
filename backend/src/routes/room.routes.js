@@ -9,7 +9,7 @@ const router = express.Router();
 router.post(
   '/',
   authMiddleware.verifyAccessToken,
-  authMiddleware.authorizeRoles('admin'),
+  authMiddleware.requireRole('admin', 'staff'),
   validate(roomValidation.createRoomSchema),
   roomController.createRoom
 );
@@ -17,14 +17,14 @@ router.get('/', roomController.listRooms);
 router.put(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.authorizeRoles('admin'),
+  authMiddleware.requireRole('admin', 'staff'),
   validate(roomValidation.updateRoomSchema),
   roomController.updateRoom
 );
 router.delete(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.authorizeRoles('admin'),
+  authMiddleware.requireRole('admin', 'staff'),
   validate(roomValidation.roomIdParamSchema),
   roomController.deleteRoom
 );
