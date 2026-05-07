@@ -18,7 +18,7 @@ import {
   formatLocationName,
   formatPaymentMethod,
   formatRoomName,
-  formatScreenLabel,
+  formatRoomType,
 } from '@/lib/user-display';
 
 const formatDateTime = (value: string) =>
@@ -91,7 +91,7 @@ export default function BookingDetailScreen() {
             <View style={styles.detailRow}>
               <Text style={[styles.detailLabel, { color: colors.muted }]}>Phòng</Text>
               <Text style={[styles.detailValue, { color: colors.text }]}>
-                {formatRoomName(room.name)} • {formatScreenLabel(room.screenLabel)}
+                {formatRoomName(room.name)} • {formatRoomType(room.roomType)}
               </Text>
             </View>
             <View style={styles.detailRow}>

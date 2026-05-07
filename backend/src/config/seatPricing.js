@@ -1,6 +1,7 @@
 const SEAT_PRICE_MAP = Object.freeze({
-  standard: 90000,
-  couple: 135000,
+  regular: 90000,
+  vip: 120000,
+  couple: 180000,
 });
 
 module.exports = {

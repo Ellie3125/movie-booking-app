@@ -77,7 +77,7 @@ const validateObjectId = (id, resourceName) => {
 const getBookingPopulateQuery = (bookingId) =>
   Booking.findById(bookingId)
     .populate('movieId', 'title duration poster status')
-    .populate('roomId', 'name screenLabel totalRows totalColumns')
+    .populate('roomId', 'name roomType totalRows totalColumns')
     .populate({
       path: 'showtimeId',
       select: 'startTime endTime cinemaId roomId seatStates',
@@ -88,7 +88,7 @@ const getBookingPopulateQuery = (bookingId) =>
         },
         {
           path: 'roomId',
-          select: 'name screenLabel totalRows totalColumns',
+          select: 'name roomType totalRows totalColumns',
         },
       ],
     });

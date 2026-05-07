@@ -20,7 +20,7 @@ const BOOKING_POPULATE = [
   },
   {
     path: 'roomId',
-    select: 'name screenLabel totalRows totalColumns',
+    select: 'name roomType totalRows totalColumns',
   },
   {
     path: 'showtimeId',
@@ -71,10 +71,10 @@ const getOwnedBookingOrThrow = async (bookingId, userId) => {
   return booking;
 };
 
-const flattenSeatLayout = (room) =>
-  room.seatLayout
-    .flat()
-    .filter((seat) => seat && seat.cellType === 'seat' && seat.coordinate);
+const flattenSeatLayout = (room) => {
+  if (!room.seatLayout) return [];
+  return room.seatLayout.flatMap(row => row.seats || []);
+};
 
 const buildRoomSeatMap = (room) =>
   new Map(
@@ -105,10 +105,10 @@ const getEdgeSeatSelectionConflict = ({
   );
 
   for (const row of seatLayout) {
-    const rowSeats = row
-      .filter((seat) => seat && seat.cellType === 'seat' && seat.coordinate)
+    const rowSeats = (row.seats || [])
+      .filter((seat) => seat && seat.type !== 'space')
       .map((seat) => {
-        const coordinate = String(seat.coordinate.coordinateLabel)
+        const coordinate = String(seat.seatCode)
           .trim()
           .toUpperCase();
 
@@ -223,7 +223,7 @@ const mapBookingResponse = (booking) => ({
     ? {
         id: String(booking.roomId._id),
         name: booking.roomId.name,
-        screenLabel: booking.roomId.screenLabel,
+        roomType: booking.roomId.roomType,
         totalRows: booking.roomId.totalRows,
         totalColumns: booking.roomId.totalColumns,
       }
@@ -237,8 +237,8 @@ const mapBookingResponse = (booking) => ({
     : null,
   seats: (booking.seats || []).map((seat) => ({
     seatCoordinate: seat.seatCoordinate,
-    seatLabel: seat.seatLabel,
-    seatType: seat.seatType,
+    seatLabel: seat.label || seat.seatLabel,
+    seatType: seat.type || seat.seatType,
     status: seat.status,
     price: seat.price,
   })),
@@ -319,6 +319,12 @@ const cleanupExpiredHeldSeats = async (showtime) => {
 };
 
 const assertShowtimeIsBookable = (showtime) => {
+  if (showtime.status === 'locked') {
+    throw ApiError.conflict(
+      'Suất chiếu này đã bị khóa bán vé bởi quản trị viên',
+      'SHOWTIME_LOCKED'
+    );
+  }
   if (new Date(showtime.startTime).getTime() <= Date.now()) {
     throw ApiError.conflict(
       'This showtime has already started and can no longer be booked',
@@ -338,7 +344,7 @@ const createBooking = async ({ userId, showtimeId, seatCoordinates }) => {
   const showtime = await Showtime.findById(showtimeId)
     .populate('movieId', 'title duration poster status')
     .populate('cinemaId', 'name brand city address')
-    .populate('roomId', 'name screenLabel totalRows totalColumns seatLayout')
+    .populate('roomId', 'name roomType totalRows totalColumns seatLayout')
     .exec();
 
   if (!showtime) {
@@ -388,26 +394,28 @@ const createBooking = async ({ userId, showtimeId, seatCoordinates }) => {
     const roomSeat = roomSeatMap.get(seatCoordinate);
     const seatState = showtimeSeatStateMap.get(seatCoordinate);
 
-    if (!roomSeat || !seatState) {
+    if (!roomSeat) {
       throw ApiError.badRequest(
         `Seat ${seatCoordinate} does not exist in the selected room`,
         'INVALID_SEAT_COORDINATE'
       );
     }
 
-    if (seatState.status !== SHOWTIME_SEAT_STATUS.AVAILABLE) {
+    const currentStatus = seatState ? seatState.status : SHOWTIME_SEAT_STATUS.AVAILABLE;
+
+    if (currentStatus !== SHOWTIME_SEAT_STATUS.AVAILABLE) {
       throw ApiError.conflict(
-        `Seat ${seatState.seatLabel} is not available`,
+        `Seat ${roomSeat.seatLabel || seatCoordinate} is not available`,
         'SEAT_NOT_AVAILABLE'
       );
     }
 
     return {
       seatCoordinate,
-      seatLabel: roomSeat.seatLabel,
-      seatType: roomSeat.seatType,
+      seatLabel: roomSeat.label || roomSeat.seatCode,
+      seatType: roomSeat.type,
       status: BOOKED_SEAT_STATUS.PENDING_PAYMENT,
-      price: getSeatPrice(roomSeat.seatType),
+      price: getSeatPrice(roomSeat.priceType || roomSeat.type),
     };
   });
 
@@ -430,13 +438,31 @@ const createBooking = async ({ userId, showtimeId, seatCoordinates }) => {
   });
 
   normalizedSeatCoordinates.forEach((seatCoordinate) => {
-    const seatState = showtimeSeatStateMap.get(seatCoordinate);
-    seatState.status = SHOWTIME_SEAT_STATUS.HELD;
-    seatState.userId = userId;
-    seatState.bookingId = booking._id;
-    seatState.heldAt = now;
-    seatState.holdExpiresAt = paymentExpiresAt;
-    seatState.paidAt = null;
+    let seatState = showtimeSeatStateMap.get(seatCoordinate);
+    
+    if (!seatState) {
+      // If no state exists, create a new one in the array
+      const roomSeat = roomSeatMap.get(seatCoordinate);
+      seatState = {
+        seatCoordinate,
+        seatLabel: roomSeat.seatLabel,
+        seatType: roomSeat.seatType,
+        status: SHOWTIME_SEAT_STATUS.HELD,
+        userId: userId,
+        bookingId: booking._id,
+        heldAt: now,
+        holdExpiresAt: paymentExpiresAt,
+        paidAt: null,
+      };
+      showtime.seatStates.push(seatState);
+    } else {
+      seatState.status = SHOWTIME_SEAT_STATUS.HELD;
+      seatState.userId = userId;
+      seatState.bookingId = booking._id;
+      seatState.heldAt = now;
+      seatState.holdExpiresAt = paymentExpiresAt;
+      seatState.paidAt = null;
+    }
   });
 
   await Promise.all([booking.save(), showtime.save()]);
@@ -562,9 +588,128 @@ const cancelBooking = async ({ bookingId, userId }) => {
   return mapBookingResponse(booking.toObject ? booking.toObject() : booking);
 };
 
+const listBookingsAdmin = async ({ status, paymentStatus, bookingCode, userId }) => {
+  const filter = {};
+
+  if (status) filter.status = status;
+  if (paymentStatus) filter.paymentStatus = paymentStatus;
+  if (bookingCode) filter.bookingCode = { $regex: bookingCode, $options: 'i' };
+  if (userId && mongoose.isValidObjectId(userId)) filter.userId = userId;
+
+  const [items, total] = await Promise.all([
+    getBookingQuery(filter).lean().exec(),
+    Booking.countDocuments(filter),
+  ]);
+
+  return {
+    items: items.map(mapBookingResponse),
+    total,
+  };
+};
+
+const getBookingByIdAdmin = async (bookingId) => {
+  if (!mongoose.isValidObjectId(bookingId)) {
+    throw ApiError.badRequest('Booking id is invalid', 'INVALID_OBJECT_ID');
+  }
+
+  const booking = await getBookingQuery({ _id: bookingId })
+    .limit(1)
+    .then((items) => items[0] || null);
+
+  if (!booking) {
+    throw ApiError.notFound('Booking not found', 'BOOKING_NOT_FOUND');
+  }
+
+  return mapBookingResponse(booking);
+};
+
+const cancelBookingAdmin = async (bookingId) => {
+  if (!mongoose.isValidObjectId(bookingId)) {
+    throw ApiError.badRequest('Booking id is invalid', 'INVALID_OBJECT_ID');
+  }
+
+  const booking = await Booking.findById(bookingId).exec();
+
+  if (!booking) {
+    throw ApiError.notFound('Booking not found', 'BOOKING_NOT_FOUND');
+  }
+
+  if (
+    booking.status === BOOKING_STATUS.CONFIRMED ||
+    booking.paymentStatus === PAYMENT_STATUS.SUCCESS ||
+    booking.paidAt
+  ) {
+    throw ApiError.conflict(
+      'Cannot cancel a paid/confirmed booking',
+      'BOOKING_ALREADY_CONFIRMED'
+    );
+  }
+
+  if (booking.status === BOOKING_STATUS.CANCELLED) {
+    throw ApiError.conflict(
+      'Booking has already been cancelled',
+      'BOOKING_ALREADY_CANCELLED'
+    );
+  }
+
+  const showtime = await Showtime.findById(getEntityId(booking.showtimeId)).exec();
+
+  if (showtime) {
+    const bookingSeatCoordinates = new Set(
+      booking.seats.map((seat) => seat.seatCoordinate.toUpperCase())
+    );
+
+    showtime.seatStates.forEach((seatState) => {
+      if (
+        bookingSeatCoordinates.has(seatState.seatCoordinate.toUpperCase()) &&
+        seatState.status === SHOWTIME_SEAT_STATUS.HELD
+      ) {
+        seatState.status = SHOWTIME_SEAT_STATUS.AVAILABLE;
+        seatState.userId = null;
+        seatState.bookingId = null;
+        seatState.heldAt = null;
+        seatState.holdExpiresAt = null;
+        seatState.paidAt = null;
+      }
+    });
+    await showtime.save();
+  }
+
+  booking.status = BOOKING_STATUS.CANCELLED;
+  booking.paymentStatus = PAYMENT_STATUS.FAILED;
+  booking.paymentExpiresAt = null;
+
+  await Promise.all([
+    booking.save(),
+    PaymentTransaction.updateMany(
+      {
+        bookingId: booking._id,
+        status: {
+          $in: [
+            PAYMENT_TRANSACTION_STATUS.PENDING,
+            PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED,
+            PAYMENT_TRANSACTION_STATUS.CALLBACK_PENDING,
+          ],
+        },
+      },
+      {
+        $set: {
+          status: PAYMENT_TRANSACTION_STATUS.FAILED,
+          failureReason: 'Booking cancelled by admin',
+        },
+      }
+    ).exec(),
+  ]);
+
+  return mapBookingResponse(booking.toObject ? booking.toObject() : booking);
+};
+
 module.exports = {
   createBooking,
   listMyBookings,
   getMyBookingById,
   cancelBooking,
+  listBookingsAdmin,
+  getBookingByIdAdmin,
+  cancelBookingAdmin,
 };

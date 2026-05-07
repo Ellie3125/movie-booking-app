@@ -53,9 +53,42 @@ const cancelBooking = asyncHandler(async (req, res) => {
   });
 });
 
+const listBookingsAdmin = asyncHandler(async (req, res) => {
+  const data = await bookingService.listBookingsAdmin({
+    status: req.query.status,
+    paymentStatus: req.query.paymentStatus,
+    bookingCode: req.query.bookingCode,
+    userId: req.query.userId,
+  });
+
+  return sendApiResponse(res, {
+    message: 'Bookings fetched successfully',
+    data,
+  });
+});
+
+const getBookingByIdAdmin = asyncHandler(async (req, res) => {
+  const data = await bookingService.getBookingByIdAdmin(req.params.bookingId);
+  return sendApiResponse(res, {
+    message: 'Booking fetched successfully',
+    data,
+  });
+});
+
+const cancelBookingAdmin = asyncHandler(async (req, res) => {
+  const data = await bookingService.cancelBookingAdmin(req.params.bookingId);
+  return sendApiResponse(res, {
+    message: 'Booking cancelled successfully by admin',
+    data,
+  });
+});
+
 module.exports = {
   createBooking,
   listMyBookings,
   getMyBookingById,
   cancelBooking,
+  listBookingsAdmin,
+  getBookingByIdAdmin,
+  cancelBookingAdmin,
 };

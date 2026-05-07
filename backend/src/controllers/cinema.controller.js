@@ -23,7 +23,66 @@ const getCinemaById = asyncHandler(async (req, res) => {
   });
 });
 
+const getNearbyCinemas = asyncHandler(async (req, res) => {
+  const data = await cinemaService.getNearbyCinemas({
+    lat: req.query.lat,
+    lng: req.query.lng,
+  });
+
+  return sendApiResponse(res, {
+    message: 'Nearby cinemas fetched successfully',
+    data,
+  });
+});
+
+const listBrands = asyncHandler(async (req, res) => {
+  const data = await cinemaService.listBrands();
+  return sendApiResponse(res, {
+    message: 'Cinema brands fetched successfully',
+    data,
+  });
+});
+
+const listCities = asyncHandler(async (req, res) => {
+  const data = await cinemaService.listCities();
+  return sendApiResponse(res, {
+    message: 'Cinema cities fetched successfully',
+    data,
+  });
+});
+
+const createCinema = asyncHandler(async (req, res) => {
+  const data = await cinemaService.createCinema(req.body);
+  return sendApiResponse(res, {
+    statusCode: 201,
+    message: 'Cinema created successfully',
+    data,
+  });
+});
+
+const updateCinema = asyncHandler(async (req, res) => {
+  const data = await cinemaService.updateCinema(req.params.id, req.body);
+  return sendApiResponse(res, {
+    message: 'Cinema updated successfully',
+    data,
+  });
+});
+
+const deleteCinema = asyncHandler(async (req, res) => {
+  await cinemaService.deleteCinema(req.params.id);
+  return sendApiResponse(res, {
+    message: 'Cinema deleted successfully',
+    data: null,
+  });
+});
+
 module.exports = {
   listCinemas,
   getCinemaById,
+  getNearbyCinemas,
+  listBrands,
+  listCities,
+  createCinema,
+  updateCinema,
+  deleteCinema,
 };

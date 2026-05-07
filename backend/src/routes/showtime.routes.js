@@ -13,6 +13,34 @@ router.post(
   validate(showtimeValidation.createShowtimeScheduleSchema),
   showtimeController.createShowtimeSchedule
 );
+router.post(
+  '/bulk-create',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.requireRole('admin', 'staff'),
+  validate(showtimeValidation.bulkCreateShowtimeSchema),
+  showtimeController.bulkCreateShowtimes
+);
+router.post(
+  '/',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.requireRole('admin', 'staff'),
+  validate(showtimeValidation.createShowtimeSchema),
+  showtimeController.createShowtime
+);
+router.put(
+  '/:id',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.requireRole('admin', 'staff'),
+  validate(showtimeValidation.updateShowtimeSchema),
+  showtimeController.updateShowtime
+);
+router.delete(
+  '/:id',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.requireRole('admin', 'staff'),
+  validate(showtimeValidation.showtimeIdParamSchema),
+  showtimeController.deleteShowtime
+);
 router.get('/', showtimeController.listShowtimes);
 router.get('/:id', showtimeController.getShowtimeById);
 

@@ -16,7 +16,7 @@ import {
   formatCinemaFeatures,
   formatLocationName,
   formatRoomName,
-  formatScreenLabel,
+  formatRoomType,
   formatShowtimeDayLabel,
   formatShowtimeTime,
 } from '@/lib/user-display';
@@ -84,7 +84,7 @@ export default function CinemaDetailScreen() {
                   </Text>
                   <Text style={[styles.cardCopy, { color: colors.muted }]}>
                     {room ? formatRoomName(room.name) : 'Phòng đang cập nhật'} •{' '}
-                    {room ? formatScreenLabel(room.screenLabel) : 'Màn hình đang cập nhật'}
+                    {room ? formatRoomType(room.roomType) : 'Loại phòng đang cập nhật'}
                   </Text>
                   <View style={styles.rowBetween}>
                     {movie ? (

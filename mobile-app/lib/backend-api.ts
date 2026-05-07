@@ -1,5 +1,49 @@
+import axios, {
+  type AxiosError,
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type InternalAxiosRequestConfig,
+} from 'axios';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
+
+import { clearTokens, getAccessToken, getRefreshToken, saveAccessToken, saveTokens } from './tokenStorage';
+
+// ─── URL Resolution ───────────────────────────────────────────────────────────
+
+const resolveExpoHost = (): string | null => {
+  const rawHostUri = Constants.expoConfig?.hostUri ?? Constants.linkingUri ?? '';
+  const normalizedHostUri = rawHostUri.replace(/^[a-z]+:\/\//i, '');
+  const host = normalizedHostUri.split('/')[0]?.split(':')[0]?.trim();
+
+  if (!host || host === 'localhost' || host === '127.0.0.1') {
+    return null;
+  }
+
+  return host;
+};
+
+const resolveBaseUrl = (): string => {
+  const configuredBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL?.trim();
+
+  if (configuredBaseUrl) {
+    return configuredBaseUrl.replace(/\/$/, '');
+  }
+
+  const expoHost = resolveExpoHost();
+
+  if (expoHost) {
+    return `http://${expoHost}:5000/api/v1`;
+  }
+
+  return Platform.OS === 'android'
+    ? 'http://10.0.2.2:5000/api/v1'
+    : 'http://127.0.0.1:5000/api/v1';
+};
+
+export const API_BASE_URL = resolveBaseUrl();
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type ApiSuccessResponse<T> = {
   success: true;
@@ -87,10 +131,16 @@ export type BackendCinema = {
   name: string;
   city: string;
   address: string;
+  latitude?: number | null;
+  longitude?: number | null;
+};
+
+export type BackendNearbyCinema = BackendCinema & {
+  distanceKm: number;
 };
 
 export type BackendRoomSeat = {
-  cellType: 'seat' | 'empty';
+  cellType: 'seat' | 'space';
   coordinate: {
     rowIndex: number;
     columnIndex: number;
@@ -105,11 +155,11 @@ export type BackendRoom = {
   _id: string;
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: 'standard' | 'vip' | 'gold' | 'imax';
   totalRows: number;
   totalColumns: number;
   activeSeatCount: number;
-  seatLayout: BackendRoomSeat[][];
+  seatLayout: any[]; // Updated to any[] to handle row-based structure
 };
 
 export type BackendRoomSummary = Omit<BackendRoom, 'seatLayout'>;
@@ -117,7 +167,7 @@ export type BackendRoomSummary = Omit<BackendRoom, 'seatLayout'>;
 export type BackendRoomMutationPayload = {
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: 'standard' | 'vip' | 'gold' | 'imax';
   totalRows: number;
   totalColumns: number;
   hiddenCoordinates: string[];
@@ -156,7 +206,7 @@ export type BackendShowtimeListItem = {
   room: {
     _id: string;
     name: string;
-    screenLabel: string;
+    roomType: 'standard' | 'vip' | 'gold' | 'imax';
     totalColumns: number;
   };
   startTime: string;
@@ -218,7 +268,7 @@ export type BackendBooking = {
   room: {
     id: string;
     name: string;
-    screenLabel: string;
+    roomType: 'standard' | 'vip' | 'gold' | 'imax';
     totalRows: number;
     totalColumns: number;
   } | null;
@@ -250,7 +300,7 @@ export type BackendBill = {
   room: {
     id: string;
     name: string;
-    screenLabel: string;
+    roomType: 'standard' | 'vip' | 'gold' | 'imax';
     totalRows: number;
     totalColumns: number;
   } | null;
@@ -342,7 +392,7 @@ export type BackendTicket = {
   room: {
     id: string;
     name: string;
-    screenLabel: string;
+    roomType: 'standard' | 'vip' | 'gold' | 'imax';
     totalRows: number;
     totalColumns: number;
   } | null;
@@ -353,74 +403,150 @@ export type BackendTicket = {
   } | null;
 };
 
-const resolveExpoHost = () => {
-  const rawHostUri = Constants.expoConfig?.hostUri ?? Constants.linkingUri ?? '';
-  const normalizedHostUri = rawHostUri.replace(/^[a-z]+:\/\//i, '');
-  const host = normalizedHostUri.split('/')[0]?.split(':')[0]?.trim();
+// ─── Axios Instance ───────────────────────────────────────────────────────────
 
-  if (!host || host === 'localhost' || host === '127.0.0.1') {
-    return null;
-  }
+// Flag để tránh loop vô hạn khi đang refresh
+let isRefreshing = false;
+let refreshSubscribers: Array<(token: string) => void> = [];
 
-  return host;
+const subscribeTokenRefresh = (cb: (token: string) => void) => {
+  refreshSubscribers.push(cb);
 };
 
-const resolveBaseUrl = () => {
-  const configuredBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL?.trim();
-
-  if (configuredBaseUrl) {
-    return configuredBaseUrl.replace(/\/$/, '');
-  }
-
-  const expoHost = resolveExpoHost();
-
-  if (expoHost) {
-    return `http://${expoHost}:5000/api/v1`;
-  }
-
-  return Platform.OS === 'android'
-    ? 'http://10.0.2.2:5000/api/v1'
-    : 'http://127.0.0.1:5000/api/v1';
+const notifyRefreshSubscribers = (token: string) => {
+  refreshSubscribers.forEach((cb) => cb(token));
+  refreshSubscribers = [];
 };
 
-const API_BASE_URL = resolveBaseUrl();
+const apiClient: AxiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  timeout: 15000,
+});
+
+// Request interceptor: gắn accessToken vào header
+apiClient.interceptors.request.use(
+  async (config: InternalAxiosRequestConfig) => {
+    const token = await getAccessToken();
+    if (token && config.headers) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
+
+// Response interceptor: auto-refresh khi 401
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error: AxiosError) => {
+    const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
+
+    // Chỉ retry nếu 401, chưa retry trước đó, và không phải chính endpoint refresh-token
+    const isRefreshEndpoint = originalRequest.url?.includes('/auth/refresh-token');
+    if (error.response?.status === 401 && !originalRequest._retry && !isRefreshEndpoint) {
+      if (isRefreshing) {
+        // Đang refresh → queue request, chờ token mới
+        return new Promise((resolve) => {
+          subscribeTokenRefresh((newToken: string) => {
+            if (originalRequest.headers) {
+              (originalRequest.headers as Record<string, string>)['Authorization'] = `Bearer ${newToken}`;
+            }
+            resolve(apiClient(originalRequest));
+          });
+        });
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+
+      try {
+        const refreshToken = await getRefreshToken();
+
+        if (!refreshToken) {
+          throw new Error('No refresh token available');
+        }
+
+        // Gọi endpoint refresh-token với axios instance gốc (không interceptor)
+        const refreshResponse = await axios.post<ApiSuccessResponse<BackendAuthResponse>>(
+          `${API_BASE_URL}/auth/refresh-token`,
+          { refreshToken },
+          { headers: { 'Content-Type': 'application/json' } },
+        );
+
+        const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+          refreshResponse.data.data;
+
+        await saveTokens({
+          accessToken: newAccessToken,
+          refreshToken: newRefreshToken,
+        });
+
+        notifyRefreshSubscribers(newAccessToken);
+
+        if (originalRequest.headers) {
+          (originalRequest.headers as Record<string, string>)['Authorization'] = `Bearer ${newAccessToken}`;
+        }
+
+        return apiClient(originalRequest);
+      } catch {
+        // Refresh thất bại → xóa token, để UI xử lý
+        await clearTokens();
+        notifyRefreshSubscribers('');
+        return Promise.reject(error);
+      } finally {
+        isRefreshing = false;
+      }
+    }
+
+    // Chuyển lỗi axios thành ApiRequestError
+    if (error.response) {
+      const body = error.response.data as ApiErrorResponse;
+      throw new ApiRequestError(
+        body?.message || 'API request failed',
+        error.response.status,
+        body?.error || 'API_REQUEST_FAILED',
+        Array.isArray(body?.details) ? body.details : [],
+      );
+    }
+
+    return Promise.reject(error);
+  },
+);
+
+// ─── Request Helper ───────────────────────────────────────────────────────────
 
 async function apiRequest<T>(
   path: string,
-  options: RequestInit & { token?: string } = {},
+  options: {
+    method?: string;
+    body?: unknown;
+    token?: string; // backward-compat: token override (admin-web pattern)
+    params?: Record<string, string | number>;
+  } = {},
 ): Promise<T> {
-  const headers = new Headers(options.headers);
+  const config: AxiosRequestConfig = {
+    url: path,
+    method: (options.method ?? 'GET') as AxiosRequestConfig['method'],
+    params: options.params,
+  };
 
-  if (!headers.has('Content-Type') && options.body) {
-    headers.set('Content-Type', 'application/json');
+  if (options.body !== undefined) {
+    config.data = options.body;
   }
 
+  // Nếu caller truyền token tường minh (vd admin-web pattern), override
   if (options.token) {
-    headers.set('Authorization', `Bearer ${options.token}`);
+    config.headers = { Authorization: `Bearer ${options.token}` };
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    headers,
-  });
-
-  const responseBody = (await response.json()) as ApiSuccessResponse<T> | ApiErrorResponse;
-
-  if (!response.ok || !responseBody.success) {
-    throw new ApiRequestError(
-      responseBody.message || 'API request failed',
-      response.status,
-      'error' in responseBody && responseBody.error
-        ? responseBody.error
-        : 'API_REQUEST_FAILED',
-      'details' in responseBody && Array.isArray(responseBody.details)
-        ? responseBody.details
-        : [],
-    );
-  }
-
-  return responseBody.data;
+  const response = await apiClient.request<ApiSuccessResponse<T>>(config);
+  return response.data.data;
 }
+
+// ─── Auth ─────────────────────────────────────────────────────────────────────
 
 export async function registerUser(payload: {
   name: string;
@@ -429,7 +555,7 @@ export async function registerUser(payload: {
 }) {
   return apiRequest<BackendAuthResponse>('/auth/register', {
     method: 'POST',
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
@@ -444,20 +570,37 @@ export async function createAdminUser(
   return apiRequest<BackendUser>('/auth/admins', {
     method: 'POST',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
 export async function loginUser(payload: { email: string; password: string }) {
   return apiRequest<BackendAuthResponse>('/auth/login', {
     method: 'POST',
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
 export async function fetchCurrentUser(token: string) {
   return apiRequest<BackendUser>('/auth/me', { token });
 }
+
+export async function refreshAuthToken(refreshToken: string) {
+  return apiRequest<BackendAuthResponse>('/auth/refresh-token', {
+    method: 'POST',
+    body: { refreshToken },
+  });
+}
+
+export async function logoutUser(token: string, refreshToken: string) {
+  return apiRequest<{ loggedOut: boolean }>('/auth/logout', {
+    method: 'POST',
+    token,
+    body: { refreshToken },
+  });
+}
+
+// ─── Movies ───────────────────────────────────────────────────────────────────
 
 export async function fetchMovies() {
   return apiRequest<{ items: BackendMovie[]; total: number }>('/movies');
@@ -467,7 +610,7 @@ export async function createMovie(token: string, payload: BackendMovieMutationPa
   return apiRequest<BackendMovie>('/movies', {
     method: 'POST',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
@@ -479,7 +622,7 @@ export async function updateMovie(
   return apiRequest<BackendMovie>(`/movies/${movieId}`, {
     method: 'PUT',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
@@ -490,9 +633,19 @@ export async function deleteMovie(token: string, movieId: string) {
   });
 }
 
+// ─── Cinemas ──────────────────────────────────────────────────────────────────
+
 export async function fetchCinemas() {
   return apiRequest<{ items: BackendCinema[]; total: number }>('/cinemas');
 }
+
+export async function fetchNearbyCinemas(lat: number, lng: number) {
+  return apiRequest<{ items: BackendNearbyCinema[]; total: number }>('/cinemas/nearby', {
+    params: { lat, lng },
+  });
+}
+
+// ─── Rooms ────────────────────────────────────────────────────────────────────
 
 export async function fetchRooms() {
   return apiRequest<{ items: BackendRoomSummary[]; total: number }>('/rooms');
@@ -506,7 +659,7 @@ export async function createRoom(token: string, payload: BackendRoomMutationPayl
   return apiRequest<BackendRoom>('/rooms', {
     method: 'POST',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
@@ -518,7 +671,7 @@ export async function updateRoom(
   return apiRequest<BackendRoom>(`/rooms/${roomId}`, {
     method: 'PUT',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
@@ -528,6 +681,8 @@ export async function deleteRoom(token: string, roomId: string) {
     token,
   });
 }
+
+// ─── Showtimes ────────────────────────────────────────────────────────────────
 
 export async function fetchShowtimes() {
   return apiRequest<{ items: BackendShowtimeListItem[]; total: number }>('/showtimes');
@@ -544,20 +699,18 @@ export async function createShowtimeSchedule(
   return apiRequest<BackendShowtimeScheduleResult>('/showtimes/batch', {
     method: 'POST',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
+// ─── Bookings ─────────────────────────────────────────────────────────────────
+
 export async function fetchMyBookings(token: string) {
-  return apiRequest<{ items: BackendBooking[]; total: number }>('/bookings', {
-    token,
-  });
+  return apiRequest<{ items: BackendBooking[]; total: number }>('/bookings', { token });
 }
 
 export async function fetchMyBookingById(token: string, bookingId: string) {
-  return apiRequest<BackendBooking>(`/bookings/${bookingId}`, {
-    token,
-  });
+  return apiRequest<BackendBooking>(`/bookings/${bookingId}`, { token });
 }
 
 export async function createBooking(
@@ -567,7 +720,7 @@ export async function createBooking(
   return apiRequest<BackendBooking>('/bookings', {
     method: 'POST',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
 
@@ -578,10 +731,10 @@ export async function cancelBooking(token: string, bookingId: string) {
   });
 }
 
+// ─── Payments ─────────────────────────────────────────────────────────────────
+
 export async function fetchPaymentBill(token: string, bookingId: string) {
-  return apiRequest<BackendBill>(`/payments/bills/${bookingId}`, {
-    token,
-  });
+  return apiRequest<BackendBill>(`/payments/bills/${bookingId}`, { token });
 }
 
 export async function payBookingBill(
@@ -600,14 +753,12 @@ export async function payBookingBill(
   return apiRequest<BackendPaymentResult>(`/payments/bills/${bookingId}/pay`, {
     method: 'POST',
     token,
-    body: JSON.stringify(payload),
+    body: payload,
   });
 }
+
+// ─── Tickets ──────────────────────────────────────────────────────────────────
 
 export async function fetchMyTickets(token: string) {
-  return apiRequest<{ items: BackendTicket[]; total: number }>('/tickets', {
-    token,
-  });
+  return apiRequest<{ items: BackendTicket[]; total: number }>('/tickets', { token });
 }
-
-export { API_BASE_URL };

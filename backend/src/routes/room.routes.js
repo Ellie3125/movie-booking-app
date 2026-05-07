@@ -30,4 +30,18 @@ router.delete(
 );
 router.get('/:id', roomController.getRoomById);
 
+router.get(
+  '/:id/seat-layout',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.requireRole('admin', 'staff'),
+  roomController.getSeatLayout
+);
+
+router.put(
+  '/:id/seat-layout',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.requireRole('admin', 'staff'),
+  roomController.updateSeatLayout
+);
+
 module.exports = router;

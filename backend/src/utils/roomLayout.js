@@ -37,69 +37,78 @@ const createSeatLayout = ({
     hiddenCoordinates.map((coordinate) => String(coordinate).trim().toUpperCase())
   );
 
-  return Array.from({ length: totalRows }, (_, rowIndex) => {
+  const layout = [];
+  for (let rowIndex = 0; rowIndex < totalRows; rowIndex++) {
+    const rowLabel = String.fromCharCode(65 + rowIndex);
+    const seats = [];
     let visibleSeatIndex = 0;
 
-    return Array.from({ length: totalColumns }, (_, columnIndex) => {
-      const coordinateLabel = buildCoordinateLabel(rowIndex, columnIndex);
+    for (let columnIndex = 0; columnIndex < totalColumns; columnIndex++) {
+      const coordinateLabel = `${rowLabel}${columnIndex + 1}`;
 
       if (hiddenSet.has(coordinateLabel)) {
-        return createEmptyCell(rowIndex, columnIndex);
+        seats.push({
+          label: null,
+          seatCode: coordinateLabel,
+          rowIndex,
+          columnIndex,
+          type: 'space',
+          status: 'active',
+          capacity: 0,
+          size: 1,
+        });
+      } else {
+        visibleSeatIndex += 1;
+        const seatType = seatTypeOverrides[coordinateLabel] ?? 'regular';
+        seats.push({
+          label: coordinateLabel,
+          seatCode: coordinateLabel,
+          rowIndex,
+          columnIndex,
+          type: seatType,
+          status: 'active',
+          priceType: seatType === 'couple' ? 'couple' : (seatType === 'vip' ? 'vip' : 'regular'),
+          capacity: seatType === 'couple' ? 2 : 1,
+          size: 1,
+        });
       }
-
-      visibleSeatIndex += 1;
-      const seatType = seatTypeOverrides[coordinateLabel] ?? 'standard';
-
-      return createSeatCell(rowIndex, columnIndex, visibleSeatIndex, seatType);
-    });
-  });
+    }
+    layout.push({ rowLabel, seats });
+  }
+  return layout;
 };
 
-const flattenRoomSeats = (seatLayout = []) =>
-  seatLayout.flat().filter((cell) => cell && cell.cellType === 'seat');
-
-const extractSeatTypeOverrides = (seatLayout = []) =>
-  Object.fromEntries(
-    flattenRoomSeats(seatLayout)
-      .filter((cell) => typeof cell.seatType === 'string' && cell.seatType)
-      .map((cell) => [
-        String(cell.coordinate.coordinateLabel).toUpperCase(),
-        cell.seatType,
-      ])
-  );
+const flattenRoomSeats = (seatLayout = []) => {
+  if (!Array.isArray(seatLayout)) return [];
+  return seatLayout.flatMap(row => row.seats || []);
+};
 
 const buildShowtimeSeatStatesFromRoomLayout = (
-  seatLayout = [],
-  currentSeatStates = []
+  seatLayout = []
 ) => {
-  const currentMap = new Map(
-    currentSeatStates.map((seatState) => [
-      String(seatState.seatCoordinate).toUpperCase(),
-      seatState,
-    ])
-  );
+  const allSeats = flattenRoomSeats(seatLayout);
 
-  return flattenRoomSeats(seatLayout).map((seat) => {
-    const coordinate = String(seat.coordinate.coordinateLabel).toUpperCase();
-    const previous = currentMap.get(coordinate);
-
-    return {
-      seatCoordinate: coordinate,
-      seatLabel: seat.seatLabel || coordinate,
-      seatType: seat.seatType || 'standard',
-      status: previous?.status || 'available',
-      userId: previous?.userId || null,
-      bookingId: previous?.bookingId || null,
-      heldAt: previous?.heldAt || null,
-      holdExpiresAt: previous?.holdExpiresAt || null,
-      paidAt: previous?.paidAt || null,
-    };
-  });
+  return allSeats
+    .filter(seat => 
+      seat.status === 'active' && 
+      seat.type !== 'space' && 
+      seat.type !== 'disabled'
+    )
+    .map((seat) => {
+      return {
+        seatCoordinate: seat.seatCode,
+        status: 'available',
+        userId: null,
+        bookingId: null,
+        heldAt: null,
+        holdExpiresAt: null,
+        paidAt: null,
+      };
+    });
 };
 
 module.exports = {
   buildShowtimeSeatStatesFromRoomLayout,
-  createSeatLayout,
-  extractSeatTypeOverrides,
   flattenRoomSeats,
+  createSeatLayout,
 };

@@ -9,11 +9,12 @@ const {
   extractSeatTypeOverrides,
   flattenRoomSeats,
 } = require('../utils/roomLayout');
+const { validateSeatLayout } = require('../utils/seatMerge');
 
 const ROOM_LIST_FIELDS = [
   'cinemaId',
   'name',
-  'screenLabel',
+  'roomType',
   'totalRows',
   'totalColumns',
   'activeSeatCount',
@@ -111,89 +112,41 @@ const assertNoOuterColumnSeatsAreHidden = ({
   );
 };
 
-const buildRoomPayload = (payload, currentRoom = null) => {
-  const hiddenCoordinates = normalizeHiddenCoordinates(payload.hiddenCoordinates);
-  assertNoOuterColumnSeatsAreHidden({
-    totalRows: payload.totalRows,
-    totalColumns: payload.totalColumns,
-    hiddenCoordinates,
-  });
-  const seatTypeOverrides = currentRoom
-    ? extractSeatTypeOverrides(currentRoom.seatLayout)
-    : {};
+const getSeatLayout = async (id) => {
+  validateObjectId(id, 'Room');
+  const room = await Room.findById(id).lean();
+  if (!room) {
+    throw ApiError.notFound('Room not found', 'ROOM_NOT_FOUND');
+  }
+  return room.seatLayout || [];
+};
 
+const updateSeatLayout = async (id, seatLayout) => {
+  validateObjectId(id, 'Room');
+  const room = await Room.findById(id).exec();
+  if (!room) {
+    throw ApiError.notFound('Room not found', 'ROOM_NOT_FOUND');
+  }
+
+  try {
+    validateSeatLayout(seatLayout);
+  } catch (error) {
+    throw ApiError.badRequest(error.message, 'INVALID_LAYOUT');
+  }
+
+  room.seatLayout = seatLayout;
+  room.markModified('seatLayout');
+  await room.save();
+  return room;
+};
+
+const buildRoomPayload = (payload) => {
   return {
     cinemaId: payload.cinemaId,
     name: payload.name.trim(),
-    screenLabel: payload.screenLabel.trim(),
-    totalRows: payload.totalRows,
-    totalColumns: payload.totalColumns,
-    seatLayout: createSeatLayout({
-      totalRows: payload.totalRows,
-      totalColumns: payload.totalColumns,
-      hiddenCoordinates,
-      seatTypeOverrides,
-    }),
+    roomType: payload.roomType || 'standard',
+    // totalRows/Columns will be updated by model middleware on save
   };
-};
-
-const assertNoOccupiedSeatsAreRemoved = async (roomId, nextSeatLayout) => {
-  const nextSeatCoordinateSet = new Set(
-    flattenRoomSeats(nextSeatLayout).map((seat) =>
-      String(seat.coordinate.coordinateLabel).toUpperCase()
-    )
-  );
-
-  const showtimes = await Showtime.find({ roomId })
-    .select('seatStates.seatCoordinate seatStates.status')
-    .lean()
-    .exec();
-
-  const conflicts = [];
-
-  showtimes.forEach((showtime) => {
-    (showtime.seatStates || []).forEach((seatState) => {
-      const coordinate = String(seatState.seatCoordinate).toUpperCase();
-
-      if (
-        !nextSeatCoordinateSet.has(coordinate) &&
-        seatState.status &&
-        seatState.status !== 'available'
-      ) {
-        conflicts.push({
-          path: 'hiddenCoordinates',
-          message: `Seat ${coordinate} is already ${seatState.status} in an existing showtime and cannot be removed.`,
-        });
-      }
-    });
-  });
-
-  if (conflicts.length > 0) {
-    throw ApiError.conflict(
-      'Room layout cannot remove seats that are already held, reserved, or paid',
-      'ROOM_LAYOUT_CONFLICT',
-      conflicts.slice(0, 10)
-    );
-  }
-};
-
-const syncShowtimesForRoom = async (room) => {
-  const showtimes = await Showtime.find({ roomId: room._id }).exec();
-
-  if (showtimes.length === 0) {
-    return;
-  }
-
-  await Promise.all(
-    showtimes.map(async (showtime) => {
-      showtime.cinemaId = room.cinemaId;
-      showtime.seatStates = buildShowtimeSeatStatesFromRoomLayout(
-        room.seatLayout,
-        showtime.seatStates || []
-      );
-      await showtime.save();
-    })
-  );
 };
 
 const listRooms = async ({ cinemaId }) => {
@@ -215,8 +168,30 @@ const listRooms = async ({ cinemaId }) => {
 const createRoom = async (payload) => {
   await ensureCinemaExists(payload.cinemaId);
 
-  const room = await Room.create(buildRoomPayload(payload));
+  // Initialize with empty layout if not provided
+  const roomPayload = buildRoomPayload(payload);
+  
+  // Default layout if creating from Rooms page (initial)
+  if (payload.totalRows && payload.totalColumns) {
+    const layout = [];
+    for (let i = 0; i < payload.totalRows; i++) {
+      const rowLabel = String.fromCharCode(65 + i);
+      const seats = [];
+      for (let j = 0; j < payload.totalColumns; j++) {
+        seats.push({
+          seatCode: `${rowLabel}${j + 1}`,
+          rowIndex: i,
+          columnIndex: j,
+          type: 'regular',
+          status: 'active'
+        });
+      }
+      layout.push({ rowLabel, seats });
+    }
+    roomPayload.seatLayout = layout;
+  }
 
+  const room = await Room.create(roomPayload);
   return room.toObject();
 };
 
@@ -234,7 +209,7 @@ const getRoomById = async (id) => {
 
 const updateRoom = async (id, payload) => {
   validateObjectId(id, 'Room');
-  await ensureCinemaExists(payload.cinemaId);
+  if (payload.cinemaId) await ensureCinemaExists(payload.cinemaId);
 
   const room = await Room.findById(id).exec();
 
@@ -242,20 +217,12 @@ const updateRoom = async (id, payload) => {
     throw ApiError.notFound('Room not found', 'ROOM_NOT_FOUND');
   }
 
-  const nextRoomPayload = buildRoomPayload(payload, room);
-  await assertNoOccupiedSeatsAreRemoved(room._id, nextRoomPayload.seatLayout);
-
-  room.cinemaId = nextRoomPayload.cinemaId;
-  room.name = nextRoomPayload.name;
-  room.screenLabel = nextRoomPayload.screenLabel;
-  room.totalRows = nextRoomPayload.totalRows;
-  room.totalColumns = nextRoomPayload.totalColumns;
-  room.seatLayout = nextRoomPayload.seatLayout;
+  if (payload.name) room.name = payload.name;
+  if (payload.cinemaId) room.cinemaId = payload.cinemaId;
+  if (payload.roomType) room.roomType = payload.roomType;
 
   await room.save();
-  await syncShowtimesForRoom(room);
-
-  return Room.findById(room._id).lean().exec();
+  return room;
 };
 
 const deleteRoom = async (id) => {
@@ -285,4 +252,6 @@ module.exports = {
   listRooms,
   getRoomById,
   updateRoom,
+  getSeatLayout,
+  updateSeatLayout,
 };

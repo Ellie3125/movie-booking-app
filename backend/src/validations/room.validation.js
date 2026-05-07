@@ -15,18 +15,15 @@ const roomIdParamSchema = strictObject({
 const roomMutationBodySchema = strictObject({
   cinemaId: objectId.required().label('cinemaId'),
   name: Joi.string().trim().min(1).max(120).required().label('name'),
-  screenLabel: Joi.string()
-    .trim()
-    .min(1)
-    .max(120)
-    .required()
-    .label('screenLabel'),
-  totalRows: Joi.number().integer().min(1).max(26).required().label('totalRows'),
+  roomType: Joi.string()
+    .valid('standard', 'vip', 'gold', 'imax')
+    .default('standard')
+    .label('roomType'),
+  totalRows: Joi.number().integer().min(1).max(26).label('totalRows'),
   totalColumns: Joi.number()
     .integer()
     .min(1)
     .max(50)
-    .required()
     .label('totalColumns'),
   hiddenCoordinates: Joi.array()
     .items(seatCoordinateSchema)

@@ -1,82 +1,231 @@
 module.exports = [
   {
-    key: "movie_dune_part_two",
-    title: "Dune: Part Two",
-    description: "Cuộc chiến quyền lực trên hành tinh cát bước vào giai đoạn khốc liệt hơn.",
-    duration: 166,
-    genre: ["Sci-Fi", "Adventure"],
-    poster: "https://example.com/posters/dune-part-two.jpg",
-    releaseDate: "2024-03-01",
-    status: "now_showing",
+    "_id": "f1ca371c3da36058cdcc0397",
+    "title": "Avengers: Endgame",
+    "duration": 181,
+    "genres": [
+      "Hành động",
+      "Phiêu lưu",
+      "Khoa học viễn tưởng"
+    ],
+    "description": "Mô tả phim Avengers: Endgame. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder0.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop0.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
   {
-    key: "movie_inside_out_2",
-    title: "Inside Out 2",
-    description: "Riley bước vào tuổi teen và những cảm xúc mới bắt đầu xuất hiện.",
-    duration: 96,
-    genre: ["Animation", "Family", "Comedy"],
-    poster: "https://example.com/posters/inside-out-2.jpg",
-    releaseDate: "2024-06-14",
-    status: "now_showing",
+    "_id": "19dae628a3f3e9ff0abf6b2b",
+    "title": "The Lion King",
+    "duration": 118,
+    "genres": [
+      "Phiêu lưu",
+      "Hoạt hình",
+      "Gia đình"
+    ],
+    "description": "Mô tả phim The Lion King. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder1.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop1.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
   {
-    key: "movie_deadpool_wolverine",
-    title: "Deadpool & Wolverine",
-    description: "Bộ đôi hỗn loạn nhất vũ trụ Marvel bước vào một nhiệm vụ xuyên đa vũ trụ đầy máu lửa và hài hước.",
-    duration: 128,
-    genre: ["Action", "Comedy", "Sci-Fi"],
-    poster: "https://example.com/posters/deadpool-wolverine.jpg",
-    releaseDate: "2024-07-26",
-    status: "now_showing",
+    "_id": "d70405997e6abdfcf7dddcb6",
+    "title": "Joker",
+    "duration": 122,
+    "genres": [
+      "Tội phạm",
+      "Tâm lý",
+      "Giật gân"
+    ],
+    "description": "Mô tả phim Joker. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder2.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop2.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
   {
-    key: "movie_kung_fu_panda_4",
-    title: "Kung Fu Panda 4",
-    description: "Po tiếp tục hành trình trở thành thủ lĩnh tinh thần mới khi đối đầu với thế lực phản diện bí ẩn.",
-    duration: 94,
-    genre: ["Animation", "Comedy", "Family"],
-    poster: "https://example.com/posters/kung-fu-panda-4.jpg",
-    releaseDate: "2024-03-08",
-    status: "now_showing",
+    "_id": "2a7daeb250ba4051fe8f4578",
+    "title": "Spider-Man: No Way Home",
+    "duration": 148,
+    "genres": [
+      "Hành động",
+      "Phiêu lưu",
+      "Khoa học viễn tưởng"
+    ],
+    "description": "Mô tả phim Spider-Man: No Way Home. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder3.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop3.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
   {
-    key: "movie_godzilla_x_kong",
-    title: "Godzilla x Kong: The New Empire",
-    description: "Hai quái thú khổng lồ buộc phải hợp tác trước một mối đe doạ cổ đại từ Hollow Earth.",
-    duration: 115,
-    genre: ["Action", "Sci-Fi", "Adventure"],
-    poster: "https://example.com/posters/godzilla-x-kong.jpg",
-    releaseDate: "2024-03-29",
-    status: "now_showing",
+    "_id": "a7b0d0b7d6f9d1f01e3e0235",
+    "title": "Parasite",
+    "duration": 132,
+    "genres": [
+      "Tâm lý",
+      "Giật gân"
+    ],
+    "description": "Mô tả phim Parasite. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder4.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop4.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
   {
-    key: "movie_interstellar",
-    title: "Interstellar",
-    description: "Một nhóm phi hành gia tìm kiếm hành tinh mới để cứu lấy tương lai nhân loại.",
-    duration: 169,
-    genre: ["Sci-Fi", "Drama", "Adventure"],
-    poster: "https://example.com/posters/interstellar.jpg",
-    releaseDate: "2014-11-07",
-    status: "now_showing",
+    "_id": "a4b181fa1e2a90f6e5e2fafa",
+    "title": "Inception",
+    "duration": 148,
+    "genres": [
+      "Hành động",
+      "Phiêu lưu",
+      "Khoa học viễn tưởng"
+    ],
+    "description": "Mô tả phim Inception. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop5.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
   {
-    key: "movie_the_batman",
-    title: "The Batman",
-    description: "Batman lần theo những manh mối u ám trong một chuỗi án mạng gây chấn động thành phố Gotham.",
-    duration: 176,
-    genre: ["Action", "Crime", "Drama"],
-    poster: "https://example.com/posters/the-batman.jpg",
-    releaseDate: "2022-03-04",
-    status: "now_showing",
+    "_id": "ead935f00c42dea5a87cdf30",
+    "title": "The Dark Knight",
+    "duration": 152,
+    "genres": [
+      "Hành động",
+      "Tội phạm",
+      "Tâm lý"
+    ],
+    "description": "Mô tả phim The Dark Knight. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder6.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop6.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
   {
-    key: "movie_avengers_secret_wars",
-    title: "Avengers: Secret Wars",
-    description: "Các siêu anh hùng chuẩn bị cho cuộc chiến đa vũ trụ lớn nhất.",
-    duration: 140,
-    genre: ["Action", "Sci-Fi"],
-    poster: "https://example.com/posters/avengers-secret-wars.jpg",
-    releaseDate: "2027-05-07",
-    status: "coming_soon",
+    "_id": "07f4bb7bab068d8854ee194f",
+    "title": "Interstellar",
+    "duration": 169,
+    "genres": [
+      "Phiêu lưu",
+      "Tâm lý",
+      "Khoa học viễn tưởng"
+    ],
+    "description": "Mô tả phim Interstellar. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder7.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop7.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
   },
+  {
+    "_id": "06e0b52bd87a51eb46a54f59",
+    "title": "Your Name",
+    "duration": 106,
+    "genres": [
+      "Hoạt hình",
+      "Lãng mạn",
+      "Giả tưởng"
+    ],
+    "description": "Mô tả phim Your Name. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder8.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop8.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
+  },
+  {
+    "_id": "17687794999abed99d1e8d9d",
+    "title": "Demon Slayer: Mugen Train",
+    "duration": 117,
+    "genres": [
+      "Hành động",
+      "Hoạt hình",
+      "Giả tưởng"
+    ],
+    "description": "Mô tả phim Demon Slayer: Mugen Train. Một bộ phim tuyệt vời mà bạn không nên bỏ lỡ.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/placeholder9.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/backdrop9.jpg",
+    "releaseDate": "2026-04-07T07:42:57.198Z",
+    "endDate": "2026-07-06T07:42:57.198Z",
+    "status": "now_showing",
+    "trailerUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "rating": "T13",
+    "formats": [
+      "2D",
+      "3D",
+      "IMAX"
+    ]
+  }
 ];
