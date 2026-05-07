@@ -34,7 +34,7 @@ import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
 import {
   formatLocationName,
   formatRoomName,
-  formatScreenLabel,
+  formatRoomType,
   formatShowtimeDayLabel,
   formatShowtimeTime,
 } from '@/lib/user-display';
@@ -518,7 +518,7 @@ export default function SeatSelectionScreen() {
             title={`${movie.title} • ${formatRoomName(room.name)}`}
             description={`${cinema.brand} ${formatLocationName(cinema.name)} • ${formatShowtimeDayLabel(showtime.startTime)} • ${formatShowtimeTime(showtime.startTime)}`}>
             <View style={styles.heroMetaRail}>
-              <Chip tone="user" label={formatScreenLabel(room.screenLabel)} active />
+              <Chip tone="user" label={formatRoomType(room.roomType)} active />
               <Chip tone="user" label={`${availableSeatsCount}/${room.activeSeatCount} ghế trống`} />
               <Chip tone="user" label={`${zoomPercent}% zoom`} />
             </View>
@@ -526,7 +526,7 @@ export default function SeatSelectionScreen() {
 
           <SectionCard tone="user" style={styles.screenBanner}>
             <Text style={[styles.screenBannerEyebrow, { color: colors.accent }]}>
-              SCREEN {formatScreenLabel(room.screenLabel)}
+              {formatRoomType(room.roomType).toUpperCase()}
             </Text>
             <Text style={[styles.screenBannerTitle, { color: colors.text }]}>
               Box chọn ghế được giữ cố định, chỉ nội dung seat map bên trong mới pinch zoom và pan.
@@ -563,7 +563,7 @@ export default function SeatSelectionScreen() {
                 <View style={styles.screenArcWrap}>
                   <View style={[styles.screenArc, { borderColor: 'rgba(57, 102, 147, 0.9)' }]} />
                   <Text style={[styles.screenArcLabel, { color: colors.text }]}>
-                    MÀN HÌNH CHIẾU
+                    MÀN HÌNH CHÍNH
                   </Text>
                 </View>
 

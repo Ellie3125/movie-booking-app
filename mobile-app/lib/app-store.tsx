@@ -5,7 +5,6 @@ import {
   useState,
   type PropsWithChildren,
 } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   API_BASE_URL,
@@ -29,6 +28,7 @@ import {
   fetchShowtimeById,
   fetchShowtimes,
   loginUser,
+  logoutUser,
   payBookingBill,
   registerUser,
   updateMovie as updateMovieRequest,
@@ -42,10 +42,16 @@ import {
   type BackendUser,
 } from '@/lib/backend-api';
 import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
+import {
+  clearTokens,
+  getAccessToken,
+  getRefreshToken,
+  saveTokens,
+} from '@/lib/tokenStorage';
 
 export type MovieStatus = 'now_showing' | 'coming_soon' | 'ended';
-export type SeatCellType = 'seat' | 'empty';
-export type SeatType = 'standard' | 'couple';
+export type SeatCellType = 'seat' | 'space';
+export type SeatType = 'regular' | 'vip' | 'couple' | 'disabled' | 'space';
 export type SeatReservationStatus = 'available' | 'held' | 'reserved' | 'paid';
 export type BookingStatus = 'held' | 'paid' | 'cancelled';
 export type PaymentMethod = 'momo_sandbox' | 'vnpay_sandbox' | 'mock_gateway';
@@ -84,23 +90,22 @@ export type Cinema = {
 };
 
 export type RoomSeat = {
-  id: string;
-  cellType: SeatCellType;
-  coordinate: {
-    rowIndex: number;
-    columnIndex: number;
-    coordinateLabel: string;
-  };
-  seatLabel: string | null;
-  seatType: SeatType | null;
-  priceModifier: number;
+  seatCode: string;
+  type: SeatType;
+  label?: string;
+  status: 'active' | 'disabled';
+  priceType?: 'regular' | 'vip' | 'couple';
+  capacity: number;
+  size: number;
+  rowIndex: number;
+  columnIndex: number;
 };
 
 export type Room = {
   id: string;
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: string;
   totalRows: number;
   totalColumns: number;
   activeSeatCount: number;
@@ -181,7 +186,7 @@ type RoomInput = {
   id?: string;
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: string;
   totalRows: number;
   totalColumns: number;
 };
@@ -281,12 +286,12 @@ type AppStoreValue = {
   confirmDraftCheckout: (paymentMethod: PaymentMethod) => Promise<Booking | null>;
 };
 
-const seatPriceMap: Record<SeatType, number> = {
-  couple: 135000,
-  standard: 90000,
+const seatPriceMap: Record<string, number> = {
+  couple: 180000,
+  vip: 120000,
+  regular: 90000,
 };
 
-const AUTH_TOKEN_STORAGE_KEY = 'beatcinema.auth-token';
 const ADMIN_ACCOUNT_LOGIN_MESSAGE =
   'Tài khoản quản trị vui lòng đăng nhập tại trang admin';
 
@@ -310,31 +315,28 @@ const createSeatCell = (
   rowIndex: number,
   columnIndex: number,
   seatNumber: number,
-  seatType: SeatType,
+  type: SeatType,
 ): RoomSeat => ({
-  id: `seat_${rowLetter(rowIndex)}${columnIndex + 1}`,
-  cellType: 'seat',
-  coordinate: {
-    rowIndex,
-    columnIndex,
-    coordinateLabel: `${rowLetter(rowIndex)}${columnIndex + 1}`,
-  },
-  seatLabel: `${rowLetter(rowIndex)}${seatNumber}`,
-  seatType,
-  priceModifier: seatType === 'couple' ? 1.5 : 1,
+  seatCode: `${rowLetter(rowIndex)}${columnIndex + 1}`,
+  type,
+  label: type === 'couple' ? `${rowLetter(rowIndex)}${seatNumber}-${rowLetter(rowIndex)}${seatNumber + 1}` : `${rowLetter(rowIndex)}${seatNumber}`,
+  status: 'active',
+  priceType: type === 'couple' ? 'couple' : (type === 'vip' ? 'vip' : 'regular'),
+  capacity: type === 'couple' ? 2 : 1,
+  size: 1,
+  rowIndex,
+  columnIndex,
 });
 
-const createEmptyCell = (rowIndex: number, columnIndex: number): RoomSeat => ({
-  id: `empty_${rowLetter(rowIndex)}${columnIndex + 1}`,
-  cellType: 'empty',
-  coordinate: {
-    rowIndex,
-    columnIndex,
-    coordinateLabel: `${rowLetter(rowIndex)}${columnIndex + 1}`,
-  },
-  seatLabel: null,
-  seatType: null,
-  priceModifier: 0,
+const createSpaceCell = (rowIndex: number, columnIndex: number): RoomSeat => ({
+  seatCode: `space_${rowLetter(rowIndex)}${columnIndex + 1}`,
+  type: 'space',
+  label: '',
+  status: 'active',
+  capacity: 0,
+  size: 1,
+  rowIndex,
+  columnIndex,
 });
 
 const buildSeatLayout = ({
@@ -359,14 +361,18 @@ const buildSeatLayout = ({
       const coordinate = `${rowLetter(rowIndex)}${columnIndex + 1}`;
 
       if (hiddenSet.has(coordinate)) {
-        row.push(createEmptyCell(rowIndex, columnIndex));
+        row.push(createSpaceCell(rowIndex, columnIndex));
         continue;
       }
 
-      visibleSeatIndex += 1;
-      const inferredSeatType = seatTypeOverrides[coordinate] ?? 'standard';
-
-      row.push(createSeatCell(rowIndex, columnIndex, visibleSeatIndex, inferredSeatType));
+      const inferredSeatType = seatTypeOverrides[coordinate] ?? 'regular';
+      row.push(createSeatCell(rowIndex, columnIndex, visibleSeatIndex + 1, inferredSeatType));
+      
+      if (inferredSeatType === 'couple') {
+        visibleSeatIndex += 2;
+      } else {
+        visibleSeatIndex += 1;
+      }
     }
 
     layout.push(row);
@@ -376,13 +382,13 @@ const buildSeatLayout = ({
 };
 
 const flattenRoomSeats = (room: Room) =>
-  room.seatLayout.flat().filter((seat) => seat.cellType === 'seat');
+  room.seatLayout.flat().filter((seat) => seat.type !== 'space');
 
 const buildRoom = ({
   id,
   cinemaId,
   name,
-  screenLabel,
+  roomType,
   totalRows,
   totalColumns,
   hiddenCoordinates = [],
@@ -391,7 +397,7 @@ const buildRoom = ({
   id: string;
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: string;
   totalRows: number;
   totalColumns: number;
   hiddenCoordinates?: string[];
@@ -408,10 +414,10 @@ const buildRoom = ({
     id,
     cinemaId,
     name,
-    screenLabel,
+    roomType,
     totalRows,
     totalColumns,
-    activeSeatCount: seatLayout.flat().filter((seat) => seat.cellType === 'seat').length,
+    activeSeatCount: seatLayout.flat().reduce((acc, seat) => acc + (seat.type !== 'space' ? seat.capacity : 0), 0),
     seatLayout,
   };
 };
@@ -419,8 +425,8 @@ const buildRoom = ({
 const getHiddenCoordinatesFromRoom = (room: Room) =>
   room.seatLayout
     .flat()
-    .filter((seat) => seat.cellType === 'empty')
-    .map((seat) => seat.coordinate.coordinateLabel.toUpperCase());
+    .filter((seat) => seat.type === 'space')
+    .map((seat) => seat.seatCode.toUpperCase());
 
 const buildSeatStates = (
   room: Room,
@@ -431,14 +437,14 @@ const buildSeatStates = (
   );
 
   return flattenRoomSeats(room).map((seat) => {
-    const coordinate = seat.coordinate.coordinateLabel.toUpperCase();
+    const coordinate = seat.seatCode.toUpperCase();
     const override = overrideMap.get(coordinate);
 
     return {
       seatCoordinate: coordinate,
-      seatLabel: seat.seatLabel ?? coordinate,
-      seatType: seat.seatType ?? 'standard',
-      status: override?.status ?? 'available',
+      seatLabel: seat.label ?? coordinate,
+      seatType: (seat.type === 'regular' ? 'standard' : seat.type) as SeatType,
+      status: (override?.status ?? 'available') as SeatReservationStatus,
       userId: override?.userId ?? null,
       bookingId: override?.bookingId ?? null,
       heldAt: override?.heldAt ?? null,
@@ -451,7 +457,7 @@ const buildSeatStates = (
 const findRoomSeat = (room: Room, seatCoordinate: string) =>
   flattenRoomSeats(room).find(
     (seat) =>
-      seat.coordinate.coordinateLabel.toUpperCase() === seatCoordinate.toUpperCase(),
+      seat.seatCode.toUpperCase() === seatCoordinate.toUpperCase(),
   );
 
 const seatSnapshotFromRoom = (
@@ -461,16 +467,16 @@ const seatSnapshotFromRoom = (
 ): BookingSeatSnapshot | null => {
   const seat = findRoomSeat(room, seatCoordinate);
 
-  if (!seat || seat.cellType !== 'seat' || !seat.seatType || !seat.seatLabel) {
+  if (!seat || seat.type === 'space' || !seat.label) {
     return null;
   }
 
   return {
-    seatCoordinate: seat.coordinate.coordinateLabel.toUpperCase(),
-    seatLabel: seat.seatLabel,
-    seatType: seat.seatType,
+    seatCoordinate: seat.seatCode.toUpperCase(),
+    seatLabel: seat.label,
+    seatType: (seat.type === 'regular' ? 'standard' : seat.type) as 'standard' | 'couple' | 'vip',
     status,
-    price: seatPriceMap[seat.seatType],
+    price: seatPriceMap[seat.type] || 0,
   };
 };
 
@@ -657,7 +663,7 @@ const initialRooms: Room[] = [
     id: 'room_ba_trieu_1',
     cinemaId: 'cinema_cgv_vincom_ba_trieu',
     name: 'Room 1',
-    screenLabel: 'SCREEN 01',
+    roomType: 'standard',
     totalRows: 6,
     totalColumns: 10,
     hiddenCoordinates: ['A5', 'A6', 'B6', 'C5', 'C6', 'D6', 'E6', 'F5'],
@@ -672,7 +678,7 @@ const initialRooms: Room[] = [
     id: 'room_aeon_2',
     cinemaId: 'cinema_cgv_aeon_long_bien',
     name: 'Room 2',
-    screenLabel: 'SCREEN FAMILY',
+    roomType: 'standard',
     totalRows: 5,
     totalColumns: 9,
     hiddenCoordinates: ['A5', 'B5', 'C5', 'D5', 'E5'],
@@ -685,7 +691,7 @@ const initialRooms: Room[] = [
     id: 'room_govap_gold',
     cinemaId: 'cinema_lotte_govap',
     name: 'Gold Class',
-    screenLabel: 'PREMIUM SCREEN',
+    roomType: 'gold',
     totalRows: 4,
     totalColumns: 8,
     hiddenCoordinates: ['A4', 'B4', 'C4', 'D4'],
@@ -700,7 +706,7 @@ const initialRooms: Room[] = [
     id: 'room_ba_trieu_imax',
     cinemaId: 'cinema_cgv_vincom_ba_trieu',
     name: 'IMAX Hall',
-    screenLabel: 'SCREEN IMAX',
+    roomType: 'imax',
     totalRows: 8,
     totalColumns: 12,
     hiddenCoordinates: [
@@ -733,7 +739,7 @@ const initialRooms: Room[] = [
     id: 'room_aeon_max',
     cinemaId: 'cinema_cgv_aeon_long_bien',
     name: 'Room 5',
-    screenLabel: 'SCREEN MAX',
+    roomType: 'imax',
     totalRows: 8,
     totalColumns: 12,
     hiddenCoordinates: [
@@ -766,7 +772,7 @@ const initialRooms: Room[] = [
     id: 'room_beta_1',
     cinemaId: 'cinema_beta_my_dinh',
     name: 'Room 1',
-    screenLabel: 'SCREEN BETA',
+    roomType: 'standard',
     totalRows: 6,
     totalColumns: 10,
     hiddenCoordinates: ['A5', 'A6', 'B6', 'C5', 'C6', 'D6', 'E6', 'F5'],
@@ -781,7 +787,7 @@ const initialRooms: Room[] = [
     id: 'room_beta_2',
     cinemaId: 'cinema_beta_my_dinh',
     name: 'Room 2',
-    screenLabel: 'SCREEN COSY',
+    roomType: 'standard',
     totalRows: 5,
     totalColumns: 8,
     hiddenCoordinates: ['A4', 'B4', 'C4', 'D4', 'E4'],
@@ -794,7 +800,7 @@ const initialRooms: Room[] = [
     id: 'room_govap_standard',
     cinemaId: 'cinema_lotte_govap',
     name: 'Standard 2',
-    screenLabel: 'SCREEN 02',
+    roomType: 'standard',
     totalRows: 5,
     totalColumns: 8,
     hiddenCoordinates: ['A4', 'B4', 'C4', 'D4', 'E4'],
@@ -807,7 +813,7 @@ const initialRooms: Room[] = [
     id: 'room_danang_3',
     cinemaId: 'cinema_cgv_vincom_da_nang',
     name: 'Room 3',
-    screenLabel: 'SCREEN 03',
+    roomType: 'standard',
     totalRows: 6,
     totalColumns: 10,
     hiddenCoordinates: ['A5', 'A6', 'B6', 'C5', 'C6', 'D6', 'E6', 'F5'],
@@ -822,7 +828,7 @@ const initialRooms: Room[] = [
     id: 'room_danang_premium',
     cinemaId: 'cinema_cgv_vincom_da_nang',
     name: 'Premium Hall',
-    screenLabel: 'SCREEN PREMIUM',
+    roomType: 'vip',
     totalRows: 5,
     totalColumns: 6,
     hiddenCoordinates: ['A3', 'B3', 'C3', 'D3', 'E3'],
@@ -1606,7 +1612,7 @@ const mapBackendRoom = (room: BackendRoom): Room => ({
   id: room._id,
   cinemaId: room.cinemaId,
   name: room.name,
-  screenLabel: room.screenLabel,
+  roomType: room.roomType,
   totalRows: room.totalRows,
   totalColumns: room.totalColumns,
   activeSeatCount: room.activeSeatCount,
@@ -1803,9 +1809,9 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setDraftCheckout(null);
   };
 
-  const persistAuthToken = async (token: string) => {
+  const persistAuthToken = async (token: string, refreshToken?: string) => {
     try {
-      await AsyncStorage.setItem(AUTH_TOKEN_STORAGE_KEY, token);
+      await saveTokens({ accessToken: token, refreshToken });
     } catch (error) {
       console.warn(getRequestErrorMessage(error, 'Không thể lưu phiên đăng nhập.'));
     }
@@ -1813,7 +1819,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
   const removePersistedAuthToken = async () => {
     try {
-      await AsyncStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+      await clearTokens();
     } catch (error) {
       console.warn(getRequestErrorMessage(error, 'Không thể xóa phiên đăng nhập đã lưu.'));
     }
@@ -1903,7 +1909,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
   const authenticateWithToken = async (
     token: string,
-    options: { persistSession?: boolean } = {},
+    options: { persistSession?: boolean; refreshToken?: string } = {},
   ) => {
     const remoteUser = await fetchCurrentUser(token);
     const nextUser = normalizeUserProfile(remoteUser);
@@ -1929,7 +1935,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setCurrentUser(nextUser);
     setAuthStatus('authenticated');
     if (persistSession) {
-      await persistAuthToken(token);
+      await persistAuthToken(token, options.refreshToken);
     } else {
       await removePersistedAuthToken();
     }
@@ -1949,6 +1955,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,
+        refreshToken: response.refreshToken,
       });
       return { ok: true, user };
     } catch (error) {
@@ -1973,6 +1980,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,
+        refreshToken: response.refreshToken,
       });
       return { ok: true, user };
     } catch (error) {
@@ -2025,6 +2033,21 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       }
     }
 
+    // Revoke session phía backend trước khi xóa token local
+    if (authToken) {
+      try {
+        const storedRefreshToken = await getRefreshToken();
+        if (storedRefreshToken) {
+          await logoutUser(authToken, storedRefreshToken);
+        }
+      } catch (error) {
+        // Backend có thể đã hết phiên, vẫn tiếp tục xóa local
+        console.warn(
+          getRequestErrorMessage(error, 'Không thể revoke session trên backend.'),
+        );
+      }
+    }
+
     await removePersistedAuthToken();
     clearSessionState();
     await loadPublicCatalogState();
@@ -2035,7 +2058,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
     const bootstrapAuthState = async () => {
       try {
-        const storedToken = await AsyncStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
+        const storedToken = await getAccessToken();
 
         if (!active) {
           return;
@@ -2048,7 +2071,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         }
 
         try {
-          await authenticateWithToken(storedToken);
+          const storedRefreshToken = await getRefreshToken();
+          await authenticateWithToken(storedToken, { refreshToken: storedRefreshToken ?? undefined });
         } catch (error) {
           console.warn(getRequestErrorMessage(error, 'Phiên đăng nhập đã hết hạn hoặc không hợp lệ.'));
           await removePersistedAuthToken();
@@ -2171,7 +2195,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         ? await updateRoomRequest(authToken, input.id, {
             cinemaId: input.cinemaId,
             name: input.name,
-            screenLabel: input.screenLabel,
+            roomType: input.roomType,
             totalRows: input.totalRows,
             totalColumns: input.totalColumns,
             hiddenCoordinates,
@@ -2179,7 +2203,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         : await createRoomRequest(authToken, {
             cinemaId: input.cinemaId,
             name: input.name,
-            screenLabel: input.screenLabel,
+            roomType: input.roomType,
             totalRows: input.totalRows,
             totalColumns: input.totalColumns,
             hiddenCoordinates,
@@ -2271,7 +2295,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       const remoteRoom = await updateRoomRequest(authToken, roomId, {
         cinemaId: room.cinemaId,
         name: room.name,
-        screenLabel: room.screenLabel,
+        roomType: room.roomType,
         totalRows,
         totalColumns,
         hiddenCoordinates,

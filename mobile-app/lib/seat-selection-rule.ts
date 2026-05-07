@@ -1,9 +1,7 @@
 type SeatLayoutCellLike = {
-  cellType: 'seat' | 'empty';
-  coordinate: {
-    coordinateLabel: string;
-  };
-  seatLabel: string | null;
+  type: string;
+  seatCode: string;
+  label?: string;
 };
 
 type ShowtimeSeatStateLike = {
@@ -40,13 +38,13 @@ export const getEdgeSeatSelectionConflict = (
 
   for (const row of layout) {
     const rowSeats = row
-      .filter((seat) => seat.cellType === 'seat')
+      .filter((seat) => seat.type !== 'space')
       .map((seat) => {
-        const coordinate = normalizeCoordinate(seat.coordinate.coordinateLabel);
+        const coordinate = normalizeCoordinate(seat.seatCode);
 
         return {
           coordinate,
-          label: seat.seatLabel ?? coordinate,
+          label: seat.label ?? coordinate,
           isSelected: selectedSet.has(coordinate),
           status: stateMap.get(coordinate)?.status ?? 'available',
         };

@@ -26,7 +26,8 @@ const adminSeatStateColors = {
   reserved: '#94A3B8',
   selected: '#38BDF8',
   blocked: '#EF4444',
-  empty: 'rgba(148, 163, 184, 0.12)',
+  empty: 'transparent',
+  space: 'transparent',
 };
 
 export const getSeatLayoutMetrics = (compact: boolean, sizeScale = 1) => {
@@ -87,16 +88,14 @@ export function SeatLayoutGrid({
             { gap: metrics.gridGap },
           ]}>
           {row.map((seat) => {
-            const coordinate = seat.coordinate.coordinateLabel.toUpperCase();
+            const coordinate = seat.seatCode.toUpperCase();
             const seatState = stateMap.get(coordinate);
             const selected = selectedSet.has(coordinate);
             const isUnavailableSeat =
-              seat.cellType === 'seat' && Boolean(seatState && seatState.status !== 'available');
+              seat.type !== 'space' && Boolean(seatState && seatState.status !== 'available');
             const adminBackgroundColor =
-              seat.cellType === 'empty'
-                ? isUserMode
-                  ? 'transparent'
-                  : adminSeatStateColors.empty
+              seat.type === 'space'
+                ? 'transparent'
                 : selected
                   ? adminSeatStateColors.selected
                   : isUserMode && isUnavailableSeat
@@ -105,7 +104,7 @@ export function SeatLayoutGrid({
                     ? adminSeatStateColors[seatState.status]
                     : adminSeatStateColors.available;
             const seatVariant =
-              seatVariantLookup?.[coordinate] ?? (seat.seatType === 'couple' ? 'couple' : 'standard');
+              seatVariantLookup?.[coordinate] ?? (seat.type === 'couple' ? 'couple' : 'regular');
             const statusToken = seatStatusTokens[
               getSeatVisualStatus({
                 selected,
@@ -116,17 +115,19 @@ export function SeatLayoutGrid({
 
             return (
               <Pressable
-                key={seat.id}
-                disabled={seat.cellType === 'empty' || (isUserMode && isUnavailableSeat)}
+                key={seat.seatCode}
+                disabled={seat.type === 'space' || (isUserMode && isUnavailableSeat)}
                 onPress={() => onPressSeat?.(seat)}
                 style={[
                   styles.cell,
-                  useIntrinsicSizing ? { width: metrics.cellWidth } : styles.cellFlexible,
+                  useIntrinsicSizing 
+                    ? { width: seat.type === 'couple' ? metrics.cellWidth * 2 + metrics.gridGap : metrics.cellWidth } 
+                    : styles.cellFlexible,
                   isUserMode
-                    ? seat.cellType === 'empty'
+                    ? seat.type === 'space'
                       ? styles.emptyCellUser
                       : styles.userSeatHitBox
-                    : seat.cellType === 'empty'
+                    : seat.type === 'space'
                       ? styles.emptyCell
                       : styles.seatCell,
                   {
@@ -138,12 +139,12 @@ export function SeatLayoutGrid({
                   !isUserMode
                     ? {
                         backgroundColor: adminBackgroundColor,
-                        opacity: seat.cellType === 'empty' ? 0.5 : 1,
+                        opacity: seat.type === 'space' ? 0 : 1,
                       }
                     : null,
                 ]}>
                 {isUserMode ? (
-                  seat.cellType === 'seat' ? (
+                  seat.type !== 'space' ? (
                     <View
                       style={[
                         styles.userSeatFrame,
@@ -187,7 +188,7 @@ export function SeatLayoutGrid({
                             fontSize: metrics.labelSize,
                           },
                         ]}>
-                        {seat.seatLabel}
+                        {seat.label}
                       </Text>
                       <View
                         style={[
@@ -212,28 +213,12 @@ export function SeatLayoutGrid({
                       </View>
                     </View>
                   ) : (
-                    <View
-                      style={[
-                        styles.userEmptySlot,
-                        {
-                          borderRadius: Math.max(metrics.cellRadius - 2, 8),
-                        },
-                      ]}>
-                      <Text
-                        style={[
-                          styles.userEmptyText,
-                          {
-                            fontSize: metrics.emptyTextSize,
-                          },
-                        ]}>
-                        ×
-                      </Text>
-                    </View>
+                    <View style={{ flex: 1 }} />
                   )
-                ) : seat.cellType === 'seat' ? (
+                ) : seat.type !== 'space' ? (
                   <>
                     <Text style={[styles.cellText, { fontSize: metrics.labelSize }]}>
-                      {seat.seatLabel}
+                      {seat.label}
                     </Text>
                     <Text
                       style={[
@@ -246,9 +231,7 @@ export function SeatLayoutGrid({
                       {coordinate}
                     </Text>
                   </>
-                ) : (
-                  <Text style={[styles.emptyText, { fontSize: metrics.emptyTextSize }]}>x</Text>
-                )}
+                ) : null}
               </Pressable>
             );
           })}
@@ -281,9 +264,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.14)',
   },
   emptyCell: {
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: 'rgba(148,163,184,0.35)',
+    backgroundColor: 'transparent',
   },
   emptyCellUser: {
     borderColor: 'transparent',

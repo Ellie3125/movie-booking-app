@@ -1,6 +1,6 @@
 import { type Room, type RoomSeat, type ShowtimeSeatState } from '@/lib/app-store';
 
-export type SeatVisualVariant = 'standard' | 'vip' | 'couple';
+export type SeatVisualVariant = 'regular' | 'vip' | 'couple';
 export type SeatVisualStatus =
   | 'available'
   | 'selected'
@@ -17,7 +17,7 @@ export const seatVariantTokens: Record<
     previewWide: boolean;
   }
 > = {
-  standard: {
+  regular: {
     accent: '#1D8B4D',
     accentSoft: 'rgba(29, 139, 77, 0.22)',
     label: 'Ghế thường',
@@ -84,29 +84,37 @@ export const seatStatusTokens: Record<
   },
 };
 
-const premiumRoomPattern = /\b(gold|premium|vip)\b/i;
+const premiumRoomPattern = /\b(gold|premium|vip|imax)\b/i;
 
-export const roomHasVipSeats = (room?: Pick<Room, 'name' | 'screenLabel'> | null) => {
+export const roomHasVipSeats = (room?: Pick<Room, 'name' | 'roomType'> | null) => {
   if (!room) {
     return false;
   }
 
-  return premiumRoomPattern.test(`${room.name} ${room.screenLabel}`);
+  const premiumTypes = ['vip', 'gold', 'imax'];
+  return (
+    premiumTypes.includes(room.roomType?.toLowerCase()) ||
+    premiumRoomPattern.test(room.name)
+  );
 };
 
 export const getSeatVisualVariant = (
-  seat: Pick<RoomSeat, 'cellType' | 'seatType'>,
-  room?: Pick<Room, 'name' | 'screenLabel'> | null,
+  seat: Pick<RoomSeat, 'type'>,
+  room?: Pick<Room, 'name' | 'roomType'> | null,
 ): SeatVisualVariant => {
-  if (seat.cellType !== 'seat') {
-    return 'standard';
+  if (seat.type === 'space' || seat.type === 'disabled') {
+    return 'regular';
   }
 
-  if (seat.seatType === 'couple') {
+  if (seat.type === 'couple') {
     return 'couple';
   }
 
-  return roomHasVipSeats(room) ? 'vip' : 'standard';
+  if (seat.type === 'vip') {
+    return 'vip';
+  }
+
+  return roomHasVipSeats(room) ? 'vip' : 'regular';
 };
 
 export const getSeatVisualStatus = ({
@@ -143,11 +151,11 @@ export const buildSeatVariantLookup = (room?: Room | null) => {
   }
 
   room.seatLayout.flat().forEach((seat) => {
-    if (seat.cellType !== 'seat') {
+    if (seat.type === 'space') {
       return;
     }
 
-    lookup[seat.coordinate.coordinateLabel.toUpperCase()] = getSeatVisualVariant(seat, room);
+    lookup[seat.seatCode.toUpperCase()] = getSeatVisualVariant(seat, room);
   });
 
   return lookup;

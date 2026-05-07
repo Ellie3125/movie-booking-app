@@ -27,7 +27,7 @@ import {
   formatMovieDescription,
   formatGenres,
   formatRoomName,
-  formatScreenLabel,
+  formatRoomType,
   formatShowtimeDayLabel,
   formatShowtimeFormat,
   formatShowtimeTime,
@@ -425,7 +425,7 @@ export default function MovieDetailScreen() {
                         {room ? formatRoomName(room.name) : 'Phòng đang cập nhật'}
                       </Text>
                       <Text style={[styles.showtimeDetail, { color: colors.muted }]}>
-                        {room ? formatScreenLabel(room.screenLabel) : 'Màn hình đang cập nhật'}
+                        {room ? formatRoomType(room.roomType) : 'Loại phòng đang cập nhật'}
                       </Text>
                       <Text style={[styles.showtimeDetail, { color: colors.muted }]}>
                         {formatShowtimeFormat(showtime.format)}

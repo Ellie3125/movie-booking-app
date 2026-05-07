@@ -74,17 +74,11 @@ const roomNameMap: Record<string, string> = {
   'Standard 2': 'Phòng Standard 2',
 };
 
-const screenLabelMap: Record<string, string> = {
-  'SCREEN 02': 'MÀN HÌNH 02',
-  'SCREEN 03': 'MÀN HÌNH 03',
-  'SCREEN BETA': 'MÀN HÌNH BETA',
-  'SCREEN COSY': 'MÀN HÌNH COSY',
-  'PREMIUM SCREEN': 'MÀN HÌNH CAO CẤP',
-  'SCREEN 01': 'MÀN HÌNH 01',
-  'SCREEN FAMILY': 'MÀN HÌNH GIA ĐÌNH',
-  'SCREEN IMAX': 'MÀN HÌNH IMAX',
-  'SCREEN MAX': 'MÀN HÌNH MAX',
-  'SCREEN PREMIUM': 'MÀN HÌNH PREMIUM',
+const roomTypeMap: Record<string, string> = {
+  standard: 'Phòng Tiêu chuẩn',
+  vip: 'Phòng VIP',
+  gold: 'Phòng Gold Class',
+  imax: 'Phòng IMAX',
 };
 
 const movieDescriptionMap: Record<string, string> = {
@@ -166,8 +160,8 @@ export const formatLocationName = (value: string) =>
 
 export const formatRoomName = (value: string) => translateRawText(value, roomNameMap);
 
-export const formatScreenLabel = (value: string) =>
-  translateRawText(value, screenLabelMap);
+export const formatRoomType = (value: string) =>
+  translateRawText(value, roomTypeMap);
 
 export const formatMovieDescription = (value: string) =>
   translateRawText(value, movieDescriptionMap);
