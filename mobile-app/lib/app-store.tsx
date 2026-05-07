@@ -320,7 +320,7 @@ const createSeatCell = (
 ): RoomSeat => ({
   seatCode: `${rowLetter(rowIndex)}${columnIndex + 1}`,
   cellType: 'seat',
-  seatType: type,
+  type,
   label: type === 'couple' ? `${rowLetter(rowIndex)}${seatNumber}-${rowLetter(rowIndex)}${seatNumber + 1}` : `${rowLetter(rowIndex)}${seatNumber}`,
   status: 'active',
   priceType: type === 'couple' ? 'couple' : (type === 'vip' ? 'vip' : 'standard'),
@@ -333,7 +333,7 @@ const createSeatCell = (
 const createSpaceCell = (rowIndex: number, columnIndex: number): RoomSeat => ({
   seatCode: `space_${rowLetter(rowIndex)}${columnIndex + 1}`,
   cellType: 'space',
-  seatType: 'space',
+  type: 'space',
   label: '',
   status: 'active',
   capacity: 0,
@@ -417,7 +417,7 @@ const buildRoom = ({
     id,
     cinemaId,
     name,
-    roomType,
+    roomType: roomType as 'standard' | 'vip' | 'gold' | 'imax',
     totalRows,
     totalColumns,
     activeSeatCount: seatLayout.flat().reduce((acc, seat) => acc + (seat.cellType !== 'space' ? seat.capacity : 0), 0),
@@ -446,7 +446,7 @@ const buildSeatStates = (
     return {
       seatCoordinate: coordinate,
       seatLabel: seat.label ?? coordinate,
-      seatType: seat.seatType,
+      seatType: seat.type,
       status: (override?.status ?? 'available') as SeatReservationStatus,
       userId: override?.userId ?? null,
       bookingId: override?.bookingId ?? null,
@@ -477,9 +477,9 @@ const seatSnapshotFromRoom = (
   return {
     seatCoordinate: seat.seatCode.toUpperCase(),
     seatLabel: seat.label,
-    seatType: seat.seatType as 'standard' | 'couple' | 'vip',
+    seatType: seat.type as 'standard' | 'couple' | 'vip',
     status,
-    price: seatPriceMap[seat.seatType] || 0,
+    price: seatPriceMap[seat.type] || 0,
   };
 };
 
