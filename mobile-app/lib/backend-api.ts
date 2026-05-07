@@ -140,7 +140,7 @@ export type BackendNearbyCinema = BackendCinema & {
 };
 
 export type BackendRoomSeat = {
-  cellType: 'seat' | 'empty';
+  cellType: 'seat' | 'space';
   coordinate: {
     rowIndex: number;
     columnIndex: number;

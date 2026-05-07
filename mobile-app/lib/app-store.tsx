@@ -51,7 +51,7 @@ import {
 
 export type MovieStatus = 'now_showing' | 'coming_soon' | 'ended';
 export type SeatCellType = 'seat' | 'space';
-export type SeatType = 'regular' | 'vip' | 'couple' | 'disabled' | 'space';
+export type SeatType = 'standard' | 'vip' | 'couple' | 'disabled' | 'space';
 export type SeatReservationStatus = 'available' | 'held' | 'reserved' | 'paid';
 export type BookingStatus = 'held' | 'paid' | 'cancelled';
 export type PaymentMethod = 'momo_sandbox' | 'vnpay_sandbox' | 'mock_gateway';
@@ -91,10 +91,11 @@ export type Cinema = {
 
 export type RoomSeat = {
   seatCode: string;
+  cellType: SeatCellType;
   type: SeatType;
   label?: string;
   status: 'active' | 'disabled';
-  priceType?: 'regular' | 'vip' | 'couple';
+  priceType?: 'standard' | 'vip' | 'couple';
   capacity: number;
   size: number;
   rowIndex: number;
@@ -105,7 +106,7 @@ export type Room = {
   id: string;
   cinemaId: string;
   name: string;
-  roomType: string;
+  roomType: 'standard' | 'vip' | 'gold' | 'imax';
   totalRows: number;
   totalColumns: number;
   activeSeatCount: number;
@@ -186,7 +187,7 @@ type RoomInput = {
   id?: string;
   cinemaId: string;
   name: string;
-  roomType: string;
+  roomType: 'standard' | 'vip' | 'gold' | 'imax';
   totalRows: number;
   totalColumns: number;
 };
@@ -289,7 +290,7 @@ type AppStoreValue = {
 const seatPriceMap: Record<string, number> = {
   couple: 180000,
   vip: 120000,
-  regular: 90000,
+  standard: 90000,
 };
 
 const ADMIN_ACCOUNT_LOGIN_MESSAGE =
@@ -318,10 +319,11 @@ const createSeatCell = (
   type: SeatType,
 ): RoomSeat => ({
   seatCode: `${rowLetter(rowIndex)}${columnIndex + 1}`,
-  type,
+  cellType: 'seat',
+  seatType: type,
   label: type === 'couple' ? `${rowLetter(rowIndex)}${seatNumber}-${rowLetter(rowIndex)}${seatNumber + 1}` : `${rowLetter(rowIndex)}${seatNumber}`,
   status: 'active',
-  priceType: type === 'couple' ? 'couple' : (type === 'vip' ? 'vip' : 'regular'),
+  priceType: type === 'couple' ? 'couple' : (type === 'vip' ? 'vip' : 'standard'),
   capacity: type === 'couple' ? 2 : 1,
   size: 1,
   rowIndex,
@@ -330,7 +332,8 @@ const createSeatCell = (
 
 const createSpaceCell = (rowIndex: number, columnIndex: number): RoomSeat => ({
   seatCode: `space_${rowLetter(rowIndex)}${columnIndex + 1}`,
-  type: 'space',
+  cellType: 'space',
+  seatType: 'space',
   label: '',
   status: 'active',
   capacity: 0,
@@ -365,7 +368,7 @@ const buildSeatLayout = ({
         continue;
       }
 
-      const inferredSeatType = seatTypeOverrides[coordinate] ?? 'regular';
+      const inferredSeatType = seatTypeOverrides[coordinate] ?? 'standard';
       row.push(createSeatCell(rowIndex, columnIndex, visibleSeatIndex + 1, inferredSeatType));
       
       if (inferredSeatType === 'couple') {
@@ -382,7 +385,7 @@ const buildSeatLayout = ({
 };
 
 const flattenRoomSeats = (room: Room) =>
-  room.seatLayout.flat().filter((seat) => seat.type !== 'space');
+  room.seatLayout.flat().filter((seat) => seat.cellType !== 'space');
 
 const buildRoom = ({
   id,
@@ -417,7 +420,7 @@ const buildRoom = ({
     roomType,
     totalRows,
     totalColumns,
-    activeSeatCount: seatLayout.flat().reduce((acc, seat) => acc + (seat.type !== 'space' ? seat.capacity : 0), 0),
+    activeSeatCount: seatLayout.flat().reduce((acc, seat) => acc + (seat.cellType !== 'space' ? seat.capacity : 0), 0),
     seatLayout,
   };
 };
@@ -425,7 +428,7 @@ const buildRoom = ({
 const getHiddenCoordinatesFromRoom = (room: Room) =>
   room.seatLayout
     .flat()
-    .filter((seat) => seat.type === 'space')
+    .filter((seat) => seat.cellType === 'space')
     .map((seat) => seat.seatCode.toUpperCase());
 
 const buildSeatStates = (
@@ -443,7 +446,7 @@ const buildSeatStates = (
     return {
       seatCoordinate: coordinate,
       seatLabel: seat.label ?? coordinate,
-      seatType: (seat.type === 'regular' ? 'standard' : seat.type) as SeatType,
+      seatType: seat.seatType,
       status: (override?.status ?? 'available') as SeatReservationStatus,
       userId: override?.userId ?? null,
       bookingId: override?.bookingId ?? null,
@@ -467,16 +470,16 @@ const seatSnapshotFromRoom = (
 ): BookingSeatSnapshot | null => {
   const seat = findRoomSeat(room, seatCoordinate);
 
-  if (!seat || seat.type === 'space' || !seat.label) {
+  if (!seat || seat.cellType === 'space' || !seat.label) {
     return null;
   }
 
   return {
     seatCoordinate: seat.seatCode.toUpperCase(),
     seatLabel: seat.label,
-    seatType: (seat.type === 'regular' ? 'standard' : seat.type) as 'standard' | 'couple' | 'vip',
+    seatType: seat.seatType as 'standard' | 'couple' | 'vip',
     status,
-    price: seatPriceMap[seat.type] || 0,
+    price: seatPriceMap[seat.seatType] || 0,
   };
 };
 
@@ -1617,17 +1620,17 @@ const mapBackendRoom = (room: BackendRoom): Room => ({
   totalColumns: room.totalColumns,
   activeSeatCount: room.activeSeatCount,
   seatLayout: room.seatLayout.map((row) =>
-    row.map((cell) => ({
-      id: buildRoomSeatId(cell),
+    row.map((cell: any) => ({
+      seatCode: cell.coordinate.coordinateLabel.toUpperCase(),
       cellType: cell.cellType,
-      coordinate: {
-        rowIndex: cell.coordinate.rowIndex,
-        columnIndex: cell.coordinate.columnIndex,
-        coordinateLabel: cell.coordinate.coordinateLabel.toUpperCase(),
-      },
-      seatLabel: cell.seatLabel,
-      seatType: cell.seatType,
-      priceModifier: cell.priceModifier,
+      type: cell.seatType || 'space',
+      label: cell.seatLabel || '',
+      status: 'active',
+      priceType: cell.seatType,
+      capacity: cell.seatType === 'couple' ? 2 : (cell.cellType === 'seat' ? 1 : 0),
+      size: cell.seatType === 'couple' ? 2 : 1,
+      rowIndex: cell.coordinate.rowIndex,
+      columnIndex: cell.coordinate.columnIndex,
     })),
   ),
 });
@@ -1639,8 +1642,8 @@ const getMinimumSeatPrice = (room: Room | undefined) => {
 
   const prices = room.seatLayout
     .flat()
-    .filter((cell) => cell.cellType === 'seat' && cell.seatType)
-    .map((cell) => seatPriceMap[cell.seatType as SeatType]);
+    .filter((cell) => cell.cellType === 'seat' && cell.type)
+    .map((cell) => seatPriceMap[cell.type as SeatType]);
 
   return prices.length > 0 ? Math.min(...prices) : seatPriceMap.standard;
 };
@@ -1661,8 +1664,8 @@ const mapBackendShowtime = (
   seatStates: (showtime.seatStates || []).map((seatState) => ({
     seatCoordinate: seatState.seatCoordinate.toUpperCase(),
     seatLabel: seatState.seatLabel,
-    seatType: seatState.seatType,
-    status: seatState.status,
+    seatType: seatState.seatType as SeatType,
+    status: seatState.status as SeatReservationStatus,
     userId: seatState.userId,
     bookingId: seatState.bookingId,
     heldAt: seatState.heldAt,
@@ -1711,8 +1714,8 @@ const mapBackendBooking = (
   seats: booking.seats.map((seat) => ({
     seatCoordinate: seat.seatCoordinate.toUpperCase(),
     seatLabel: seat.seatLabel,
-    seatType: seat.seatType,
-    status: seat.status,
+    seatType: seat.seatType as SeatType,
+    status: seat.status as Extract<SeatReservationStatus, 'held' | 'paid'>,
     price: seat.price,
   })),
   totalPrice: booking.totalPrice,
@@ -1741,8 +1744,8 @@ const mapBackendDraftCheckout = (
     seats: booking.seats.map((seat) => ({
       seatCoordinate: seat.seatCoordinate.toUpperCase(),
       seatLabel: seat.seatLabel,
-      seatType: seat.seatType,
-      status: seat.status,
+      seatType: seat.seatType as SeatType,
+      status: seat.status as Extract<SeatReservationStatus, 'held' | 'paid'>,
       price: seat.price,
     })),
     totalPrice: booking.totalPrice,
@@ -2195,7 +2198,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         ? await updateRoomRequest(authToken, input.id, {
             cinemaId: input.cinemaId,
             name: input.name,
-            roomType: input.roomType,
+            roomType: input.roomType as 'standard' | 'vip' | 'gold' | 'imax',
             totalRows: input.totalRows,
             totalColumns: input.totalColumns,
             hiddenCoordinates,
@@ -2203,7 +2206,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         : await createRoomRequest(authToken, {
             cinemaId: input.cinemaId,
             name: input.name,
-            roomType: input.roomType,
+            roomType: input.roomType as 'standard' | 'vip' | 'gold' | 'imax',
             totalRows: input.totalRows,
             totalColumns: input.totalColumns,
             hiddenCoordinates,
@@ -2295,7 +2298,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       const remoteRoom = await updateRoomRequest(authToken, roomId, {
         cinemaId: room.cinemaId,
         name: room.name,
-        roomType: room.roomType,
+        roomType: room.roomType as 'standard' | 'vip' | 'gold' | 'imax',
         totalRows,
         totalColumns,
         hiddenCoordinates,
