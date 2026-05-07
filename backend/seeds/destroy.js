@@ -1,7 +1,5 @@
-const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
-
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 const {
   User,
@@ -11,43 +9,37 @@ const {
   Showtime,
   Booking,
   Ticket,
-  Session,
   PaymentTransaction,
   MockBankAccount,
   PaymentCallbackLog,
-} = require("../src/models");
-
-const MONGODB_URI = process.env.MONGODB_URI;
+  Session
+} = require('../src/models');
 
 const destroy = async () => {
   try {
-    if (!MONGODB_URI) {
-      throw new Error("Thiếu cấu hình MONGODB_URI");
-    }
+    console.log('Connecting to MongoDB...');
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('Connected!');
 
-    await mongoose.connect(MONGODB_URI);
-    console.log("MongoDB connected for destroy");
-
+    console.log('Clearing all data...');
     await Promise.all([
-      PaymentCallbackLog.deleteMany({}),
+      User.deleteMany({}),
+      Movie.deleteMany({}),
+      Cinema.deleteMany({}),
+      Room.deleteMany({}),
+      Showtime.deleteMany({}),
+      Booking.deleteMany({}),
+      Ticket.deleteMany({}),
       PaymentTransaction.deleteMany({}),
       MockBankAccount.deleteMany({}),
-      Session.deleteMany({}),
-      Ticket.deleteMany({}),
-      Booking.deleteMany({}),
-      Showtime.deleteMany({}),
-      Room.deleteMany({}),
-      Cinema.deleteMany({}),
-      Movie.deleteMany({}),
-      User.deleteMany({}),
+      PaymentCallbackLog.deleteMany({}),
+      Session.deleteMany({})
     ]);
-
-    console.log("All seed data deleted successfully");
+    console.log('All data cleared successfully.');
+    process.exit(0);
   } catch (error) {
-    console.error("Destroy failed:", error);
-    process.exitCode = 1;
-  } finally {
-    await mongoose.disconnect();
+    console.error('Error clearing data:', error);
+    process.exit(1);
   }
 };
 
