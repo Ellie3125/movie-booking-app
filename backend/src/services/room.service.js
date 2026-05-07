@@ -173,22 +173,10 @@ const createRoom = async (payload) => {
   
   // Default layout if creating from Rooms page (initial)
   if (payload.totalRows && payload.totalColumns) {
-    const layout = [];
-    for (let i = 0; i < payload.totalRows; i++) {
-      const rowLabel = String.fromCharCode(65 + i);
-      const seats = [];
-      for (let j = 0; j < payload.totalColumns; j++) {
-        seats.push({
-          seatCode: `${rowLabel}${j + 1}`,
-          rowIndex: i,
-          columnIndex: j,
-          type: 'regular',
-          status: 'active'
-        });
-      }
-      layout.push({ rowLabel, seats });
-    }
-    roomPayload.seatLayout = layout;
+    roomPayload.seatLayout = createSeatLayout({
+      totalRows: payload.totalRows,
+      totalColumns: payload.totalColumns,
+    });
   }
 
   const room = await Room.create(roomPayload);

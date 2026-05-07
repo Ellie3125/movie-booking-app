@@ -4,8 +4,9 @@ const SEAT_TYPE = {
   REGULAR: "regular",
   VIP: "vip",
   COUPLE: "couple",
+  EMPTY: "empty",
+  AISLE: "aisle",
   DISABLED: "disabled",
-  SPACE: "space",
 };
 
 const SEAT_STATUS = {
@@ -19,8 +20,11 @@ const RoomSeatSchema = new mongoose.Schema(
       type: String,
       trim: true,
       uppercase: true,
-      // regular, vip, couple: required
-      // space: optional/not needed
+    },
+    rowLabel: {
+      type: String,
+      trim: true,
+      uppercase: true,
     },
     seatCode: {
       type: String,
@@ -64,6 +68,10 @@ const RoomSeatSchema = new mongoose.Schema(
     size: {
       type: Number,
       default: 1,
+    },
+    coupleGroupId: {
+      type: String,
+      default: null,
     },
   },
   {
@@ -149,8 +157,9 @@ RoomSchema.pre("save", function (next) {
       row.seats.forEach(seat => {
         // activeSeatCount logic:
         // - regular, vip, couple: add capacity if active
-        // - space, disabled: 0 capacity (enforced by schema default or this logic)
-        if (seat.status === SEAT_STATUS.ACTIVE && seat.type !== SEAT_TYPE.SPACE && seat.type !== SEAT_TYPE.DISABLED) {
+        // - empty, aisle, disabled: NOT counted
+        const isSellable = [SEAT_TYPE.REGULAR, SEAT_TYPE.VIP, SEAT_TYPE.COUPLE].includes(seat.type);
+        if (seat.status === SEAT_STATUS.ACTIVE && isSellable) {
           count += (seat.capacity || 0);
         }
       });

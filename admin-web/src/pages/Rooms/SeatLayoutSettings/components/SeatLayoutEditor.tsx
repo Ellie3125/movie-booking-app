@@ -10,9 +10,10 @@ interface Seat {
   columnIndex: number;
   type: SeatType;
   status: "active" | "disabled";
-  priceType?: "regular" | "vip" | "couple";
+  priceType?: string;
   capacity?: number;
   size?: number;
+  coupleGroupId?: string | null;
 }
 
 interface Row {

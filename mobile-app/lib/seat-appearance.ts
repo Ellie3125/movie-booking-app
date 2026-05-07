@@ -5,8 +5,8 @@ export type SeatVisualStatus =
   | 'available'
   | 'selected'
   | 'held'
-  | 'reserved'
-  | 'paid';
+  | 'booked'
+  | 'disabled';
 
 export const seatVariantTokens: Record<
   SeatVisualVariant,
@@ -68,19 +68,19 @@ export const seatStatusTokens: Record<
     label: 'Ghế đang được giữ',
     description: 'Đang được giữ tạm trong phiên của người khác.',
   },
-  reserved: {
-    fill: '#FFD667',
-    border: '#E3B63F',
-    text: '#54361A',
-    label: 'Ghế đã đặt trước',
-    description: 'Ghế đã được khóa hoặc đặt trước.',
-  },
-  paid: {
+  booked: {
     fill: '#F05B4F',
     border: '#D74439',
     text: '#FFF8F6',
     label: 'Ghế đã bán',
     description: 'Ghế đã thanh toán xong, không thể chọn.',
+  },
+  disabled: {
+    fill: '#E2E8F0',
+    border: '#CBD5E1',
+    text: '#64748B',
+    label: 'Ghế không sử dụng',
+    description: 'Ghế đã bị khóa hoặc hư hỏng.',
   },
 };
 
@@ -136,11 +136,11 @@ export const getSeatVisualStatus = ({
     return 'held';
   }
 
-  if (seatState.status === 'reserved') {
-    return 'reserved';
+  if (seatState.status === 'booked') {
+    return 'booked';
   }
 
-  return 'paid';
+  return 'disabled';
 };
 
 export const buildSeatVariantLookup = (room?: Room | null) => {

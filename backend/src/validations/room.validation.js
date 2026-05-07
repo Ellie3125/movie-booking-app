@@ -1,11 +1,11 @@
 const { Joi, objectId, strictObject } = require('./common.validation');
 
-const seatCoordinateSchema = Joi.string()
+const seatCodeSchema = Joi.string()
   .trim()
   .uppercase()
   .pattern(/^[A-Z]\d+$/)
   .messages({
-    'string.pattern.base': 'hiddenCoordinates must use seat coordinates like A1',
+    'string.pattern.base': 'hiddenCoordinates must use seat codes like A1',
   });
 
 const roomIdParamSchema = strictObject({
@@ -26,7 +26,7 @@ const roomMutationBodySchema = strictObject({
     .max(50)
     .label('totalColumns'),
   hiddenCoordinates: Joi.array()
-    .items(seatCoordinateSchema)
+    .items(seatCodeSchema)
     .unique()
     .default([])
     .label('hiddenCoordinates'),

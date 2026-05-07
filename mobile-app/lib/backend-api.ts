@@ -174,15 +174,20 @@ export type BackendRoomMutationPayload = {
 };
 
 export type BackendShowtimeSeatState = {
-  seatCoordinate: string;
-  seatLabel: string;
-  seatType: 'standard' | 'couple';
-  status: 'available' | 'held' | 'reserved' | 'paid';
+  seatCode: string;
+  label: string;
+  rowLabel: string;
+  rowIndex: number;
+  columnIndex: number;
+  type: 'standard' | 'vip' | 'couple' | 'empty' | 'aisle' | 'disabled';
+  capacity: number;
+  coupleGroupId: string | null;
+  status: 'available' | 'held' | 'booked' | 'disabled';
   userId: string | null;
   bookingId: string | null;
   heldAt: string | null;
   holdExpiresAt: string | null;
-  paidAt: string | null;
+  bookedAt: string | null;
 };
 
 export type BackendShowtimeListItem = {
@@ -232,11 +237,12 @@ export type BackendShowtimeScheduleResult = {
 };
 
 export type BackendBookingSeat = {
-  seatCoordinate: string;
+  seatCode: string;
   seatLabel: string;
-  seatType: 'standard' | 'couple';
+  seatType: 'standard' | 'vip' | 'couple';
   status: 'held' | 'paid';
   price: number;
+  coupleGroupId: string | null;
 };
 
 export type BackendBooking = {
@@ -344,9 +350,10 @@ export type BackendPaymentResult = {
     ticketCode: string;
     status: string;
     seat: {
-      seatCoordinate: string;
+      seatCode: string;
       seatLabel: string;
-      seatType: 'standard' | 'couple';
+      seatType: 'standard' | 'vip' | 'couple';
+      coupleGroupId: string | null;
     };
     price: number;
     issuedAt: string;
@@ -360,9 +367,10 @@ export type BackendTicket = {
   price: number;
   issuedAt: string;
   seat: {
-    seatCoordinate: string;
+    seatCode: string;
     seatLabel: string;
-    seatType: 'standard' | 'couple';
+    seatType: 'standard' | 'vip' | 'couple';
+    coupleGroupId: string | null;
   };
   booking: {
     id: string;
@@ -715,7 +723,7 @@ export async function fetchMyBookingById(token: string, bookingId: string) {
 
 export async function createBooking(
   token: string,
-  payload: { showtimeId: string; seatCoordinates: string[] },
+  payload: { showtimeId: string; seatCodes: string[] },
 ) {
   return apiRequest<BackendBooking>('/bookings', {
     method: 'POST',

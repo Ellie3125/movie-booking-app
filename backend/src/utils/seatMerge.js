@@ -7,7 +7,7 @@
  */
 const mergeLayoutWithStates = (seatLayout = [], seatStates = []) => {
   const stateMap = new Map(
-    (seatStates || []).map(state => [state.seatCoordinate.toUpperCase(), state])
+    (seatStates || []).map(state => [state.seatCode.toUpperCase(), state])
   );
 
   return seatLayout.map(row => ({
@@ -15,18 +15,16 @@ const mergeLayoutWithStates = (seatLayout = [], seatStates = []) => {
     seats: (row.seats || []).map(seat => {
       const state = stateMap.get(seat.seatCode.toUpperCase());
       
-      // Merge logic:
-      // 1. If seat exists in Room layout, it's the base.
-      // 2. If it has an entry in Showtime seatStates, override status.
-      // 3. Otherwise, default status is 'available'.
+      // If seat has a state entry in Showtime, it means it's a bookable/sellable seat or a disabled seat.
+      // For empty/aisle, they might not have states or should be handled correctly.
       return {
         ...seat.toObject ? seat.toObject() : seat,
-        status: state ? state.status : 'available',
+        status: state ? state.status : (['empty', 'aisle'].includes(seat.type) ? 'disabled' : 'available'),
         userId: state?.userId || null,
         bookingId: state?.bookingId || null,
         heldAt: state?.heldAt || null,
         holdExpiresAt: state?.holdExpiresAt || null,
-        paidAt: state?.paidAt || null,
+        bookedAt: state?.bookedAt || null,
       };
     })
   }));
@@ -59,13 +57,13 @@ const validateSeatLayout = (seatLayout) => {
       seatCodes.add(seat.seatCode);
 
       // 2. Business Rules Validation
-      const { type, label, status, priceType, capacity, size } = seat;
+      const { type, label, status, priceType, capacity } = seat;
 
       if (type === 'regular' || type === 'vip') {
         if (!label) throw new Error(`Seat ${seat.seatCode} (${type}) missing label`);
         if (!status) throw new Error(`Seat ${seat.seatCode} (${type}) missing status`);
-        if (!priceType) throw new Error(`Seat ${seat.seatCode} (${type}) missing priceType`);
         if (capacity !== 1) throw new Error(`Seat ${seat.seatCode} (${type}) must have capacity = 1`);
+        if (priceType !== type) throw new Error(`Seat ${seat.seatCode} (${type}) must have priceType = "${type}"`);
       } else if (type === 'couple') {
         if (!label) throw new Error(`Seat ${seat.seatCode} (couple) missing label`);
         if (!status) throw new Error(`Seat ${seat.seatCode} (couple) missing status`);
@@ -73,10 +71,9 @@ const validateSeatLayout = (seatLayout) => {
         if (capacity !== 2) throw new Error(`Seat ${seat.seatCode} (couple) must have capacity = 2`);
       } else if (type === 'disabled') {
         if (status !== 'disabled') throw new Error(`Seat ${seat.seatCode} (disabled) must have status = "disabled"`);
-        // Disabled seats can have labels but shouldn't have capacity/priceType for sale
-      } else if (type === 'space') {
-        if (capacity && capacity !== 0) throw new Error(`Space at ${seat.seatCode} must have capacity = 0`);
-        if (size < 0) throw new Error(`Space at ${seat.seatCode} must have size >= 0`);
+        if (capacity !== 0) throw new Error(`Seat ${seat.seatCode} (disabled) must have capacity = 0`);
+      } else if (['empty', 'aisle'].includes(type)) {
+        if (capacity !== 0) throw new Error(`${type} at ${seat.seatCode} must have capacity = 0`);
       }
     });
   });

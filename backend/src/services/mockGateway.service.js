@@ -113,7 +113,7 @@ const renderGatewayCheckoutPage = ({
     .map(
       (seat) =>
         `<li>${escapeHtml(seat.seatLabel)} (${escapeHtml(
-          seat.seatCoordinate
+          seat.seatCode
         )}) - ${formatMoney(seat.price)}</li>`
     )
     .join('');

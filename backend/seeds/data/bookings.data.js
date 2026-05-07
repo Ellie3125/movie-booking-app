@@ -8,30 +8,30 @@ module.exports = [
     "roomId": "e878d310f0f803d7083356a9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-30T01:00:00.000Z",
     "updatedAt": "2026-04-30T01:10:00.000Z",
@@ -47,30 +47,30 @@ module.exports = [
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T21:00:00.000Z",
     "updatedAt": "2026-05-02T21:10:00.000Z",
@@ -86,30 +86,30 @@ module.exports = [
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-01T07:00:00.000Z",
     "updatedAt": "2026-05-01T07:10:00.000Z",
@@ -125,16 +125,16 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-08T04:00:00.000Z",
     "updatedAt": "2026-05-08T04:10:00.000Z",
@@ -150,30 +150,30 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T18:00:00.000Z",
     "updatedAt": "2026-05-05T18:10:00.000Z",
@@ -189,23 +189,23 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-03T09:00:00.000Z",
     "updatedAt": "2026-05-03T09:10:00.000Z",
@@ -221,23 +221,23 @@ module.exports = [
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 340000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T22:00:00.000Z",
     "updatedAt": "2026-05-05T22:10:00.000Z",
@@ -253,16 +253,16 @@ module.exports = [
     "roomId": "148788609f3e7d80a055f105",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 210000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-07T15:00:00.000Z",
     "updatedAt": "2026-05-07T15:10:00.000Z",
@@ -278,30 +278,30 @@ module.exports = [
     "roomId": "6e279258148afc75c0d722e0",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T19:00:00.000Z",
     "updatedAt": "2026-05-02T19:10:00.000Z",
@@ -317,16 +317,16 @@ module.exports = [
     "roomId": "db99d872e81640af97b5970f",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-04T17:00:00.000Z",
     "updatedAt": "2026-05-04T17:10:00.000Z",
@@ -342,16 +342,16 @@ module.exports = [
     "roomId": "06153e8fa73636776e775259",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-12T02:00:00.000Z",
     "updatedAt": "2026-05-12T02:10:00.000Z",
@@ -367,30 +367,30 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T04:00:00.000Z",
     "updatedAt": "2026-05-05T04:10:00.000Z",
@@ -406,16 +406,16 @@ module.exports = [
     "roomId": "6e279258148afc75c0d722e0",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-10T02:00:00.000Z",
     "updatedAt": "2026-05-10T02:10:00.000Z",
@@ -431,16 +431,16 @@ module.exports = [
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-12T13:00:00.000Z",
     "updatedAt": "2026-05-12T13:10:00.000Z",
@@ -456,30 +456,30 @@ module.exports = [
     "roomId": "9b1630edb53a653f2edd08a8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-09T23:00:00.000Z",
     "updatedAt": "2026-05-09T23:10:00.000Z",
@@ -495,23 +495,23 @@ module.exports = [
     "roomId": "e8593327f784fc677baa190d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T11:00:00.000Z",
     "updatedAt": "2026-05-05T11:10:00.000Z",
@@ -527,16 +527,16 @@ module.exports = [
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 210000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-10T16:00:00.000Z",
     "updatedAt": "2026-05-10T16:10:00.000Z",
@@ -552,30 +552,30 @@ module.exports = [
     "roomId": "ee27dceb26975113aa6929db",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T06:00:00.000Z",
     "updatedAt": "2026-05-02T06:10:00.000Z",
@@ -591,23 +591,23 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-29T18:00:00.000Z",
     "updatedAt": "2026-04-29T18:10:00.000Z",
@@ -623,16 +623,16 @@ module.exports = [
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-04T13:00:00.000Z",
     "updatedAt": "2026-05-04T13:10:00.000Z",
@@ -648,30 +648,30 @@ module.exports = [
     "roomId": "c732fc1586fc8a3461c9789e",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-11T07:00:00.000Z",
     "updatedAt": "2026-05-11T07:10:00.000Z",
@@ -687,23 +687,23 @@ module.exports = [
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-01T17:00:00.000Z",
     "updatedAt": "2026-05-01T17:10:00.000Z",
@@ -719,23 +719,23 @@ module.exports = [
     "roomId": "bbdbabe34089b2e4366393ad",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T20:00:00.000Z",
     "updatedAt": "2026-05-05T20:10:00.000Z",
@@ -751,16 +751,16 @@ module.exports = [
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-07T03:00:00.000Z",
     "updatedAt": "2026-05-07T03:10:00.000Z",
@@ -776,16 +776,16 @@ module.exports = [
     "roomId": "ee27dceb26975113aa6929db",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 210000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-28T15:00:00.000Z",
     "updatedAt": "2026-04-28T15:10:00.000Z",
@@ -801,23 +801,23 @@ module.exports = [
     "roomId": "5d5993c3229d5782aba52d5d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-08T07:00:00.000Z",
     "updatedAt": "2026-05-08T07:10:00.000Z",
@@ -833,30 +833,30 @@ module.exports = [
     "roomId": "06153e8fa73636776e775259",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T08:00:00.000Z",
     "updatedAt": "2026-05-05T08:10:00.000Z",
@@ -872,23 +872,23 @@ module.exports = [
     "roomId": "e8593327f784fc677baa190d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-28T11:00:00.000Z",
     "updatedAt": "2026-04-28T11:10:00.000Z",
@@ -904,30 +904,30 @@ module.exports = [
     "roomId": "6e279258148afc75c0d722e0",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-01T16:00:00.000Z",
     "updatedAt": "2026-05-01T16:10:00.000Z",
@@ -943,16 +943,16 @@ module.exports = [
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-10T06:00:00.000Z",
     "updatedAt": "2026-05-10T06:10:00.000Z",
@@ -968,30 +968,30 @@ module.exports = [
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T14:00:00.000Z",
     "updatedAt": "2026-05-02T14:10:00.000Z",
@@ -1007,23 +1007,23 @@ module.exports = [
     "roomId": "9d46a851f5f78ec806fb3864",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 340000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-10T07:00:00.000Z",
     "updatedAt": "2026-05-10T07:10:00.000Z",
@@ -1039,23 +1039,23 @@ module.exports = [
     "roomId": "6506ce1d66c6733df0fb34cd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T08:00:00.000Z",
     "updatedAt": "2026-05-06T08:10:00.000Z",
@@ -1071,16 +1071,16 @@ module.exports = [
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 210000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-30T00:00:00.000Z",
     "updatedAt": "2026-04-30T00:10:00.000Z",
@@ -1096,30 +1096,30 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T15:00:00.000Z",
     "updatedAt": "2026-05-05T15:10:00.000Z",
@@ -1135,16 +1135,16 @@ module.exports = [
     "roomId": "c732fc1586fc8a3461c9789e",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T05:00:00.000Z",
     "updatedAt": "2026-05-05T05:10:00.000Z",
@@ -1160,16 +1160,16 @@ module.exports = [
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-01T00:00:00.000Z",
     "updatedAt": "2026-05-01T00:10:00.000Z",
@@ -1185,23 +1185,23 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T18:00:00.000Z",
     "updatedAt": "2026-05-02T18:10:00.000Z",
@@ -1217,30 +1217,30 @@ module.exports = [
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T04:00:00.000Z",
     "updatedAt": "2026-05-06T04:10:00.000Z",
@@ -1256,30 +1256,30 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-30T08:00:00.000Z",
     "updatedAt": "2026-04-30T08:10:00.000Z",
@@ -1295,23 +1295,23 @@ module.exports = [
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T01:00:00.000Z",
     "updatedAt": "2026-05-06T01:10:00.000Z",
@@ -1327,23 +1327,23 @@ module.exports = [
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 340000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T19:00:00.000Z",
     "updatedAt": "2026-05-05T19:10:00.000Z",
@@ -1359,23 +1359,23 @@ module.exports = [
     "roomId": "e8593327f784fc677baa190d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-10T13:00:00.000Z",
     "updatedAt": "2026-05-10T13:10:00.000Z",
@@ -1391,16 +1391,16 @@ module.exports = [
     "roomId": "c0bd71494f9626c2cb111421",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-12T02:00:00.000Z",
     "updatedAt": "2026-05-12T02:10:00.000Z",
@@ -1416,23 +1416,23 @@ module.exports = [
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-29T19:00:00.000Z",
     "updatedAt": "2026-04-29T19:10:00.000Z",
@@ -1448,23 +1448,23 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T00:00:00.000Z",
     "updatedAt": "2026-05-06T00:10:00.000Z",
@@ -1480,23 +1480,23 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T19:00:00.000Z",
     "updatedAt": "2026-05-06T19:10:00.000Z",
@@ -1512,23 +1512,23 @@ module.exports = [
     "roomId": "9d46a851f5f78ec806fb3864",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-08T00:00:00.000Z",
     "updatedAt": "2026-05-08T00:10:00.000Z",
@@ -1544,30 +1544,30 @@ module.exports = [
     "roomId": "9d46a851f5f78ec806fb3864",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-09T13:00:00.000Z",
     "updatedAt": "2026-05-09T13:10:00.000Z",
@@ -1583,16 +1583,16 @@ module.exports = [
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-11T16:00:00.000Z",
     "updatedAt": "2026-05-11T16:10:00.000Z",
@@ -1608,16 +1608,16 @@ module.exports = [
     "roomId": "c0bd71494f9626c2cb111421",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 210000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T07:00:00.000Z",
     "updatedAt": "2026-05-06T07:10:00.000Z",
@@ -1633,16 +1633,16 @@ module.exports = [
     "roomId": "c0bd71494f9626c2cb111421",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-09T17:00:00.000Z",
     "updatedAt": "2026-05-09T17:10:00.000Z",
@@ -1658,23 +1658,23 @@ module.exports = [
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T01:00:00.000Z",
     "updatedAt": "2026-05-02T01:10:00.000Z",
@@ -1690,23 +1690,23 @@ module.exports = [
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-07T08:00:00.000Z",
     "updatedAt": "2026-05-07T08:10:00.000Z",
@@ -1722,16 +1722,16 @@ module.exports = [
     "roomId": "40f1a8a64a2c9714775dc234",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-04T07:00:00.000Z",
     "updatedAt": "2026-05-04T07:10:00.000Z",
@@ -1747,16 +1747,16 @@ module.exports = [
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-03T01:00:00.000Z",
     "updatedAt": "2026-05-03T01:10:00.000Z",
@@ -1772,23 +1772,23 @@ module.exports = [
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T11:00:00.000Z",
     "updatedAt": "2026-05-06T11:10:00.000Z",
@@ -1804,30 +1804,30 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-30T18:00:00.000Z",
     "updatedAt": "2026-04-30T18:10:00.000Z",
@@ -1843,30 +1843,30 @@ module.exports = [
     "roomId": "5d5993c3229d5782aba52d5d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-01T08:00:00.000Z",
     "updatedAt": "2026-05-01T08:10:00.000Z",
@@ -1882,30 +1882,30 @@ module.exports = [
     "roomId": "db99d872e81640af97b5970f",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-03T14:00:00.000Z",
     "updatedAt": "2026-05-03T14:10:00.000Z",
@@ -1921,30 +1921,30 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T13:00:00.000Z",
     "updatedAt": "2026-05-06T13:10:00.000Z",
@@ -1960,30 +1960,30 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-04T22:00:00.000Z",
     "updatedAt": "2026-05-04T22:10:00.000Z",
@@ -1999,30 +1999,30 @@ module.exports = [
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-03T16:00:00.000Z",
     "updatedAt": "2026-05-03T16:10:00.000Z",
@@ -2038,16 +2038,16 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T16:00:00.000Z",
     "updatedAt": "2026-05-02T16:10:00.000Z",
@@ -2063,30 +2063,30 @@ module.exports = [
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T15:00:00.000Z",
     "updatedAt": "2026-05-05T15:10:00.000Z",
@@ -2102,23 +2102,23 @@ module.exports = [
     "roomId": "40f1a8a64a2c9714775dc234",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-09T03:00:00.000Z",
     "updatedAt": "2026-05-09T03:10:00.000Z",
@@ -2134,23 +2134,23 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-08T19:00:00.000Z",
     "updatedAt": "2026-05-08T19:10:00.000Z",
@@ -2166,23 +2166,23 @@ module.exports = [
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 340000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-30T02:00:00.000Z",
     "updatedAt": "2026-04-30T02:10:00.000Z",
@@ -2198,16 +2198,16 @@ module.exports = [
     "roomId": "6506ce1d66c6733df0fb34cd",
     "seats": [
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-07T08:00:00.000Z",
     "updatedAt": "2026-05-07T08:10:00.000Z",
@@ -2223,30 +2223,30 @@ module.exports = [
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-07T13:00:00.000Z",
     "updatedAt": "2026-05-07T13:10:00.000Z",
@@ -2262,16 +2262,16 @@ module.exports = [
     "roomId": "ee27dceb26975113aa6929db",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-08T03:00:00.000Z",
     "updatedAt": "2026-05-08T03:10:00.000Z",
@@ -2287,16 +2287,16 @@ module.exports = [
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-07T04:00:00.000Z",
     "updatedAt": "2026-05-07T04:10:00.000Z",
@@ -2312,30 +2312,30 @@ module.exports = [
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-03T17:00:00.000Z",
     "updatedAt": "2026-05-03T17:10:00.000Z",
@@ -2351,23 +2351,23 @@ module.exports = [
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seats": [
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H6",
-        "seatLabel": "H6",
-        "seatType": "couple",
+        "seatCode": "H6",
+        "label": "H6",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-04T11:00:00.000Z",
     "updatedAt": "2026-05-04T11:10:00.000Z",
@@ -2383,30 +2383,30 @@ module.exports = [
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-28T18:00:00.000Z",
     "updatedAt": "2026-04-28T18:10:00.000Z",
@@ -2422,23 +2422,23 @@ module.exports = [
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-11T19:00:00.000Z",
     "updatedAt": "2026-05-11T19:10:00.000Z",
@@ -2454,23 +2454,23 @@ module.exports = [
     "roomId": "ee27dceb26975113aa6929db",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 340000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T02:00:00.000Z",
     "updatedAt": "2026-05-06T02:10:00.000Z",
@@ -2486,16 +2486,16 @@ module.exports = [
     "roomId": "e8593327f784fc677baa190d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-12T13:00:00.000Z",
     "updatedAt": "2026-05-12T13:10:00.000Z",
@@ -2511,16 +2511,16 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 210000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-03T08:00:00.000Z",
     "updatedAt": "2026-05-03T08:10:00.000Z",
@@ -2536,23 +2536,23 @@ module.exports = [
     "roomId": "bbdbabe34089b2e4366393ad",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 380000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T11:00:00.000Z",
     "updatedAt": "2026-05-05T11:10:00.000Z",
@@ -2568,23 +2568,23 @@ module.exports = [
     "roomId": "db99d872e81640af97b5970f",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-12T06:00:00.000Z",
     "updatedAt": "2026-05-12T06:10:00.000Z",
@@ -2600,23 +2600,23 @@ module.exports = [
     "roomId": "c0bd71494f9626c2cb111421",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-29T14:00:00.000Z",
     "updatedAt": "2026-04-29T14:10:00.000Z",
@@ -2632,23 +2632,23 @@ module.exports = [
     "roomId": "40f1a8a64a2c9714775dc234",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-03T16:00:00.000Z",
     "updatedAt": "2026-05-03T16:10:00.000Z",
@@ -2664,23 +2664,23 @@ module.exports = [
     "roomId": "baadde614932f03d3461d270",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 340000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-09T14:00:00.000Z",
     "updatedAt": "2026-05-09T14:10:00.000Z",
@@ -2696,30 +2696,30 @@ module.exports = [
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-28T14:00:00.000Z",
     "updatedAt": "2026-04-28T14:10:00.000Z",
@@ -2735,30 +2735,30 @@ module.exports = [
     "roomId": "e8593327f784fc677baa190d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-07T16:00:00.000Z",
     "updatedAt": "2026-05-07T16:10:00.000Z",
@@ -2774,30 +2774,30 @@ module.exports = [
     "roomId": "23ee7af2edc9eecfab8dc5c3",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T19:00:00.000Z",
     "updatedAt": "2026-05-02T19:10:00.000Z",
@@ -2813,30 +2813,30 @@ module.exports = [
     "roomId": "e878d310f0f803d7083356a9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-29T20:00:00.000Z",
     "updatedAt": "2026-04-29T20:10:00.000Z",
@@ -2852,30 +2852,30 @@ module.exports = [
     "roomId": "ee27dceb26975113aa6929db",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-30T13:00:00.000Z",
     "updatedAt": "2026-04-30T13:10:00.000Z",
@@ -2891,23 +2891,23 @@ module.exports = [
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-06T03:00:00.000Z",
     "updatedAt": "2026-05-06T03:10:00.000Z",
@@ -2923,30 +2923,30 @@ module.exports = [
     "roomId": "5d5993c3229d5782aba52d5d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-29T02:00:00.000Z",
     "updatedAt": "2026-04-29T02:10:00.000Z",
@@ -2962,16 +2962,16 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H6",
-        "seatLabel": "H6",
-        "seatType": "couple",
+        "seatCode": "H6",
+        "label": "H6",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-05T13:00:00.000Z",
     "updatedAt": "2026-05-05T13:10:00.000Z",
@@ -2987,23 +2987,23 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-08T11:00:00.000Z",
     "updatedAt": "2026-05-08T11:10:00.000Z",
@@ -3019,30 +3019,30 @@ module.exports = [
     "roomId": "baadde614932f03d3461d270",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-09T16:00:00.000Z",
     "updatedAt": "2026-05-09T16:10:00.000Z",
@@ -3058,30 +3058,30 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-09T23:00:00.000Z",
     "updatedAt": "2026-05-09T23:10:00.000Z",
@@ -3097,30 +3097,30 @@ module.exports = [
     "roomId": "40f1a8a64a2c9714775dc234",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-08T08:00:00.000Z",
     "updatedAt": "2026-05-08T08:10:00.000Z",
@@ -3136,30 +3136,30 @@ module.exports = [
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
         "status": "ISSUED",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-10T15:00:00.000Z",
     "updatedAt": "2026-05-10T15:10:00.000Z",
@@ -3175,23 +3175,23 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-30T04:00:00.000Z",
     "updatedAt": "2026-04-30T04:10:00.000Z",
@@ -3207,16 +3207,16 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-04-29T15:00:00.000Z",
     "updatedAt": "2026-04-29T15:10:00.000Z",
@@ -3232,23 +3232,23 @@ module.exports = [
     "roomId": "40f1a8a64a2c9714775dc234",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
         "status": "ISSUED",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "CONFIRMED",
-    "paymentStatus": "SUCCESS",
+    "status": "confirmed",
+    "paymentStatus": "success",
     "paymentMethod": "MOCK_GATEWAY",
     "createdAt": "2026-05-02T12:00:00.000Z",
     "updatedAt": "2026-05-02T12:10:00.000Z",
@@ -3264,30 +3264,30 @@ module.exports = [
     "roomId": "bbdbabe34089b2e4366393ad",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-08T21:00:00.000Z",
     "updatedAt": "2026-05-08T21:10:00.000Z"
@@ -3301,30 +3301,30 @@ module.exports = [
     "roomId": "9d46a851f5f78ec806fb3864",
     "seats": [
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       },
       {
-        "seatCoordinate": "H6",
-        "seatLabel": "H6",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H6",
+        "label": "H6",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       },
       {
-        "seatCoordinate": "H5",
-        "seatLabel": "H5",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H5",
+        "label": "H5",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-08T02:00:00.000Z",
     "updatedAt": "2026-05-08T02:10:00.000Z"
@@ -3338,16 +3338,16 @@ module.exports = [
     "roomId": "baadde614932f03d3461d270",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 210000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-02T13:00:00.000Z",
     "updatedAt": "2026-05-02T13:10:00.000Z"
@@ -3361,30 +3361,30 @@ module.exports = [
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-02T14:00:00.000Z",
     "updatedAt": "2026-05-02T14:10:00.000Z"
@@ -3398,16 +3398,16 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-11T15:00:00.000Z",
     "updatedAt": "2026-05-11T15:10:00.000Z"
@@ -3421,16 +3421,16 @@ module.exports = [
     "roomId": "c732fc1586fc8a3461c9789e",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-12T05:00:00.000Z",
     "updatedAt": "2026-05-12T05:10:00.000Z"
@@ -3444,16 +3444,16 @@ module.exports = [
     "roomId": "6e279258148afc75c0d722e0",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-06T05:00:00.000Z",
     "updatedAt": "2026-05-06T05:10:00.000Z"
@@ -3467,30 +3467,30 @@ module.exports = [
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seats": [
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H6",
-        "seatLabel": "H6",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H6",
+        "label": "H6",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-09T23:00:00.000Z",
     "updatedAt": "2026-05-09T23:10:00.000Z"
@@ -3504,16 +3504,16 @@ module.exports = [
     "roomId": "c732fc1586fc8a3461c9789e",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-05T00:00:00.000Z",
     "updatedAt": "2026-05-05T00:10:00.000Z"
@@ -3527,16 +3527,16 @@ module.exports = [
     "roomId": "bbdbabe34089b2e4366393ad",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-11T13:00:00.000Z",
     "updatedAt": "2026-05-11T13:10:00.000Z"
@@ -3550,23 +3550,23 @@ module.exports = [
     "roomId": "10a8e6da8cf94937ebdc9bd0",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-07T17:00:00.000Z",
     "updatedAt": "2026-05-07T17:10:00.000Z"
@@ -3580,30 +3580,30 @@ module.exports = [
     "roomId": "40f1a8a64a2c9714775dc234",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-01T15:00:00.000Z",
     "updatedAt": "2026-05-01T15:10:00.000Z"
@@ -3617,16 +3617,16 @@ module.exports = [
     "roomId": "baadde614932f03d3461d270",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-04T10:00:00.000Z",
     "updatedAt": "2026-05-04T10:10:00.000Z"
@@ -3640,16 +3640,16 @@ module.exports = [
     "roomId": "23ee7af2edc9eecfab8dc5c3",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-04-30T03:00:00.000Z",
     "updatedAt": "2026-04-30T03:10:00.000Z"
@@ -3663,30 +3663,30 @@ module.exports = [
     "roomId": "e8593327f784fc677baa190d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-11T04:00:00.000Z",
     "updatedAt": "2026-05-11T04:10:00.000Z"
@@ -3700,30 +3700,30 @@ module.exports = [
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-01T01:00:00.000Z",
     "updatedAt": "2026-05-01T01:10:00.000Z"
@@ -3737,16 +3737,16 @@ module.exports = [
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-08T04:00:00.000Z",
     "updatedAt": "2026-05-08T04:10:00.000Z"
@@ -3760,16 +3760,16 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-05T02:00:00.000Z",
     "updatedAt": "2026-05-05T02:10:00.000Z"
@@ -3783,16 +3783,16 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-10T21:00:00.000Z",
     "updatedAt": "2026-05-10T21:10:00.000Z"
@@ -3806,30 +3806,30 @@ module.exports = [
     "roomId": "9b1630edb53a653f2edd08a8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-04-29T23:00:00.000Z",
     "updatedAt": "2026-04-29T23:10:00.000Z"
@@ -3843,30 +3843,30 @@ module.exports = [
     "roomId": "baadde614932f03d3461d270",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-10T02:00:00.000Z",
     "updatedAt": "2026-05-10T02:10:00.000Z"
@@ -3880,30 +3880,30 @@ module.exports = [
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-01T03:00:00.000Z",
     "updatedAt": "2026-05-01T03:10:00.000Z"
@@ -3917,30 +3917,30 @@ module.exports = [
     "roomId": "df8f679994df6a0af11a6bcd",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-03T19:00:00.000Z",
     "updatedAt": "2026-05-03T19:10:00.000Z"
@@ -3954,30 +3954,30 @@ module.exports = [
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       }
     ],
     "totalAmount": 570000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-11T04:00:00.000Z",
     "updatedAt": "2026-05-11T04:10:00.000Z"
@@ -3991,16 +3991,16 @@ module.exports = [
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-11T23:00:00.000Z",
     "updatedAt": "2026-05-11T23:10:00.000Z"
@@ -4014,30 +4014,30 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-06T09:00:00.000Z",
     "updatedAt": "2026-05-06T09:10:00.000Z"
@@ -4051,23 +4051,23 @@ module.exports = [
     "roomId": "40f1a8a64a2c9714775dc234",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-11T20:00:00.000Z",
     "updatedAt": "2026-05-11T20:10:00.000Z"
@@ -4081,16 +4081,16 @@ module.exports = [
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-04-30T20:00:00.000Z",
     "updatedAt": "2026-04-30T20:10:00.000Z"
@@ -4104,23 +4104,23 @@ module.exports = [
     "roomId": "10a8e6da8cf94937ebdc9bd0",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-09T21:00:00.000Z",
     "updatedAt": "2026-05-09T21:10:00.000Z"
@@ -4134,30 +4134,30 @@ module.exports = [
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 390000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-07T16:00:00.000Z",
     "updatedAt": "2026-05-07T16:10:00.000Z"
@@ -4171,23 +4171,23 @@ module.exports = [
     "roomId": "baadde614932f03d3461d270",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-03T06:00:00.000Z",
     "updatedAt": "2026-05-03T06:10:00.000Z"
@@ -4201,16 +4201,16 @@ module.exports = [
     "roomId": "e878d310f0f803d7083356a9",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-11T03:00:00.000Z",
     "updatedAt": "2026-05-11T03:10:00.000Z"
@@ -4224,23 +4224,23 @@ module.exports = [
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-12T07:00:00.000Z",
     "updatedAt": "2026-05-12T07:10:00.000Z"
@@ -4254,23 +4254,23 @@ module.exports = [
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 260000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-07T10:00:00.000Z",
     "updatedAt": "2026-05-07T10:10:00.000Z"
@@ -4284,30 +4284,30 @@ module.exports = [
     "roomId": "9b1630edb53a653f2edd08a8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-06T04:00:00.000Z",
     "updatedAt": "2026-05-06T04:10:00.000Z"
@@ -4321,16 +4321,16 @@ module.exports = [
     "roomId": "23ee7af2edc9eecfab8dc5c3",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-09T20:00:00.000Z",
     "updatedAt": "2026-05-09T20:10:00.000Z"
@@ -4344,30 +4344,30 @@ module.exports = [
     "roomId": "af0188967a2c6e9e73a172bf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-09T18:00:00.000Z",
     "updatedAt": "2026-05-09T18:10:00.000Z"
@@ -4381,30 +4381,30 @@ module.exports = [
     "roomId": "341d99da35ce68d751bb6acf",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-01T10:00:00.000Z",
     "updatedAt": "2026-05-01T10:10:00.000Z"
@@ -4418,16 +4418,16 @@ module.exports = [
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 130000
       }
     ],
     "totalAmount": 130000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-10T02:00:00.000Z",
     "updatedAt": "2026-05-10T02:10:00.000Z"
@@ -4441,16 +4441,16 @@ module.exports = [
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 190000
       }
     ],
     "totalAmount": 190000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-07T19:00:00.000Z",
     "updatedAt": "2026-05-07T19:10:00.000Z"
@@ -4464,16 +4464,16 @@ module.exports = [
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-11T08:00:00.000Z",
     "updatedAt": "2026-05-11T08:10:00.000Z"
@@ -4487,23 +4487,23 @@ module.exports = [
     "roomId": "bbdbabe34089b2e4366393ad",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 420000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-05T12:00:00.000Z",
     "updatedAt": "2026-05-05T12:10:00.000Z"
@@ -4517,30 +4517,30 @@ module.exports = [
     "roomId": "c732fc1586fc8a3461c9789e",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 510000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-13T01:00:00.000Z",
     "updatedAt": "2026-05-13T01:10:00.000Z"
@@ -4554,30 +4554,30 @@ module.exports = [
     "roomId": "e8593327f784fc677baa190d",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-12T09:00:00.000Z",
     "updatedAt": "2026-05-12T09:10:00.000Z"
@@ -4591,30 +4591,30 @@ module.exports = [
     "roomId": "9b1630edb53a653f2edd08a8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 210000
       }
     ],
     "totalAmount": 630000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-03T08:00:00.000Z",
     "updatedAt": "2026-05-03T08:10:00.000Z"
@@ -4628,23 +4628,23 @@ module.exports = [
     "roomId": "9b1630edb53a653f2edd08a8",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 340000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-07T18:00:00.000Z",
     "updatedAt": "2026-05-07T18:10:00.000Z"
@@ -4658,30 +4658,30 @@ module.exports = [
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H7",
-        "seatLabel": "H7",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H7",
+        "label": "H7",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 450000,
-    "status": "CANCELLED",
-    "paymentStatus": "FAILED",
+    "status": "cancelled",
+    "paymentStatus": "failed",
     "paymentMethod": null,
     "createdAt": "2026-05-05T05:00:00.000Z",
     "updatedAt": "2026-05-05T05:10:00.000Z"
@@ -4695,23 +4695,23 @@ module.exports = [
     "roomId": "06153e8fa73636776e775259",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       },
       {
-        "seatCoordinate": "H9",
-        "seatLabel": "H9",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H9",
+        "label": "H9",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 300000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-04T08:00:00.000Z",
     "updatedAt": "2026-05-04T08:10:00.000Z"
@@ -4725,16 +4725,16 @@ module.exports = [
     "roomId": "db99d872e81640af97b5970f",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 150000
       }
     ],
     "totalAmount": 150000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-05-06T13:00:00.000Z",
     "updatedAt": "2026-05-06T13:10:00.000Z"
@@ -4748,16 +4748,16 @@ module.exports = [
     "roomId": "06153e8fa73636776e775259",
     "seats": [
       {
-        "seatCoordinate": "H10",
-        "seatLabel": "H10",
-        "seatType": "couple",
-        "status": "PENDING_PAYMENT",
+        "seatCode": "H10",
+        "label": "H10",
+        "type": "couple",
+        "status": "pending_payment",
         "price": 170000
       }
     ],
     "totalAmount": 170000,
-    "status": "PENDING_PAYMENT",
-    "paymentStatus": "PENDING",
+    "status": "pending_payment",
+    "paymentStatus": "pending",
     "paymentMethod": null,
     "createdAt": "2026-04-30T00:00:00.000Z",
     "updatedAt": "2026-04-30T00:10:00.000Z"

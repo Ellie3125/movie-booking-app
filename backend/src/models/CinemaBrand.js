@@ -8,6 +8,13 @@ const CinemaBrandSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    code: {
+      type: String,
+      required: [true, "Mã thương hiệu là bắt buộc"],
+      unique: true,
+      trim: true,
+      uppercase: true,
+    },
     logo: {
       type: String,
       default: "",

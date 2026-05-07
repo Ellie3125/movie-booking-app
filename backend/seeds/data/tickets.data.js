@@ -8,13 +8,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "e878d310f0f803d7083356a9",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700000",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T01:10:00.000Z"
   },
   {
@@ -26,13 +26,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "e878d310f0f803d7083356a9",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700001",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T01:10:00.000Z"
   },
   {
@@ -44,13 +44,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "e878d310f0f803d7083356a9",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700002",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T01:10:00.000Z"
   },
   {
@@ -62,13 +62,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700010",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T21:10:00.000Z"
   },
   {
@@ -80,13 +80,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700011",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T21:10:00.000Z"
   },
   {
@@ -98,13 +98,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700012",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T21:10:00.000Z"
   },
   {
@@ -116,13 +116,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700020",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T07:10:00.000Z"
   },
   {
@@ -134,13 +134,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700021",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T07:10:00.000Z"
   },
   {
@@ -152,13 +152,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700022",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T07:10:00.000Z"
   },
   {
@@ -170,13 +170,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700030",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T04:10:00.000Z"
   },
   {
@@ -188,13 +188,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700040",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T18:10:00.000Z"
   },
   {
@@ -206,13 +206,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700041",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T18:10:00.000Z"
   },
   {
@@ -224,13 +224,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700042",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T18:10:00.000Z"
   },
   {
@@ -242,13 +242,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700050",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T09:10:00.000Z"
   },
   {
@@ -260,13 +260,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700051",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T09:10:00.000Z"
   },
   {
@@ -278,13 +278,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700060",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T22:10:00.000Z"
   },
   {
@@ -296,13 +296,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700061",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T22:10:00.000Z"
   },
   {
@@ -314,13 +314,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "148788609f3e7d80a055f105",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700070",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T15:10:00.000Z"
   },
   {
@@ -332,13 +332,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "6e279258148afc75c0d722e0",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700080",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T19:10:00.000Z"
   },
   {
@@ -350,13 +350,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "6e279258148afc75c0d722e0",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700081",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T19:10:00.000Z"
   },
   {
@@ -368,13 +368,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "6e279258148afc75c0d722e0",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700082",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T19:10:00.000Z"
   },
   {
@@ -386,13 +386,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "db99d872e81640af97b5970f",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700090",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T17:10:00.000Z"
   },
   {
@@ -404,13 +404,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "06153e8fa73636776e775259",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700100",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-12T02:10:00.000Z"
   },
   {
@@ -422,13 +422,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700110",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T04:10:00.000Z"
   },
   {
@@ -440,13 +440,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700111",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T04:10:00.000Z"
   },
   {
@@ -458,13 +458,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700112",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T04:10:00.000Z"
   },
   {
@@ -476,13 +476,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "6e279258148afc75c0d722e0",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700120",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T02:10:00.000Z"
   },
   {
@@ -494,13 +494,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700130",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-12T13:10:00.000Z"
   },
   {
@@ -512,13 +512,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "9b1630edb53a653f2edd08a8",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700140",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T23:10:00.000Z"
   },
   {
@@ -530,13 +530,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "9b1630edb53a653f2edd08a8",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700141",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T23:10:00.000Z"
   },
   {
@@ -548,13 +548,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "9b1630edb53a653f2edd08a8",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700142",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T23:10:00.000Z"
   },
   {
@@ -566,13 +566,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700150",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T11:10:00.000Z"
   },
   {
@@ -584,13 +584,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700151",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T11:10:00.000Z"
   },
   {
@@ -602,13 +602,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700160",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T16:10:00.000Z"
   },
   {
@@ -620,13 +620,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700170",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T06:10:00.000Z"
   },
   {
@@ -638,13 +638,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700171",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T06:10:00.000Z"
   },
   {
@@ -656,13 +656,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700172",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T06:10:00.000Z"
   },
   {
@@ -674,13 +674,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700180",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T18:10:00.000Z"
   },
   {
@@ -692,13 +692,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700181",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T18:10:00.000Z"
   },
   {
@@ -710,13 +710,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700190",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T13:10:00.000Z"
   },
   {
@@ -728,13 +728,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "c732fc1586fc8a3461c9789e",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700200",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-11T07:10:00.000Z"
   },
   {
@@ -746,13 +746,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "c732fc1586fc8a3461c9789e",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700201",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-11T07:10:00.000Z"
   },
   {
@@ -764,13 +764,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "c732fc1586fc8a3461c9789e",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700202",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-11T07:10:00.000Z"
   },
   {
@@ -782,13 +782,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700210",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T17:10:00.000Z"
   },
   {
@@ -800,13 +800,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700211",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T17:10:00.000Z"
   },
   {
@@ -818,13 +818,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "bbdbabe34089b2e4366393ad",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700220",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T20:10:00.000Z"
   },
   {
@@ -836,13 +836,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "bbdbabe34089b2e4366393ad",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700221",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T20:10:00.000Z"
   },
   {
@@ -854,13 +854,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700230",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T03:10:00.000Z"
   },
   {
@@ -872,13 +872,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700240",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T15:10:00.000Z"
   },
   {
@@ -890,13 +890,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700250",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T07:10:00.000Z"
   },
   {
@@ -908,13 +908,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700251",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T07:10:00.000Z"
   },
   {
@@ -926,13 +926,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "06153e8fa73636776e775259",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700260",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T08:10:00.000Z"
   },
   {
@@ -944,13 +944,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "06153e8fa73636776e775259",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700261",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T08:10:00.000Z"
   },
   {
@@ -962,13 +962,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "06153e8fa73636776e775259",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700262",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T08:10:00.000Z"
   },
   {
@@ -980,13 +980,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700270",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T11:10:00.000Z"
   },
   {
@@ -998,13 +998,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700271",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T11:10:00.000Z"
   },
   {
@@ -1016,13 +1016,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "6e279258148afc75c0d722e0",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700280",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T16:10:00.000Z"
   },
   {
@@ -1034,13 +1034,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "6e279258148afc75c0d722e0",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700281",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T16:10:00.000Z"
   },
   {
@@ -1052,13 +1052,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "6e279258148afc75c0d722e0",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700282",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T16:10:00.000Z"
   },
   {
@@ -1070,13 +1070,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700290",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T06:10:00.000Z"
   },
   {
@@ -1088,13 +1088,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700300",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T14:10:00.000Z"
   },
   {
@@ -1106,13 +1106,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700301",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T14:10:00.000Z"
   },
   {
@@ -1124,13 +1124,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700302",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T14:10:00.000Z"
   },
   {
@@ -1142,13 +1142,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "9d46a851f5f78ec806fb3864",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700310",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T07:10:00.000Z"
   },
   {
@@ -1160,13 +1160,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "9d46a851f5f78ec806fb3864",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700311",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T07:10:00.000Z"
   },
   {
@@ -1178,13 +1178,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "6506ce1d66c6733df0fb34cd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700320",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T08:10:00.000Z"
   },
   {
@@ -1196,13 +1196,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "6506ce1d66c6733df0fb34cd",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700321",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T08:10:00.000Z"
   },
   {
@@ -1214,13 +1214,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700330",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T00:10:00.000Z"
   },
   {
@@ -1232,13 +1232,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700340",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T15:10:00.000Z"
   },
   {
@@ -1250,13 +1250,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700341",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T15:10:00.000Z"
   },
   {
@@ -1268,13 +1268,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700342",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T15:10:00.000Z"
   },
   {
@@ -1286,13 +1286,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "c732fc1586fc8a3461c9789e",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700350",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T05:10:00.000Z"
   },
   {
@@ -1304,13 +1304,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700360",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T00:10:00.000Z"
   },
   {
@@ -1322,13 +1322,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700370",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T18:10:00.000Z"
   },
   {
@@ -1340,13 +1340,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700371",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T18:10:00.000Z"
   },
   {
@@ -1358,13 +1358,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700380",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T04:10:00.000Z"
   },
   {
@@ -1376,13 +1376,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700381",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T04:10:00.000Z"
   },
   {
@@ -1394,13 +1394,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700382",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T04:10:00.000Z"
   },
   {
@@ -1412,13 +1412,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700390",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T08:10:00.000Z"
   },
   {
@@ -1430,13 +1430,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700391",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T08:10:00.000Z"
   },
   {
@@ -1448,13 +1448,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700392",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T08:10:00.000Z"
   },
   {
@@ -1466,13 +1466,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700400",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T01:10:00.000Z"
   },
   {
@@ -1484,13 +1484,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700401",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T01:10:00.000Z"
   },
   {
@@ -1502,13 +1502,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700410",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T19:10:00.000Z"
   },
   {
@@ -1520,13 +1520,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700411",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T19:10:00.000Z"
   },
   {
@@ -1538,13 +1538,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700420",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T13:10:00.000Z"
   },
   {
@@ -1556,13 +1556,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700421",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T13:10:00.000Z"
   },
   {
@@ -1574,13 +1574,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "c0bd71494f9626c2cb111421",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700430",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-12T02:10:00.000Z"
   },
   {
@@ -1592,13 +1592,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700440",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T19:10:00.000Z"
   },
   {
@@ -1610,13 +1610,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700441",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T19:10:00.000Z"
   },
   {
@@ -1628,13 +1628,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700450",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T00:10:00.000Z"
   },
   {
@@ -1646,13 +1646,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700451",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T00:10:00.000Z"
   },
   {
@@ -1664,13 +1664,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700460",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T19:10:00.000Z"
   },
   {
@@ -1682,13 +1682,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700461",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T19:10:00.000Z"
   },
   {
@@ -1700,13 +1700,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "9d46a851f5f78ec806fb3864",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700470",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T00:10:00.000Z"
   },
   {
@@ -1718,13 +1718,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "9d46a851f5f78ec806fb3864",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700471",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T00:10:00.000Z"
   },
   {
@@ -1736,13 +1736,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "9d46a851f5f78ec806fb3864",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700480",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T13:10:00.000Z"
   },
   {
@@ -1754,13 +1754,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "9d46a851f5f78ec806fb3864",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700481",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T13:10:00.000Z"
   },
   {
@@ -1772,13 +1772,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "9d46a851f5f78ec806fb3864",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700482",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T13:10:00.000Z"
   },
   {
@@ -1790,13 +1790,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700490",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-11T16:10:00.000Z"
   },
   {
@@ -1808,13 +1808,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "c0bd71494f9626c2cb111421",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700500",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T07:10:00.000Z"
   },
   {
@@ -1826,13 +1826,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "c0bd71494f9626c2cb111421",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700510",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T17:10:00.000Z"
   },
   {
@@ -1844,13 +1844,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700520",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T01:10:00.000Z"
   },
   {
@@ -1862,13 +1862,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "f889d2d28dd4920fd9e77ad9",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700521",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T01:10:00.000Z"
   },
   {
@@ -1880,13 +1880,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700530",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T08:10:00.000Z"
   },
   {
@@ -1898,13 +1898,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "3c2ba0e8e62b9a657c350140",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700531",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T08:10:00.000Z"
   },
   {
@@ -1916,13 +1916,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700540",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T07:10:00.000Z"
   },
   {
@@ -1934,13 +1934,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "63f3f58dfba8f629dc82c7e5",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700550",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T01:10:00.000Z"
   },
   {
@@ -1952,13 +1952,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700560",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T11:10:00.000Z"
   },
   {
@@ -1970,13 +1970,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700561",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T11:10:00.000Z"
   },
   {
@@ -1988,13 +1988,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700570",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T18:10:00.000Z"
   },
   {
@@ -2006,13 +2006,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700571",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T18:10:00.000Z"
   },
   {
@@ -2024,13 +2024,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700572",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T18:10:00.000Z"
   },
   {
@@ -2042,13 +2042,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700580",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T08:10:00.000Z"
   },
   {
@@ -2060,13 +2060,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700581",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T08:10:00.000Z"
   },
   {
@@ -2078,13 +2078,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700582",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-01T08:10:00.000Z"
   },
   {
@@ -2096,13 +2096,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "db99d872e81640af97b5970f",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700590",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T14:10:00.000Z"
   },
   {
@@ -2114,13 +2114,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "db99d872e81640af97b5970f",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700591",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T14:10:00.000Z"
   },
   {
@@ -2132,13 +2132,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "db99d872e81640af97b5970f",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700592",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T14:10:00.000Z"
   },
   {
@@ -2150,13 +2150,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700600",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T13:10:00.000Z"
   },
   {
@@ -2168,13 +2168,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700601",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T13:10:00.000Z"
   },
   {
@@ -2186,13 +2186,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700602",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T13:10:00.000Z"
   },
   {
@@ -2204,13 +2204,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700610",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T22:10:00.000Z"
   },
   {
@@ -2222,13 +2222,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700611",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T22:10:00.000Z"
   },
   {
@@ -2240,13 +2240,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700612",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T22:10:00.000Z"
   },
   {
@@ -2258,13 +2258,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700620",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T16:10:00.000Z"
   },
   {
@@ -2276,13 +2276,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700621",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T16:10:00.000Z"
   },
   {
@@ -2294,13 +2294,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "de31bb93270312ec4ce9f4e5",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700622",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T16:10:00.000Z"
   },
   {
@@ -2312,13 +2312,13 @@ module.exports = [
     "cinemaId": "da1199e2faf2f27ae47cdfc2",
     "roomId": "341d99da35ce68d751bb6acf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700630",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T16:10:00.000Z"
   },
   {
@@ -2330,13 +2330,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700640",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T15:10:00.000Z"
   },
   {
@@ -2348,13 +2348,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700641",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T15:10:00.000Z"
   },
   {
@@ -2366,13 +2366,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700642",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T15:10:00.000Z"
   },
   {
@@ -2384,13 +2384,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700650",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T03:10:00.000Z"
   },
   {
@@ -2402,13 +2402,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700651",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T03:10:00.000Z"
   },
   {
@@ -2420,13 +2420,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700660",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T19:10:00.000Z"
   },
   {
@@ -2438,13 +2438,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700661",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T19:10:00.000Z"
   },
   {
@@ -2456,13 +2456,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700670",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T02:10:00.000Z"
   },
   {
@@ -2474,13 +2474,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700671",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T02:10:00.000Z"
   },
   {
@@ -2492,13 +2492,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "6506ce1d66c6733df0fb34cd",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700680",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T08:10:00.000Z"
   },
   {
@@ -2510,13 +2510,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700690",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T13:10:00.000Z"
   },
   {
@@ -2528,13 +2528,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700691",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T13:10:00.000Z"
   },
   {
@@ -2546,13 +2546,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700692",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T13:10:00.000Z"
   },
   {
@@ -2564,13 +2564,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700700",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T03:10:00.000Z"
   },
   {
@@ -2582,13 +2582,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "fc5c2786fc0c2c3cfad49e01",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700710",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T04:10:00.000Z"
   },
   {
@@ -2600,13 +2600,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700720",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T17:10:00.000Z"
   },
   {
@@ -2618,13 +2618,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700721",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T17:10:00.000Z"
   },
   {
@@ -2636,13 +2636,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700722",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T17:10:00.000Z"
   },
   {
@@ -2654,13 +2654,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700730",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T11:10:00.000Z"
   },
   {
@@ -2672,13 +2672,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H6",
-      "seatLabel": "H6",
-      "seatType": "couple"
+      "seatCode": "H6",
+      "label": "H6",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700731",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-04T11:10:00.000Z"
   },
   {
@@ -2690,13 +2690,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700740",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T18:10:00.000Z"
   },
   {
@@ -2708,13 +2708,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700741",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T18:10:00.000Z"
   },
   {
@@ -2726,13 +2726,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700742",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T18:10:00.000Z"
   },
   {
@@ -2744,13 +2744,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700750",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-11T19:10:00.000Z"
   },
   {
@@ -2762,13 +2762,13 @@ module.exports = [
     "cinemaId": "c89c09310987f4c11e8173dd",
     "roomId": "f0b8439ddbac36b8aebfb39d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700751",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-11T19:10:00.000Z"
   },
   {
@@ -2780,13 +2780,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700760",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T02:10:00.000Z"
   },
   {
@@ -2798,13 +2798,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700761",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T02:10:00.000Z"
   },
   {
@@ -2816,13 +2816,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700770",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-12T13:10:00.000Z"
   },
   {
@@ -2834,13 +2834,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700780",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T08:10:00.000Z"
   },
   {
@@ -2852,13 +2852,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "bbdbabe34089b2e4366393ad",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700790",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T11:10:00.000Z"
   },
   {
@@ -2870,13 +2870,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "bbdbabe34089b2e4366393ad",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700791",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T11:10:00.000Z"
   },
   {
@@ -2888,13 +2888,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "db99d872e81640af97b5970f",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700800",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-12T06:10:00.000Z"
   },
   {
@@ -2906,13 +2906,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "db99d872e81640af97b5970f",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700801",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-12T06:10:00.000Z"
   },
   {
@@ -2924,13 +2924,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "c0bd71494f9626c2cb111421",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700810",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T14:10:00.000Z"
   },
   {
@@ -2942,13 +2942,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "c0bd71494f9626c2cb111421",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700811",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T14:10:00.000Z"
   },
   {
@@ -2960,13 +2960,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700820",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T16:10:00.000Z"
   },
   {
@@ -2978,13 +2978,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700821",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-03T16:10:00.000Z"
   },
   {
@@ -2996,13 +2996,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "baadde614932f03d3461d270",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700830",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T14:10:00.000Z"
   },
   {
@@ -3014,13 +3014,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "baadde614932f03d3461d270",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700831",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T14:10:00.000Z"
   },
   {
@@ -3032,13 +3032,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700840",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T14:10:00.000Z"
   },
   {
@@ -3050,13 +3050,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700841",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T14:10:00.000Z"
   },
   {
@@ -3068,13 +3068,13 @@ module.exports = [
     "cinemaId": "20ddae0327022cf957772d59",
     "roomId": "631ca389a1dbcf0abb8a6cd8",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700842",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-28T14:10:00.000Z"
   },
   {
@@ -3086,13 +3086,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700850",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T16:10:00.000Z"
   },
   {
@@ -3104,13 +3104,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700851",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T16:10:00.000Z"
   },
   {
@@ -3122,13 +3122,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "e8593327f784fc677baa190d",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700852",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-07T16:10:00.000Z"
   },
   {
@@ -3140,13 +3140,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "23ee7af2edc9eecfab8dc5c3",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700860",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T19:10:00.000Z"
   },
   {
@@ -3158,13 +3158,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "23ee7af2edc9eecfab8dc5c3",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700861",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T19:10:00.000Z"
   },
   {
@@ -3176,13 +3176,13 @@ module.exports = [
     "cinemaId": "50ef1fe4b72ade70fdc21343",
     "roomId": "23ee7af2edc9eecfab8dc5c3",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700862",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T19:10:00.000Z"
   },
   {
@@ -3194,13 +3194,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "e878d310f0f803d7083356a9",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700870",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T20:10:00.000Z"
   },
   {
@@ -3212,13 +3212,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "e878d310f0f803d7083356a9",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700871",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T20:10:00.000Z"
   },
   {
@@ -3230,13 +3230,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "e878d310f0f803d7083356a9",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700872",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T20:10:00.000Z"
   },
   {
@@ -3248,13 +3248,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700880",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T13:10:00.000Z"
   },
   {
@@ -3266,13 +3266,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700881",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T13:10:00.000Z"
   },
   {
@@ -3284,13 +3284,13 @@ module.exports = [
     "cinemaId": "28d6ff58969e16faa8c8ff91",
     "roomId": "ee27dceb26975113aa6929db",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700882",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T13:10:00.000Z"
   },
   {
@@ -3302,13 +3302,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700890",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T03:10:00.000Z"
   },
   {
@@ -3320,13 +3320,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "7527ab2c5f43fe41b0dc903c",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700891",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-06T03:10:00.000Z"
   },
   {
@@ -3338,13 +3338,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700900",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T02:10:00.000Z"
   },
   {
@@ -3356,13 +3356,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700901",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T02:10:00.000Z"
   },
   {
@@ -3374,13 +3374,13 @@ module.exports = [
     "cinemaId": "f9e1de71e29320058a3cfb78",
     "roomId": "5d5993c3229d5782aba52d5d",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700902",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T02:10:00.000Z"
   },
   {
@@ -3392,13 +3392,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H6",
-      "seatLabel": "H6",
-      "seatType": "couple"
+      "seatCode": "H6",
+      "label": "H6",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700910",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-05T13:10:00.000Z"
   },
   {
@@ -3410,13 +3410,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700920",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T11:10:00.000Z"
   },
   {
@@ -3428,13 +3428,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700921",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T11:10:00.000Z"
   },
   {
@@ -3446,13 +3446,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "baadde614932f03d3461d270",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700930",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T16:10:00.000Z"
   },
   {
@@ -3464,13 +3464,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "baadde614932f03d3461d270",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700931",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T16:10:00.000Z"
   },
   {
@@ -3482,13 +3482,13 @@ module.exports = [
     "cinemaId": "20de7d3ccf11cdf185e98888",
     "roomId": "baadde614932f03d3461d270",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 190000,
     "ticketCode": "TICKET2026050700932",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T16:10:00.000Z"
   },
   {
@@ -3500,13 +3500,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700940",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T23:10:00.000Z"
   },
   {
@@ -3518,13 +3518,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700941",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T23:10:00.000Z"
   },
   {
@@ -3536,13 +3536,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "df8f679994df6a0af11a6bcd",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700942",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-09T23:10:00.000Z"
   },
   {
@@ -3554,13 +3554,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700950",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T08:10:00.000Z"
   },
   {
@@ -3572,13 +3572,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700951",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T08:10:00.000Z"
   },
   {
@@ -3590,13 +3590,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 170000,
     "ticketCode": "TICKET2026050700952",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-08T08:10:00.000Z"
   },
   {
@@ -3608,13 +3608,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700960",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T15:10:00.000Z"
   },
   {
@@ -3626,13 +3626,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700961",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T15:10:00.000Z"
   },
   {
@@ -3644,13 +3644,13 @@ module.exports = [
     "cinemaId": "fa8ddcd49004e2580f60344b",
     "roomId": "eb0ebc51ea5f4cc6613e4c14",
     "seat": {
-      "seatCoordinate": "H7",
-      "seatLabel": "H7",
-      "seatType": "couple"
+      "seatCode": "H7",
+      "label": "H7",
+      "type": "couple"
     },
     "price": 210000,
     "ticketCode": "TICKET2026050700962",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-10T15:10:00.000Z"
   },
   {
@@ -3662,13 +3662,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700970",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T04:10:00.000Z"
   },
   {
@@ -3680,13 +3680,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700971",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-30T04:10:00.000Z"
   },
   {
@@ -3698,13 +3698,13 @@ module.exports = [
     "cinemaId": "df24728a5f5e7adc7c5c9fa1",
     "roomId": "af0188967a2c6e9e73a172bf",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 130000,
     "ticketCode": "TICKET2026050700980",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-04-29T15:10:00.000Z"
   },
   {
@@ -3716,13 +3716,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H10",
-      "seatLabel": "H10",
-      "seatType": "couple"
+      "seatCode": "H10",
+      "label": "H10",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700990",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T12:10:00.000Z"
   },
   {
@@ -3734,13 +3734,13 @@ module.exports = [
     "cinemaId": "91d505536ddd94fd378920cf",
     "roomId": "40f1a8a64a2c9714775dc234",
     "seat": {
-      "seatCoordinate": "H9",
-      "seatLabel": "H9",
-      "seatType": "couple"
+      "seatCode": "H9",
+      "label": "H9",
+      "type": "couple"
     },
     "price": 150000,
     "ticketCode": "TICKET2026050700991",
-    "status": "ISSUED",
+    "status": "issued",
     "issuedAt": "2026-05-02T12:10:00.000Z"
   }
 ];

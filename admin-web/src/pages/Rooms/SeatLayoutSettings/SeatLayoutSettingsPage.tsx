@@ -16,9 +16,10 @@ interface Seat {
   columnIndex: number;
   type: SeatType;
   status: "active" | "disabled";
-  priceType?: "regular" | "vip" | "couple";
+  priceType?: string;
   capacity?: number;
   size?: number;
+  coupleGroupId?: string | null;
 }
 
 interface RowData {
@@ -75,9 +76,10 @@ const SeatLayoutSettingsPage = () => {
               columnIndex: sIdx,
               type: type,
               status: s.status || 'active',
-              priceType: type === 'couple' ? 'couple' : (type === 'vip' ? 'vip' : 'regular'),
-              capacity: type === 'couple' ? 2 : (type === 'space' ? 0 : 1),
-              size: 1
+              priceType: s.priceType || (type === 'couple' ? 'couple' : (type === 'vip' ? 'vip' : 'regular')),
+              capacity: s.capacity || (type === 'couple' ? 2 : (type === 'space' ? 0 : 1)),
+              size: s.size || 1,
+              coupleGroupId: s.coupleGroupId || null
             };
           })
         }));
@@ -104,13 +106,16 @@ const SeatLayoutSettingsPage = () => {
 
     // Apply new type or status
     if (editMode === "disabled") {
-      seats[cIdx] = { ...seat, status: "disabled", type: "disabled", capacity: 0 };
+      seats[cIdx] = { ...seat, status: "disabled", type: "disabled", capacity: 0, coupleGroupId: null };
     } else if (editMode === "space") {
-      seats[cIdx] = { ...seat, type: "space", status: "active", capacity: 0, label: "" };
+      seats[cIdx] = { ...seat, type: "space", status: "active", capacity: 0, label: "", coupleGroupId: null };
     } else if (editMode === "couple") {
-      seats[cIdx] = { ...seat, type: "couple", status: "active", capacity: 2, priceType: "couple" };
+      // If setting to couple, we might need to pair it with next seat or just mark it
+      // For now, let's just mark it and a simple ID
+      const groupId = `GRP_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+      seats[cIdx] = { ...seat, type: "couple", status: "active", capacity: 2, priceType: "couple", coupleGroupId: groupId };
     } else {
-      seats[cIdx] = { ...seat, type: editMode, status: "active", capacity: 1, priceType: editMode === "vip" ? "vip" : "regular" };
+      seats[cIdx] = { ...seat, type: editMode, status: "active", capacity: 1, priceType: editMode === "vip" ? "vip" : "regular", coupleGroupId: null };
     }
 
     row.seats = recalculateRowCodes(row.rowLabel, seats);
@@ -174,7 +179,8 @@ const SeatLayoutSettingsPage = () => {
           status: "active",
           priceType: "regular",
           capacity: 1,
-          size: 1
+          size: 1,
+          coupleGroupId: null
         });
       }
       newLayout.push({ rowLabel, seats });
@@ -199,7 +205,8 @@ const SeatLayoutSettingsPage = () => {
         status: "active",
         priceType: "regular",
         capacity: 1,
-        size: 1
+        size: 1,
+        coupleGroupId: null
       }))
     };
     setLayout([...layout, newRow]);
