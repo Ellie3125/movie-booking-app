@@ -50,10 +50,30 @@ const deleteRoom = asyncHandler(async (req, res) => {
   });
 });
 
+const getSeatLayout = asyncHandler(async (req, res) => {
+  const data = await roomService.getSeatLayout(req.params.id);
+
+  return sendApiResponse(res, {
+    message: 'Seat layout fetched successfully',
+    data,
+  });
+});
+
+const updateSeatLayout = asyncHandler(async (req, res) => {
+  const data = await roomService.updateSeatLayout(req.params.id, req.body.seatLayout);
+
+  return sendApiResponse(res, {
+    message: 'Seat layout updated successfully',
+    data,
+  });
+});
+
 module.exports = {
   createRoom,
   deleteRoom,
   listRooms,
   getRoomById,
   updateRoom,
+  getSeatLayout,
+  updateSeatLayout,
 };

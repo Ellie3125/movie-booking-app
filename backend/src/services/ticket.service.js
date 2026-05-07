@@ -13,7 +13,7 @@ const TICKET_POPULATE = [
   },
   {
     path: 'roomId',
-    select: 'name screenLabel totalRows totalColumns',
+    select: 'name roomType totalRows totalColumns',
   },
   {
     path: 'showtimeId',
@@ -82,7 +82,7 @@ const mapTicketResponse = (ticket) => ({
     ? {
         id: String(ticket.roomId._id),
         name: ticket.roomId.name,
-        screenLabel: ticket.roomId.screenLabel,
+        roomType: ticket.roomId.roomType,
         totalRows: ticket.roomId.totalRows,
         totalColumns: ticket.roomId.totalColumns,
       }
@@ -141,7 +141,80 @@ const getMyTicketById = async ({ ticketId, userId }) => {
   return mapTicketResponse(ticket);
 };
 
+const listTicketsAdmin = async ({ status, ticketCode, bookingCode }) => {
+  const filter = {};
+
+  if (status) filter.status = status;
+  if (ticketCode) filter.ticketCode = { $regex: ticketCode, $options: 'i' };
+
+  // If we need to filter by bookingCode, we might need a join/lookup, but for simplicity, 
+  // if bookingCode is passed, we can find the booking first and then filter tickets by bookingId.
+  if (bookingCode) {
+    const Booking = mongoose.model('Booking');
+    const booking = await Booking.findOne({ bookingCode: { $regex: bookingCode, $options: 'i' } }).lean().exec();
+    if (booking) {
+      filter.bookingId = booking._id;
+    } else {
+      // If booking not found, return empty array
+      return { items: [], total: 0 };
+    }
+  }
+
+  const [items, total] = await Promise.all([
+    getTicketQuery(filter).lean().exec(),
+    Ticket.countDocuments(filter),
+  ]);
+
+  return {
+    items: items.map(mapTicketResponse),
+    total,
+  };
+};
+
+const getTicketByIdAdmin = async (ticketId) => {
+  if (!mongoose.isValidObjectId(ticketId)) {
+    throw ApiError.badRequest('Ticket id is invalid', 'INVALID_OBJECT_ID');
+  }
+
+  const ticket = await getTicketQuery({ _id: ticketId })
+    .limit(1)
+    .then((items) => items[0] || null);
+
+  if (!ticket) {
+    throw ApiError.notFound('Ticket not found', 'TICKET_NOT_FOUND');
+  }
+
+  return mapTicketResponse(ticket);
+};
+
+const markTicketAsUsed = async (ticketId) => {
+  if (!mongoose.isValidObjectId(ticketId)) {
+    throw ApiError.badRequest('Ticket id is invalid', 'INVALID_OBJECT_ID');
+  }
+
+  const ticket = await Ticket.findById(ticketId).exec();
+  if (!ticket) {
+    throw ApiError.notFound('Ticket not found', 'TICKET_NOT_FOUND');
+  }
+
+  if (ticket.status === 'used') {
+    throw ApiError.conflict('Ticket has already been used', 'TICKET_ALREADY_USED');
+  }
+
+  if (ticket.status === 'cancelled') {
+    throw ApiError.conflict('Cannot use a cancelled ticket', 'TICKET_CANCELLED');
+  }
+
+  ticket.status = 'used';
+  await ticket.save();
+
+  return mapTicketResponse(ticket.toObject ? ticket.toObject() : ticket);
+};
+
 module.exports = {
   listMyTickets,
   getMyTicketById,
+  listTicketsAdmin,
+  getTicketByIdAdmin,
+  markTicketAsUsed,
 };

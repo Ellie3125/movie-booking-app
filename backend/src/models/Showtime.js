@@ -16,23 +16,9 @@ const ShowtimeSeatStateSchema = new mongoose.Schema(
   {
     seatCoordinate: {
       type: String,
-      required: [true, "Toạ độ thật của ghế là bắt buộc"],
+      required: [true, "Tọa độ ghế là bắt buộc"],
       trim: true,
       uppercase: true,
-    },
-    seatLabel: {
-      type: String,
-      required: [true, "Tên ghế hiển thị là bắt buộc"],
-      trim: true,
-      uppercase: true,
-    },
-    seatType: {
-      type: String,
-      enum: {
-        values: Object.values(SEAT_TYPE),
-        message: "Loại ghế không hợp lệ: {VALUE}",
-      },
-      required: [true, "Loại ghế là bắt buộc"],
     },
     status: {
       type: String,
@@ -102,6 +88,20 @@ const ShowtimeSchema = new mongoose.Schema(
         },
         message: "Thời gian kết thúc phải sau thời gian bắt đầu",
       },
+    },
+    price: {
+      type: Number,
+      required: [true, "Giá vé cơ bản là bắt buộc"],
+      min: [0, "Giá vé không hợp lệ"],
+    },
+    status: {
+      type: String,
+      enum: {
+        values: ["active", "locked"],
+        message: "Trạng thái suất chiếu không hợp lệ: {VALUE}",
+      },
+      default: "active",
+      index: true,
     },
     seatStates: {
       type: [ShowtimeSeatStateSchema],

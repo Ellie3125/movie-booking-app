@@ -388,6 +388,19 @@ const changePassword = async (
   };
 };
 
+const updateProfile = async ({ name }, currentUser) => {
+  const user = await User.findById(currentUser.id || currentUser.userId).exec();
+
+  if (!user) {
+    throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
+  }
+
+  user.name = name;
+  await user.save();
+
+  return sanitizeUser(user);
+};
+
 const getCurrentUser = async (userId) => {
   const user = await User.findById(userId)
     .select('_id name email role authVersion passwordChangedAt createdAt updatedAt')
@@ -411,4 +424,5 @@ module.exports = {
   logoutAllDevices,
   refreshAccessToken,
   register,
+  updateProfile,
 };

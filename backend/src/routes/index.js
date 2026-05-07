@@ -3,11 +3,14 @@ const authRoutes = require('./auth.routes');
 const bookingRoutes = require('./booking.routes');
 const movieRoutes = require('./movie.routes');
 const cinemaRoutes = require('./cinema.routes');
+const metaRoutes = require('./meta.routes');
 const roomRoutes = require('./room.routes');
 const showtimeRoutes = require('./showtime.routes');
 const paymentRoutes = require('./payment.routes');
 const ticketRoutes = require('./ticket.routes');
 const mockGatewayRoutes = require('./mockGateway.routes');
+const dashboardRoutes = require('./dashboard.routes');
+const userRoutes = require('./user.routes');
 
 const router = express.Router();
 
@@ -21,6 +24,7 @@ router.get('/api/v1', (_req, res) => {
 
 router.use('/api/v1/movies', movieRoutes);
 router.use('/api/v1/cinemas', cinemaRoutes);
+router.use('/api/v1/meta', metaRoutes);
 router.use('/api/v1/rooms', roomRoutes);
 router.use('/api/v1/showtimes', showtimeRoutes);
 router.use('/api/v1/auth', authRoutes);
@@ -28,5 +32,7 @@ router.use('/api/v1/bookings', bookingRoutes);
 router.use('/api/v1/payments', paymentRoutes);
 router.use('/api/v1/tickets', ticketRoutes);
 router.use('/mock-gateway', mockGatewayRoutes);
+router.use('/api/v1/dashboard', dashboardRoutes);
+router.use('/api/v1/users', userRoutes);
 
 module.exports = router;

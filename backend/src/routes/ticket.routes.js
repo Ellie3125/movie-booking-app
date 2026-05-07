@@ -8,6 +8,24 @@ const router = express.Router();
 
 router.use(authMiddleware.protect);
 
+// Admin routes
+router.get(
+  '/admin/all',
+  authMiddleware.requireRole('admin', 'staff'),
+  ticketController.listTicketsAdmin
+);
+router.get(
+  '/admin/:ticketId',
+  authMiddleware.requireRole('admin', 'staff'),
+  ticketController.getTicketByIdAdmin
+);
+router.post(
+  '/admin/:ticketId/use',
+  authMiddleware.requireRole('admin', 'staff'),
+  ticketController.markTicketAsUsed
+);
+
+// User routes
 router.get(
   '/',
   validate({ query: ticketValidation.listTicketsQuerySchema }),

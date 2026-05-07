@@ -15,7 +15,9 @@ const movieMutationBodySchema = strictObject({
   duration: Joi.number().integer().min(1).max(600).required().label('duration'),
   genre: stringListSchema.label('genre'),
   poster: Joi.string().trim().allow('').max(12000000).default('').label('poster'),
+  trailer: Joi.string().trim().allow('').max(1000).default('').label('trailer'),
   releaseDate: Joi.date().iso().required().label('releaseDate'),
+  endDate: Joi.date().iso().required().label('endDate'),
   status: Joi.string()
     .trim()
     .valid('now_showing', 'coming_soon', 'ended')
