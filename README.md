@@ -68,14 +68,5 @@ npx expo start
 
 ---
 
-## 🤖 Tiêu chuẩn AI Coding
-
-Dự án này sử dụng các AI agent **Antigravity** và **Codex** để phát triển. Tất cả các hướng dẫn, quy tắc và kỹ năng liên quan đến AI được duy trì trong thư mục [`.agents/`](file:///d:/Project_Mobile/movie-booking-app/.agents):
-- `RULES.md`: Tiêu chuẩn code và định dạng phản hồi API.
-- `SKILLS.md`: Các năng lực chuyên biệt của AI.
-- `PROJECT_CONTEXT.md`: Bối cảnh nghiệp vụ và kỹ thuật chuyên sâu.
-
----
-
 ## 📝 Giấy phép
 Dự án này được xây dựng cho mục đích học tập và làm danh mục dự án cá nhân (portfolio).
