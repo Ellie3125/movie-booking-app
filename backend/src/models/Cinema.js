@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { CINEMA_BRANDS, VIETNAM_PROVINCES } = require("../constants/cinema.constants");
+const { VIETNAM_PROVINCES } = require("../constants/cinema.constants");
 
 const CinemaSchema = new mongoose.Schema(
   {
@@ -8,13 +8,17 @@ const CinemaSchema = new mongoose.Schema(
       required: [true, "Tên rạp là bắt buộc"],
       trim: true,
     },
+    brandId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CinemaBrand",
+      required: [true, "ID Thương hiệu là bắt buộc"],
+      index: true,
+    },
     brand: {
       type: String,
-      required: [true, "Thương hiệu rạp là bắt buộc"],
-      enum: {
-        values: CINEMA_BRANDS.map(b => b.code),
-        message: "Thương hiệu không hợp lệ: {VALUE}",
-      },
+      required: [true, "Mã thương hiệu rạp là bắt buộc"],
+      trim: true,
+      uppercase: true,
       index: true,
     },
     province: {

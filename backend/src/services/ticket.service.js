@@ -42,7 +42,7 @@ const mapTicketResponse = (ticket) => ({
   price: ticket.price,
   issuedAt: ticket.issuedAt,
   seat: {
-    seatCoordinate: ticket.seat.seatCoordinate,
+    seatCode: ticket.seat.seatCode,
     seatLabel: ticket.seat.seatLabel,
     seatType: ticket.seat.seatType,
   },

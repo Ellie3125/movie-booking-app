@@ -30,8 +30,11 @@ const formatDateTime = (value: string) =>
     year: 'numeric',
   });
 
-const formatSeatType = (value: 'standard' | 'couple') =>
-  value === 'couple' ? 'Ghế đôi' : 'Ghế đơn';
+const formatSeatType = (value: string) => {
+  if (value === 'couple') return 'Ghế đôi';
+  if (value === 'vip') return 'Ghế VIP';
+  return 'Ghế đơn';
+};
 
 export default function BookingDetailScreen() {
   const { bookingId } = useLocalSearchParams<{ bookingId?: string }>();
@@ -127,11 +130,11 @@ export default function BookingDetailScreen() {
           <SectionTitle tone="user" title="Ghế và thanh toán" />
           <SectionCard tone="user">
             {booking.seats.map((seat) => (
-              <View key={seat.seatCoordinate} style={styles.seatRow}>
+              <View key={seat.seatCode} style={styles.seatRow}>
                 <View style={styles.seatCopy}>
                   <Text style={[styles.seatLabel, { color: colors.text }]}>Ghế {seat.seatLabel}</Text>
                   <Text style={[styles.seatMeta, { color: colors.muted }]}>
-                    {seat.seatCoordinate} • {formatSeatType(seat.seatType)}
+                    {seat.seatCode} • {formatSeatType(seat.seatType as any)}
                   </Text>
                 </View>
                 <Text style={[styles.seatPrice, { color: colors.text }]}>

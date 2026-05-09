@@ -6,6 +6,7 @@ require('dotenv').config();
 const {
   User,
   Movie,
+  CinemaBrand,
   Cinema,
   Room,
   Showtime,
@@ -20,6 +21,7 @@ const {
 // Data imports
 const usersData = require('./data/users.data');
 const moviesData = require('./data/movies.data');
+const cinemaBrandsData = require('./data/cinemaBrands.data');
 const cinemasData = require('./data/cinemas.data');
 const roomsData = require('./data/rooms.data');
 const showtimesData = require('./data/showtimes.data');
@@ -45,6 +47,7 @@ const seed = async () => {
     await Promise.all([
       User.deleteMany({}),
       Movie.deleteMany({}),
+      CinemaBrand.deleteMany({}),
       Cinema.deleteMany({}),
       Room.deleteMany({}),
       Showtime.deleteMany({}),
@@ -55,6 +58,14 @@ const seed = async () => {
       PaymentCallbackLog.deleteMany({}),
       Session.deleteMany({})
     ]);
+
+    // Drop indexes for collections that had schema changes to avoid E11000 errors from stale indexes
+    try {
+      await Ticket.collection.dropIndexes();
+      await Booking.collection.dropIndexes();
+    } catch (e) {
+      // Ignore if collection doesn't exist or other errors
+    }
     console.log('Old data cleared.');
 
     // 2. Hash User Passwords
@@ -76,11 +87,14 @@ const seed = async () => {
     console.log('Seeding Movies...');
     await Movie.insertMany(moviesData);
 
+    console.log('Seeding Cinema Brands...');
+    await CinemaBrand.insertMany(cinemaBrandsData);
+
     console.log('Seeding Cinemas...');
     await Cinema.insertMany(cinemasData);
 
     console.log('Seeding Rooms...');
-    await Room.insertMany(roomsData);
+    await Room.create(roomsData);
 
     console.log('Seeding Showtimes...');
     await Showtime.insertMany(showtimesData);

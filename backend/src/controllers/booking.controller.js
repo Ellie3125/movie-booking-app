@@ -6,7 +6,7 @@ const createBooking = asyncHandler(async (req, res) => {
   const data = await bookingService.createBooking({
     userId: req.user.id,
     showtimeId: req.body.showtimeId,
-    seatCoordinates: req.body.seatCoordinates,
+    seatCodes: req.body.seatCodes,
   });
 
   return sendApiResponse(res, {

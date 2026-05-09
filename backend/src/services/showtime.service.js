@@ -612,10 +612,10 @@ const deleteShowtime = async (id) => {
     throw ApiError.notFound('Showtime not found', 'SHOWTIME_NOT_FOUND');
   }
   
-  // Check if there are any paid/reserved seats before deletion
-  const hasBookings = showtime.seatStates.some(seat => seat.status !== 'available');
+  // Check if there are any held/booked seats before deletion
+  const hasBookings = showtime.seatStates.some(seat => ['held', 'booked'].includes(seat.status));
   if (hasBookings) {
-    throw ApiError.conflict('Cannot delete showtime that has reserved or paid seats', 'SHOWTIME_HAS_BOOKINGS');
+    throw ApiError.conflict('Cannot delete showtime that has held or booked seats', 'SHOWTIME_HAS_BOOKINGS');
   }
 
   await Showtime.deleteOne({ _id: id }).exec();

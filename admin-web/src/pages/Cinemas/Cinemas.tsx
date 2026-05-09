@@ -185,9 +185,9 @@ export default function Cinemas() {
           <Table>
             <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
               <TableRow>
-                <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Rạp chiếu</TableCell>
-                <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Thương hiệu</TableCell>
                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Khu vực</TableCell>
+                <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Thương hiệu</TableCell>
+                <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Rạp chiếu</TableCell>
                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Liên hệ</TableCell>
                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">Thao tác</TableCell>
               </TableRow>
@@ -206,6 +206,17 @@ export default function Cinemas() {
                   const brandInfo = getBrandInfo(cinema.brand);
                   return (
                     <TableRow key={cinema._id}>
+                      <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 font-medium">
+                        {cinema.province}
+                      </TableCell>
+                      <TableCell className="px-4 py-3 text-start">
+                        <div className="flex items-center gap-2">
+                          {brandInfo.logoUrl && (
+                            <img src={brandInfo.logoUrl} alt={brandInfo.name} className="h-5 object-contain" />
+                          )}
+                          <span className="text-theme-sm text-gray-600 dark:text-gray-400 font-medium">{brandInfo.name}</span>
+                        </div>
+                      </TableCell>
                       <TableCell className="px-5 py-4 text-start">
                         <div className="flex items-center gap-3">
                           {cinema.imageUrl && (
@@ -222,17 +233,6 @@ export default function Cinemas() {
                             </span>
                           </div>
                         </div>
-                      </TableCell>
-                      <TableCell className="px-4 py-3 text-start">
-                        <div className="flex items-center gap-2">
-                          {brandInfo.logoUrl && (
-                            <img src={brandInfo.logoUrl} alt={brandInfo.name} className="h-5 object-contain" />
-                          )}
-                          <span className="text-theme-sm text-gray-600 dark:text-gray-400 font-medium">{brandInfo.name}</span>
-                        </div>
-                      </TableCell>
-                      <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 font-medium">
-                        {cinema.province}
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                         {cinema.phone || "---"}

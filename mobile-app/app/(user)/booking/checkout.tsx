@@ -92,12 +92,12 @@ export default function CheckoutScreen() {
           <SectionTitle tone="user" title="Thông tin ghế" />
           <SectionCard tone="user">
             {draftCheckout.seats.map((seat) => (
-              <View key={seat.seatCoordinate} style={styles.rowBetween}>
+              <View key={seat.seatCode} style={styles.rowBetween}>
                 <Text style={[styles.cardTitle, { color: colors.text }]}>
                   Ghế {seat.seatLabel}
                 </Text>
                 <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                  {seat.seatCoordinate} • {seat.price.toLocaleString('vi-VN')} VND
+                  {seat.seatCode} • {seat.price.toLocaleString('vi-VN')} VND
                 </Text>
               </View>
             ))}

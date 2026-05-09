@@ -1,14 +1,16 @@
 const BOOKING_STATUS = {
-  PENDING_PAYMENT: 'PENDING_PAYMENT',
-  CONFIRMED: 'CONFIRMED',
-  CANCELLED: 'CANCELLED',
+  PENDING_PAYMENT: 'pending_payment',
+  CONFIRMED: 'confirmed',
+  CANCELLED: 'cancelled',
+  EXPIRED: 'expired',
 };
 
 const PAYMENT_STATUS = {
-  PENDING: 'PENDING',
-  SUCCESS: 'SUCCESS',
-  FAILED: 'FAILED',
-  EXPIRED: 'EXPIRED',
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  FAILED: 'failed',
+  EXPIRED: 'expired',
+  REFUNDED: 'refunded',
 };
 
 const PAYMENT_METHOD = {
@@ -22,30 +24,40 @@ const PAYMENT_CURRENCY = {
 };
 
 const BOOKED_SEAT_STATUS = {
-  PENDING_PAYMENT: 'PENDING_PAYMENT',
-  ISSUED: 'ISSUED',
+  PENDING_PAYMENT: 'pending_payment',
+  BOOKED: 'booked',
 };
 
 const SHOWTIME_SEAT_STATUS = {
   AVAILABLE: 'available',
   HELD: 'held',
-  RESERVED: 'reserved',
-  PAID: 'paid',
+  BOOKED: 'booked',
+  DISABLED: 'disabled',
 };
 
 const TICKET_STATUS = {
-  ISSUED: 'ISSUED',
-  USED: 'USED',
-  CANCELLED: 'CANCELLED',
+  ISSUED: 'issued',
+  USED: 'used',
+  REFUNDED: 'refunded',
+  EXPIRED: 'expired',
+};
+
+const SEAT_TYPE = {
+  REGULAR: 'regular',
+  VIP: 'vip',
+  COUPLE: 'couple',
+  EMPTY: 'empty',
+  AISLE: 'aisle',
+  DISABLED: 'disabled',
 };
 
 const PAYMENT_TRANSACTION_STATUS = {
-  PENDING: 'PENDING',
-  GATEWAY_OPENED: 'GATEWAY_OPENED',
-  CALLBACK_PENDING: 'CALLBACK_PENDING',
-  SUCCESS: 'SUCCESS',
-  FAILED: 'FAILED',
-  EXPIRED: 'EXPIRED',
+  PENDING: 'pending',
+  GATEWAY_OPENED: 'gateway_opened',
+  CALLBACK_PENDING: 'callback_pending',
+  SUCCESS: 'success',
+  FAILED: 'failed',
+  EXPIRED: 'expired',
 };
 
 const MOCK_BANK_ACCOUNT_STATUS = {
@@ -92,6 +104,7 @@ module.exports = {
   BOOKED_SEAT_STATUS,
   SHOWTIME_SEAT_STATUS,
   TICKET_STATUS,
+  SEAT_TYPE,
   PAYMENT_TRANSACTION_STATUS,
   MOCK_BANK_ACCOUNT_STATUS,
   CALLBACK_LOG_STATUS,

@@ -4,6 +4,8 @@ const SEAT_TYPE = {
   REGULAR: "regular",
   VIP: "vip",
   COUPLE: "couple",
+  EMPTY: "empty",
+  AISLE: "aisle",
   DISABLED: "disabled",
   SPACE: "space",
 };
@@ -11,6 +13,7 @@ const SEAT_TYPE = {
 const SEAT_STATUS = {
   ACTIVE: "active",
   DISABLED: "disabled",
+  INACTIVE: "inactive",
 };
 
 const RoomSeatSchema = new mongoose.Schema(
@@ -19,12 +22,18 @@ const RoomSeatSchema = new mongoose.Schema(
       type: String,
       trim: true,
       uppercase: true,
-      // regular, vip, couple: required
-      // space: optional/not needed
+    },
+    rowLabel: {
+      type: String,
+      trim: true,
+      uppercase: true,
     },
     seatCode: {
       type: String,
-      required: [true, "Mã ghế (vị trí sơ đồ) là bắt buộc"],
+      // seatCode is NOT required for spaces/aisles used for layout
+      required: function() {
+        return ![SEAT_TYPE.EMPTY, SEAT_TYPE.AISLE, SEAT_TYPE.SPACE].includes(this.type);
+      },
       trim: true,
       uppercase: true,
     },
@@ -64,6 +73,10 @@ const RoomSeatSchema = new mongoose.Schema(
     size: {
       type: Number,
       default: 1,
+    },
+    coupleGroupId: {
+      type: String,
+      default: null,
     },
   },
   {
@@ -135,7 +148,7 @@ const RoomSchema = new mongoose.Schema(
   }
 );
 
-RoomSchema.pre("save", function (next) {
+RoomSchema.pre("save", async function () {
   if (this.seatLayout && Array.isArray(this.seatLayout)) {
     this.totalRows = this.seatLayout.length;
     
@@ -149,8 +162,9 @@ RoomSchema.pre("save", function (next) {
       row.seats.forEach(seat => {
         // activeSeatCount logic:
         // - regular, vip, couple: add capacity if active
-        // - space, disabled: 0 capacity (enforced by schema default or this logic)
-        if (seat.status === SEAT_STATUS.ACTIVE && seat.type !== SEAT_TYPE.SPACE && seat.type !== SEAT_TYPE.DISABLED) {
+        // - empty, aisle, disabled, space: NOT counted
+        const isSellable = [SEAT_TYPE.REGULAR, SEAT_TYPE.VIP, SEAT_TYPE.COUPLE].includes(seat.type);
+        if (seat.status === SEAT_STATUS.ACTIVE && isSellable) {
           count += (seat.capacity || 0);
         }
       });
@@ -159,7 +173,6 @@ RoomSchema.pre("save", function (next) {
     this.totalColumns = maxCols;
     this.activeSeatCount = count;
   }
-  next();
 });
 
 RoomSchema.index({ cinemaId: 1, name: 1 });

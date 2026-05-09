@@ -25,6 +25,7 @@ const sanitizeUser = (user) => ({
   name: user.name,
   email: user.email,
   role: user.role,
+  avatar: user.avatar,
   createdAt: user.createdAt,
   updatedAt: user.updatedAt,
 });
@@ -388,14 +389,28 @@ const changePassword = async (
   };
 };
 
-const updateProfile = async ({ name }, currentUser) => {
+const updateProfile = async ({ name, avatar }, currentUser) => {
   const user = await User.findById(currentUser.id || currentUser.userId).exec();
 
   if (!user) {
     throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
   }
 
-  user.name = name;
+  if (name) {
+    user.name = name;
+  }
+
+  if (avatar) {
+    // Validate avatar path
+    if (!avatar.startsWith('/avatars/')) {
+      throw ApiError.badRequest(
+        'Invalid avatar path. Must start with /avatars/',
+        'INVALID_AVATAR_PATH'
+      );
+    }
+    user.avatar = avatar;
+  }
+
   await user.save();
 
   return sanitizeUser(user);
@@ -403,7 +418,7 @@ const updateProfile = async ({ name }, currentUser) => {
 
 const getCurrentUser = async (userId) => {
   const user = await User.findById(userId)
-    .select('_id name email role authVersion passwordChangedAt createdAt updatedAt')
+    .select('_id name email role avatar authVersion passwordChangedAt createdAt updatedAt')
     .lean()
     .exec();
 

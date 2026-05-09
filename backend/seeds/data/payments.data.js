@@ -5,7 +5,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070000",
     "amount": 570000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070000",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -29,7 +29,7 @@ module.exports = [
     "userId": "834c06bb4f637a00eb659413",
     "paymentId": "PAY202605070001",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070001",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -53,7 +53,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070002",
     "amount": 450000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070002",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -77,7 +77,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070003",
     "amount": 190000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070003",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -101,7 +101,7 @@ module.exports = [
     "userId": "0893855a528e0162ab6caaf0",
     "paymentId": "PAY202605070004",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070004",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -125,7 +125,7 @@ module.exports = [
     "userId": "4a25ac074a4cbf6a8a1ee5b6",
     "paymentId": "PAY202605070005",
     "amount": 300000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070005",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -149,7 +149,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070006",
     "amount": 340000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070006",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -173,7 +173,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070007",
     "amount": 210000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070007",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -197,7 +197,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070008",
     "amount": 510000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070008",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -221,7 +221,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070009",
     "amount": 150000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070009",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -245,7 +245,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070010",
     "amount": 190000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070010",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -269,7 +269,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070011",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070011",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -293,7 +293,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070012",
     "amount": 190000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070012",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -317,7 +317,7 @@ module.exports = [
     "userId": "a85b5e03fd1df993604079e1",
     "paymentId": "PAY202605070013",
     "amount": 190000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070013",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -341,7 +341,7 @@ module.exports = [
     "userId": "8be9a74ce11106c744a34f36",
     "paymentId": "PAY202605070014",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070014",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -365,7 +365,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070015",
     "amount": 260000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070015",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -389,7 +389,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070016",
     "amount": 210000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070016",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -413,7 +413,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070017",
     "amount": 570000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070017",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -437,7 +437,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070018",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070018",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -461,7 +461,7 @@ module.exports = [
     "userId": "7dd67365120dd1639742fd67",
     "paymentId": "PAY202605070019",
     "amount": 130000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070019",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -485,7 +485,7 @@ module.exports = [
     "userId": "5aa83cfcbcc1a77beace2762",
     "paymentId": "PAY202605070020",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070020",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -509,7 +509,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070021",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070021",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -533,7 +533,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070022",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070022",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -557,7 +557,7 @@ module.exports = [
     "userId": "49898410244c11e612c38613",
     "paymentId": "PAY202605070023",
     "amount": 190000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070023",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -581,7 +581,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070024",
     "amount": 210000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070024",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -605,7 +605,7 @@ module.exports = [
     "userId": "8be9a74ce11106c744a34f36",
     "paymentId": "PAY202605070025",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070025",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -629,7 +629,7 @@ module.exports = [
     "userId": "49898410244c11e612c38613",
     "paymentId": "PAY202605070026",
     "amount": 510000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070026",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -653,7 +653,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070027",
     "amount": 260000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070027",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -677,7 +677,7 @@ module.exports = [
     "userId": "834c06bb4f637a00eb659413",
     "paymentId": "PAY202605070028",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070028",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -701,7 +701,7 @@ module.exports = [
     "userId": "8e04eadeb1820afd578ffe7c",
     "paymentId": "PAY202605070029",
     "amount": 130000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070029",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -725,7 +725,7 @@ module.exports = [
     "userId": "7dd67365120dd1639742fd67",
     "paymentId": "PAY202605070030",
     "amount": 450000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070030",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -749,7 +749,7 @@ module.exports = [
     "userId": "6a68f5fed6e8cc078ad9f487",
     "paymentId": "PAY202605070031",
     "amount": 340000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070031",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -773,7 +773,7 @@ module.exports = [
     "userId": "8e04eadeb1820afd578ffe7c",
     "paymentId": "PAY202605070032",
     "amount": 300000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070032",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -797,7 +797,7 @@ module.exports = [
     "userId": "8e04eadeb1820afd578ffe7c",
     "paymentId": "PAY202605070033",
     "amount": 210000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070033",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -821,7 +821,7 @@ module.exports = [
     "userId": "445df76d95c61c01d8f95176",
     "paymentId": "PAY202605070034",
     "amount": 450000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070034",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -845,7 +845,7 @@ module.exports = [
     "userId": "7dd67365120dd1639742fd67",
     "paymentId": "PAY202605070035",
     "amount": 170000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070035",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -869,7 +869,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070036",
     "amount": 150000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070036",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -893,7 +893,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070037",
     "amount": 300000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070037",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -917,7 +917,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070038",
     "amount": 510000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070038",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -941,7 +941,7 @@ module.exports = [
     "userId": "6a68f5fed6e8cc078ad9f487",
     "paymentId": "PAY202605070039",
     "amount": 510000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070039",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -965,7 +965,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070040",
     "amount": 300000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070040",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -989,7 +989,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070041",
     "amount": 340000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070041",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1013,7 +1013,7 @@ module.exports = [
     "userId": "834c06bb4f637a00eb659413",
     "paymentId": "PAY202605070042",
     "amount": 260000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070042",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1037,7 +1037,7 @@ module.exports = [
     "userId": "6a68f5fed6e8cc078ad9f487",
     "paymentId": "PAY202605070043",
     "amount": 170000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070043",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1061,7 +1061,7 @@ module.exports = [
     "userId": "8be9a74ce11106c744a34f36",
     "paymentId": "PAY202605070044",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070044",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1085,7 +1085,7 @@ module.exports = [
     "userId": "834c06bb4f637a00eb659413",
     "paymentId": "PAY202605070045",
     "amount": 260000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070045",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1109,7 +1109,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070046",
     "amount": 260000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070046",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1133,7 +1133,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070047",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070047",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1157,7 +1157,7 @@ module.exports = [
     "userId": "8e04eadeb1820afd578ffe7c",
     "paymentId": "PAY202605070048",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070048",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1181,7 +1181,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070049",
     "amount": 150000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070049",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1205,7 +1205,7 @@ module.exports = [
     "userId": "5aa83cfcbcc1a77beace2762",
     "paymentId": "PAY202605070050",
     "amount": 210000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070050",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1229,7 +1229,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070051",
     "amount": 130000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070051",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1253,7 +1253,7 @@ module.exports = [
     "userId": "49898410244c11e612c38613",
     "paymentId": "PAY202605070052",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070052",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1277,7 +1277,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070053",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070053",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1301,7 +1301,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070054",
     "amount": 150000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070054",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1325,7 +1325,7 @@ module.exports = [
     "userId": "a85b5e03fd1df993604079e1",
     "paymentId": "PAY202605070055",
     "amount": 150000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070055",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1349,7 +1349,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070056",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070056",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1373,7 +1373,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070057",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070057",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1397,7 +1397,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070058",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070058",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1421,7 +1421,7 @@ module.exports = [
     "userId": "0893855a528e0162ab6caaf0",
     "paymentId": "PAY202605070059",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070059",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1445,7 +1445,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070060",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070060",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1469,7 +1469,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070061",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070061",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1493,7 +1493,7 @@ module.exports = [
     "userId": "7dd67365120dd1639742fd67",
     "paymentId": "PAY202605070062",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070062",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1517,7 +1517,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070063",
     "amount": 170000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070063",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1541,7 +1541,7 @@ module.exports = [
     "userId": "834c06bb4f637a00eb659413",
     "paymentId": "PAY202605070064",
     "amount": 570000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070064",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1565,7 +1565,7 @@ module.exports = [
     "userId": "0893855a528e0162ab6caaf0",
     "paymentId": "PAY202605070065",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070065",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1589,7 +1589,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070066",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070066",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1613,7 +1613,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070067",
     "amount": 340000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070067",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1637,7 +1637,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070068",
     "amount": 150000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070068",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1661,7 +1661,7 @@ module.exports = [
     "userId": "1ac849a544138bc6a8cdb87e",
     "paymentId": "PAY202605070069",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070069",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1685,7 +1685,7 @@ module.exports = [
     "userId": "7dd67365120dd1639742fd67",
     "paymentId": "PAY202605070070",
     "amount": 150000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070070",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1709,7 +1709,7 @@ module.exports = [
     "userId": "49898410244c11e612c38613",
     "paymentId": "PAY202605070071",
     "amount": 190000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070071",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1733,7 +1733,7 @@ module.exports = [
     "userId": "4a25ac074a4cbf6a8a1ee5b6",
     "paymentId": "PAY202605070072",
     "amount": 570000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070072",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1757,7 +1757,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070073",
     "amount": 300000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070073",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1781,7 +1781,7 @@ module.exports = [
     "userId": "834c06bb4f637a00eb659413",
     "paymentId": "PAY202605070074",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070074",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1805,7 +1805,7 @@ module.exports = [
     "userId": "445df76d95c61c01d8f95176",
     "paymentId": "PAY202605070075",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070075",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1829,7 +1829,7 @@ module.exports = [
     "userId": "834c06bb4f637a00eb659413",
     "paymentId": "PAY202605070076",
     "amount": 340000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070076",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1853,7 +1853,7 @@ module.exports = [
     "userId": "49898410244c11e612c38613",
     "paymentId": "PAY202605070077",
     "amount": 130000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070077",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1877,7 +1877,7 @@ module.exports = [
     "userId": "445df76d95c61c01d8f95176",
     "paymentId": "PAY202605070078",
     "amount": 210000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070078",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1901,7 +1901,7 @@ module.exports = [
     "userId": "7dd67365120dd1639742fd67",
     "paymentId": "PAY202605070079",
     "amount": 380000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070079",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1925,7 +1925,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070080",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070080",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1949,7 +1949,7 @@ module.exports = [
     "userId": "a85b5e03fd1df993604079e1",
     "paymentId": "PAY202605070081",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070081",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1973,7 +1973,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070082",
     "amount": 260000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070082",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -1997,7 +1997,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070083",
     "amount": 340000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070083",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2021,7 +2021,7 @@ module.exports = [
     "userId": "ef5e356d6939aa3944cd88db",
     "paymentId": "PAY202605070084",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070084",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2045,7 +2045,7 @@ module.exports = [
     "userId": "48a7ba52ca0213a61b4b211c",
     "paymentId": "PAY202605070085",
     "amount": 510000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070085",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2069,7 +2069,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070086",
     "amount": 570000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070086",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2093,7 +2093,7 @@ module.exports = [
     "userId": "8d1a2df5a7004ce7317a8ab7",
     "paymentId": "PAY202605070087",
     "amount": 450000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070087",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2117,7 +2117,7 @@ module.exports = [
     "userId": "a85b5e03fd1df993604079e1",
     "paymentId": "PAY202605070088",
     "amount": 570000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070088",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2141,7 +2141,7 @@ module.exports = [
     "userId": "8be9a74ce11106c744a34f36",
     "paymentId": "PAY202605070089",
     "amount": 420000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070089",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2165,7 +2165,7 @@ module.exports = [
     "userId": "ef5e356d6939aa3944cd88db",
     "paymentId": "PAY202605070090",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070090",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2189,7 +2189,7 @@ module.exports = [
     "userId": "8be9a74ce11106c744a34f36",
     "paymentId": "PAY202605070091",
     "amount": 130000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070091",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2213,7 +2213,7 @@ module.exports = [
     "userId": "5aa83cfcbcc1a77beace2762",
     "paymentId": "PAY202605070092",
     "amount": 300000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070092",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2237,7 +2237,7 @@ module.exports = [
     "userId": "4684d2bb06c1ff781ba5a56c",
     "paymentId": "PAY202605070093",
     "amount": 570000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070093",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2261,7 +2261,7 @@ module.exports = [
     "userId": "8be9a74ce11106c744a34f36",
     "paymentId": "PAY202605070094",
     "amount": 390000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070094",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2285,7 +2285,7 @@ module.exports = [
     "userId": "8be9a74ce11106c744a34f36",
     "paymentId": "PAY202605070095",
     "amount": 510000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070095",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2309,7 +2309,7 @@ module.exports = [
     "userId": "9f153339b55d127ce71e7120",
     "paymentId": "PAY202605070096",
     "amount": 630000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070096",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2333,7 +2333,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070097",
     "amount": 260000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070097",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2357,7 +2357,7 @@ module.exports = [
     "userId": "85b99d1bf8daad6df13e7655",
     "paymentId": "PAY202605070098",
     "amount": 130000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070098",
     "receiverAccount": {
       "bankCode": "MOCK",
@@ -2381,7 +2381,7 @@ module.exports = [
     "userId": "4a25ac074a4cbf6a8a1ee5b6",
     "paymentId": "PAY202605070099",
     "amount": 300000,
-    "status": "SUCCESS",
+    "status": "success",
     "transactionCode": "TXN202605070099",
     "receiverAccount": {
       "bankCode": "MOCK",

@@ -22,8 +22,8 @@ type Props = {
 const adminSeatStateColors = {
   available: '#22C55E',
   held: '#F59E0B',
-  paid: '#EF4444',
-  reserved: '#94A3B8',
+  booked: '#EF4444',
+  disabled: '#94A3B8',
   selected: '#38BDF8',
   blocked: '#EF4444',
   empty: 'transparent',
@@ -68,7 +68,7 @@ export function SeatLayoutGrid({
   const isUserMode = mode === 'user';
   const metrics = getSeatLayoutMetrics(compact, sizeScale);
   const stateMap = new Map(
-    seatStates.map((seat) => [seat.seatCoordinate.toUpperCase(), seat]),
+    seatStates.map((seat) => [seat.seatCode.toUpperCase(), seat]),
   );
   const selectedSet = new Set(selectedCoordinates.map((item) => item.toUpperCase()));
 
@@ -116,7 +116,7 @@ export function SeatLayoutGrid({
             return (
               <Pressable
                 key={seat.seatCode}
-                disabled={seat.type === 'space' || (isUserMode && isUnavailableSeat)}
+                disabled={seat.type === 'space' || seat.type === 'disabled' || (isUserMode && isUnavailableSeat)}
                 onPress={() => onPressSeat?.(seat)}
                 style={[
                   styles.cell,

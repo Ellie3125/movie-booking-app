@@ -3,30 +3,6 @@ const rowLetter = (rowIndex) => String.fromCharCode(65 + rowIndex);
 const buildCoordinateLabel = (rowIndex, columnIndex) =>
   `${rowLetter(rowIndex)}${columnIndex + 1}`;
 
-const createSeatCell = (rowIndex, columnIndex, seatNumber, seatType) => ({
-  cellType: 'seat',
-  coordinate: {
-    rowIndex,
-    columnIndex,
-    coordinateLabel: buildCoordinateLabel(rowIndex, columnIndex),
-  },
-  seatLabel: `${rowLetter(rowIndex)}${seatNumber}`,
-  seatType,
-  priceModifier: seatType === 'couple' ? 1.5 : 1,
-});
-
-const createEmptyCell = (rowIndex, columnIndex) => ({
-  cellType: 'empty',
-  coordinate: {
-    rowIndex,
-    columnIndex,
-    coordinateLabel: buildCoordinateLabel(rowIndex, columnIndex),
-  },
-  seatLabel: null,
-  seatType: null,
-  priceModifier: 0,
-});
-
 const createSeatLayout = ({
   totalRows,
   totalColumns,
@@ -39,39 +15,30 @@ const createSeatLayout = ({
 
   const layout = [];
   for (let rowIndex = 0; rowIndex < totalRows; rowIndex++) {
-    const rowLabel = String.fromCharCode(65 + rowIndex);
+    const rowLabel = rowLetter(rowIndex);
     const seats = [];
-    let visibleSeatIndex = 0;
 
     for (let columnIndex = 0; columnIndex < totalColumns; columnIndex++) {
-      const coordinateLabel = `${rowLabel}${columnIndex + 1}`;
+      const seatCode = buildCoordinateLabel(rowIndex, columnIndex);
+      const isHidden = hiddenSet.has(seatCode);
+      
+      const seatType = isHidden ? 'empty' : (seatTypeOverrides[seatCode] ?? 'regular');
+      
+      const seat = {
+        label: isHidden ? null : seatCode,
+        rowLabel,
+        seatCode,
+        rowIndex,
+        columnIndex,
+        type: seatType,
+        status: 'active',
+        capacity: seatType === 'couple' ? 2 : (['empty', 'aisle', 'disabled'].includes(seatType) ? 0 : 1),
+        size: 1,
+        priceType: seatType === 'couple' ? 'couple' : (seatType === 'vip' ? 'vip' : 'regular'),
+        coupleGroupId: null, // To be filled by editor or logic if needed
+      };
 
-      if (hiddenSet.has(coordinateLabel)) {
-        seats.push({
-          label: null,
-          seatCode: coordinateLabel,
-          rowIndex,
-          columnIndex,
-          type: 'space',
-          status: 'active',
-          capacity: 0,
-          size: 1,
-        });
-      } else {
-        visibleSeatIndex += 1;
-        const seatType = seatTypeOverrides[coordinateLabel] ?? 'regular';
-        seats.push({
-          label: coordinateLabel,
-          seatCode: coordinateLabel,
-          rowIndex,
-          columnIndex,
-          type: seatType,
-          status: 'active',
-          priceType: seatType === 'couple' ? 'couple' : (seatType === 'vip' ? 'vip' : 'regular'),
-          capacity: seatType === 'couple' ? 2 : 1,
-          size: 1,
-        });
-      }
+      seats.push(seat);
     }
     layout.push({ rowLabel, seats });
   }
@@ -88,23 +55,27 @@ const buildShowtimeSeatStatesFromRoomLayout = (
 ) => {
   const allSeats = flattenRoomSeats(seatLayout);
 
-  return allSeats
-    .filter(seat => 
-      seat.status === 'active' && 
-      seat.type !== 'space' && 
-      seat.type !== 'disabled'
-    )
-    .map((seat) => {
-      return {
-        seatCoordinate: seat.seatCode,
-        status: 'available',
-        userId: null,
-        bookingId: null,
-        heldAt: null,
-        holdExpiresAt: null,
-        paidAt: null,
-      };
-    });
+  return allSeats.map((seat) => {
+    // Snapshot ALL fields for Showtime
+    return {
+      seatCode: seat.seatCode,
+      label: seat.label,
+      rowLabel: seat.rowLabel,
+      rowIndex: seat.rowIndex,
+      columnIndex: seat.columnIndex,
+      type: seat.type,
+      capacity: seat.capacity,
+      coupleGroupId: seat.coupleGroupId,
+      
+      // Initial status
+      status: seat.status === 'disabled' || seat.type === 'disabled' ? 'disabled' : 'available',
+      userId: null,
+      bookingId: null,
+      heldAt: null,
+      holdExpiresAt: null,
+      bookedAt: null,
+    };
+  });
 };
 
 module.exports = {
