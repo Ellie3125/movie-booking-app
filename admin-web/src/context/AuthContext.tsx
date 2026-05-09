@@ -6,6 +6,7 @@ interface User {
   name: string;
   email: string;
   role: string;
+  avatar?: string;
 }
 
 interface AuthContextType {
@@ -13,7 +14,7 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  updateProfile: (data: { name: string }) => Promise<void>;
+  updateProfile: (data: { name?: string; avatar?: string }) => Promise<void>;
   changePassword: (data: any) => Promise<void>;
   isAuthenticated: boolean;
   isAdmin: boolean;
@@ -70,7 +71,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const updateProfile = async (data: { name: string }) => {
+  const updateProfile = async (data: { name?: string; avatar?: string }) => {
     const response = await api.patch('/auth/update-profile', data);
     const updatedUser = response.data.data;
     setUser(updatedUser);

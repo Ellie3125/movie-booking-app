@@ -4,6 +4,7 @@ import PageBreadCrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 import { userService } from "../../services/userService";
 import dayjs from "dayjs";
+import { buildImageUrl } from "../../utils/imageUrl";
 
 const { Text } = Typography;
 
@@ -37,7 +38,7 @@ export default function Admins() {
       key: "user",
       render: (_: any, record: any) => (
         <Space>
-          <Avatar src={record.avatar} size="large">
+          <Avatar src={buildImageUrl(record.avatar)} size="large">
             {record.name?.charAt(0).toUpperCase()}
           </Avatar>
           <div className="flex flex-col">

@@ -58,6 +58,14 @@ const seed = async () => {
       PaymentCallbackLog.deleteMany({}),
       Session.deleteMany({})
     ]);
+
+    // Drop indexes for collections that had schema changes to avoid E11000 errors from stale indexes
+    try {
+      await Ticket.collection.dropIndexes();
+      await Booking.collection.dropIndexes();
+    } catch (e) {
+      // Ignore if collection doesn't exist or other errors
+    }
     console.log('Old data cleared.');
 
     // 2. Hash User Passwords
@@ -86,7 +94,7 @@ const seed = async () => {
     await Cinema.insertMany(cinemasData);
 
     console.log('Seeding Rooms...');
-    await Room.insertMany(roomsData);
+    await Room.create(roomsData);
 
     console.log('Seeding Showtimes...');
     await Showtime.insertMany(showtimesData);

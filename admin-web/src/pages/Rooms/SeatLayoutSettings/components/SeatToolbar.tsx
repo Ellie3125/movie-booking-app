@@ -19,11 +19,11 @@ import InputField from "../../../../components/form/input/InputField";
 export type SeatType = "regular" | "vip" | "couple" | "disabled" | "space";
 
 export const SEAT_TYPE_CONFIG: Record<SeatType, { label: string; color: string; icon: any }> = {
-  regular: { label: "Thường", color: "#4f46e5", icon: <UserOutlined /> }, // Indigo
-  vip: { label: "VIP", color: "#fbbf24", icon: <CrownOutlined /> }, // Amber/Gold
-  couple: { label: "Couple", color: "#f472b6", icon: <HeartOutlined /> }, // Pink
-  disabled: { label: "Hỏng/Khoá", color: "#ef4444", icon: <LockOutlined /> },
-  space: { label: "Khoảng trống", color: "#f1f5f9", icon: <ColumnWidthOutlined /> },
+  regular: { label: "Thường", color: "#4c49ed", icon: <UserOutlined /> },
+  vip: { label: "VIP", color: "#ffb020", icon: <CrownOutlined /> },
+  couple: { label: "Couple", color: "#ff69b4", icon: <HeartOutlined /> },
+  disabled: { label: "Hỏng/Khoá", color: "#64748b", icon: <LockOutlined /> },
+  space: { label: "Khoảng trống", color: "transparent", icon: <ColumnWidthOutlined /> },
 };
 
 interface SeatToolbarProps {

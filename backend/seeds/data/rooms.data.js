@@ -8,24 +8,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -124,47 +108,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -263,47 +215,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -402,47 +322,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -541,47 +429,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -680,47 +536,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -819,47 +643,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -958,47 +750,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -1061,24 +821,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -1092,24 +836,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -1208,47 +936,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -1347,47 +1043,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -1486,47 +1150,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -1625,47 +1257,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -1764,47 +1364,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -1903,47 +1471,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -2042,47 +1578,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -2145,24 +1649,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -2176,24 +1664,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -2292,47 +1764,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -2431,47 +1871,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -2570,47 +1978,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -2709,47 +2085,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -2848,47 +2192,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -2987,47 +2299,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -3126,47 +2406,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -3229,24 +2477,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -3260,24 +2492,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -3376,47 +2592,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -3515,47 +2699,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -3654,47 +2806,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -3793,47 +2913,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -3932,47 +3020,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -4071,47 +3127,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -4210,47 +3234,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -4313,24 +3305,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -4344,24 +3320,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -4460,47 +3420,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -4599,47 +3527,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -4738,47 +3634,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -4877,47 +3741,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -5016,47 +3848,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -5155,47 +3955,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -5294,47 +4062,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -5397,24 +4133,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -5428,24 +4148,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -5544,47 +4248,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -5683,47 +4355,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -5822,47 +4462,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -5961,47 +4569,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -6100,47 +4676,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -6239,47 +4783,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -6378,47 +4890,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -6481,24 +4961,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -6512,24 +4976,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -6628,47 +5076,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -6767,47 +5183,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -6906,47 +5290,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -7045,47 +5397,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -7184,47 +5504,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -7323,47 +5611,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -7462,47 +5718,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -7565,24 +5789,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -7596,24 +5804,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -7712,47 +5904,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -7851,47 +6011,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -7990,47 +6118,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -8129,47 +6225,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -8268,47 +6332,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -8407,47 +6439,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -8546,47 +6546,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -8649,24 +6617,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -8680,24 +6632,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -8796,47 +6732,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -8935,47 +6839,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -9074,47 +6946,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -9213,47 +7053,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -9352,47 +7160,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -9491,47 +7267,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -9630,47 +7374,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -9733,24 +7445,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -9764,24 +7460,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -9880,47 +7560,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -10019,47 +7667,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -10158,47 +7774,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -10297,47 +7881,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -10436,47 +7988,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -10575,47 +8095,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -10714,47 +8202,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -10817,24 +8273,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -10848,24 +8288,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -10964,47 +8388,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -11103,47 +8495,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -11242,47 +8602,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -11381,47 +8709,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -11520,47 +8816,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -11659,47 +8923,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -11798,47 +9030,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -11901,24 +9101,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -11932,24 +9116,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -12048,47 +9216,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -12187,47 +9323,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -12326,47 +9430,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -12465,47 +9537,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -12604,47 +9644,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -12743,47 +9751,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -12882,47 +9858,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -12985,24 +9929,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -13016,24 +9944,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -13132,47 +10044,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -13271,47 +10151,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -13410,47 +10258,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -13549,47 +10365,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -13688,47 +10472,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -13827,47 +10579,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -13966,47 +10686,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -14069,24 +10757,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -14100,24 +10772,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -14216,47 +10872,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -14355,47 +10979,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -14494,47 +11086,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -14633,47 +11193,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -14772,47 +11300,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -14911,47 +11407,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -15050,47 +11514,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -15153,24 +11585,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -15184,24 +11600,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -15300,47 +11700,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -15439,47 +11807,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -15578,47 +11914,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -15717,47 +12021,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -15856,47 +12128,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -15995,47 +12235,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -16134,47 +12342,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -16237,24 +12413,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -16268,24 +12428,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -16384,47 +12528,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -16523,47 +12635,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -16662,47 +12742,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -16801,47 +12849,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -16940,47 +12956,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -17079,47 +13063,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -17218,47 +13170,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -17321,24 +13241,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -17352,24 +13256,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -17468,47 +13356,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -17607,47 +13463,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -17746,47 +13570,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -17885,47 +13677,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -18024,47 +13784,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -18163,47 +13891,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -18302,47 +13998,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -18405,24 +14069,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -18436,24 +14084,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -18552,47 +14184,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -18691,47 +14291,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -18830,47 +14398,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -18969,47 +14505,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -19108,47 +14612,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -19247,47 +14719,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -19386,47 +14826,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -19489,24 +14897,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -19520,24 +14912,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -19636,47 +15012,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -19775,47 +15119,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -19914,47 +15226,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -20053,47 +15333,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -20192,47 +15440,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -20331,47 +15547,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -20470,47 +15654,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -20573,24 +15725,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -20604,24 +15740,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -20720,47 +15840,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -20859,47 +15947,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -20998,47 +16054,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -21137,47 +16161,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -21276,47 +16268,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -21415,47 +16375,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -21554,47 +16482,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -21657,24 +16553,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -21688,24 +16568,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -21804,47 +16668,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -21943,47 +16775,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -22082,47 +16882,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -22221,47 +16989,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -22360,47 +17096,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -22499,47 +17203,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -22638,47 +17310,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -22741,24 +17381,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -22772,24 +17396,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -22888,47 +17496,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -23027,47 +17603,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -23166,47 +17710,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -23305,47 +17817,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -23444,47 +17924,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -23583,47 +18031,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -23722,47 +18138,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -23825,24 +18209,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -23856,24 +18224,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -23972,47 +18324,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -24111,47 +18431,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -24250,47 +18538,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -24389,47 +18645,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -24528,47 +18752,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -24667,47 +18859,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -24806,47 +18966,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -24909,24 +19037,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -24940,24 +19052,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -25056,47 +19152,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -25195,47 +19259,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -25334,47 +19366,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -25473,47 +19473,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -25612,47 +19580,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -25751,47 +19687,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -25890,47 +19794,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -25993,24 +19865,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -26024,24 +19880,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -26140,47 +19980,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -26279,47 +20087,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -26418,47 +20194,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -26557,47 +20301,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -26696,47 +20408,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -26835,47 +20515,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -26974,47 +20622,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -27077,24 +20693,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -27108,24 +20708,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -27224,47 +20808,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -27363,47 +20915,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -27502,47 +21022,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -27641,47 +21129,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -27780,47 +21236,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -27919,47 +21343,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -28058,47 +21450,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -28161,24 +21521,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -28192,24 +21536,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -28308,47 +21636,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -28447,47 +21743,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -28586,47 +21850,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -28725,47 +21957,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -28864,47 +22064,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -29003,47 +22171,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -29142,47 +22278,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -29245,24 +22349,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -29276,24 +22364,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -29392,47 +22464,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -29531,47 +22571,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -29670,47 +22678,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -29809,47 +22785,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -29948,47 +22892,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -30087,47 +22999,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -30226,47 +23106,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -30329,24 +23177,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -30360,24 +23192,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -30476,47 +23292,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -30615,47 +23399,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -30754,47 +23506,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -30893,47 +23613,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -31032,47 +23720,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -31171,47 +23827,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -31310,47 +23934,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -31413,24 +24005,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]
@@ -31444,24 +24020,8 @@ module.exports = [
       {
         "rowLabel": "A",
         "seats": [
-          {
-            "seatCode": "HIDDEN_A_L0",
-            "rowIndex": 0,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_L1",
-            "rowIndex": 0,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 0, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "A3",
             "rowIndex": 0,
@@ -31560,47 +24120,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_A_R0",
-            "rowIndex": 0,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_A_R1",
-            "rowIndex": 0,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 0, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 0, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "B",
         "seats": [
-          {
-            "seatCode": "HIDDEN_B_L0",
-            "rowIndex": 1,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_L1",
-            "rowIndex": 1,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 1, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "B3",
             "rowIndex": 1,
@@ -31699,47 +24227,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_B_R0",
-            "rowIndex": 1,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_B_R1",
-            "rowIndex": 1,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 1, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 1, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "C",
         "seats": [
-          {
-            "seatCode": "HIDDEN_C_L0",
-            "rowIndex": 2,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_L1",
-            "rowIndex": 2,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 2, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "C3",
             "rowIndex": 2,
@@ -31838,47 +24334,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_C_R0",
-            "rowIndex": 2,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_C_R1",
-            "rowIndex": 2,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 2, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 2, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "D",
         "seats": [
-          {
-            "seatCode": "HIDDEN_D_L0",
-            "rowIndex": 3,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_L1",
-            "rowIndex": 3,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 3, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "D3",
             "rowIndex": 3,
@@ -31977,47 +24441,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_D_R0",
-            "rowIndex": 3,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_D_R1",
-            "rowIndex": 3,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 3, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 3, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "E",
         "seats": [
-          {
-            "seatCode": "HIDDEN_E_L0",
-            "rowIndex": 4,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_L1",
-            "rowIndex": 4,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 4, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "E3",
             "rowIndex": 4,
@@ -32116,47 +24548,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "regular"
           },
-          {
-            "seatCode": "HIDDEN_E_R0",
-            "rowIndex": 4,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_E_R1",
-            "rowIndex": 4,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 4, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 4, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "F",
         "seats": [
-          {
-            "seatCode": "HIDDEN_F_L0",
-            "rowIndex": 5,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_L1",
-            "rowIndex": 5,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 5, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "F3",
             "rowIndex": 5,
@@ -32255,47 +24655,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_F_R0",
-            "rowIndex": 5,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_F_R1",
-            "rowIndex": 5,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 5, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 5, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "G",
         "seats": [
-          {
-            "seatCode": "HIDDEN_G_L0",
-            "rowIndex": 6,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_L1",
-            "rowIndex": 6,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 6, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "G3",
             "rowIndex": 6,
@@ -32394,47 +24762,15 @@ module.exports = [
             "capacity": 1,
             "priceType": "vip"
           },
-          {
-            "seatCode": "HIDDEN_G_R0",
-            "rowIndex": 6,
-            "columnIndex": 12,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_G_R1",
-            "rowIndex": 6,
-            "columnIndex": 13,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 6, "columnIndex": 12, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 6, "columnIndex": 13, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       },
       {
         "rowLabel": "H",
         "seats": [
-          {
-            "seatCode": "HIDDEN_H_L0",
-            "rowIndex": 7,
-            "columnIndex": 0,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_L1",
-            "rowIndex": 7,
-            "columnIndex": 1,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
+          { "rowIndex": 7, "columnIndex": 0, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 1, "type": "space", "status": "inactive", "capacity": 0 },
           {
             "seatCode": "H3",
             "rowIndex": 7,
@@ -32497,24 +24833,8 @@ module.exports = [
             "coupleGroupId": "grp_7_7",
             "priceType": "couple"
           },
-          {
-            "seatCode": "HIDDEN_H_R0",
-            "rowIndex": 7,
-            "columnIndex": 8,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          },
-          {
-            "seatCode": "HIDDEN_H_R1",
-            "rowIndex": 7,
-            "columnIndex": 9,
-            "type": "empty",
-            "status": "disabled",
-            "label": "",
-            "capacity": 0
-          }
+          { "rowIndex": 7, "columnIndex": 8, "type": "space", "status": "inactive", "capacity": 0 },
+          { "rowIndex": 7, "columnIndex": 9, "type": "space", "status": "inactive", "capacity": 0 }
         ]
       }
     ]

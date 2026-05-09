@@ -83,8 +83,16 @@ const changePasswordSchema = {
 
 const updateProfileSchema = {
   body: strictObject({
-    name: Joi.string().trim().min(2).max(120).required().label('name'),
-  }),
+    name: Joi.string().trim().min(2).max(120).optional().label('name'),
+    avatar: Joi.string()
+      .trim()
+      .pattern(/^\/avatars\/.+/)
+      .optional()
+      .label('avatar')
+      .messages({
+        'string.pattern.base': 'avatar must start with /avatars/',
+      }),
+  }).min(1), // At least one field must be provided
 };
 
 module.exports = {

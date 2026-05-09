@@ -78,7 +78,7 @@ const SeatLayoutEditor: React.FC<SeatLayoutEditorProps> = ({
   };
 
   const recalculateRowCodes = (label: string, seats: Seat[]): Seat[] => {
-    const saleableSeats = (seats || []).filter(s => s && s.type !== "space");
+    const saleableSeats = (seats || []).filter(s => s && !["space", "empty", "hidden", "aisle"].includes(s.type));
     const count = saleableSeats.length;
     
     let currentNum = numberingDirection === "ltr" ? 1 : count;
@@ -89,7 +89,7 @@ const SeatLayoutEditor: React.FC<SeatLayoutEditorProps> = ({
       
       const updatedSeat = { ...seat, columnIndex: idx };
 
-      if (seat.type === "space") {
+      if (["space", "empty", "hidden", "aisle"].includes(seat.type) || seat.seatCode?.startsWith("HIDDEN")) {
         updatedSeat.label = "";
         updatedSeat.capacity = 0;
         updatedSeat.priceType = undefined;
@@ -129,12 +129,11 @@ const SeatLayoutEditor: React.FC<SeatLayoutEditorProps> = ({
   }
 
   return (
-    <div className="bg-white dark:bg-white/[0.02] rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm relative">
+    <div className="bg-[#0a0f1e] rounded-2xl overflow-hidden border border-gray-800 shadow-xl relative">
       {/* Screen Indicator */}
-      <div className="bg-slate-800 dark:bg-gray-900 p-6 text-center relative overflow-hidden">
-         <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent" />
-         <div className="w-2/3 h-1.5 bg-blue-400 dark:bg-brand-500 mx-auto rounded-full mb-3 shadow-[0_0_15px_rgba(96,165,250,0.5)]"></div>
-         <span className="text-slate-400 dark:text-gray-500 uppercase tracking-[0.3em] text-[10px] font-black">
+      <div className="py-12 px-6 text-center relative overflow-hidden">
+         <div className="w-2/3 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto rounded-full mb-4 shadow-[0_0_20px_rgba(59,130,246,0.8)]"></div>
+         <span className="text-gray-500 uppercase tracking-[0.5em] text-[11px] font-black">
            MÀN HÌNH CHÍNH
          </span>
       </div>
@@ -144,10 +143,11 @@ const SeatLayoutEditor: React.FC<SeatLayoutEditorProps> = ({
           {(layout || []).map((row, rIdx) => {
             if (!row) return null;
             return (
-            <div key={rIdx} className="flex items-center mb-4 group relative">
+            <div key={rIdx} className="flex items-center mb-5 group relative">
               {/* Row Label */}
-              <div className="w-10 h-9 flex items-center justify-center font-black text-slate-400 mr-6 text-sm border-r border-slate-200">
-                {row.rowLabel || "?"}
+              <div className="w-12 h-9 flex items-center justify-between font-black text-gray-500 mr-8 text-sm">
+                <span>{row.rowLabel || "?"}</span>
+                <span className="h-4 w-[1.5px] bg-gray-700 ml-4"></span>
               </div>
               
               <div className="flex gap-2.5">

@@ -13,6 +13,7 @@ import Button from "../../components/ui/button/Button";
 import { userService } from "../../services/userService";
 import toast from "react-hot-toast";
 import { ConfirmationModal } from "../../components/ui/modal/ConfirmationModal";
+import { buildImageUrl } from "../../utils/imageUrl";
 
 export default function Users() {
   const [users, setUsers] = useState<any[]>([]);
@@ -120,17 +121,17 @@ export default function Users() {
                       <div className="flex items-center gap-3">
                         {user.avatar ? (
                           <div className="w-10 h-10 overflow-hidden rounded-full">
-                            <img src={user.avatar} alt={user.fullName} className="object-cover w-full h-full" />
+                            <img src={buildImageUrl(user.avatar)} alt={user.name} className="object-cover w-full h-full" />
                           </div>
                         ) : (
                           <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-800">
                             <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                              {user.fullName?.charAt(0).toUpperCase()}
+                              {user.name?.charAt(0).toUpperCase()}
                             </span>
                           </div>
                         )}
                         <span className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                          {user.fullName}
+                          {user.name}
                         </span>
                       </div>
                     </TableCell>

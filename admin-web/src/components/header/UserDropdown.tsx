@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import ChangePasswordModal from "../UserProfile/ChangePasswordModal";
 import { useModal } from "../../hooks/useModal";
+import { buildImageUrl } from "../../utils/imageUrl";
 
 export default function UserDropdown() {
   const { user, logout } = useAuth();
@@ -34,7 +35,7 @@ export default function UserDropdown() {
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
         <span className="mr-3 overflow-hidden border border-gray-200 rounded-full h-11 w-11 dark:border-gray-800">
-          <img src="/images/user/owner.jpg" alt="User" />
+          <img src={buildImageUrl(user?.avatar)} alt="User" className="h-full w-full object-cover" />
         </span>
 
         <span className="block mr-1 font-medium text-theme-sm">{user?.name || "User"}</span>

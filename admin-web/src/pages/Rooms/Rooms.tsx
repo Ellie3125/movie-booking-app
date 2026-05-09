@@ -208,8 +208,8 @@ export default function Rooms() {
           <Table>
             <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
               <TableRow>
+                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Rạp</TableCell>
                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Tên phòng</TableCell>
-                <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Rạp</TableCell>
                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Loại phòng</TableCell>
                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Số ghế</TableCell>
                 <TableCell isHeader className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">Thao tác</TableCell>
@@ -229,17 +229,17 @@ export default function Rooms() {
                   const cinemaName = cinemas.find(c => c._id === room.cinemaId)?.name || "N/A";
                   return (
                     <TableRow key={room._id}>
-                      <TableCell className="px-5 py-4 font-medium text-gray-800 text-start text-theme-sm dark:text-white/90">
-                        {room.name}
-                      </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                         {cinemaName}
+                      </TableCell>
+                      <TableCell className="px-5 py-4 font-medium text-gray-800 text-start text-theme-sm dark:text-white/90">
+                        {room.name.split(' (')[0]}
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                         <span className="uppercase font-bold text-xs">{room.roomType}</span>
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                        {room.activeSeatCount} / {room.totalRows * room.totalColumns}
+                        {room.activeSeatCount || 0} / {(room.totalRows || 0) * (room.totalColumns || 0)}
                       </TableCell>
                       <TableCell className="px-5 py-4 text-end">
                         <div className="flex items-center justify-end gap-2">

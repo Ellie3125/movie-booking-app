@@ -6,16 +6,20 @@ import Label from "../form/Label";
 import { useAuth } from "../../context/AuthContext";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import AvatarPicker from "./AvatarPicker";
+import { buildImageUrl } from "../../utils/imageUrl";
 
 export default function UserMetaCard() {
   const { user, updateProfile } = useAuth();
   const { isOpen, openModal, closeModal } = useModal();
   const [name, setName] = useState(user?.name || "");
+  const [avatar, setAvatar] = useState(user?.avatar || "");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
       setName(user.name);
+      setAvatar(user.avatar || "");
     }
   }, [user]);
 
@@ -23,7 +27,7 @@ export default function UserMetaCard() {
     e.preventDefault();
     setLoading(true);
     try {
-      await updateProfile({ name });
+      await updateProfile({ name, avatar });
       toast.success("Profile updated successfully!");
       closeModal();
     } catch (error: any) {
@@ -38,7 +42,7 @@ export default function UserMetaCard() {
         <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
           <div className="flex flex-col items-center w-full gap-6 xl:flex-row">
             <div className="w-20 h-20 overflow-hidden border border-gray-200 rounded-full dark:border-gray-800">
-              <img src="/images/user/owner.jpg" alt="user" />
+              <img src={buildImageUrl(user?.avatar)} alt="user" className="h-full w-full object-cover" />
             </div>
             <div className="order-3 xl:order-2">
               <h4 className="mb-2 text-lg font-semibold text-center text-gray-800 dark:text-white/90 xl:text-left">
@@ -118,6 +122,13 @@ export default function UserMetaCard() {
                   <div>
                     <Label>Email Address</Label>
                     <Input type="text" value={user?.email} disabled />
+                  </div>
+
+                  <div className="col-span-1">
+                    <Label>Choose Avatar</Label>
+                    <div className="mt-2">
+                      <AvatarPicker value={avatar} onChange={setAvatar} />
+                    </div>
                   </div>
                 </div>
               </div>

@@ -61,7 +61,7 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/api/v1', apiRateLimiter);
-app.use('/uploads/avatars', express.static(path.join(__dirname, '../public/avatars')));
+app.use('/avatars', express.static(path.join(__dirname, '../public/avatars')));
 
 app.use(routes);
 
