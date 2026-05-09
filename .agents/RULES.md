@@ -2,11 +2,16 @@
 
 ## 1. Global Rules
 
-*   **Architecture Integrity**: Do not generate random architecture. Reuse existing patterns.
-*   **Minimal Changes**: Avoid massive refactors. Keep naming consistent.
-*   **No Placeholders**: Never leave `TODO` or placeholder code.
-*   **Verification**: Always verify build, lint, and runtime before finishing.
-*   **Modification Flow**: Read related files -> Understand structure -> Reuse patterns -> Explain changes.
+*   **Architecture Integrity**: Không tự ý tạo ra kiến trúc mới. Tái sử dụng các mẫu (patterns) hiện có.
+*   **Minimal Changes**: Tránh các thay đổi lớn không cần thiết. Giữ cách đặt tên nhất quán.
+*   **No Placeholders**: Tuyệt đối không để lại mã `TODO` hoặc mã tạm thời.
+*   **Verification**: Luôn xác minh việc build, lint và runtime trước khi hoàn tất.
+*   **Modification Flow**: Đọc các tệp liên quan -> Hiểu cấu trúc -> Tái sử dụng các mẫu -> Giải thích các thay đổi.
+*   **Triết lý Superpowers**:
+    *   **Phát triển hướng kiểm thử (TDD)**: Luôn viết kiểm thử trước khi viết mã nguồn.
+    *   **Hệ thống thay vì cảm tính**: Tuân thủ quy trình thay vì phỏng đoán.
+    *   **Giảm thiểu sự phức tạp**: Coi sự đơn giản là mục tiêu hàng đầu.
+    *   **Bằng chứng thay vì khẳng định**: Xác minh kết quả thực tế trước khi tuyên bố thành công.
 
 ---
 
