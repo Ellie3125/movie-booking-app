@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { MOVIE_GENRES } = require("../constants/movie.constants");
 
 const MOVIE_STATUS = {
   NOW_SHOWING: "now_showing",
@@ -23,18 +24,41 @@ const MovieSchema = new mongoose.Schema(
       required: [true, "Thời lượng phim là bắt buộc"],
       min: [1, "Thời lượng phim phải lớn hơn 0"],
     },
-    genre: {
-      type: [{ type: String, trim: true }],
+    genres: {
+      type: [String],
+      enum: {
+        values: MOVIE_GENRES,
+        message: "Thể loại không hợp lệ: {VALUE}",
+      },
       default: [],
     },
-    poster: {
+    posterUrl: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    backdropUrl: {
       type: String,
       default: "",
       trim: true,
     },
     releaseDate: {
       type: Date,
-      required: [true, "Ngày phát hành là bắt buộc"],
+      required: [true, "Ngày bắt đầu chiếu là bắt buộc"],
+    },
+    endDate: {
+      type: Date,
+      required: [true, "Ngày kết thúc chiếu là bắt buộc"],
+    },
+    trailerUrl: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    trailerProvider: {
+      type: String,
+      default: "youtube",
+      trim: true,
     },
     status: {
       type: String,
@@ -71,7 +95,14 @@ const MovieSchema = new mongoose.Schema(
   },
 );
 
-MovieSchema.index({ title: "text" });
+MovieSchema.index(
+  { title: "text" },
+  {
+    default_language: "none",
+    language_override: "textSearchLanguage",
+  },
+);
+
 MovieSchema.index({ releaseDate: -1 });
 
 module.exports = mongoose.model("Movie", MovieSchema);

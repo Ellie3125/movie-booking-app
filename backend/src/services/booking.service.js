@@ -11,6 +11,7 @@ const {
   PAYMENT_STATUS,
   PAYMENT_TRANSACTION_STATUS,
   SHOWTIME_SEAT_STATUS,
+  SEAT_TYPE,
 } = require('../constants/payment.constants');
 
 const BOOKING_POPULATE = [
@@ -20,7 +21,7 @@ const BOOKING_POPULATE = [
   },
   {
     path: 'roomId',
-    select: 'name screenLabel totalRows totalColumns',
+    select: 'name roomType totalRows totalColumns',
   },
   {
     path: 'showtimeId',
@@ -71,86 +72,62 @@ const getOwnedBookingOrThrow = async (bookingId, userId) => {
   return booking;
 };
 
-const flattenSeatLayout = (room) =>
-  room.seatLayout
-    .flat()
-    .filter((seat) => seat && seat.cellType === 'seat' && seat.coordinate);
-
-const buildRoomSeatMap = (room) =>
-  new Map(
-    flattenSeatLayout(room).map((seat) => [
-      seat.coordinate.coordinateLabel.toUpperCase(),
-      seat,
-    ])
-  );
-
 const buildEdgeSeatConflictMessage = (seatLabel) =>
   `Không thể để trống ghế ngoài cùng ${seatLabel}. Hãy chọn thêm ${seatLabel} hoặc đổi ghế khác.`;
 
 const getEdgeSeatSelectionConflict = ({
-  seatLayout = [],
   seatStates = [],
   selectedCoordinates = [],
 }) => {
   const stateMap = new Map(
-    seatStates.map((seatState) => [
-      String(seatState.seatCoordinate).trim().toUpperCase(),
-      seatState,
-    ])
+    seatStates.map((state) => [state.seatCode.toUpperCase(), state])
   );
   const selectedSet = new Set(
-    selectedCoordinates.map((seatCoordinate) =>
-      String(seatCoordinate).trim().toUpperCase()
-    )
+    selectedCoordinates.map((code) => code.toUpperCase())
   );
 
-  for (const row of seatLayout) {
-    const rowSeats = row
-      .filter((seat) => seat && seat.cellType === 'seat' && seat.coordinate)
-      .map((seat) => {
-        const coordinate = String(seat.coordinate.coordinateLabel)
-          .trim()
-          .toUpperCase();
+  // Group by rowIndex
+  const rows = new Map();
+  seatStates.forEach(state => {
+    if (!rows.has(state.rowIndex)) rows.set(state.rowIndex, []);
+    rows.get(state.rowIndex).push(state);
+  });
 
-        return {
-          coordinate,
-          label: seat.seatLabel || coordinate,
-          isSelected: selectedSet.has(coordinate),
-          status: stateMap.get(coordinate)?.status || SHOWTIME_SEAT_STATUS.AVAILABLE,
-        };
-      });
+  for (const [rowIndex, rowSeats] of rows) {
+    // Sort by columnIndex
+    const sortedSeats = rowSeats
+      .filter(s => ![SEAT_TYPE.EMPTY, SEAT_TYPE.AISLE].includes(s.type))
+      .sort((a, b) => a.columnIndex - b.columnIndex);
 
-    if (rowSeats.length < 2) {
-      continue;
-    }
+    if (sortedSeats.length < 2) continue;
 
-    const firstSeat = rowSeats[0];
-    const secondSeat = rowSeats[1];
+    const firstSeat = sortedSeats[0];
+    const secondSeat = sortedSeats[1];
 
     if (
       firstSeat.status === SHOWTIME_SEAT_STATUS.AVAILABLE &&
-      !firstSeat.isSelected &&
-      secondSeat.isSelected
+      !selectedSet.has(firstSeat.seatCode.toUpperCase()) &&
+      selectedSet.has(secondSeat.seatCode.toUpperCase())
     ) {
       return {
         side: 'left',
-        seatLabel: firstSeat.label,
-        message: buildEdgeSeatConflictMessage(firstSeat.label),
+        seatLabel: firstSeat.label || firstSeat.seatCode,
+        message: buildEdgeSeatConflictMessage(firstSeat.label || firstSeat.seatCode),
       };
     }
 
-    const lastSeat = rowSeats[rowSeats.length - 1];
-    const beforeLastSeat = rowSeats[rowSeats.length - 2];
+    const lastSeat = sortedSeats[sortedSeats.length - 1];
+    const beforeLastSeat = sortedSeats[sortedSeats.length - 2];
 
     if (
       lastSeat.status === SHOWTIME_SEAT_STATUS.AVAILABLE &&
-      !lastSeat.isSelected &&
-      beforeLastSeat.isSelected
+      !selectedSet.has(lastSeat.seatCode.toUpperCase()) &&
+      selectedSet.has(beforeLastSeat.seatCode.toUpperCase())
     ) {
       return {
         side: 'right',
-        seatLabel: lastSeat.label,
-        message: buildEdgeSeatConflictMessage(lastSeat.label),
+        seatLabel: lastSeat.label || lastSeat.seatCode,
+        message: buildEdgeSeatConflictMessage(lastSeat.label || lastSeat.seatCode),
       };
     }
   }
@@ -160,14 +137,12 @@ const getEdgeSeatSelectionConflict = ({
 
 const getSeatPrice = (seatType) => {
   const price = SEAT_PRICE_MAP[seatType];
-
   if (typeof price !== 'number') {
     throw ApiError.internal(
       `Seat price is not configured for seat type: ${seatType}`,
       'SEAT_PRICE_NOT_CONFIGURED'
     );
   }
-
   return price;
 };
 
@@ -175,15 +150,13 @@ const getEffectivePaymentStatus = (booking) => {
   if (booking.paymentStatus === PAYMENT_STATUS.SUCCESS || booking.paidAt) {
     return PAYMENT_STATUS.SUCCESS;
   }
-
   if (
-    booking.paymentStatus !== PAYMENT_STATUS.SUCCESS &&
+    booking.paymentStatus === PAYMENT_STATUS.PENDING &&
     booking.paymentExpiresAt &&
     new Date(booking.paymentExpiresAt).getTime() <= Date.now()
   ) {
     return PAYMENT_STATUS.EXPIRED;
   }
-
   return booking.paymentStatus || PAYMENT_STATUS.PENDING;
 };
 
@@ -223,7 +196,7 @@ const mapBookingResponse = (booking) => ({
     ? {
         id: String(booking.roomId._id),
         name: booking.roomId.name,
-        screenLabel: booking.roomId.screenLabel,
+        roomType: booking.roomId.roomType,
         totalRows: booking.roomId.totalRows,
         totalColumns: booking.roomId.totalColumns,
       }
@@ -236,18 +209,17 @@ const mapBookingResponse = (booking) => ({
       }
     : null,
   seats: (booking.seats || []).map((seat) => ({
-    seatCoordinate: seat.seatCoordinate,
+    seatCode: seat.seatCode,
     seatLabel: seat.seatLabel,
     seatType: seat.seatType,
     status: seat.status,
     price: seat.price,
+    coupleGroupId: seat.coupleGroupId,
   })),
 });
 
 const markBookingTransactionsAsExpired = async (bookingIds) => {
-  if (!Array.isArray(bookingIds) || bookingIds.length === 0) {
-    return;
-  }
+  if (!Array.isArray(bookingIds) || bookingIds.length === 0) return;
 
   await PaymentTransaction.updateMany(
     {
@@ -290,7 +262,7 @@ const cleanupExpiredHeldSeats = async (showtime) => {
       seatState.bookingId = null;
       seatState.heldAt = null;
       seatState.holdExpiresAt = null;
-      seatState.paidAt = null;
+      seatState.bookedAt = null;
     }
   });
 
@@ -308,7 +280,7 @@ const cleanupExpiredHeldSeats = async (showtime) => {
       },
       {
         $set: {
-          status: BOOKING_STATUS.CANCELLED,
+          status: BOOKING_STATUS.EXPIRED,
           paymentStatus: PAYMENT_STATUS.EXPIRED,
         },
       }
@@ -319,247 +291,221 @@ const cleanupExpiredHeldSeats = async (showtime) => {
 };
 
 const assertShowtimeIsBookable = (showtime) => {
+  if (showtime.status === 'locked') {
+    throw ApiError.conflict('Suất chiếu này đã bị khóa bán vé', 'SHOWTIME_LOCKED');
+  }
   if (new Date(showtime.startTime).getTime() <= Date.now()) {
-    throw ApiError.conflict(
-      'This showtime has already started and can no longer be booked',
-      'SHOWTIME_ALREADY_STARTED'
-    );
+    throw ApiError.conflict('Suất chiếu này đã bắt đầu', 'SHOWTIME_ALREADY_STARTED');
   }
 };
 
-const normalizeSeatCoordinates = (seatCoordinates) =>
-  seatCoordinates.map((seatCoordinate) => seatCoordinate.trim().toUpperCase());
-
-const createBooking = async ({ userId, showtimeId, seatCoordinates }) => {
-  if (!mongoose.isValidObjectId(showtimeId)) {
-    throw ApiError.badRequest('Showtime id is invalid', 'INVALID_OBJECT_ID');
-  }
-
+const createBooking = async ({ userId, showtimeId, seatCodes, seatCoordinates }) => {
   const showtime = await Showtime.findById(showtimeId)
-    .populate('movieId', 'title duration poster status')
-    .populate('cinemaId', 'name brand city address')
-    .populate('roomId', 'name screenLabel totalRows totalColumns seatLayout')
+    .populate('movieId')
+    .populate('cinemaId')
+    .populate('roomId')
     .exec();
 
-  if (!showtime) {
-    throw ApiError.notFound('Showtime not found', 'SHOWTIME_NOT_FOUND');
-  }
+  if (!showtime) throw ApiError.notFound('Showtime not found', 'SHOWTIME_NOT_FOUND');
 
   assertShowtimeIsBookable(showtime);
   await cleanupExpiredHeldSeats(showtime);
 
-  const room = showtime.roomId;
-
-  if (!room || !Array.isArray(room.seatLayout)) {
-    throw ApiError.internal(
-      'Room seat layout is missing for this showtime',
-      'ROOM_LAYOUT_NOT_FOUND'
-    );
+  const seatStateMap = new Map(showtime.seatStates.map(s => [s.seatCode.toUpperCase(), s]));
+  
+  // Prioritize seatCodes, fallback to seatCoordinates for backward compatibility
+  const finalCodes = seatCodes || seatCoordinates;
+  if (!Array.isArray(finalCodes) || finalCodes.length === 0) {
+    throw ApiError.badRequest('Danh sách ghế (seatCodes) là bắt buộc', 'SEAT_CODES_REQUIRED');
   }
 
-  const roomSeatMap = buildRoomSeatMap(room);
-  const showtimeSeatStateMap = new Map(
-    showtime.seatStates.map((seatState) => [
-      seatState.seatCoordinate.toUpperCase(),
-      seatState,
-    ])
-  );
-  const normalizedSeatCoordinates = normalizeSeatCoordinates(seatCoordinates);
-  const edgeSeatConflict = getEdgeSeatSelectionConflict({
-    seatLayout: room.seatLayout,
-    seatStates: showtime.seatStates,
-    selectedCoordinates: normalizedSeatCoordinates,
+  const normalizedCoords = finalCodes.map(c => c.trim().toUpperCase());
+
+  // 1. Basic validation
+  normalizedCoords.forEach(code => {
+    const state = seatStateMap.get(code);
+    if (!state) throw ApiError.badRequest(`Ghế ${code} không tồn tại`, 'INVALID_SEAT');
+    
+    // Check sellable type
+    if ([SEAT_TYPE.EMPTY, SEAT_TYPE.AISLE, SEAT_TYPE.DISABLED].includes(state.type)) {
+      throw ApiError.badRequest(`Không thể đặt loại ghế này: ${state.type} (${code})`, 'INVALID_SEAT_TYPE');
+    }
+    
+    // Check status
+    if (state.status !== SHOWTIME_SEAT_STATUS.AVAILABLE) {
+      throw ApiError.conflict(`Ghế ${state.label || code} hiện không khả dụng (đã bán hoặc đang giữ)`, 'SEAT_NOT_AVAILABLE');
+    }
   });
 
-  if (edgeSeatConflict) {
-    throw ApiError.badRequest(
-      edgeSeatConflict.message,
-      'EDGE_SEAT_SELECTION_CONFLICT',
-      [
-        {
-          path: 'seatCoordinates',
-          message: edgeSeatConflict.message,
-        },
-      ]
-    );
-  }
-
-  const seats = normalizedSeatCoordinates.map((seatCoordinate) => {
-    const roomSeat = roomSeatMap.get(seatCoordinate);
-    const seatState = showtimeSeatStateMap.get(seatCoordinate);
-
-    if (!roomSeat || !seatState) {
-      throw ApiError.badRequest(
-        `Seat ${seatCoordinate} does not exist in the selected room`,
-        'INVALID_SEAT_COORDINATE'
-      );
+  // 2. Couple Seat Validation
+  const selectedSet = new Set(normalizedCoords);
+  normalizedCoords.forEach(code => {
+    const state = seatStateMap.get(code);
+    if (state.type === SEAT_TYPE.COUPLE && state.coupleGroupId) {
+      // Find all seats in the same couple group
+      const peerSeats = showtime.seatStates.filter(s => s.coupleGroupId === state.coupleGroupId);
+      peerSeats.forEach(peer => {
+        if (!selectedSet.has(peer.seatCode.toUpperCase())) {
+          throw ApiError.badRequest(
+            `Ghế đôi ${state.label} phải được đặt cùng với ghế ${peer.label}`,
+            'COUPLE_SEAT_INCOMPLETE'
+          );
+        }
+      });
     }
+  });
 
-    if (seatState.status !== SHOWTIME_SEAT_STATUS.AVAILABLE) {
-      throw ApiError.conflict(
-        `Seat ${seatState.seatLabel} is not available`,
-        'SEAT_NOT_AVAILABLE'
-      );
-    }
+  // 3. Edge Seat Conflict Validation
+  const edgeConflict = getEdgeSeatSelectionConflict({
+    seatStates: showtime.seatStates,
+    selectedCoordinates: normalizedCoords,
+  });
+  if (edgeConflict) throw ApiError.badRequest(edgeConflict.message, 'EDGE_SEAT_CONFLICT');
 
+  // 4. Create Booking
+  const now = new Date();
+  const expiresAt = new Date(now.getTime() + env.bookingHoldTtlMinutes * 60 * 1000);
+
+  const bookingSeats = normalizedCoords.map(code => {
+    const state = seatStateMap.get(code);
     return {
-      seatCoordinate,
-      seatLabel: roomSeat.seatLabel,
-      seatType: roomSeat.seatType,
+      seatCode: state.seatCode,
+      seatLabel: state.label || state.seatCode,
+      seatType: state.type,
       status: BOOKED_SEAT_STATUS.PENDING_PAYMENT,
-      price: getSeatPrice(roomSeat.seatType),
+      price: getSeatPrice(state.type),
+      coupleGroupId: state.coupleGroupId,
     };
   });
 
-  const now = new Date();
-  const paymentExpiresAt = new Date(
-    now.getTime() + env.bookingHoldTtlMinutes * 60 * 1000
-  );
   const booking = new Booking({
     _id: new mongoose.Types.ObjectId(),
     userId,
-    movieId: getEntityId(showtime.movieId),
+    movieId: showtime.movieId._id,
     showtimeId: showtime._id,
-    roomId: getEntityId(showtime.roomId),
-    seats,
-    totalAmount: seats.reduce((sum, seat) => sum + seat.price, 0),
+    roomId: showtime.roomId._id,
+    seats: bookingSeats,
+    totalAmount: bookingSeats.reduce((sum, s) => sum + s.price, 0),
     status: BOOKING_STATUS.PENDING_PAYMENT,
     paymentStatus: PAYMENT_STATUS.PENDING,
     currency: env.paymentCurrency,
-    paymentExpiresAt,
+    paymentExpiresAt: expiresAt,
   });
 
-  normalizedSeatCoordinates.forEach((seatCoordinate) => {
-    const seatState = showtimeSeatStateMap.get(seatCoordinate);
-    seatState.status = SHOWTIME_SEAT_STATUS.HELD;
-    seatState.userId = userId;
-    seatState.bookingId = booking._id;
-    seatState.heldAt = now;
-    seatState.holdExpiresAt = paymentExpiresAt;
-    seatState.paidAt = null;
+  // 5. Update Showtime Seat States
+  normalizedCoords.forEach(code => {
+    const state = seatStateMap.get(code);
+    state.status = SHOWTIME_SEAT_STATUS.HELD;
+    state.userId = userId;
+    state.bookingId = booking._id;
+    state.heldAt = now;
+    state.holdExpiresAt = expiresAt;
   });
 
   await Promise.all([booking.save(), showtime.save()]);
 
-  const savedBooking = await getOwnedBookingOrThrow(booking._id, userId);
-  return mapBookingResponse(savedBooking);
+  const freshBooking = await getOwnedBookingOrThrow(booking._id, userId);
+  return mapBookingResponse(freshBooking);
 };
 
 const listMyBookings = async ({ userId, status, paymentStatus }) => {
   const filter = { userId };
-
-  if (status) {
-    filter.status = status;
-  }
-
-  if (paymentStatus) {
-    filter.paymentStatus = paymentStatus;
-  }
+  if (status) filter.status = status;
+  if (paymentStatus) filter.paymentStatus = paymentStatus;
 
   const [items, total] = await Promise.all([
     getBookingQuery(filter).lean().exec(),
     Booking.countDocuments(filter),
   ]);
 
-  return {
-    items: items.map(mapBookingResponse),
-    total,
-  };
+  return { items: items.map(mapBookingResponse), total };
 };
 
 const getMyBookingById = async ({ bookingId, userId }) => {
-  if (!mongoose.isValidObjectId(bookingId)) {
-    throw ApiError.badRequest('Booking id is invalid', 'INVALID_OBJECT_ID');
-  }
-
   const booking = await getOwnedBookingOrThrow(bookingId, userId);
-  return mapBookingResponse(booking.toObject ? booking.toObject() : booking);
+  return mapBookingResponse(booking);
 };
 
 const cancelBooking = async ({ bookingId, userId }) => {
-  if (!mongoose.isValidObjectId(bookingId)) {
-    throw ApiError.badRequest('Booking id is invalid', 'INVALID_OBJECT_ID');
-  }
-
   const booking = await getOwnedBookingOrThrow(bookingId, userId);
 
-  if (
-    booking.status === BOOKING_STATUS.CONFIRMED ||
-    booking.paymentStatus === PAYMENT_STATUS.SUCCESS ||
-    booking.paidAt
-  ) {
-    throw ApiError.conflict(
-      'Confirmed booking cannot be cancelled by the hold release endpoint',
-      'BOOKING_ALREADY_CONFIRMED'
-    );
+  if (booking.status === BOOKING_STATUS.CONFIRMED) {
+    throw ApiError.conflict('Không thể hủy đơn hàng đã thanh toán', 'BOOKING_ALREADY_CONFIRMED');
   }
 
-  if (booking.status === BOOKING_STATUS.CANCELLED) {
-    throw ApiError.conflict(
-      'Booking has already been cancelled',
-      'BOOKING_ALREADY_CANCELLED'
-    );
+  const showtime = await Showtime.findById(booking.showtimeId).exec();
+  if (showtime) {
+    const seatCodes = new Set(booking.seats.map(s => s.seatCode.toUpperCase()));
+    showtime.seatStates.forEach(state => {
+      if (seatCodes.has(state.seatCode.toUpperCase()) && String(state.bookingId) === String(booking._id)) {
+        state.status = SHOWTIME_SEAT_STATUS.AVAILABLE;
+        state.userId = null;
+        state.bookingId = null;
+        state.heldAt = null;
+        state.holdExpiresAt = null;
+      }
+    });
+    await showtime.save();
   }
-
-  const showtime = await Showtime.findById(getEntityId(booking.showtimeId)).exec();
-
-  if (!showtime) {
-    throw ApiError.notFound(
-      'Showtime not found for this booking',
-      'SHOWTIME_NOT_FOUND'
-    );
-  }
-
-  const bookingSeatCoordinates = new Set(
-    booking.seats.map((seat) => seat.seatCoordinate.toUpperCase())
-  );
-
-  showtime.seatStates.forEach((seatState) => {
-    if (
-      bookingSeatCoordinates.has(seatState.seatCoordinate.toUpperCase()) &&
-      seatState.status === SHOWTIME_SEAT_STATUS.HELD
-    ) {
-      seatState.status = SHOWTIME_SEAT_STATUS.AVAILABLE;
-      seatState.userId = null;
-      seatState.bookingId = null;
-      seatState.heldAt = null;
-      seatState.holdExpiresAt = null;
-      seatState.paidAt = null;
-    }
-  });
 
   booking.status = BOOKING_STATUS.CANCELLED;
-  booking.paymentStatus =
-    booking.paymentExpiresAt &&
-    new Date(booking.paymentExpiresAt).getTime() <= Date.now()
-      ? PAYMENT_STATUS.EXPIRED
-      : PAYMENT_STATUS.FAILED;
+  booking.paymentStatus = PAYMENT_STATUS.FAILED;
   booking.paymentExpiresAt = null;
 
   await Promise.all([
     booking.save(),
-    showtime.save(),
-    PaymentTransaction.updateMany(
-      {
-        bookingId: booking._id,
-        status: {
-          $in: [
-            PAYMENT_TRANSACTION_STATUS.PENDING,
-            PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED,
-            PAYMENT_TRANSACTION_STATUS.CALLBACK_PENDING,
-          ],
-        },
-      },
-      {
-        $set: {
-          status: PAYMENT_TRANSACTION_STATUS.FAILED,
-          failureReason: 'Booking cancelled by user',
-        },
-      }
-    ).exec(),
+    markBookingTransactionsAsExpired([booking._id]),
   ]);
 
-  return mapBookingResponse(booking.toObject ? booking.toObject() : booking);
+  return mapBookingResponse(booking);
+};
+
+const listBookingsAdmin = async (filter) => {
+  const query = {};
+  if (filter.status) query.status = filter.status;
+  if (filter.paymentStatus) query.paymentStatus = filter.paymentStatus;
+  if (filter.bookingCode) query.bookingCode = { $regex: filter.bookingCode, $options: 'i' };
+  
+  const [items, total] = await Promise.all([
+    getBookingQuery(query).lean().exec(),
+    Booking.countDocuments(query),
+  ]);
+
+  return { items: items.map(mapBookingResponse), total };
+};
+
+const getBookingByIdAdmin = async (bookingId) => {
+  const booking = await getBookingQuery({ _id: bookingId }).lean().then(i => i[0]);
+  if (!booking) throw ApiError.notFound('Booking not found');
+  return mapBookingResponse(booking);
+};
+
+const cancelBookingAdmin = async (bookingId) => {
+  const booking = await Booking.findById(bookingId).exec();
+  if (!booking) throw ApiError.notFound('Booking not found');
+  
+  // Logic tương tự cancelBooking nhưng không check userId
+  const showtime = await Showtime.findById(booking.showtimeId).exec();
+  if (showtime) {
+    const seatCodes = new Set(booking.seats.map(s => s.seatCode.toUpperCase()));
+    showtime.seatStates.forEach(state => {
+      if (seatCodes.has(state.seatCode.toUpperCase()) && String(state.bookingId) === String(booking._id)) {
+        state.status = SHOWTIME_SEAT_STATUS.AVAILABLE;
+        state.userId = null;
+        state.bookingId = null;
+        state.heldAt = null;
+        state.holdExpiresAt = null;
+      }
+    });
+    await showtime.save();
+  }
+
+  booking.status = BOOKING_STATUS.CANCELLED;
+  booking.paymentStatus = PAYMENT_STATUS.FAILED;
+  await booking.save();
+  await markBookingTransactionsAsExpired([booking._id]);
+  
+  return mapBookingResponse(booking);
 };
 
 module.exports = {
@@ -567,4 +513,7 @@ module.exports = {
   listMyBookings,
   getMyBookingById,
   cancelBooking,
+  listBookingsAdmin,
+  getBookingByIdAdmin,
+  cancelBookingAdmin,
 };

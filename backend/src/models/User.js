@@ -6,6 +6,11 @@ const USER_ROLE = {
   ADMIN: "admin",
 };
 
+const USER_STATUS = {
+  ACTIVE: "active",
+  BLOCKED: "blocked",
+};
+
 const UserSchema = new mongoose.Schema(
   {
     name: {
@@ -42,6 +47,19 @@ const UserSchema = new mongoose.Schema(
     passwordChangedAt: {
       type: Date,
       default: null,
+    },
+    status: {
+      type: String,
+      enum: {
+        values: Object.values(USER_STATUS),
+        message: "Trạng thái không hợp lệ: {VALUE}",
+      },
+      default: USER_STATUS.ACTIVE,
+      index: true,
+    },
+    avatar: {
+      type: String,
+      default: "/avatars/avatar_01.png",
     },
   },
   {

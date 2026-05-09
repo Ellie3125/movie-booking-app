@@ -1,21 +1,19 @@
 type SeatLayoutCellLike = {
-  cellType: 'seat' | 'empty';
-  coordinate: {
-    coordinateLabel: string;
-  };
-  seatLabel: string | null;
+  type: string;
+  seatCode: string;
+  label?: string;
 };
 
 type ShowtimeSeatStateLike = {
-  seatCoordinate: string;
+  seatCode: string;
   status: string;
 };
 
 export type EdgeSeatSelectionConflict = {
   side: 'left' | 'right';
-  edgeCoordinate: string;
+  edgeCode: string;
   edgeSeatLabel: string;
-  adjacentCoordinate: string;
+  adjacentCode: string;
   adjacentSeatLabel: string;
   message: string;
 };
@@ -28,25 +26,25 @@ const buildConflictMessage = (seatLabel: string) =>
 export const getEdgeSeatSelectionConflict = (
   layout: SeatLayoutCellLike[][],
   seatStates: ShowtimeSeatStateLike[] = [],
-  selectedCoordinates: string[] = [],
+  selectedCodes: string[] = [],
 ): EdgeSeatSelectionConflict | null => {
   const stateMap = new Map(
     seatStates.map((seatState) => [
-      normalizeCoordinate(seatState.seatCoordinate),
+      normalizeCoordinate(seatState.seatCode),
       seatState,
     ]),
   );
-  const selectedSet = new Set(selectedCoordinates.map(normalizeCoordinate));
+  const selectedSet = new Set(selectedCodes.map(normalizeCoordinate));
 
   for (const row of layout) {
     const rowSeats = row
-      .filter((seat) => seat.cellType === 'seat')
+      .filter((seat) => seat.type !== 'space')
       .map((seat) => {
-        const coordinate = normalizeCoordinate(seat.coordinate.coordinateLabel);
+        const coordinate = normalizeCoordinate(seat.seatCode);
 
         return {
-          coordinate,
-          label: seat.seatLabel ?? coordinate,
+          code: coordinate,
+          label: seat.label ?? coordinate,
           isSelected: selectedSet.has(coordinate),
           status: stateMap.get(coordinate)?.status ?? 'available',
         };
@@ -66,9 +64,9 @@ export const getEdgeSeatSelectionConflict = (
     ) {
       return {
         side: 'left',
-        edgeCoordinate: firstSeat.coordinate,
+        edgeCode: firstSeat.code,
         edgeSeatLabel: firstSeat.label,
-        adjacentCoordinate: secondSeat.coordinate,
+        adjacentCode: secondSeat.code,
         adjacentSeatLabel: secondSeat.label,
         message: buildConflictMessage(firstSeat.label),
       };
@@ -84,9 +82,9 @@ export const getEdgeSeatSelectionConflict = (
     ) {
       return {
         side: 'right',
-        edgeCoordinate: lastSeat.coordinate,
+        edgeCode: lastSeat.code,
         edgeSeatLabel: lastSeat.label,
-        adjacentCoordinate: beforeLastSeat.coordinate,
+        adjacentCode: beforeLastSeat.code,
         adjacentSeatLabel: beforeLastSeat.label,
         message: buildConflictMessage(lastSeat.label),
       };

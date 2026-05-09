@@ -18,6 +18,27 @@ const bookingActionRateLimiter = createRateLimiter({
 
 router.use(authMiddleware.protect);
 
+// Admin routes
+router.get(
+  '/admin/all',
+  authMiddleware.requireRole('admin', 'staff'),
+  bookingController.listBookingsAdmin
+);
+router.get(
+  '/admin/:bookingId',
+  authMiddleware.requireRole('admin', 'staff'),
+  validate({ params: bookingValidation.bookingIdParamSchema }),
+  bookingController.getBookingByIdAdmin
+);
+router.post(
+  '/admin/:bookingId/cancel',
+  authMiddleware.requireRole('admin', 'staff'),
+  bookingActionRateLimiter,
+  validate({ params: bookingValidation.bookingIdParamSchema }),
+  bookingController.cancelBookingAdmin
+);
+
+// User routes
 router.get(
   '/',
   validate({ query: bookingValidation.listBookingsQuerySchema }),

@@ -6,12 +6,8 @@ const {
   PAYMENT_CURRENCY,
   PAYMENT_METHOD,
   PAYMENT_STATUS,
+  SEAT_TYPE,
 } = require('../constants/payment.constants');
-
-const SEAT_TYPE = {
-  STANDARD: 'standard',
-  COUPLE: 'couple',
-};
 
 const createBookingCode = () =>
   `BK-${Date.now().toString(36).toUpperCase()}-${crypto
@@ -80,9 +76,9 @@ const PaymentSummarySchema = new mongoose.Schema(
 
 const BookingSeatSchema = new mongoose.Schema(
   {
-    seatCoordinate: {
+    seatCode: {
       type: String,
-      required: [true, 'Toạ độ thật của ghế là bắt buộc'],
+      required: [true, 'Mã thật của ghế là bắt buộc'],
       trim: true,
       uppercase: true,
     },
@@ -113,6 +109,10 @@ const BookingSeatSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Giá ghế là bắt buộc'],
       min: [0, 'Giá ghế không được âm'],
+    },
+    coupleGroupId: {
+      type: String,
+      default: null,
     },
   },
   {

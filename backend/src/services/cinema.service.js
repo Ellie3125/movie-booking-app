@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const Cinema = require('../models/Cinema');
 const ApiError = require('../utils/apiError');
+const { VIETNAM_PROVINCES } = require('../constants/cinema.constants');
 
 const validateObjectId = (id, resourceName) => {
-  if (!mongoose.isValidObjectId(id)) {
+  if (id && !mongoose.isValidObjectId(id)) {
     throw ApiError.badRequest(
       `${resourceName} id is invalid`,
       'INVALID_OBJECT_ID'
@@ -11,33 +12,11 @@ const validateObjectId = (id, resourceName) => {
   }
 };
 
-const validateEnumValue = (value, allowedValues, label, errorCode) => {
-  if (value && !allowedValues.includes(value)) {
-    throw ApiError.badRequest(
-      `${label} must be one of: ${allowedValues.join(', ')}`,
-      errorCode
-    );
-  }
-};
-
-const listCinemas = async ({ city, brand }) => {
-  validateEnumValue(
-    city,
-    Cinema.schema.path('city').enumValues,
-    'Cinema city',
-    'INVALID_CINEMA_CITY'
-  );
-  validateEnumValue(
-    brand,
-    Cinema.schema.path('brand').enumValues,
-    'Cinema brand',
-    'INVALID_CINEMA_BRAND'
-  );
-
+const listCinemas = async ({ province, brand }) => {
   const filter = {};
 
-  if (city) {
-    filter.city = city;
+  if (province) {
+    filter.province = province;
   }
 
   if (brand) {
@@ -45,7 +24,9 @@ const listCinemas = async ({ city, brand }) => {
   }
 
   const [items, total] = await Promise.all([
-    Cinema.find(filter).sort({ city: 1, brand: 1, name: 1 }).lean(),
+    Cinema.find(filter)
+      .sort({ province: 1, name: 1 })
+      .lean(),
     Cinema.countDocuments(filter),
   ]);
 
@@ -64,7 +45,47 @@ const getCinemaById = async (id) => {
   return cinema;
 };
 
+const createCinema = async (payload) => {
+  const cinema = await Cinema.create(payload);
+  return cinema;
+};
+
+const updateCinema = async (id, payload) => {
+  validateObjectId(id, 'Cinema');
+  const cinema = await Cinema.findById(id).exec();
+  if (!cinema) {
+    throw ApiError.notFound('Cinema not found', 'CINEMA_NOT_FOUND');
+  }
+  Object.assign(cinema, payload);
+  await cinema.save();
+  return cinema;
+};
+
+const deleteCinema = async (id) => {
+  validateObjectId(id, 'Cinema');
+  const cinema = await Cinema.findById(id).select('_id').lean().exec();
+  if (!cinema) {
+    throw ApiError.notFound('Cinema not found', 'CINEMA_NOT_FOUND');
+  }
+  
+  const Room = mongoose.model('Room');
+  const hasRooms = await Room.exists({ cinemaId: id });
+  if (hasRooms) {
+    throw ApiError.conflict('Cannot delete cinema that has rooms', 'CINEMA_HAS_ROOMS');
+  }
+
+  await Cinema.deleteOne({ _id: id }).exec();
+};
+
+const listProvinces = async () => {
+  return VIETNAM_PROVINCES;
+};
+
 module.exports = {
   listCinemas,
   getCinemaById,
+  listProvinces,
+  createCinema,
+  updateCinema,
+  deleteCinema,
 };

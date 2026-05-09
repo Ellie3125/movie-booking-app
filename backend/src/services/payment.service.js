@@ -77,7 +77,7 @@ const validateObjectId = (id, resourceName) => {
 const getBookingPopulateQuery = (bookingId) =>
   Booking.findById(bookingId)
     .populate('movieId', 'title duration poster status')
-    .populate('roomId', 'name screenLabel totalRows totalColumns')
+    .populate('roomId', 'name roomType totalRows totalColumns')
     .populate({
       path: 'showtimeId',
       select: 'startTime endTime cinemaId roomId seatStates',
@@ -88,7 +88,7 @@ const getBookingPopulateQuery = (bookingId) =>
         },
         {
           path: 'roomId',
-          select: 'name screenLabel totalRows totalColumns',
+          select: 'name roomType totalRows totalColumns',
         },
       ],
     });
@@ -128,12 +128,12 @@ const isExpired = (dateValue) =>
   Boolean(dateValue) && new Date(dateValue).getTime() <= Date.now();
 
 const findBookingSeatStates = (booking, showtime) => {
-  const bookingSeatCoordinates = new Set(
-    booking.seats.map((seat) => seat.seatCoordinate.toUpperCase())
+  const bookingSeatCodes = new Set(
+    booking.seats.map((seat) => seat.seatCode.toUpperCase())
   );
 
   return showtime.seatStates.filter((seatState) =>
-    bookingSeatCoordinates.has(seatState.seatCoordinate.toUpperCase())
+    bookingSeatCodes.has(seatState.seatCode.toUpperCase())
   );
 };
 
@@ -155,13 +155,13 @@ const expirePendingTransactionsForBooking = async (bookingId, reason) => {
 };
 
 const releaseHeldSeatsForBooking = (booking, showtime) => {
-  const bookingSeatCoordinates = new Set(
-    booking.seats.map((seat) => seat.seatCoordinate.toUpperCase())
+  const bookingSeatCodes = new Set(
+    booking.seats.map((seat) => seat.seatCode.toUpperCase())
   );
 
   showtime.seatStates.forEach((seatState) => {
     if (
-      bookingSeatCoordinates.has(seatState.seatCoordinate.toUpperCase()) &&
+      bookingSeatCodes.has(seatState.seatCode.toUpperCase()) &&
       seatState.status === SHOWTIME_SEAT_STATUS.HELD
     ) {
       seatState.status = SHOWTIME_SEAT_STATUS.AVAILABLE;
@@ -169,7 +169,7 @@ const releaseHeldSeatsForBooking = (booking, showtime) => {
       seatState.bookingId = null;
       seatState.heldAt = null;
       seatState.holdExpiresAt = null;
-      seatState.paidAt = null;
+      seatState.bookedAt = null;
     }
   });
 };
@@ -180,7 +180,7 @@ const expireBookingIfNeeded = async ({ booking, showtime }) => {
   }
 
   releaseHeldSeatsForBooking(booking, showtime);
-  booking.status = BOOKING_STATUS.CANCELLED;
+  booking.status = BOOKING_STATUS.EXPIRED;
   booking.paymentStatus = PAYMENT_STATUS.EXPIRED;
   booking.paymentExpiresAt = null;
 
@@ -275,7 +275,7 @@ const ensurePaymentHoldsAreStillValid = (booking, showtime) => {
 const mapBillResponse = (booking) => ({
   bookingId: String(booking._id),
   seats: booking.seats.map((seat) => ({
-    seatCoordinate: seat.seatCoordinate,
+    seatCode: seat.seatCode,
     seatLabel: seat.seatLabel,
     seatType: seat.seatType,
     price: seat.price,
@@ -512,13 +512,13 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
   const existingTickets = await Ticket.find({ bookingId: booking._id }).exec();
   const existingTicketMap = new Map(
     existingTickets.map((ticket) => [
-      ticket.seat.seatCoordinate.toUpperCase(),
+      ticket.seat.seatCode.toUpperCase(),
       ticket,
     ])
   );
 
   const bulkOperations = booking.seats.map((seat) => {
-    const existingTicket = existingTicketMap.get(seat.seatCoordinate.toUpperCase());
+    const existingTicket = existingTicketMap.get(seat.seatCode.toUpperCase());
 
     return {
       updateOne: {
@@ -526,7 +526,7 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
           ? { _id: existingTicket._id }
           : {
               bookingId: booking._id,
-              'seat.seatCoordinate': seat.seatCoordinate,
+              'seat.seatCode': seat.seatCode,
             },
         update: {
           $set: {
@@ -536,9 +536,10 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
             showtimeId: getEntityId(booking.showtimeId),
             roomId: getEntityId(booking.roomId),
             seat: {
-              seatCoordinate: seat.seatCoordinate,
+              seatCode: seat.seatCode,
               seatLabel: seat.seatLabel,
               seatType: seat.seatType,
+              coupleGroupId: seat.coupleGroupId,
             },
             price: seat.price,
             status: TICKET_STATUS.ISSUED,
@@ -668,16 +669,16 @@ const finalizeSuccessfulPayment = async ({
   };
 
   booking.seats.forEach((seat) => {
-    seat.status = BOOKED_SEAT_STATUS.ISSUED;
+    seat.status = BOOKED_SEAT_STATUS.BOOKED;
   });
 
   matchedSeatStates.forEach((seatState) => {
-    seatState.status = SHOWTIME_SEAT_STATUS.PAID;
+    seatState.status = SHOWTIME_SEAT_STATUS.BOOKED;
     seatState.bookingId = booking._id;
     seatState.userId = booking.userId;
     seatState.heldAt = null;
     seatState.holdExpiresAt = null;
-    seatState.paidAt = paidAt;
+    seatState.bookedAt = paidAt;
   });
 
   transaction.status = PAYMENT_TRANSACTION_STATUS.SUCCESS;

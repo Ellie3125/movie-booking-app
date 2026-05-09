@@ -5,6 +5,7 @@ const Room = require('../models/Room');
 const Showtime = require('../models/Showtime');
 const ApiError = require('../utils/apiError');
 const { buildShowtimeSeatStatesFromRoomLayout } = require('../utils/roomLayout');
+const { mergeLayoutWithStates } = require('../utils/seatMerge');
 
 const SHOWTIME_LIST_FIELDS = [
   'movieId',
@@ -12,6 +13,8 @@ const SHOWTIME_LIST_FIELDS = [
   'roomId',
   'startTime',
   'endTime',
+  'price',
+  'status',
   'createdAt',
   'updatedAt',
 ].join(' ');
@@ -27,7 +30,7 @@ const SHOWTIME_POPULATE = [
   },
   {
     path: 'roomId',
-    select: 'name screenLabel totalColumns',
+    select: 'name roomType totalColumns',
   },
 ];
 
@@ -230,7 +233,7 @@ const ensureRoomExists = async (roomId, cinemaId) => {
   return room;
 };
 
-const listShowtimes = async ({ movieId, cinemaId, date }) => {
+const listShowtimes = async ({ movieId, cinemaId, roomId, date }) => {
   const filter = {};
 
   if (movieId) {
@@ -241,6 +244,11 @@ const listShowtimes = async ({ movieId, cinemaId, date }) => {
   if (cinemaId) {
     validateObjectId(cinemaId, 'Cinema');
     filter.cinemaId = cinemaId;
+  }
+
+  if (roomId) {
+    validateObjectId(roomId, 'Room');
+    filter.roomId = roomId;
   }
 
   if (date) {
@@ -266,13 +274,19 @@ const listShowtimes = async ({ movieId, cinemaId, date }) => {
 const getShowtimeById = async (id) => {
   validateObjectId(id, 'Showtime');
 
-  const showtime = await applyShowtimePopulate(Showtime.findById(id)).lean().exec();
+  const showtime = await applyShowtimePopulate(Showtime.findById(id)).exec();
 
   if (!showtime) {
     throw ApiError.notFound('Showtime not found', 'SHOWTIME_NOT_FOUND');
   }
 
-  return mapShowtime(showtime);
+  const room = await Room.findById(showtime.roomId).select('seatLayout').lean().exec();
+  const seatLayout = mergeLayoutWithStates(room?.seatLayout || [], showtime.seatStates);
+
+  return {
+    ...mapShowtime(showtime.toObject()),
+    seatLayout,
+  };
 };
 
 const createShowtimeSchedule = async (payload) => {
@@ -365,8 +379,254 @@ const createShowtimeSchedule = async (payload) => {
   };
 };
 
+const bulkCreateShowtimes = async (payload) => {
+  const {
+    movieId,
+    cinemaIds,
+    roomIds,
+    startDate,
+    endDate,
+    startTimes,
+    basePrice,
+    dryRun,
+  } = payload;
+
+  // 1. Validate resources
+  const movie = await ensureMovieExists(movieId);
+  const cinemas = await Cinema.find({ _id: { $in: cinemaIds } }).lean();
+  if (cinemas.length !== cinemaIds.length) {
+    throw ApiError.notFound('One or more cinemas not found');
+  }
+
+  const rooms = await Room.find({ _id: { $in: roomIds } }).lean();
+  if (rooms.length !== roomIds.length) {
+    throw ApiError.notFound('One or more rooms not found');
+  }
+
+  // Validate date range
+  const startRange = buildDateRange(startDate);
+  const endRange = buildDateRange(endDate);
+  if (endRange.start.getTime() < startRange.start.getTime()) {
+    throw ApiError.badRequest('End date must be on or after start date');
+  }
+
+  // 2. Prepare slots
+  const durationMinutes = movie.duration;
+  const slots = [];
+  const roomsMap = new Map(rooms.map((r) => [String(r._id), r]));
+
+  // Get existing showtimes in the range for all target rooms to check conflicts
+  const existingShowtimes = await Showtime.find({
+    roomId: { $in: roomIds },
+    startTime: { $lt: endRange.end },
+    endTime: { $gt: startRange.start },
+  })
+    .select('roomId startTime endTime')
+    .lean()
+    .exec();
+
+  for (
+    let dayStart = new Date(startRange.start);
+    dayStart.getTime() < endRange.end.getTime();
+    dayStart = new Date(dayStart.getTime() + MS_PER_DAY)
+  ) {
+    for (const roomId of roomIds) {
+      const room = roomsMap.get(String(roomId));
+      let roomStartTimes = startTimes || [];
+
+      if (payload.mode === 'AUTO') {
+        roomStartTimes = [];
+        const { showsPerDay, openingTime, closingTime, cleaningMinutes = 15 } = payload;
+        const [openH, openM] = openingTime.split(':').map(Number);
+        const [closeH, closeM] = closingTime.split(':').map(Number);
+        
+        let currentMinutes = openH * 60 + openM;
+        const closingMinutes = closeH * 60 + closeM;
+
+        for (let i = 0; i < showsPerDay; i++) {
+          const h = Math.floor(currentMinutes / 60);
+          const m = currentMinutes % 60;
+          const timeStr = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+          
+          if (currentMinutes + durationMinutes <= closingMinutes) {
+            roomStartTimes.push(timeStr);
+            currentMinutes += durationMinutes + cleaningMinutes;
+          } else {
+            break;
+          }
+        }
+      }
+
+      for (const timeStr of roomStartTimes) {
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        const startTime = new Date(dayStart);
+        startTime.setHours(hours, minutes, 0, 0);
+
+        const endTime = new Date(startTime.getTime() + durationMinutes * MS_PER_MINUTE);
+
+        // Check conflict
+        const conflict = existingShowtimes.find((s) => {
+          if (String(s.roomId) !== String(roomId)) return false;
+          const sStart = new Date(s.startTime).getTime();
+          const sEnd = new Date(s.endTime).getTime();
+          // Overlap check with cleanup buffer
+          const buffer = CLEANUP_BUFFER_MINUTES * MS_PER_MINUTE;
+          return (
+            startTime.getTime() < sEnd + buffer &&
+            sStart < endTime.getTime() + buffer
+          );
+        });
+
+        slots.push({
+          movieId,
+          cinemaId: room.cinemaId,
+          roomId,
+          startTime,
+          endTime,
+          price: basePrice,
+          status: conflict ? 'CONFLICT' : 'OK',
+          conflictInfo: conflict ? { startTime: conflict.startTime, endTime: conflict.endTime } : null,
+          roomName: room.name,
+          date: dayStart.toISOString().split('T')[0],
+        });
+      }
+    }
+  }
+
+  if (dryRun) {
+    return {
+      total: slots.length,
+      okCount: slots.filter((s) => s.status === 'OK').length,
+      conflictCount: slots.filter((s) => s.status === 'CONFLICT').length,
+      slots,
+    };
+  }
+
+  // 3. Perform creation
+  const okSlots = slots.filter((s) => s.status === 'OK');
+  const showtimesToInsert = okSlots.map((s) => {
+    const room = roomsMap.get(String(s.roomId));
+    return {
+      movieId: s.movieId,
+      cinemaId: s.cinemaId,
+      roomId: s.roomId,
+      startTime: s.startTime,
+      endTime: s.endTime,
+      price: s.price,
+      seatStates: buildShowtimeSeatStatesFromRoomLayout(room.seatLayout),
+    };
+  });
+
+  let createdShowtimes = [];
+  if (showtimesToInsert.length > 0) {
+    createdShowtimes = await Showtime.insertMany(showtimesToInsert);
+  }
+
+  return {
+    createdCount: createdShowtimes.length,
+    skippedCount: slots.length - createdShowtimes.length,
+    items: createdShowtimes,
+    conflicts: slots.filter((s) => s.status === 'CONFLICT'),
+  };
+};
+const checkShowtimeConflict = async (roomId, startTime, endTime, excludeId = null) => {
+  const query = {
+    roomId,
+    startTime: { $lt: endTime },
+    endTime: { $gt: startTime },
+  };
+  
+  if (excludeId) {
+    query._id = { $ne: excludeId };
+  }
+
+  const existing = await Showtime.exists(query);
+  if (existing) {
+    throw ApiError.conflict('Showtime schedule conflicts with an existing showtime in the same room', 'SHOWTIME_CONFLICT');
+  }
+};
+
+const createShowtime = async (payload) => {
+  await ensureCinemaExists(payload.cinemaId);
+  const movie = await ensureMovieExists(payload.movieId);
+  const room = await ensureRoomExists(payload.roomId, payload.cinemaId);
+
+  const startTime = new Date(payload.startTime);
+  const endTime = new Date(startTime.getTime() + movie.duration * MS_PER_MINUTE);
+
+  await checkShowtimeConflict(payload.roomId, startTime, endTime);
+
+  const showtime = await Showtime.create({
+    movieId: payload.movieId,
+    cinemaId: payload.cinemaId,
+    roomId: payload.roomId,
+    startTime,
+    endTime,
+    price: payload.price,
+    seatStates: buildShowtimeSeatStatesFromRoomLayout(room.seatLayout),
+  });
+
+  return showtime.toObject();
+};
+
+const updateShowtime = async (id, payload) => {
+  validateObjectId(id, 'Showtime');
+  const showtime = await Showtime.findById(id).exec();
+  if (!showtime) {
+    throw ApiError.notFound('Showtime not found', 'SHOWTIME_NOT_FOUND');
+  }
+
+  const movie = await ensureMovieExists(payload.movieId);
+  await ensureCinemaExists(payload.cinemaId);
+  const room = await ensureRoomExists(payload.roomId, payload.cinemaId);
+
+  const startTime = new Date(payload.startTime);
+  const endTime = new Date(startTime.getTime() + movie.duration * MS_PER_MINUTE);
+
+  await checkShowtimeConflict(payload.roomId, startTime, endTime, id);
+
+  showtime.movieId = payload.movieId;
+  showtime.cinemaId = payload.cinemaId;
+  showtime.roomId = payload.roomId;
+  showtime.startTime = startTime;
+  showtime.endTime = endTime;
+  showtime.price = payload.price;
+  console.log('UpdateShowtime payload status:', payload.status);
+  if (payload.status) showtime.status = payload.status;
+  console.log('Showtime status after assignment:', showtime.status);
+
+  // Ideally if room changes, seatStates should be rebuilt, but let's just do a basic assignment
+  if (String(showtime.roomId) !== String(payload.roomId)) {
+    showtime.seatStates = buildShowtimeSeatStatesFromRoomLayout(room.seatLayout);
+  }
+
+  const saved = await showtime.save();
+  console.log('Showtime saved successfully. New status:', saved.status);
+  return saved.toObject();
+};
+
+const deleteShowtime = async (id) => {
+  validateObjectId(id, 'Showtime');
+  const showtime = await Showtime.findById(id).exec();
+  if (!showtime) {
+    throw ApiError.notFound('Showtime not found', 'SHOWTIME_NOT_FOUND');
+  }
+  
+  // Check if there are any held/booked seats before deletion
+  const hasBookings = showtime.seatStates.some(seat => ['held', 'booked'].includes(seat.status));
+  if (hasBookings) {
+    throw ApiError.conflict('Cannot delete showtime that has held or booked seats', 'SHOWTIME_HAS_BOOKINGS');
+  }
+
+  await Showtime.deleteOne({ _id: id }).exec();
+};
+
 module.exports = {
   createShowtimeSchedule,
   getShowtimeById,
   listShowtimes,
+  bulkCreateShowtimes,
+  createShowtime,
+  updateShowtime,
+  deleteShowtime,
 };

@@ -1,12 +1,12 @@
 import { type Room, type RoomSeat, type ShowtimeSeatState } from '@/lib/app-store';
 
-export type SeatVisualVariant = 'standard' | 'vip' | 'couple';
+export type SeatVisualVariant = 'regular' | 'vip' | 'couple';
 export type SeatVisualStatus =
   | 'available'
   | 'selected'
   | 'held'
-  | 'reserved'
-  | 'paid';
+  | 'booked'
+  | 'disabled';
 
 export const seatVariantTokens: Record<
   SeatVisualVariant,
@@ -17,7 +17,7 @@ export const seatVariantTokens: Record<
     previewWide: boolean;
   }
 > = {
-  standard: {
+  regular: {
     accent: '#1D8B4D',
     accentSoft: 'rgba(29, 139, 77, 0.22)',
     label: 'Ghế thường',
@@ -68,45 +68,53 @@ export const seatStatusTokens: Record<
     label: 'Ghế đang được giữ',
     description: 'Đang được giữ tạm trong phiên của người khác.',
   },
-  reserved: {
-    fill: '#FFD667',
-    border: '#E3B63F',
-    text: '#54361A',
-    label: 'Ghế đã đặt trước',
-    description: 'Ghế đã được khóa hoặc đặt trước.',
-  },
-  paid: {
+  booked: {
     fill: '#F05B4F',
     border: '#D74439',
     text: '#FFF8F6',
     label: 'Ghế đã bán',
     description: 'Ghế đã thanh toán xong, không thể chọn.',
   },
+  disabled: {
+    fill: '#E2E8F0',
+    border: '#CBD5E1',
+    text: '#64748B',
+    label: 'Ghế không sử dụng',
+    description: 'Ghế đã bị khóa hoặc hư hỏng.',
+  },
 };
 
-const premiumRoomPattern = /\b(gold|premium|vip)\b/i;
+const premiumRoomPattern = /\b(gold|premium|vip|imax)\b/i;
 
-export const roomHasVipSeats = (room?: Pick<Room, 'name' | 'screenLabel'> | null) => {
+export const roomHasVipSeats = (room?: Pick<Room, 'name' | 'roomType'> | null) => {
   if (!room) {
     return false;
   }
 
-  return premiumRoomPattern.test(`${room.name} ${room.screenLabel}`);
+  const premiumTypes = ['vip', 'gold', 'imax'];
+  return (
+    premiumTypes.includes(room.roomType?.toLowerCase()) ||
+    premiumRoomPattern.test(room.name)
+  );
 };
 
 export const getSeatVisualVariant = (
-  seat: Pick<RoomSeat, 'cellType' | 'seatType'>,
-  room?: Pick<Room, 'name' | 'screenLabel'> | null,
+  seat: Pick<RoomSeat, 'type'>,
+  room?: Pick<Room, 'name' | 'roomType'> | null,
 ): SeatVisualVariant => {
-  if (seat.cellType !== 'seat') {
-    return 'standard';
+  if (seat.type === 'space' || seat.type === 'disabled') {
+    return 'regular';
   }
 
-  if (seat.seatType === 'couple') {
+  if (seat.type === 'couple') {
     return 'couple';
   }
 
-  return roomHasVipSeats(room) ? 'vip' : 'standard';
+  if (seat.type === 'vip') {
+    return 'vip';
+  }
+
+  return roomHasVipSeats(room) ? 'vip' : 'regular';
 };
 
 export const getSeatVisualStatus = ({
@@ -128,11 +136,11 @@ export const getSeatVisualStatus = ({
     return 'held';
   }
 
-  if (seatState.status === 'reserved') {
-    return 'reserved';
+  if (seatState.status === 'booked') {
+    return 'booked';
   }
 
-  return 'paid';
+  return 'disabled';
 };
 
 export const buildSeatVariantLookup = (room?: Room | null) => {
@@ -143,11 +151,11 @@ export const buildSeatVariantLookup = (room?: Room | null) => {
   }
 
   room.seatLayout.flat().forEach((seat) => {
-    if (seat.cellType !== 'seat') {
+    if (seat.type === 'space') {
       return;
     }
 
-    lookup[seat.coordinate.coordinateLabel.toUpperCase()] = getSeatVisualVariant(seat, room);
+    lookup[seat.seatCode.toUpperCase()] = getSeatVisualVariant(seat, room);
   });
 
   return lookup;

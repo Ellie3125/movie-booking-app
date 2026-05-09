@@ -1,5 +1,6 @@
 const User = require("./User");
 const Movie = require("./Movie");
+const CinemaBrand = require("./CinemaBrand");
 const Cinema = require("./Cinema");
 const Room = require("./Room");
 const Showtime = require("./Showtime");
@@ -13,6 +14,7 @@ const PaymentCallbackLog = require("./PaymentCallbackLog");
 module.exports = {
   User,
   Movie,
+  CinemaBrand,
   Cinema,
   Room,
   Showtime,

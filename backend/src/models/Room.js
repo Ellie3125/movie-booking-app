@@ -1,85 +1,112 @@
 const mongoose = require("mongoose");
 
-const SEAT_CELL_TYPE = {
-  SEAT: "seat",
-  EMPTY: "empty",
-};
-
 const SEAT_TYPE = {
-  STANDARD: "standard",
+  REGULAR: "regular",
+  VIP: "vip",
   COUPLE: "couple",
+  EMPTY: "empty",
+  AISLE: "aisle",
+  DISABLED: "disabled",
+  SPACE: "space",
 };
 
-const SeatCoordinateSchema = new mongoose.Schema(
+const SEAT_STATUS = {
+  ACTIVE: "active",
+  DISABLED: "disabled",
+  INACTIVE: "inactive",
+};
+
+const RoomSeatSchema = new mongoose.Schema(
   {
+    label: {
+      type: String,
+      trim: true,
+      uppercase: true,
+    },
+    rowLabel: {
+      type: String,
+      trim: true,
+      uppercase: true,
+    },
+    seatCode: {
+      type: String,
+      // seatCode is NOT required for spaces/aisles used for layout
+      required: function() {
+        return ![SEAT_TYPE.EMPTY, SEAT_TYPE.AISLE, SEAT_TYPE.SPACE].includes(this.type);
+      },
+      trim: true,
+      uppercase: true,
+    },
     rowIndex: {
       type: Number,
       required: [true, "Chỉ số hàng là bắt buộc"],
-      min: [0, "Chỉ số hàng không hợp lệ"],
     },
     columnIndex: {
       type: Number,
       required: [true, "Chỉ số cột là bắt buộc"],
-      min: [0, "Chỉ số cột không hợp lệ"],
     },
-    coordinateLabel: {
-      type: String,
-      required: [true, "Toạ độ thật của ô ghế là bắt buộc"],
-      trim: true,
-      uppercase: true,
-    },
-  },
-  {
-    _id: false,
-    versionKey: false,
-  },
-);
-
-const RoomSeatSchema = new mongoose.Schema(
-  {
-    cellType: {
+    type: {
       type: String,
       enum: {
-        values: Object.values(SEAT_CELL_TYPE),
-        message: "Loại ô ghế không hợp lệ: {VALUE}",
-      },
-      required: [true, "Loại ô ghế là bắt buộc"],
-    },
-    coordinate: {
-      type: SeatCoordinateSchema,
-      required: [true, "Toạ độ ô ghế là bắt buộc"],
-    },
-    seatLabel: {
-      type: String,
-      trim: true,
-      uppercase: true,
-      default: null,
-      required: function () {
-        return this.cellType === SEAT_CELL_TYPE.SEAT;
-      },
-    },
-    seatType: {
-      type: String,
-      enum: {
-        values: [...Object.values(SEAT_TYPE), null],
+        values: Object.values(SEAT_TYPE),
         message: "Loại ghế không hợp lệ: {VALUE}",
       },
-      default: null,
-      required: function () {
-        return this.cellType === SEAT_CELL_TYPE.SEAT;
-      },
+      default: SEAT_TYPE.REGULAR,
     },
-    priceModifier: {
+    status: {
+      type: String,
+      enum: {
+        values: Object.values(SEAT_STATUS),
+        message: "Trạng thái ghế không hợp lệ: {VALUE}",
+      },
+      default: SEAT_STATUS.ACTIVE,
+    },
+    priceType: {
+      type: String,
+      enum: ["regular", "vip", "couple"],
+      default: "regular",
+    },
+    capacity: {
       type: Number,
       default: 1,
-      min: [0, "Hệ số giá ghế không hợp lệ"],
+    },
+    size: {
+      type: Number,
+      default: 1,
+    },
+    coupleGroupId: {
+      type: String,
+      default: null,
     },
   },
   {
     _id: false,
     versionKey: false,
-  },
+  }
 );
+
+const RoomRowSchema = new mongoose.Schema(
+  {
+    rowLabel: {
+      type: String,
+      required: [true, "Nhãn hàng là bắt buộc"],
+      trim: true,
+      uppercase: true,
+    },
+    seats: [RoomSeatSchema],
+  },
+  {
+    _id: false,
+    versionKey: false,
+  }
+);
+
+const ROOM_TYPE = {
+  STANDARD: "standard",
+  VIP: "vip",
+  IMAX: "imax",
+  COUPLE: "couple",
+};
 
 const RoomSchema = new mongoose.Schema(
   {
@@ -93,67 +120,62 @@ const RoomSchema = new mongoose.Schema(
       required: [true, "Tên phòng chiếu là bắt buộc"],
       trim: true,
     },
-    screenLabel: {
+    roomType: {
       type: String,
-      default: "MÀN HÌNH",
-      trim: true,
+      enum: {
+        values: Object.values(ROOM_TYPE),
+        message: "Loại phòng không hợp lệ: {VALUE}",
+      },
+      default: ROOM_TYPE.STANDARD,
     },
     totalRows: {
       type: Number,
-      required: [true, "Tổng số hàng là bắt buộc"],
-      min: [1, "Tổng số hàng phải lớn hơn 0"],
+      default: 0,
     },
     totalColumns: {
       type: Number,
-      required: [true, "Tổng số cột là bắt buộc"],
-      min: [1, "Tổng số cột phải lớn hơn 0"],
+      default: 0,
     },
     activeSeatCount: {
       type: Number,
       default: 0,
-      min: [0, "Số ghế khả dụng không hợp lệ"],
     },
-    seatLayout: {
-      type: [[RoomSeatSchema]],
-      required: [true, "Sơ đồ ghế là bắt buộc"],
-      validate: {
-        validator: function (value) {
-          return (
-            Array.isArray(value) &&
-            value.length === this.totalRows &&
-            value.every(
-              (row) =>
-                Array.isArray(row) &&
-                row.length === this.totalColumns &&
-                row.every(
-                  (cell) =>
-                    cell &&
-                    cell.coordinate &&
-                    typeof cell.coordinate.coordinateLabel === "string",
-                ),
-            )
-          );
-        },
-        message:
-          "Sơ đồ ghế phải khớp tổng số hàng/cột và từng ô phải có toạ độ thật",
-      },
-    },
+    seatLayout: [RoomRowSchema],
   },
   {
     timestamps: true,
     versionKey: false,
-  },
+  }
 );
 
-RoomSchema.pre("validate", function () {
-  if (Array.isArray(this.seatLayout)) {
-    this.activeSeatCount = this.seatLayout
-      .flat()
-      .filter((cell) => cell && cell.cellType === SEAT_CELL_TYPE.SEAT).length;
+RoomSchema.pre("save", async function () {
+  if (this.seatLayout && Array.isArray(this.seatLayout)) {
+    this.totalRows = this.seatLayout.length;
+    
+    let maxCols = 0;
+    let count = 0;
+    
+    this.seatLayout.forEach(row => {
+      if (row.seats.length > maxCols) {
+        maxCols = row.seats.length;
+      }
+      row.seats.forEach(seat => {
+        // activeSeatCount logic:
+        // - regular, vip, couple: add capacity if active
+        // - empty, aisle, disabled, space: NOT counted
+        const isSellable = [SEAT_TYPE.REGULAR, SEAT_TYPE.VIP, SEAT_TYPE.COUPLE].includes(seat.type);
+        if (seat.status === SEAT_STATUS.ACTIVE && isSellable) {
+          count += (seat.capacity || 0);
+        }
+      });
+    });
+    
+    this.totalColumns = maxCols;
+    this.activeSeatCount = count;
   }
-
 });
 
 RoomSchema.index({ cinemaId: 1, name: 1 });
 
 module.exports = mongoose.model("Room", RoomSchema);
+

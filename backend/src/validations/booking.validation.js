@@ -4,15 +4,15 @@ const { Joi, strictObject, objectId } = require('./common.validation');
 const bookingStatusValues = Booking.schema.path('status').enumValues;
 const paymentStatusValues = Booking.schema.path('paymentStatus').enumValues;
 
-const seatCoordinateSchema = Joi.string()
+const seatCodeSchema = Joi.string()
   .trim()
   .uppercase()
   .pattern(/^[A-Z]+[1-9]\d*$/)
   .required()
-  .label('seatCoordinate')
+  .label('seatCode')
   .messages({
     'string.pattern.base':
-      'seatCoordinate must use a valid seat coordinate format such as A1',
+      'seatCode must use a valid seat format such as A1',
   });
 
 const bookingIdParamSchema = strictObject({
@@ -22,16 +22,16 @@ const bookingIdParamSchema = strictObject({
 const createBookingSchema = {
   body: strictObject({
     showtimeId: objectId.required().label('showtimeId'),
-    seatCoordinates: Joi.array()
-      .items(seatCoordinateSchema)
+    seatCodes: Joi.array()
+      .items(seatCodeSchema)
       .min(1)
       .unique()
       .required()
-      .label('seatCoordinates')
+      .label('seatCodes')
       .messages({
-        'array.base': 'seatCoordinates must be an array',
-        'array.min': 'seatCoordinates must contain at least 1 seat',
-        'array.unique': 'seatCoordinates must not contain duplicate values',
+        'array.base': 'seatCodes must be an array',
+        'array.min': 'seatCodes must contain at least 1 seat',
+        'array.unique': 'seatCodes must not contain duplicate values',
       }),
   }),
 };

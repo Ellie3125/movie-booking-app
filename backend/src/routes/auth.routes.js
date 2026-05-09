@@ -51,11 +51,17 @@ router.post(
   authMiddleware.verifyAccessToken,
   authController.logoutAllDevices
 );
-router.post(
+router.patch(
   '/change-password',
   authMiddleware.verifyAccessToken,
   validate(authValidation.changePasswordSchema),
   authController.changePassword
+);
+router.patch(
+  '/update-profile',
+  authMiddleware.verifyAccessToken,
+  validate(authValidation.updateProfileSchema),
+  authController.updateProfile
 );
 router.post(
   '/admins',

@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
-const { TICKET_STATUS } = require('../constants/payment.constants');
-
-const SEAT_TYPE = {
-  STANDARD: 'standard',
-  COUPLE: 'couple',
-};
+const { TICKET_STATUS, SEAT_TYPE } = require('../constants/payment.constants');
 
 const TicketSeatSchema = new mongoose.Schema(
   {
-    seatCoordinate: {
+    seatCode: {
       type: String,
-      required: [true, 'Toạ độ thật của ghế là bắt buộc'],
+      required: [true, 'Mã thật của ghế là bắt buộc'],
       trim: true,
       uppercase: true,
     },
@@ -27,6 +22,10 @@ const TicketSeatSchema = new mongoose.Schema(
         message: 'Loại ghế không hợp lệ: {VALUE}',
       },
       required: [true, 'Loại ghế là bắt buộc'],
+    },
+    coupleGroupId: {
+      type: String,
+      default: null,
     },
   },
   {
@@ -98,7 +97,7 @@ const TicketSchema = new mongoose.Schema(
   }
 );
 
-TicketSchema.index({ bookingId: 1, 'seat.seatCoordinate': 1 }, { unique: true });
+TicketSchema.index({ bookingId: 1, 'seat.seatCode': 1 }, { unique: true });
 TicketSchema.index({ userId: 1, createdAt: -1 });
 TicketSchema.index({ showtimeId: 1, status: 1 });
 

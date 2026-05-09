@@ -18,7 +18,7 @@ import {
   formatLocationName,
   formatPaymentMethod,
   formatRoomName,
-  formatScreenLabel,
+  formatRoomType,
 } from '@/lib/user-display';
 
 const formatDateTime = (value: string) =>
@@ -30,8 +30,11 @@ const formatDateTime = (value: string) =>
     year: 'numeric',
   });
 
-const formatSeatType = (value: 'standard' | 'couple') =>
-  value === 'couple' ? 'Ghế đôi' : 'Ghế đơn';
+const formatSeatType = (value: string) => {
+  if (value === 'couple') return 'Ghế đôi';
+  if (value === 'vip') return 'Ghế VIP';
+  return 'Ghế đơn';
+};
 
 export default function BookingDetailScreen() {
   const { bookingId } = useLocalSearchParams<{ bookingId?: string }>();
@@ -91,7 +94,7 @@ export default function BookingDetailScreen() {
             <View style={styles.detailRow}>
               <Text style={[styles.detailLabel, { color: colors.muted }]}>Phòng</Text>
               <Text style={[styles.detailValue, { color: colors.text }]}>
-                {formatRoomName(room.name)} • {formatScreenLabel(room.screenLabel)}
+                {formatRoomName(room.name)} • {formatRoomType(room.roomType)}
               </Text>
             </View>
             <View style={styles.detailRow}>
@@ -127,11 +130,11 @@ export default function BookingDetailScreen() {
           <SectionTitle tone="user" title="Ghế và thanh toán" />
           <SectionCard tone="user">
             {booking.seats.map((seat) => (
-              <View key={seat.seatCoordinate} style={styles.seatRow}>
+              <View key={seat.seatCode} style={styles.seatRow}>
                 <View style={styles.seatCopy}>
                   <Text style={[styles.seatLabel, { color: colors.text }]}>Ghế {seat.seatLabel}</Text>
                   <Text style={[styles.seatMeta, { color: colors.muted }]}>
-                    {seat.seatCoordinate} • {formatSeatType(seat.seatType)}
+                    {seat.seatCode} • {formatSeatType(seat.seatType as any)}
                   </Text>
                 </View>
                 <Text style={[styles.seatPrice, { color: colors.text }]}>

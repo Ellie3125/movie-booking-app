@@ -5,7 +5,6 @@ import {
   useState,
   type PropsWithChildren,
 } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   API_BASE_URL,
@@ -29,6 +28,7 @@ import {
   fetchShowtimeById,
   fetchShowtimes,
   loginUser,
+  logoutUser,
   payBookingBill,
   registerUser,
   updateMovie as updateMovieRequest,
@@ -42,11 +42,17 @@ import {
   type BackendUser,
 } from '@/lib/backend-api';
 import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
+import {
+  clearTokens,
+  getAccessToken,
+  getRefreshToken,
+  saveTokens,
+} from '@/lib/tokenStorage';
 
 export type MovieStatus = 'now_showing' | 'coming_soon' | 'ended';
-export type SeatCellType = 'seat' | 'empty';
-export type SeatType = 'standard' | 'couple';
-export type SeatReservationStatus = 'available' | 'held' | 'reserved' | 'paid';
+export type SeatCellType = 'seat' | 'space';
+export type SeatType = 'standard' | 'vip' | 'couple' | 'disabled' | 'space';
+export type SeatReservationStatus = 'available' | 'held' | 'booked' | 'disabled';
 export type BookingStatus = 'held' | 'paid' | 'cancelled';
 export type PaymentMethod = 'momo_sandbox' | 'vnpay_sandbox' | 'mock_gateway';
 export type AuthStatus = 'bootstrapping' | 'authenticated' | 'unauthenticated';
@@ -84,23 +90,24 @@ export type Cinema = {
 };
 
 export type RoomSeat = {
-  id: string;
-  cellType: SeatCellType;
-  coordinate: {
-    rowIndex: number;
-    columnIndex: number;
-    coordinateLabel: string;
-  };
-  seatLabel: string | null;
-  seatType: SeatType | null;
-  priceModifier: number;
+  seatCode: string;
+  label?: string;
+  rowLabel: string;
+  rowIndex: number;
+  columnIndex: number;
+  type: SeatType;
+  status: 'active' | 'disabled';
+  priceType?: 'standard' | 'vip' | 'couple';
+  capacity: number;
+  size: number;
+  coupleGroupId: string | null;
 };
 
 export type Room = {
   id: string;
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: 'standard' | 'vip' | 'gold' | 'imax';
   totalRows: number;
   totalColumns: number;
   activeSeatCount: number;
@@ -108,15 +115,20 @@ export type Room = {
 };
 
 export type ShowtimeSeatState = {
-  seatCoordinate: string;
-  seatLabel: string;
-  seatType: SeatType;
+  seatCode: string;
+  label: string;
+  rowLabel: string;
+  rowIndex: number;
+  columnIndex: number;
+  type: SeatType;
+  capacity: number;
+  coupleGroupId: string | null;
   status: SeatReservationStatus;
   userId: string | null;
   bookingId: string | null;
   heldAt: string | null;
   holdExpiresAt: string | null;
-  paidAt: string | null;
+  bookedAt: string | null;
 };
 
 export type Showtime = {
@@ -133,11 +145,12 @@ export type Showtime = {
 };
 
 export type BookingSeatSnapshot = {
-  seatCoordinate: string;
+  seatCode: string;
   seatLabel: string;
   seatType: SeatType;
-  status: Extract<SeatReservationStatus, 'held' | 'paid'>;
+  status: Extract<SeatReservationStatus, 'held' | 'booked'>;
   price: number;
+  coupleGroupId: string | null;
 };
 
 export type Booking = {
@@ -161,7 +174,7 @@ export type DraftCheckout = {
   showtimeId: string;
   movieId: string;
   roomId: string;
-  seatCoordinates: string[];
+  seatCodes: string[];
   seats: BookingSeatSnapshot[];
   totalPrice: number;
   heldUntil: string;
@@ -181,7 +194,7 @@ type RoomInput = {
   id?: string;
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: 'standard' | 'vip' | 'gold' | 'imax';
   totalRows: number;
   totalColumns: number;
 };
@@ -273,7 +286,7 @@ type AppStoreValue = {
     input: ShowtimeScheduleInput,
   ) => Promise<ShowtimeScheduleMutationResult>;
   saveRoomLayout: (input: SaveRoomLayoutInput) => Promise<RoomMutationResult>;
-  startCheckout: (showtimeId: string, seatCoordinates: string[]) => Promise<{
+  startCheckout: (showtimeId: string, seatCodes: string[]) => Promise<{
     ok: boolean;
     error?: string;
   }>;
@@ -281,12 +294,12 @@ type AppStoreValue = {
   confirmDraftCheckout: (paymentMethod: PaymentMethod) => Promise<Booking | null>;
 };
 
-const seatPriceMap: Record<SeatType, number> = {
-  couple: 135000,
+const seatPriceMap: Record<string, number> = {
+  couple: 180000,
+  vip: 120000,
   standard: 90000,
 };
 
-const AUTH_TOKEN_STORAGE_KEY = 'beatcinema.auth-token';
 const ADMIN_ACCOUNT_LOGIN_MESSAGE =
   'Tài khoản quản trị vui lòng đăng nhập tại trang admin';
 
@@ -310,31 +323,32 @@ const createSeatCell = (
   rowIndex: number,
   columnIndex: number,
   seatNumber: number,
-  seatType: SeatType,
+  type: SeatType,
 ): RoomSeat => ({
-  id: `seat_${rowLetter(rowIndex)}${columnIndex + 1}`,
-  cellType: 'seat',
-  coordinate: {
-    rowIndex,
-    columnIndex,
-    coordinateLabel: `${rowLetter(rowIndex)}${columnIndex + 1}`,
-  },
-  seatLabel: `${rowLetter(rowIndex)}${seatNumber}`,
-  seatType,
-  priceModifier: seatType === 'couple' ? 1.5 : 1,
+  seatCode: `${rowLetter(rowIndex)}${columnIndex + 1}`,
+  rowLabel: rowLetter(rowIndex),
+  rowIndex,
+  columnIndex,
+  type,
+  label: type === 'couple' ? `${rowLetter(rowIndex)}${seatNumber}-${rowLetter(rowIndex)}${seatNumber + 1}` : `${rowLetter(rowIndex)}${seatNumber}`,
+  status: 'active',
+  priceType: type === 'couple' ? 'couple' : (type === 'vip' ? 'vip' : 'standard'),
+  capacity: type === 'couple' ? 2 : 1,
+  size: 1,
+  coupleGroupId: null,
 });
 
-const createEmptyCell = (rowIndex: number, columnIndex: number): RoomSeat => ({
-  id: `empty_${rowLetter(rowIndex)}${columnIndex + 1}`,
-  cellType: 'empty',
-  coordinate: {
-    rowIndex,
-    columnIndex,
-    coordinateLabel: `${rowLetter(rowIndex)}${columnIndex + 1}`,
-  },
-  seatLabel: null,
-  seatType: null,
-  priceModifier: 0,
+const createSpaceCell = (rowIndex: number, columnIndex: number): RoomSeat => ({
+  seatCode: `space_${rowLetter(rowIndex)}${columnIndex + 1}`,
+  rowLabel: rowLetter(rowIndex),
+  rowIndex,
+  columnIndex,
+  type: 'space',
+  label: '',
+  status: 'active',
+  capacity: 0,
+  size: 1,
+  coupleGroupId: null,
 });
 
 const buildSeatLayout = ({
@@ -359,14 +373,18 @@ const buildSeatLayout = ({
       const coordinate = `${rowLetter(rowIndex)}${columnIndex + 1}`;
 
       if (hiddenSet.has(coordinate)) {
-        row.push(createEmptyCell(rowIndex, columnIndex));
+        row.push(createSpaceCell(rowIndex, columnIndex));
         continue;
       }
 
-      visibleSeatIndex += 1;
       const inferredSeatType = seatTypeOverrides[coordinate] ?? 'standard';
-
-      row.push(createSeatCell(rowIndex, columnIndex, visibleSeatIndex, inferredSeatType));
+      row.push(createSeatCell(rowIndex, columnIndex, visibleSeatIndex + 1, inferredSeatType));
+      
+      if (inferredSeatType === 'couple') {
+        visibleSeatIndex += 2;
+      } else {
+        visibleSeatIndex += 1;
+      }
     }
 
     layout.push(row);
@@ -376,13 +394,13 @@ const buildSeatLayout = ({
 };
 
 const flattenRoomSeats = (room: Room) =>
-  room.seatLayout.flat().filter((seat) => seat.cellType === 'seat');
+  room.seatLayout.flat().filter((seat) => seat.type !== 'space');
 
 const buildRoom = ({
   id,
   cinemaId,
   name,
-  screenLabel,
+  roomType,
   totalRows,
   totalColumns,
   hiddenCoordinates = [],
@@ -391,7 +409,7 @@ const buildRoom = ({
   id: string;
   cinemaId: string;
   name: string;
-  screenLabel: string;
+  roomType: string;
   totalRows: number;
   totalColumns: number;
   hiddenCoordinates?: string[];
@@ -408,10 +426,10 @@ const buildRoom = ({
     id,
     cinemaId,
     name,
-    screenLabel,
+    roomType: roomType as 'standard' | 'vip' | 'gold' | 'imax',
     totalRows,
     totalColumns,
-    activeSeatCount: seatLayout.flat().filter((seat) => seat.cellType === 'seat').length,
+    activeSeatCount: seatLayout.flat().reduce((acc, seat) => acc + (seat.cellType !== 'space' ? seat.capacity : 0), 0),
     seatLayout,
   };
 };
@@ -419,58 +437,64 @@ const buildRoom = ({
 const getHiddenCoordinatesFromRoom = (room: Room) =>
   room.seatLayout
     .flat()
-    .filter((seat) => seat.cellType === 'empty')
-    .map((seat) => seat.coordinate.coordinateLabel.toUpperCase());
+    .filter((seat) => seat.type === 'space')
+    .map((seat) => seat.seatCode.toUpperCase());
 
 const buildSeatStates = (
   room: Room,
-  overrides: Array<Partial<ShowtimeSeatState> & { seatCoordinate: string }> = [],
+  overrides: Array<Partial<ShowtimeSeatState> & { seatCode: string }> = [],
 ) => {
   const overrideMap = new Map(
-    overrides.map((item) => [item.seatCoordinate.toUpperCase(), item]),
+    overrides.map((item) => [item.seatCode.toUpperCase(), item]),
   );
 
   return flattenRoomSeats(room).map((seat) => {
-    const coordinate = seat.coordinate.coordinateLabel.toUpperCase();
+    const coordinate = seat.seatCode.toUpperCase();
     const override = overrideMap.get(coordinate);
 
     return {
-      seatCoordinate: coordinate,
-      seatLabel: seat.seatLabel ?? coordinate,
-      seatType: seat.seatType ?? 'standard',
-      status: override?.status ?? 'available',
+      seatCode: coordinate,
+      label: seat.label ?? coordinate,
+      rowLabel: seat.rowLabel,
+      rowIndex: seat.rowIndex,
+      columnIndex: seat.columnIndex,
+      type: seat.type,
+      capacity: seat.capacity,
+      coupleGroupId: seat.coupleGroupId,
+      status: (override?.status ?? 'available') as SeatReservationStatus,
       userId: override?.userId ?? null,
       bookingId: override?.bookingId ?? null,
       heldAt: override?.heldAt ?? null,
       holdExpiresAt: override?.holdExpiresAt ?? null,
-      paidAt: override?.paidAt ?? null,
+      bookedAt: override?.bookedAt ?? null,
     } satisfies ShowtimeSeatState;
   });
 };
 
-const findRoomSeat = (room: Room, seatCoordinate: string) =>
+const findRoomSeat = (room: Room, seatCode: string) =>
   flattenRoomSeats(room).find(
     (seat) =>
-      seat.coordinate.coordinateLabel.toUpperCase() === seatCoordinate.toUpperCase(),
+      seat.seatCode.toUpperCase() === seatCode.toUpperCase(),
   );
 
 const seatSnapshotFromRoom = (
   room: Room,
-  seatCoordinate: string,
-  status: Extract<SeatReservationStatus, 'held' | 'paid'>,
+  seatCode: string,
+  status: Extract<SeatReservationStatus, 'held' | 'booked'>,
 ): BookingSeatSnapshot | null => {
-  const seat = findRoomSeat(room, seatCoordinate);
+  const seat = findRoomSeat(room, seatCode);
 
-  if (!seat || seat.cellType !== 'seat' || !seat.seatType || !seat.seatLabel) {
+  if (!seat || seat.type === 'space' || !seat.label) {
     return null;
   }
 
   return {
-    seatCoordinate: seat.coordinate.coordinateLabel.toUpperCase(),
-    seatLabel: seat.seatLabel,
-    seatType: seat.seatType,
+    seatCode: seat.seatCode.toUpperCase(),
+    seatLabel: seat.label,
+    seatType: seat.type as 'standard' | 'couple' | 'vip',
     status,
-    price: seatPriceMap[seat.seatType],
+    price: seatPriceMap[seat.type] || 0,
+    coupleGroupId: seat.coupleGroupId,
   };
 };
 
@@ -657,7 +681,7 @@ const initialRooms: Room[] = [
     id: 'room_ba_trieu_1',
     cinemaId: 'cinema_cgv_vincom_ba_trieu',
     name: 'Room 1',
-    screenLabel: 'SCREEN 01',
+    roomType: 'standard',
     totalRows: 6,
     totalColumns: 10,
     hiddenCoordinates: ['A5', 'A6', 'B6', 'C5', 'C6', 'D6', 'E6', 'F5'],
@@ -672,7 +696,7 @@ const initialRooms: Room[] = [
     id: 'room_aeon_2',
     cinemaId: 'cinema_cgv_aeon_long_bien',
     name: 'Room 2',
-    screenLabel: 'SCREEN FAMILY',
+    roomType: 'standard',
     totalRows: 5,
     totalColumns: 9,
     hiddenCoordinates: ['A5', 'B5', 'C5', 'D5', 'E5'],
@@ -685,7 +709,7 @@ const initialRooms: Room[] = [
     id: 'room_govap_gold',
     cinemaId: 'cinema_lotte_govap',
     name: 'Gold Class',
-    screenLabel: 'PREMIUM SCREEN',
+    roomType: 'gold',
     totalRows: 4,
     totalColumns: 8,
     hiddenCoordinates: ['A4', 'B4', 'C4', 'D4'],
@@ -700,7 +724,7 @@ const initialRooms: Room[] = [
     id: 'room_ba_trieu_imax',
     cinemaId: 'cinema_cgv_vincom_ba_trieu',
     name: 'IMAX Hall',
-    screenLabel: 'SCREEN IMAX',
+    roomType: 'imax',
     totalRows: 8,
     totalColumns: 12,
     hiddenCoordinates: [
@@ -733,7 +757,7 @@ const initialRooms: Room[] = [
     id: 'room_aeon_max',
     cinemaId: 'cinema_cgv_aeon_long_bien',
     name: 'Room 5',
-    screenLabel: 'SCREEN MAX',
+    roomType: 'imax',
     totalRows: 8,
     totalColumns: 12,
     hiddenCoordinates: [
@@ -766,7 +790,7 @@ const initialRooms: Room[] = [
     id: 'room_beta_1',
     cinemaId: 'cinema_beta_my_dinh',
     name: 'Room 1',
-    screenLabel: 'SCREEN BETA',
+    roomType: 'standard',
     totalRows: 6,
     totalColumns: 10,
     hiddenCoordinates: ['A5', 'A6', 'B6', 'C5', 'C6', 'D6', 'E6', 'F5'],
@@ -781,7 +805,7 @@ const initialRooms: Room[] = [
     id: 'room_beta_2',
     cinemaId: 'cinema_beta_my_dinh',
     name: 'Room 2',
-    screenLabel: 'SCREEN COSY',
+    roomType: 'standard',
     totalRows: 5,
     totalColumns: 8,
     hiddenCoordinates: ['A4', 'B4', 'C4', 'D4', 'E4'],
@@ -794,7 +818,7 @@ const initialRooms: Room[] = [
     id: 'room_govap_standard',
     cinemaId: 'cinema_lotte_govap',
     name: 'Standard 2',
-    screenLabel: 'SCREEN 02',
+    roomType: 'standard',
     totalRows: 5,
     totalColumns: 8,
     hiddenCoordinates: ['A4', 'B4', 'C4', 'D4', 'E4'],
@@ -807,7 +831,7 @@ const initialRooms: Room[] = [
     id: 'room_danang_3',
     cinemaId: 'cinema_cgv_vincom_da_nang',
     name: 'Room 3',
-    screenLabel: 'SCREEN 03',
+    roomType: 'standard',
     totalRows: 6,
     totalColumns: 10,
     hiddenCoordinates: ['A5', 'A6', 'B6', 'C5', 'C6', 'D6', 'E6', 'F5'],
@@ -822,7 +846,7 @@ const initialRooms: Room[] = [
     id: 'room_danang_premium',
     cinemaId: 'cinema_cgv_vincom_da_nang',
     name: 'Premium Hall',
-    screenLabel: 'SCREEN PREMIUM',
+    roomType: 'vip',
     totalRows: 5,
     totalColumns: 6,
     hiddenCoordinates: ['A3', 'B3', 'C3', 'D3', 'E3'],
@@ -850,29 +874,29 @@ const initialShowtimes: Showtime[] = [
     basePrice: 90000,
     seatStates: buildSeatStates(roomLookup.room_ba_trieu_1, [
       {
-        seatCoordinate: 'A2',
-        status: 'paid',
+        seatCode: 'A2',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_dune_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'A3',
-        status: 'paid',
+        seatCode: 'A3',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_dune_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'B3',
+        seatCode: 'B3',
         status: 'held',
         userId: 'user_tran_thi_b',
         heldAt: toIsoDate(new Date()),
         holdExpiresAt: toIsoDate(new Date(Date.now() + 5 * 60 * 1000)),
       },
       {
-        seatCoordinate: 'F10',
-        status: 'reserved',
+        seatCode: 'F10',
+        status: 'booked',
         userId: 'user_admin',
       },
     ]),
@@ -901,7 +925,7 @@ const initialShowtimes: Showtime[] = [
     basePrice: 80000,
     seatStates: buildSeatStates(roomLookup.room_aeon_2, [
       {
-        seatCoordinate: 'D8',
+        seatCode: 'D8',
         status: 'held',
         userId: 'user_tran_thi_b',
         heldAt: toIsoDate(new Date()),
@@ -921,18 +945,18 @@ const initialShowtimes: Showtime[] = [
     basePrice: 110000,
     seatStates: buildSeatStates(roomLookup.room_govap_gold, [
       {
-        seatCoordinate: 'C7',
-        status: 'paid',
+        seatCode: 'C7',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_interstellar_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'C8',
-        status: 'paid',
+        seatCode: 'C8',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_interstellar_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
     ]),
   },
@@ -948,29 +972,29 @@ const initialShowtimes: Showtime[] = [
     basePrice: 105000,
     seatStates: buildSeatStates(roomLookup.room_ba_trieu_imax, [
       {
-        seatCoordinate: 'B2',
-        status: 'paid',
+        seatCode: 'B2',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_dune_imax_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'B3',
-        status: 'paid',
+        seatCode: 'B3',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_dune_imax_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'E10',
+        seatCode: 'E10',
         status: 'held',
         userId: 'user_tran_thi_b',
         heldAt: toIsoDate(new Date()),
         holdExpiresAt: toIsoDate(new Date(Date.now() + 7 * 60 * 1000)),
       },
       {
-        seatCoordinate: 'H10',
-        status: 'reserved',
+        seatCode: 'H10',
+        status: 'booked',
         userId: 'user_admin',
       },
     ]),
@@ -987,22 +1011,22 @@ const initialShowtimes: Showtime[] = [
     basePrice: 115000,
     seatStates: buildSeatStates(roomLookup.room_ba_trieu_imax, [
       {
-        seatCoordinate: 'G10',
-        status: 'paid',
+        seatCode: 'G10',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_deadpool_ba_trieu_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'G11',
-        status: 'paid',
+        seatCode: 'G11',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_deadpool_ba_trieu_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'H12',
-        status: 'reserved',
+        seatCode: 'H12',
+        status: 'booked',
         userId: 'user_admin',
       },
     ]),
@@ -1019,22 +1043,22 @@ const initialShowtimes: Showtime[] = [
     basePrice: 85000,
     seatStates: buildSeatStates(roomLookup.room_aeon_max, [
       {
-        seatCoordinate: 'C2',
-        status: 'paid',
+        seatCode: 'C2',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_inside_out_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'C3',
-        status: 'paid',
+        seatCode: 'C3',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_inside_out_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'A2',
-        status: 'reserved',
+        seatCode: 'A2',
+        status: 'booked',
         userId: 'user_admin',
       },
     ]),
@@ -1051,19 +1075,19 @@ const initialShowtimes: Showtime[] = [
     basePrice: 98000,
     seatStates: buildSeatStates(roomLookup.room_aeon_max, [
       {
-        seatCoordinate: 'D9',
-        status: 'paid',
+        seatCode: 'D9',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'D10',
-        status: 'paid',
+        seatCode: 'D10',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'F9',
+        seatCode: 'F9',
         status: 'held',
         userId: 'user_tran_thi_b',
         heldAt: toIsoDate(new Date()),
@@ -1083,7 +1107,7 @@ const initialShowtimes: Showtime[] = [
     basePrice: 78000,
     seatStates: buildSeatStates(roomLookup.room_beta_2, [
       {
-        seatCoordinate: 'C2',
+        seatCode: 'C2',
         status: 'held',
         userId: 'user_nguyen_van_a',
         heldAt: toIsoDate(new Date()),
@@ -1103,22 +1127,22 @@ const initialShowtimes: Showtime[] = [
     basePrice: 95000,
     seatStates: buildSeatStates(roomLookup.room_beta_1, [
       {
-        seatCoordinate: 'A2',
-        status: 'paid',
+        seatCode: 'A2',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_batman_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'A3',
-        status: 'paid',
+        seatCode: 'A3',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_batman_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'F10',
-        status: 'reserved',
+        seatCode: 'F10',
+        status: 'booked',
         userId: 'user_admin',
       },
     ]),
@@ -1135,21 +1159,21 @@ const initialShowtimes: Showtime[] = [
     basePrice: 92000,
     seatStates: buildSeatStates(roomLookup.room_govap_standard, [
       {
-        seatCoordinate: 'B2',
-        status: 'paid',
+        seatCode: 'B2',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_godzilla_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'B3',
-        status: 'paid',
+        seatCode: 'B3',
+        status: 'booked',
         userId: 'user_nguyen_van_a',
         bookingId: 'booking_godzilla_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'D7',
+        seatCode: 'D7',
         status: 'held',
         userId: 'user_tran_thi_b',
         heldAt: toIsoDate(new Date()),
@@ -1169,22 +1193,22 @@ const initialShowtimes: Showtime[] = [
     basePrice: 125000,
     seatStates: buildSeatStates(roomLookup.room_govap_gold, [
       {
-        seatCoordinate: 'C7',
-        status: 'paid',
+        seatCode: 'C7',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_deadpool_gold_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'C8',
-        status: 'paid',
+        seatCode: 'C8',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_deadpool_gold_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'A7',
-        status: 'reserved',
+        seatCode: 'A7',
+        status: 'booked',
         userId: 'user_admin',
       },
     ]),
@@ -1201,7 +1225,7 @@ const initialShowtimes: Showtime[] = [
     basePrice: 95000,
     seatStates: buildSeatStates(roomLookup.room_danang_3, [
       {
-        seatCoordinate: 'A4',
+        seatCode: 'A4',
         status: 'held',
         userId: 'user_tran_thi_b',
         heldAt: toIsoDate(new Date()),
@@ -1233,18 +1257,18 @@ const initialShowtimes: Showtime[] = [
     basePrice: 130000,
     seatStates: buildSeatStates(roomLookup.room_danang_premium, [
       {
-        seatCoordinate: 'D5',
-        status: 'paid',
+        seatCode: 'D5',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_dune_danang_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
       {
-        seatCoordinate: 'D6',
-        status: 'paid',
+        seatCode: 'D6',
+        status: 'booked',
         userId: 'user_tran_thi_b',
         bookingId: 'booking_dune_danang_paid',
-        paidAt: toIsoDate(new Date()),
+        bookedAt: toIsoDate(new Date()),
       },
     ]),
   },
@@ -1426,11 +1450,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_dune_ba_trieu_evening',
     roomId: 'room_ba_trieu_1',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_ba_trieu_1, 'A2', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_ba_trieu_1, 'A3', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_ba_trieu_1, 'A2', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_ba_trieu_1, 'A3', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 180000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'momo_sandbox',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1442,11 +1466,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_interstellar_govap_night',
     roomId: 'room_govap_gold',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C7', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C8', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C7', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C8', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 270000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'vnpay_sandbox',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1458,11 +1482,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_dune_ba_trieu_imax_afternoon',
     roomId: 'room_ba_trieu_imax',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'B2', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'B3', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'B2', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'B3', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 180000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'mock_gateway',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1474,11 +1498,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_deadpool_ba_trieu_late',
     roomId: 'room_ba_trieu_imax',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'G10', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'G11', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'G10', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_ba_trieu_imax, 'G11', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 270000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'momo_sandbox',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1490,11 +1514,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_inside_out_aeon_afternoon',
     roomId: 'room_aeon_max',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_aeon_max, 'C2', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_aeon_max, 'C3', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_aeon_max, 'C2', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_aeon_max, 'C3', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 180000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'mock_gateway',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1506,11 +1530,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_batman_beta_evening',
     roomId: 'room_beta_1',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_beta_1, 'A2', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_beta_1, 'A3', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_beta_1, 'A2', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_beta_1, 'A3', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 180000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'vnpay_sandbox',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1522,11 +1546,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_godzilla_lotte_standard',
     roomId: 'room_govap_standard',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_govap_standard, 'B2', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_govap_standard, 'B3', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_govap_standard, 'B2', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_govap_standard, 'B3', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 180000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'mock_gateway',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1538,11 +1562,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_deadpool_lotte_gold',
     roomId: 'room_govap_gold',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C7', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C8', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C7', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_govap_gold, 'C8', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 270000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'momo_sandbox',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1554,11 +1578,11 @@ const initialBookings: Booking[] = [
     showtimeId: 'showtime_dune_danang_premium',
     roomId: 'room_danang_premium',
     seats: [
-      seatSnapshotFromRoom(roomLookup.room_danang_premium, 'D5', 'paid'),
-      seatSnapshotFromRoom(roomLookup.room_danang_premium, 'D6', 'paid'),
+      seatSnapshotFromRoom(roomLookup.room_danang_premium, 'D5', 'booked'),
+      seatSnapshotFromRoom(roomLookup.room_danang_premium, 'D6', 'booked'),
     ].filter(Boolean) as BookingSeatSnapshot[],
     totalPrice: 270000,
-    status: 'paid',
+    status: 'booked',
     paymentMethod: 'vnpay_sandbox',
     createdAt: toIsoDate(new Date()),
     paidAt: toIsoDate(new Date()),
@@ -1606,22 +1630,22 @@ const mapBackendRoom = (room: BackendRoom): Room => ({
   id: room._id,
   cinemaId: room.cinemaId,
   name: room.name,
-  screenLabel: room.screenLabel,
+  roomType: room.roomType,
   totalRows: room.totalRows,
   totalColumns: room.totalColumns,
   activeSeatCount: room.activeSeatCount,
   seatLayout: room.seatLayout.map((row) =>
-    row.map((cell) => ({
-      id: buildRoomSeatId(cell),
+    row.map((cell: any) => ({
+      seatCode: cell.coordinate.coordinateLabel.toUpperCase(),
       cellType: cell.cellType,
-      coordinate: {
-        rowIndex: cell.coordinate.rowIndex,
-        columnIndex: cell.coordinate.columnIndex,
-        coordinateLabel: cell.coordinate.coordinateLabel.toUpperCase(),
-      },
-      seatLabel: cell.seatLabel,
-      seatType: cell.seatType,
-      priceModifier: cell.priceModifier,
+      type: cell.seatType || 'space',
+      label: cell.seatLabel || '',
+      status: 'active',
+      priceType: cell.seatType,
+      capacity: cell.seatType === 'couple' ? 2 : (cell.cellType === 'seat' ? 1 : 0),
+      size: cell.seatType === 'couple' ? 2 : 1,
+      rowIndex: cell.coordinate.rowIndex,
+      columnIndex: cell.coordinate.columnIndex,
     })),
   ),
 });
@@ -1633,8 +1657,8 @@ const getMinimumSeatPrice = (room: Room | undefined) => {
 
   const prices = room.seatLayout
     .flat()
-    .filter((cell) => cell.cellType === 'seat' && cell.seatType)
-    .map((cell) => seatPriceMap[cell.seatType as SeatType]);
+    .filter((cell) => cell.cellType === 'seat' && cell.type)
+    .map((cell) => seatPriceMap[cell.type as SeatType]);
 
   return prices.length > 0 ? Math.min(...prices) : seatPriceMap.standard;
 };
@@ -1655,8 +1679,8 @@ const mapBackendShowtime = (
   seatStates: (showtime.seatStates || []).map((seatState) => ({
     seatCoordinate: seatState.seatCoordinate.toUpperCase(),
     seatLabel: seatState.seatLabel,
-    seatType: seatState.seatType,
-    status: seatState.status,
+    seatType: seatState.seatType as SeatType,
+    status: seatState.status as SeatReservationStatus,
     userId: seatState.userId,
     bookingId: seatState.bookingId,
     heldAt: seatState.heldAt,
@@ -1705,8 +1729,8 @@ const mapBackendBooking = (
   seats: booking.seats.map((seat) => ({
     seatCoordinate: seat.seatCoordinate.toUpperCase(),
     seatLabel: seat.seatLabel,
-    seatType: seat.seatType,
-    status: seat.status,
+    seatType: seat.seatType as SeatType,
+    status: seat.status as Extract<SeatReservationStatus, 'held' | 'paid'>,
     price: seat.price,
   })),
   totalPrice: booking.totalPrice,
@@ -1735,8 +1759,8 @@ const mapBackendDraftCheckout = (
     seats: booking.seats.map((seat) => ({
       seatCoordinate: seat.seatCoordinate.toUpperCase(),
       seatLabel: seat.seatLabel,
-      seatType: seat.seatType,
-      status: seat.status,
+      seatType: seat.seatType as SeatType,
+      status: seat.status as Extract<SeatReservationStatus, 'held' | 'paid'>,
       price: seat.price,
     })),
     totalPrice: booking.totalPrice,
@@ -1803,9 +1827,9 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setDraftCheckout(null);
   };
 
-  const persistAuthToken = async (token: string) => {
+  const persistAuthToken = async (token: string, refreshToken?: string) => {
     try {
-      await AsyncStorage.setItem(AUTH_TOKEN_STORAGE_KEY, token);
+      await saveTokens({ accessToken: token, refreshToken });
     } catch (error) {
       console.warn(getRequestErrorMessage(error, 'Không thể lưu phiên đăng nhập.'));
     }
@@ -1813,7 +1837,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
   const removePersistedAuthToken = async () => {
     try {
-      await AsyncStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+      await clearTokens();
     } catch (error) {
       console.warn(getRequestErrorMessage(error, 'Không thể xóa phiên đăng nhập đã lưu.'));
     }
@@ -1903,7 +1927,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
   const authenticateWithToken = async (
     token: string,
-    options: { persistSession?: boolean } = {},
+    options: { persistSession?: boolean; refreshToken?: string } = {},
   ) => {
     const remoteUser = await fetchCurrentUser(token);
     const nextUser = normalizeUserProfile(remoteUser);
@@ -1929,7 +1953,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setCurrentUser(nextUser);
     setAuthStatus('authenticated');
     if (persistSession) {
-      await persistAuthToken(token);
+      await persistAuthToken(token, options.refreshToken);
     } else {
       await removePersistedAuthToken();
     }
@@ -1949,6 +1973,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,
+        refreshToken: response.refreshToken,
       });
       return { ok: true, user };
     } catch (error) {
@@ -1973,6 +1998,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,
+        refreshToken: response.refreshToken,
       });
       return { ok: true, user };
     } catch (error) {
@@ -2025,6 +2051,21 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       }
     }
 
+    // Revoke session phía backend trước khi xóa token local
+    if (authToken) {
+      try {
+        const storedRefreshToken = await getRefreshToken();
+        if (storedRefreshToken) {
+          await logoutUser(authToken, storedRefreshToken);
+        }
+      } catch (error) {
+        // Backend có thể đã hết phiên, vẫn tiếp tục xóa local
+        console.warn(
+          getRequestErrorMessage(error, 'Không thể revoke session trên backend.'),
+        );
+      }
+    }
+
     await removePersistedAuthToken();
     clearSessionState();
     await loadPublicCatalogState();
@@ -2035,7 +2076,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
     const bootstrapAuthState = async () => {
       try {
-        const storedToken = await AsyncStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
+        const storedToken = await getAccessToken();
 
         if (!active) {
           return;
@@ -2048,7 +2089,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         }
 
         try {
-          await authenticateWithToken(storedToken);
+          const storedRefreshToken = await getRefreshToken();
+          await authenticateWithToken(storedToken, { refreshToken: storedRefreshToken ?? undefined });
         } catch (error) {
           console.warn(getRequestErrorMessage(error, 'Phiên đăng nhập đã hết hạn hoặc không hợp lệ.'));
           await removePersistedAuthToken();
@@ -2171,7 +2213,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         ? await updateRoomRequest(authToken, input.id, {
             cinemaId: input.cinemaId,
             name: input.name,
-            screenLabel: input.screenLabel,
+            roomType: input.roomType as 'standard' | 'vip' | 'gold' | 'imax',
             totalRows: input.totalRows,
             totalColumns: input.totalColumns,
             hiddenCoordinates,
@@ -2179,7 +2221,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         : await createRoomRequest(authToken, {
             cinemaId: input.cinemaId,
             name: input.name,
-            screenLabel: input.screenLabel,
+            roomType: input.roomType as 'standard' | 'vip' | 'gold' | 'imax',
             totalRows: input.totalRows,
             totalColumns: input.totalColumns,
             hiddenCoordinates,
@@ -2271,7 +2313,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       const remoteRoom = await updateRoomRequest(authToken, roomId, {
         cinemaId: room.cinemaId,
         name: room.name,
-        screenLabel: room.screenLabel,
+        roomType: room.roomType as 'standard' | 'vip' | 'gold' | 'imax',
         totalRows,
         totalColumns,
         hiddenCoordinates,

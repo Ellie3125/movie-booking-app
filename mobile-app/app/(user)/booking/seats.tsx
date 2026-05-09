@@ -34,7 +34,7 @@ import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
 import {
   formatLocationName,
   formatRoomName,
-  formatScreenLabel,
+  formatRoomType,
   formatShowtimeDayLabel,
   formatShowtimeTime,
 } from '@/lib/user-display';
@@ -201,19 +201,19 @@ export default function SeatSelectionScreen() {
     : 0;
   const seatVariantLookup = buildSeatVariantLookup(room);
   const seatLookup = new Map(
-    (room?.seatLayout.flat().filter((seat) => seat.cellType === 'seat') ?? []).map((seat) => [
-      seat.coordinate.coordinateLabel.toUpperCase(),
+    (room?.seatLayout.flat().filter((seat) => seat.type !== 'space') ?? []).map((seat) => [
+      seat.seatCode.toUpperCase(),
       seat,
     ]),
   );
   const selectedSeats = selectedCoordinates
-    .map((coordinate) => {
-      const seat = seatLookup.get(coordinate);
+    .map((code) => {
+      const seat = seatLookup.get(code);
 
       return {
-        coordinate,
-        label: seat?.seatLabel ?? coordinate,
-        variant: seatVariantLookup[coordinate] ?? 'standard',
+        code,
+        label: seat?.label ?? code,
+        variant: seatVariantLookup[code] ?? 'standard',
         price: (showtime?.basePrice ?? 0) + (seat?.priceModifier ?? 0),
         rowIndex: seat?.coordinate.rowIndex ?? Number.MAX_SAFE_INTEGER,
         columnIndex: seat?.coordinate.columnIndex ?? Number.MAX_SAFE_INTEGER,
@@ -253,18 +253,18 @@ export default function SeatSelectionScreen() {
       status: 'selected',
     },
     {
-      key: 'paid',
+      key: 'booked',
       label: 'Ghế đã bán',
       description: 'Đã thanh toán nên không thể chọn.',
       variant: 'standard',
-      status: 'paid',
+      status: 'booked',
     },
     {
-      key: 'reserved',
-      label: 'Ghế đặt trước',
-      description: 'Được hệ thống khóa hoặc reserve trước.',
+      key: 'disabled',
+      label: 'Ghế không dùng',
+      description: 'Bị khóa hoặc hư hỏng.',
       variant: 'standard',
-      status: 'reserved',
+      status: 'disabled',
     },
   ];
 
@@ -430,24 +430,50 @@ export default function SeatSelectionScreen() {
   const seatMapGesture = Gesture.Simultaneous(panGesture, pinchGesture);
 
   const handleSeatPress = (seat: RoomSeat) => {
-    if (seat.cellType === 'empty') {
+    if (seat.type === 'space' || seat.type === 'disabled') {
       return;
     }
 
-    const coordinate = seat.coordinate.coordinateLabel.toUpperCase();
-    const state = showtime?.seatStates.find((item) => item.seatCoordinate === coordinate);
+    const code = seat.seatCode.toUpperCase();
+    const state = showtime?.seatStates.find((item) => item.seatCode === code);
 
     if (state && state.status !== 'available') {
       return;
     }
 
-    const nextSelectedCoordinates = selectedCoordinates.includes(coordinate)
-      ? selectedCoordinates.filter((item) => item !== coordinate)
-      : [...selectedCoordinates, coordinate];
+    let nextSelectedCodes = [...selectedCoordinates];
+    
+    // Couple seat logic
+    if (seat.type === 'couple' && seat.coupleGroupId) {
+      const groupSeats = Array.from(seatLookup.values()).filter(
+        (s) => s.coupleGroupId === seat.coupleGroupId
+      );
+      const groupCodes = groupSeats.map((s) => s.seatCode.toUpperCase());
+      
+      const isRemoving = selectedCoordinates.includes(code);
+      
+      if (isRemoving) {
+        nextSelectedCodes = selectedCoordinates.filter(
+          (c) => !groupCodes.includes(c)
+        );
+      } else {
+        // Add all seats in group
+        const codesToAdd = groupCodes.filter((c) => !selectedCoordinates.includes(c));
+        nextSelectedCodes = [...selectedCoordinates, ...codesToAdd];
+      }
+    } else {
+      // Regular seat logic
+      if (selectedCoordinates.includes(code)) {
+        nextSelectedCodes = selectedCoordinates.filter((item) => item !== code);
+      } else {
+        nextSelectedCodes = [...selectedCoordinates, code];
+      }
+    }
+
     const edgeSeatConflict = getEdgeSeatSelectionConflict(
       room?.seatLayout ?? [],
       showtime?.seatStates ?? [],
-      nextSelectedCoordinates,
+      nextSelectedCodes,
     );
 
     if (edgeSeatConflict) {
@@ -457,7 +483,7 @@ export default function SeatSelectionScreen() {
 
     setSelectionNotice('');
     setError('');
-    setSelectedCoordinates(nextSelectedCoordinates);
+    setSelectedCoordinates(nextSelectedCodes);
   };
 
   const handleContinue = async () => {
@@ -518,7 +544,7 @@ export default function SeatSelectionScreen() {
             title={`${movie.title} • ${formatRoomName(room.name)}`}
             description={`${cinema.brand} ${formatLocationName(cinema.name)} • ${formatShowtimeDayLabel(showtime.startTime)} • ${formatShowtimeTime(showtime.startTime)}`}>
             <View style={styles.heroMetaRail}>
-              <Chip tone="user" label={formatScreenLabel(room.screenLabel)} active />
+              <Chip tone="user" label={formatRoomType(room.roomType)} active />
               <Chip tone="user" label={`${availableSeatsCount}/${room.activeSeatCount} ghế trống`} />
               <Chip tone="user" label={`${zoomPercent}% zoom`} />
             </View>
@@ -526,7 +552,7 @@ export default function SeatSelectionScreen() {
 
           <SectionCard tone="user" style={styles.screenBanner}>
             <Text style={[styles.screenBannerEyebrow, { color: colors.accent }]}>
-              SCREEN {formatScreenLabel(room.screenLabel)}
+              {formatRoomType(room.roomType).toUpperCase()}
             </Text>
             <Text style={[styles.screenBannerTitle, { color: colors.text }]}>
               Box chọn ghế được giữ cố định, chỉ nội dung seat map bên trong mới pinch zoom và pan.
@@ -563,7 +589,7 @@ export default function SeatSelectionScreen() {
                 <View style={styles.screenArcWrap}>
                   <View style={[styles.screenArc, { borderColor: 'rgba(57, 102, 147, 0.9)' }]} />
                   <Text style={[styles.screenArcLabel, { color: colors.text }]}>
-                    MÀN HÌNH CHIẾU
+                    MÀN HÌNH CHÍNH
                   </Text>
                 </View>
 
@@ -774,7 +800,7 @@ export default function SeatSelectionScreen() {
                     ) : (
                       selectedSeats.map((seat) => (
                         <Chip
-                          key={seat.coordinate}
+                          key={seat.code}
                           tone="user"
                           label={`${seat.label} • ${formatSeatVisualLabel(seat.variant)}`}
                           active

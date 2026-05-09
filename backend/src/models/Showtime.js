@@ -1,46 +1,53 @@
 const mongoose = require("mongoose");
 
-const SEAT_TYPE = {
-  STANDARD: "standard",
-  COUPLE: "couple",
-};
-
-const SEAT_STATUS = {
-  AVAILABLE: "available",
-  HELD: "held",
-  RESERVED: "reserved",
-  PAID: "paid",
-};
+const { SHOWTIME_SEAT_STATUS, SEAT_TYPE } = require("../constants/payment.constants");
 
 const ShowtimeSeatStateSchema = new mongoose.Schema(
   {
-    seatCoordinate: {
+    // Snapshot info from Room layout
+    seatCode: {
       type: String,
-      required: [true, "Toạ độ thật của ghế là bắt buộc"],
+      required: [true, "Mã ghế là bắt buộc"],
       trim: true,
       uppercase: true,
     },
-    seatLabel: {
+    label: {
       type: String,
-      required: [true, "Tên ghế hiển thị là bắt buộc"],
       trim: true,
       uppercase: true,
     },
-    seatType: {
+    rowLabel: {
       type: String,
-      enum: {
-        values: Object.values(SEAT_TYPE),
-        message: "Loại ghế không hợp lệ: {VALUE}",
-      },
-      required: [true, "Loại ghế là bắt buộc"],
+      trim: true,
+      uppercase: true,
     },
+    rowIndex: {
+      type: Number,
+    },
+    columnIndex: {
+      type: Number,
+    },
+    type: {
+      type: String,
+      enum: Object.values(SEAT_TYPE),
+    },
+    capacity: {
+      type: Number,
+      default: 1,
+    },
+    coupleGroupId: {
+      type: String,
+      default: null,
+    },
+
+    // Booking state
     status: {
       type: String,
       enum: {
-        values: Object.values(SEAT_STATUS),
+        values: Object.values(SHOWTIME_SEAT_STATUS),
         message: "Trạng thái ghế không hợp lệ: {VALUE}",
       },
-      default: SEAT_STATUS.AVAILABLE,
+      default: SHOWTIME_SEAT_STATUS.AVAILABLE,
       index: true,
     },
     userId: {
@@ -61,7 +68,7 @@ const ShowtimeSeatStateSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
-    paidAt: {
+    bookedAt: {
       type: Date,
       default: null,
     },
@@ -69,7 +76,7 @@ const ShowtimeSeatStateSchema = new mongoose.Schema(
   {
     _id: false,
     versionKey: false,
-  },
+  }
 );
 
 const ShowtimeSchema = new mongoose.Schema(
@@ -103,6 +110,20 @@ const ShowtimeSchema = new mongoose.Schema(
         message: "Thời gian kết thúc phải sau thời gian bắt đầu",
       },
     },
+    price: {
+      type: Number,
+      required: [true, "Giá vé cơ bản là bắt buộc"],
+      min: [0, "Giá vé không hợp lệ"],
+    },
+    status: {
+      type: String,
+      enum: {
+        values: ["active", "locked"],
+        message: "Trạng thái suất chiếu không hợp lệ: {VALUE}",
+      },
+      default: "active",
+      index: true,
+    },
     seatStates: {
       type: [ShowtimeSeatStateSchema],
       default: [],
@@ -116,6 +137,6 @@ const ShowtimeSchema = new mongoose.Schema(
 
 ShowtimeSchema.index({ movieId: 1, cinemaId: 1, startTime: 1 });
 ShowtimeSchema.index({ roomId: 1, startTime: 1 });
-ShowtimeSchema.index({ roomId: 1, "seatStates.seatCoordinate": 1 });
+ShowtimeSchema.index({ roomId: 1, "seatStates.seatCode": 1 });
 
 module.exports = mongoose.model("Showtime", ShowtimeSchema);
