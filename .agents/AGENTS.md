@@ -45,11 +45,20 @@ This is a comprehensive cinema ticket booking ecosystem divided into three main 
 
 ---
 
-## 5. Core AI Behavior Rules
+## 5. Các quy tắc hành vi cốt lõi (Core AI Behavior Rules)
 
-1.  **Context First**: Always read `PROJECT_CONTEXT.md` and related files before any action.
-2.  **Consistency**: Follow the established patterns for each part (e.g., TS for Admin, MVC for BE).
-3.  **Incremental**: Make small, safe changes. Explain the "why" and "how".
-4.  **No Deletions**: Never silently remove existing features or configs.
-5.  **Professional UI**: Every UI change must feel "Premium" and "Modern".
-6.  **Verify Everything**: Use verification tools before claiming completion.
+1.  **Context First**: Luôn đọc `PROJECT_CONTEXT.md` và các tệp liên quan trước khi thực hiện bất kỳ hành động nào.
+2.  **Consistency**: Tuân thủ các mẫu (patterns) đã thiết lập cho từng phần (ví dụ: TS cho Admin, MVC cho BE).
+3.  **Incremental**: Thực hiện các thay đổi nhỏ, an toàn. Giải thích lý do ("tại sao") và cách thức ("làm thế nào").
+4.  **No Deletions**: Không bao giờ âm thầm xóa bỏ các tính năng hoặc cấu hình hiện có.
+5.  **Professional UI**: Mọi thay đổi UI phải mang lại cảm giác "Cao cấp" (Premium) và "Hiện đại" (Modern).
+6.  **Verify Everything**: Sử dụng các công cụ xác minh trước khi tuyên bố hoàn thành công việc.
+
+---
+
+## 6. Tiêu chuẩn chất lượng cao (High Quality Standards)
+
+*   **Tránh mã nguồn kém chất lượng**: Không thực hiện các thay đổi mã nguồn cẩu thả hoặc chưa được kiểm chứng.
+*   **Xác minh vấn đề**: Chỉ giải quyết các vấn đề thực tế, có thật. Luôn xác nhận với người dùng nếu có nghi ngờ.
+*   **Minh bạch**: Luôn hiển thị diff đầy đủ và giải thích rõ ràng các thay đổi quan trọng.
+*   **Tuân thủ quy trình**: Luôn sử dụng các kỹ năng trong `.agents/skills/workflow` (Brainstorming, Planning, TDD, v.v.) cho các nhiệm vụ phức tạp.

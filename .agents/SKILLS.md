@@ -1,193 +1,179 @@
-# SKILLS.md
+# SKILLS.md - Kỹ năng của Agent
 
-## Workflow Skills
+## Kỹ năng quy trình (Workflow Skills)
 
-Location:
-.agents/skills/workflow/
+Vị trí: `.agents/skills/workflow/`
 
-Use these skills during development:
+Sử dụng các kỹ năng này trong quá trình phát triển:
 
-### brainstorming
+### brainstorming (Động não)
+Sử dụng trước khi:
+* Phát triển các tính năng lớn
+* Thay đổi kiến trúc
+* Thiết kế lại schema
+* Thiết kế lại giao diện người dùng (UI) quy mô lớn
 
-Use before:
-
-* major features
-* architecture changes
-* schema redesigns
-* large UI redesigns
-
-Requirements:
-
-* analyze current code first
-* provide options/tradeoffs
-* avoid coding immediately
+Yêu cầu:
+* Phân tích mã nguồn hiện tại trước
+* Cung cấp các lựa chọn và đánh giá ưu nhược điểm
+* Tránh viết mã ngay lập tức
 
 ---
 
-### writing-plans
+### writing-plans (Viết kế hoạch thực hiện)
+Sử dụng trước khi:
+* Sửa đổi nhiều tệp
+* Đồng bộ hóa backend/frontend
+* Triển khai tính năng phức tạp
 
-Use before:
-
-* multi-file modifications
-* backend/frontend synchronization
-* complex feature implementation
-
-Requirements:
-
-* clear steps
-* affected files
-* no vague TODOs
-* actionable implementation plan
+Yêu cầu:
+* Các bước rõ ràng
+* Liệt kê các tệp bị ảnh hưởng
+* Không sử dụng các TODO mơ hồ
+* Kế hoạch thực hiện có thể hành động ngay
 
 ---
 
-### systematic-debugging
+### systematic-debugging (Gỡ lỗi hệ thống)
+Sử dụng khi:
+* Có lỗi runtime
+* Lỗi API
+* Vấn đề về trạng thái (state)
+* Vấn đề hiển thị (rendering)
 
-Use when:
-
-* runtime errors
-* API bugs
-* state issues
-* rendering problems
-
-Requirements:
-
-* reproduce issue
-* inspect logs/errors
-* identify root cause
-* verify final fix
+Yêu cầu:
+* Tái hiện lỗi
+* Kiểm tra log/lỗi
+* Xác định nguyên nhân gốc rễ
+* Xác minh bản sửa lỗi cuối cùng
 
 ---
 
-### test-driven-development
+### test-driven-development (Phát triển hướng kiểm thử - TDD)
+Sử dụng chủ yếu cho:
+* Logic đặt vé
+* Logic thanh toán
+* Logic chọn ghế
+* Các dịch vụ backend quan trọng
 
-Use mainly for:
-
-* booking logic
-* payment logic
-* seat selection logic
-* critical backend services
-
-Flow:
-
-1. failing test
-2. minimal implementation
-3. refactor safely
+Quy trình:
+1. Viết kiểm thử lỗi (failing test)
+2. Triển khai mã tối thiểu để vượt qua kiểm thử
+3. Refactor (tối ưu mã) một cách an toàn
 
 ---
 
-### verification-before-completion
+### verification-before-completion (Xác minh trước khi hoàn tất)
+Sử dụng trước khi kết thúc bất kỳ nhiệm vụ nào.
 
-Use before finishing any task.
-
-Verify:
-
-* build
-* lint
-* runtime
-* responsive behavior
-* regressions
+Xác minh:
+* Build
+* Lint
+* Runtime (chạy thực tế)
+* Hành vi đáp ứng (responsive)
+* Các lỗi phát sinh (regressions)
 
 ---
 
-### requesting-code-review
+### requesting-code-review (Yêu cầu nhận xét mã)
+Sử dụng trước khi:
+* Merge (hợp nhất)
+* Release (phát hành)
+* Các commit lớn
 
-Use before:
-
-* merge
-* release
-* large commits
-
-Check:
-
-* maintainability
-* consistency
-* performance
-* readability
-* regressions
+Kiểm tra:
+* Khả năng bảo trì
+* Tính nhất quán
+* Hiệu năng
+* Khả năng đọc hiểu
+* Các lỗi phát sinh
 
 ---
 
-## Part 1: Backend Skills
+### subagent-driven-development (Phát triển dựa trên subagent)
+Sử dụng khi:
+* Thực hiện kế hoạch với các nhiệm vụ độc lập
+* Tận dụng các agent chuyên biệt cho từng tác vụ
+
+---
+
+### executing-plans (Thực thi kế hoạch)
+Sử dụng khi:
+* Có một kế hoạch thực hiện đã được phê duyệt và cần thực hiện từng bước với các điểm kiểm tra.
+
+---
+
+### finishing-a-development-branch (Hoàn tất nhánh phát triển)
+Sử dụng khi:
+* Quá trình triển khai hoàn tất, tất cả các bài kiểm tra đều vượt qua và cần tích hợp công việc.
+
+---
+
+### using-git-worktrees (Sử dụng git worktrees)
+Sử dụng khi:
+* Cần làm việc trên nhiều nhánh song song mà không làm ảnh hưởng đến thư mục làm việc chính.
+
+---
+
+### receiving-code-review (Nhận nhận xét mã)
+Sử dụng khi:
+* Phản hồi các ý kiến đóng góp từ quá trình review mã.
+
+---
+
+### writing-skills (Viết kỹ năng mới)
+Sử dụng khi:
+* Tạo ra các kỹ năng mới cho agent theo các thực hành tốt nhất.
+
+---
+
+## Phần 1: Kỹ năng Backend
 
 ### be-core
+Vị trí: `.agents/skills/be-core/`
 
-Location: `.agents/skills/be-core/`
+Sử dụng cho:
+* Thiết lập cấu trúc backend
+* Tạo bootstrap cho ứng dụng/server
+* Định nghĩa các lớp MVC (Model, Service, Controller, Route)
+* Cấu hình cơ sở dữ liệu hoặc môi trường
+* Tạo các middleware chuẩn (xử lý lỗi, không tìm thấy trang)
 
-Use for:
-
-* setting up backend structure
-* creating app/server bootstrap
-* defining MVC layers (Model, Service, Controller, Route)
-* configuring database or environment
-* creating standard middlewares (error, notFound)
-
-Requirements:
-
-* follow strict MVC separation
-* use standardized response formats
-* keep logic in services
-* use asyncHandler for all async operations
+Yêu cầu:
+* Tuân thủ nghiêm ngặt sự phân tách MVC
+* Sử dụng định dạng phản hồi chuẩn
+* Giữ logic trong các service
+* Sử dụng asyncHandler cho tất cả các hoạt động không đồng bộ
 
 ---
 
----
-
-## Part 2 & 3: Frontend & Mobile Skills
+## Phần 2 & 3: Kỹ năng Frontend & Mobile
 
 ### ui-ux-pro-max
+Vị trí: `.agents/skills/ui-ux-pro-max/`
 
-Location: `.agents/skills/ui-ux-pro-max/`
-
-Use for:
-
-* admin dashboard
-* booking flow
-* seat layout editor
-* modals/forms
-* statistics pages
-* mobile screens
+Sử dụng cho:
+* Dashboard quản trị
+* Quy trình đặt vé
+* Trình chỉnh sửa sơ đồ ghế
+* Modals/Forms
+* Trang thống kê
+* Các màn hình ứng dụng di động
 
 ---
 
-## UI/UX Expectations
+## Kỳ vọng về UI/UX
 
-Apply:
+Áp dụng:
+* Thiết kế hiện đại cao cấp
+* Tính nhất quán về khoảng cách (spacing)
+* Phân cấp kiểu chữ (typography)
+* Các tương tác nhỏ (micro interactions) mượt mà
+* Bố cục đáp ứng (responsive)
+* Các thành phần có thể tái sử dụng
 
-* premium modern design
-* spacing consistency
-* typography hierarchy
-* smooth micro interactions
-* responsive layouts
-* reusable components
-
-Avoid:
-
-* default styling
-* inconsistent spacing
-* cluttered interfaces
-* oversized components
-
----
-
-## Design Rules
-
-Use:
-
-* proper spacing scale
-* consistent border radius
-* soft shadows
-* subtle animations
-* clear visual hierarchy
-
-Animation:
-
-* 150ms–300ms preferred
-* use transform/opacity
-* avoid heavy repaint animations
-
-Accessibility:
-
-* proper contrast
-* touch targets >= 44x44
-* readable typography
+Tránh:
+* Sử dụng kiểu mặc định
+* Khoảng cách không nhất quán
+* Giao diện lộn xộn
+* Các thành phần có kích thước quá lớn
