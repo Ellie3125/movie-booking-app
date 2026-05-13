@@ -4,6 +4,7 @@ import { PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import PageBreadCrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 import { cinemaBrandService } from "../../services/cinemaBrandService";
+import { buildImageUrl } from "../../utils/imageUrl";
 
 const { Text } = Typography;
 
@@ -81,7 +82,7 @@ export default function CinemaBrands() {
       title: "Logo URL",
       dataIndex: "logo",
       key: "logo",
-      render: (url: string) => url ? <img src={url} alt="Logo" className="h-8 object-contain" /> : <Text type="secondary">N/A</Text>,
+      render: (url: string) => url ? <img src={buildImageUrl(url)} alt="Logo" className="h-8 object-contain" referrerPolicy="no-referrer" /> : <Text type="secondary">N/A</Text>,
     },
     {
       title: "Trạng thái",

@@ -1,33 +1,33 @@
 const CINEMA_BRANDS = [
   {
-    name: "CGV",
-    code: "cgv",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/CJ_CGV_logo.svg/320px-CJ_CGV_logo.svg.png"
+    name: "CGV Cinema",
+    code: "CGV",
+    logoUrl: "https://static.wikia.nocookie.net/logos/images/9/9b/CGV.png/revision/latest?cb=20220207032745&path-prefix=vi"
   },
   {
     name: "Lotte Cinema",
-    code: "lotte-cinema",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Lotte_Cinema_logo.svg/320px-Lotte_Cinema_logo.svg.png"
+    code: "LOTTE",
+    logoUrl: "https://homepage.momocdn.net/next-js/_next/static/public/cinema/lotte-cinema.png"
   },
   {
     name: "Beta Cinemas",
-    code: "beta-cinemas",
-    logoUrl: "https://static.mservice.io/blogscontents/momo-upload-api-230615165916-638224739563687612.jpg"
+    code: "BETA",
+    logoUrl: "https://homepage.momocdn.net/next-js/_next/static/public/cinema/beta-cinemas.png"
   },
   {
     name: "Galaxy Cinema",
-    code: "galaxy-cinema",
-    logoUrl: "https://cdn.moveek.com/storage/media/cache/short/5f1a766f3b7cf640882290.jpg"
+    code: "GALAXY",
+    logoUrl: "https://homepage.momocdn.net/blogscontents/momo-upload-api-210604170453-637584134934420345.png"
   },
   {
-    name: "BHD Star",
-    code: "bhd-star",
-    logoUrl: "https://cdn.moveek.com/storage/media/cache/short/5f1a76a6431b7778294879.jpg"
+    name: "BHD Star Cineplex",
+    code: "BHD",
+    logoUrl: "https://homepage.momocdn.net/next-js/_next/static/public/cinema/bhd-star-cineplex.png"
   },
   {
     name: "Cinestar",
-    code: "cinestar",
-    logoUrl: "https://cdn.moveek.com/storage/media/cache/short/5f1a770dd35df416599558.jpg"
+    code: "CINESTAR",
+    logoUrl: "https://homepage.momocdn.net/next-js/_next/static/public/cinema/cinestar.png"
   }
 ];
 
