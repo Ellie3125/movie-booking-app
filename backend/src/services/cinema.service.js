@@ -12,20 +12,28 @@ const validateObjectId = (id, resourceName) => {
   }
 };
 
-const listCinemas = async ({ province, brand }) => {
+const listCinemas = async ({ city, brand }) => {
   const filter = {};
 
-  if (province) {
-    filter.province = province;
+  if (city) {
+    if (Array.isArray(city)) {
+      filter.city = { $in: city };
+    } else {
+      filter.city = city;
+    }
   }
 
   if (brand) {
-    filter.brand = brand;
+    if (Array.isArray(brand)) {
+      filter.brand = { $in: brand };
+    } else {
+      filter.brand = brand;
+    }
   }
 
   const [items, total] = await Promise.all([
     Cinema.find(filter)
-      .sort({ province: 1, name: 1 })
+      .sort({ city: 1, name: 1 })
       .lean(),
     Cinema.countDocuments(filter),
   ]);

@@ -5,10 +5,12 @@ const cinemaIdParamSchema = strictObject({
 });
 
 const cinemaMutationBodySchema = strictObject({
-  brand: Joi.string().valid('CGV', 'Beta', 'Lotte').required().label('brand'),
+  brand: Joi.string().required().label('brand'),
   name: Joi.string().trim().min(1).max(180).required().label('name'),
-  city: Joi.string().valid('Hà Nội', 'TP Hồ Chí Minh', 'Đà Nẵng').required().label('city'),
+  city: Joi.string().required().label('city'),
   address: Joi.string().trim().min(1).max(500).required().label('address'),
+  imageUrl: Joi.string().allow('', null).label('imageUrl'),
+  phone: Joi.string().allow('', null).label('phone'),
   latitude: Joi.number().allow(null).default(null).label('latitude'),
   longitude: Joi.number().allow(null).default(null).label('longitude'),
 });

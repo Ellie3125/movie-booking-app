@@ -17,6 +17,8 @@ import Label from "../../components/form/Label";
 import toast from "react-hot-toast";
 import { Modal } from "../../components/ui/modal";
 import { ConfirmationModal } from "../../components/ui/modal/ConfirmationModal";
+import { buildImageUrl } from "../../utils/imageUrl";
+import { CinemaDetailModal } from "../../components/ui/modal/CinemaDetailModal";
 
 export default function Cinemas() {
   const [cinemas, setCinemas] = useState<any[]>([]);
@@ -24,9 +26,9 @@ export default function Cinemas() {
   const [searchTerm, setSearchTerm] = useState("");
   
   const [brands, setBrands] = useState<any[]>([]);
-  const [provinces, setProvinces] = useState<string[]>([]);
+  const [cities, setCities] = useState<string[]>([]);
   const [filterBrand, setFilterBrand] = useState("");
-  const [filterProvince, setFilterProvince] = useState("");
+  const [filterCity, setFilterCity] = useState("");
 
   // Form states
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +36,7 @@ export default function Cinemas() {
   const [formData, setFormData] = useState({
     name: "",
     brand: "",
-    province: "",
+    city: "",
     address: "",
     phone: "",
     imageUrl: "",
@@ -43,12 +45,15 @@ export default function Cinemas() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
+  const [viewingCinema, setViewingCinema] = useState<any>(null);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+
   const loadCinemas = async () => {
     setLoading(true);
     try {
       const params: any = {};
       if (filterBrand) params.brand = filterBrand;
-      if (filterProvince) params.province = filterProvince;
+      if (filterCity) params.city = filterCity;
       const data = await cinemaService.getCinemas(params);
       setCinemas(data.data?.items || []);
     } catch (error: any) {
@@ -63,7 +68,7 @@ export default function Cinemas() {
       try {
         const metaRes = await metaService.getCinemaOptions();
         setBrands(metaRes.data?.brands || []);
-        setProvinces(metaRes.data?.provinces || []);
+        setCities(metaRes.data?.provinces || []);
       } catch (err) {
         console.error('Failed to load metadata', err);
       }
@@ -73,13 +78,13 @@ export default function Cinemas() {
 
   useEffect(() => {
     loadCinemas();
-  }, [filterBrand, filterProvince]);
+  }, [filterBrand, filterCity]);
 
   const handleEdit = (cinema: any) => {
     setFormData({
       name: cinema.name,
       brand: cinema.brand,
-      province: cinema.province,
+      city: cinema.city || cinema.province || "",
       address: cinema.address,
       phone: cinema.phone || "",
       imageUrl: cinema.imageUrl || "",
@@ -109,7 +114,7 @@ export default function Cinemas() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.brand || !formData.province) {
+    if (!formData.brand || !formData.city) {
       toast.error("Vui lòng chọn Thương hiệu và Tỉnh/Thành");
       return;
     }
@@ -129,14 +134,19 @@ export default function Cinemas() {
   };
 
   const getBrandInfo = (code: string) => {
-    return brands.find(b => b.code === code) || { name: code, logoUrl: "" };
+    const brand = brands.find(b => b.code.toLowerCase() === code.toLowerCase());
+    if (!brand) return { name: code, logoUrl: "" };
+    return {
+      ...brand,
+      logoUrl: brand.logo || brand.logoUrl || ""
+    };
   };
 
   const filteredCinemas = cinemas.filter(cinema => {
     const brandInfo = getBrandInfo(cinema.brand);
     return cinema.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     brandInfo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cinema.province.toLowerCase().includes(searchTerm.toLowerCase());
+    (cinema.city || cinema.province || "").toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   return (
@@ -157,9 +167,9 @@ export default function Cinemas() {
           <div className="w-full sm:w-48">
             <Label>Tỉnh/Thành</Label>
             <Select
-              options={[{ value: "", label: "Tất cả" }, ...provinces.map(p => ({ value: p, label: p }))]}
-              value={filterProvince}
-              onChange={setFilterProvince}
+              options={[{ value: "", label: "Tất cả" }, ...cities.map(p => ({ value: p, label: p }))]}
+              value={filterCity}
+              onChange={setFilterCity}
             />
           </div>
           <div className="w-full sm:w-48">
@@ -173,7 +183,7 @@ export default function Cinemas() {
         </div>
         <Button onClick={() => {
           setEditingId(null);
-          setFormData({ name: "", brand: "", province: "", address: "", phone: "", imageUrl: "" });
+          setFormData({ name: "", brand: "", city: "", address: "", phone: "", imageUrl: "" });
           setIsModalOpen(true);
         }} className="whitespace-nowrap">
           + Thêm rạp phim
@@ -207,31 +217,28 @@ export default function Cinemas() {
                   return (
                     <TableRow key={cinema._id}>
                       <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 font-medium">
-                        {cinema.province}
+                        {cinema.city || cinema.province}
                       </TableCell>
                       <TableCell className="px-4 py-3 text-start">
-                        <div className="flex items-center gap-2">
-                          {brandInfo.logoUrl && (
-                            <img src={brandInfo.logoUrl} alt={brandInfo.name} className="h-5 object-contain" />
-                          )}
-                          <span className="text-theme-sm text-gray-600 dark:text-gray-400 font-medium">{brandInfo.name}</span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 p-1 border border-gray-100 dark:border-white/10">
+                            {(cinema.imageUrl || brandInfo.logoUrl) ? (
+                              <img src={buildImageUrl(cinema.imageUrl || brandInfo.logoUrl)} alt={brandInfo.name} className="max-h-full max-w-full object-contain" referrerPolicy="no-referrer" />
+                            ) : (
+                              <span className="text-[10px] text-gray-400 font-bold uppercase">{brandInfo.name.substring(0, 3)}</span>
+                            )}
+                          </div>
+                          <span className="text-theme-sm text-gray-800 dark:text-white/90 font-semibold">{brandInfo.name}</span>
                         </div>
                       </TableCell>
                       <TableCell className="px-5 py-4 text-start">
-                        <div className="flex items-center gap-3">
-                          {cinema.imageUrl && (
-                            <div className="w-12 h-12 overflow-hidden rounded-lg shadow-sm border border-gray-100">
-                              <img src={cinema.imageUrl} alt={cinema.name} className="object-cover w-full h-full" />
-                            </div>
-                          )}
-                          <div className="flex flex-col">
-                            <span className="font-semibold text-gray-800 text-theme-sm dark:text-white/90">
-                              {cinema.name}
-                            </span>
-                            <span className="text-xs text-gray-500 truncate max-w-[200px]" title={cinema.address}>
-                              {cinema.address}
-                            </span>
-                          </div>
+                        <div className="flex flex-col">
+                          <span className="font-bold text-gray-900 text-theme-sm dark:text-white">
+                            {cinema.name}
+                          </span>
+                          <span className="text-xs text-gray-500 mt-0.5" title={cinema.address}>
+                            {cinema.address}
+                          </span>
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
@@ -239,6 +246,17 @@ export default function Cinemas() {
                       </TableCell>
                       <TableCell className="px-5 py-4 text-end">
                         <div className="flex items-center justify-end gap-2">
+                          <Button
+                            variant="primary-soft"
+                            size="sm"
+                            onClick={() => {
+                              setViewingCinema(cinema);
+                              setIsViewModalOpen(true);
+                            }}
+                            className="px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-500/10 dark:text-blue-400"
+                          >
+                            Xem
+                          </Button>
                           <Button
                             variant="primary-soft"
                             size="sm"
@@ -289,9 +307,9 @@ export default function Cinemas() {
             <div>
               <Label>Tỉnh/Thành phố</Label>
               <Select
-                options={[{ value: "", label: "Chọn tỉnh/thành" }, ...provinces.map(p => ({ value: p, label: p }))]}
-                value={formData.province}
-                onChange={(val) => setFormData({ ...formData, province: val })}
+                options={[{ value: "", label: "Chọn tỉnh/thành" }, ...cities.map(p => ({ value: p, label: p }))]}
+                value={formData.city}
+                onChange={(val) => setFormData({ ...formData, city: val })}
               />
             </div>
           </div>
@@ -312,7 +330,7 @@ export default function Cinemas() {
               />
             </div>
             <div>
-              <Label>URL Ảnh rạp</Label>
+              <Label>Link Logo Rạp</Label>
               <Input
                 value={formData.imageUrl}
                 onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
@@ -337,6 +355,12 @@ export default function Cinemas() {
         message="Bạn có chắc muốn xoá rạp này? Các dữ liệu liên quan sẽ bị ảnh hưởng."
         confirmText="Xoá ngay"
         variant="error"
+      />
+      <CinemaDetailModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        cinema={viewingCinema}
+        brandInfo={viewingCinema ? getBrandInfo(viewingCinema.brand) : null}
       />
     </>
   );

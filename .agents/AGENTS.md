@@ -53,6 +53,10 @@ This is a comprehensive cinema ticket booking ecosystem divided into three main 
 4.  **No Deletions**: Không bao giờ âm thầm xóa bỏ các tính năng hoặc cấu hình hiện có.
 5.  **Professional UI**: Mọi thay đổi UI phải mang lại cảm giác "Cao cấp" (Premium) và "Hiện đại" (Modern).
 6.  **Verify Everything**: Sử dụng các công cụ xác minh trước khi tuyên bố hoàn thành công việc.
+7.  **Vietnamese Language & Planning**: 
+    - Tất cả các kế hoạch (implementation plans), tài liệu thiết kế (specs), walkthroughs và phản hồi từ Agent **PHẢI được viết bằng TIẾNG VIỆT**.
+    - Sử dụng tính năng lập kế hoạch (Implementation Plan artifact) có sẵn của Agent để trình bày kế hoạch triển khai cho người dùng duyệt trước khi thực hiện.
+    - Agent phải luôn đọc, hiểu và tuân thủ tuyệt đối các quy tắc và hướng dẫn trong thư mục `.agents/`.
 
 ---
 

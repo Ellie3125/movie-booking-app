@@ -21,6 +21,7 @@ import Button from '../../components/ui/button/Button';
 import Label from '../../components/form/Label';
 import Input from '../../components/form/input/InputField';
 import Select from '../../components/form/Select';
+import MultiSelect from '../../components/form/MultiSelect';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '../../components/ui/table';
 import Badge from '../../components/ui/badge/Badge';
 import { ConfirmationModal } from '../../components/ui/modal/ConfirmationModal';
@@ -35,7 +36,7 @@ const ShowtimePlanner: React.FC = () => {
   // Selection states
   const [selectedMovieId, setSelectedMovieId] = useState('');
   const [selectedMovie, setSelectedMovie] = useState<any>(null);
-  const [isNewMovie] = useState(true);
+  const [isNewMovie, setIsNewMovie] = useState(false);
   const [newMovieData, setNewMovieData] = useState({
     title: '',
     duration: 120,
@@ -43,9 +44,10 @@ const ShowtimePlanner: React.FC = () => {
     poster: '',
     trailer: '',
   });
+  const [createdMovieId, setCreatedMovieId] = useState<string | null>(null);
 
-  const [selectedBrand, setSelectedBrand] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedCities, setSelectedCities] = useState<string[]>([]);
   const [selectedCinemaIds, setSelectedCinemaIds] = useState<string[]>([]);
   const [selectedRoomIds, setSelectedRoomIds] = useState<string[]>([]);
 
@@ -89,21 +91,22 @@ const ShowtimePlanner: React.FC = () => {
       },
     });
 
-    const timePickerConfig = {
+    const openFp = flatpickr(openingTimeRef.current!, {
       enableTime: true,
       noCalendar: true,
-      dateFormat: "h:i K",
-      amPM: ["SA", "CH"], // Vietnamese SA/CH
-    };
-
-    const openFp = flatpickr(openingTimeRef.current!, {
-      ...timePickerConfig,
+      dateFormat: "H:i", // Use 24h format for internal value
+      altInput: true,
+      altFormat: "h:i K",
       defaultDate: openingTime,
       onChange: (_, timeStr) => setOpeningTime(timeStr),
     });
 
     const closeFp = flatpickr(closingTimeRef.current!, {
-      ...timePickerConfig,
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i", // Use 24h format for internal value
+      altInput: true,
+      altFormat: "h:i K",
       defaultDate: closingTime,
       onChange: (_, timeStr) => setClosingTime(timeStr),
     });
@@ -151,10 +154,10 @@ const ShowtimePlanner: React.FC = () => {
   };
 
   useEffect(() => {
-    if (selectedBrand || selectedCity) {
+    if (selectedBrands.length > 0 || selectedCities.length > 0) {
       const loadCinemas = async () => {
         try {
-          const cinemaList = await fetchCinemas(selectedBrand, selectedCity);
+          const cinemaList = await fetchCinemas(selectedBrands, selectedCities);
           setCinemas(cinemaList);
         } catch (err) {
           console.error('Failed to load cinemas', err);
@@ -164,7 +167,7 @@ const ShowtimePlanner: React.FC = () => {
     } else {
       setCinemas([]);
     }
-  }, [selectedBrand, selectedCity]);
+  }, [selectedBrands, selectedCities]);
 
   useEffect(() => {
     if (selectedCinemaIds.length > 0) {
@@ -193,21 +196,26 @@ const ShowtimePlanner: React.FC = () => {
     try {
       let movieId = selectedMovieId;
 
-      // Create new movie info
+      // Create new movie info if not already created
       if (isNewMovie) {
-        if (!newMovieData.title || !newMovieData.duration) {
-          throw new Error('Vui lòng nhập tên phim và thời lượng');
+        if (createdMovieId) {
+          movieId = createdMovieId;
+        } else {
+          if (!newMovieData.title || !newMovieData.duration) {
+            throw new Error('Vui lòng nhập tên phim và thời lượng');
+          }
+          const createdMovie = await createMovie({
+            ...newMovieData,
+            releaseDate: plannerRange.startDate,
+            endDate: plannerRange.endDate,
+          });
+          movieId = createdMovie._id;
+          setCreatedMovieId(movieId);
+          await loadMovies(); // Refresh list
+          setSelectedMovieId(movieId);
         }
-        const createdMovie = await createMovie({
-          ...newMovieData,
-          releaseDate: plannerRange.startDate,
-          endDate: plannerRange.endDate,
-        });
-        movieId = createdMovie._id;
-        await loadMovies(); // Refresh list
-        setSelectedMovieId(movieId);
       } else {
-        if (!selectedMovie) throw new Error('Please select a movie');
+        if (!selectedMovieId) throw new Error('Vui lòng chọn một bộ phim');
       }
 
       const res = await bulkCreateShowtimes({
@@ -243,21 +251,26 @@ const ShowtimePlanner: React.FC = () => {
     try {
       let movieId = selectedMovieId;
 
-      // Create new movie info
+      // Create new movie info if not already created
       if (isNewMovie) {
-        if (!newMovieData.title || !newMovieData.duration) {
-          throw new Error('Vui lòng nhập tên phim và thời lượng');
+        if (createdMovieId) {
+          movieId = createdMovieId;
+        } else {
+          if (!newMovieData.title || !newMovieData.duration) {
+            throw new Error('Vui lòng nhập tên phim và thời lượng');
+          }
+          const createdMovie = await createMovie({
+            ...newMovieData,
+            releaseDate: plannerRange.startDate,
+            endDate: plannerRange.endDate,
+          });
+          movieId = createdMovie._id;
+          setCreatedMovieId(movieId);
+          await loadMovies(); // Refresh list
+          setSelectedMovieId(movieId);
         }
-        const createdMovie = await createMovie({
-          ...newMovieData,
-          releaseDate: plannerRange.startDate,
-          endDate: plannerRange.endDate,
-        });
-        movieId = createdMovie._id;
-        await loadMovies(); // Refresh list
-        setSelectedMovieId(movieId);
       } else {
-        if (!selectedMovie) throw new Error('Please select a movie');
+        if (!selectedMovieId) throw new Error('Vui lòng chọn một bộ phim');
       }
 
       const res = await bulkCreateShowtimes({
@@ -275,6 +288,7 @@ const ShowtimePlanner: React.FC = () => {
         dryRun: false,
       });
       setSuccessMessage(`Đã tạo thành công ${res.createdCount} suất chiếu. Đã bỏ qua ${res.skippedCount} suất bị trùng.`);
+      setIsConfirmOpen(false);
       setPreviewData(null);
     } catch (err: any) {
       setErrorMessage(err.response?.data?.message || err.message || 'Không thể tạo lịch chiếu');
@@ -282,6 +296,7 @@ const ShowtimePlanner: React.FC = () => {
       setLoading(false);
     }
   };
+
 
   const toggleCinema = (id: string) => {
     setSelectedCinemaIds(prev => prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]);
@@ -304,85 +319,128 @@ const ShowtimePlanner: React.FC = () => {
           <div className="xl:col-span-1 p-6 bg-white border border-gray-200 rounded-2xl dark:border-gray-800 dark:bg-white/[0.03]">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">1. Thông tin Phim</h3>
+              <div className="flex bg-gray-100 dark:bg-white/5 p-1 rounded-lg">
+                <button
+                  onClick={() => setIsNewMovie(false)}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${!isNewMovie ? 'bg-white dark:bg-gray-800 shadow-sm text-brand-500' : 'text-gray-500'}`}
+                >
+                  Chọn có sẵn
+                </button>
+                <button
+                  onClick={() => setIsNewMovie(true)}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${isNewMovie ? 'bg-white dark:bg-gray-800 shadow-sm text-brand-500' : 'text-gray-500'}`}
+                >
+                  Thêm mới
+                </button>
+              </div>
             </div>
             
             <div className="space-y-4">
-              <div className="p-4 border border-gray-100 rounded-xl dark:border-gray-800 bg-gray-50/50 dark:bg-white/5">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="col-span-1 sm:col-span-2">
-                    <Label>Tên Phim</Label>
-                    <Input
-                      type="text"
-                      value={newMovieData.title}
-                      onChange={(e) => setNewMovieData({ ...newMovieData, title: e.target.value })}
-                      placeholder="Nhập tên phim..."
-                    />
-                  </div>
-                  <div>
-                    <Label>Thời lượng (phút)</Label>
-                    <Input
-                      type="number"
-                      value={newMovieData.duration}
-                      onChange={(e) => setNewMovieData({ ...newMovieData, duration: Number(e.target.value) })}
-                    />
-                  </div>
-                  <div>
-                    <Label>Trạng thái</Label>
-                    <Select
-                      options={[
-                        { value: 'now_showing', label: 'Đang chiếu' },
-                        { value: 'coming_soon', label: 'Sắp chiếu' },
-                      ]}
-                      value={newMovieData.status}
-                      onChange={(val) => setNewMovieData({ ...newMovieData, status: val })}
-                    />
-                  </div>
-                  <div className="col-span-1 sm:col-span-2">
-                    <Label>Link Poster</Label>
-                    <Input
-                      type="text"
-                      value={newMovieData.poster}
-                      onChange={(e) => setNewMovieData({ ...newMovieData, poster: e.target.value })}
-                      placeholder="https://example.com/poster.jpg"
-                    />
-                  </div>
-                  <div className="col-span-1 sm:col-span-2">
-                    <Label>Link Trailer (YouTube)</Label>
-                    <Input
-                      type="text"
-                      value={newMovieData.trailer}
-                      onChange={(e) => setNewMovieData({ ...newMovieData, trailer: e.target.value })}
-                      placeholder="https://youtube.com/watch?v=..."
-                    />
+              {!isNewMovie ? (
+                <div>
+                  <Label>Chọn phim từ danh sách <span className="text-red-500">*</span></Label>
+                  <Select
+                    options={[{ value: '', label: '--- Chọn phim ---' }, ...movies.map(m => ({ value: m._id, label: m.title }))]}
+                    value={selectedMovieId}
+                    onChange={setSelectedMovieId}
+                  />
+                  {selectedMovie && (
+                    <div className="mt-4 flex gap-4 p-3 border border-gray-100 dark:border-gray-800 rounded-xl bg-gray-50/50 dark:bg-white/5">
+                      <img 
+                        src={selectedMovie.posterUrl || selectedMovie.poster} 
+                        alt="" 
+                        className="w-16 h-24 object-cover rounded-lg shadow-sm" 
+                        referrerPolicy="no-referrer" 
+                      />
+                      <div>
+                        <h4 className="font-medium text-gray-800 dark:text-white">{selectedMovie.title}</h4>
+                        <p className="text-xs text-gray-500 mt-1">{selectedMovie.duration} phút</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="p-4 border border-gray-100 rounded-xl dark:border-gray-800 bg-gray-50/50 dark:bg-white/5">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="col-span-1 sm:col-span-2">
+                      <Label>Tên Phim <span className="text-red-500">*</span></Label>
+                      <Input
+                        type="text"
+                        value={newMovieData.title}
+                        onChange={(e) => {
+                          setNewMovieData({ ...newMovieData, title: e.target.value });
+                          setCreatedMovieId(null); // Reset if title changes
+                        }}
+                        placeholder="Nhập tên phim..."
+                      />
+                    </div>
+                    <div>
+                      <Label>Thời lượng (phút) <span className="text-red-500">*</span></Label>
+                      <Input
+                        type="number"
+                        value={newMovieData.duration}
+                        onChange={(e) => setNewMovieData({ ...newMovieData, duration: Number(e.target.value) })}
+                        onFocus={(e) => e.target.select()}
+                      />
+                    </div>
+                    <div>
+                      <Label>Trạng thái</Label>
+                      <Select
+                        options={[
+                          { value: 'now_showing', label: 'Đang chiếu' },
+                          { value: 'coming_soon', label: 'Sắp chiếu' },
+                        ]}
+                        value={newMovieData.status}
+                        onChange={(val) => setNewMovieData({ ...newMovieData, status: val })}
+                      />
+                    </div>
+                    <div className="col-span-1 sm:col-span-2">
+                      <Label>Link Poster</Label>
+                      <Input
+                        type="text"
+                        value={newMovieData.poster}
+                        onChange={(e) => setNewMovieData({ ...newMovieData, poster: e.target.value })}
+                        placeholder="https://example.com/poster.jpg"
+                      />
+                    </div>
+                    <div className="col-span-1 sm:col-span-2">
+                      <Label>Link Trailer (YouTube)</Label>
+                      <Input
+                        type="text"
+                        value={newMovieData.trailer}
+                        onChange={(e) => setNewMovieData({ ...newMovieData, trailer: e.target.value })}
+                        placeholder="https://youtube.com/watch?v=..."
+                      />
+                    </div>
                   </div>
                 </div>
-                <p className="mt-2 text-xs text-gray-500 italic">
-                  * Ngày chiếu sẽ được lấy từ mục 3.
-                </p>
-              </div>
+              )}
             </div>
           </div>
 
           {/* Section 2: Cinema Targeting */}
           <div className="xl:col-span-1 p-6 bg-white border border-gray-200 rounded-2xl dark:border-gray-800 dark:bg-white/[0.03]">
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">2. Chọn Rạp & Phòng</h3>
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div>
-                <Label>Thành phố</Label>
-                <Select
-                  options={[{ value: "", label: "Tất cả thành phố" }, ...cities.map(c => ({ value: c, label: c }))]}
-                  value={selectedCity}
-                  onChange={(val) => setSelectedCity(val)}
-                />
-              </div>
-              <div>
-                <Label>Thương hiệu</Label>
-                <Select
-                  options={[{ value: "", label: "Tất cả thương hiệu" }, ...brands.map(b => ({ value: b._id, label: b.name }))]}
-                  value={selectedBrand}
-                  onChange={(val) => setSelectedBrand(val)}
-                />
-              </div>
+            <div className="space-y-4 mb-4">
+              <MultiSelect
+                label="Thành phố"
+                placeholder="Chọn thành phố..."
+                options={cities.map(c => ({ value: c, text: c }))}
+                value={selectedCities}
+                onChange={setSelectedCities}
+              />
+              
+              <MultiSelect
+                label="Thương hiệu"
+                placeholder="Chọn thương hiệu..."
+                options={brands.map(b => ({ 
+                  value: b._id || b.code || b.name, 
+                  text: b.name, 
+                  image: b.logo || b.logoUrl 
+                }))}
+                value={selectedBrands}
+                onChange={setSelectedBrands}
+              />
             </div>
 
             {cinemas.length > 0 && (
@@ -448,7 +506,8 @@ const ShowtimePlanner: React.FC = () => {
                     <Input
                       type="number"
                       value={numShows}
-                      onChange={(e) => setNumShows(Number(e.target.value))}
+                      onChange={(e) => setNumShows(e.target.value === '' ? 0 : Number(e.target.value))}
+                      onFocus={(e) => e.target.select()}
                       min={1}
                       max={12}
                     />
@@ -458,7 +517,8 @@ const ShowtimePlanner: React.FC = () => {
                     <Input
                       type="number"
                       value={cleaningMinutes}
-                      onChange={(e) => setCleaningMinutes(Number(e.target.value))}
+                      onChange={(e) => setCleaningMinutes(e.target.value === '' ? 0 : Number(e.target.value))}
+                      onFocus={(e) => e.target.select()}
                       min={0}
                     />
                   </div>
@@ -490,7 +550,8 @@ const ShowtimePlanner: React.FC = () => {
               <Input
                 type="number"
                 value={basePrice}
-                onChange={(e) => setBasePrice(Number(e.target.value))}
+                onChange={(e) => setBasePrice(e.target.value === '' ? 0 : Number(e.target.value))}
+                onFocus={(e) => e.target.select()}
                 placeholder="75000"
               />
             </div>

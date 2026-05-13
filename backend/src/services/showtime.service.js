@@ -437,8 +437,24 @@ const bulkCreateShowtimes = async (payload) => {
       if (payload.mode === 'AUTO') {
         roomStartTimes = [];
         const { showsPerDay, openingTime, closingTime, cleaningMinutes = 15 } = payload;
-        const [openH, openM] = openingTime.split(':').map(Number);
-        const [closeH, closeM] = closingTime.split(':').map(Number);
+        const parseTime = (timeStr) => {
+          if (!timeStr) return [0, 0];
+          // Handle "08:00 AM" or "08:00 SA" or just "08:00"
+          const parts = timeStr.split(/[:\s]/);
+          let h = parseInt(parts[0], 10) || 0;
+          let m = parseInt(parts[1], 10) || 0;
+          const period = parts[2] ? parts[2].toUpperCase() : null;
+
+          if (period === 'PM' || period === 'CH') {
+            if (h < 12) h += 12;
+          } else if (period === 'AM' || period === 'SA') {
+            if (h === 12) h = 0;
+          }
+          return [h, m];
+        };
+
+        const [openH, openM] = parseTime(openingTime);
+        const [closeH, closeM] = parseTime(closingTime);
         
         let currentMinutes = openH * 60 + openM;
         const closingMinutes = closeH * 60 + closeM;
