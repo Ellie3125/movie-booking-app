@@ -6,7 +6,7 @@ module.exports = [
     "password": "Admin@123456",
     "role": "admin",
     "status": "active",
-    "avatar": "/avatars/avatar-02.png"
+    "avatar": "/uploads/avatars/avatar-02.png"
   },
   {
     "_id": "db0be307559ced97749ed5f8",
@@ -15,7 +15,7 @@ module.exports = [
     "password": "Staff@123456",
     "role": "staff",
     "status": "active",
-    "avatar": "/avatars/avatar-03.png"
+    "avatar": "/uploads/avatars/avatar-03.png"
   },
   {
     "_id": "85b99d1bf8daad6df13e7655",
@@ -24,7 +24,7 @@ module.exports = [
     "password": "Customer@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-04.png"
+    "avatar": "/uploads/avatars/avatar-04.png"
   },
   {
     "_id": "a85b5e03fd1df993604079e1",
@@ -33,7 +33,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-05.png"
+    "avatar": "/uploads/avatars/avatar-05.png"
   },
   {
     "_id": "ef5e356d6939aa3944cd88db",
@@ -42,7 +42,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-06.png"
+    "avatar": "/uploads/avatars/avatar-06.png"
   },
   {
     "_id": "834c06bb4f637a00eb659413",
@@ -51,7 +51,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-07.png"
+    "avatar": "/uploads/avatars/avatar-07.png"
   },
   {
     "_id": "8e04eadeb1820afd578ffe7c",
@@ -60,7 +60,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-08.png"
+    "avatar": "/uploads/avatars/avatar-08.png"
   },
   {
     "_id": "0893855a528e0162ab6caaf0",
@@ -69,7 +69,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-09.png"
+    "avatar": "/uploads/avatars/avatar-09.png"
   },
   {
     "_id": "1ac849a544138bc6a8cdb87e",
@@ -78,7 +78,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-10.png"
+    "avatar": "/uploads/avatars/avatar-10.png"
   },
   {
     "_id": "8be9a74ce11106c744a34f36",
@@ -87,7 +87,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-01.png"
+    "avatar": "/uploads/avatars/avatar-01.png"
   },
   {
     "_id": "5aa83cfcbcc1a77beace2762",
@@ -96,7 +96,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-02.png"
+    "avatar": "/uploads/avatars/avatar-02.png"
   },
   {
     "_id": "7dd67365120dd1639742fd67",
@@ -105,7 +105,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-03.png"
+    "avatar": "/uploads/avatars/avatar-03.png"
   },
   {
     "_id": "4684d2bb06c1ff781ba5a56c",
@@ -114,7 +114,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-04.png"
+    "avatar": "/uploads/avatars/avatar-04.png"
   },
   {
     "_id": "48a7ba52ca0213a61b4b211c",
@@ -123,7 +123,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-05.png"
+    "avatar": "/uploads/avatars/avatar-05.png"
   },
   {
     "_id": "49898410244c11e612c38613",
@@ -132,7 +132,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-06.png"
+    "avatar": "/uploads/avatars/avatar-06.png"
   },
   {
     "_id": "6a68f5fed6e8cc078ad9f487",
@@ -141,7 +141,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-07.png"
+    "avatar": "/uploads/avatars/avatar-07.png"
   },
   {
     "_id": "8d1a2df5a7004ce7317a8ab7",
@@ -150,7 +150,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-08.png"
+    "avatar": "/uploads/avatars/avatar-08.png"
   },
   {
     "_id": "445df76d95c61c01d8f95176",
@@ -159,7 +159,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-09.png"
+    "avatar": "/uploads/avatars/avatar-09.png"
   },
   {
     "_id": "9f153339b55d127ce71e7120",
@@ -168,7 +168,7 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-10.png"
+    "avatar": "/uploads/avatars/avatar-10.png"
   },
   {
     "_id": "4a25ac074a4cbf6a8a1ee5b6",
@@ -177,6 +177,6 @@ module.exports = [
     "password": "User@123456",
     "role": "user",
     "status": "active",
-    "avatar": "/avatars/avatar-01.png"
+    "avatar": "/uploads/avatars/avatar-01.png"
   }
 ];

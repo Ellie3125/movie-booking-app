@@ -86,11 +86,11 @@ const updateProfileSchema = {
     name: Joi.string().trim().min(2).max(120).optional().label('name'),
     avatar: Joi.string()
       .trim()
-      .pattern(/^\/avatars\/.+/)
+      .pattern(/^\/uploads\/avatars\/.+/)
       .optional()
       .label('avatar')
       .messages({
-        'string.pattern.base': 'avatar must start with /avatars/',
+        'string.pattern.base': 'avatar must start with /uploads/avatars/',
       }),
   }).min(1), // At least one field must be provided
 };
