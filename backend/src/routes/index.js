@@ -9,6 +9,7 @@ const showtimeRoutes = require('./showtime.routes');
 const paymentRoutes = require('./payment.routes');
 const ticketRoutes = require('./ticket.routes');
 const mockGatewayRoutes = require('./mockGateway.routes');
+const cinemaBrandRoutes = require('./cinemaBrand.routes');
 const dashboardRoutes = require('./dashboard.routes');
 const userRoutes = require('./user.routes');
 
@@ -25,6 +26,7 @@ router.get('/api/v1', (_req, res) => {
 router.use('/api/v1/movies', movieRoutes);
 router.use('/api/v1/cinemas', cinemaRoutes);
 router.use('/api/v1/meta', metaRoutes);
+router.use('/api/v1/cinema-brands', cinemaBrandRoutes);
 router.use('/api/v1/rooms', roomRoutes);
 router.use('/api/v1/showtimes', showtimeRoutes);
 router.use('/api/v1/auth', authRoutes);

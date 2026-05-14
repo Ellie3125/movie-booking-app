@@ -18,6 +18,7 @@ import Label from "../../components/form/Label";
 import toast from "react-hot-toast";
 import { Modal } from "../../components/ui/modal";
 import { ConfirmationModal } from "../../components/ui/modal/ConfirmationModal";
+import { MovieDetailModal } from "../../components/ui/modal/MovieDetailModal";
 
 export default function Movies() {
   const [movies, setMovies] = useState<any[]>([]);
@@ -43,6 +44,9 @@ export default function Movies() {
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const [viewingMovie, setViewingMovie] = useState<any>(null);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
 
   const loadData = async () => {
     setLoading(true);
@@ -203,7 +207,12 @@ export default function Movies() {
                       <div className="flex items-center gap-3">
                         {movie.posterUrl && (
                           <div className="w-10 h-14 overflow-hidden rounded shadow-sm">
-                            <img src={movie.posterUrl} alt={movie.title} className="object-cover w-full h-full" />
+                            <img 
+                              src={movie.posterUrl} 
+                              alt={movie.title} 
+                              className="object-cover w-full h-full" 
+                              referrerPolicy="no-referrer"
+                            />
                           </div>
                         )}
                         <div className="flex flex-col">
@@ -227,6 +236,17 @@ export default function Movies() {
                     </TableCell>
                     <TableCell className="px-5 py-4 text-end">
                       <div className="flex items-center justify-end gap-2">
+                        <Button
+                          variant="primary-soft"
+                          size="sm"
+                          onClick={() => {
+                            setViewingMovie(movie);
+                            setIsViewModalOpen(true);
+                          }}
+                          className="px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-500/10 dark:text-blue-400"
+                        >
+                          Xem
+                        </Button>
                         <Button
                           variant="primary-soft"
                           size="sm"
@@ -370,6 +390,11 @@ export default function Movies() {
         message="Bạn có chắc muốn xoá phim này?"
         confirmText="Xoá ngay"
         variant="error"
+      />
+      <MovieDetailModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        movie={viewingMovie}
       />
     </>
   );

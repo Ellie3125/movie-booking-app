@@ -75,14 +75,14 @@ export const fetchBrands = async () => {
 };
 
 export const fetchCities = async () => {
-  const response = await api.get('/meta/provinces');
-  return response.data.data;
+  const response = await api.get('/meta/cinema-options');
+  return response.data.data.provinces;
 };
 
-export const fetchCinemas = async (brand?: string, city?: string) => {
+export const fetchCinemas = async (brands?: string[], cities?: string[]) => {
   const params: any = {};
-  if (brand) params.brand = brand;
-  if (city) params.city = city;
+  if (brands && brands.length > 0) params.brand = brands;
+  if (cities && cities.length > 0) params.city = cities;
   const response = await api.get('/cinemas', { params });
   return response.data.data.items;
 };

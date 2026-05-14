@@ -402,9 +402,9 @@ const updateProfile = async ({ name, avatar }, currentUser) => {
 
   if (avatar) {
     // Validate avatar path
-    if (!avatar.startsWith('/avatars/')) {
+    if (!avatar.startsWith('/uploads/avatars/')) {
       throw ApiError.badRequest(
-        'Invalid avatar path. Must start with /avatars/',
+        'Invalid avatar path. Must start with /uploads/avatars/',
         'INVALID_AVATAR_PATH'
       );
     }

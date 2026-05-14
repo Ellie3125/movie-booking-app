@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 interface Option {
   value: string;
   text: string;
+  image?: string;
 }
 
 interface MultiSelectProps {
@@ -135,13 +136,17 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               <div className="flex flex-wrap flex-auto gap-2">
                 {selectedOptions.length > 0 ? (
                   selectedOptions.map((value) => {
-                    const text =
-                      options.find((opt) => opt.value === value)?.text || value;
+                    const option = options.find((opt) => opt.value === value);
+                    const text = option?.text || value;
+                    const image = option?.image;
                     return (
                       <div
                         key={value}
                         className="group flex items-center justify-center rounded-full border-[0.7px] border-transparent bg-gray-100 py-1 pl-2.5 pr-2 text-sm text-gray-800 hover:border-gray-200 dark:bg-gray-800 dark:text-white/90 dark:hover:border-gray-800"
                       >
+                        {image && (
+                          <img src={image} alt="" className="w-4 h-4 mr-2 object-contain" referrerPolicy="no-referrer" />
+                        )}
                         <span className="flex-initial max-w-full">{text}</span>
                         <button
                           type="button"
@@ -231,6 +236,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                     aria-selected={isSelected}
                   >
                     <div className="relative flex w-full items-center p-2 pl-2">
+                      {option.image && (
+                        <img src={option.image} alt="" className="w-5 h-5 mx-2 object-contain" referrerPolicy="no-referrer" />
+                      )}
                       <div className="mx-2 leading-6 text-gray-800 dark:text-white/90">
                         {option.text}
                       </div>
