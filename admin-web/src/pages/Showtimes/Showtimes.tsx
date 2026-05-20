@@ -93,7 +93,7 @@ export default function Showtimes() {
   }, []);
 
   useEffect(() => {
-    fetchCinemas(filterBrand, filterCity).then(setCinemas).catch(console.error);
+    fetchCinemas(filterBrand ? [filterBrand] : [], filterCity ? [filterCity] : []).then(setCinemas).catch(console.error);
     setFilterCinema("");
   }, [filterBrand, filterCity]);
 

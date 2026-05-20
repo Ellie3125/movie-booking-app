@@ -70,7 +70,7 @@ export default function Users() {
   };
 
   const handleChangeStatus = (id: string, currentStatus: string) => {
-    const newStatus = currentStatus === "active" ? "inactive" : "active";
+    const newStatus = currentStatus === "active" ? "blocked" : "active";
     setConfirmState({
       isOpen: true,
       title: newStatus === "active" ? "Kích hoạt tài khoản" : "Khóa tài khoản",

@@ -17,9 +17,9 @@ const listCinemas = async ({ city, brand }) => {
 
   if (city) {
     if (Array.isArray(city)) {
-      filter.city = { $in: city };
+      filter.province = { $in: city };
     } else {
-      filter.city = city;
+      filter.province = city;
     }
   }
 

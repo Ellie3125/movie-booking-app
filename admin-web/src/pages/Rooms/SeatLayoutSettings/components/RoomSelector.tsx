@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { cinemaService } from "../../../../services/cinemaService";
 import { roomService } from "../../../../services/roomService";
+import { metaService } from "../../../../services/metaService";
 import Select from "../../../../components/form/Select";
+import toast from "react-hot-toast";
 
 interface RoomSelectorProps {
   onRoomSelect: (roomId: string) => void;
@@ -11,17 +13,50 @@ interface RoomSelectorProps {
 const RoomSelector: React.FC<RoomSelectorProps> = ({ onRoomSelect, selectedRoomId }) => {
   const [cinemas, setCinemas] = useState<any[]>([]);
   const [rooms, setRooms] = useState<any[]>([]);
-  const [loadingCinemas, setLoadingCinemas] = useState(false);
-  const [loadingRooms, setLoadingRooms] = useState(false);
+  const [brands, setBrands] = useState<any[]>([]);
+  const [cities, setCities] = useState<string[]>([]);
+  
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
+  const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedCinemaId, setSelectedCinemaId] = useState<string>();
 
+  const [loadingCinemas, setLoadingCinemas] = useState(false);
+  const [loadingRooms, setLoadingRooms] = useState(false);
+
+  // Load Metadata
+  useEffect(() => {
+    const loadMetadata = async () => {
+      try {
+        const response = await metaService.getCinemaOptions();
+        const data = response?.data || response;
+        setBrands(data.brands || []);
+        setCities(data.provinces || []);
+      } catch (error) {
+        console.error("Error fetching metadata:", error);
+        toast.error("Không thể tải thông tin Thành phố/Hãng rạp");
+      }
+    };
+    loadMetadata();
+  }, []);
+
+  // Fetch Cinemas based on filters
   useEffect(() => {
     const fetchCinemas = async () => {
       setLoadingCinemas(true);
       try {
-        const response = await cinemaService.getCinemas();
+        const params: any = {};
+        if (selectedBrand) params.brand = selectedBrand;
+        if (selectedCity) params.city = selectedCity;
+        
+        const response = await cinemaService.getCinemas(params);
         const items = response?.data?.items || response?.items || [];
         setCinemas(items);
+        
+        // Reset cinema and rooms if filters change
+        if (selectedCinemaId && !items.find((c: any) => c._id === selectedCinemaId)) {
+          setSelectedCinemaId(undefined);
+          setRooms([]);
+        }
       } catch (error) {
         console.error("Error fetching cinemas:", error);
       } finally {
@@ -29,7 +64,7 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({ onRoomSelect, selectedRoomI
       }
     };
     fetchCinemas();
-  }, []);
+  }, [selectedBrand, selectedCity]);
 
   const handleCinemaChange = async (cinemaId: string) => {
     setSelectedCinemaId(cinemaId);
@@ -47,9 +82,33 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({ onRoomSelect, selectedRoomI
   };
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] mb-6">
-      <div className="flex flex-col sm:flex-row gap-6 items-end">
-        <div className="w-full sm:w-1/3">
+    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] mb-6 shadow-sm">
+      <div className="flex flex-col lg:flex-row gap-4 items-end">
+        <div className="w-full lg:w-1/4">
+          <label className="mb-2 block text-sm font-medium text-gray-800 dark:text-white/90">
+            Chọn Thành phố:
+          </label>
+          <Select
+            placeholder="Tất cả thành phố"
+            onChange={setSelectedCity}
+            value={selectedCity}
+            options={[{ value: "", label: "Tất cả thành phố" }, ...cities.map(c => ({ value: c, label: c }))]}
+          />
+        </div>
+
+        <div className="w-full lg:w-1/4">
+          <label className="mb-2 block text-sm font-medium text-gray-800 dark:text-white/90">
+            Chọn Hãng Rạp:
+          </label>
+          <Select
+            placeholder="Tất cả hãng"
+            onChange={setSelectedBrand}
+            value={selectedBrand}
+            options={[{ value: "", label: "Tất cả hãng" }, ...brands.map(b => ({ value: b.code, label: b.name }))]}
+          />
+        </div>
+
+        <div className="w-full lg:w-1/4">
           <label className="mb-2 block text-sm font-medium text-gray-800 dark:text-white/90">
             Chọn Rạp Chiếu:
           </label>
@@ -62,7 +121,7 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({ onRoomSelect, selectedRoomI
           />
         </div>
 
-        <div className="w-full sm:w-1/3">
+        <div className="w-full lg:w-1/4">
           <label className="mb-2 block text-sm font-medium text-gray-800 dark:text-white/90">
             Chọn Phòng Chiếu:
           </label>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import flatpickr from 'flatpickr';
 import dayjs from 'dayjs';
 import { CalenderIcon } from '../../icons';
@@ -26,6 +27,29 @@ import { Table, TableBody, TableCell, TableHeader, TableRow } from '../../compon
 import Badge from '../../components/ui/badge/Badge';
 import { ConfirmationModal } from '../../components/ui/modal/ConfirmationModal';
 
+type PlannerFormData = {
+  selectedMovieId: string;
+  isNewMovie: boolean;
+  newMovieData: {
+    title: string;
+    duration: number;
+    status: string;
+    poster: string;
+    trailer: string;
+  };
+  selectedBrands: string[];
+  selectedCities: string[];
+  selectedCinemaIds: string[];
+  selectedRoomIds: string[];
+  numShows: string;
+  openingTime: string;
+  closingTime: string;
+  cleaningMinutes: string;
+  basePrice: string;
+  startDate: string;
+  endDate: string;
+};
+
 const ShowtimePlanner: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [brands, setBrands] = useState<any[]>([]);
@@ -33,46 +57,53 @@ const ShowtimePlanner: React.FC = () => {
   const [cinemas, setCinemas] = useState<Cinema[]>([]);
   const [rooms, setRooms] = useState<Room[]>([]);
 
-  // Selection states
-  const [selectedMovieId, setSelectedMovieId] = useState('');
+  const { control, handleSubmit, watch, setValue, formState: { errors } } = useForm<PlannerFormData>({
+    defaultValues: {
+      selectedMovieId: '',
+      isNewMovie: false,
+      newMovieData: {
+        title: '',
+        duration: 120,
+        status: 'now_showing',
+        poster: '',
+        trailer: '',
+      },
+      selectedBrands: [],
+      selectedCities: [],
+      selectedCinemaIds: [],
+      selectedRoomIds: [],
+      numShows: '4',
+      openingTime: '08:00',
+      closingTime: '23:00',
+      cleaningMinutes: '15',
+      basePrice: '75000',
+      startDate: dayjs().format('YYYY-MM-DD'),
+      endDate: dayjs().add(7, 'day').format('YYYY-MM-DD'),
+    }
+  });
+
   const [selectedMovie, setSelectedMovie] = useState<any>(null);
-  const [isNewMovie, setIsNewMovie] = useState(false);
-  const [newMovieData, setNewMovieData] = useState({
-    title: '',
-    duration: 120,
-    status: 'now_showing',
-    poster: '',
-    trailer: '',
-  });
   const [createdMovieId, setCreatedMovieId] = useState<string | null>(null);
-
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [selectedCities, setSelectedCities] = useState<string[]>([]);
-  const [selectedCinemaIds, setSelectedCinemaIds] = useState<string[]>([]);
-  const [selectedRoomIds, setSelectedRoomIds] = useState<string[]>([]);
-
-  // Config states
-  const [numShows, setNumShows] = useState(4);
-  const [openingTime, setOpeningTime] = useState('08:00');
-  const [closingTime, setClosingTime] = useState('23:00');
-  const [cleaningMinutes, setCleaningMinutes] = useState(15);
-  const [basePrice, setBasePrice] = useState(75000);
-
-  const [plannerRange, setPlannerRange] = useState({
-    startDate: dayjs().format('YYYY-MM-DD'),
-    endDate: dayjs().add(7, 'day').format('YYYY-MM-DD'),
-  });
-  const dateRangeRef = useRef<HTMLInputElement>(null);
-  const openingTimeRef = useRef<HTMLInputElement>(null);
-  const closingTimeRef = useRef<HTMLInputElement>(null);
-
   const [loading, setLoading] = useState(false);
   const [previewData, setPreviewData] = useState<BulkCreateResponse | null>(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  // Confirmation Modal state
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
+  const dateRangeRef = useRef<HTMLInputElement>(null);
+  const openingTimeRef = useRef<HTMLInputElement>(null);
+  const closingTimeRef = useRef<HTMLInputElement>(null);
+
+  // Watch fields for effects
+  const watchedMovieId = watch('selectedMovieId');
+  const watchedIsNewMovie = watch('isNewMovie');
+  const watchedBrands = watch('selectedBrands');
+  const watchedCities = watch('selectedCities');
+  const watchedCinemaIds = watch('selectedCinemaIds');
+  const watchedStartDate = watch('startDate');
+  const watchedEndDate = watch('endDate');
+  const watchedOpeningTime = watch('openingTime');
+  const watchedClosingTime = watch('closingTime');
 
   useEffect(() => {
     if (!dateRangeRef.current) return;
@@ -80,13 +111,11 @@ const ShowtimePlanner: React.FC = () => {
       mode: 'range',
       dateFormat: 'M j',
       conjunction: ' - ',
-      defaultDate: [plannerRange.startDate, plannerRange.endDate],
+      defaultDate: [watchedStartDate, watchedEndDate],
       onChange: (selectedDates) => {
         if (selectedDates.length === 2) {
-          setPlannerRange({
-            startDate: selectedDates[0].toISOString().split('T')[0],
-            endDate: selectedDates[1].toISOString().split('T')[0],
-          });
+          setValue('startDate', selectedDates[0].toISOString().split('T')[0]);
+          setValue('endDate', selectedDates[1].toISOString().split('T')[0]);
         }
       },
     });
@@ -94,21 +123,17 @@ const ShowtimePlanner: React.FC = () => {
     const openFp = flatpickr(openingTimeRef.current!, {
       enableTime: true,
       noCalendar: true,
-      dateFormat: "H:i", // Use 24h format for internal value
-      altInput: true,
-      altFormat: "h:i K",
-      defaultDate: openingTime,
-      onChange: (_, timeStr) => setOpeningTime(timeStr),
+      dateFormat: "H:i",
+      defaultDate: watchedOpeningTime,
+      onChange: (_, timeStr) => setValue('openingTime', timeStr),
     });
 
     const closeFp = flatpickr(closingTimeRef.current!, {
       enableTime: true,
       noCalendar: true,
-      dateFormat: "H:i", // Use 24h format for internal value
-      altInput: true,
-      altFormat: "h:i K",
-      defaultDate: closingTime,
-      onChange: (_, timeStr) => setClosingTime(timeStr),
+      dateFormat: "H:i",
+      defaultDate: watchedClosingTime,
+      onChange: (_, timeStr) => setValue('closingTime', timeStr),
     });
 
     return () => {
@@ -119,13 +144,13 @@ const ShowtimePlanner: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedMovieId) {
-      const movie = movies.find(m => m._id === selectedMovieId);
+    if (watchedMovieId) {
+      const movie = movies.find(m => m._id === watchedMovieId);
       setSelectedMovie(movie);
     } else {
       setSelectedMovie(null);
     }
-  }, [selectedMovieId, movies]);
+  }, [watchedMovieId, movies]);
 
   useEffect(() => {
     loadMovies();
@@ -154,10 +179,10 @@ const ShowtimePlanner: React.FC = () => {
   };
 
   useEffect(() => {
-    if (selectedBrands.length > 0 || selectedCities.length > 0) {
+    if (watchedBrands.length > 0 || watchedCities.length > 0) {
       const loadCinemas = async () => {
         try {
-          const cinemaList = await fetchCinemas(selectedBrands, selectedCities);
+          const cinemaList = await fetchCinemas(watchedBrands, watchedCities);
           setCinemas(cinemaList);
         } catch (err) {
           console.error('Failed to load cinemas', err);
@@ -167,14 +192,14 @@ const ShowtimePlanner: React.FC = () => {
     } else {
       setCinemas([]);
     }
-  }, [selectedBrands, selectedCities]);
+  }, [watchedBrands, watchedCities]);
 
   useEffect(() => {
-    if (selectedCinemaIds.length > 0) {
+    if (watchedCinemaIds.length > 0) {
       const loadRooms = async () => {
         try {
           const allRooms: Room[] = [];
-          for (const cinemaId of selectedCinemaIds) {
+          for (const cinemaId of watchedCinemaIds) {
             const roomList = await fetchRooms(cinemaId);
             allRooms.push(...roomList);
           }
@@ -187,49 +212,57 @@ const ShowtimePlanner: React.FC = () => {
     } else {
       setRooms([]);
     }
-  }, [selectedCinemaIds]);
+  }, [watchedCinemaIds]);
 
   const handlePreview = async () => {
     setLoading(true);
     setErrorMessage('');
     setSuccessMessage('');
+    
+    // Get current form values
+    const data = watch();
+    
     try {
-      let movieId = selectedMovieId;
+      let movieId = data.selectedMovieId;
 
       // Create new movie info if not already created
-      if (isNewMovie) {
+      if (data.isNewMovie) {
         if (createdMovieId) {
           movieId = createdMovieId;
         } else {
-          if (!newMovieData.title || !newMovieData.duration) {
+          if (!data.newMovieData.title || !data.newMovieData.duration) {
             throw new Error('Vui lòng nhập tên phim và thời lượng');
           }
           const createdMovie = await createMovie({
-            ...newMovieData,
-            releaseDate: plannerRange.startDate,
-            endDate: plannerRange.endDate,
+            ...data.newMovieData,
+            releaseDate: data.startDate,
+            endDate: data.endDate,
           });
           movieId = createdMovie._id;
           setCreatedMovieId(movieId);
           await loadMovies(); // Refresh list
-          setSelectedMovieId(movieId);
+          setValue('selectedMovieId', movieId);
         }
       } else {
-        if (!selectedMovieId) throw new Error('Vui lòng chọn một bộ phim');
+        if (!data.selectedMovieId) throw new Error('Vui lòng chọn một bộ phim');
+      }
+
+      if (data.selectedRoomIds.length === 0) {
+        throw new Error('Vui lòng chọn ít nhất một phòng chiếu');
       }
 
       const res = await bulkCreateShowtimes({
         movieId,
-        cinemaIds: selectedCinemaIds,
-        roomIds: selectedRoomIds,
-        startDate: plannerRange.startDate,
-        endDate: plannerRange.endDate,
+        cinemaIds: data.selectedCinemaIds,
+        roomIds: data.selectedRoomIds,
+        startDate: data.startDate,
+        endDate: data.endDate,
         mode: 'AUTO',
-        showsPerDay: numShows,
-        openingTime,
-        closingTime,
-        cleaningMinutes,
-        basePrice,
+        showsPerDay: Number(data.numShows) || 0,
+        openingTime: data.openingTime,
+        closingTime: data.closingTime,
+        cleaningMinutes: Number(data.cleaningMinutes) || 0,
+        basePrice: Number(data.basePrice) || 0,
         dryRun: true,
       });
       setPreviewData(res);
@@ -241,69 +274,72 @@ const ShowtimePlanner: React.FC = () => {
   };
 
   const handleCreate = async () => {
+    // Basic validation before showing confirm modal
+    const data = watch();
+    if (!data.selectedMovieId && !data.isNewMovie) {
+      setErrorMessage('Vui lòng chọn một bộ phim');
+      return;
+    }
+    if (data.selectedRoomIds.length === 0) {
+      setErrorMessage('Vui lòng chọn ít nhất một phòng chiếu');
+      return;
+    }
     setIsConfirmOpen(true);
   };
 
   const executeCreate = async () => {
-    setLoading(true);
-    setErrorMessage('');
-    setSuccessMessage('');
-    try {
-      let movieId = selectedMovieId;
+    // This is called after confirmation, but we can wrap it in handleSubmit if we want validation
+    await handleSubmit(async (data) => {
+      setLoading(true);
+      setErrorMessage('');
+      setSuccessMessage('');
 
-      // Create new movie info if not already created
-      if (isNewMovie) {
-        if (createdMovieId) {
-          movieId = createdMovieId;
-        } else {
-          if (!newMovieData.title || !newMovieData.duration) {
-            throw new Error('Vui lòng nhập tên phim và thời lượng');
+      try {
+        let movieId = data.selectedMovieId;
+
+        // Create new movie info if not already created
+        if (data.isNewMovie) {
+          if (createdMovieId) {
+            movieId = createdMovieId;
+          } else {
+            if (!data.newMovieData.title || !data.newMovieData.duration) {
+              throw new Error('Vui lòng nhập tên phim và thời lượng');
+            }
+            const createdMovie = await createMovie({
+              ...data.newMovieData,
+              releaseDate: data.startDate,
+              endDate: data.endDate,
+            });
+            movieId = createdMovie._id;
+            setCreatedMovieId(movieId);
+            await loadMovies(); // Refresh list
+            setValue('selectedMovieId', movieId);
           }
-          const createdMovie = await createMovie({
-            ...newMovieData,
-            releaseDate: plannerRange.startDate,
-            endDate: plannerRange.endDate,
-          });
-          movieId = createdMovie._id;
-          setCreatedMovieId(movieId);
-          await loadMovies(); // Refresh list
-          setSelectedMovieId(movieId);
         }
-      } else {
-        if (!selectedMovieId) throw new Error('Vui lòng chọn một bộ phim');
+
+        const res = await bulkCreateShowtimes({
+          movieId,
+          cinemaIds: data.selectedCinemaIds,
+          roomIds: data.selectedRoomIds,
+          startDate: data.startDate,
+          endDate: data.endDate,
+          mode: 'AUTO',
+          showsPerDay: Number(data.numShows) || 0,
+          openingTime: data.openingTime,
+          closingTime: data.closingTime,
+          cleaningMinutes: Number(data.cleaningMinutes) || 0,
+          basePrice: Number(data.basePrice) || 0,
+          dryRun: false,
+        });
+        setSuccessMessage(`Đã tạo thành công ${res.createdCount} suất chiếu. Đã bỏ qua ${res.skippedCount} suất bị trùng.`);
+        setIsConfirmOpen(false);
+        setPreviewData(null);
+      } catch (err: any) {
+        setErrorMessage(err.response?.data?.message || err.message || 'Không thể tạo lịch chiếu');
+      } finally {
+        setLoading(false);
       }
-
-      const res = await bulkCreateShowtimes({
-        movieId,
-        cinemaIds: selectedCinemaIds,
-        roomIds: selectedRoomIds,
-        startDate: plannerRange.startDate,
-        endDate: plannerRange.endDate,
-        mode: 'AUTO',
-        showsPerDay: numShows,
-        openingTime,
-        closingTime,
-        cleaningMinutes,
-        basePrice,
-        dryRun: false,
-      });
-      setSuccessMessage(`Đã tạo thành công ${res.createdCount} suất chiếu. Đã bỏ qua ${res.skippedCount} suất bị trùng.`);
-      setIsConfirmOpen(false);
-      setPreviewData(null);
-    } catch (err: any) {
-      setErrorMessage(err.response?.data?.message || err.message || 'Không thể tạo lịch chiếu');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
-  const toggleCinema = (id: string) => {
-    setSelectedCinemaIds(prev => prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]);
-  };
-
-  const toggleRoom = (id: string) => {
-    setSelectedRoomIds(prev => prev.includes(id) ? prev.filter(r => r !== id) : [...prev, id]);
+    })();
   };
 
 
@@ -321,14 +357,14 @@ const ShowtimePlanner: React.FC = () => {
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">1. Thông tin Phim</h3>
               <div className="flex bg-gray-100 dark:bg-white/5 p-1 rounded-lg">
                 <button
-                  onClick={() => setIsNewMovie(false)}
-                  className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${!isNewMovie ? 'bg-white dark:bg-gray-800 shadow-sm text-brand-500' : 'text-gray-500'}`}
+                  onClick={() => setValue('isNewMovie', false)}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${!watchedIsNewMovie ? 'bg-white dark:bg-gray-800 shadow-sm text-brand-500' : 'text-gray-500'}`}
                 >
                   Chọn có sẵn
                 </button>
                 <button
-                  onClick={() => setIsNewMovie(true)}
-                  className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${isNewMovie ? 'bg-white dark:bg-gray-800 shadow-sm text-brand-500' : 'text-gray-500'}`}
+                  onClick={() => setValue('isNewMovie', true)}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${watchedIsNewMovie ? 'bg-white dark:bg-gray-800 shadow-sm text-brand-500' : 'text-gray-500'}`}
                 >
                   Thêm mới
                 </button>
@@ -336,14 +372,22 @@ const ShowtimePlanner: React.FC = () => {
             </div>
             
             <div className="space-y-4">
-              {!isNewMovie ? (
+              {!watchedIsNewMovie ? (
                 <div>
                   <Label>Chọn phim từ danh sách <span className="text-red-500">*</span></Label>
-                  <Select
-                    options={[{ value: '', label: '--- Chọn phim ---' }, ...movies.map(m => ({ value: m._id, label: m.title }))]}
-                    value={selectedMovieId}
-                    onChange={setSelectedMovieId}
+                  <Controller
+                    name="selectedMovieId"
+                    control={control}
+                    rules={{ required: !watchedIsNewMovie ? "Vui lòng chọn một bộ phim" : false }}
+                    render={({ field }) => (
+                      <Select
+                        options={[{ value: '', label: '--- Chọn phim ---' }, ...movies.map(m => ({ value: m._id, label: m.title }))]}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    )}
                   />
+                  {errors.selectedMovieId && <p className="mt-1 text-xs text-error-500">{errors.selectedMovieId.message}</p>}
                   {selectedMovie && (
                     <div className="mt-4 flex gap-4 p-3 border border-gray-100 dark:border-gray-800 rounded-xl bg-gray-50/50 dark:bg-white/5">
                       <img 
@@ -364,52 +408,88 @@ const ShowtimePlanner: React.FC = () => {
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div className="col-span-1 sm:col-span-2">
                       <Label>Tên Phim <span className="text-red-500">*</span></Label>
-                      <Input
-                        type="text"
-                        value={newMovieData.title}
-                        onChange={(e) => {
-                          setNewMovieData({ ...newMovieData, title: e.target.value });
-                          setCreatedMovieId(null); // Reset if title changes
-                        }}
-                        placeholder="Nhập tên phim..."
+                      <Controller
+                        name="newMovieData.title"
+                        control={control}
+                        rules={{ required: watchedIsNewMovie ? "Tên phim là bắt buộc" : false }}
+                        render={({ field }) => (
+                          <Input
+                            type="text"
+                            value={field.value}
+                            onChange={(e) => {
+                              field.onChange(e);
+                              setCreatedMovieId(null);
+                            }}
+                            placeholder="Nhập tên phim..."
+                            error={!!errors.newMovieData?.title}
+                            hint={errors.newMovieData?.title?.message}
+                          />
+                        )}
                       />
                     </div>
                     <div>
                       <Label>Thời lượng (phút) <span className="text-red-500">*</span></Label>
-                      <Input
-                        type="number"
-                        value={newMovieData.duration}
-                        onChange={(e) => setNewMovieData({ ...newMovieData, duration: Number(e.target.value) })}
-                        onFocus={(e) => e.target.select()}
+                      <Controller
+                        name="newMovieData.duration"
+                        control={control}
+                        rules={{ required: watchedIsNewMovie ? "Thời lượng là bắt buộc" : false, min: 1 }}
+                        render={({ field }) => (
+                          <Input
+                            type="number"
+                            value={field.value}
+                            onChange={(e) => field.onChange(Number(e.target.value))}
+                            onFocus={(e) => e.target.select()}
+                            error={!!errors.newMovieData?.duration}
+                            hint={errors.newMovieData?.duration?.message}
+                          />
+                        )}
                       />
                     </div>
                     <div>
                       <Label>Trạng thái</Label>
-                      <Select
-                        options={[
-                          { value: 'now_showing', label: 'Đang chiếu' },
-                          { value: 'coming_soon', label: 'Sắp chiếu' },
-                        ]}
-                        value={newMovieData.status}
-                        onChange={(val) => setNewMovieData({ ...newMovieData, status: val })}
+                      <Controller
+                        name="newMovieData.status"
+                        control={control}
+                        render={({ field }) => (
+                          <Select
+                            options={[
+                              { value: 'now_showing', label: 'Đang chiếu' },
+                              { value: 'coming_soon', label: 'Sắp chiếu' },
+                            ]}
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
+                        )}
                       />
                     </div>
                     <div className="col-span-1 sm:col-span-2">
                       <Label>Link Poster</Label>
-                      <Input
-                        type="text"
-                        value={newMovieData.poster}
-                        onChange={(e) => setNewMovieData({ ...newMovieData, poster: e.target.value })}
-                        placeholder="https://example.com/poster.jpg"
+                      <Controller
+                        name="newMovieData.poster"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            type="text"
+                            value={field.value}
+                            onChange={field.onChange}
+                            placeholder="https://example.com/poster.jpg"
+                          />
+                        )}
                       />
                     </div>
                     <div className="col-span-1 sm:col-span-2">
                       <Label>Link Trailer (YouTube)</Label>
-                      <Input
-                        type="text"
-                        value={newMovieData.trailer}
-                        onChange={(e) => setNewMovieData({ ...newMovieData, trailer: e.target.value })}
-                        placeholder="https://youtube.com/watch?v=..."
+                      <Controller
+                        name="newMovieData.trailer"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            type="text"
+                            value={field.value}
+                            onChange={field.onChange}
+                            placeholder="https://youtube.com/watch?v=..."
+                          />
+                        )}
                       />
                     </div>
                   </div>
@@ -422,24 +502,36 @@ const ShowtimePlanner: React.FC = () => {
           <div className="xl:col-span-1 p-6 bg-white border border-gray-200 rounded-2xl dark:border-gray-800 dark:bg-white/[0.03]">
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">2. Chọn Rạp & Phòng</h3>
             <div className="space-y-4 mb-4">
-              <MultiSelect
-                label="Thành phố"
-                placeholder="Chọn thành phố..."
-                options={cities.map(c => ({ value: c, text: c }))}
-                value={selectedCities}
-                onChange={setSelectedCities}
+              <Controller
+                name="selectedCities"
+                control={control}
+                render={({ field }) => (
+                  <MultiSelect
+                    label="Thành phố"
+                    placeholder="Chọn thành phố..."
+                    options={cities.map(c => ({ value: c, text: c }))}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
               
-              <MultiSelect
-                label="Thương hiệu"
-                placeholder="Chọn thương hiệu..."
-                options={brands.map(b => ({ 
-                  value: b._id || b.code || b.name, 
-                  text: b.name, 
-                  image: b.logo || b.logoUrl 
-                }))}
-                value={selectedBrands}
-                onChange={setSelectedBrands}
+              <Controller
+                name="selectedBrands"
+                control={control}
+                render={({ field }) => (
+                  <MultiSelect
+                    label="Thương hiệu"
+                    placeholder="Chọn thương hiệu..."
+                    options={brands.map(b => ({ 
+                      value: b._id || b.code || b.name, 
+                      text: b.name, 
+                      image: b.logo || b.logoUrl 
+                    }))}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
             </div>
 
@@ -447,17 +539,30 @@ const ShowtimePlanner: React.FC = () => {
               <div className="mb-4">
                 <Label>Chọn Rạp</Label>
                 <div className="grid grid-cols-1 gap-2 mt-2 sm:grid-cols-2">
-                  {cinemas.map(c => (
-                    <label key={c._id} className="flex items-center gap-2 p-2 transition-colors border border-gray-100 rounded-lg cursor-pointer hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-white/5">
-                      <input
-                        type="checkbox"
-                        checked={selectedCinemaIds.includes(c._id)}
-                        onChange={() => toggleCinema(c._id)}
-                        className="rounded text-brand-500"
-                      />
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{c.name}</span>
-                    </label>
-                  ))}
+                  <Controller
+                    name="selectedCinemaIds"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        {cinemas.map(c => (
+                          <label key={c._id} className="flex items-center gap-2 p-2 transition-colors border border-gray-100 rounded-lg cursor-pointer hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-white/5">
+                            <input
+                              type="checkbox"
+                              checked={field.value.includes(c._id)}
+                              onChange={() => {
+                                const newValue = field.value.includes(c._id)
+                                  ? field.value.filter(id => id !== c._id)
+                                  : [...field.value, c._id];
+                                field.onChange(newValue);
+                              }}
+                              className="rounded text-brand-500"
+                            />
+                            <span className="text-sm text-gray-700 dark:text-gray-300">{c.name}</span>
+                          </label>
+                        ))}
+                      </>
+                    )}
+                  />
                 </div>
               </div>
             )}
@@ -466,18 +571,32 @@ const ShowtimePlanner: React.FC = () => {
               <div>
                 <Label>Chọn Phòng</Label>
                 <div className="grid grid-cols-1 gap-2 mt-2 sm:grid-cols-2">
-                  {rooms.map(r => (
-                    <label key={r._id} className="flex items-center gap-2 p-2 transition-colors border border-gray-100 rounded-lg cursor-pointer hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-white/5">
-                      <input
-                        type="checkbox"
-                        checked={selectedRoomIds.includes(r._id)}
-                        onChange={() => toggleRoom(r._id)}
-                        className="rounded text-brand-500"
-                      />
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{r.name}</span>
-                    </label>
-                  ))}
+                  <Controller
+                    name="selectedRoomIds"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        {rooms.map(r => (
+                          <label key={r._id} className="flex items-center gap-2 p-2 transition-colors border border-gray-100 rounded-lg cursor-pointer hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-white/5">
+                            <input
+                              type="checkbox"
+                              checked={field.value.includes(r._id)}
+                              onChange={() => {
+                                const newValue = field.value.includes(r._id)
+                                  ? field.value.filter(id => id !== r._id)
+                                  : [...field.value, r._id];
+                                field.onChange(newValue);
+                              }}
+                              className="rounded text-brand-500"
+                            />
+                            <span className="text-sm text-gray-700 dark:text-gray-300">{r.name}</span>
+                          </label>
+                        ))}
+                      </>
+                    )}
+                  />
                 </div>
+                {errors.selectedRoomIds && <p className="mt-1 text-xs text-error-500">{errors.selectedRoomIds.message}</p>}
               </div>
             )}
           </div>
@@ -503,23 +622,41 @@ const ShowtimePlanner: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label>Số suất mỗi ngày</Label>
-                    <Input
-                      type="number"
-                      value={numShows}
-                      onChange={(e) => setNumShows(e.target.value === '' ? 0 : Number(e.target.value))}
-                      onFocus={(e) => e.target.select()}
-                      min={1}
-                      max={12}
+                    <Controller
+                      name="numShows"
+                      control={control}
+                      render={({ field }) => (
+                        <Input
+                          type="number"
+                          value={field.value}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            field.onChange(val.replace(/^0+(?=\d)/, ''));
+                          }}
+                          onFocus={(e) => e.target.select()}
+                          min={1}
+                          max={12}
+                        />
+                      )}
                     />
                   </div>
                   <div>
                     <Label>Dọn phòng (phút)</Label>
-                    <Input
-                      type="number"
-                      value={cleaningMinutes}
-                      onChange={(e) => setCleaningMinutes(e.target.value === '' ? 0 : Number(e.target.value))}
-                      onFocus={(e) => e.target.select()}
-                      min={0}
+                    <Controller
+                      name="cleaningMinutes"
+                      control={control}
+                      render={({ field }) => (
+                        <Input
+                          type="number"
+                          value={field.value}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            field.onChange(val.replace(/^0+(?=\d)/, ''));
+                          }}
+                          onFocus={(e) => e.target.select()}
+                          min={0}
+                        />
+                      )}
                     />
                   </div>
                 </div>
@@ -547,12 +684,21 @@ const ShowtimePlanner: React.FC = () => {
 
             <div className="mb-6">
               <Label>Giá vé cơ bản (VNĐ)</Label>
-              <Input
-                type="number"
-                value={basePrice}
-                onChange={(e) => setBasePrice(e.target.value === '' ? 0 : Number(e.target.value))}
-                onFocus={(e) => e.target.select()}
-                placeholder="75000"
+              <Controller
+                name="basePrice"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    type="number"
+                    value={field.value}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      field.onChange(val.replace(/^0+(?=\d)/, ''));
+                    }}
+                    onFocus={(e) => e.target.select()}
+                    placeholder="75000"
+                  />
+                )}
               />
             </div>
 
@@ -561,14 +707,14 @@ const ShowtimePlanner: React.FC = () => {
                 variant="outline"
                 className="flex-1"
                 onClick={handlePreview}
-                disabled={loading || (!selectedMovieId && !isNewMovie) || (isNewMovie && !newMovieData.title) || selectedRoomIds.length === 0}
+                disabled={loading}
               >
                 {loading ? 'Đang xử lý...' : 'Xem trước lịch chiếu'}
               </Button>
               <Button
                 className="flex-1"
                 onClick={handleCreate}
-                disabled={loading || (!selectedMovieId && !isNewMovie) || (isNewMovie && !newMovieData.title) || selectedRoomIds.length === 0}
+                disabled={loading}
               >
                 Tạo lịch chiếu
               </Button>

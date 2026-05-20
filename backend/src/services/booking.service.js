@@ -16,6 +16,10 @@ const {
 
 const BOOKING_POPULATE = [
   {
+    path: 'userId',
+    select: 'fullName email phone avatar',
+  },
+  {
     path: 'movieId',
     select: 'title duration poster status',
   },
@@ -174,6 +178,15 @@ const mapBookingResponse = (booking) => ({
   paidAt: booking.paidAt,
   paymentExpiresAt: booking.paymentExpiresAt,
   paymentSummary: booking.paymentSummary || null,
+  user: booking.userId
+    ? {
+        id: String(booking.userId._id),
+        fullName: booking.userId.fullName,
+        email: booking.userId.email,
+        phone: booking.userId.phone,
+        avatar: booking.userId.avatar,
+      }
+    : null,
   movie: booking.movieId
     ? {
         id: String(booking.movieId._id),

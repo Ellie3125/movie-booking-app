@@ -179,15 +179,22 @@ export type BackendShowtimeSeatState = {
   rowLabel: string;
   rowIndex: number;
   columnIndex: number;
-  type: 'standard' | 'vip' | 'couple' | 'empty' | 'aisle' | 'disabled';
+  type: 'regular' | 'vip' | 'couple' | 'empty' | 'aisle' | 'disabled' | 'space';
   capacity: number;
   coupleGroupId: string | null;
-  status: 'available' | 'held' | 'booked' | 'disabled';
+  status: 'available' | 'held' | 'booked' | 'disabled' | 'active';
+  priceType?: string;
+  size?: number;
   userId: string | null;
   bookingId: string | null;
   heldAt: string | null;
   holdExpiresAt: string | null;
   bookedAt: string | null;
+};
+
+export type BackendShowtimeSeatRow = {
+  rowLabel: string;
+  seats: BackendShowtimeSeatState[];
 };
 
 export type BackendShowtimeListItem = {
@@ -219,7 +226,7 @@ export type BackendShowtimeListItem = {
 };
 
 export type BackendShowtimeDetail = BackendShowtimeListItem & {
-  seatStates: BackendShowtimeSeatState[];
+  seatLayout: BackendShowtimeSeatRow[];
 };
 
 export type BackendShowtimeSchedulePayload = {

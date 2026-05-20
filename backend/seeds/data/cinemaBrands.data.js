@@ -22,5 +22,17 @@ module.exports = [
     "name": "Galaxy Cinema",
     "code": "GALAXY",
     "logoUrl": "https://www.galaxycine.vn/website/images/galaxy-logo.png"
+  },
+  {
+    "_id": "6506ce1d66c6733df0fb34c5",
+    "name": "Cinestar",
+    "code": "CINESTAR",
+    "logoUrl": "https://cinestar.com.vn/pictures/moi/LOGO/logo-footer.png"
+  },
+  {
+    "_id": "6506ce1d66c6733df0fb34c6",
+    "name": "Mega GS",
+    "code": "MEGA_GS",
+    "logoUrl": "https://megagscinemas.vn/img/logo.png"
   }
 ];

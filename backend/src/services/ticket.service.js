@@ -5,7 +5,11 @@ const ApiError = require('../utils/apiError');
 const TICKET_POPULATE = [
   {
     path: 'bookingId',
-    select: 'bookingCode status paymentStatus paymentMethod totalAmount currency paidAt createdAt',
+    select: 'bookingCode status paymentStatus paymentMethod totalAmount currency paidAt createdAt userId',
+    populate: {
+      path: 'userId',
+      select: 'fullName email phone avatar',
+    },
   },
   {
     path: 'movieId',
@@ -46,6 +50,13 @@ const mapTicketResponse = (ticket) => ({
     seatLabel: ticket.seat.seatLabel,
     seatType: ticket.seat.seatType,
   },
+  user: ticket.userId || ticket.bookingId?.userId
+    ? {
+        id: String(ticket.bookingId?.userId?._id || ticket.userId),
+        fullName: ticket.bookingId?.userId?.fullName || 'Người dùng',
+        email: ticket.bookingId?.userId?.email,
+      }
+    : null,
   booking: ticket.bookingId
     ? {
         id: String(ticket.bookingId._id),

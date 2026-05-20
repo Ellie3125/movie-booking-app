@@ -1,5 +1,6 @@
 import { Link } from 'expo-router';
-import { StyleSheet, Text } from 'react-native';
+import { useState } from 'react';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import {
   EmptyNotice,
@@ -25,11 +26,32 @@ const formatDateTime = (value: string) =>
     month: '2-digit',
   });
 
+type StatusFilterKey = 'all' | 'paid' | 'held' | 'cancelled';
+
+const STATUS_FILTERS: { key: StatusFilterKey; label: string }[] = [
+  { key: 'all', label: 'Tất cả' },
+  { key: 'paid', label: 'Đã thanh toán' },
+  { key: 'held', label: 'Đang chờ' },
+  { key: 'cancelled', label: 'Đã hủy' },
+];
+
 export default function BookingsTabScreen() {
   const { bookings, movies, showtimes, cinemas, currentUser } = useAppStore();
   const colors = getTonePalette('user');
   const currentUserId = currentUser?.id ?? '';
   const myBookings = bookings.filter((booking) => booking.userId === currentUserId);
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState<StatusFilterKey>('all');
+
+  const filteredBookings = myBookings.filter((booking) => {
+    const movie = movies.find((m) => m.id === booking.movieId);
+    const matchesSearch = (movie?.title ?? '')
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === 'all' || booking.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <PageScroll tone="user">
@@ -40,15 +62,58 @@ export default function BookingsTabScreen() {
         description="Theo dõi vé đã mua, trạng thái thanh toán và xem lại thông tin từng vé."
       />
 
+      {/* Search Input */}
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={[styles.searchInput, { borderColor: colors.accent + '40', color: colors.text }]}
+          placeholder="Tìm tên phim..."
+          placeholderTextColor={colors.muted}
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+          autoCorrect={false}
+        />
+      </View>
+
+      {/* Filter Chips */}
+      <View style={styles.chipRow}>
+        {STATUS_FILTERS.map((filter) => {
+          const isActive = statusFilter === filter.key;
+          return (
+            <Pressable
+              key={filter.key}
+              onPress={() => setStatusFilter(filter.key)}
+              style={[
+                styles.chip,
+                {
+                  backgroundColor: isActive ? colors.accent : colors.accent + '15',
+                  borderColor: isActive ? colors.accent : colors.accent + '30',
+                },
+              ]}>
+              <Text
+                style={[
+                  styles.chipText,
+                  { color: isActive ? '#FFFDF8' : colors.text },
+                ]}>
+                {filter.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+
       <SectionTitle tone="user" title="Lịch sử đặt vé" />
-      {myBookings.length === 0 ? (
+      {filteredBookings.length === 0 ? (
         <EmptyNotice
           tone="user"
-          title="Bạn chưa có booking nào"
-          description="Sau khi thanh toán thành công, vé sẽ xuất hiện tại đây để bạn xem lại chi tiết."
+          title={searchTerm || statusFilter !== 'all' ? 'Không tìm thấy kết quả' : 'Bạn chưa có booking nào'}
+          description={
+            searchTerm || statusFilter !== 'all'
+              ? 'Thử thay đổi từ khóa hoặc bộ lọc trạng thái.'
+              : 'Sau khi thanh toán thành công, vé sẽ xuất hiện tại đây để bạn xem lại chi tiết.'
+          }
         />
       ) : (
-        myBookings.map((booking) => {
+        filteredBookings.map((booking) => {
           const movie = movies.find((item) => item.id === booking.movieId);
           const showtime = showtimes.find((item) => item.id === booking.showtimeId);
           const cinema = cinemas.find((item) => item.id === showtime?.cinemaId);
@@ -66,7 +131,7 @@ export default function BookingsTabScreen() {
               <Text style={[styles.cardCopy, { color: colors.muted }]}>
                 Ghế{' '}
                 {booking.seats
-                  .map((seat) => `${seat.seatLabel} (${seat.seatCoordinate})`)
+                  .map((seat) => `${seat.seatLabel} (${seat.seatCode})`)
                   .join(', ')}
               </Text>
               <Text style={[styles.inlineMeta, { color: colors.text }]}>
@@ -94,6 +159,36 @@ export default function BookingsTabScreen() {
 }
 
 const styles = StyleSheet.create({
+  searchContainer: {
+    paddingHorizontal: 4,
+    marginBottom: 8,
+  },
+  searchInput: {
+    height: 44,
+    borderRadius: 14,
+    borderWidth: 1,
+    paddingHorizontal: 16,
+    fontSize: 14,
+    fontFamily: Fonts.sansMedium,
+    backgroundColor: 'rgba(255, 249, 238, 0.8)',
+  },
+  chipRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    paddingHorizontal: 4,
+    marginBottom: 12,
+  },
+  chip: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 20,
+    borderWidth: 1,
+  },
+  chipText: {
+    fontSize: 13,
+    fontFamily: Fonts.sansBold,
+  },
   cardTitle: {
     fontSize: 18,
     fontFamily: Fonts.sansBold,

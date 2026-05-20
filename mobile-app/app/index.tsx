@@ -1,6 +1,7 @@
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Redirect, useRouter } from 'expo-router';
 import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import {
   ActivityIndicator,
   Image,
@@ -25,7 +26,13 @@ const mascotLeftImage = require('../assets/images/popcorn1-cutout.png');
 const mascotRightImage = require('../assets/images/popcorn2-cutout.png');
 
 type AuthMode = 'login' | 'register';
-type FieldErrors = Partial<Record<'name' | 'email' | 'password' | 'confirmPassword', string>>;
+
+interface AuthFormData {
+  name?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
 
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
@@ -35,14 +42,18 @@ export default function EntryScreen() {
   const { authStatus, isAuthenticated, login, register } = useAppStore();
 
   const [mode, setMode] = useState<AuthMode>('login');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [rememberSession, setRememberSession] = useState(true);
-  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { control, handleSubmit, reset, formState: { errors } } = useForm<AuthFormData>({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    }
+  });
 
   if (isAuthenticated) {
     return <Redirect href="/home" />;
@@ -53,79 +64,27 @@ export default function EntryScreen() {
 
   const handleModeChange = (nextMode: AuthMode) => {
     setMode(nextMode);
-    setFieldErrors({});
     setFormError(null);
-    setPassword('');
-    setConfirmPassword('');
-
-    if (nextMode === 'login') {
-      setName('');
-    }
+    reset(); // Clear form when switching modes
   };
 
-  const clearFieldError = (field: keyof FieldErrors) => {
-    setFieldErrors((current) => ({
-      ...current,
-      [field]: undefined,
-    }));
-    setFormError(null);
-  };
-
-  const validateForm = () => {
-    const nextErrors: FieldErrors = {};
-    const trimmedName = name.trim();
-    const normalizedEmail = email.trim().toLowerCase();
-
-    if (mode === 'register' && trimmedName.length < 2) {
-      nextErrors.name = 'Tên phải có ít nhất 2 ký tự.';
-    }
-
-    if (!normalizedEmail) {
-      nextErrors.email = 'Email là bắt buộc.';
-    } else if (!isValidEmail(normalizedEmail)) {
-      nextErrors.email = 'Email không hợp lệ.';
-    }
-
-    if (!password.trim()) {
-      nextErrors.password = 'Mật khẩu là bắt buộc.';
-    } else if (password.trim().length < 6) {
-      nextErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự.';
-    }
-
-    if (mode === 'register' && confirmPassword !== password) {
-      nextErrors.confirmPassword = 'Mật khẩu nhập lại không khớp.';
-    }
-
-    setFieldErrors(nextErrors);
-
-    return {
-      isValid: Object.keys(nextErrors).length === 0,
-      trimmedName,
-      normalizedEmail,
-    };
-  };
-
-  const handleUserAuth = async () => {
-    const { isValid, trimmedName, normalizedEmail } = validateForm();
-
-    if (!isValid) {
-      return;
-    }
-
+  const handleUserAuth = async (data: AuthFormData) => {
     setIsSubmitting(true);
     setFormError(null);
+
+    const normalizedEmail = data.email.trim().toLowerCase();
 
     const result =
       mode === 'login'
         ? await login({
             email: normalizedEmail,
-            password,
+            password: data.password,
             persistSession: rememberSession,
           })
         : await register({
-            name: trimmedName,
+            name: data.name?.trim() || '',
             email: normalizedEmail,
-            password,
+            password: data.password,
             persistSession: rememberSession,
           });
 
@@ -142,45 +101,6 @@ export default function EntryScreen() {
   const handleForgotPassword = () => {
     setFormError('Chức năng quên mật khẩu chưa được triển khai.');
   };
-
-  const renderInput = ({
-    icon,
-    placeholder,
-    value,
-    onChangeText,
-    error,
-    secureTextEntry = false,
-    keyboardType,
-  }: {
-    icon: keyof typeof MaterialCommunityIcons.glyphMap;
-    placeholder: string;
-    value: string;
-    onChangeText: (value: string) => void;
-    error?: string;
-    secureTextEntry?: boolean;
-    keyboardType?: 'default' | 'email-address';
-  }) => (
-    <View style={styles.fieldGroup}>
-      <View style={[styles.inputShell, error ? styles.inputShellError : null]}>
-        <MaterialCommunityIcons name={icon} size={20} color="#F0A439" />
-        <TextInput
-          autoCapitalize={
-            keyboardType === 'email-address' || secureTextEntry ? 'none' : 'words'
-          }
-          autoCorrect={false}
-          editable={!isBusy}
-          keyboardType={keyboardType}
-          onChangeText={onChangeText}
-          placeholder={placeholder}
-          placeholderTextColor="#C9A278"
-          secureTextEntry={secureTextEntry}
-          style={styles.input}
-          value={value}
-        />
-      </View>
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
-    </View>
-  );
 
   return (
     <ImageBackground
@@ -205,56 +125,116 @@ export default function EntryScreen() {
               </Text>
 
               <View style={styles.formArea}>
-                {mode === 'register'
-                  ? renderInput({
-                      icon: 'account-outline',
-                      placeholder: 'Họ và tên',
-                      value: name,
-                      onChangeText: (value) => {
-                        setName(value);
-                        clearFieldError('name');
-                      },
-                      error: fieldErrors.name,
-                    })
-                  : null}
+                {mode === 'register' && (
+                  <View style={styles.fieldGroup}>
+                    <Controller
+                      control={control}
+                      name="name"
+                      rules={{ 
+                        required: 'Họ và tên là bắt buộc.',
+                        minLength: { value: 2, message: 'Tên phải có ít nhất 2 ký tự.' }
+                      }}
+                      render={({ field: { onChange, value } }) => (
+                        <View style={[styles.inputShell, errors.name ? styles.inputShellError : null]}>
+                          <MaterialCommunityIcons name="account-outline" size={20} color="#F0A439" />
+                          <TextInput
+                            editable={!isBusy}
+                            onChangeText={onChange}
+                            placeholder="Họ và tên"
+                            placeholderTextColor="#C9A278"
+                            style={styles.input}
+                            value={value}
+                            autoCapitalize="words"
+                          />
+                        </View>
+                      )}
+                    />
+                    {errors.name && <Text style={styles.errorText}>{errors.name.message}</Text>}
+                  </View>
+                )}
 
-                {renderInput({
-                  icon: 'email-outline',
-                  placeholder: 'Email',
-                  value: email,
-                  onChangeText: (value) => {
-                    setEmail(value);
-                    clearFieldError('email');
-                  },
-                  error: fieldErrors.email,
-                  keyboardType: 'email-address',
-                })}
+                <View style={styles.fieldGroup}>
+                  <Controller
+                    control={control}
+                    name="email"
+                    rules={{ 
+                      required: 'Email là bắt buộc.',
+                      validate: (val) => isValidEmail(val.trim().toLowerCase()) || 'Email không hợp lệ.'
+                    }}
+                    render={({ field: { onChange, value } }) => (
+                      <View style={[styles.inputShell, errors.email ? styles.inputShellError : null]}>
+                        <MaterialCommunityIcons name="email-outline" size={20} color="#F0A439" />
+                        <TextInput
+                          editable={!isBusy}
+                          onChangeText={onChange}
+                          placeholder="Email"
+                          placeholderTextColor="#C9A278"
+                          style={styles.input}
+                          value={value}
+                          autoCapitalize="none"
+                          keyboardType="email-address"
+                        />
+                      </View>
+                    )}
+                  />
+                  {errors.email && <Text style={styles.errorText}>{errors.email.message}</Text>}
+                </View>
 
-                {renderInput({
-                  icon: 'lock-outline',
-                  placeholder: 'Mật khẩu',
-                  value: password,
-                  onChangeText: (value) => {
-                    setPassword(value);
-                    clearFieldError('password');
-                  },
-                  error: fieldErrors.password,
-                  secureTextEntry: true,
-                })}
+                <View style={styles.fieldGroup}>
+                  <Controller
+                    control={control}
+                    name="password"
+                    rules={{ 
+                      required: 'Mật khẩu là bắt buộc.',
+                      minLength: { value: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự.' }
+                    }}
+                    render={({ field: { onChange, value } }) => (
+                      <View style={[styles.inputShell, errors.password ? styles.inputShellError : null]}>
+                        <MaterialCommunityIcons name="lock-outline" size={20} color="#F0A439" />
+                        <TextInput
+                          editable={!isBusy}
+                          onChangeText={onChange}
+                          placeholder="Mật khẩu"
+                          placeholderTextColor="#C9A278"
+                          style={styles.input}
+                          value={value}
+                          secureTextEntry
+                          autoCapitalize="none"
+                        />
+                      </View>
+                    )}
+                  />
+                  {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
+                </View>
 
-                {mode === 'register'
-                  ? renderInput({
-                      icon: 'shield-check-outline',
-                      placeholder: 'Nhập lại mật khẩu',
-                      value: confirmPassword,
-                      onChangeText: (value) => {
-                        setConfirmPassword(value);
-                        clearFieldError('confirmPassword');
-                      },
-                      error: fieldErrors.confirmPassword,
-                      secureTextEntry: true,
-                    })
-                  : null}
+                {mode === 'register' && (
+                  <View style={styles.fieldGroup}>
+                    <Controller
+                      control={control}
+                      name="confirmPassword"
+                      rules={{ 
+                        required: 'Vui lòng xác nhận mật khẩu.',
+                        validate: (val, formValues) => val === formValues.password || 'Mật khẩu nhập lại không khớp.'
+                      }}
+                      render={({ field: { onChange, value } }) => (
+                        <View style={[styles.inputShell, errors.confirmPassword ? styles.inputShellError : null]}>
+                          <MaterialCommunityIcons name="shield-check-outline" size={20} color="#F0A439" />
+                          <TextInput
+                            editable={!isBusy}
+                            onChangeText={onChange}
+                            placeholder="Nhập lại mật khẩu"
+                            placeholderTextColor="#C9A278"
+                            style={styles.input}
+                            value={value}
+                            secureTextEntry
+                            autoCapitalize="none"
+                          />
+                        </View>
+                      )}
+                    />
+                    {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword.message}</Text>}
+                  </View>
+                )}
 
                 {mode === 'login' ? (
                   <View style={styles.utilityRow}>
@@ -292,7 +272,7 @@ export default function EntryScreen() {
                     isBusy ? styles.buttonDisabled : null,
                   ]}
                   disabled={isBusy}
-                  onPress={handleUserAuth}>
+                  onPress={handleSubmit(handleUserAuth)}>
                   {isBusy ? (
                     <ActivityIndicator color="#FFFDF8" size="small" />
                   ) : null}
