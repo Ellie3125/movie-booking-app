@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import PageBreadCrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 import {
@@ -20,6 +21,24 @@ import { ConfirmationModal } from "../../components/ui/modal/ConfirmationModal";
 import { buildImageUrl } from "../../utils/imageUrl";
 import { CinemaDetailModal } from "../../components/ui/modal/CinemaDetailModal";
 
+type CinemaFormData = {
+  name: string;
+  brand: string;
+  city: string;
+  address: string;
+  phone: string;
+  imageUrl: string;
+};
+
+const defaultFormValues: CinemaFormData = {
+  name: "",
+  brand: "",
+  city: "",
+  address: "",
+  phone: "",
+  imageUrl: "",
+};
+
 export default function Cinemas() {
   const [cinemas, setCinemas] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -33,13 +52,9 @@ export default function Cinemas() {
   // Form states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    brand: "",
-    city: "",
-    address: "",
-    phone: "",
-    imageUrl: "",
+
+  const { control, handleSubmit, reset, formState: { errors } } = useForm<CinemaFormData>({
+    defaultValues: defaultFormValues,
   });
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -81,7 +96,7 @@ export default function Cinemas() {
   }, [filterBrand, filterCity]);
 
   const handleEdit = (cinema: any) => {
-    setFormData({
+    reset({
       name: cinema.name,
       brand: cinema.brand,
       city: cinema.city || cinema.province || "",
@@ -112,8 +127,7 @@ export default function Cinemas() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (formData: CinemaFormData) => {
     if (!formData.brand || !formData.city) {
       toast.error("Vui lòng chọn Thương hiệu và Tỉnh/Thành");
       return;
@@ -183,7 +197,7 @@ export default function Cinemas() {
         </div>
         <Button onClick={() => {
           setEditingId(null);
-          setFormData({ name: "", brand: "", city: "", address: "", phone: "", imageUrl: "" });
+          reset(defaultFormValues);
           setIsModalOpen(true);
         }} className="whitespace-nowrap">
           + Thêm rạp phim
@@ -286,55 +300,99 @@ export default function Cinemas() {
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} className="max-w-[700px] p-8">
         <h2 className="text-xl font-bold mb-6 text-gray-800 dark:text-white">{editingId ? "Cập nhật rạp" : "Thêm rạp mới"}</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="grid grid-cols-2 gap-5">
             <div className="col-span-2">
               <Label>Tên rạp</Label>
-              <Input
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
+              <Controller
+                name="name"
+                control={control}
+                rules={{ required: "Tên rạp là bắt buộc" }}
+                render={({ field }) => (
+                  <Input
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={!!errors.name}
+                    hint={errors.name?.message}
+                  />
+                )}
               />
             </div>
             <div>
               <Label>Thương hiệu</Label>
-              <Select
-                options={[{ value: "", label: "Chọn thương hiệu" }, ...brands.map(b => ({ value: b.code, label: b.name }))]}
-                value={formData.brand}
-                onChange={(val) => setFormData({ ...formData, brand: val })}
+              <Controller
+                name="brand"
+                control={control}
+                rules={{ required: "Thương hiệu là bắt buộc" }}
+                render={({ field }) => (
+                  <Select
+                    options={[{ value: "", label: "Chọn thương hiệu" }, ...brands.map(b => ({ value: b.code, label: b.name }))]}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
+              {errors.brand && <p className="mt-1 text-xs text-error-500">{errors.brand.message}</p>}
             </div>
             <div>
               <Label>Tỉnh/Thành phố</Label>
-              <Select
-                options={[{ value: "", label: "Chọn tỉnh/thành" }, ...cities.map(p => ({ value: p, label: p }))]}
-                value={formData.city}
-                onChange={(val) => setFormData({ ...formData, city: val })}
+              <Controller
+                name="city"
+                control={control}
+                rules={{ required: "Tỉnh/Thành là bắt buộc" }}
+                render={({ field }) => (
+                  <Select
+                    options={[{ value: "", label: "Chọn tỉnh/thành" }, ...cities.map(p => ({ value: p, label: p }))]}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
+              {errors.city && <p className="mt-1 text-xs text-error-500">{errors.city.message}</p>}
             </div>
           </div>
           <div>
             <Label>Địa chỉ chi tiết</Label>
-            <Input
-              value={formData.address}
-              onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              required
+            <Controller
+              name="address"
+              control={control}
+              rules={{ required: "Địa chỉ là bắt buộc" }}
+              render={({ field }) => (
+                <Input
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={!!errors.address}
+                  hint={errors.address?.message}
+                />
+              )}
             />
           </div>
           <div className="grid grid-cols-2 gap-5">
             <div>
               <Label>Số điện thoại</Label>
-              <Input
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              <Controller
+                name="phone"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
             </div>
             <div>
               <Label>Link Logo Rạp</Label>
-              <Input
-                value={formData.imageUrl}
-                onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                placeholder="https://..."
+              <Controller
+                name="imageUrl"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="https://..."
+                  />
+                )}
               />
             </div>
           </div>

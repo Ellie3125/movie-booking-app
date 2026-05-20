@@ -1,86 +1,112 @@
 import React from "react";
-import { SEAT_TYPE_CONFIG, SeatType } from "./SeatToolbar";
+import { Seat, SEAT_TYPE_CONFIG, NON_SEAT_TYPES } from "../types";
 
 interface SeatCellProps {
-  seat: {
-    label?: string;
-    seatCode: string;
-    type: SeatType;
-    status: string;
-    size?: number;
-  };
+  seat: Seat;
   onClick: () => void;
   isPreview?: boolean;
+  isSelected?: boolean;
 }
 
-const SeatCell: React.FC<SeatCellProps> = ({ 
-  seat, 
-  onClick, 
-  isPreview 
+const SeatCell: React.FC<SeatCellProps> = ({
+  seat,
+  onClick,
+  isPreview,
+  isSelected,
 }) => {
-  const config = SEAT_TYPE_CONFIG[seat.type as SeatType] || SEAT_TYPE_CONFIG.regular;
-  
-  const isSpacer = 
-    seat.type === "space" || 
-    seat.type === "empty" || 
-    seat.type === "hidden" || 
-    seat.type === "aisle" ||
-    seat.status === "inactive" ||
-    !seat.type ||
-    seat.seatCode?.toUpperCase().includes("HIDDEN") ||
-    seat.label?.toUpperCase().includes("HIDDEN") ||
-    seat.label === "" ||
-    !seat.label ||
-    (seat.capacity === 0 && !["regular", "vip", "couple"].includes(seat.type));
+  const config = SEAT_TYPE_CONFIG[seat.type] || SEAT_TYPE_CONFIG.regular;
 
-  const getWidth = () => {
-    if (seat.type === "couple") return "82px"; // 2 seats (36*2) + gap (10)
-    return "36px";
+  const isNonSeat = NON_SEAT_TYPES.includes(seat.type);
+  const isDisabledSeat = seat.type === "disabled" || seat.status === "disabled";
+
+  const getWidth = (): string => {
+    if (seat.type === "couple") return "84px";
+    if (seat.type === "aisle") return "48px";
+    return "40px";
   };
 
-  const getBackground = () => {
-    if (isSpacer) return "transparent";
-    if (seat.status === "disabled" || seat.type === "disabled") return "#475569"; // Slate 600
+  const HEIGHT = "40px";
+
+  const getBackground = (): string => {
+    if (seat.type === "space") return "transparent";
+    if (seat.type === "empty") return "transparent";
+    if (seat.type === "aisle") return "#0c4a6e";
+    if (isDisabledSeat) return "#475569";
     return config.color;
   };
 
-  // If it's a spacer, render a transparent div
-  if (isSpacer) {
+  const getBorder = (): string => {
+    if (isSelected) return "2px solid #3b82f6";
+    if (seat.type === "space") return "1px dashed #374151";
+    if (seat.type === "empty") return "1px dotted #4b5563";
+    if (seat.type === "aisle") return "1px solid #0369a1";
+    return "1px solid transparent";
+  };
+
+  // ─── NON-SEAT (space / empty / aisle) ──────────────────────
+  if (isNonSeat) {
     return (
-      <div 
+      <div
         onClick={onClick}
-        className={`h-9 rounded-lg ${isPreview ? "" : "hover:bg-white/5 cursor-pointer"}`}
-        style={{ width: getWidth(), flexShrink: 0 }}
-      />
+        className={`relative rounded-md flex items-center justify-center transition-all ${
+          isPreview ? "" : "hover:brightness-125 cursor-pointer"
+        } ${isSelected ? "ring-2 ring-blue-500" : ""}`}
+        style={{
+          width: getWidth(),
+          height: HEIGHT,
+          background: getBackground(),
+          border: getBorder(),
+          flexShrink: 0,
+        }}
+      >
+        {seat.type === "aisle" && (
+          <span className="text-[9px] font-medium text-sky-400/60 select-none">
+            ≡
+          </span>
+        )}
+      </div>
     );
   }
 
-  const isDisabled = seat.status === "disabled" || seat.type === "disabled";
-
+  // ─── REAL SEAT ─────────────────────────────────────────────
   return (
     <div
-      title={seat.label || seat.seatCode}
-      onClick={isDisabled && isPreview ? undefined : onClick}
+      onClick={isDisabledSeat && isPreview ? undefined : onClick}
       className={`
-        relative h-9 flex items-center justify-center transition-all rounded-lg shadow-sm
-        ${isDisabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
+        relative flex items-center justify-center transition-all rounded-lg
+        ${isDisabledSeat ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
         ${isPreview ? "hover:brightness-110" : "hover:scale-105 active:scale-95"}
       `}
       style={{
         width: getWidth(),
+        height: HEIGHT,
         backgroundColor: getBackground(),
         color: "white",
-        boxShadow: "inset 0 -3px 0 rgba(0,0,0,0.15)",
-        height: "36px",
-        flexShrink: 0
+        boxShadow: isSelected
+          ? "0 0 0 2px #3b82f6, inset 0 -3px 0 rgba(0,0,0,0.15)"
+          : "inset 0 -3px 0 rgba(0,0,0,0.15)",
+        border: getBorder(),
+        flexShrink: 0,
       }}
     >
-      <span className="text-[10px] font-bold select-none whitespace-nowrap px-1">
+      <span
+        className={`text-[10px] font-bold select-none whitespace-nowrap px-0.5 ${
+          isDisabledSeat ? "line-through opacity-70" : ""
+        }`}
+      >
         {seat.label || seat.seatCode}
       </span>
-      
-      {seat.type === "vip" && !isDisabled && (
+
+      {/* VIP indicator dot */}
+      {seat.type === "vip" && !isDisabledSeat && (
         <div className="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-yellow-300 rounded-full animate-pulse" />
+      )}
+
+      {/* Couple heart indicator */}
+      {seat.type === "couple" && (
+        <div className="absolute -top-1 left-1/2 -translate-x-1/2 text-[8px] text-pink-300">
+          ♥
+        </div>
       )}
     </div>
   );

@@ -39,6 +39,7 @@ import {
   type BackendRoom,
   type BackendMovieMutationPayload,
   type BackendShowtimeDetail,
+  type BackendShowtimeListItem,
   type BackendUser,
 } from '@/lib/backend-api';
 import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
@@ -51,9 +52,9 @@ import {
 
 export type MovieStatus = 'now_showing' | 'coming_soon' | 'ended';
 export type SeatCellType = 'seat' | 'space';
-export type SeatType = 'standard' | 'vip' | 'couple' | 'disabled' | 'space';
+export type SeatType = 'regular' | 'standard' | 'vip' | 'couple' | 'disabled' | 'space';
 export type SeatReservationStatus = 'available' | 'held' | 'booked' | 'disabled';
-export type BookingStatus = 'held' | 'paid' | 'cancelled';
+export type BookingStatus = 'held' | 'paid' | 'booked' | 'cancelled' | 'pending_payment' | 'confirmed' | 'expired';
 export type PaymentMethod = 'momo_sandbox' | 'vnpay_sandbox' | 'mock_gateway';
 export type AuthStatus = 'bootstrapping' | 'authenticated' | 'unauthenticated';
 
@@ -259,6 +260,7 @@ type AppStoreValue = {
   showtimes: Showtime[];
   bookings: Booking[];
   draftCheckout: DraftCheckout | null;
+  refreshShowtime?: (showtimeId: string) => Promise<void>;
   login: (input: {
     email: string;
     password: string;
@@ -429,7 +431,7 @@ const buildRoom = ({
     roomType: roomType as 'standard' | 'vip' | 'gold' | 'imax',
     totalRows,
     totalColumns,
-    activeSeatCount: seatLayout.flat().reduce((acc, seat) => acc + (seat.cellType !== 'space' ? seat.capacity : 0), 0),
+    activeSeatCount: seatLayout.flat().reduce((acc, seat) => acc + (!['space', 'empty', 'aisle', 'disabled'].includes(seat.type) ? seat.capacity : 0), 0),
     seatLayout,
   };
 };
@@ -1597,9 +1599,9 @@ const normalizeUserProfile = (user: BackendUser): UserProfile => ({
 });
 
 const buildRoomSeatId = (cell: {
-  cellType: 'seat' | 'empty';
-  coordinate: { coordinateLabel: string };
-}) => `${cell.cellType}_${cell.coordinate.coordinateLabel.toUpperCase()}`;
+  type: string;
+  seatCode: string;
+}) => `${cell.type}_${cell.seatCode.toUpperCase()}`;
 
 const mapBackendMovie = (movie: BackendMovie): Movie => ({
   id: movie._id,
@@ -1634,18 +1636,19 @@ const mapBackendRoom = (room: BackendRoom): Room => ({
   totalRows: room.totalRows,
   totalColumns: room.totalColumns,
   activeSeatCount: room.activeSeatCount,
-  seatLayout: room.seatLayout.map((row) =>
-    row.map((cell: any) => ({
-      seatCode: cell.coordinate.coordinateLabel.toUpperCase(),
-      cellType: cell.cellType,
-      type: cell.seatType || 'space',
-      label: cell.seatLabel || '',
-      status: 'active',
-      priceType: cell.seatType,
-      capacity: cell.seatType === 'couple' ? 2 : (cell.cellType === 'seat' ? 1 : 0),
-      size: cell.seatType === 'couple' ? 2 : 1,
-      rowIndex: cell.coordinate.rowIndex,
-      columnIndex: cell.coordinate.columnIndex,
+  seatLayout: (room.seatLayout || []).map((row: any) =>
+    (row.seats || []).map((seat: any) => ({
+      seatCode: (seat.seatCode || '').toUpperCase(),
+      type: seat.type || 'space',
+      label: seat.label || '',
+      status: seat.status || 'active',
+      priceType: seat.priceType || 'regular',
+      capacity: seat.capacity ?? (seat.type === 'couple' ? 2 : (!['empty', 'aisle', 'space'].includes(seat.type) ? 1 : 0)),
+      size: seat.size ?? 1,
+      rowLabel: seat.rowLabel || row.rowLabel || '',
+      rowIndex: seat.rowIndex ?? 0,
+      columnIndex: seat.columnIndex ?? 0,
+      coupleGroupId: seat.coupleGroupId ?? null,
     })),
   ),
 });
@@ -1657,7 +1660,7 @@ const getMinimumSeatPrice = (room: Room | undefined) => {
 
   const prices = room.seatLayout
     .flat()
-    .filter((cell) => cell.cellType === 'seat' && cell.type)
+    .filter((cell) => !['empty', 'aisle', 'space', 'disabled'].includes(cell.type) && cell.type)
     .map((cell) => seatPriceMap[cell.type as SeatType]);
 
   return prices.length > 0 ? Math.min(...prices) : seatPriceMap.standard;
@@ -1676,17 +1679,26 @@ const mapBackendShowtime = (
   format: showtime.movie.formats?.[0] || '2D',
   language: showtime.movie.language || 'Phụ đề',
   basePrice: getMinimumSeatPrice(room),
-  seatStates: (showtime.seatStates || []).map((seatState) => ({
-    seatCoordinate: seatState.seatCoordinate.toUpperCase(),
-    seatLabel: seatState.seatLabel,
-    seatType: seatState.seatType as SeatType,
-    status: seatState.status as SeatReservationStatus,
-    userId: seatState.userId,
-    bookingId: seatState.bookingId,
-    heldAt: seatState.heldAt,
-    holdExpiresAt: seatState.holdExpiresAt,
-    paidAt: seatState.paidAt,
-  })),
+  seatStates: (showtime.seatLayout || []).flatMap((row) =>
+    (row.seats || [])
+      .filter((seat) => !['empty', 'aisle', 'space'].includes(seat.type))
+      .map((seat) => ({
+        seatCode: (seat.seatCode || '').toUpperCase(),
+        label: seat.label || seat.seatCode || '',
+        rowLabel: seat.rowLabel || row.rowLabel || '',
+        rowIndex: seat.rowIndex ?? 0,
+        columnIndex: seat.columnIndex ?? 0,
+        type: (seat.type || 'standard') as SeatType,
+        capacity: seat.capacity ?? 1,
+        coupleGroupId: seat.coupleGroupId ?? null,
+        status: (seat.status || 'available') as SeatReservationStatus,
+        userId: seat.userId ?? null,
+        bookingId: seat.bookingId ?? null,
+        heldAt: seat.heldAt ?? null,
+        holdExpiresAt: seat.holdExpiresAt ?? null,
+        bookedAt: seat.bookedAt ?? null,
+      })),
+  ),
 });
 
 const buildMovieMutationPayload = (input: MovieInput): BackendMovieMutationPayload => ({
@@ -1727,11 +1739,12 @@ const mapBackendBooking = (
   showtimeId: booking.showtime?.id || '',
   roomId: booking.room?.id || '',
   seats: booking.seats.map((seat) => ({
-    seatCoordinate: seat.seatCoordinate.toUpperCase(),
+    seatCode: seat.seatCode.toUpperCase(),
     seatLabel: seat.seatLabel,
     seatType: seat.seatType as SeatType,
-    status: seat.status as Extract<SeatReservationStatus, 'held' | 'paid'>,
+    status: seat.status as Extract<SeatReservationStatus, 'held' | 'booked'>,
     price: seat.price,
+    coupleGroupId: seat.coupleGroupId ?? null,
   })),
   totalPrice: booking.totalPrice,
   status: booking.status,
@@ -1755,13 +1768,14 @@ const mapBackendDraftCheckout = (
     showtimeId: booking.showtime.id,
     movieId: booking.movie.id,
     roomId: booking.room.id,
-    seatCoordinates: booking.seats.map((seat) => seat.seatCoordinate.toUpperCase()),
+    seatCodes: booking.seats.map((seat) => seat.seatCode.toUpperCase()),
     seats: booking.seats.map((seat) => ({
-      seatCoordinate: seat.seatCoordinate.toUpperCase(),
+      seatCode: seat.seatCode.toUpperCase(),
       seatLabel: seat.seatLabel,
       seatType: seat.seatType as SeatType,
-      status: seat.status as Extract<SeatReservationStatus, 'held' | 'paid'>,
+      status: seat.status as Extract<SeatReservationStatus, 'held' | 'booked'>,
       price: seat.price,
+      coupleGroupId: seat.coupleGroupId ?? null,
     })),
     totalPrice: booking.totalPrice,
     heldUntil: booking.paymentExpiresAt || toIsoDate(new Date(Date.now() + 5 * 60 * 1000)),
@@ -1869,6 +1883,22 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     );
   };
 
+  const mapBackendShowtimeListItem = (
+    showtime: BackendShowtimeListItem,
+    room: Room | undefined,
+  ): Showtime => ({
+    id: showtime._id,
+    movieId: showtime.movie._id,
+    cinemaId: showtime.cinema._id,
+    roomId: showtime.room._id,
+    startTime: showtime.startTime,
+    endTime: showtime.endTime,
+    format: showtime.movie.formats?.[0] || '2D',
+    language: showtime.movie.language || 'Phụ đề',
+    basePrice: getMinimumSeatPrice(room),
+    seatStates: [],
+  });
+
   const syncCatalogState = async () => {
     const [moviesResponse, cinemasResponse, roomsResponse, showtimesResponse] =
       await Promise.all([fetchMovies(), fetchCinemas(), fetchRooms(), fetchShowtimes()]);
@@ -1879,19 +1909,37 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     );
     const nextRooms = nextRoomDetails.map(mapBackendRoom);
     const roomMap = new Map(nextRooms.map((room) => [room.id, room]));
-    const nextShowtimeDetails = await Promise.all(
-      showtimesResponse.items.map((showtime) => fetchShowtimeById(showtime._id)),
-    );
     const nextShowtimes = sortByDateAscending(
-      nextShowtimeDetails.map((showtime) =>
-        mapBackendShowtime(showtime, roomMap.get(showtime.room._id)),
-      ),
+      showtimesResponse.items
+        .filter((showtime) => showtime.movie && showtime.cinema && showtime.room)
+        .map((showtime) =>
+          mapBackendShowtimeListItem(showtime, roomMap.get(showtime.room._id)),
+        ),
     );
 
     setMovies(nextMovies);
     setCinemas(nextCinemas);
     setRooms(nextRooms);
     setShowtimes(nextShowtimes);
+  };
+
+  const refreshShowtime = async (showtimeId: string) => {
+    try {
+      const showtimeDetail = await fetchShowtimeById(showtimeId);
+      let room = rooms.find((r) => r.id === showtimeDetail.room._id);
+      
+      if (!room) {
+        const roomDetail = await fetchRoomById(showtimeDetail.room._id);
+        room = mapBackendRoom(roomDetail);
+      }
+
+      const updatedShowtime = mapBackendShowtime(showtimeDetail, room);
+      setShowtimes((current) =>
+        current.map((st) => (st.id === showtimeId ? updatedShowtime : st)),
+      );
+    } catch (error) {
+      console.warn('Không thể refresh thông tin ghế của suất chiếu.', error);
+    }
   };
 
   const syncRemoteState = async (token: string, user: UserProfile) => {
@@ -2352,8 +2400,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       }
     }
 
-    const seatCoordinateSet = new Set(
-      draftCheckout.seatCoordinates.map((item) => item.toUpperCase()),
+    const seatCodeSet = new Set(
+      draftCheckout.seatCodes.map((item) => item.toUpperCase()),
     );
 
     setShowtimes((current) =>
@@ -2365,7 +2413,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         return {
           ...showtime,
           seatStates: showtime.seatStates.map((seat) =>
-            seatCoordinateSet.has(seat.seatCoordinate.toUpperCase()) &&
+            seatCodeSet.has(seat.seatCode.toUpperCase()) &&
             seat.status === 'held' &&
             seat.userId === draftCheckout.userId
               ? {
@@ -2384,7 +2432,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setDraftCheckout(null);
   };
 
-  const startCheckout = async (showtimeId: string, seatCoordinates: string[]) => {
+  const startCheckout = async (showtimeId: string, seatCodes: string[]) => {
     if (!currentUser) {
       return {
         ok: false,
@@ -2403,31 +2451,31 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       };
     }
 
-    if (seatCoordinates.length === 0) {
+    if (seatCodes.length === 0) {
       return {
         ok: false,
         error: 'Cần chọn ít nhất một ghế để tiếp tục.',
       };
     }
 
-    const selectedSet = new Set(seatCoordinates.map((item) => item.toUpperCase()));
+    const selectedSet = new Set(seatCodes.map((item) => item.toUpperCase()));
     const unavailableSeat = showtime.seatStates.find(
       (seat) =>
-        selectedSet.has(seat.seatCoordinate.toUpperCase()) &&
+        selectedSet.has(seat.seatCode.toUpperCase()) &&
         seat.status !== 'available',
     );
 
     if (unavailableSeat) {
       return {
         ok: false,
-        error: `Ghế ${unavailableSeat.seatLabel} hiện không khả dụng.`,
+        error: `Ghế ${unavailableSeat.label} hiện không khả dụng.`,
       };
     }
 
     const edgeSeatConflict = getEdgeSeatSelectionConflict(
       room.seatLayout,
       showtime.seatStates,
-      seatCoordinates,
+      seatCodes,
     );
 
     if (edgeSeatConflict) {
@@ -2445,7 +2493,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       try {
         const remoteBooking = await createBookingRequest(authToken, {
           showtimeId,
-          seatCoordinates,
+          seatCodes,
         });
         const remoteDraftCheckout = mapBackendDraftCheckout(remoteBooking, activeUser.id);
 
@@ -2481,7 +2529,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
           ? {
               ...item,
               seatStates: item.seatStates.map((seat) =>
-                selectedSet.has(seat.seatCoordinate.toUpperCase())
+                selectedSet.has(seat.seatCode.toUpperCase())
                   ? {
                       ...seat,
                       status: 'held',
@@ -2496,8 +2544,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       ),
     );
 
-    const seats = seatCoordinates
-      .map((seatCoordinate) => seatSnapshotFromRoom(room, seatCoordinate, 'held'))
+    const seats = seatCodes
+      .map((code) => seatSnapshotFromRoom(room, code, 'held'))
       .filter(Boolean) as BookingSeatSnapshot[];
 
     const movie = movies.find((item) => item.id === showtime.movieId);
@@ -2508,7 +2556,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       showtimeId,
       movieId: movie?.id ?? '',
       roomId: room.id,
-      seatCoordinates: seatCoordinates.map((item) => item.toUpperCase()),
+      seatCodes: seatCodes.map((item) => item.toUpperCase()),
       seats,
       totalPrice: seats.reduce((sum, seat) => sum + seat.price, 0),
       heldUntil,
@@ -2556,8 +2604,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     }
 
     const bookingId = makeId('booking');
-    const seatCoordinateSet = new Set(
-      draftCheckout.seatCoordinates.map((item) => item.toUpperCase()),
+    const seatCodeSet = new Set(
+      draftCheckout.seatCodes.map((item) => item.toUpperCase()),
     );
     const paidAt = toIsoDate(new Date());
 
@@ -2567,13 +2615,13 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
           ? {
               ...showtime,
               seatStates: showtime.seatStates.map((seat) =>
-                seatCoordinateSet.has(seat.seatCoordinate.toUpperCase())
+                seatCodeSet.has(seat.seatCode.toUpperCase())
                   ? {
                       ...seat,
-                      status: 'paid',
+                      status: 'booked',
                       bookingId,
                       userId: activeUser.id,
-                      paidAt,
+                      bookedAt: paidAt,
                       holdExpiresAt: null,
                     }
                   : seat,
@@ -2589,7 +2637,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       movieId: draftCheckout.movieId,
       showtimeId: draftCheckout.showtimeId,
       roomId: draftCheckout.roomId,
-      seats: draftCheckout.seats.map((seat) => ({ ...seat, status: 'paid' })),
+      seats: draftCheckout.seats.map((seat) => ({ ...seat, status: 'booked' as const })),
       totalPrice: draftCheckout.totalPrice,
       status: 'paid',
       paymentMethod,
@@ -2635,6 +2683,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     startCheckout,
     releaseDraftCheckout,
     confirmDraftCheckout,
+    refreshShowtime,
   };
 
   return <appStoreContext.Provider value={value}>{children}</appStoreContext.Provider>;

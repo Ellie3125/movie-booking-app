@@ -24838,5 +24838,12245 @@ module.exports = [
         ]
       }
     ]
-  }
+  },
+  {
+  "_id": "26d2b1f87f50906bf6b4a810",
+  "cinemaId": "a1b2c3d4e5f6a7b8c9d0e1f2",
+  "name": "Phòng 1 (STANDARD)",
+  "roomType": "standard",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "f3af8ec54d2d6d38c38175ed",
+  "cinemaId": "a1b2c3d4e5f6a7b8c9d0e1f2",
+  "name": "Phòng 2 (VIP)",
+  "roomType": "vip",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "c07c5b921bfa3a05905e42ba",
+  "cinemaId": "b2c3d4e5f6a7b8c9d0e1f2a3",
+  "name": "Phòng 1 (STANDARD)",
+  "roomType": "standard",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "9d49286fe9c707d26d2b1f87",
+  "cinemaId": "b2c3d4e5f6a7b8c9d0e1f2a3",
+  "name": "Phòng 2 (VIP)",
+  "roomType": "vip",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "6a16f53cb794d4af3af8ec54",
+  "cinemaId": "c3d4e5f6a7b8c9d0e1f2a3b4",
+  "name": "Phòng 1 (STANDARD)",
+  "roomType": "standard",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "37e3c2098561a17c07c5b921",
+  "cinemaId": "c3d4e5f6a7b8c9d0e1f2a3b4",
+  "name": "Phòng 2 (VIP)",
+  "roomType": "vip",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "04b09fd6533e7e49d49286fe",
+  "cinemaId": "d4e5f6a7b8c9d0e1f2a3b4c5",
+  "name": "Phòng 1 (STANDARD)",
+  "roomType": "standard",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "d18d6ca3210b4b16a16f53cb",
+  "cinemaId": "d4e5f6a7b8c9d0e1f2a3b4c5",
+  "name": "Phòng 2 (VIP)",
+  "roomType": "vip",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "ae5a3970ffd818e37e3c2098",
+  "cinemaId": "e5f6a7b8c9d0e1f2a3b4c5d6",
+  "name": "Phòng 1 (STANDARD)",
+  "roomType": "standard",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "7b27064dcda5e5b04b09fd65",
+  "cinemaId": "e5f6a7b8c9d0e1f2a3b4c5d6",
+  "name": "Phòng 2 (VIP)",
+  "roomType": "vip",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "48f4d31a928e929f48f4d31a",
+  "cinemaId": "f6a7b8c9d0e1f2a3b4c5d6e7",
+  "name": "Phòng 1 (STANDARD)",
+  "roomType": "standard",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+},
+  {
+  "_id": "15c1a0e76f6b6f6c15c1a0e7",
+  "cinemaId": "f6a7b8c9d0e1f2a3b4c5d6e7",
+  "name": "Phòng 2 (VIP)",
+  "roomType": "vip",
+  "seatLayout": [
+    {
+      "rowLabel": "A",
+      "seats": [
+        {
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "A1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A4",
+          "rowIndex": 0,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "A2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A3",
+          "rowIndex": 0,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A6",
+          "rowIndex": 0,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "A3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A7",
+          "rowIndex": 0,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "A4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "A5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A9",
+          "rowIndex": 0,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "A6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A8",
+          "rowIndex": 0,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "A11",
+          "rowIndex": 0,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "A7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "A12",
+          "rowIndex": 0,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "A8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 0,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "B",
+      "seats": [
+        {
+          "rowIndex": 1,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "B1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B4",
+          "rowIndex": 1,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "B2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B3",
+          "rowIndex": 1,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B6",
+          "rowIndex": 1,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "B3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B7",
+          "rowIndex": 1,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "B4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "B5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B9",
+          "rowIndex": 1,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "B6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B8",
+          "rowIndex": 1,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "B11",
+          "rowIndex": 1,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "B7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "B12",
+          "rowIndex": 1,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "B8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 1,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "C",
+      "seats": [
+        {
+          "rowIndex": 2,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "C1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C4",
+          "rowIndex": 2,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "C2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C3",
+          "rowIndex": 2,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C6",
+          "rowIndex": 2,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "C3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C7",
+          "rowIndex": 2,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "C4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "C5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C9",
+          "rowIndex": 2,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "C6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C8",
+          "rowIndex": 2,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "C11",
+          "rowIndex": 2,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "C7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "C12",
+          "rowIndex": 2,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "C8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 2,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "D",
+      "seats": [
+        {
+          "rowIndex": 3,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "D1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D4",
+          "rowIndex": 3,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "D2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D3",
+          "rowIndex": 3,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D6",
+          "rowIndex": 3,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "D3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D7",
+          "rowIndex": 3,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "D4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "D5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D9",
+          "rowIndex": 3,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "D6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D8",
+          "rowIndex": 3,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "D11",
+          "rowIndex": 3,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "D7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "D12",
+          "rowIndex": 3,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "D8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 3,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "E",
+      "seats": [
+        {
+          "rowIndex": 4,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 2,
+          "type": "regular",
+          "status": "active",
+          "label": "E1",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E4",
+          "rowIndex": 4,
+          "columnIndex": 3,
+          "type": "regular",
+          "status": "active",
+          "label": "E2",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E3",
+          "rowIndex": 4,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E6",
+          "rowIndex": 4,
+          "columnIndex": 5,
+          "type": "regular",
+          "status": "active",
+          "label": "E3",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E7",
+          "rowIndex": 4,
+          "columnIndex": 6,
+          "type": "regular",
+          "status": "active",
+          "label": "E4",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 7,
+          "type": "regular",
+          "status": "active",
+          "label": "E5",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E9",
+          "rowIndex": 4,
+          "columnIndex": 8,
+          "type": "regular",
+          "status": "active",
+          "label": "E6",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E8",
+          "rowIndex": 4,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "E11",
+          "rowIndex": 4,
+          "columnIndex": 10,
+          "type": "regular",
+          "status": "active",
+          "label": "E7",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "seatCode": "E12",
+          "rowIndex": 4,
+          "columnIndex": 11,
+          "type": "regular",
+          "status": "active",
+          "label": "E8",
+          "capacity": 1,
+          "priceType": "regular"
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 4,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "F",
+      "seats": [
+        {
+          "rowIndex": 5,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "F1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F4",
+          "rowIndex": 5,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "F2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F3",
+          "rowIndex": 5,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F6",
+          "rowIndex": 5,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "F3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F7",
+          "rowIndex": 5,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "F4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "F5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F9",
+          "rowIndex": 5,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "F6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F8",
+          "rowIndex": 5,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "F11",
+          "rowIndex": 5,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "F7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "F12",
+          "rowIndex": 5,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "F8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 5,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "G",
+      "seats": [
+        {
+          "rowIndex": 6,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 2,
+          "type": "vip",
+          "status": "active",
+          "label": "G1",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G4",
+          "rowIndex": 6,
+          "columnIndex": 3,
+          "type": "vip",
+          "status": "active",
+          "label": "G2",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G3",
+          "rowIndex": 6,
+          "columnIndex": 4,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G6",
+          "rowIndex": 6,
+          "columnIndex": 5,
+          "type": "vip",
+          "status": "active",
+          "label": "G3",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G7",
+          "rowIndex": 6,
+          "columnIndex": 6,
+          "type": "vip",
+          "status": "active",
+          "label": "G4",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 7,
+          "type": "vip",
+          "status": "active",
+          "label": "G5",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G9",
+          "rowIndex": 6,
+          "columnIndex": 8,
+          "type": "vip",
+          "status": "active",
+          "label": "G6",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G8",
+          "rowIndex": 6,
+          "columnIndex": 9,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "G11",
+          "rowIndex": 6,
+          "columnIndex": 10,
+          "type": "vip",
+          "status": "active",
+          "label": "G7",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "seatCode": "G12",
+          "rowIndex": 6,
+          "columnIndex": 11,
+          "type": "vip",
+          "status": "active",
+          "label": "G8",
+          "capacity": 1,
+          "priceType": "vip"
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 12,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 6,
+          "columnIndex": 13,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    },
+    {
+      "rowLabel": "H",
+      "seats": [
+        {
+          "rowIndex": 7,
+          "columnIndex": 0,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 1,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 2,
+          "type": "couple",
+          "status": "active",
+          "label": "H1-H2",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_2",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H3",
+          "rowIndex": 7,
+          "columnIndex": 3,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H5",
+          "rowIndex": 7,
+          "columnIndex": 4,
+          "type": "couple",
+          "status": "active",
+          "label": "H3-H4",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_4",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H6",
+          "rowIndex": 7,
+          "columnIndex": 5,
+          "type": "couple",
+          "status": "active",
+          "label": "H5-H6",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_5",
+          "priceType": "couple"
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 6,
+          "type": "empty",
+          "status": "disabled",
+          "label": "",
+          "capacity": 0
+        },
+        {
+          "seatCode": "H8",
+          "rowIndex": 7,
+          "columnIndex": 7,
+          "type": "couple",
+          "status": "active",
+          "label": "H7-H8",
+          "capacity": 2,
+          "coupleGroupId": "grp_7_7",
+          "priceType": "couple"
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 8,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        },
+        {
+          "rowIndex": 7,
+          "columnIndex": 9,
+          "type": "space",
+          "status": "inactive",
+          "capacity": 0
+        }
+      ]
+    }
+  ]
+}
 ];

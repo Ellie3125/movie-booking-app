@@ -1,6 +1,7 @@
 import { router, Stack } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
 
 import {
   ActionButton,
@@ -21,6 +22,10 @@ const paymentMethods: { label: string; value: PaymentMethod }[] = [
   { label: 'VNPay Sandbox', value: 'vnpay_sandbox' },
 ];
 
+type CheckoutFormData = {
+  paymentMethod: PaymentMethod;
+};
+
 export default function CheckoutScreen() {
   const {
     draftCheckout,
@@ -31,8 +36,13 @@ export default function CheckoutScreen() {
     confirmDraftCheckout,
   } = useAppStore();
   const colors = getTonePalette('user');
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('momo_sandbox');
-  const [submitting, setSubmitting] = useState(false);
+
+  const { control, handleSubmit, formState: { isSubmitting } } = useForm<CheckoutFormData>({
+    defaultValues: {
+      paymentMethod: 'momo_sandbox',
+    },
+  });
+
   const [error, setError] = useState('');
 
   const movie = movies.find((item) => item.id === draftCheckout?.movieId);
@@ -40,17 +50,14 @@ export default function CheckoutScreen() {
   const cinema = cinemas.find((item) => item.id === showtime?.cinemaId);
 
   const handleCancel = async () => {
-    setSubmitting(true);
     await releaseDraftCheckout();
-    setSubmitting(false);
     router.back();
   };
 
-  const handleConfirm = async () => {
+  const onConfirm = async (data: CheckoutFormData) => {
     try {
-      setSubmitting(true);
       setError('');
-      const booking = await confirmDraftCheckout(paymentMethod);
+      const booking = await confirmDraftCheckout(data.paymentMethod);
 
       if (!booking) {
         return;
@@ -66,8 +73,6 @@ export default function CheckoutScreen() {
           ? checkoutError.message
           : 'Thanh toán thất bại. Vui lòng thử lại.',
       );
-    } finally {
-      setSubmitting(false);
     }
   };
 
@@ -112,32 +117,38 @@ export default function CheckoutScreen() {
 
           <SectionTitle tone="user" title="Phương thức thanh toán" />
           <SectionCard tone="user">
-            <View style={styles.chipRow}>
-              {paymentMethods.map((method) => (
-                <Chip
-                  key={method.value}
-                  tone="user"
-                  label={formatPaymentMethod(method.value)}
-                  active={paymentMethod === method.value}
-                  onPress={() => setPaymentMethod(method.value)}
-                />
-              ))}
-            </View>
+            <Controller
+              name="paymentMethod"
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <View style={styles.chipRow}>
+                  {paymentMethods.map((method) => (
+                    <Chip
+                      key={method.value}
+                      tone="user"
+                      label={formatPaymentMethod(method.value)}
+                      active={value === method.value}
+                      onPress={() => onChange(method.value)}
+                    />
+                  ))}
+                </View>
+              )}
+            />
             {error ? (
               <Text style={[styles.cardCopy, { color: colors.accent }]}>{error}</Text>
             ) : null}
             <ActionButton
               tone="user"
-              label={submitting ? 'Đang thanh toán...' : 'Thanh toán và xuất vé'}
-              onPress={handleConfirm}
-              disabled={submitting}
+              label={isSubmitting ? 'Đang thanh toán...' : 'Thanh toán và xuất vé'}
+              onPress={handleSubmit(onConfirm)}
+              disabled={isSubmitting}
             />
             <ActionButton
               tone="user"
-              label={submitting ? 'Đang xử lý...' : 'Hủy thanh toán'}
+              label={isSubmitting ? 'Đang xử lý...' : 'Hủy thanh toán'}
               variant="secondary"
               onPress={handleCancel}
-              disabled={submitting}
+              disabled={isSubmitting}
             />
           </SectionCard>
         </>

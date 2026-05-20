@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import PageBreadCrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 import {
@@ -19,6 +20,14 @@ import { ConfirmationModal } from "../../components/ui/modal/ConfirmationModal";
 import toast from "react-hot-toast";
 import { Modal } from "../../components/ui/modal";
 
+type RoomFormData = {
+  name: string;
+  cinemaId: string;
+  roomType: string;
+  totalRows: number;
+  totalColumns: number;
+};
+
 export default function Rooms() {
   const [rooms, setRooms] = useState<any[]>([]);
   const [cinemas, setCinemas] = useState<any[]>([]);
@@ -34,12 +43,15 @@ export default function Rooms() {
   // Form states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    cinemaId: "",
-    roomType: "standard",
-    totalRows: 10,
-    totalColumns: 12,
+
+  const { control, handleSubmit, reset, formState: { errors } } = useForm<RoomFormData>({
+    defaultValues: {
+      name: "",
+      cinemaId: "",
+      roomType: "standard",
+      totalRows: 10,
+      totalColumns: 12,
+    },
   });
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -91,7 +103,7 @@ export default function Rooms() {
   }, [selectedCinemaId]);
 
   const handleEdit = (room: any) => {
-    setFormData({
+    reset({
       name: room.name,
       cinemaId: room.cinemaId,
       roomType: room.roomType,
@@ -121,8 +133,7 @@ export default function Rooms() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (formData: RoomFormData) => {
     try {
       if (editingId) {
         await roomService.updateRoom(editingId, formData);
@@ -190,7 +201,7 @@ export default function Rooms() {
         </div>
         <Button onClick={() => {
           setEditingId(null);
-          setFormData({
+          reset({
             name: "",
             cinemaId: selectedCinemaId || (cinemas.length > 0 ? cinemas[0]._id : ""),
             roomType: "standard",
@@ -280,37 +291,59 @@ export default function Rooms() {
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} className="max-w-[600px] p-8">
         <h2 className="text-xl font-bold mb-6 text-gray-800 dark:text-white">{editingId ? "Cập nhật phòng chiếu" : "Thêm phòng chiếu mới"}</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="grid grid-cols-2 gap-5">
             <div>
               <Label>Thuộc Rạp</Label>
-              <Select
-                options={cinemas.map(c => ({ value: c._id, label: c.name }))}
-                value={formData.cinemaId}
-                onChange={(val) => setFormData({ ...formData, cinemaId: val })}
+              <Controller
+                name="cinemaId"
+                control={control}
+                rules={{ required: "Vui lòng chọn rạp" }}
+                render={({ field }) => (
+                  <Select
+                    options={cinemas.map(c => ({ value: c._id, label: c.name }))}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
+              {errors.cinemaId && <p className="mt-1 text-xs text-error-500">{errors.cinemaId.message}</p>}
             </div>
             <div>
               <Label>Tên Phòng</Label>
-              <Input
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="P1, P2..."
-                required
+              <Controller
+                name="name"
+                control={control}
+                rules={{ required: "Tên phòng là bắt buộc" }}
+                render={({ field }) => (
+                  <Input
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="P1, P2..."
+                    error={!!errors.name}
+                    hint={errors.name?.message}
+                  />
+                )}
               />
             </div>
           </div>
           <div>
             <Label>Loại Phòng</Label>
-            <Select
-              options={[
-                { value: "standard", label: "Standard" },
-                { value: "vip", label: "VIP" },
-                { value: "gold", label: "Gold Class" },
-                { value: "imax", label: "IMAX" },
-              ]}
-              value={formData.roomType}
-              onChange={(val) => setFormData({ ...formData, roomType: val })}
+            <Controller
+              name="roomType"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  options={[
+                    { value: "standard", label: "Standard" },
+                    { value: "vip", label: "VIP" },
+                    { value: "gold", label: "Gold Class" },
+                    { value: "imax", label: "IMAX" },
+                  ]}
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              )}
             />
           </div>
           {!editingId && (
@@ -318,22 +351,38 @@ export default function Rooms() {
               <div className="grid grid-cols-2 gap-5">
                 <div>
                   <Label>Tổng số hàng ghế (Total Rows)</Label>
-                  <Input
-                    type="number"
-                    value={formData.totalRows}
-                    onChange={(e) => setFormData({ ...formData, totalRows: Number(e.target.value) })}
-                    min={1}
-                    required
+                  <Controller
+                    name="totalRows"
+                    control={control}
+                    rules={{ required: "Bắt buộc", min: { value: 1, message: "Tối thiểu 1" } }}
+                    render={({ field }) => (
+                      <Input
+                        type="number"
+                        value={field.value}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        min={1}
+                        error={!!errors.totalRows}
+                        hint={errors.totalRows?.message}
+                      />
+                    )}
                   />
                 </div>
                 <div>
                   <Label>Tổng số cột ghế (Total Columns)</Label>
-                  <Input
-                    type="number"
-                    value={formData.totalColumns}
-                    onChange={(e) => setFormData({ ...formData, totalColumns: Number(e.target.value) })}
-                    min={1}
-                    required
+                  <Controller
+                    name="totalColumns"
+                    control={control}
+                    rules={{ required: "Bắt buộc", min: { value: 1, message: "Tối thiểu 1" } }}
+                    render={({ field }) => (
+                      <Input
+                        type="number"
+                        value={field.value}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        min={1}
+                        error={!!errors.totalColumns}
+                        hint={errors.totalColumns?.message}
+                      />
+                    )}
                   />
                 </div>
               </div>

@@ -11,7 +11,6 @@ import {
   VideoIcon,
   GroupIcon,
   TaskIcon,
-  DollarLineIcon,
   BoxIcon,
   TimeIcon,
 } from "../icons";
@@ -96,11 +95,6 @@ const navCategories: NavCategory[] = [
         icon: <ListIcon />,
         name: "Vé xem phim",
         path: "/tickets",
-      },
-      {
-        icon: <DollarLineIcon />,
-        name: "Thanh toán",
-        path: "/payments",
       },
     ],
   },
@@ -188,7 +182,7 @@ const AppSidebar: React.FC = () => {
           />
           {(isExpanded || isHovered || isMobileOpen) && (
             <span className="text-2xl font-bold text-gray-900 dark:text-white">
-              CineBook Manager
+              Cinema Manager
             </span>
           )}
         </Link>

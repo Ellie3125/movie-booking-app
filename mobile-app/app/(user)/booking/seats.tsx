@@ -165,7 +165,7 @@ function SeatLegendPreview({
 
 export default function SeatSelectionScreen() {
   const { showtimeId } = useLocalSearchParams<{ showtimeId?: string }>();
-  const { movies, cinemas, rooms, showtimes, startCheckout } = useAppStore();
+  const { movies, cinemas, rooms, showtimes, startCheckout, refreshShowtime } = useAppStore();
   const { width } = useWindowDimensions();
   const colors = getTonePalette('user');
   const compact = width < 430;
@@ -213,10 +213,10 @@ export default function SeatSelectionScreen() {
       return {
         code,
         label: seat?.label ?? code,
-        variant: seatVariantLookup[code] ?? 'standard',
-        price: (showtime?.basePrice ?? 0) + (seat?.priceModifier ?? 0),
-        rowIndex: seat?.coordinate.rowIndex ?? Number.MAX_SAFE_INTEGER,
-        columnIndex: seat?.coordinate.columnIndex ?? Number.MAX_SAFE_INTEGER,
+        variant: seatVariantLookup[code] ?? 'regular',
+        price: showtime?.basePrice ?? 0,
+        rowIndex: seat?.rowIndex ?? Number.MAX_SAFE_INTEGER,
+        columnIndex: seat?.columnIndex ?? Number.MAX_SAFE_INTEGER,
       };
     })
     .sort(
@@ -235,45 +235,45 @@ export default function SeatSelectionScreen() {
       key: 'available',
       label: 'Ghế trống',
       description: 'Có thể chọn ngay trên sơ đồ.',
-      variant: 'standard',
+      variant: 'regular',
       status: 'available',
     },
     {
       key: 'held',
       label: 'Ghế đang giữ',
       description: 'Đang được giữ tạm trong phiên khác.',
-      variant: 'standard',
+      variant: 'regular',
       status: 'held',
     },
     {
       key: 'selected',
       label: 'Ghế đang chọn',
       description: 'Ghế bạn đã chọn trong phiên hiện tại.',
-      variant: 'standard',
+      variant: 'regular',
       status: 'selected',
     },
     {
       key: 'booked',
       label: 'Ghế đã bán',
       description: 'Đã thanh toán nên không thể chọn.',
-      variant: 'standard',
+      variant: 'regular',
       status: 'booked',
     },
     {
       key: 'disabled',
       label: 'Ghế không dùng',
       description: 'Bị khóa hoặc hư hỏng.',
-      variant: 'standard',
+      variant: 'regular',
       status: 'disabled',
     },
   ];
 
   const typeLegendItems: SeatLegendItem[] = [
     {
-      key: 'standard',
+      key: 'regular',
       label: 'Ghế thường',
       description: 'Ghế tiêu chuẩn cho 1 người.',
-      variant: 'standard',
+      variant: 'regular',
       status: 'available',
     },
     {
@@ -300,6 +300,12 @@ export default function SeatSelectionScreen() {
     translateX.value = 0;
     translateY.value = 0;
   }, [defaultZoom, showtimeId]);
+
+  useEffect(() => {
+    if (showtimeId && refreshShowtime) {
+      refreshShowtime(showtimeId);
+    }
+  }, [showtimeId, refreshShowtime]);
 
   useEffect(() => {
     setSelectedCoordinates([]);
@@ -802,7 +808,7 @@ export default function SeatSelectionScreen() {
                         <Chip
                           key={seat.code}
                           tone="user"
-                          label={`${seat.label} • ${formatSeatVisualLabel(seat.variant)}`}
+                          label={`${seat.label} • ${formatSeatVisualLabel(seat.variant as SeatVisualVariant)}`}
                           active
                         />
                       ))

@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <PageMeta
-        title="Dashboard | TailAdmin - React.js Admin Dashboard Template"
+        title="DashBoard"
         description="Movie Booking Admin Dashboard — realtime statistics from MongoDB"
       />
 

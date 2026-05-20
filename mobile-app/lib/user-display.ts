@@ -123,6 +123,10 @@ const bookingStatusMap: Record<BookingStatus, string> = {
   cancelled: 'Đã hủy',
   held: 'Chờ thanh toán',
   paid: 'Đã thanh toán',
+  booked: 'Đã đặt',
+  pending_payment: 'Chờ thanh toán',
+  confirmed: 'Đã xác nhận',
+  expired: 'Hết hạn',
 };
 
 const paymentMethodMap: Record<PaymentMethod, string> = {
