@@ -15,6 +15,7 @@ import {
   TimeIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
+import { getDefaultLogoUrl } from "../utils/imageUrl";
 
 type NavItem = {
   name: string;
@@ -174,7 +175,7 @@ const AppSidebar: React.FC = () => {
       >
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="/images/logo/logo.png"
+            src={getDefaultLogoUrl()}
             alt="Logo"
             width={80}
             height={80}

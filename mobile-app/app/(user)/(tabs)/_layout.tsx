@@ -25,15 +25,6 @@ export default function UsersTabsLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Trang chủ',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons color={color} name="home-variant" size={22} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="movies"
-        options={{
           title: 'Phim',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons color={color} name="movie-open" size={22} />

@@ -1,5 +1,12 @@
 # SKILLS.md - Kỹ năng của Agent
 
+## Luật ưu tiên cao nhất cho SPEC/Plans
+
+* Mọi task code xuất phát từ `<SPEC>` bắt buộc có 4 mục giải trình: **Autonomous Decisions**, **Deviations**, **Trade-offs**, **Context/Notes**.
+* Mọi specs và implementation plans mới trong dự án phải được viết/lưu bằng HTML.
+* Tài liệu HTML spec/plan phải dùng chung CSS variables/classes từ `.agents/skills/html-implement/css-patterns.md`.
+* Các luật trên đứng trước mọi workflow skill khác nếu có xung đột.
+
 ## Kỹ năng quy trình (Workflow Skills)
 
 Vị trí: `.agents/skills/workflow/`

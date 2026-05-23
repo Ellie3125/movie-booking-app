@@ -2,12 +2,14 @@
 
 ## 1. Global Rules
 
+*   **TOP PRIORITY - SPEC Disclosure Requirement**: Mỗi khi nhận đặc tả `<SPEC>` và tiến hành viết mới hoặc chỉnh sửa file code, bắt buộc phải cung cấp phần giải trình gồm đủ 4 mục: **Autonomous Decisions**, **Deviations**, **Trade-offs**, và **Context/Notes**. Đặt phần này ở đầu file dưới dạng comment block nếu phù hợp với file/codebase, hoặc bắt buộc đưa vào báo cáo kết quả trả về nếu comment đầu file không phù hợp.
+*   **TOP PRIORITY - HTML Specs & Implementation Plans**: Tất cả specs và implementation plans của dự án phải được viết/lưu bằng HTML, dùng chung CSS variables, utilities và component classes từ `.agents/skills/html-implement/css-patterns.md`. Không dùng Markdown làm định dạng lưu chính cho spec/plan mới trừ khi người dùng yêu cầu rõ ràng.
+*   **TOP PRIORITY - Shared CSS For Planning Docs**: Khi tạo tài liệu HTML spec/plan, phải đọc `.agents/skills/html-implement/css-patterns.md`, dùng class/token có sẵn như `.card`, `.table`, `.badge`, `.btn`, `--color-*`, `--sp-*`, và không tự bịa design tokens mới nếu pattern đã có.
 *   **Architecture Integrity**: Không tự ý tạo ra kiến trúc mới. Tái sử dụng các mẫu (patterns) hiện có.
 *   **Minimal Changes**: Tránh các thay đổi lớn không cần thiết. Giữ cách đặt tên nhất quán.
 *   **No Placeholders**: Tuyệt đối không để lại mã `TODO` hoặc mã tạm thời.
 *   **Verification**: Luôn xác minh việc build, lint và runtime trước khi hoàn tất.
 *   **Modification Flow**: Đọc các tệp liên quan -> Hiểu cấu trúc -> Tái sử dụng các mẫu -> Giải thích các thay đổi.
-*   **SPEC Disclosure Requirement**: Mỗi khi nhận đặc tả `<SPEC>` và tiến hành viết mới hoặc chỉnh sửa file code, bắt buộc phải cung cấp phần giải trình gồm đủ 4 mục: **Autonomous Decisions**, **Deviations**, **Trade-offs**, và **Context/Notes**. Đặt phần này ở đầu file dưới dạng comment block nếu phù hợp với file/codebase, hoặc bắt buộc đưa vào báo cáo kết quả trả về nếu comment đầu file không phù hợp.
 *   **Triết lý Superpowers**:
     *   **Phát triển hướng kiểm thử (TDD)**: Luôn viết kiểm thử trước khi viết mã nguồn.
     *   **Hệ thống thay vì cảm tính**: Tuân thủ quy trình thay vì phỏng đoán.
@@ -94,11 +96,12 @@
 
 1.  **Analyze**: Understand requirements and check current code.
 2.  **Plan**: Identify affected files and explain the approach.
-3.  **Implement**: Write clean, consistent, and commented code.
-4.  **Explain**: Detail the changes and how the logic flows.
-5.  **SPEC Disclosure**: Nếu task xuất phát từ `<SPEC>` và có chỉnh code, báo cáo bắt buộc gồm:
+3.  **HTML Spec/Plan Format**: Nếu tạo spec hoặc implementation plan, lưu bằng HTML và dùng chung CSS patterns từ `.agents/skills/html-implement/css-patterns.md`.
+4.  **Implement**: Write clean, consistent, and commented code.
+5.  **Explain**: Detail the changes and how the logic flows.
+6.  **SPEC Disclosure**: Nếu task xuất phát từ `<SPEC>` và có chỉnh code, báo cáo bắt buộc gồm:
     *   **Autonomous Decisions**: Quyết định AI tự ra mà spec không nói.
     *   **Deviations**: Chỗ AI phải đổi hoặc làm khác yêu cầu ban đầu.
     *   **Trade-offs**: Các đánh đổi đã cân nhắc trước khi chọn giải pháp.
     *   **Context/Notes**: Lưu ý quan trọng, rủi ro, cấu trúc code hoặc hướng mở rộng.
-6.  **Verify**: Provide a checklist for testing and mention risks.
+7.  **Verify**: Provide a checklist for testing and mention risks.

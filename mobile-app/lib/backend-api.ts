@@ -84,8 +84,34 @@ export class ApiRequestError extends Error {
 export type BackendUser = {
   id: string;
   name: string;
+  displayName?: string;
   email: string;
+  phone?: string;
+  avatar?: string;
   role: 'admin' | 'staff' | 'user';
+  dateOfBirth?: string | null;
+  gender?: 'male' | 'female' | 'other' | '';
+  address?: string;
+  country?: string;
+  bio?: string;
+  notificationPreferences?: {
+    email: {
+      bookingConfirmation: boolean;
+      promotions: boolean;
+      systemUpdates: boolean;
+    };
+    push: {
+      bookingConfirmation: boolean;
+      promotions: boolean;
+      showReminders: boolean;
+    };
+  };
+  preferences?: {
+    language: 'vi' | 'en';
+    theme: 'light' | 'dark' | 'system';
+    timezone: string;
+    dateFormat: string;
+  };
   createdAt?: string;
   updatedAt?: string;
 };
@@ -101,8 +127,12 @@ export type BackendMovie = {
   title: string;
   description: string;
   duration: number;
-  genre: string[];
-  poster: string;
+  genres?: string[];
+  genre?: string[];
+  posterUrl?: string;
+  poster_path?: string;
+  posterPath?: string;
+  poster?: string;
   releaseDate: string;
   status: 'now_showing' | 'coming_soon' | 'ended';
   language?: string;
@@ -115,8 +145,8 @@ export type BackendMovieMutationPayload = {
   title: string;
   description: string;
   duration: number;
-  genre: string[];
-  poster: string;
+  genres: string[];
+  posterUrl: string;
   releaseDate: string;
   status: 'now_showing' | 'coming_soon' | 'ended';
   language: string;
@@ -131,8 +161,22 @@ export type BackendCinema = {
   name: string;
   city: string;
   address: string;
+  imageUrl?: string;
   latitude?: number | null;
   longitude?: number | null;
+  location?: {
+    type: string;
+    coordinates: number[];
+  };
+};
+
+export type BackendCinemaBrand = {
+  _id: string;
+  name: string;
+  code: string;
+  logo: string;
+  description?: string;
+  status: string;
 };
 
 export type BackendNearbyCinema = BackendCinema & {
@@ -203,7 +247,10 @@ export type BackendShowtimeListItem = {
     _id: string;
     title: string;
     duration: number;
-    poster: string;
+    posterUrl?: string;
+    poster_path?: string;
+    posterPath?: string;
+    poster?: string;
     status: 'now_showing' | 'coming_soon' | 'ended';
     language?: string;
     formats?: string[];
@@ -268,7 +315,10 @@ export type BackendBooking = {
     id: string;
     title: string;
     duration: number;
-    poster: string;
+    posterUrl?: string;
+    poster_path?: string;
+    posterPath?: string;
+    poster?: string;
     status: 'now_showing' | 'coming_soon' | 'ended';
   } | null;
   cinema: {
@@ -300,7 +350,10 @@ export type BackendBill = {
     id: string;
     title: string;
     duration: number;
-    poster: string;
+    posterUrl?: string;
+    poster_path?: string;
+    posterPath?: string;
+    poster?: string;
     status: 'now_showing' | 'coming_soon' | 'ended';
   } | null;
   cinema: {
@@ -394,7 +447,10 @@ export type BackendTicket = {
     id: string;
     title: string;
     duration: number;
-    poster: string;
+    posterUrl?: string;
+    poster_path?: string;
+    posterPath?: string;
+    poster?: string;
     status: 'now_showing' | 'coming_soon' | 'ended';
   } | null;
   cinema: {
@@ -615,6 +671,50 @@ export async function logoutUser(token: string, refreshToken: string) {
   });
 }
 
+export async function updateUserProfile(payload: Partial<BackendUser>) {
+  return apiRequest<BackendUser>('/auth/update-profile', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function updateUserNotificationPreferences(payload: any) {
+  return apiRequest<BackendUser>('/auth/update-notifications', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function updateUserPreferences(payload: any) {
+  return apiRequest<BackendUser>('/auth/update-preferences', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function deleteUserAccount(payload: any) {
+  return apiRequest<{ message: string }>('/auth/delete-account', {
+    method: 'DELETE',
+    body: payload,
+  });
+}
+
+export async function changeUserPassword(payload: any) {
+  return apiRequest<{ message: string }>('/auth/change-password', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function uploadUserAvatar(formData: FormData) {
+  const response = await apiClient.post<ApiSuccessResponse<BackendUser>>('/auth/upload-avatar', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data.data;
+}
+
 // ─── Movies ───────────────────────────────────────────────────────────────────
 
 export async function fetchMovies() {
@@ -655,7 +755,7 @@ export async function fetchCinemas() {
 }
 
 export async function fetchNearbyCinemas(lat: number, lng: number) {
-  return apiRequest<{ items: BackendNearbyCinema[]; total: number }>('/cinemas/nearby', {
+  return apiRequest<BackendNearbyCinema[]>('/cinemas/nearby', {
     params: { lat, lng },
   });
 }
@@ -776,4 +876,8 @@ export async function payBookingBill(
 
 export async function fetchMyTickets(token: string) {
   return apiRequest<{ items: BackendTicket[]; total: number }>('/tickets', { token });
+}
+
+export async function fetchCinemaOptions() {
+  return apiRequest<{ brands: BackendCinemaBrand[]; provinces: string[] }>('/meta/cinema-options');
 }

@@ -15,6 +15,7 @@ Use this skill for standalone HTML work: creating new HTML files, editing existi
 - Use targeted replacements only. In environments with `str_replace`, use `str_replace`; in Codex, use minimal `apply_patch` hunks that behave like targeted string replacements.
 - Prefer class names such as `.btn-primary`, `.badge-green`, `.table`, `.table-wrap`, `.card`, `.input`, `.field`, and `.alert-success` over restating their CSS.
 - When the request includes a `<SPEC>` and code is created or edited, include a SPEC disclosure block either at the top of the file as a comment block when appropriate, or in the final result report.
+- When creating specs or implementation plans, write full HTML documents and reuse CSS variables/classes from `css-patterns.md`; never save new project specs/plans as Markdown unless the user explicitly overrides this rule.
 
 ## When To Use
 

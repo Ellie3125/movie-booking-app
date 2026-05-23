@@ -82,8 +82,9 @@ const changePasswordSchema = {
 };
 
 const updateProfileSchema = {
-  body: strictObject({
+  body: Joi.object({
     name: Joi.string().trim().min(2).max(120).optional().label('name'),
+    displayName: Joi.string().trim().max(30).allow('').optional().label('displayName'),
     avatar: Joi.string()
       .trim()
       .pattern(/^\/uploads\/avatars\/.+/)
@@ -92,7 +93,44 @@ const updateProfileSchema = {
       .messages({
         'string.pattern.base': 'avatar must start with /uploads/avatars/',
       }),
-  }).min(1), // At least one field must be provided
+    phone: Joi.string().trim().allow('').max(20).optional().label('phone'),
+    dateOfBirth: Joi.date().max('now').allow(null).optional().label('dateOfBirth'),
+    gender: Joi.string().valid('male', 'female', 'other', '').optional().label('gender'),
+    address: Joi.string().trim().max(200).allow('').optional().label('address'),
+    country: Joi.string().trim().max(100).allow('').optional().label('country'),
+    bio: Joi.string().trim().max(500).allow('').optional().label('bio'),
+  }).required().unknown(false).min(1),
+};
+
+const updateNotificationPreferencesSchema = {
+  body: Joi.object({
+    email: Joi.object({
+      bookingConfirmation: Joi.boolean(),
+      promotions: Joi.boolean(),
+      systemUpdates: Joi.boolean(),
+    }).optional(),
+    push: Joi.object({
+      bookingConfirmation: Joi.boolean(),
+      promotions: Joi.boolean(),
+      showReminders: Joi.boolean(),
+    }).optional(),
+  }).required().unknown(false).min(1),
+};
+
+const updatePreferencesSchema = {
+  body: Joi.object({
+    language: Joi.string().valid('vi', 'en').optional(),
+    theme: Joi.string().valid('light', 'dark', 'system').optional(),
+    timezone: Joi.string().max(50).optional(),
+    dateFormat: Joi.string().valid('DD/MM/YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD').optional(),
+  }).required().unknown(false).min(1),
+};
+
+const deleteAccountSchema = {
+  body: Joi.object({
+    password: Joi.string().required().label('password'),
+    confirmation: Joi.string().valid('DELETE').required().label('confirmation'),
+  }).required().unknown(false),
 };
 
 module.exports = {
@@ -103,4 +141,7 @@ module.exports = {
   loginSchema,
   logoutSchema,
   updateProfileSchema,
+  updateNotificationPreferencesSchema,
+  updatePreferencesSchema,
+  deleteAccountSchema,
 };

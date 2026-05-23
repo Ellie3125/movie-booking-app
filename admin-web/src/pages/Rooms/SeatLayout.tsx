@@ -22,8 +22,7 @@ import {
   UserOutlined,
   CrownOutlined,
   HeartOutlined,
-  StopOutlined,
-  ColumnWidthOutlined
+  StopOutlined
 } from "@ant-design/icons";
 import { roomService } from "../../services/roomService";
 import { cinemaService } from "../../services/cinemaService";
@@ -129,8 +128,6 @@ export default function SeatLayout() {
 
   const handleSeatClick = (rowIndex: number, colIndex: number) => {
     if (isPreview) return;
-    
-    const seat = layout[rowIndex].seats[colIndex];
     
     if (editMode === "couple") {
       updateSeat(rowIndex, colIndex, { type: "couple", coupleGroupId: `COUPLE_${Date.now()}` });

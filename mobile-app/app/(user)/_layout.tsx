@@ -30,6 +30,10 @@ export default function UsersLayout() {
       }}>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen
+        name="profile"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="movies/[id]"
         options={{ headerShown: true, title: 'Chi tiết phim', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
       />

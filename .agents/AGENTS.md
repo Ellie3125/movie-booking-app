@@ -47,16 +47,18 @@ This is a comprehensive cinema ticket booking ecosystem divided into three main 
 
 ## 5. Các quy tắc hành vi cốt lõi (Core AI Behavior Rules)
 
-1.  **Context First**: Luôn đọc `PROJECT_CONTEXT.md` và các tệp liên quan trước khi thực hiện bất kỳ hành động nào.
-2.  **Consistency**: Tuân thủ các mẫu (patterns) đã thiết lập cho từng phần (ví dụ: TS cho Admin, MVC cho BE).
-3.  **Incremental**: Thực hiện các thay đổi nhỏ, an toàn. Giải thích lý do ("tại sao") và cách thức ("làm thế nào").
-4.  **No Deletions**: Không bao giờ âm thầm xóa bỏ các tính năng hoặc cấu hình hiện có.
-5.  **Professional UI**: Mọi thay đổi UI phải mang lại cảm giác "Cao cấp" (Premium) và "Hiện đại" (Modern).
-6.  **Verify Everything**: Sử dụng các công cụ xác minh trước khi tuyên bố hoàn thành công việc.
-7.  **HTML/CSS Pattern Reuse**: Khi tạo hoặc sửa file HTML/CSS độc lập, phải dùng `.agents/skills/html-implement/`, đọc `css-patterns.md`, tái sử dụng class/variables có sẵn và chỉ sửa bằng replacement nhỏ thay vì rewrite toàn file.
-8.  **SPEC Disclosure**: Khi nhận `<SPEC>` và viết mới/chỉnh sửa code, ở đầu file bằng comment block nếu phù hợp hoặc trong báo cáo kết quả trả về, bắt buộc giải trình đủ 4 mục: Autonomous Decisions, Deviations, Trade-offs, Context/Notes.
-9.  **Vietnamese Language & Planning**:
+1.  **TOP PRIORITY - SPEC Disclosure**: Khi nhận `<SPEC>` và viết mới/chỉnh sửa code, ở đầu file bằng comment block nếu phù hợp hoặc trong báo cáo kết quả trả về, bắt buộc giải trình đủ 4 mục: Autonomous Decisions, Deviations, Trade-offs, Context/Notes. Luật này đứng trên tất cả quy tắc workflow khác trong repo.
+2.  **TOP PRIORITY - HTML Specs & Plans**: Tất cả implementation plans và specs trong dự án phải được viết bằng HTML, dùng chung CSS variables/classes từ `.agents/skills/html-implement/css-patterns.md`, và tuân thủ checklist của `.agents/skills/html-implement/`.
+3.  **Context First**: Luôn đọc `PROJECT_CONTEXT.md` và các tệp liên quan trước khi thực hiện bất kỳ hành động nào.
+4.  **Consistency**: Tuân thủ các mẫu (patterns) đã thiết lập cho từng phần (ví dụ: TS cho Admin, MVC cho BE).
+5.  **Incremental**: Thực hiện các thay đổi nhỏ, an toàn. Giải thích lý do ("tại sao") và cách thức ("làm thế nào").
+6.  **No Deletions**: Không bao giờ âm thầm xóa bỏ các tính năng hoặc cấu hình hiện có.
+7.  **Professional UI**: Mọi thay đổi UI phải mang lại cảm giác "Cao cấp" (Premium) và "Hiện đại" (Modern).
+8.  **Verify Everything**: Sử dụng các công cụ xác minh trước khi tuyên bố hoàn thành công việc.
+9.  **HTML/CSS Pattern Reuse**: Khi tạo hoặc sửa file HTML/CSS độc lập, phải dùng `.agents/skills/html-implement/`, đọc `css-patterns.md`, tái sử dụng class/variables có sẵn và chỉ sửa bằng replacement nhỏ thay vì rewrite toàn file.
+10. **Vietnamese Language & Planning**:
     - Tất cả các kế hoạch (implementation plans), tài liệu thiết kế (specs), walkthroughs và phản hồi từ Agent **PHẢI được viết bằng TIẾNG VIỆT**.
+    - Implementation plans và specs phải là tài liệu HTML, không dùng Markdown làm định dạng lưu chính trong repo.
     - Sử dụng tính năng lập kế hoạch (Implementation Plan artifact) có sẵn của Agent để trình bày kế hoạch triển khai cho người dùng duyệt trước khi thực hiện.
     - Agent phải luôn đọc, hiểu và tuân thủ tuyệt đối các quy tắc và hướng dẫn trong thư mục `.agents/`.
 
