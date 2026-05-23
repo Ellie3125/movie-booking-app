@@ -149,6 +149,24 @@ Yêu cầu:
 
 ## Phần 2 & 3: Kỹ năng Frontend & Mobile
 
+### html-implement
+Vị trí: `.agents/skills/html-implement/`
+
+Sử dụng cho:
+* Tạo mới file HTML độc lập
+* Sửa hoặc mở rộng file HTML hiện có
+* Áp dụng CSS variables, utilities và component patterns có sẵn
+* Tối ưu token khi chỉnh HTML/CSS bằng cách dùng class pattern thay vì viết lại CSS dài
+
+Yêu cầu:
+* Luôn đọc `.agents/skills/html-implement/css-patterns.md` trước khi sửa HTML/CSS
+* Không tự tạo design tokens mới nếu pattern đã có
+* Khi sửa HTML, dùng thay đổi có mục tiêu (`str_replace`-style; trong Codex dùng `apply_patch` hunk nhỏ), không rewrite toàn bộ file
+* Ưu tiên class như `.btn-primary`, `.badge-green`, `.table`, `.table-wrap`, `.card`, `.input`
+* Kiểm tra checklist HTML/CSS/JS trước khi hoàn tất
+
+---
+
 ### ui-ux-pro-max
 Vị trí: `.agents/skills/ui-ux-pro-max/`
 

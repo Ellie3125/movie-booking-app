@@ -53,7 +53,9 @@ This is a comprehensive cinema ticket booking ecosystem divided into three main 
 4.  **No Deletions**: Không bao giờ âm thầm xóa bỏ các tính năng hoặc cấu hình hiện có.
 5.  **Professional UI**: Mọi thay đổi UI phải mang lại cảm giác "Cao cấp" (Premium) và "Hiện đại" (Modern).
 6.  **Verify Everything**: Sử dụng các công cụ xác minh trước khi tuyên bố hoàn thành công việc.
-7.  **Vietnamese Language & Planning**: 
+7.  **HTML/CSS Pattern Reuse**: Khi tạo hoặc sửa file HTML/CSS độc lập, phải dùng `.agents/skills/html-implement/`, đọc `css-patterns.md`, tái sử dụng class/variables có sẵn và chỉ sửa bằng replacement nhỏ thay vì rewrite toàn file.
+8.  **SPEC Disclosure**: Khi nhận `<SPEC>` và viết mới/chỉnh sửa code, ở đầu file bằng comment block nếu phù hợp hoặc trong báo cáo kết quả trả về, bắt buộc giải trình đủ 4 mục: Autonomous Decisions, Deviations, Trade-offs, Context/Notes.
+9.  **Vietnamese Language & Planning**:
     - Tất cả các kế hoạch (implementation plans), tài liệu thiết kế (specs), walkthroughs và phản hồi từ Agent **PHẢI được viết bằng TIẾNG VIỆT**.
     - Sử dụng tính năng lập kế hoạch (Implementation Plan artifact) có sẵn của Agent để trình bày kế hoạch triển khai cho người dùng duyệt trước khi thực hiện.
     - Agent phải luôn đọc, hiểu và tuân thủ tuyệt đối các quy tắc và hướng dẫn trong thư mục `.agents/`.

@@ -7,6 +7,7 @@
 *   **No Placeholders**: Tuyệt đối không để lại mã `TODO` hoặc mã tạm thời.
 *   **Verification**: Luôn xác minh việc build, lint và runtime trước khi hoàn tất.
 *   **Modification Flow**: Đọc các tệp liên quan -> Hiểu cấu trúc -> Tái sử dụng các mẫu -> Giải thích các thay đổi.
+*   **SPEC Disclosure Requirement**: Mỗi khi nhận đặc tả `<SPEC>` và tiến hành viết mới hoặc chỉnh sửa file code, bắt buộc phải cung cấp phần giải trình gồm đủ 4 mục: **Autonomous Decisions**, **Deviations**, **Trade-offs**, và **Context/Notes**. Đặt phần này ở đầu file dưới dạng comment block nếu phù hợp với file/codebase, hoặc bắt buộc đưa vào báo cáo kết quả trả về nếu comment đầu file không phù hợp.
 *   **Triết lý Superpowers**:
     *   **Phát triển hướng kiểm thử (TDD)**: Luôn viết kiểm thử trước khi viết mã nguồn.
     *   **Hệ thống thay vì cảm tính**: Tuân thủ quy trình thay vì phỏng đoán.
@@ -42,7 +43,18 @@
 
 ---
 
-## 4. Mobile App (React Native + Expo)
+## 4. HTML/CSS Implementation (Standalone HTML)
+
+*   **Required Skill**: Khi tạo mới hoặc chỉnh sửa file HTML/CSS độc lập, phải dùng skill `.agents/skills/html-implement/`.
+*   **Pattern Reuse First**: Luôn đọc và tái sử dụng CSS variables, utilities và component classes trong `.agents/skills/html-implement/css-patterns.md`.
+*   **No Invented Tokens**: Không tự ý bịa biến custom mới nếu hệ thống đã có token phù hợp như `--color-accent`, `--sp-4`, `--r-md`, `--shadow-sm`.
+*   **Targeted HTML Edits**: Khi sửa file HTML hiện có, tuyệt đối không rewrite toàn bộ file hoặc paste lại các block CSS dài. Dùng thay thế có mục tiêu (`str_replace`-style; trong Codex dùng `apply_patch` hunk nhỏ) để thêm đúng class như `.btn-primary`, `.badge-green`, `.table`, `.table-wrap`, `.card`, `.input`.
+*   **Workflow B Discipline**: Đọc `css-patterns.md` trước, đọc file HTML hiện tại sau, rồi chỉ sửa đúng phần cần thay đổi.
+*   **Pre-Output Checklist**: Trước khi giao file HTML, kiểm tra `lang`, viewport meta, heading semantic, `alt`, labels, responsive ở 375px/1280px, dark-mode tokens nếu có, và vanilla JS tách `state` / `render` / `events`.
+
+---
+
+## 5. Mobile App (React Native + Expo)
 
 *   **Libraries**: Use `expo-secure-store` for tokens, `expo-location` for location, and `axios` for API.
 *   **Token Storage**: Must use `lib/tokenStorage.ts` (wraps `expo-secure-store`).
@@ -84,4 +96,9 @@
 2.  **Plan**: Identify affected files and explain the approach.
 3.  **Implement**: Write clean, consistent, and commented code.
 4.  **Explain**: Detail the changes and how the logic flows.
-5.  **Verify**: Provide a checklist for testing and mention risks.
+5.  **SPEC Disclosure**: Nếu task xuất phát từ `<SPEC>` và có chỉnh code, báo cáo bắt buộc gồm:
+    *   **Autonomous Decisions**: Quyết định AI tự ra mà spec không nói.
+    *   **Deviations**: Chỗ AI phải đổi hoặc làm khác yêu cầu ban đầu.
+    *   **Trade-offs**: Các đánh đổi đã cân nhắc trước khi chọn giải pháp.
+    *   **Context/Notes**: Lưu ý quan trọng, rủi ro, cấu trúc code hoặc hướng mở rộng.
+6.  **Verify**: Provide a checklist for testing and mention risks.
