@@ -26,6 +26,7 @@ import MultiSelect from '../../components/form/MultiSelect';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '../../components/ui/table';
 import Badge from '../../components/ui/badge/Badge';
 import { ConfirmationModal } from '../../components/ui/modal/ConfirmationModal';
+import { buildImageUrl } from '../../utils/imageUrl';
 
 type PlannerFormData = {
   selectedMovieId: string;
@@ -218,10 +219,10 @@ const ShowtimePlanner: React.FC = () => {
     setLoading(true);
     setErrorMessage('');
     setSuccessMessage('');
-    
+
     // Get current form values
     const data = watch();
-    
+
     try {
       let movieId = data.selectedMovieId;
 
@@ -370,7 +371,7 @@ const ShowtimePlanner: React.FC = () => {
                 </button>
               </div>
             </div>
-            
+
             <div className="space-y-4">
               {!watchedIsNewMovie ? (
                 <div>
@@ -390,11 +391,11 @@ const ShowtimePlanner: React.FC = () => {
                   {errors.selectedMovieId && <p className="mt-1 text-xs text-error-500">{errors.selectedMovieId.message}</p>}
                   {selectedMovie && (
                     <div className="mt-4 flex gap-4 p-3 border border-gray-100 dark:border-gray-800 rounded-xl bg-gray-50/50 dark:bg-white/5">
-                      <img 
-                        src={selectedMovie.posterUrl || selectedMovie.poster} 
-                        alt="" 
-                        className="w-16 h-24 object-cover rounded-lg shadow-sm" 
-                        referrerPolicy="no-referrer" 
+                      <img
+                        src={selectedMovie.posterUrl || selectedMovie.poster}
+                        alt=""
+                        className="w-16 h-24 object-cover rounded-lg shadow-sm"
+                        referrerPolicy="no-referrer"
                       />
                       <div>
                         <h4 className="font-medium text-gray-800 dark:text-white">{selectedMovie.title}</h4>
@@ -515,7 +516,7 @@ const ShowtimePlanner: React.FC = () => {
                   />
                 )}
               />
-              
+
               <Controller
                 name="selectedBrands"
                 control={control}
@@ -523,10 +524,10 @@ const ShowtimePlanner: React.FC = () => {
                   <MultiSelect
                     label="Thương hiệu"
                     placeholder="Chọn thương hiệu..."
-                    options={brands.map(b => ({ 
-                      value: b._id || b.code || b.name, 
-                      text: b.name, 
-                      image: b.logo || b.logoUrl 
+                    options={brands.map(b => ({
+                      value: b._id || b.code || b.name,
+                      text: b.name,
+                      image: buildImageUrl(b.logo || b.logoUrl)
                     }))}
                     value={field.value}
                     onChange={field.onChange}
@@ -604,7 +605,7 @@ const ShowtimePlanner: React.FC = () => {
           {/* Section 3: Schedule Configuration */}
           <div className="xl:col-span-1 p-6 bg-white border border-gray-200 rounded-2xl dark:border-gray-800 dark:bg-white/[0.03]">
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">3. Cấu hình lịch chiếu</h3>
-            
+
             <div className="mb-6">
               <Label>Khoảng ngày chiếu</Label>
               <div className="relative group">

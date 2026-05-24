@@ -9,13 +9,15 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
 
+**PROJECT OVERRIDE - HTML PLAN FORMAT:** For this repository, implementation plans MUST be saved as HTML documents, not Markdown. Read `.agents/skills/html-implement/css-patterns.md` before writing the plan, reuse its CSS variables/classes, and include the four SPEC disclosure sections near the top: Autonomous Decisions, Deviations, Trade-offs, Context/Notes.
+
 Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
 **Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
 
-**Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
+**Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.html`
 - (User preferences for plan location override this default)
 
 ## Scope Check
@@ -46,31 +48,56 @@ This structure informs the task decomposition. Each task should produce self-con
 
 **Every plan MUST start with this header:**
 
-```markdown
-# [Feature Name] Implementation Plan
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Feature Name] Implementation Plan</title>
+  <style>
+    /* Use variables/classes from .agents/skills/html-implement/css-patterns.md */
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>[Feature Name] Implementation Plan</h1>
+      <p><strong>For agentic workers:</strong> REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox syntax for tracking.</p>
+      <p><strong>Goal:</strong> [One sentence describing what this builds]</p>
+      <p><strong>Architecture:</strong> [2-3 sentences about approach]</p>
+      <p><strong>Tech Stack:</strong> [Key technologies/libraries]</p>
+    </section>
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
-**Goal:** [One sentence describing what this builds]
-
-**Architecture:** [2-3 sentences about approach]
-
-**Tech Stack:** [Key technologies/libraries]
-
----
+    <section class="card">
+      <h2>SPEC Disclosure</h2>
+      <h3>Autonomous Decisions</h3>
+      <p>[Decisions made beyond the SPEC]</p>
+      <h3>Deviations</h3>
+      <p>[Changes from the original SPEC, or None]</p>
+      <h3>Trade-offs</h3>
+      <p>[Trade-offs considered]</p>
+      <h3>Context/Notes</h3>
+      <p>[Risks, structure notes, extension guidance]</p>
+    </section>
+  </main>
+</body>
+</html>
 ```
 
 ## Task Structure
 
-````markdown
-### Task N: [Component Name]
+````html
+<section class="card">
+  <h2>Task N: [Component Name]</h2>
+  <p><strong>Files:</strong></p>
+  <ul>
+    <li>Create: <code>exact/path/to/file.py</code></li>
+    <li>Modify: <code>exact/path/to/existing.py:123-145</code></li>
+    <li>Test: <code>tests/exact/path/to/test.py</code></li>
+  </ul>
 
-**Files:**
-- Create: `exact/path/to/file.py`
-- Modify: `exact/path/to/existing.py:123-145`
-- Test: `tests/exact/path/to/test.py`
-
-- [ ] **Step 1: Write the failing test**
+  <label><input type="checkbox"> <strong>Step 1: Write the failing test</strong></label>
 
 ```python
 def test_specific_behavior():
@@ -78,29 +105,30 @@ def test_specific_behavior():
     assert result == expected
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+  <label><input type="checkbox"> <strong>Step 2: Run test to verify it fails</strong></label>
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: FAIL with "function not defined"
 
-- [ ] **Step 3: Write minimal implementation**
+  <label><input type="checkbox"> <strong>Step 3: Write minimal implementation</strong></label>
 
 ```python
 def function(input):
     return expected
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+  <label><input type="checkbox"> <strong>Step 4: Run test to verify it passes</strong></label>
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+  <label><input type="checkbox"> <strong>Step 5: Commit</strong></label>
 
 ```bash
 git add tests/path/test.py src/path/file.py
 git commit -m "feat: add specific feature"
 ```
+</section>
 ````
 
 ## No Placeholders

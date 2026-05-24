@@ -35,6 +35,30 @@ const CinemaSchema = new mongoose.Schema(
       required: [true, "Địa chỉ là bắt buộc"],
       trim: true,
     },
+    location: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        default: "Point",
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude] — GeoJSON: lng trước, lat sau
+        validate: {
+          validator: (v) =>
+            !v ||
+            v.length === 0 ||
+            (v.length === 2 &&
+              v[0] >= -180 && v[0] <= 180 &&
+              v[1] >= -90  && v[1] <= 90),
+          message: "Toạ độ không hợp lệ. Định dạng: [longitude, latitude]",
+        },
+      },
+    },
+    placeId: {
+      type: String,
+      trim: true,
+      sparse: true,
+    },
     phone: {
       type: String,
       trim: true,
@@ -55,5 +79,6 @@ const CinemaSchema = new mongoose.Schema(
 );
 
 CinemaSchema.index({ province: 1, brand: 1, name: 1 });
+CinemaSchema.index({ location: "2dsphere" });
 
 module.exports = mongoose.model("Cinema", CinemaSchema);

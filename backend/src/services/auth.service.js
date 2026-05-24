@@ -23,9 +23,26 @@ const isAdminPortalRole = (role) => ADMIN_PORTAL_ROLES.includes(role);
 const sanitizeUser = (user) => ({
   id: String(user._id),
   name: user.name,
+  displayName: user.displayName || '',
   email: user.email,
+  phone: user.phone || '',
   role: user.role,
   avatar: user.avatar,
+  dateOfBirth: user.dateOfBirth || null,
+  gender: user.gender || '',
+  address: user.address || '',
+  country: user.country || '',
+  bio: user.bio || '',
+  notificationPreferences: user.notificationPreferences || {
+    email: { bookingConfirmation: true, promotions: true, systemUpdates: true },
+    push: { bookingConfirmation: true, promotions: false, showReminders: true }
+  },
+  preferences: user.preferences || {
+    language: 'vi',
+    theme: 'system',
+    timezone: 'Asia/Ho_Chi_Minh',
+    dateFormat: 'DD/MM/YYYY'
+  },
   createdAt: user.createdAt,
   updatedAt: user.updatedAt,
 });
@@ -95,6 +112,18 @@ const assertUserCanAuthenticate = (user) => {
     throw ApiError.unauthorized(
       'Email or password is incorrect',
       'INVALID_CREDENTIALS'
+    );
+  }
+  if (user.status === 'blocked') {
+    throw ApiError.forbidden(
+      'Tài khoản của bạn đã bị khóa',
+      'ACCOUNT_BLOCKED'
+    );
+  }
+  if (user.status === 'deleted') {
+    throw ApiError.forbidden(
+      'Tài khoản của bạn đã bị xóa',
+      'ACCOUNT_DELETED'
     );
   }
 };
@@ -286,6 +315,13 @@ const getActiveSessionFromRefreshToken = async (refreshToken) => {
     );
   }
 
+  if (user.status === 'blocked' || user.status === 'deleted') {
+    throw ApiError.unauthorized(
+      'Tài khoản đã bị khoá hoặc đã bị xóa',
+      'ACCOUNT_INACTIVE'
+    );
+  }
+
   validateSessionOwner(decoded, user);
 
   return {
@@ -389,26 +425,37 @@ const changePassword = async (
   };
 };
 
-const updateProfile = async ({ name, avatar }, currentUser) => {
+const updateProfile = async (updateData, currentUser) => {
   const user = await User.findById(currentUser.id || currentUser.userId).exec();
 
   if (!user) {
     throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
   }
 
-  if (name) {
-    user.name = name;
-  }
+  const allowedFields = [
+    'name',
+    'displayName',
+    'avatar',
+    'phone',
+    'dateOfBirth',
+    'gender',
+    'address',
+    'country',
+    'bio',
+  ];
 
-  if (avatar) {
-    // Validate avatar path
-    if (!avatar.startsWith('/uploads/avatars/')) {
-      throw ApiError.badRequest(
-        'Invalid avatar path. Must start with /uploads/avatars/',
-        'INVALID_AVATAR_PATH'
-      );
+  for (const field of allowedFields) {
+    if (updateData[field] !== undefined) {
+      if (field === 'avatar' && updateData.avatar) {
+        if (!updateData.avatar.startsWith('/uploads/avatars/')) {
+          throw ApiError.badRequest(
+            'Invalid avatar path. Must start with /uploads/avatars/',
+            'INVALID_AVATAR_PATH'
+          );
+        }
+      }
+      user[field] = updateData[field];
     }
-    user.avatar = avatar;
   }
 
   await user.save();
@@ -416,9 +463,90 @@ const updateProfile = async ({ name, avatar }, currentUser) => {
   return sanitizeUser(user);
 };
 
+const updateNotificationPreferences = async (notificationPrefs, currentUser) => {
+  const user = await User.findById(currentUser.id || currentUser.userId).exec();
+  if (!user) {
+    throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
+  }
+
+  if (notificationPrefs.email) {
+    user.notificationPreferences.email = {
+      ...user.notificationPreferences.email,
+      ...notificationPrefs.email,
+    };
+  }
+
+  if (notificationPrefs.push) {
+    user.notificationPreferences.push = {
+      ...user.notificationPreferences.push,
+      ...notificationPrefs.push,
+    };
+  }
+
+  user.markModified('notificationPreferences');
+  await user.save();
+
+  return sanitizeUser(user);
+};
+
+const updatePreferences = async (preferencesData, currentUser) => {
+  const user = await User.findById(currentUser.id || currentUser.userId).exec();
+  if (!user) {
+    throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
+  }
+
+  user.preferences = {
+    ...user.preferences,
+    ...preferencesData,
+  };
+
+  user.markModified('preferences');
+  await user.save();
+
+  return sanitizeUser(user);
+};
+
+const deleteAccount = async ({ password, confirmation }, currentUser) => {
+  const user = await User.findById(currentUser.id || currentUser.userId).exec();
+  if (!user) {
+    throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
+  }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    throw ApiError.unauthorized('Mật khẩu không chính xác', 'INVALID_PASSWORD');
+  }
+
+  if (confirmation !== 'DELETE') {
+    throw ApiError.badRequest('Chuỗi xác nhận không hợp lệ', 'INVALID_CONFIRMATION');
+  }
+
+  user.status = 'deleted';
+  user.deletedAt = new Date();
+  user.authVersion = (user.authVersion || 0) + 1;
+
+  // Anonymize user info
+  const randomSuffix = Math.floor(100000 + Math.random() * 900000);
+  user.name = `Deleted User ${randomSuffix}`;
+  user.email = `deleted_${user._id}_${randomSuffix}@beatcinema.local`;
+  user.phone = '';
+  user.displayName = '';
+  user.avatar = '/uploads/avatars/avatar_01.png';
+  user.bio = '';
+  user.address = '';
+  user.country = '';
+
+  await user.save();
+  await revokeAllUserSessions(user._id, SESSION_REVOKE_REASON.LOGOUT_ALL);
+
+  return {
+    deleted: true,
+  };
+};
+
 const getCurrentUser = async (userId) => {
   const user = await User.findById(userId)
-    .select('_id name email role avatar authVersion passwordChangedAt createdAt updatedAt')
+    .select('_id name displayName email phone role avatar dateOfBirth gender address country bio notificationPreferences preferences authVersion passwordChangedAt createdAt updatedAt')
     .lean()
     .exec();
 
@@ -440,4 +568,7 @@ module.exports = {
   refreshAccessToken,
   register,
   updateProfile,
+  updateNotificationPreferences,
+  updatePreferences,
+  deleteAccount,
 };

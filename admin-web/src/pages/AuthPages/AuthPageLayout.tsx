@@ -2,6 +2,7 @@ import React from "react";
 import GridShape from "../../components/common/GridShape";
 import { Link } from "react-router";
 import ThemeTogglerTwo from "../../components/common/ThemeTogglerTwo";
+import { getDefaultLogoUrl } from "../../utils/imageUrl";
 
 export default function AuthLayout({
   children,
@@ -21,7 +22,7 @@ export default function AuthLayout({
                 <img
                   width={231}
                   height={48}
-                  src="/images/logo/logo.png"
+                  src={getDefaultLogoUrl()}
                   alt="Logo"
                   className="rounded-xl"
                 />

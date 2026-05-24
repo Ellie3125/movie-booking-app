@@ -21,10 +21,15 @@ import Tickets from "./pages/Tickets/Tickets";
 import Payments from "./pages/Payments/Payments";
 import SeatLayoutSettingsPage from "./pages/Rooms/SeatLayoutSettings/SeatLayoutSettingsPage";
 
+import { useFavicon } from "./hooks/useFavicon";
+
 // New Management Pages
 import Admins from "./pages/Users/Admins";
 
 export default function App() {
+  // Favicon dùng file local đã copy sẵn trong public/
+  useFavicon("/favicon.png");
+
   return (
     <AuthProvider>
       <Router>

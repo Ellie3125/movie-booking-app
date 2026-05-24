@@ -16,7 +16,11 @@ router.post(
 );
 router.get('/brands', cinemaController.listBrands);
 router.get('/cities', cinemaController.listCities);
-router.get('/nearby', cinemaController.getNearbyCinemas);
+router.get(
+  '/nearby',
+  validate(cinemaValidation.nearbyQuerySchema),
+  cinemaController.getNearbyCinemas
+);
 router.get('/:id', cinemaController.getCinemaById);
 router.put(
   '/:id',
@@ -24,6 +28,13 @@ router.put(
   authMiddleware.requireRole('admin', 'staff'),
   validate(cinemaValidation.updateCinemaSchema),
   cinemaController.updateCinema
+);
+router.patch(
+  '/:id/location',
+  authMiddleware.verifyAccessToken,
+  authMiddleware.requireRole('admin', 'staff'),
+  validate(cinemaValidation.updateLocationSchema),
+  cinemaController.updateCinemaLocation
 );
 router.delete(
   '/:id',

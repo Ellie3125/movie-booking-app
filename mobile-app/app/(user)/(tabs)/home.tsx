@@ -1,156 +1,201 @@
-import { Link } from 'expo-router';
+import { router } from 'expo-router';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { MoviePoster } from '@/components/ui/movie-poster';
 import {
+  ActionButton,
+  Chip,
   EmptyNotice,
   HeroCard,
-  MetricTile,
   PageScroll,
   SectionCard,
   SectionTitle,
   getTonePalette,
 } from '@/components/ui/experience';
 import { Fonts } from '@/constants/theme';
-import { useAppStore } from '@/lib/app-store';
+import { type MovieStatus, useAppStore } from '@/lib/app-store';
 import {
-  formatCinemaFeatures,
-  formatCity,
-  formatFeaturedNote,
+  formatFormats,
   formatGenres,
-  formatLocationName,
+  formatLanguage,
   formatMovieDescription,
 } from '@/lib/user-display';
 
-const formatTime = (value: string) =>
-  new Date(value).toLocaleTimeString('vi-VN', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+const filters: { label: string; value: MovieStatus | 'all' }[] = [
+  { label: 'Tất cả', value: 'all' },
+  { label: 'Đang chiếu', value: 'now_showing' },
+  { label: 'Sắp chiếu', value: 'coming_soon' },
+  { label: 'Đã đóng', value: 'ended' },
+];
 
-export default function HomeTabScreen() {
-  const { movies, cinemas, showtimes, bookings, currentUser } = useAppStore();
+const movieStatusLabels: Record<MovieStatus, string> = {
+  now_showing: 'Đang mở bán',
+  coming_soon: 'Sắp chiếu',
+  ended: 'Đã đóng',
+};
+
+export default function HomeMoviesTabScreen() {
+  const { movies, showtimes } = useAppStore();
   const colors = getTonePalette('user');
-  const currentUserId = currentUser?.id ?? '';
-  const nowShowing = movies.filter((movie) => movie.status === 'now_showing').slice(0, 3);
-  const upcoming = movies.find((movie) => movie.status === 'coming_soon');
-  const userBookings = bookings.filter((booking) => booking.userId === currentUserId);
+  const [filter, setFilter] = useState<MovieStatus | 'all'>('all');
+
+  const filteredMovies =
+    filter === 'all' ? movies : movies.filter((movie) => movie.status === filter);
 
   return (
     <PageScroll tone="user">
       <HeroCard
         tone="user"
-        eyebrow="Người dùng BeatCinema"
-        title="Đặt vé nhanh, rõ sơ đồ ghế, vào rạp đúng những suất đẹp.">
-        <View style={styles.heroMetrics}>
-          <MetricTile tone="user" value={String(nowShowing.length)} label="Đang chiếu" />
-          <MetricTile tone="user" value={String(showtimes.length)} label="Suất chiếu" />
-          <MetricTile tone="user" value={String(userBookings.length)} label="Vé của tôi" />
+        eyebrow="Khám phá phim"
+        title="Chọn phim bằng poster, thông tin gọn và đường vào đặt vé rõ ràng."
+        description="Màu chủ đạo được chuyển sang tone kem cam sáng. Danh sách phim giờ hiển thị poster nổi bật, meta rõ ràng và CTA đặt vé trực tiếp.">
+        <View style={styles.chipRow}>
+          {filters.map((item) => (
+            <Chip
+              key={item.value}
+              tone="user"
+              label={item.label}
+              active={filter === item.value}
+              onPress={() => setFilter(item.value)}
+            />
+          ))}
         </View>
       </HeroCard>
 
-      <SectionTitle tone="user" title="Phim đang chiếu" />
-      {nowShowing.length === 0 ? (
-        <EmptyNotice tone="user" title="Chưa có phim đang chiếu" />
+      <SectionTitle
+        tone="user"
+        title="Danh sách phim"
+        description="Poster, định dạng, số suất đang mở và nút đặt vé được gom chung trong từng card để chọn phim nhanh hơn."
+      />
+      {filteredMovies.length === 0 ? (
+        <EmptyNotice
+          tone="user"
+          title="Không có phim nào trong bộ lọc này"
+          description="Hãy đổi bộ lọc để xem thêm phim đang chiếu, sắp chiếu hoặc đã kết thúc."
+        />
       ) : (
-        nowShowing.map((movie) => {
-          const firstShowtime = showtimes.find((showtime) => showtime.movieId === movie.id);
+        filteredMovies.map((movie) => {
+          const movieShowtimes = showtimes.filter((showtime) => showtime.movieId === movie.id);
+          const totalShowtimes = movieShowtimes.length;
+          const lowestPrice = movieShowtimes.length
+            ? Math.min(...movieShowtimes.map((showtime) => showtime.basePrice))
+            : null;
 
           return (
-            <SectionCard key={movie.id} tone="user">
-              <View style={styles.rowBetween}>
-                <View style={styles.flex}>
+            <SectionCard key={movie.id} tone="user" style={styles.movieCard}>
+              <MoviePoster
+                uri={movie.poster}
+                title={movie.title}
+                tone="user"
+                width={112}
+                height={162}
+                borderRadius={20}
+              />
+
+              <View style={styles.movieBody}>
+                <View style={styles.metaRail}>
+                  <Chip tone="user" label={movieStatusLabels[movie.status]} active />
+                  <Chip tone="user" label={`${movie.rating} • ${movie.duration} phút`} />
+                </View>
+
+                <View style={styles.copyBlock}>
                   <Text style={[styles.cardTitle, { color: colors.text }]}>{movie.title}</Text>
-                  <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                    {formatGenres(movie.genre)} • {movie.duration} phút • {movie.rating}
+                  <Text style={[styles.cardMeta, { color: colors.muted }]}>
+                    {formatGenres(movie.genre)} • {formatLanguage(movie.language)}
+                  </Text>
+                  <Text style={[styles.cardMeta, { color: colors.muted }]}>
+                    {formatFormats(movie.formats)}
+                  </Text>
+                  <Text numberOfLines={3} style={[styles.cardDescription, { color: colors.muted }]}>
+                    {formatMovieDescription(movie.description)}
                   </Text>
                 </View>
-                <Link href={`/movies/${movie.id}`} style={[styles.link, { color: colors.accent }]}>
-                  Chi tiết
-                </Link>
+
+                <View style={styles.cardFooter}>
+                  <View style={styles.priceBlock}>
+                    <Text style={[styles.inlineMeta, { color: colors.text }]}>
+                      {totalShowtimes} suất đang mở
+                    </Text>
+                    <Text style={[styles.priceText, { color: colors.muted }]}>
+                      {lowestPrice
+                        ? `Từ ${lowestPrice.toLocaleString('vi-VN')}đ`
+                        : 'Đang cập nhật giá'}
+                    </Text>
+                  </View>
+                  <ActionButton
+                    tone="user"
+                    label="Đặt vé"
+                    onPress={() => router.push(`/movies/${movie.id}`)}
+                    style={styles.ctaButton}
+                  />
+                </View>
               </View>
-              <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                {formatFeaturedNote(movie.featuredNote)}
-              </Text>
-              {firstShowtime ? (
-                <Text style={[styles.inlineMeta, { color: colors.text }]}>
-                  Suất gần nhất {formatTime(firstShowtime.startTime)}
-                </Text>
-              ) : null}
             </SectionCard>
           );
         })
       )}
-
-      <SectionTitle tone="user" title="Rạp nổi bật" />
-      {cinemas.map((cinema) => (
-        <SectionCard key={cinema.id} tone="user">
-          <View style={styles.rowBetween}>
-            <View style={styles.flex}>
-              <Text style={[styles.cardTitle, { color: colors.text }]}>
-                {cinema.brand} {formatLocationName(cinema.name)}
-              </Text>
-              <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                {formatCity(cinema.city)} • {formatCinemaFeatures(cinema.features)}
-              </Text>
-            </View>
-            <Link href={`/cinemas/${cinema.id}`} style={[styles.link, { color: colors.accent }]}>
-              Lịch rạp
-            </Link>
-          </View>
-        </SectionCard>
-      ))}
-
-      {upcoming ? (
-        <>
-          <SectionTitle
-            tone="user"
-            title="Sắp chiếu"
-          />
-          <SectionCard tone="user">
-            <Text style={[styles.cardTitle, { color: colors.text }]}>{upcoming.title}</Text>
-            <Text style={[styles.cardCopy, { color: colors.muted }]}>
-              {formatMovieDescription(upcoming.description)}
-            </Text>
-            <Text style={[styles.inlineMeta, { color: colors.text }]}>
-              Khởi chiếu {new Date(upcoming.releaseDate).toLocaleDateString('vi-VN')}
-            </Text>
-          </SectionCard>
-        </>
-      ) : null}
     </PageScroll>
   );
 }
 
 const styles = StyleSheet.create({
-  heroMetrics: {
+  chipRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 12,
+    gap: 10,
   },
-  rowBetween: {
+  movieCard: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    gap: 14,
+  },
+  movieBody: {
+    flex: 1,
     gap: 12,
   },
-  flex: {
-    flex: 1,
+  metaRail: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  copyBlock: {
     gap: 4,
   },
   cardTitle: {
-    fontSize: 18,
-    fontFamily: Fonts.sansBold,
+    fontSize: 22,
+    lineHeight: 28,
+    fontFamily: Fonts.rounded,
   },
-  cardCopy: {
+  cardMeta: {
+    fontSize: 13,
+    lineHeight: 19,
+    fontFamily: Fonts.sans,
+  },
+  cardDescription: {
     fontSize: 14,
     lineHeight: 20,
     fontFamily: Fonts.sans,
   },
-  inlineMeta: {
-    fontSize: 13,
-    fontFamily: Fonts.sansBold,
+  cardFooter: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    gap: 12,
   },
-  link: {
+  priceBlock: {
+    flex: 1,
+    gap: 2,
+  },
+  inlineMeta: {
     fontSize: 14,
     fontFamily: Fonts.sansBold,
+  },
+  priceText: {
+    fontSize: 13,
+    fontFamily: Fonts.sans,
+  },
+  ctaButton: {
+    minWidth: 108,
   },
 });

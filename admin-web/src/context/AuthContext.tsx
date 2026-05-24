@@ -1,20 +1,18 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import api from '../api/axios';
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  avatar?: string;
-}
+import { User, ProfileUpdateInput, NotificationPrefsInput, PreferencesInput } from '../types/profile';
+import { profileService } from '../services/profileService';
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  updateProfile: (data: { name?: string; avatar?: string }) => Promise<void>;
+  updateProfile: (data: ProfileUpdateInput) => Promise<void>;
+  updateNotificationPreferences: (data: NotificationPrefsInput) => Promise<void>;
+  updatePreferences: (data: PreferencesInput) => Promise<void>;
+  deleteAccount: (data: any) => Promise<void>;
+  uploadAvatar: (formData: FormData) => Promise<void>;
   changePassword: (data: any) => Promise<void>;
   isAuthenticated: boolean;
   isAdmin: boolean;
@@ -55,7 +53,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string) => {
     const response = await api.post('/auth/admin/login', { email, password });
     const { user, accessToken } = response.data.data;
-    
+
     setUser(user);
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('user', JSON.stringify(user));
@@ -71,9 +69,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const updateProfile = async (data: { name?: string; avatar?: string }) => {
-    const response = await api.patch('/auth/update-profile', data);
-    const updatedUser = response.data.data;
+  const updateProfile = async (data: ProfileUpdateInput) => {
+    const updatedUser = await profileService.updateProfile(data);
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
+  const updateNotificationPreferences = async (data: NotificationPrefsInput) => {
+    const updatedUser = await profileService.updateNotificationPreferences(data);
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
+  const updatePreferences = async (data: PreferencesInput) => {
+    const updatedUser = await profileService.updatePreferences(data);
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
+  const deleteAccount = async (data: any) => {
+    await profileService.deleteAccount(data);
+    await logout();
+  };
+
+  const uploadAvatar = async (formData: FormData) => {
+    const updatedUser = await profileService.uploadAvatar(formData);
     setUser(updatedUser);
     localStorage.setItem('user', JSON.stringify(updatedUser));
   };
@@ -90,6 +110,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     login,
     logout,
     updateProfile,
+    updateNotificationPreferences,
+    updatePreferences,
+    deleteAccount,
+    uploadAvatar,
     changePassword,
     isAuthenticated: !!user,
     isAdmin: user?.role === 'admin' || user?.role === 'staff',

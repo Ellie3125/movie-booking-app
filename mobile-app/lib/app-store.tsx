@@ -33,6 +33,12 @@ import {
   registerUser,
   updateMovie as updateMovieRequest,
   updateRoom as updateRoomRequest,
+  updateUserProfile,
+  updateUserNotificationPreferences,
+  updateUserPreferences,
+  deleteUserAccount,
+  uploadUserAvatar,
+  changeUserPassword,
   type BackendBooking,
   type BackendCinema,
   type BackendMovie,
@@ -41,7 +47,10 @@ import {
   type BackendShowtimeDetail,
   type BackendShowtimeListItem,
   type BackendUser,
+  type BackendCinemaBrand,
+  fetchCinemaOptions,
 } from '@/lib/backend-api';
+import { getMoviePosterPath } from '@/lib/image-url';
 import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
 import {
   clearTokens,
@@ -61,8 +70,35 @@ export type AuthStatus = 'bootstrapping' | 'authenticated' | 'unauthenticated';
 export type UserProfile = {
   id: string;
   name: string;
+  displayName?: string;
   email: string;
+  phone?: string;
+  avatar?: string;
   role: 'admin' | 'staff' | 'user';
+  dateOfBirth?: string | null;
+  gender?: 'male' | 'female' | 'other' | '';
+  address?: string;
+  country?: string;
+  bio?: string;
+  notificationPreferences?: {
+    email: {
+      bookingConfirmation: boolean;
+      promotions: boolean;
+      systemUpdates: boolean;
+    };
+    push: {
+      bookingConfirmation: boolean;
+      promotions: boolean;
+      showReminders: boolean;
+    };
+  };
+  preferences?: {
+    language: 'vi' | 'en';
+    theme: 'light' | 'dark' | 'system';
+    timezone: string;
+    dateFormat: string;
+  };
+  createdAt?: string;
 };
 
 export type Movie = {
@@ -88,6 +124,11 @@ export type Cinema = {
   address: string;
   hotline: string;
   features: string[];
+  imageUrl?: string;
+  location?: {
+    type: string;
+    coordinates: number[];
+  };
 };
 
 export type RoomSeat = {
@@ -260,7 +301,9 @@ type AppStoreValue = {
   showtimes: Showtime[];
   bookings: Booking[];
   draftCheckout: DraftCheckout | null;
+  brands: BackendCinemaBrand[];
   refreshShowtime?: (showtimeId: string) => Promise<void>;
+  refreshData: () => Promise<void>;
   login: (input: {
     email: string;
     password: string;
@@ -278,6 +321,12 @@ type AppStoreValue = {
     password: string;
   }) => Promise<CreateAdminAccountResult>;
   logout: () => Promise<void>;
+  updateProfile: (payload: Partial<BackendUser>) => Promise<AuthActionResult>;
+  updateNotificationPreferences: (payload: any) => Promise<AuthActionResult>;
+  updatePreferences: (payload: any) => Promise<AuthActionResult>;
+  deleteAccount: (payload: any) => Promise<AuthActionResult>;
+  uploadAvatar: (formData: FormData) => Promise<AuthActionResult>;
+  changePassword: (payload: any) => Promise<AuthActionResult>;
   upsertMovie: (input: MovieInput) => Promise<MovieMutationResult>;
   deleteMovie: (movieId: string) => Promise<DeleteMovieResult>;
   upsertCinema: (input: CinemaInput) => void;
@@ -1594,8 +1643,19 @@ const initialBookings: Booking[] = [
 const normalizeUserProfile = (user: BackendUser): UserProfile => ({
   id: user.id,
   name: user.name,
+  displayName: user.displayName,
   email: user.email,
+  phone: user.phone,
+  avatar: user.avatar,
   role: user.role,
+  dateOfBirth: user.dateOfBirth,
+  gender: user.gender,
+  address: user.address,
+  country: user.country,
+  bio: user.bio,
+  notificationPreferences: user.notificationPreferences,
+  preferences: user.preferences,
+  createdAt: user.createdAt,
 });
 
 const buildRoomSeatId = (cell: {
@@ -1608,8 +1668,8 @@ const mapBackendMovie = (movie: BackendMovie): Movie => ({
   title: movie.title,
   description: movie.description || '',
   duration: movie.duration,
-  genre: movie.genre || [],
-  poster: movie.poster || '',
+  genre: movie.genres?.length ? movie.genres : movie.genre || [],
+  poster: getMoviePosterPath(movie) || '',
   releaseDate: movie.releaseDate,
   status: movie.status,
   language: movie.language || 'Phụ đề',
@@ -1626,6 +1686,8 @@ const mapBackendCinema = (cinema: BackendCinema): Cinema => ({
   address: cinema.address,
   hotline: 'Đang cập nhật',
   features: ['Đang cập nhật tiện ích'],
+  imageUrl: cinema.imageUrl,
+  location: cinema.location,
 });
 
 const mapBackendRoom = (room: BackendRoom): Room => ({
@@ -1705,8 +1767,8 @@ const buildMovieMutationPayload = (input: MovieInput): BackendMovieMutationPaylo
   title: input.title.trim(),
   description: input.description.trim(),
   duration: input.duration,
-  genre: input.genre.map((item) => item.trim()).filter(Boolean),
-  poster: input.poster.trim(),
+  genres: input.genre.map((item) => item.trim()).filter(Boolean),
+  posterUrl: input.poster.trim(),
   releaseDate: input.releaseDate,
   status: input.status,
   language: input.language.trim(),
@@ -1816,6 +1878,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   const [showtimes, setShowtimes] = useState<Showtime[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [draftCheckout, setDraftCheckout] = useState<DraftCheckout | null>(null);
+  const [brands, setBrands] = useState<BackendCinemaBrand[]>([]);
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [authToken, setAuthToken] = useState<string | null>(null);
   const [authStatus, setAuthStatus] = useState<AuthStatus>('bootstrapping');
@@ -1831,6 +1894,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setShowtimes([]);
     setBookings([]);
     setDraftCheckout(null);
+    setBrands([]);
   };
 
   const clearSessionState = () => {
@@ -1900,10 +1964,17 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   });
 
   const syncCatalogState = async () => {
-    const [moviesResponse, cinemasResponse, roomsResponse, showtimesResponse] =
-      await Promise.all([fetchMovies(), fetchCinemas(), fetchRooms(), fetchShowtimes()]);
+    const [moviesResponse, cinemasResponse, roomsResponse, showtimesResponse, cinemaOptionsResponse] =
+      await Promise.all([
+        fetchMovies(),
+        fetchCinemas(),
+        fetchRooms(),
+        fetchShowtimes(),
+        fetchCinemaOptions(),
+      ]);
     const nextMovies = moviesResponse.items.map(mapBackendMovie);
     const nextCinemas = cinemasResponse.items.map(mapBackendCinema);
+    const nextBrands = cinemaOptionsResponse.brands || [];
     const nextRoomDetails = await Promise.all(
       roomsResponse.items.map((room) => fetchRoomById(room._id)),
     );
@@ -1921,6 +1992,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setCinemas(nextCinemas);
     setRooms(nextRooms);
     setShowtimes(nextShowtimes);
+    setBrands(nextBrands);
   };
 
   const refreshShowtime = async (showtimeId: string) => {
@@ -1960,6 +2032,18 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     }
 
     await syncRemoteState(authToken, currentUser);
+  };
+
+  const refreshData = async () => {
+    try {
+      if (authToken && currentUser) {
+        await refreshRemoteState();
+      } else {
+        await loadPublicCatalogState();
+      }
+    } catch (error) {
+      console.warn('Không thể refresh dữ liệu từ backend.', error);
+    }
   };
 
   const loadPublicCatalogState = async () => {
@@ -2117,6 +2201,88 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     await removePersistedAuthToken();
     clearSessionState();
     await loadPublicCatalogState();
+  };
+
+  const updateProfile = async (payload: Partial<BackendUser>): Promise<AuthActionResult> => {
+    try {
+      const updatedUser = await updateUserProfile(payload);
+      const normalized = normalizeUserProfile(updatedUser);
+      setCurrentUser(normalized);
+      return { ok: true, user: normalized };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể cập nhật thông tin cá nhân.'),
+      };
+    }
+  };
+
+  const updateNotificationPreferences = async (payload: any): Promise<AuthActionResult> => {
+    try {
+      const updatedUser = await updateUserNotificationPreferences(payload);
+      const normalized = normalizeUserProfile(updatedUser);
+      setCurrentUser(normalized);
+      return { ok: true, user: normalized };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể cập nhật cấu hình nhận thông báo.'),
+      };
+    }
+  };
+
+  const updatePreferences = async (payload: any): Promise<AuthActionResult> => {
+    try {
+      const updatedUser = await updateUserPreferences(payload);
+      const normalized = normalizeUserProfile(updatedUser);
+      setCurrentUser(normalized);
+      return { ok: true, user: normalized };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể cập nhật tuỳ chỉnh giao diện.'),
+      };
+    }
+  };
+
+  const deleteAccount = async (payload: any): Promise<AuthActionResult> => {
+    try {
+      await deleteUserAccount(payload);
+      await logout();
+      return { ok: true };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể xoá tài khoản.'),
+      };
+    }
+  };
+
+  const uploadAvatar = async (formData: FormData): Promise<AuthActionResult> => {
+    try {
+      const updatedUser = await uploadUserAvatar(formData);
+      const normalized = normalizeUserProfile(updatedUser);
+      setCurrentUser(normalized);
+      return { ok: true, user: normalized };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể tải ảnh đại diện lên.'),
+      };
+    }
+  };
+
+  const changePassword = async (payload: any): Promise<AuthActionResult> => {
+    try {
+      await changeUserPassword(payload);
+      await logout();
+      return { ok: true };
+    } catch (error) {
+      return {
+        ok: false,
+        error: getRequestErrorMessage(error, 'Không thể thay đổi mật khẩu.'),
+      };
+    }
   };
 
   useEffect(() => {
@@ -2668,10 +2834,17 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         new Date(second.createdAt).getTime() - new Date(first.createdAt).getTime(),
     ),
     draftCheckout,
+    brands,
     login,
     register,
     createAdminAccount,
     logout,
+    updateProfile,
+    updateNotificationPreferences,
+    updatePreferences,
+    deleteAccount,
+    uploadAvatar,
+    changePassword,
     upsertMovie,
     deleteMovie,
     upsertCinema,
@@ -2684,6 +2857,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     releaseDraftCheckout,
     confirmDraftCheckout,
     refreshShowtime,
+    refreshData,
   };
 
   return <appStoreContext.Provider value={value}>{children}</appStoreContext.Provider>;
