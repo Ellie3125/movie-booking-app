@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field, field_validator
 
 from src.langchain_chain.chain import chat, clear_session, get_session_memory_summary
-from src.data.database import UserRepository
+from backend.seeds.chatresponse import UserRepository
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 

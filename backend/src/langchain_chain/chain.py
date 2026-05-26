@@ -22,7 +22,7 @@ from typing_extensions import TypedDict
 from langchain_groq import ChatGroq
 
 # ── Local DB ──────────────────────────────────────────────────────────────────
-from src.data.database import UserRepository, MovieRepository
+from backend.seeds.chatresponse import UserRepository, MovieRepository
 
 logger = logging.getLogger(__name__)
 
@@ -268,9 +268,9 @@ def get_recommendations(limit: str = "6", runtime: ToolRuntime[Context] = None) 
 
 
 @tool
-def get_movie_detail(movie_id: int) -> str:
-    """Lấy chi tiết một phim theo ID. Input: số nguyên, ví dụ '5'."""
-    m = MovieRepository.find_by_id(movie_id)
+def get_movie_detail(movie_id: str) -> str:
+    """Lấy chi tiết phim theo MongoDB _id string."""
+    m = next((x for x in MovieRepository.find_all() if x.id == movie_id), None)
     if not m:
         return f"Không tìm thấy phim ID={movie_id}."
     return (
