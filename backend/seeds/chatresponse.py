@@ -154,8 +154,9 @@ class UserRepository:
         return _USERS
 
     @staticmethod
-    def find_by_id(user_id: int) -> Optional[User]:
-        return next((u for u in _USERS if u.id == user_id), None)
+    def find_by_id(movie_id) -> Optional[Movie]:
+        mid = str(movie_id)
+        return next((m for m in _MOVIES if m.id == mid), None)
 
     @staticmethod
     def find_by_username(username: str) -> Optional[User]:
