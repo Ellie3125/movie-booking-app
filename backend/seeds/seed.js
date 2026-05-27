@@ -57,12 +57,21 @@ const seed = async () => {
     ]);
 
     // Drop indexes for collections that had schema changes to avoid E11000 errors from stale indexes
-    try {
-      await Ticket.collection.dropIndexes();
-      await Booking.collection.dropIndexes();
-    } catch (e) {
-      // Ignore if collection doesn't exist or other errors
+    for (const Model of [Ticket, Booking]) {
+      try {
+        await Model.collection.dropIndexes();
+      } catch (e) {
+        // Ignore if collection doesn't exist yet.
+        if (e.codeName !== 'NamespaceNotFound' && e.code !== 26) {
+          throw e;
+        }
+      }
     }
+
+    await Promise.all([
+      Ticket.syncIndexes(),
+      Booking.syncIndexes(),
+    ]);
     console.log('Old data cleared.');
 
     // 2. Hash User Passwords
