@@ -97,7 +97,7 @@ const TicketSchema = new mongoose.Schema(
   }
 );
 
-TicketSchema.index({ bookingId: 1, 'seat.seatCode': 1 });
+TicketSchema.index({ bookingId: 1, 'seat.seatCode': 1 }, { unique: true });
 TicketSchema.index({ userId: 1, createdAt: -1 });
 TicketSchema.index({ showtimeId: 1, status: 1 });
 

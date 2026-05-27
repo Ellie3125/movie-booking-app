@@ -272,7 +272,8 @@
       <h1>Luồng đặt vé hiện tại và quan hệ giữa Booking, Ticket, Seat</h1>
       <p>
         Tài liệu này mô tả cách hệ thống giữ ghế, tạo booking, xử lý thanh toán và phát hành ticket.
-        Điểm quan trọng: một booking có thể sinh ra nhiều ticket, và chỉ <code>ticketCode</code> là duy nhất.
+        Điểm quan trọng: một booking có thể sinh ra nhiều ticket, <code>ticketCode</code> là duy nhất toàn cục,
+        và cặp <code>bookingId + seat.seatCode</code> là duy nhất trong phạm vi booking.
       </p>
     </div>
   </header>
@@ -335,7 +336,7 @@
                 <td><code>Ticket</code></td>
                 <td>Vé được phát hành sau thanh toán.</td>
                 <td>Nhiều ticket có thể cùng <code>bookingId</code>.</td>
-                <td>Chỉ <code>ticketCode</code> unique.</td>
+                <td><code>ticketCode</code> unique toàn cục; <code>bookingId + seat.seatCode</code> unique theo cặp.</td>
               </tr>
               <tr>
                 <td><code>Showtime.seatStates</code></td>
@@ -438,8 +439,9 @@
             <h3>Rule unique hiện tại</h3>
             <ul>
               <li><code>bookingId</code> được phép trùng trong nhiều ticket.</li>
-              <li><code>bookingId + seat.seatCode</code> là index thường, không unique.</li>
-              <li><code>ticketCode</code> là định danh duy nhất của ticket.</li>
+              <li><code>bookingId + seat.seatCode</code> là unique compound index.</li>
+              <li><code>ticketCode</code> là định danh duy nhất toàn cục của ticket.</li>
+              <li>Ví dụ: Booking A - A1 hợp lệ, Booking A - A2 hợp lệ, Booking A - A1 lần nữa sẽ lỗi vì trùng <code>bookingId + seatCode</code>.</li>
             </ul>
           </div>
         </div>
@@ -457,6 +459,7 @@
         <p class="note section">
           Sau khi thanh toán, mỗi ghế vật lý vẫn sinh một ticket riêng. Ví dụ cặp <code>H9</code> và <code>H10</code>
           sẽ sinh hai ticket cùng <code>bookingId</code>, khác <code>ticketCode</code>, khác <code>seat.seatCode</code>.
+          Nếu callback hoặc seed chạy lại cùng cặp <code>bookingId + seat.seatCode</code>, unique compound index sẽ chặn duplicate ticket cho cùng một ghế trong booking đó.
         </p>
       </section>
 
@@ -504,7 +507,7 @@
               </tr>
               <tr>
                 <td><code>backend/src/models/Ticket.js</code></td>
-                <td>Schema ticket, unique <code>ticketCode</code>, index non-unique theo booking và seat.</td>
+                <td>Schema ticket, unique <code>ticketCode</code>, unique compound index theo <code>bookingId</code> và <code>seat.seatCode</code>.</td>
               </tr>
               <tr>
                 <td><code>backend/src/models/Showtime.js</code></td>
