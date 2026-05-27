@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const env = require('./env');
 const Booking = require('../models/Booking');
+const Ticket = require('../models/Ticket');
 const PaymentTransaction = require('../models/PaymentTransaction');
 const PaymentCallbackLog = require('../models/PaymentCallbackLog');
 
@@ -50,6 +51,7 @@ const connectDB = async () => {
     await syncBookingTransactionCodeIndex();
     await Promise.all([
       Booking.init(),
+      Ticket.init(),
       PaymentTransaction.init(),
       PaymentCallbackLog.init(),
     ]);
