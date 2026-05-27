@@ -77,6 +77,9 @@ module.exports = {
   paymentHmacSecretSource,
   paymentGatewaySecret,
   paymentCallbackSecret,
+  paymentGatewayBaseUrl:
+    normalizeOptionalString(process.env.PAYMENT_GATEWAY_BASE_URL) ||
+    'http://localhost:7000',
   paymentCurrency: process.env.PAYMENT_CURRENCY || 'VND',
   paymentSignatureTtlSeconds: Number(
     process.env.PAYMENT_SIGNATURE_TTL_SECONDS || 900
