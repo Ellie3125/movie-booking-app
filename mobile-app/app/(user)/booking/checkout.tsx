@@ -1,6 +1,8 @@
 import { router, Stack } from 'expo-router';
+import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import {
@@ -15,11 +17,11 @@ import {
 } from '@/components/ui/experience';
 import { Fonts } from '@/constants/theme';
 import { type PaymentMethod, useAppStore } from '@/lib/app-store';
+import { isSuccessfulPaymentResult, parsePaymentResultUrl } from '@/lib/payment-result';
 import { formatLocationName, formatPaymentMethod } from '@/lib/user-display';
 
 const paymentMethods: { label: string; value: PaymentMethod }[] = [
-  { label: 'MoMo Sandbox', value: 'momo_sandbox' },
-  { label: 'VNPay Sandbox', value: 'vnpay_sandbox' },
+  { label: 'Cổng thanh toán', value: 'mock_gateway' },
 ];
 
 type CheckoutFormData = {
@@ -34,12 +36,13 @@ export default function CheckoutScreen() {
     showtimes,
     releaseDraftCheckout,
     confirmDraftCheckout,
+    completeRemoteCheckout,
   } = useAppStore();
   const colors = getTonePalette('user');
 
   const { control, handleSubmit, formState: { isSubmitting } } = useForm<CheckoutFormData>({
     defaultValues: {
-      paymentMethod: 'momo_sandbox',
+      paymentMethod: 'mock_gateway',
     },
   });
 
@@ -54,19 +57,71 @@ export default function CheckoutScreen() {
     router.back();
   };
 
+  const createPaymentReturnUrl = () => {
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
+      return `${window.location.origin}/payment/result`;
+    }
+
+    return Linking.createURL('/payment/result');
+  };
+
+  const navigateToBooking = (bookingId: string) => {
+    router.replace({
+      pathname: '/(user)/bookings/[bookingId]',
+      params: { bookingId },
+    });
+  };
+
   const onConfirm = async (data: CheckoutFormData) => {
     try {
       setError('');
-      const booking = await confirmDraftCheckout(data.paymentMethod);
+      const returnUrl = createPaymentReturnUrl();
+      const confirmation = await confirmDraftCheckout(data.paymentMethod, { returnUrl });
 
-      if (!booking) {
+      if (!confirmation) {
         return;
       }
 
-      router.replace({
-        pathname: '/(user)/bookings/[bookingId]',
-        params: { bookingId: booking.id },
-      });
+      if (confirmation.kind === 'booking') {
+        navigateToBooking(confirmation.booking.id);
+        return;
+      }
+
+      if (Platform.OS === 'web' && typeof window !== 'undefined') {
+        window.location.assign(confirmation.paymentUrl);
+        return;
+      }
+
+      const browserResult = await WebBrowser.openAuthSessionAsync(
+        confirmation.paymentUrl,
+        confirmation.returnUrl,
+        {
+          presentationStyle: WebBrowser.WebBrowserPresentationStyle.AUTOMATIC,
+        },
+      );
+
+      if (browserResult.type !== 'success') {
+        setError('Bạn đã đóng cổng thanh toán trước khi hoàn tất giao dịch.');
+        return;
+      }
+
+      const paymentResult = parsePaymentResultUrl(browserResult.url);
+
+      if (!isSuccessfulPaymentResult(paymentResult)) {
+        setError(paymentResult.message || 'Thanh toán chưa hoàn tất. Vui lòng thử lại.');
+        return;
+      }
+
+      const booking = await completeRemoteCheckout(
+        paymentResult.bookingId || confirmation.bookingId,
+      );
+
+      if (!booking || (!booking.paidAt && booking.status !== 'confirmed')) {
+        setError('Backend chưa xác nhận thanh toán. Vui lòng kiểm tra lại vé sau ít giây.');
+        return;
+      }
+
+      navigateToBooking(booking.id);
     } catch (checkoutError) {
       setError(
         checkoutError instanceof Error
@@ -139,7 +194,7 @@ export default function CheckoutScreen() {
             ) : null}
             <ActionButton
               tone="user"
-              label={isSubmitting ? 'Đang thanh toán...' : 'Thanh toán và xuất vé'}
+              label={isSubmitting ? 'Đang mở cổng thanh toán...' : 'Mở cổng thanh toán'}
               onPress={handleSubmit(onConfirm)}
               disabled={isSubmitting}
             />

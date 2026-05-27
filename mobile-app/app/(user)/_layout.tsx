@@ -50,6 +50,10 @@ export default function UsersLayout() {
         options={{ headerShown: true, title: 'Thanh toán', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
       />
       <Stack.Screen
+        name="payment/result"
+        options={{ headerShown: true, title: 'Kết quả thanh toán', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
+      />
+      <Stack.Screen
         name="bookings/[bookingId]"
         options={{ headerShown: true, title: 'Chi tiết vé', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
       />

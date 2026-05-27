@@ -22,7 +22,6 @@ import {
   fetchMovies,
   fetchMyBookingById,
   fetchMyBookings,
-  fetchPaymentBill,
   fetchRoomById,
   fetchRooms,
   fetchShowtimeById,
@@ -66,6 +65,20 @@ export type SeatReservationStatus = 'available' | 'held' | 'booked' | 'disabled'
 export type BookingStatus = 'held' | 'paid' | 'booked' | 'cancelled' | 'pending_payment' | 'confirmed' | 'expired';
 export type PaymentMethod = 'momo_sandbox' | 'vnpay_sandbox' | 'mock_gateway';
 export type AuthStatus = 'bootstrapping' | 'authenticated' | 'unauthenticated';
+
+export type CheckoutConfirmationResult =
+  | {
+      kind: 'booking';
+      booking: Booking;
+    }
+  | {
+      kind: 'gateway';
+      bookingId: string;
+      paymentId: string;
+      paymentUrl: string;
+      returnUrl: string;
+      expiredAt: string | null;
+    };
 
 export type UserProfile = {
   id: string;
@@ -342,7 +355,11 @@ type AppStoreValue = {
     error?: string;
   }>;
   releaseDraftCheckout: () => Promise<void>;
-  confirmDraftCheckout: (paymentMethod: PaymentMethod) => Promise<Booking | null>;
+  confirmDraftCheckout: (
+    paymentMethod: PaymentMethod,
+    options?: { returnUrl?: string },
+  ) => Promise<CheckoutConfirmationResult | null>;
+  completeRemoteCheckout: (bookingId: string) => Promise<Booking | null>;
 };
 
 const seatPriceMap: Record<string, number> = {
@@ -1782,8 +1799,11 @@ const normalizeBackendPaymentMethod = (
 ): PaymentMethod | null => {
   switch (paymentMethod) {
     case 'momo_sandbox':
+    case 'MOMO_SANDBOX':
+      return 'momo_sandbox';
     case 'vnpay_sandbox':
-      return paymentMethod;
+    case 'VNPAY_SANDBOX':
+      return 'vnpay_sandbox';
     case 'MOCK_GATEWAY':
       return 'mock_gateway';
     default:
@@ -2731,7 +2751,29 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     return { ok: true };
   };
 
-  const confirmDraftCheckout = async (paymentMethod: PaymentMethod) => {
+  const completeRemoteCheckout = async (bookingId: string) => {
+    if (!authToken || !currentUser) {
+      return null;
+    }
+
+    const confirmedBooking = await fetchMyBookingById(authToken, bookingId);
+    const mappedBooking = mapBackendBooking(confirmedBooking, currentUser.id);
+
+    setDraftCheckout((current) => (current?.id === bookingId ? null : current));
+
+    try {
+      await refreshRemoteState();
+    } catch (error) {
+      console.warn(getRequestErrorMessage(error, 'Không thể đồng bộ lại dữ liệu.'));
+    }
+
+    return mappedBooking;
+  };
+
+  const confirmDraftCheckout = async (
+    paymentMethod: PaymentMethod,
+    options: { returnUrl?: string } = {},
+  ): Promise<CheckoutConfirmationResult | null> => {
     if (!draftCheckout) {
       return null;
     }
@@ -2743,30 +2785,18 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     const activeUser = currentUser;
 
     if (authToken) {
-      const latestBill = await fetchPaymentBill(authToken, draftCheckout.id);
-      const remotePaymentMethod =
-        paymentMethod === 'vnpay_sandbox' ? 'vnpay_sandbox' : 'momo_sandbox';
-
-      await payBookingBill(authToken, draftCheckout.id, {
-        paymentMethod: remotePaymentMethod,
-        billId: latestBill.paymentAuth.billId,
-        paidAmount: latestBill.paymentAuth.paidAmount,
-        currency: latestBill.paymentAuth.currency,
-        issuedAt: latestBill.paymentAuth.issuedAt,
-        expiresAt: latestBill.paymentAuth.expiresAt,
-        signature: latestBill.paymentAuth.signature,
+      const paymentSession = await payBookingBill(authToken, draftCheckout.id, {
+        returnUrl: options.returnUrl,
       });
 
-      const confirmedBooking = await fetchMyBookingById(authToken, draftCheckout.id);
-      setDraftCheckout(null);
-
-      try {
-        await refreshRemoteState();
-      } catch (error) {
-        console.warn(getRequestErrorMessage(error, 'Không thể đồng bộ lại dữ liệu.'));
-      }
-
-      return mapBackendBooking(confirmedBooking, activeUser.id);
+      return {
+        kind: 'gateway',
+        bookingId: paymentSession.bookingId,
+        paymentId: paymentSession.paymentId,
+        paymentUrl: paymentSession.paymentUrl,
+        returnUrl: options.returnUrl || '',
+        expiredAt: paymentSession.expiredAt,
+      };
     }
 
     const bookingId = makeId('booking');
@@ -2814,7 +2844,10 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setBookings((current) => [booking, ...current]);
     setDraftCheckout(null);
 
-    return booking;
+    return {
+      kind: 'booking',
+      booking,
+    };
   };
 
   const value: AppStoreValue = {
@@ -2856,6 +2889,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     startCheckout,
     releaseDraftCheckout,
     confirmDraftCheckout,
+    completeRemoteCheckout,
     refreshShowtime,
     refreshData,
   };
