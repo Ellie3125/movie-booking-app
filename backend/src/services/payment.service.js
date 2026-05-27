@@ -473,12 +473,10 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
 
     return {
       updateOne: {
-        filter: existingTicket
-          ? { _id: existingTicket._id }
-          : {
-              bookingId: booking._id,
-              'seat.seatCode': seat.seatCode,
-            },
+        filter: {
+          bookingId: booking._id,
+          'seat.seatCode': seat.seatCode,
+        },
         update: {
           $set: {
             bookingId: booking._id,
