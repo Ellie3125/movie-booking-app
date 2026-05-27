@@ -13,7 +13,7 @@
  *    - Tích hợp sử dụng `changePassword` và `logout` từ `useAppStore` của ứng dụng.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -33,7 +33,11 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import { createAvatarUploadFormData } from '@/lib/avatar-upload';
+import { fetchAvatarOptions, type BackendAvatarOption } from '@/lib/backend-api';
 import { normalizePosterUrl } from '@/lib/image-url';
+
+const MAX_AVATAR_UPLOAD_SIZE = 2 * 1024 * 1024;
 
 export default function EditProfileScreen() {
   const { currentUser, updateProfile, uploadAvatar, changePassword, logout } = useAppStore();
@@ -51,6 +55,7 @@ export default function EditProfileScreen() {
   const [address, setAddress] = useState(currentUser?.address || '');
   const [country, setCountry] = useState(currentUser?.country || '');
   const [bio, setBio] = useState(currentUser?.bio || '');
+  const [avatar, setAvatar] = useState(currentUser?.avatar || '');
 
   // Password fields
   const [currentPassword, setCurrentPassword] = useState('');
@@ -63,9 +68,14 @@ export default function EditProfileScreen() {
 
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [presetPickerVisible, setPresetPickerVisible] = useState(false);
+  const [avatarOptions, setAvatarOptions] = useState<BackendAvatarOption[]>([]);
+  const [avatarOptionsLoading, setAvatarOptionsLoading] = useState(false);
+  const [avatarOptionsError, setAvatarOptionsError] = useState<string | null>(null);
+  const [selectedPresetUrl, setSelectedPresetUrl] = useState<string | null>(null);
 
   // Khôi phục giá trị form khi currentUser thay đổi hoặc khi Hủy chỉnh sửa
-  const resetFormValues = () => {
+  const resetFormValues = useCallback(() => {
     setName(currentUser?.name || '');
     setDisplayName(currentUser?.displayName || '');
     setPhone(currentUser?.phone || '');
@@ -74,42 +84,46 @@ export default function EditProfileScreen() {
     setAddress(currentUser?.address || '');
     setCountry(currentUser?.country || '');
     setBio(currentUser?.bio || '');
+    setAvatar(currentUser?.avatar || '');
 
     // Reset password fields
     setCurrentPassword('');
-    newPassword && setNewPassword('');
-    confirmPassword && setConfirmPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
     setShowCurrent(false);
     setShowNew(false);
     setShowConfirm(false);
-  };
+  }, [currentUser]);
 
   useEffect(() => {
     resetFormValues();
-  }, [currentUser]);
+  }, [resetFormValues]);
 
   const handleCancel = () => {
     resetFormValues();
     setIsEditing(false);
+    setPresetPickerVisible(false);
   };
 
-  const handleSelectAvatar = () => {
-    if (!isEditing) return; // Chỉ cho phép đổi avatar trong chế độ chỉnh sửa
-    Alert.alert(
-      'Cập nhật ảnh đại diện',
-      'Chọn phương thức tải ảnh của bạn',
-      [
-        {
-          text: 'Chụp ảnh mới',
-          onPress: () => handlePickAvatar(true),
-        },
-        {
-          text: 'Chọn từ thư viện',
-          onPress: () => handlePickAvatar(false),
-        },
-        { text: 'Hủy', style: 'cancel' },
-      ]
-    );
+  const loadPresetAvatars = async () => {
+    setAvatarOptionsLoading(true);
+    setAvatarOptionsError(null);
+
+    try {
+      const options = await fetchAvatarOptions();
+      setAvatarOptions(options);
+    } catch {
+      setAvatarOptionsError('Không thể tải thư viện ảnh mẫu từ backend.');
+    } finally {
+      setAvatarOptionsLoading(false);
+    }
+  };
+
+  const handleOpenPresetPicker = () => {
+    setPresetPickerVisible(true);
+    if (avatarOptions.length === 0 && !avatarOptionsLoading) {
+      void loadPresetAvatars();
+    }
   };
 
   const handlePickAvatar = async (useCamera: boolean) => {
@@ -127,11 +141,14 @@ export default function EditProfileScreen() {
           quality: 0.8,
         });
       } else {
-        const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (!permission.granted) {
-          Alert.alert('Quyền truy cập', 'Cần cấp quyền thư viện ảnh để chọn ảnh.');
-          return;
+        if (Platform.OS !== 'web') {
+          const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (!permission.granted) {
+            Alert.alert('Quyền truy cập', 'Cần cấp quyền thư viện ảnh để chọn ảnh.');
+            return;
+          }
         }
+
         result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.Images,
           allowsEditing: true,
@@ -141,24 +158,22 @@ export default function EditProfileScreen() {
       }
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
-        setUploading(true);
         const asset = result.assets[0];
-        const localUri = asset.uri;
-        const filename = localUri.split('/').pop() || 'avatar.jpg';
-        const match = /\.(\w+)$/.exec(filename);
-        const type = match ? `image/${match[1]}` : `image/jpeg`;
+        const selectedFileSize = asset.fileSize ?? asset.file?.size;
 
-        const formData = new FormData();
-        // @ts-ignore
-        formData.append('avatar', {
-          uri: localUri,
-          name: filename,
-          type,
-        });
+        if (selectedFileSize && selectedFileSize > MAX_AVATAR_UPLOAD_SIZE) {
+          Alert.alert('Dung lượng ảnh quá lớn', 'Vui lòng chọn ảnh đại diện không quá 2MB.');
+          return;
+        }
+
+        setUploading(true);
+        const formData = createAvatarUploadFormData(asset);
 
         const res = await uploadAvatar(formData);
         setUploading(false);
         if (res.ok) {
+          setAvatar(res.user?.avatar || avatar);
+          setPresetPickerVisible(false);
           Alert.alert('Thành công', 'Đã cập nhật ảnh đại diện mới.');
         } else {
           Alert.alert('Lỗi', res.error || 'Không thể tải ảnh đại diện lên.');
@@ -167,6 +182,21 @@ export default function EditProfileScreen() {
     } catch {
       setUploading(false);
       Alert.alert('Lỗi', 'Có lỗi xảy ra khi tải ảnh lên.');
+    }
+  };
+
+  const handleSelectPresetAvatar = async (option: BackendAvatarOption) => {
+    setSelectedPresetUrl(option.url);
+
+    const result = await updateProfile({ avatar: option.url });
+    setSelectedPresetUrl(null);
+
+    if (result.ok) {
+      setAvatar(option.url);
+      setPresetPickerVisible(false);
+      Alert.alert('Thành công', 'Đã cập nhật ảnh mẫu làm ảnh đại diện.');
+    } else {
+      Alert.alert('Lỗi', result.error || 'Không thể cập nhật ảnh mẫu.');
     }
   };
 
@@ -251,8 +281,9 @@ export default function EditProfileScreen() {
     }
   };
 
-  const avatarUrl = currentUser?.avatar
-    ? normalizePosterUrl(currentUser.avatar)
+  const displayedAvatar = avatar || currentUser?.avatar;
+  const avatarUrl = displayedAvatar
+    ? normalizePosterUrl(displayedAvatar)
     : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80';
 
   const getGenderLabel = (g: string) => {
@@ -288,10 +319,12 @@ export default function EditProfileScreen() {
         {/* Avatar Selection Section */}
         <View style={styles.avatarSection}>
           <TouchableOpacity
-            onPress={handleSelectAvatar}
+            onPress={isEditing ? handleOpenPresetPicker : undefined}
             disabled={!isEditing}
             activeOpacity={0.8}
             style={[styles.avatarWrapper, !isEditing && styles.avatarWrapperReadOnly]}
+            accessibilityRole="button"
+            accessibilityLabel="Mở thư viện ảnh mẫu"
           >
             <Image source={{ uri: avatarUrl || undefined }} style={styles.avatar} />
             {isEditing && (
@@ -308,7 +341,126 @@ export default function EditProfileScreen() {
               </>
             )}
           </TouchableOpacity>
-          {isEditing && <Text style={styles.avatarHelpText}>Chạm vào ảnh để thay đổi</Text>}
+          {isEditing && (
+            <>
+              <Text style={styles.avatarHelpText}>
+                Tải ảnh mới hoặc chọn ảnh mẫu từ backend
+              </Text>
+              <View style={styles.avatarActionRow}>
+                <TouchableOpacity
+                  onPress={() => handlePickAvatar(false)}
+                  disabled={uploading || saving}
+                  style={[styles.avatarActionButton, styles.avatarActionButtonPrimary]}
+                  accessibilityRole="button"
+                >
+                  <Ionicons name="cloud-upload-outline" size={16} color="#FFFFFF" />
+                  <Text style={styles.avatarActionPrimaryText}>Tải ảnh lên</Text>
+                </TouchableOpacity>
+
+                {Platform.OS !== 'web' && (
+                  <TouchableOpacity
+                    onPress={() => handlePickAvatar(true)}
+                    disabled={uploading || saving}
+                    style={styles.avatarActionButton}
+                    accessibilityRole="button"
+                  >
+                    <Ionicons name="camera-outline" size={16} color="#E87A22" />
+                    <Text style={styles.avatarActionText}>Chụp ảnh</Text>
+                  </TouchableOpacity>
+                )}
+
+                <TouchableOpacity
+                  onPress={handleOpenPresetPicker}
+                  disabled={uploading || saving}
+                  style={styles.avatarActionButton}
+                  accessibilityRole="button"
+                >
+                  <Ionicons name="images-outline" size={16} color="#E87A22" />
+                  <Text style={styles.avatarActionText}>Chọn ảnh mẫu</Text>
+                </TouchableOpacity>
+              </View>
+            </>
+          )}
+          {isEditing && presetPickerVisible && (
+            <View style={styles.avatarPresetPanel}>
+              <View style={styles.avatarPresetHeader}>
+                <View>
+                  <Text style={styles.avatarPresetTitle}>Ảnh mẫu từ backend</Text>
+                  <Text style={styles.avatarPresetSubtitle}>
+                    Chọn ảnh có sẵn trong thư viện backend
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => setPresetPickerVisible(false)}
+                  style={styles.avatarPresetCloseButton}
+                  accessibilityRole="button"
+                  accessibilityLabel="Đóng thư viện ảnh mẫu"
+                >
+                  <Ionicons name="close" size={18} color="#8A6A50" />
+                </TouchableOpacity>
+              </View>
+
+              {avatarOptionsLoading ? (
+                <View style={styles.avatarPresetStatus}>
+                  <ActivityIndicator color="#E87A22" size="small" />
+                  <Text style={styles.avatarPresetStatusText}>Đang tải ảnh mẫu...</Text>
+                </View>
+              ) : avatarOptionsError ? (
+                <View style={styles.avatarPresetStatus}>
+                  <Text style={styles.avatarPresetErrorText}>{avatarOptionsError}</Text>
+                  <TouchableOpacity
+                    onPress={loadPresetAvatars}
+                    style={styles.avatarPresetRetryButton}
+                    accessibilityRole="button"
+                  >
+                    <Text style={styles.avatarPresetRetryText}>Thử lại</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : avatarOptions.length === 0 ? (
+                <View style={styles.avatarPresetStatus}>
+                  <Text style={styles.avatarPresetStatusText}>
+                    Backend chưa có ảnh mẫu nào để chọn.
+                  </Text>
+                </View>
+              ) : (
+                <View style={styles.avatarPresetGrid}>
+                  {avatarOptions.map((option) => {
+                    const optionUrl = normalizePosterUrl(option.url);
+                    const isSelected = avatar === option.url || currentUser?.avatar === option.url;
+                    const isUpdating = selectedPresetUrl === option.url;
+
+                    return (
+                      <TouchableOpacity
+                        key={option.name}
+                        onPress={() => handleSelectPresetAvatar(option)}
+                        disabled={saving || uploading || Boolean(selectedPresetUrl)}
+                        style={[
+                          styles.avatarPresetItem,
+                          isSelected && styles.avatarPresetItemSelected,
+                        ]}
+                        accessibilityRole="button"
+                        accessibilityLabel={`Chọn ảnh mẫu ${option.name}`}
+                      >
+                        <Image
+                          source={{ uri: optionUrl || undefined }}
+                          style={styles.avatarPresetImage}
+                        />
+                        {(isSelected || isUpdating) && (
+                          <View style={styles.avatarPresetSelectedBadge}>
+                            {isUpdating ? (
+                              <ActivityIndicator color="#FFFFFF" size="small" />
+                            ) : (
+                              <Ionicons name="checkmark" size={14} color="#FFFFFF" />
+                            )}
+                          </View>
+                        )}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              )}
+            </View>
+          )}
         </View>
 
         {/* Read-Only Mode (Chế độ xem) */}
@@ -741,6 +893,134 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.sans,
     color: '#8A6A50',
     marginTop: 8,
+  },
+  avatarActionRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    marginTop: 12,
+  },
+  avatarActionButton: {
+    minHeight: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingHorizontal: 14,
+    borderRadius: 14,
+    backgroundColor: '#FFF8EF',
+    borderWidth: 1,
+    borderColor: '#F3B76C',
+  },
+  avatarActionButtonPrimary: {
+    backgroundColor: '#E87A22',
+    borderColor: '#E87A22',
+  },
+  avatarActionText: {
+    fontSize: 13,
+    fontFamily: Fonts.sansBold,
+    color: '#E87A22',
+  },
+  avatarActionPrimaryText: {
+    fontSize: 13,
+    fontFamily: Fonts.sansBold,
+    color: '#FFFFFF',
+  },
+  avatarPresetPanel: {
+    width: '100%',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#F3E8DC',
+    borderRadius: 18,
+    padding: 14,
+    marginTop: 14,
+  },
+  avatarPresetHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+    marginBottom: 12,
+  },
+  avatarPresetTitle: {
+    fontSize: 14,
+    fontFamily: Fonts.sansBold,
+    color: '#5A3E2B',
+  },
+  avatarPresetSubtitle: {
+    fontSize: 12,
+    fontFamily: Fonts.sans,
+    color: '#8A6A50',
+    marginTop: 2,
+  },
+  avatarPresetCloseButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFF8EF',
+  },
+  avatarPresetStatus: {
+    minHeight: 88,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  avatarPresetStatusText: {
+    fontSize: 13,
+    fontFamily: Fonts.sans,
+    color: '#8A6A50',
+  },
+  avatarPresetErrorText: {
+    fontSize: 13,
+    fontFamily: Fonts.sansMedium,
+    color: '#C2410C',
+    textAlign: 'center',
+  },
+  avatarPresetRetryButton: {
+    minHeight: 44,
+    paddingHorizontal: 18,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFF2E0',
+    borderWidth: 1,
+    borderColor: '#E87A22',
+  },
+  avatarPresetRetryText: {
+    fontSize: 13,
+    fontFamily: Fonts.sansBold,
+    color: '#E87A22',
+  },
+  avatarPresetGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+  },
+  avatarPresetItem: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    borderWidth: 2,
+    borderColor: 'transparent',
+    overflow: 'hidden',
+    backgroundColor: '#F3E8DC',
+  },
+  avatarPresetItemSelected: {
+    borderColor: '#E87A22',
+  },
+  avatarPresetImage: {
+    width: '100%',
+    height: '100%',
+  },
+  avatarPresetSelectedBadge: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(232, 122, 34, 0.34)',
   },
   readOnlyContainer: {
     gap: 20,
