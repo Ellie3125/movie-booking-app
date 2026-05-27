@@ -14,12 +14,13 @@ const CREATE_SESSION_FIELDS = [
 const CALLBACK_FIELDS = [
   'paymentId',
   'bookingId',
-  'status',
   'paidAmount',
   'currency',
   'transactionCode',
-  'payerAccountNumber',
+  'status',
   'paidAt',
+  'sourceAccountNo',
+  'receiverAccountNo',
 ];
 
 module.exports = {
