@@ -13,7 +13,6 @@ const {
   Booking,
   Ticket,
   PaymentTransaction,
-  MockBankAccount,
   PaymentCallbackLog,
   Session
 } = require('../src/models');
@@ -28,7 +27,6 @@ const showtimesData = require('./data/showtimes.data');
 const bookingsData = require('./data/bookings.data');
 const paymentsData = require('./data/payments.data');
 const ticketsData = require('./data/tickets.data');
-const bankAccountsData = require('./data/bankAccounts.data');
 
 const PASSWORD_SALT_ROUNDS = 10;
 
@@ -54,7 +52,6 @@ const seed = async () => {
       Booking.deleteMany({}),
       Ticket.deleteMany({}),
       PaymentTransaction.deleteMany({}),
-      MockBankAccount.deleteMany({}),
       PaymentCallbackLog.deleteMany({}),
       Session.deleteMany({})
     ]);
@@ -107,9 +104,6 @@ const seed = async () => {
 
     console.log('Seeding Tickets...');
     await Ticket.insertMany(ticketsData);
-
-    console.log('Seeding Bank Accounts...');
-    await MockBankAccount.insertMany(bankAccountsData);
 
     console.log('All data seeded successfully!');
     process.exit(0);

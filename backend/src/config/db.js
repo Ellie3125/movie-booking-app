@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const env = require('./env');
 const Booking = require('../models/Booking');
 const PaymentTransaction = require('../models/PaymentTransaction');
-const MockBankAccount = require('../models/MockBankAccount');
 const PaymentCallbackLog = require('../models/PaymentCallbackLog');
 
 const syncBookingTransactionCodeIndex = async () => {
@@ -52,7 +51,6 @@ const connectDB = async () => {
     await Promise.all([
       Booking.init(),
       PaymentTransaction.init(),
-      MockBankAccount.init(),
       PaymentCallbackLog.init(),
     ]);
     console.log('MongoDB connected');

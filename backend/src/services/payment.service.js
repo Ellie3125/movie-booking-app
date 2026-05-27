@@ -8,11 +8,12 @@ const PaymentCallbackLog = require('../models/PaymentCallbackLog');
 const env = require('../config/env');
 const ApiError = require('../utils/apiError');
 const { signHmacSha256, verifyHmacSha256 } = require('../utils/paymentHmac');
+const { resolvePaymentReturnUrl } = require('../utils/paymentReturnUrl');
 const {
   CALLBACK_LOG_STATUS,
   BOOKED_SEAT_STATUS,
   BOOKING_STATUS,
-  GATEWAY_PAYMENT_FIELDS,
+  GATEWAY_CREATE_SESSION_FIELDS,
   PAYMENT_CALLBACK_FIELDS,
   PAYMENT_METHOD,
   PAYMENT_STATUS,
@@ -22,8 +23,9 @@ const {
 } = require('../constants/payment.constants');
 const {
   getPaymentReceiverAccount,
-  buildGatewayPayload,
+  buildGatewayCreateSessionPayload,
 } = require('../utils/paymentPayloads');
+const { createGatewayPaymentSession } = require('./paymentGatewayClient');
 
 const GATEWAY_SECRET_LABEL = 'PAYMENT_GATEWAY_SECRET';
 const CALLBACK_SECRET_LABEL = 'PAYMENT_CALLBACK_SECRET';
@@ -43,12 +45,6 @@ const getEntityId = (value) => (value && value._id ? value._id : value);
 
 const createPaymentId = () =>
   `PAY-${Date.now().toString(36).toUpperCase()}-${crypto
-    .randomBytes(4)
-    .toString('hex')
-    .toUpperCase()}`;
-
-const createTransactionCode = () =>
-  `MOCKTX-${Date.now().toString(36).toUpperCase()}-${crypto
     .randomBytes(4)
     .toString('hex')
     .toUpperCase()}`;
@@ -285,9 +281,10 @@ const mapBillResponse = (booking) => ({
   expiredAt: booking.paymentExpiresAt,
 });
 
-const getActiveGatewayTransaction = async (bookingId) =>
+const getActiveGatewayTransaction = async (bookingId, returnUrl) =>
   PaymentTransaction.findOne({
     bookingId,
+    returnUrl,
     status: { $in: ACTIVE_GATEWAY_TRANSACTION_STATUSES },
     expiredAt: { $gt: new Date() },
   })
@@ -318,10 +315,22 @@ const markOldGatewayTransactionsExpired = async (bookingId) => {
   ).exec();
 };
 
-const getPaymentReturnUrl = (baseUrl) =>
-  env.paymentAppReturnUrl || `${baseUrl}/api/v1/payments/result`;
+const getResolvedPaymentReturnUrl = ({ baseUrl, returnUrl }) => {
+  try {
+    return resolvePaymentReturnUrl({
+      baseUrl,
+      requestedReturnUrl: returnUrl,
+      configuredReturnUrl: env.paymentAppReturnUrl,
+    });
+  } catch (error) {
+    throw ApiError.badRequest(
+      error.message,
+      'INVALID_PAYMENT_RETURN_URL'
+    );
+  }
+};
 
-const createPaymentTransaction = async ({ booking, baseUrl }) => {
+const createPaymentTransaction = async ({ booking, baseUrl, returnUrl }) => {
   const processingTransaction = await getProcessingTransaction(booking._id);
 
   if (processingTransaction) {
@@ -331,7 +340,11 @@ const createPaymentTransaction = async ({ booking, baseUrl }) => {
     );
   }
 
-  const reusableTransaction = await getActiveGatewayTransaction(booking._id);
+  const paymentReturnUrl = getResolvedPaymentReturnUrl({ baseUrl, returnUrl });
+  const reusableTransaction = await getActiveGatewayTransaction(
+    booking._id,
+    paymentReturnUrl
+  );
 
   if (reusableTransaction) {
     return reusableTransaction;
@@ -349,33 +362,38 @@ const createPaymentTransaction = async ({ booking, baseUrl }) => {
     status: PAYMENT_TRANSACTION_STATUS.PENDING,
     receiverAccount,
     callbackUrl: `${baseUrl}/api/v1/payments/callback`,
-    returnUrl: getPaymentReturnUrl(baseUrl),
+    returnUrl: paymentReturnUrl,
     paymentUrl: '',
     expiredAt: booking.paymentExpiresAt,
     requestSignature: {
       canonicalString: '',
       signature: '',
-      fields: GATEWAY_PAYMENT_FIELDS,
+      fields: GATEWAY_CREATE_SESSION_FIELDS,
     },
   });
 
-  const gatewayPayload = buildGatewayPayload(transaction);
+  const gatewayPayload = buildGatewayCreateSessionPayload(transaction);
   const { canonicalString, signature } = signHmacSha256({
     payload: gatewayPayload,
-    fields: GATEWAY_PAYMENT_FIELDS,
+    fields: GATEWAY_CREATE_SESSION_FIELDS,
     secret: env.paymentGatewaySecret,
     secretLabel: GATEWAY_SECRET_LABEL,
+  });
+  const gatewaySession = await createGatewayPaymentSession({
+    gatewayBaseUrl: env.paymentGatewayBaseUrl,
+    payload: {
+      ...gatewayPayload,
+      signature,
+    },
   });
 
   transaction.requestSignature = {
     algorithm: 'HMAC-SHA256',
-    fields: GATEWAY_PAYMENT_FIELDS,
+    fields: GATEWAY_CREATE_SESSION_FIELDS,
     canonicalString,
     signature,
   };
-  transaction.paymentUrl = `${baseUrl}/mock-gateway/pay?paymentId=${encodeURIComponent(
-    transaction.paymentId
-  )}&signature=${encodeURIComponent(signature)}`;
+  transaction.paymentUrl = gatewaySession.paymentUrl;
 
   await transaction.save();
 
@@ -405,7 +423,7 @@ const getBill = async ({ bookingId, userId }) => {
   return mapBillResponse(booking);
 };
 
-const payBill = async ({ bookingId, userId, baseUrl }) => {
+const payBill = async ({ bookingId, userId, baseUrl, returnUrl }) => {
   const booking = await getOwnedBooking(bookingId, userId);
   const showtime = booking.showtimeId;
 
@@ -428,6 +446,7 @@ const payBill = async ({ bookingId, userId, baseUrl }) => {
   const transaction = await createPaymentTransaction({
     booking,
     baseUrl,
+    returnUrl,
   });
 
   return {
@@ -438,74 +457,6 @@ const payBill = async ({ bookingId, userId, baseUrl }) => {
     expiredAt: transaction.expiredAt,
     paymentUrl: transaction.paymentUrl,
   };
-};
-
-const getPaymentTransactionForGateway = async ({ paymentId, signature }) => {
-  const transaction = await PaymentTransaction.findOne({ paymentId }).exec();
-
-  if (!transaction) {
-    throw ApiError.notFound('Payment transaction not found', 'PAYMENT_NOT_FOUND');
-  }
-
-  const gatewayPayload = buildGatewayPayload(transaction);
-  const isValidSignature = verifyHmacSha256({
-    payload: gatewayPayload,
-    fields: GATEWAY_PAYMENT_FIELDS,
-    secret: env.paymentGatewaySecret,
-    signature,
-    secretLabel: GATEWAY_SECRET_LABEL,
-  });
-
-  if (!isValidSignature) {
-    throw ApiError.badRequest(
-      'Payment signature is invalid',
-      'INVALID_PAYMENT_SIGNATURE'
-    );
-  }
-
-  if (isExpired(transaction.expiredAt)) {
-    transaction.status = PAYMENT_TRANSACTION_STATUS.EXPIRED;
-    transaction.failureReason = 'Payment transaction expired before gateway access';
-    await transaction.save();
-
-    throw ApiError.conflict(
-      'Payment transaction has expired',
-      'PAYMENT_TRANSACTION_EXPIRED'
-    );
-  }
-
-  if (transaction.status === PAYMENT_TRANSACTION_STATUS.SUCCESS) {
-    throw ApiError.conflict(
-      'Payment transaction has already succeeded',
-      'PAYMENT_TRANSACTION_ALREADY_SUCCESS'
-    );
-  }
-
-  if (transaction.status === PAYMENT_TRANSACTION_STATUS.FAILED) {
-    throw ApiError.conflict(
-      'Payment transaction has already failed',
-      'PAYMENT_TRANSACTION_FAILED'
-    );
-  }
-
-  if (transaction.status === PAYMENT_TRANSACTION_STATUS.EXPIRED) {
-    throw ApiError.conflict(
-      'Payment transaction has expired',
-      'PAYMENT_TRANSACTION_EXPIRED'
-    );
-  }
-
-  return transaction;
-};
-
-const markGatewayOpened = async (transaction) => {
-  if (transaction.status === PAYMENT_TRANSACTION_STATUS.PENDING) {
-    transaction.status = PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED;
-    transaction.gatewayOpenedAt = new Date();
-    await transaction.save();
-  }
-
-  return transaction;
 };
 
 const upsertTicketsForBooking = async (booking, paidAt) => {
@@ -722,6 +673,77 @@ const finalizeSuccessfulPayment = async ({
   };
 };
 
+const mapUnsuccessfulGatewayStatus = (status) =>
+  status === 'EXPIRED'
+    ? PAYMENT_TRANSACTION_STATUS.EXPIRED
+    : PAYMENT_TRANSACTION_STATUS.FAILED;
+
+const finalizeUnsuccessfulPayment = async ({
+  transaction,
+  callbackPayload,
+  callbackSignature,
+  callbackCanonicalString,
+  callbackLog,
+}) => {
+  if (Number(callbackPayload.paidAmount) !== Number(transaction.amount)) {
+    throw ApiError.badRequest(
+      'paidAmount does not match the original payment amount',
+      'PAYMENT_AMOUNT_MISMATCH'
+    );
+  }
+
+  if (callbackPayload.currency !== transaction.currency) {
+    throw ApiError.badRequest(
+      'currency does not match the original payment currency',
+      'PAYMENT_CURRENCY_MISMATCH'
+    );
+  }
+
+  if (
+    callbackPayload.receiverAccountNo !== transaction.receiverAccount.accountNo
+  ) {
+    throw ApiError.badRequest(
+      'receiverAccountNo does not match the configured receiver account',
+      'PAYMENT_RECEIVER_ACCOUNT_MISMATCH'
+    );
+  }
+
+  const processedAt = new Date();
+  transaction.status = mapUnsuccessfulGatewayStatus(callbackPayload.status);
+  transaction.callbackReceivedAt = processedAt;
+  transaction.callbackProcessedAt = processedAt;
+  transaction.callbackAttempts += 1;
+  transaction.callbackSignature = {
+    algorithm: 'HMAC-SHA256',
+    fields: PAYMENT_CALLBACK_FIELDS,
+    canonicalString: callbackCanonicalString,
+    signature: callbackSignature,
+  };
+  transaction.failureReason = `Gateway returned ${callbackPayload.status}`;
+
+  if (callbackPayload.transactionCode) {
+    transaction.transactionCode = callbackPayload.transactionCode;
+  }
+
+  if (callbackPayload.paidAt) {
+    transaction.paidAt = new Date(callbackPayload.paidAt);
+  }
+
+  callbackLog.status = CALLBACK_LOG_STATUS.PROCESSED;
+  callbackLog.processedAt = processedAt;
+  callbackLog.reason = `Payment callback processed as ${callbackPayload.status}`;
+
+  await Promise.all([transaction.save(), callbackLog.save()]);
+
+  return {
+    bookingId: String(transaction.bookingId),
+    paymentId: transaction.paymentId,
+    transactionCode: transaction.transactionCode,
+    status: transaction.status,
+    paymentStatus: PAYMENT_STATUS.PENDING,
+  };
+};
+
 const handlePaymentCallback = async ({
   paymentId,
   bookingId,
@@ -739,10 +761,10 @@ const handlePaymentCallback = async ({
     bookingId: String(bookingId),
     paidAmount: Number(paidAmount),
     currency,
-    transactionCode: String(transactionCode),
+    transactionCode: transactionCode ? String(transactionCode) : '',
     status,
-    paidAt: new Date(paidAt).toISOString(),
-    sourceAccountNo: String(sourceAccountNo),
+    paidAt: paidAt ? new Date(paidAt).toISOString() : '',
+    sourceAccountNo: sourceAccountNo ? String(sourceAccountNo) : '',
     receiverAccountNo: String(receiverAccountNo),
   };
 
@@ -823,6 +845,35 @@ const handlePaymentCallback = async ({
         transactionCode: callbackPayload.transactionCode,
         idempotent: true,
       };
+    }
+
+    if (
+      callbackPayload.status !== 'SUCCESS' &&
+      [
+        PAYMENT_TRANSACTION_STATUS.FAILED,
+        PAYMENT_TRANSACTION_STATUS.EXPIRED,
+      ].includes(transaction.status)
+    ) {
+      callbackLog.status = CALLBACK_LOG_STATUS.DUPLICATE;
+      callbackLog.processedAt = new Date();
+      callbackLog.reason = 'Payment transaction was already closed';
+      await callbackLog.save();
+
+      return {
+        paymentId: callbackPayload.paymentId,
+        transactionCode: callbackPayload.transactionCode,
+        idempotent: true,
+      };
+    }
+
+    if (callbackPayload.status !== 'SUCCESS') {
+      return await finalizeUnsuccessfulPayment({
+        transaction,
+        callbackPayload,
+        callbackSignature: signature,
+        callbackCanonicalString: canonicalString,
+        callbackLog,
+      });
     }
 
     return await finalizeSuccessfulPayment({
@@ -920,9 +971,6 @@ const renderPaymentResultPage = ({ status, paymentId, bookingId, transactionCode
 module.exports = {
   getBill,
   payBill,
-  getPaymentTransactionForGateway,
-  markGatewayOpened,
   handlePaymentCallback,
-  createTransactionCode,
   renderPaymentResultPage,
 };
