@@ -36,6 +36,14 @@ Dự án được chia thành ba thành phần cốt lõi:
 
 ---
 
+## User/Profile Schema
+
+Project chỉ dùng schema user/profile hiện tại: `fullName`, `email`, `phoneNumber`, `avatarUrl`, `passwordHash`, `role`, `isActive`, `createdAt`, `updatedAt`.
+
+Không giữ legacy aliases `name`, `phone`, `avatar`, `password`; không fallback từ field mới sang field cũ. API response không trả `password` hoặc `passwordHash`. Upload ảnh đại diện dùng multipart key `avatarFile` và lưu URL vào `avatarUrl`.
+
+---
+
 ## 🏃 Hướng dẫn Cài đặt
 
 ### 1. Clone repository
