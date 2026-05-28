@@ -12,14 +12,14 @@ import { buildImageUrl } from "../../utils/imageUrl";
 export default function UserMetaCard() {
   const { user, updateProfile } = useAuth();
   const { isOpen, openModal, closeModal } = useModal();
-  const [name, setName] = useState(user?.name || "");
-  const [avatar, setAvatar] = useState(user?.avatar || "");
+  const [fullName, setFullName] = useState(user?.fullName || "");
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || "");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
-      setName(user.name);
-      setAvatar(user.avatar || "");
+      setFullName(user.fullName);
+      setAvatarUrl(user.avatarUrl || "");
     }
   }, [user]);
 
@@ -27,7 +27,7 @@ export default function UserMetaCard() {
     e.preventDefault();
     setLoading(true);
     try {
-      await updateProfile({ name, avatar });
+      await updateProfile({ fullName, avatarUrl });
       toast.success("Profile updated successfully!");
       closeModal();
     } catch (error: any) {
@@ -42,11 +42,11 @@ export default function UserMetaCard() {
         <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
           <div className="flex flex-col items-center w-full gap-6 xl:flex-row">
             <div className="w-20 h-20 overflow-hidden border border-gray-200 rounded-full dark:border-gray-800">
-              <img src={buildImageUrl(user?.avatar)} alt="user" className="h-full w-full object-cover" />
+              <img src={buildImageUrl(user?.avatarUrl)} alt="user" className="h-full w-full object-cover" />
             </div>
             <div className="order-3 xl:order-2">
               <h4 className="mb-2 text-lg font-semibold text-center text-gray-800 dark:text-white/90 xl:text-left">
-                {user?.name}
+                {user?.fullName}
               </h4>
               <div className="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left">
                 <p className="text-sm text-gray-500 dark:text-gray-400 uppercase font-bold">
@@ -113,8 +113,8 @@ export default function UserMetaCard() {
                     <Label>Full Name</Label>
                     <Input
                       type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                       required
                     />
                   </div>
@@ -127,7 +127,7 @@ export default function UserMetaCard() {
                   <div className="col-span-1">
                     <Label>Choose Avatar</Label>
                     <div className="mt-2">
-                      <AvatarPicker value={avatar} onChange={setAvatar} />
+                      <AvatarPicker value={avatarUrl} onChange={setAvatarUrl} />
                     </div>
                   </div>
                 </div>

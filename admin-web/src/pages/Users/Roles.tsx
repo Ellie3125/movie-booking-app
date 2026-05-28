@@ -14,13 +14,6 @@ export default function Roles() {
       permissions: ["TẤT CẢ QUYỀN"],
     },
     {
-      key: "staff",
-      role: "staff",
-      name: "Nhân viên rạp",
-      description: "Quản lý suất chiếu, đặt vé và kiểm tra vé tại rạp.",
-      permissions: ["Quản lý suất chiếu", "Quản lý đặt vé", "Quản lý vé"],
-    },
-    {
       key: "user",
       role: "user",
       name: "Người dùng (Khách hàng)",
