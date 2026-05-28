@@ -5,20 +5,21 @@ import PageMeta from "../../components/common/PageMeta";
 import { userService } from "../../services/userService";
 import dayjs from "dayjs";
 import { buildImageUrl } from "../../utils/imageUrl";
+import type { User } from "../../types/profile";
 
 const { Text } = Typography;
 
 export default function Admins() {
-  const [admins, setAdmins] = useState<any[]>([]);
+  const [admins, setAdmins] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
   const loadAdmins = async () => {
     setLoading(true);
     try {
       const response = await userService.getUsers();
-      // Filter for admin, staff, manager roles
-      const filtered = (response.data?.items || []).filter((user: any) => 
-        ["admin", "staff", "manager"].includes(user.role)
+      // Filter for roles supported by the backend enum
+      const filtered = (response.data?.items || []).filter((user: User) =>
+        user.role === "admin"
       );
       setAdmins(filtered);
     } catch (error: any) {
@@ -36,13 +37,13 @@ export default function Admins() {
     {
       title: "Quản trị viên",
       key: "user",
-      render: (_: any, record: any) => (
+      render: (_: unknown, record: User) => (
         <Space>
-          <Avatar src={buildImageUrl(record.avatar)} size="large">
-            {record.name?.charAt(0).toUpperCase()}
+          <Avatar src={buildImageUrl(record.avatarUrl)} size="large">
+            {record.fullName?.charAt(0).toUpperCase()}
           </Avatar>
           <div className="flex flex-col">
-            <Text strong>{record.name}</Text>
+            <Text strong>{record.fullName}</Text>
             <Text type="secondary">{record.email}</Text>
           </div>
         </Space>
@@ -55,18 +56,16 @@ export default function Admins() {
       render: (role: string) => {
         let color = "blue";
         if (role === "admin") color = "gold";
-        if (role === "staff") color = "cyan";
-        if (role === "manager") color = "purple";
         return <Tag color={color}>{role.toUpperCase()}</Tag>;
       },
     },
     {
       title: "Trạng thái",
-      dataIndex: "status",
-      key: "status",
-      render: (status: string) => (
-        <Tag color={status === "active" ? "success" : "error"}>
-          {status === "active" ? "Hoạt động" : "Bị chặn"}
+      dataIndex: "isActive",
+      key: "isActive",
+      render: (isActive: boolean) => (
+        <Tag color={isActive === false ? "error" : "success"}>
+          {isActive === false ? "Bị chặn" : "Hoạt động"}
         </Tag>
       ),
     },
@@ -87,7 +86,7 @@ export default function Admins() {
         <Table
           columns={columns}
           dataSource={admins}
-          rowKey="_id"
+          rowKey="id"
           loading={loading}
           pagination={{ pageSize: 10 }}
           locale={{ emptyText: "Không có quản trị viên nào" }}

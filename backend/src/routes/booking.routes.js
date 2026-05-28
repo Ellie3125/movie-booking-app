@@ -21,18 +21,18 @@ router.use(authMiddleware.protect);
 // Admin routes
 router.get(
   '/admin/all',
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   bookingController.listBookingsAdmin
 );
 router.get(
   '/admin/:bookingId',
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate({ params: bookingValidation.bookingIdParamSchema }),
   bookingController.getBookingByIdAdmin
 );
 router.post(
   '/admin/:bookingId/cancel',
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   bookingActionRateLimiter,
   validate({ params: bookingValidation.bookingIdParamSchema }),
   bookingController.cancelBookingAdmin

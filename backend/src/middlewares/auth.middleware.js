@@ -15,19 +15,6 @@ const extractBearerToken = (authorizationHeader = '') => {
 const getUserIdFromTokenPayload = (payload = {}) =>
   payload.userId || payload.id || payload.sub || null;
 
-const verifyPasswordChangeState = (user, decoded) => {
-  const passwordChangedAt = user.passwordChangedAt
-    ? Math.floor(new Date(user.passwordChangedAt).getTime() / 1000)
-    : null;
-
-  if (passwordChangedAt && decoded.iat && decoded.iat < passwordChangedAt) {
-    throw ApiError.unauthorized(
-      'Access token is no longer valid. Please log in again.',
-      'ACCESS_TOKEN_REVOKED'
-    );
-  }
-};
-
 const verifyAccess = async (req, _res, next) => {
   try {
     const token = extractBearerToken(req.headers.authorization);
@@ -50,7 +37,7 @@ const verifyAccess = async (req, _res, next) => {
     }
 
     const user = await User.findById(userId)
-      .select('_id name email role authVersion passwordChangedAt')
+      .select('_id fullName email role isActive')
       .lean()
       .exec();
 
@@ -61,23 +48,20 @@ const verifyAccess = async (req, _res, next) => {
       );
     }
 
-    req.user = {
-      id: String(user._id),
-      userId: String(user._id),
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      authVersion: user.authVersion || 0,
-    };
-
-    if ((decoded.authVersion || 0) !== req.user.authVersion) {
+    if (user.isActive === false) {
       throw ApiError.unauthorized(
-        'Access token is no longer valid. Please log in again.',
-        'ACCESS_TOKEN_REVOKED'
+        'Authenticated user is not active',
+        'AUTH_USER_INACTIVE'
       );
     }
 
-    verifyPasswordChangeState(user, decoded);
+    req.user = {
+      id: String(user._id),
+      userId: String(user._id),
+      fullName: user.fullName,
+      email: user.email,
+      role: user.role,
+    };
 
     next();
   } catch (error) {

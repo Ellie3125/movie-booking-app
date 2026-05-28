@@ -119,7 +119,7 @@ router.delete(
 router.post(
   '/upload-avatar',
   authMiddleware.verifyAccessToken,
-  upload.single('avatar'),
+  upload.single('avatarFile'),
   authController.uploadAvatar
 );
 router.post(

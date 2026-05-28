@@ -25,7 +25,7 @@ export function BookingDetailModal({ isOpen, onClose, booking }: BookingDetailMo
               <div className="bg-gray-50 dark:bg-gray-800/50 p-3 rounded-lg text-sm">
                 <p className="text-gray-800 dark:text-white/90"><span className="text-gray-500 dark:text-gray-400">Họ tên:</span> {booking.user?.fullName || "N/A"}</p>
                 <p className="text-gray-800 dark:text-white/90"><span className="text-gray-500 dark:text-gray-400">Email:</span> {booking.user?.email || "N/A"}</p>
-                <p className="text-gray-800 dark:text-white/90"><span className="text-gray-500 dark:text-gray-400">SĐT:</span> {booking.user?.phone || "N/A"}</p>
+                <p className="text-gray-800 dark:text-white/90"><span className="text-gray-500 dark:text-gray-400">SĐT:</span> {booking.user?.phoneNumber || "N/A"}</p>
               </div>
             </div>
 

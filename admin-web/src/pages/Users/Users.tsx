@@ -14,9 +14,10 @@ import { userService } from "../../services/userService";
 import toast from "react-hot-toast";
 import { ConfirmationModal } from "../../components/ui/modal/ConfirmationModal";
 import { buildImageUrl } from "../../utils/imageUrl";
+import type { User } from "../../types/profile";
 
 export default function Users() {
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
   // Confirmation states
@@ -69,16 +70,16 @@ export default function Users() {
     });
   };
 
-  const handleChangeStatus = (id: string, currentStatus: string) => {
-    const newStatus = currentStatus === "active" ? "blocked" : "active";
+  const handleChangeStatus = (id: string, currentIsActive = true) => {
+    const nextIsActive = !currentIsActive;
     setConfirmState({
       isOpen: true,
-      title: newStatus === "active" ? "Kích hoạt tài khoản" : "Khóa tài khoản",
-      message: `Bạn có chắc muốn ${newStatus === "active" ? "kích hoạt" : "vô hiệu hóa"} người dùng này?`,
-      variant: newStatus === "active" ? "success" : "error",
+      title: nextIsActive ? "Kích hoạt tài khoản" : "Khóa tài khoản",
+      message: `Bạn có chắc muốn ${nextIsActive ? "kích hoạt" : "vô hiệu hóa"} người dùng này?`,
+      variant: nextIsActive ? "success" : "error",
       onConfirm: async () => {
         try {
-          await userService.changeStatus(id, newStatus);
+          await userService.changeStatus(id, nextIsActive);
           toast.success("Cập nhật trạng thái thành công");
           loadUsers();
         } catch (error: any) {
@@ -116,22 +117,22 @@ export default function Users() {
                 </TableRow>
               ) : (
                 users.map((user) => (
-                  <TableRow key={user._id}>
+                  <TableRow key={user.id}>
                     <TableCell className="px-5 py-4 text-start">
                       <div className="flex items-center gap-3">
-                        {user.avatar ? (
+                        {user.avatarUrl ? (
                           <div className="w-10 h-10 overflow-hidden rounded-full">
-                            <img src={buildImageUrl(user.avatar)} alt={user.name} className="object-cover w-full h-full" />
+                            <img src={buildImageUrl(user.avatarUrl)} alt={user.fullName} className="object-cover w-full h-full" />
                           </div>
                         ) : (
                           <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-800">
                             <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                              {user.name?.charAt(0).toUpperCase()}
+                              {user.fullName?.charAt(0).toUpperCase()}
                             </span>
                           </div>
                         )}
                         <span className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                          {user.name}
+                          {user.fullName}
                         </span>
                       </div>
                     </TableCell>
@@ -144,22 +145,22 @@ export default function Users() {
                       </Badge>
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                      <Badge color={user.status === "active" ? "success" : "error"}>
-                        {user.status === "active" ? "Hoạt động" : "Bị khóa"}
+                      <Badge color={user.isActive === false ? "error" : "success"}>
+                        {user.isActive === false ? "Bị khóa" : "Hoạt động"}
                       </Badge>
                     </TableCell>
                     <TableCell className="px-5 py-4 text-end">
                       <div className="flex items-center justify-end gap-2">
-                        <Button variant="outline" size="sm" onClick={() => handleChangeRole(user._id, user.role)}>
+                        <Button variant="outline" size="sm" onClick={() => handleChangeRole(user.id, user.role)}>
                           Đổi quyền
                         </Button>
                         <Button 
-                          variant={user.status === "active" ? "outline" : "primary"} 
+                          variant={user.isActive === false ? "primary" : "outline"}
                           size="sm" 
-                          onClick={() => handleChangeStatus(user._id, user.status)}
-                          className={user.status === "active" ? "text-error-500 hover:bg-error-50" : ""}
+                          onClick={() => handleChangeStatus(user.id, user.isActive)}
+                          className={user.isActive === false ? "" : "text-error-500 hover:bg-error-50"}
                         >
-                          {user.status === "active" ? "Vô hiệu hóa" : "Kích hoạt"}
+                          {user.isActive === false ? "Kích hoạt" : "Vô hiệu hóa"}
                         </Button>
                       </div>
                     </TableCell>

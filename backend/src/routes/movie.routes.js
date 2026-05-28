@@ -9,7 +9,7 @@ const router = express.Router();
 router.post(
   '/',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(movieValidation.createMovieSchema),
   movieController.createMovie
 );
@@ -17,14 +17,14 @@ router.get('/', movieController.listMovies);
 router.put(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(movieValidation.updateMovieSchema),
   movieController.updateMovie
 );
 router.delete(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(movieValidation.movieIdParamSchema),
   movieController.deleteMovie
 );

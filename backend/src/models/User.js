@@ -2,28 +2,15 @@ const mongoose = require("mongoose");
 
 const USER_ROLE = {
   USER: "user",
-  STAFF: "staff",
   ADMIN: "admin",
-};
-
-const USER_STATUS = {
-  ACTIVE: "active",
-  BLOCKED: "blocked",
-  DELETED: "deleted",
 };
 
 const UserSchema = new mongoose.Schema(
   {
-    name: {
+    fullName: {
       type: String,
-      required: [true, "Tên người dùng là bắt buộc"],
+      required: [true, "Họ tên là bắt buộc"],
       trim: true,
-    },
-    displayName: {
-      type: String,
-      trim: true,
-      maxlength: [30, "Tên hiển thị tối đa 30 ký tự"],
-      default: "",
     },
     email: {
       type: String,
@@ -33,14 +20,20 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       match: [/^\S+@\S+\.\S+$/, "Email không hợp lệ"],
     },
-    password: {
-      type: String,
-      required: [true, "Mật khẩu là bắt buộc"],
-    },
-    phone: {
+    phoneNumber: {
       type: String,
       trim: true,
-      default: "",
+      required: false,
+    },
+    avatarUrl: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    passwordHash: {
+      type: String,
+      required: [true, "Mật khẩu đã hash là bắt buộc"],
+      select: false,
     },
     role: {
       type: String,
@@ -51,94 +44,10 @@ const UserSchema = new mongoose.Schema(
       default: USER_ROLE.USER,
       index: true,
     },
-    authVersion: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    passwordChangedAt: {
-      type: Date,
-      default: null,
-    },
-    status: {
-      type: String,
-      enum: {
-        values: Object.values(USER_STATUS),
-        message: "Trạng thái không hợp lệ: {VALUE}",
-      },
-      default: USER_STATUS.ACTIVE,
+    isActive: {
+      type: Boolean,
+      default: true,
       index: true,
-    },
-    avatar: {
-      type: String,
-      default: "/uploads/avatars/avatar_01.png",
-    },
-    dateOfBirth: {
-      type: Date,
-      default: null,
-    },
-    gender: {
-      type: String,
-      enum: {
-        values: ["male", "female", "other", ""],
-        message: "Giới tính không hợp lệ: {VALUE}",
-      },
-      default: "",
-    },
-    address: {
-      type: String,
-      trim: true,
-      maxlength: [200, "Địa chỉ tối đa 200 ký tự"],
-      default: "",
-    },
-    country: {
-      type: String,
-      trim: true,
-      maxlength: [100, "Quốc gia tối đa 100 ký tự"],
-      default: "",
-    },
-    bio: {
-      type: String,
-      trim: true,
-      maxlength: [500, "Tiểu sử tối đa 500 ký tự"],
-      default: "",
-    },
-    notificationPreferences: {
-      email: {
-        bookingConfirmation: { type: Boolean, default: true },
-        promotions: { type: Boolean, default: true },
-        systemUpdates: { type: Boolean, default: true },
-      },
-      push: {
-        bookingConfirmation: { type: Boolean, default: true },
-        promotions: { type: Boolean, default: false },
-        showReminders: { type: Boolean, default: true },
-      },
-    },
-    preferences: {
-      language: {
-        type: String,
-        enum: ["vi", "en"],
-        default: "vi",
-      },
-      theme: {
-        type: String,
-        enum: ["light", "dark", "system"],
-        default: "system",
-      },
-      timezone: {
-        type: String,
-        default: "Asia/Ho_Chi_Minh",
-      },
-      dateFormat: {
-        type: String,
-        enum: ["DD/MM/YYYY", "MM/DD/YYYY", "YYYY-MM-DD"],
-        default: "DD/MM/YYYY",
-      },
-    },
-    deletedAt: {
-      type: Date,
-      default: null,
     },
   },
   {
@@ -146,5 +55,25 @@ const UserSchema = new mongoose.Schema(
     versionKey: false,
   },
 );
+
+const hidePrivateFields = (_doc, ret) => {
+  ret.id = String(ret._id);
+  delete ret._id;
+  delete ret.passwordHash;
+  delete ret.__v;
+  return ret;
+};
+
+UserSchema.set("toJSON", {
+  virtuals: false,
+  transform: hidePrivateFields,
+});
+
+UserSchema.set("toObject", {
+  virtuals: false,
+  transform(_doc, ret) {
+    return hidePrivateFields(_doc, ret);
+  },
+});
 
 module.exports = mongoose.model("User", UserSchema);

@@ -10,7 +10,7 @@ router.get('/', cinemaController.listCinemas);
 router.post(
   '/',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(cinemaValidation.createCinemaSchema),
   cinemaController.createCinema
 );
@@ -25,21 +25,21 @@ router.get('/:id', cinemaController.getCinemaById);
 router.put(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(cinemaValidation.updateCinemaSchema),
   cinemaController.updateCinema
 );
 router.patch(
   '/:id/location',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(cinemaValidation.updateLocationSchema),
   cinemaController.updateCinemaLocation
 );
 router.delete(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(cinemaValidation.cinemaIdParamSchema),
   cinemaController.deleteCinema
 );

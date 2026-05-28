@@ -7,6 +7,7 @@ interface InputProps {
   name?: string;
   placeholder?: string;
   value?: string | number;
+  autoComplete?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   className?: string;
@@ -27,6 +28,7 @@ const Input: FC<InputProps> = ({
   name,
   placeholder,
   value,
+  autoComplete,
   onChange,
   onFocus,
   className = "",
@@ -59,6 +61,7 @@ const Input: FC<InputProps> = ({
         name={name}
         placeholder={placeholder}
         value={value}
+        autoComplete={autoComplete}
         onChange={onChange}
         onFocus={onFocus}
         min={min}

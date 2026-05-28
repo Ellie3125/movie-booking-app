@@ -83,37 +83,20 @@ export class ApiRequestError extends Error {
 
 export type BackendUser = {
   id: string;
-  name: string;
-  displayName?: string;
+  fullName: string;
   email: string;
-  phone?: string;
-  avatar?: string;
-  role: 'admin' | 'staff' | 'user';
-  dateOfBirth?: string | null;
-  gender?: 'male' | 'female' | 'other' | '';
-  address?: string;
-  country?: string;
-  bio?: string;
-  notificationPreferences?: {
-    email: {
-      bookingConfirmation: boolean;
-      promotions: boolean;
-      systemUpdates: boolean;
-    };
-    push: {
-      bookingConfirmation: boolean;
-      promotions: boolean;
-      showReminders: boolean;
-    };
-  };
-  preferences?: {
-    language: 'vi' | 'en';
-    theme: 'light' | 'dark' | 'system';
-    timezone: string;
-    dateFormat: string;
-  };
+  phoneNumber?: string;
+  avatarUrl?: string;
+  role: 'admin' | 'user';
+  isActive: boolean;
   createdAt?: string;
   updatedAt?: string;
+};
+
+export type BackendProfileUpdatePayload = {
+  fullName?: string;
+  phoneNumber?: string;
+  avatarUrl?: string | null;
 };
 
 export type BackendAuthResponse = {
@@ -577,9 +560,11 @@ async function apiRequest<T>(
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
 export async function registerUser(payload: {
-  name: string;
+  fullName: string;
+  phoneNumber?: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }) {
   return apiRequest<BackendAuthResponse>('/auth/register', {
     method: 'POST',
@@ -590,7 +575,8 @@ export async function registerUser(payload: {
 export async function createAdminUser(
   token: string,
   payload: {
-    name: string;
+    fullName: string;
+    phoneNumber?: string;
     email: string;
     password: string;
   },
@@ -628,7 +614,7 @@ export async function logoutUser(token: string, refreshToken: string) {
   });
 }
 
-export async function updateUserProfile(payload: Partial<BackendUser>) {
+export async function updateUserProfile(payload: BackendProfileUpdatePayload) {
   return apiRequest<BackendUser>('/auth/update-profile', {
     method: 'PATCH',
     body: payload,
@@ -656,7 +642,11 @@ export async function deleteUserAccount(payload: any) {
   });
 }
 
-export async function changeUserPassword(payload: any) {
+export async function changeUserPassword(payload: {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}) {
   return apiRequest<{ message: string }>('/auth/change-password', {
     method: 'PATCH',
     body: payload,

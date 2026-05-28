@@ -116,7 +116,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     uploadAvatar,
     changePassword,
     isAuthenticated: !!user,
-    isAdmin: user?.role === 'admin' || user?.role === 'staff',
+    isAdmin: user?.role === 'admin',
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

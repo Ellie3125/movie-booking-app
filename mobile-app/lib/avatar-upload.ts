@@ -78,10 +78,10 @@ export const createAvatarUploadFormData = (asset: AvatarUploadAsset) => {
   const formData = new FormData();
 
   if (asset.file) {
-    formData.append('avatar', asset.file, getAvatarUploadFileName(asset));
+    formData.append('avatarFile', asset.file, getAvatarUploadFileName(asset));
     return formData;
   }
 
-  formData.append('avatar', createAvatarUploadFormDataValue(asset) as any);
+  formData.append('avatarFile', createAvatarUploadFormDataValue(asset) as any);
   return formData;
 };
