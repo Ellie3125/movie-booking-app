@@ -28,7 +28,7 @@ const mascotRightImage = require('../assets/images/popcorn2-cutout.png');
 type AuthMode = 'login' | 'register';
 
 interface AuthFormData {
-  name?: string;
+  fullName?: string;
   email: string;
   password: string;
   confirmPassword?: string;
@@ -48,7 +48,7 @@ export default function EntryScreen() {
 
   const { control, handleSubmit, reset, formState: { errors } } = useForm<AuthFormData>({
     defaultValues: {
-      name: '',
+      fullName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -82,9 +82,10 @@ export default function EntryScreen() {
             persistSession: rememberSession,
           })
         : await register({
-            name: data.name?.trim() || '',
+            fullName: data.fullName?.trim() || '',
             email: normalizedEmail,
             password: data.password,
+            confirmPassword: data.confirmPassword || '',
             persistSession: rememberSession,
           });
 
@@ -129,13 +130,13 @@ export default function EntryScreen() {
                   <View style={styles.fieldGroup}>
                     <Controller
                       control={control}
-                      name="name"
+                      name="fullName"
                       rules={{ 
                         required: 'Họ và tên là bắt buộc.',
                         minLength: { value: 2, message: 'Tên phải có ít nhất 2 ký tự.' }
                       }}
                       render={({ field: { onChange, value } }) => (
-                        <View style={[styles.inputShell, errors.name ? styles.inputShellError : null]}>
+                        <View style={[styles.inputShell, errors.fullName ? styles.inputShellError : null]}>
                           <MaterialCommunityIcons name="account-outline" size={20} color="#F0A439" />
                           <TextInput
                             editable={!isBusy}
@@ -149,7 +150,7 @@ export default function EntryScreen() {
                         </View>
                       )}
                     />
-                    {errors.name && <Text style={styles.errorText}>{errors.name.message}</Text>}
+                    {errors.fullName && <Text style={styles.errorText}>{errors.fullName.message}</Text>}
                   </View>
                 )}
 

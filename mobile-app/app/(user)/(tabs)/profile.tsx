@@ -74,11 +74,11 @@ export default function ProfileTabScreen() {
   const paidBookings = myBookings.filter((booking) => booking.status === 'paid');
   const totalSpent = paidBookings.reduce((sum, booking) => sum + booking.totalPrice, 0);
 
-  const avatarUrl = currentUser?.avatar
-    ? normalizePosterUrl(currentUser.avatar)
+  const avatarUrl = currentUser?.avatarUrl
+    ? normalizePosterUrl(currentUser.avatarUrl)
     : null;
 
-  const displayName = currentUser?.displayName || currentUser?.name || 'Khách hàng';
+  const displayName = currentUser?.fullName || 'Khách hàng';
   const memberSince = currentUser?.createdAt
     ? new Date(currentUser.createdAt).toLocaleDateString('vi-VN', {
         month: 'long',
@@ -120,9 +120,9 @@ export default function ProfileTabScreen() {
             onPress={() => router.push('/profile/edit')}
           >
             {avatarUrl ? (
-              <Image source={{ uri: avatarUrl }} style={styles.avatar} />
+              <Image source={{ uri: avatarUrl }} style={styles.avatarImage} />
             ) : (
-              <View style={[styles.avatar, styles.avatarPlaceholder]}>
+              <View style={[styles.avatarImage, styles.avatarPlaceholder]}>
                 <Text style={styles.avatarInitial}>
                   {displayName.charAt(0).toUpperCase()}
                 </Text>
@@ -204,18 +204,13 @@ export default function ProfileTabScreen() {
         <InfoRow
           icon="📱"
           label="Số điện thoại"
-          value={currentUser?.phone || 'Chưa cập nhật'}
-          isPlaceholder={!currentUser?.phone}
+          value={currentUser?.phoneNumber || 'Chưa cập nhật'}
+          isPlaceholder={!currentUser?.phoneNumber}
         />
         <InfoRow
-          icon="🎂"
-          label="Ngày sinh"
-          value={
-            currentUser?.dateOfBirth
-              ? new Date(currentUser.dateOfBirth).toLocaleDateString('vi-VN')
-              : 'Chưa cập nhật'
-          }
-          isPlaceholder={!currentUser?.dateOfBirth}
+          icon="👤"
+          label="Vai trò"
+          value={formatRoleLabel(currentUser?.role ?? 'user')}
           isLast
         />
       </SectionCard>
@@ -333,7 +328,7 @@ const styles = StyleSheet.create({
   avatarContainer: {
     marginBottom: 14,
   },
-  avatar: {
+  avatarImage: {
     width: 96,
     height: 96,
     borderRadius: 48,
