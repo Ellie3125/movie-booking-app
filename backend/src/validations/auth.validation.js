@@ -26,25 +26,49 @@ const refreshTokenSchema = Joi.string()
 
 const rememberMeSchema = Joi.boolean().default(false).label('rememberMe');
 
+const fullNameSchema = Joi.string().trim().min(2).max(120).required().label('fullName').messages({
+  'string.min': 'fullName must be at least 2 characters',
+  'string.max': 'fullName must be at most 120 characters',
+});
+
+const optionalFullNameSchema = fullNameSchema.optional();
+
+const phoneNumberSchema = Joi.string()
+  .trim()
+  .allow('')
+  .max(20)
+  .optional()
+  .label('phoneNumber');
+
+const avatarUrlSchema = Joi.string()
+  .trim()
+  .allow('', null)
+  .max(500)
+  .optional()
+  .label('avatarUrl');
+
+const confirmPasswordSchema = Joi.string()
+  .valid(Joi.ref('password'))
+  .required()
+  .label('confirmPassword')
+  .messages({ 'any.only': 'confirmPassword must match password' });
+
 const registerSchema = {
   body: strictObject({
-    name: Joi.string().trim().min(2).max(120).required().label('name').messages({
-      'string.min': 'name must be at least 2 characters',
-      'string.max': 'name must be at most 120 characters',
-    }),
+    fullName: fullNameSchema,
     email: emailSchema,
+    phoneNumber: phoneNumberSchema,
     password: passwordSchema,
+    confirmPassword: confirmPasswordSchema,
     rememberMe: rememberMeSchema,
   }),
 };
 
 const createAdminSchema = {
   body: strictObject({
-    name: Joi.string().trim().min(2).max(120).required().label('name').messages({
-      'string.min': 'name must be at least 2 characters',
-      'string.max': 'name must be at most 120 characters',
-    }),
+    fullName: fullNameSchema,
     email: emailSchema,
+    phoneNumber: phoneNumberSchema,
     password: passwordSchema,
   }),
 };
@@ -82,24 +106,11 @@ const changePasswordSchema = {
 };
 
 const updateProfileSchema = {
-  body: Joi.object({
-    name: Joi.string().trim().min(2).max(120).optional().label('name'),
-    displayName: Joi.string().trim().max(30).allow('').optional().label('displayName'),
-    avatar: Joi.string()
-      .trim()
-      .pattern(/^\/uploads\/avatars\/.+/)
-      .optional()
-      .label('avatar')
-      .messages({
-        'string.pattern.base': 'avatar must start with /uploads/avatars/',
-      }),
-    phone: Joi.string().trim().allow('').max(20).optional().label('phone'),
-    dateOfBirth: Joi.date().max('now').allow(null).optional().label('dateOfBirth'),
-    gender: Joi.string().valid('male', 'female', 'other', '').optional().label('gender'),
-    address: Joi.string().trim().max(200).allow('').optional().label('address'),
-    country: Joi.string().trim().max(100).allow('').optional().label('country'),
-    bio: Joi.string().trim().max(500).allow('').optional().label('bio'),
-  }).required().unknown(false).min(1),
+  body: strictObject({
+    fullName: optionalFullNameSchema,
+    phoneNumber: phoneNumberSchema,
+    avatarUrl: avatarUrlSchema,
+  }).min(1),
 };
 
 const updateNotificationPreferencesSchema = {
@@ -128,7 +139,7 @@ const updatePreferencesSchema = {
 
 const deleteAccountSchema = {
   body: Joi.object({
-    password: Joi.string().required().label('password'),
+    currentPassword: Joi.string().required().label('currentPassword'),
     confirmation: Joi.string().valid('DELETE').required().label('confirmation'),
   }).required().unknown(false),
 };

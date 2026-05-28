@@ -9,35 +9,35 @@ const router = express.Router();
 router.post(
   '/batch',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(showtimeValidation.createShowtimeScheduleSchema),
   showtimeController.createShowtimeSchedule
 );
 router.post(
   '/bulk-create',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(showtimeValidation.bulkCreateShowtimeSchema),
   showtimeController.bulkCreateShowtimes
 );
 router.post(
   '/',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(showtimeValidation.createShowtimeSchema),
   showtimeController.createShowtime
 );
 router.put(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(showtimeValidation.updateShowtimeSchema),
   showtimeController.updateShowtime
 );
 router.delete(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(showtimeValidation.showtimeIdParamSchema),
   showtimeController.deleteShowtime
 );

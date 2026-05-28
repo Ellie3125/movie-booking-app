@@ -178,7 +178,7 @@ const uploadAvatar = asyncHandler(async (req, res) => {
   }
 
   const avatarUrl = `/uploads/avatars/${req.file.filename}`;
-  const data = await authService.updateProfile({ avatar: avatarUrl }, req.user);
+  const data = await authService.updateProfile({ avatarUrl }, req.user);
 
   return sendApiResponse(res, {
     message: 'Avatar uploaded successfully',
