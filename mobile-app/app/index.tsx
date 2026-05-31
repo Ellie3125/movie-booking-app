@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Image,
   ImageBackground,
+  Platform,
   Pressable,
   ScrollView,
   StatusBar,
@@ -117,7 +118,7 @@ export default function EntryScreen() {
           showsVerticalScrollIndicator={false}>
           <View style={styles.screen}>
             <View style={styles.heroWrap}>
-              <Image source={mascotTopImage} style={styles.heroMascot} />
+              <Image source={mascotTopImage} resizeMode="contain" style={styles.heroMascot} />
             </View>
 
             <View style={styles.card}>
@@ -304,8 +305,8 @@ export default function EntryScreen() {
             </View>
 
             <View style={styles.bottomMascots}>
-              <Image source={mascotLeftImage} style={styles.bottomMascotLeft} />
-              <Image source={mascotRightImage} style={styles.bottomMascotRight} />
+              <Image source={mascotLeftImage} resizeMode="contain" style={styles.bottomMascotLeft} />
+              <Image source={mascotRightImage} resizeMode="contain" style={styles.bottomMascotRight} />
             </View>
           </View>
         </ScrollView>
@@ -356,7 +357,6 @@ const styles = StyleSheet.create({
   heroMascot: {
     width: 116,
     height: 116,
-    resizeMode: 'contain',
   },
   card: {
     width: '100%',
@@ -367,14 +367,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 54,
     paddingBottom: 24,
-    shadowColor: '#D39A48',
-    shadowOpacity: 0.16,
-    shadowRadius: 18,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    elevation: 5,
+    ...Platform.select({
+      web: {
+        boxShadow: '0px 10px 18px rgba(211, 154, 72, 0.16)',
+      },
+      default: {
+        shadowColor: '#D39A48',
+        shadowOpacity: 0.16,
+        shadowRadius: 18,
+        shadowOffset: {
+          width: 0,
+          height: 10,
+        },
+        elevation: 5,
+      },
+    }),
   },
   title: {
     fontSize: 22,
@@ -477,14 +484,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 10,
-    shadowColor: '#F0A234',
-    shadowOpacity: 0.22,
-    shadowRadius: 14,
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    elevation: 5,
+    ...Platform.select({
+      web: {
+        boxShadow: '0px 7px 14px rgba(240, 162, 52, 0.22)',
+      },
+      default: {
+        shadowColor: '#F0A234',
+        shadowOpacity: 0.22,
+        shadowRadius: 14,
+        shadowOffset: {
+          width: 0,
+          height: 7,
+        },
+        elevation: 5,
+      },
+    }),
   },
   primaryButtonText: {
     fontSize: 17,
@@ -525,11 +539,9 @@ const styles = StyleSheet.create({
   bottomMascotLeft: {
     width: 62,
     height: 62,
-    resizeMode: 'contain',
   },
   bottomMascotRight: {
     width: 66,
     height: 66,
-    resizeMode: 'contain',
   },
 });

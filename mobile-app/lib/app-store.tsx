@@ -2104,6 +2104,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       const response = await loginUser({
         email: input.email,
         password: input.password,
+        rememberMe: input.persistSession ?? true,
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,
@@ -2133,6 +2134,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
         email: input.email,
         password: input.password,
         confirmPassword: input.confirmPassword,
+        rememberMe: input.persistSession ?? true,
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,

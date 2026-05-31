@@ -7,6 +7,7 @@ import axios, {
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
+import { shouldAttemptTokenRefresh } from './auth-refresh-policy';
 import { clearTokens, getAccessToken, getRefreshToken, saveAccessToken, saveTokens } from './tokenStorage';
 
 // ─── URL Resolution ───────────────────────────────────────────────────────────
@@ -455,9 +456,14 @@ apiClient.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-    // Chỉ retry nếu 401, chưa retry trước đó, và không phải chính endpoint refresh-token
-    const isRefreshEndpoint = originalRequest.url?.includes('/auth/refresh-token');
-    if (error.response?.status === 401 && !originalRequest._retry && !isRefreshEndpoint) {
+    // Chỉ retry protected endpoints. Auth credential endpoints cần trả lỗi gốc cho UI.
+    if (
+      shouldAttemptTokenRefresh({
+        statusCode: error.response?.status,
+        requestUrl: originalRequest.url,
+        hasRetried: originalRequest._retry,
+      })
+    ) {
       if (isRefreshing) {
         // Đang refresh → queue request, chờ token mới
         return new Promise((resolve) => {
@@ -565,6 +571,7 @@ export async function registerUser(payload: {
   email: string;
   password: string;
   confirmPassword: string;
+  rememberMe?: boolean;
 }) {
   return apiRequest<BackendAuthResponse>('/auth/register', {
     method: 'POST',
@@ -588,7 +595,7 @@ export async function createAdminUser(
   });
 }
 
-export async function loginUser(payload: { email: string; password: string }) {
+export async function loginUser(payload: { email: string; password: string; rememberMe?: boolean }) {
   return apiRequest<BackendAuthResponse>('/auth/login', {
     method: 'POST',
     body: payload,
