@@ -13,6 +13,11 @@ const hmacSignatureSchema = Joi.string()
 
 const payBillSchema = {
   params: bookingValidation.bookingIdParamSchema,
+  body: Joi.object({
+    returnUrl: Joi.string().trim().max(2048).allow('').optional(),
+  })
+    .default({})
+    .unknown(true),
 };
 
 const callbackSchema = {
@@ -28,31 +33,42 @@ const callbackSchema = {
       .valid(env.paymentCurrency)
       .required()
       .label('currency'),
-    transactionCode: Joi.string().trim().required().label('transactionCode'),
-    status: Joi.string().valid('SUCCESS').required().label('status'),
-    paidAt: Joi.date().iso().required().label('paidAt'),
-    sourceAccountNo: Joi.string().trim().required().label('sourceAccountNo'),
+    transactionCode: Joi.when('status', {
+      is: 'SUCCESS',
+      then: Joi.string().trim().required().label('transactionCode'),
+      otherwise: Joi.string()
+        .trim()
+        .allow('', null)
+        .optional()
+        .label('transactionCode'),
+    }),
+    status: Joi.string()
+      .valid('SUCCESS', 'FAILED', 'CANCELLED', 'EXPIRED')
+      .required()
+      .label('status'),
+    paidAt: Joi.when('status', {
+      is: 'SUCCESS',
+      then: Joi.date().iso().required().label('paidAt'),
+      otherwise: Joi.alternatives()
+        .try(Joi.date().iso(), Joi.string().trim().allow('', null))
+        .optional()
+        .label('paidAt'),
+    }),
+    sourceAccountNo: Joi.when('status', {
+      is: 'SUCCESS',
+      then: Joi.string().trim().required().label('sourceAccountNo'),
+      otherwise: Joi.string()
+        .trim()
+        .allow('', null)
+        .optional()
+        .label('sourceAccountNo'),
+    }),
     receiverAccountNo: Joi.string().trim().required().label('receiverAccountNo'),
     signature: hmacSignatureSchema,
-  }),
-};
-
-const gatewayQuerySchema = strictObject({
-  paymentId: Joi.string().trim().required().label('paymentId'),
-  signature: hmacSignatureSchema,
-});
-
-const gatewaySubmitSchema = {
-  body: strictObject({
-    paymentId: Joi.string().trim().required().label('paymentId'),
-    signature: hmacSignatureSchema,
-    sourceAccountId: objectId.required().label('sourceAccountId'),
   }),
 };
 
 module.exports = {
   payBillSchema,
   callbackSchema,
-  gatewayQuerySchema,
-  gatewaySubmitSchema,
 };

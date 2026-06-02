@@ -9,6 +9,33 @@ const httpUrlSchema = Joi.string()
   .pattern(/^https?:\/\/.+$/)
   .required();
 
+const safeReturnUrlSchema = Joi.string()
+  .trim()
+  .max(2048)
+  .custom((value, helpers) => {
+    try {
+      const url = new URL(value);
+      const protocol = url.protocol.toLowerCase();
+      const isHttpUrl = protocol === 'http:' || protocol === 'https:';
+      const isAppDeepLink =
+        /^[a-z][a-z0-9+.-]*:$/.test(protocol) &&
+        !['javascript:', 'data:', 'file:', 'vbscript:'].includes(protocol);
+
+      if (isHttpUrl || isAppDeepLink) {
+        return value;
+      }
+    } catch {
+      return helpers.error('string.safeReturnUrl');
+    }
+
+    return helpers.error('string.safeReturnUrl');
+  })
+  .required()
+  .messages({
+    'string.safeReturnUrl':
+      'returnUrl must be an http(s) URL or a safe app deep link',
+  });
+
 const paymentIdParamSchema = strictObject({
   paymentId: Joi.string().trim().required().label('paymentId'),
 });
@@ -51,7 +78,7 @@ const createSessionSchema = {
       .required()
       .label('receiverAccountName'),
     callbackUrl: httpUrlSchema.label('callbackUrl'),
-    returnUrl: httpUrlSchema.label('returnUrl'),
+    returnUrl: safeReturnUrlSchema.label('returnUrl'),
     expiredAt: Joi.date().iso().required().label('expiredAt'),
     signature: signatureSchema,
   }),

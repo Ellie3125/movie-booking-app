@@ -51,8 +51,8 @@ export default function ProfileScreen() {
     );
   };
 
-  const avatarUrl = currentUser?.avatar
-    ? normalizePosterUrl(currentUser.avatar)
+  const avatarUrl = currentUser?.avatarUrl
+    ? normalizePosterUrl(currentUser.avatarUrl)
     : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80';
 
   const menuGroups: ProfileMenuGroup[] = [
@@ -139,10 +139,10 @@ export default function ProfileScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {/* Profile Header */}
       <View style={styles.headerCard}>
-        <Image source={{ uri: avatarUrl || undefined }} style={styles.avatar} />
+        <Image source={{ uri: avatarUrl || undefined }} style={styles.avatarImage} />
         <View style={styles.profileTextContainer}>
           <Text style={styles.profileName}>
-            {currentUser?.displayName || currentUser?.name || 'Khách hàng'}
+            {currentUser?.fullName || 'Khách hàng'}
           </Text>
           <Text style={styles.profileEmail}>{currentUser?.email}</Text>
           <View style={styles.roleBadge}>
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#F3E8DC',
   },
-  avatar: {
+  avatarImage: {
     width: 72,
     height: 72,
     borderRadius: 36,

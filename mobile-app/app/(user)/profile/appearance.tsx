@@ -16,9 +16,6 @@ type Language = 'vi' | 'en';
 type Theme = 'light' | 'dark' | 'system';
 type DateFormat = 'DD/MM/YYYY' | 'MM/DD/YYYY' | 'YYYY-MM-DD';
 
-const isDateFormat = (value: string | undefined): value is DateFormat =>
-  value === 'DD/MM/YYYY' || value === 'MM/DD/YYYY' || value === 'YYYY-MM-DD';
-
 const formatDate = (date: Date, format: DateFormat): string => {
   const dd = String(date.getDate()).padStart(2, '0');
   const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -37,14 +34,11 @@ const formatDate = (date: Date, format: DateFormat): string => {
 };
 
 export default function AppearanceScreen() {
-  const { currentUser, updatePreferences } = useAppStore();
+  const { updatePreferences } = useAppStore();
 
-  const prefs = currentUser?.preferences;
-  const [language, setLanguage] = useState<Language>(prefs?.language || 'vi');
-  const [theme, setTheme] = useState<Theme>(prefs?.theme || 'system');
-  const [dateFormat, setDateFormat] = useState<DateFormat>(
-    isDateFormat(prefs?.dateFormat) ? prefs.dateFormat : 'DD/MM/YYYY'
-  );
+  const [language, setLanguage] = useState<Language>('vi');
+  const [theme, setTheme] = useState<Theme>('system');
+  const [dateFormat, setDateFormat] = useState<DateFormat>('DD/MM/YYYY');
 
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);

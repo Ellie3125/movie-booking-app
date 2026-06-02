@@ -5,17 +5,17 @@ const userIdParamSchema = strictObject({
 });
 
 const listUsersQuerySchema = strictObject({
-  role: Joi.string().valid('user', 'staff', 'admin').optional().label('role'),
-  status: Joi.string().valid('active', 'blocked').optional().label('status'),
+  role: Joi.string().valid('user', 'admin').optional().label('role'),
+  isActive: Joi.boolean().optional().label('isActive'),
   search: Joi.string().trim().allow('').optional().label('search'),
 });
 
 const changeRoleSchema = strictObject({
-  role: Joi.string().valid('user', 'staff', 'admin').required().label('role'),
+  role: Joi.string().valid('user', 'admin').required().label('role'),
 });
 
 const changeStatusSchema = strictObject({
-  status: Joi.string().valid('active', 'blocked').required().label('status'),
+  isActive: Joi.boolean().required().label('isActive'),
 });
 
 module.exports = {

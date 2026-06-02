@@ -7,12 +7,13 @@ const { createSignature } = require('../utils/hmac.util');
 const buildCallbackPayload = (payment) => ({
   paymentId: payment.paymentId,
   bookingId: payment.bookingId,
-  status: payment.status,
   paidAmount: payment.amount,
   currency: payment.currency,
-  transactionCode: payment.transactionCode,
-  payerAccountNumber: payment.payerAccountNumber,
-  paidAt: payment.paidAt ? new Date(payment.paidAt).toISOString() : null,
+  transactionCode: payment.transactionCode || '',
+  status: payment.status,
+  paidAt: payment.paidAt ? new Date(payment.paidAt).toISOString() : '',
+  sourceAccountNo: payment.payerAccountNumber || '',
+  receiverAccountNo: payment.receiverAccountNumber,
 });
 
 const buildCallbackKey = (payment) =>
@@ -57,7 +58,10 @@ const sendPaymentCallback = async (payment) => {
   let responseData = null;
 
   try {
-    const response = await axios.post(payment.callbackUrl, callbackPayload, {
+    const response = await axios.post(payment.callbackUrl, {
+      ...callbackPayload,
+      signature,
+    }, {
       timeout: env.callbackTimeoutMs,
       headers: {
         'Content-Type': 'application/json',

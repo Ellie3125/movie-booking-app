@@ -5,7 +5,7 @@ const userService = require('../services/user.service');
 const listUsers = asyncHandler(async (req, res) => {
   const data = await userService.listUsers({
     role: req.query.role,
-    status: req.query.status,
+    isActive: req.query.isActive,
     search: req.query.search,
   });
 
@@ -34,7 +34,7 @@ const changeRole = asyncHandler(async (req, res) => {
 });
 
 const changeStatus = asyncHandler(async (req, res) => {
-  const data = await userService.changeStatus(req.params.id, req.body.status);
+  const data = await userService.changeStatus(req.params.id, req.body.isActive);
   
   return sendApiResponse(res, {
     message: 'User status changed successfully',

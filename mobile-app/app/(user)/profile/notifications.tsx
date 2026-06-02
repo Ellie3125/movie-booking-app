@@ -96,17 +96,9 @@ const PUSH_ITEMS: ToggleItemConfig[] = [
 ];
 
 export default function NotificationsScreen() {
-  const { currentUser, updateNotificationPreferences } = useAppStore();
+  const { updateNotificationPreferences } = useAppStore();
 
-  const [preferences, setPreferences] = useState<NotificationPreferences>(
-    () => {
-      const userPrefs = currentUser?.notificationPreferences;
-      if (userPrefs?.email && userPrefs?.push) {
-        return userPrefs as NotificationPreferences;
-      }
-      return DEFAULT_PREFERENCES;
-    }
-  );
+  const [preferences, setPreferences] = useState<NotificationPreferences>(DEFAULT_PREFERENCES);
 
   const [saving, setSaving] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);

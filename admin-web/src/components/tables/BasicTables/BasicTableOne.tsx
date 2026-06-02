@@ -11,8 +11,8 @@ import Badge from "../../ui/badge/Badge";
 interface Order {
   id: number;
   user: {
-    image: string;
-    name: string;
+    avatarUrl: string;
+    fullName: string;
     role: string;
   };
   projectName: string;
@@ -28,8 +28,8 @@ const tableData: Order[] = [
   {
     id: 1,
     user: {
-      image: "/images/user/user-17.jpg",
-      name: "Lindsey Curtis",
+      avatarUrl: "/images/user/user-17.jpg",
+      fullName: "Lindsey Curtis",
       role: "Web Designer",
     },
     projectName: "Agency Website",
@@ -46,8 +46,8 @@ const tableData: Order[] = [
   {
     id: 2,
     user: {
-      image: "/images/user/user-18.jpg",
-      name: "Kaiya George",
+      avatarUrl: "/images/user/user-18.jpg",
+      fullName: "Kaiya George",
       role: "Project Manager",
     },
     projectName: "Technology",
@@ -60,8 +60,8 @@ const tableData: Order[] = [
   {
     id: 3,
     user: {
-      image: "/images/user/user-17.jpg",
-      name: "Zain Geidt",
+      avatarUrl: "/images/user/user-17.jpg",
+      fullName: "Zain Geidt",
       role: "Content Writing",
     },
     projectName: "Blog Writing",
@@ -74,8 +74,8 @@ const tableData: Order[] = [
   {
     id: 4,
     user: {
-      image: "/images/user/user-20.jpg",
-      name: "Abram Schleifer",
+      avatarUrl: "/images/user/user-20.jpg",
+      fullName: "Abram Schleifer",
       role: "Digital Marketer",
     },
     projectName: "Social Media",
@@ -92,8 +92,8 @@ const tableData: Order[] = [
   {
     id: 5,
     user: {
-      image: "/images/user/user-21.jpg",
-      name: "Carla George",
+      avatarUrl: "/images/user/user-21.jpg",
+      fullName: "Carla George",
       role: "Front-end Developer",
     },
     projectName: "Website",
@@ -160,13 +160,13 @@ export default function BasicTableOne() {
                       <img
                         width={40}
                         height={40}
-                        src={order.user.image}
-                        alt={order.user.name}
+                        src={order.user.avatarUrl}
+                        alt={order.user.fullName}
                       />
                     </div>
                     <div>
                       <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                        {order.user.name}
+                        {order.user.fullName}
                       </span>
                       <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
                         {order.user.role}

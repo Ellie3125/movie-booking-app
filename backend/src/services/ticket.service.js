@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Ticket = require('../models/Ticket');
 const ApiError = require('../utils/apiError');
+const { sanitizeUserSummary } = require('../utils/userProfile');
 
 const TICKET_POPULATE = [
   {
@@ -8,7 +9,7 @@ const TICKET_POPULATE = [
     select: 'bookingCode status paymentStatus paymentMethod totalAmount currency paidAt createdAt userId',
     populate: {
       path: 'userId',
-      select: 'fullName email phone avatar',
+      select: 'fullName email phoneNumber avatarUrl role',
     },
   },
   {
@@ -50,13 +51,7 @@ const mapTicketResponse = (ticket) => ({
     seatLabel: ticket.seat.seatLabel,
     seatType: ticket.seat.seatType,
   },
-  user: ticket.userId || ticket.bookingId?.userId
-    ? {
-        id: String(ticket.bookingId?.userId?._id || ticket.userId),
-        fullName: ticket.bookingId?.userId?.fullName || 'Người dùng',
-        email: ticket.bookingId?.userId?.email,
-      }
-    : null,
+  user: sanitizeUserSummary(ticket.bookingId?.userId || ticket.userId),
   booking: ticket.bookingId
     ? {
         id: String(ticket.bookingId._id),
@@ -219,7 +214,15 @@ const markTicketAsUsed = async (ticketId) => {
   ticket.status = 'used';
   await ticket.save();
 
-  return mapTicketResponse(ticket.toObject ? ticket.toObject() : ticket);
+  const freshTicket = await getTicketQuery({ _id: ticket._id })
+    .limit(1)
+    .then((items) => items[0] || null);
+
+  if (!freshTicket) {
+    throw ApiError.notFound('Ticket not found', 'TICKET_NOT_FOUND');
+  }
+
+  return mapTicketResponse(freshTicket);
 };
 
 module.exports = {
@@ -228,4 +231,7 @@ module.exports = {
   listTicketsAdmin,
   getTicketByIdAdmin,
   markTicketAsUsed,
+  _private: {
+    mapTicketResponse,
+  },
 };

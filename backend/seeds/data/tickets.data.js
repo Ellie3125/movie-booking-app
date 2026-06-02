@@ -5519,8 +5519,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "e878d310f0f803d7083356a9",
   "seat": {
-    "seatCode": "E1",
-    "seatLabel": "E1",
+    "seatCode": "E2",
+    "seatLabel": "E2",
     "seatType": "regular"
   },
   "price": 90000,
@@ -6051,8 +6051,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "3c2ba0e8e62b9a657c350140",
   "seat": {
-    "seatCode": "G3",
-    "seatLabel": "G3",
+    "seatCode": "G4",
+    "seatLabel": "G4",
     "seatType": "regular"
   },
   "price": 130000,
@@ -9015,8 +9015,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "6506ce1d66c6733df0fb34cd",
   "seat": {
-    "seatCode": "E4",
-    "seatLabel": "E4",
+    "seatCode": "E5",
+    "seatLabel": "E5",
     "seatType": "regular"
   },
   "price": 110000,
@@ -12549,8 +12549,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "e878d310f0f803d7083356a9",
   "seat": {
-    "seatCode": "G8",
-    "seatLabel": "G8",
+    "seatCode": "G9",
+    "seatLabel": "G9",
     "seatType": "regular"
   },
   "price": 120000,
@@ -13556,8 +13556,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "e878d310f0f803d7083356a9",
   "seat": {
-    "seatCode": "A10",
-    "seatLabel": "A10",
+    "seatCode": "A9",
+    "seatLabel": "A9",
     "seatType": "regular"
   },
   "price": 120000,
@@ -13860,8 +13860,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "e878d310f0f803d7083356a9",
   "seat": {
-    "seatCode": "D6",
-    "seatLabel": "D6",
+    "seatCode": "D7",
+    "seatLabel": "D7",
     "seatType": "regular"
   },
   "price": 110000,
@@ -15551,8 +15551,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "e878d310f0f803d7083356a9",
   "seat": {
-    "seatCode": "C7",
-    "seatLabel": "C7",
+    "seatCode": "C8",
+    "seatLabel": "C8",
     "seatType": "regular"
   },
   "price": 110000,
@@ -15589,8 +15589,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "e878d310f0f803d7083356a9",
   "seat": {
-    "seatCode": "H10",
-    "seatLabel": "H10",
+    "seatCode": "H9",
+    "seatLabel": "H9",
     "seatType": "regular"
   },
   "price": 110000,
@@ -17717,8 +17717,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "3c2ba0e8e62b9a657c350140",
   "seat": {
-    "seatCode": "B4",
-    "seatLabel": "B4",
+    "seatCode": "B5",
+    "seatLabel": "B5",
     "seatType": "regular"
   },
   "price": 100000,
@@ -19883,8 +19883,8 @@ module.exports = [
   "cinemaId": "c89c09310987f4c11e8173dd",
   "roomId": "3c2ba0e8e62b9a657c350140",
   "seat": {
-    "seatCode": "G10",
-    "seatLabel": "G10",
+    "seatCode": "G9",
+    "seatLabel": "G9",
     "seatType": "regular"
   },
   "price": 90000,

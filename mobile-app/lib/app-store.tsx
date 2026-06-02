@@ -22,7 +22,6 @@ import {
   fetchMovies,
   fetchMyBookingById,
   fetchMyBookings,
-  fetchPaymentBill,
   fetchRoomById,
   fetchRooms,
   fetchShowtimeById,
@@ -47,6 +46,7 @@ import {
   type BackendShowtimeDetail,
   type BackendShowtimeListItem,
   type BackendUser,
+  type BackendProfileUpdatePayload,
   type BackendCinemaBrand,
   fetchCinemaOptions,
 } from '@/lib/backend-api';
@@ -67,39 +67,33 @@ export type BookingStatus = 'held' | 'paid' | 'booked' | 'cancelled' | 'pending_
 export type PaymentMethod = 'momo_sandbox' | 'vnpay_sandbox' | 'mock_gateway';
 export type AuthStatus = 'bootstrapping' | 'authenticated' | 'unauthenticated';
 
-export type UserProfile = {
+export type CheckoutConfirmationResult =
+  | {
+      kind: 'booking';
+      booking: Booking;
+    }
+  | {
+      kind: 'gateway';
+      bookingId: string;
+      paymentId: string;
+      paymentUrl: string;
+      returnUrl: string;
+      expiredAt: string | null;
+    };
+
+export interface User {
   id: string;
-  name: string;
-  displayName?: string;
+  fullName: string;
   email: string;
-  phone?: string;
-  avatar?: string;
-  role: 'admin' | 'staff' | 'user';
-  dateOfBirth?: string | null;
-  gender?: 'male' | 'female' | 'other' | '';
-  address?: string;
-  country?: string;
-  bio?: string;
-  notificationPreferences?: {
-    email: {
-      bookingConfirmation: boolean;
-      promotions: boolean;
-      systemUpdates: boolean;
-    };
-    push: {
-      bookingConfirmation: boolean;
-      promotions: boolean;
-      showReminders: boolean;
-    };
-  };
-  preferences?: {
-    language: 'vi' | 'en';
-    theme: 'light' | 'dark' | 'system';
-    timezone: string;
-    dateFormat: string;
-  };
+  phoneNumber?: string;
+  avatarUrl?: string;
+  role: 'admin' | 'user';
+  isActive: boolean;
   createdAt?: string;
-};
+  updatedAt?: string;
+}
+
+export type UserProfile = User;
 
 export type Movie = {
   id: string;
@@ -310,23 +304,30 @@ type AppStoreValue = {
     persistSession?: boolean;
   }) => Promise<AuthActionResult>;
   register: (input: {
-    name: string;
+    fullName: string;
+    phoneNumber?: string;
     email: string;
     password: string;
+    confirmPassword: string;
     persistSession?: boolean;
   }) => Promise<AuthActionResult>;
   createAdminAccount: (input: {
-    name: string;
+    fullName: string;
+    phoneNumber?: string;
     email: string;
     password: string;
   }) => Promise<CreateAdminAccountResult>;
   logout: () => Promise<void>;
-  updateProfile: (payload: Partial<BackendUser>) => Promise<AuthActionResult>;
+  updateProfile: (payload: BackendProfileUpdatePayload) => Promise<AuthActionResult>;
   updateNotificationPreferences: (payload: any) => Promise<AuthActionResult>;
   updatePreferences: (payload: any) => Promise<AuthActionResult>;
   deleteAccount: (payload: any) => Promise<AuthActionResult>;
   uploadAvatar: (formData: FormData) => Promise<AuthActionResult>;
-  changePassword: (payload: any) => Promise<AuthActionResult>;
+  changePassword: (payload: {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+  }) => Promise<AuthActionResult>;
   upsertMovie: (input: MovieInput) => Promise<MovieMutationResult>;
   deleteMovie: (movieId: string) => Promise<DeleteMovieResult>;
   upsertCinema: (input: CinemaInput) => void;
@@ -342,7 +343,11 @@ type AppStoreValue = {
     error?: string;
   }>;
   releaseDraftCheckout: () => Promise<void>;
-  confirmDraftCheckout: (paymentMethod: PaymentMethod) => Promise<Booking | null>;
+  confirmDraftCheckout: (
+    paymentMethod: PaymentMethod,
+    options?: { returnUrl?: string },
+  ) => Promise<CheckoutConfirmationResult | null>;
+  completeRemoteCheckout: (bookingId: string) => Promise<Booking | null>;
 };
 
 const seatPriceMap: Record<string, number> = {
@@ -1642,20 +1647,14 @@ const initialBookings: Booking[] = [
 
 const normalizeUserProfile = (user: BackendUser): UserProfile => ({
   id: user.id,
-  name: user.name,
-  displayName: user.displayName,
+  fullName: user.fullName,
   email: user.email,
-  phone: user.phone,
-  avatar: user.avatar,
+  phoneNumber: user.phoneNumber,
+  avatarUrl: user.avatarUrl,
   role: user.role,
-  dateOfBirth: user.dateOfBirth,
-  gender: user.gender,
-  address: user.address,
-  country: user.country,
-  bio: user.bio,
-  notificationPreferences: user.notificationPreferences,
-  preferences: user.preferences,
+  isActive: user.isActive,
   createdAt: user.createdAt,
+  updatedAt: user.updatedAt,
 });
 
 const buildRoomSeatId = (cell: {
@@ -1782,8 +1781,11 @@ const normalizeBackendPaymentMethod = (
 ): PaymentMethod | null => {
   switch (paymentMethod) {
     case 'momo_sandbox':
+    case 'MOMO_SANDBOX':
+      return 'momo_sandbox';
     case 'vnpay_sandbox':
-      return paymentMethod;
+    case 'VNPAY_SANDBOX':
+      return 'vnpay_sandbox';
     case 'MOCK_GATEWAY':
       return 'mock_gateway';
     default:
@@ -2102,6 +2104,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       const response = await loginUser({
         email: input.email,
         password: input.password,
+        rememberMe: input.persistSession ?? true,
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,
@@ -2117,16 +2120,21 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   };
 
   const register = async (input: {
-    name: string;
+    fullName: string;
+    phoneNumber?: string;
     email: string;
     password: string;
+    confirmPassword: string;
     persistSession?: boolean;
   }): Promise<AuthActionResult> => {
     try {
       const response = await registerUser({
-        name: input.name,
+        fullName: input.fullName,
+        phoneNumber: input.phoneNumber,
         email: input.email,
         password: input.password,
+        confirmPassword: input.confirmPassword,
+        rememberMe: input.persistSession ?? true,
       });
       const user = await authenticateWithToken(response.accessToken, {
         persistSession: input.persistSession,
@@ -2142,7 +2150,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
   };
 
   const createAdminAccount = async (input: {
-    name: string;
+    fullName: string;
+    phoneNumber?: string;
     email: string;
     password: string;
   }): Promise<CreateAdminAccountResult> => {
@@ -2155,7 +2164,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
 
     try {
       const remoteAdmin = await createAdminUser(authToken, {
-        name: input.name,
+        fullName: input.fullName,
+        phoneNumber: input.phoneNumber,
         email: input.email,
         password: input.password,
       });
@@ -2203,7 +2213,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     await loadPublicCatalogState();
   };
 
-  const updateProfile = async (payload: Partial<BackendUser>): Promise<AuthActionResult> => {
+  const updateProfile = async (payload: BackendProfileUpdatePayload): Promise<AuthActionResult> => {
     try {
       const updatedUser = await updateUserProfile(payload);
       const normalized = normalizeUserProfile(updatedUser);
@@ -2731,7 +2741,29 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     return { ok: true };
   };
 
-  const confirmDraftCheckout = async (paymentMethod: PaymentMethod) => {
+  const completeRemoteCheckout = async (bookingId: string) => {
+    if (!authToken || !currentUser) {
+      return null;
+    }
+
+    const confirmedBooking = await fetchMyBookingById(authToken, bookingId);
+    const mappedBooking = mapBackendBooking(confirmedBooking, currentUser.id);
+
+    setDraftCheckout((current) => (current?.id === bookingId ? null : current));
+
+    try {
+      await refreshRemoteState();
+    } catch (error) {
+      console.warn(getRequestErrorMessage(error, 'Không thể đồng bộ lại dữ liệu.'));
+    }
+
+    return mappedBooking;
+  };
+
+  const confirmDraftCheckout = async (
+    paymentMethod: PaymentMethod,
+    options: { returnUrl?: string } = {},
+  ): Promise<CheckoutConfirmationResult | null> => {
     if (!draftCheckout) {
       return null;
     }
@@ -2743,30 +2775,18 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     const activeUser = currentUser;
 
     if (authToken) {
-      const latestBill = await fetchPaymentBill(authToken, draftCheckout.id);
-      const remotePaymentMethod =
-        paymentMethod === 'vnpay_sandbox' ? 'vnpay_sandbox' : 'momo_sandbox';
-
-      await payBookingBill(authToken, draftCheckout.id, {
-        paymentMethod: remotePaymentMethod,
-        billId: latestBill.paymentAuth.billId,
-        paidAmount: latestBill.paymentAuth.paidAmount,
-        currency: latestBill.paymentAuth.currency,
-        issuedAt: latestBill.paymentAuth.issuedAt,
-        expiresAt: latestBill.paymentAuth.expiresAt,
-        signature: latestBill.paymentAuth.signature,
+      const paymentSession = await payBookingBill(authToken, draftCheckout.id, {
+        returnUrl: options.returnUrl,
       });
 
-      const confirmedBooking = await fetchMyBookingById(authToken, draftCheckout.id);
-      setDraftCheckout(null);
-
-      try {
-        await refreshRemoteState();
-      } catch (error) {
-        console.warn(getRequestErrorMessage(error, 'Không thể đồng bộ lại dữ liệu.'));
-      }
-
-      return mapBackendBooking(confirmedBooking, activeUser.id);
+      return {
+        kind: 'gateway',
+        bookingId: paymentSession.bookingId,
+        paymentId: paymentSession.paymentId,
+        paymentUrl: paymentSession.paymentUrl,
+        returnUrl: options.returnUrl || '',
+        expiredAt: paymentSession.expiredAt,
+      };
     }
 
     const bookingId = makeId('booking');
@@ -2814,7 +2834,10 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setBookings((current) => [booking, ...current]);
     setDraftCheckout(null);
 
-    return booking;
+    return {
+      kind: 'booking',
+      booking,
+    };
   };
 
   const value: AppStoreValue = {
@@ -2856,6 +2879,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     startCheckout,
     releaseDraftCheckout,
     confirmDraftCheckout,
+    completeRemoteCheckout,
     refreshShowtime,
     refreshData,
   };
