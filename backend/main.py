@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-if not os.getenv("GROQ_API_KEY"):
-    raise SystemExit("❌  GROQ_API_KEY chưa được cấu hình. Thêm vào file .env")
+if not os.getenv("GOOGLE_API_KEY"):
+    raise SystemExit("❌  GOOGLE_API_KEY chưa được cấu hình. Thêm vào file .env")
 
 from src.app import create_app
 

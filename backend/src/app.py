@@ -1,4 +1,3 @@
-// FastAPI
 from __future__ import annotations
 
 import logging
@@ -8,7 +7,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from src.routes.chat   import router as chat_router
+from src.routes.chatbot   import router as chat_router 
 from src.routes.users  import router as users_router
 from src.routes.movies import router as movies_router
 
