@@ -1,0 +1,36 @@
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  white-space: nowrap;
+  background: var(--badge-bg);
+  color: var(--badge-color);
+  transition: transform var(--transition-fast);
+  user-select: none;
+}
+
+.status-badge--small {
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+.status-badge--large {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+/* Subtle pulse for pending status */
+.status-pending {
+  animation: subtlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.8; }
+}
