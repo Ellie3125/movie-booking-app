@@ -143,8 +143,10 @@ export type BackendCinema = {
   _id: string;
   brand: string;
   name: string;
-  city: string;
+  city?: string;
+  province?: string;
   address: string;
+  phone?: string;
   imageUrl?: string;
   latitude?: number | null;
   longitude?: number | null;

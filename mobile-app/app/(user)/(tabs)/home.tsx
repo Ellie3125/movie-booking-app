@@ -18,17 +18,30 @@ import { Fonts } from '@/constants/theme';
 import { type Movie, useAppStore } from '@/lib/app-store';
 import { API_BASE_URL } from '@/lib/backend-api';
 import { normalizePosterUrl } from '@/lib/image-url';
-import { formatGenres, formatLanguage } from '@/lib/user-display';
+import { formatFeaturedNote, formatGenres, formatLanguage } from '@/lib/user-display';
 
 const BANNER_HEIGHT = 188;
 const FEATURED_CARD_WIDTH = 246;
 const FEATURED_CARD_GAP = 18;
 
 const statusAccent: Record<Movie['status'], string> = {
-  now_showing: 'Now Showing',
-  coming_soon: 'Coming Soon',
-  ended: 'Archived',
+  now_showing: 'Đang chiếu',
+  coming_soon: 'Sắp chiếu',
+  ended: 'Đã kết thúc',
 };
+
+const statusPillColor: Record<Movie['status'], string> = {
+  now_showing: '#DFF6E7',
+  coming_soon: '#FFF3D6',
+  ended: '#E8EEF5',
+};
+
+const formatReleaseDate = (value: string) =>
+  new Date(value).toLocaleDateString('vi-VN', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
 
 const getPosterUrl = (movie: Movie) =>
   normalizePosterUrl(movie.poster, { backendApiBaseUrl: API_BASE_URL });
@@ -91,7 +104,7 @@ export default function HomeMoviesTabScreen() {
             <TextInput
               value={query}
               onChangeText={setQuery}
-              placeholder="Search movies..."
+              placeholder="Tìm phim..."
               placeholderTextColor="#5C6B76"
               style={styles.searchInput}
               returnKeyType="search"
@@ -144,7 +157,7 @@ export default function HomeMoviesTabScreen() {
                       {movie.title}
                     </Text>
                     <Text numberOfLines={1} style={styles.bannerSubtitle}>
-                      {movie.featuredNote || 'Exclusive previews this week'}
+                      {formatFeaturedNote(movie.featuredNote || 'Đang mở bán trên hệ thống.')}
                     </Text>
                   </View>
                 </Pressable>
@@ -166,9 +179,9 @@ export default function HomeMoviesTabScreen() {
         </View>
 
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Featured Movies</Text>
+          <Text style={styles.sectionTitle}>Chọn phim</Text>
           <Text style={styles.sectionMeta}>
-            {featuredMovies.length} phim từ dữ liệu URL hiện có
+            {featuredMovies.length} phim từ dữ liệu quản trị
           </Text>
         </View>
 
@@ -209,8 +222,18 @@ export default function HomeMoviesTabScreen() {
                   </View>
                 </View>
                 <View style={styles.featuredInfo}>
+                  <View
+                    style={[
+                      styles.statusPill,
+                      { backgroundColor: statusPillColor[movie.status] },
+                    ]}>
+                    <Text style={styles.statusPillText}>{statusAccent[movie.status]}</Text>
+                  </View>
                   <Text numberOfLines={1} style={styles.movieTitle}>
                     {movie.title}
+                  </Text>
+                  <Text numberOfLines={1} style={styles.movieAdminMeta}>
+                    {movie.duration} phút • Khởi chiếu {formatReleaseDate(movie.releaseDate)}
                   </Text>
                   <Text numberOfLines={1} style={styles.movieMeta}>
                     {formatGenres(movie.genre)} • {formatLanguage(movie.language)}
@@ -416,10 +439,27 @@ const styles = StyleSheet.create({
   featuredInfo: {
     gap: 4,
   },
+  statusPill: {
+    alignSelf: 'flex-start',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+  },
+  statusPillText: {
+    color: '#00356F',
+    fontSize: 11,
+    fontFamily: Fonts.sansBold,
+  },
   movieTitle: {
     color: '#001E42',
     fontSize: 17,
     lineHeight: 22,
+    fontFamily: Fonts.sansBold,
+  },
+  movieAdminMeta: {
+    color: '#47677D',
+    fontSize: 12,
+    lineHeight: 17,
     fontFamily: Fonts.sansBold,
   },
   movieMeta: {
