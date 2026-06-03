@@ -966,9 +966,63 @@ const renderPaymentResultPage = ({ status, paymentId, bookingId, transactionCode
 </html>`;
 };
 
+const getPaymentStatus = async ({ paymentId, userId }) => {
+  const transaction = await PaymentTransaction.findOne({ paymentId }).exec();
+
+  if (!transaction) {
+    throw ApiError.notFound('Payment transaction not found', 'PAYMENT_NOT_FOUND');
+  }
+
+  if (String(transaction.userId) !== String(userId)) {
+    throw ApiError.forbidden(
+      'You do not have permission to access this payment status',
+      'PAYMENT_ACCESS_DENIED'
+    );
+  }
+
+  const booking = await Booking.findById(transaction.bookingId).exec();
+  if (!booking) {
+    throw ApiError.notFound('Booking not found', 'BOOKING_NOT_FOUND');
+  }
+
+  const showtime = await Showtime.findById(getEntityId(booking.showtimeId)).exec();
+  if (!showtime) {
+    throw ApiError.notFound(
+      'Showtime not found for this booking',
+      'SHOWTIME_NOT_FOUND'
+    );
+  }
+
+  if (
+    PENDING_TRANSACTION_STATUSES.includes(transaction.status) &&
+    isExpired(transaction.expiredAt)
+  ) {
+    await expireBookingIfNeeded({ booking, showtime });
+    
+    // Nạp lại trạng thái mới của transaction sau khi đã expire
+    const updatedTransaction = await PaymentTransaction.findOne({ paymentId }).exec();
+    if (updatedTransaction) {
+      transaction.status = updatedTransaction.status;
+      transaction.failureReason = updatedTransaction.failureReason;
+    }
+  }
+
+  return {
+    paymentId: transaction.paymentId,
+    bookingId: String(transaction.bookingId),
+    status: transaction.status,
+    amount: transaction.amount,
+    currency: transaction.currency,
+    paidAt: transaction.paidAt,
+    expiresAt: transaction.expiredAt,
+  };
+};
+
 module.exports = {
   getBill,
   payBill,
   handlePaymentCallback,
   renderPaymentResultPage,
+  getPaymentStatus,
 };
+

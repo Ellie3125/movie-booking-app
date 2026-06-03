@@ -1,13 +1,7 @@
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
 import { type RoomSeat, type ShowtimeSeatState } from '@/lib/app-store';
-import {
-  getSeatVisualStatus,
-  seatStatusTokens,
-  seatVariantTokens,
-  type SeatVisualVariant,
-} from '@/lib/seat-appearance';
-
+import { getSeatVisualStatus, type SeatVisualVariant } from '@/lib/seat-appearance';
 type Props = {
   layout: RoomSeat[][];
   seatStates?: ShowtimeSeatState[];
@@ -91,10 +85,11 @@ export function SeatLayoutGrid({
             const coordinate = seat.seatCode.toUpperCase();
             const seatState = stateMap.get(coordinate);
             const selected = selectedSet.has(coordinate);
+            const isSpaceLike = ['space', 'empty', 'aisle'].includes(seat.type);
             const isUnavailableSeat =
-              seat.type !== 'space' && Boolean(seatState && seatState.status !== 'available');
+              !isSpaceLike && Boolean(seatState && seatState.status !== 'available');
             const adminBackgroundColor =
-              seat.type === 'space'
+              isSpaceLike
                 ? 'transparent'
                 : selected
                   ? adminSeatStateColors.selected
@@ -105,18 +100,11 @@ export function SeatLayoutGrid({
                     : adminSeatStateColors.available;
             const seatVariant =
               seatVariantLookup?.[coordinate] ?? (seat.type === 'couple' ? 'couple' : 'regular');
-            const statusToken = seatStatusTokens[
-              getSeatVisualStatus({
-                selected,
-                seatState,
-              })
-            ];
-            const variantToken = seatVariantTokens[seatVariant];
 
             return (
               <Pressable
                 key={seat.seatCode}
-                disabled={seat.type === 'space' || seat.type === 'disabled' || (isUserMode && isUnavailableSeat)}
+                disabled={isSpaceLike || seat.type === 'disabled' || (isUserMode && isUnavailableSeat)}
                 onPress={() => onPressSeat?.(seat)}
                 style={[
                   styles.cell,
@@ -124,10 +112,10 @@ export function SeatLayoutGrid({
                     ? { width: seat.type === 'couple' ? metrics.cellWidth * 2 + metrics.gridGap : metrics.cellWidth } 
                     : styles.cellFlexible,
                   isUserMode
-                    ? seat.type === 'space'
+                    ? isSpaceLike
                       ? styles.emptyCellUser
                       : styles.userSeatHitBox
-                    : seat.type === 'space'
+                    : isSpaceLike
                       ? styles.emptyCell
                       : styles.seatCell,
                   {
@@ -139,83 +127,83 @@ export function SeatLayoutGrid({
                   !isUserMode
                     ? {
                         backgroundColor: adminBackgroundColor,
-                        opacity: seat.type === 'space' ? 0 : 1,
+                        opacity: isSpaceLike ? 0 : 1,
                       }
                     : null,
                 ]}>
                 {isUserMode ? (
-                  seat.type !== 'space' ? (
-                    <View
-                      style={[
-                        styles.userSeatFrame,
-                        {
-                          borderRadius: metrics.cellRadius,
-                          borderColor: statusToken.border,
-                          backgroundColor: statusToken.fill,
-                          paddingTop: metrics.cellPaddingVertical + metrics.accentHeight + 2,
-                          paddingBottom: metrics.cellPaddingVertical,
-                          paddingHorizontal: metrics.cellPaddingHorizontal + 2,
-                        },
-                      ]}>
-                      <View
-                        style={[
-                          styles.userSeatAccent,
-                          {
-                            height: metrics.accentHeight,
-                            backgroundColor: variantToken.accent,
-                          },
-                        ]}
-                      />
-                      {seatVariant === 'vip' ? (
-                        <Text
+                  !isSpaceLike ? (
+                    (() => {
+                      const visualStatus = getSeatVisualStatus({ selected, seatState });
+                      const isReserved = visualStatus === 'booked' || visualStatus === 'held';
+                      const isAvailable = visualStatus === 'available';
+                      const isSelected = visualStatus === 'selected';
+
+                      let bgColor = '#E8F0FE';
+                      let textColor = '#0041c8';
+                      let borderColor = 'transparent';
+                      let borderWidth = 0;
+                      let fontWeight: '500' | '700' = '500';
+                      let opacity = 1;
+
+                      if (isSelected) {
+                        bgColor = '#0041c8';
+                        textColor = '#ffffff';
+                        fontWeight = '700';
+                      } else if (isReserved) {
+                        bgColor = '#c3c5d9';
+                        textColor = '#9e9e9e';
+                        opacity = 0.5;
+                      } else if (isAvailable) {
+                        if (seatVariant === 'vip') {
+                          bgColor = '#D1E3FF';
+                          textColor = '#0041c8';
+                          borderColor = 'rgba(0, 65, 200, 0.2)';
+                          borderWidth = 1;
+                          fontWeight = '700';
+                        } else if (seatVariant === 'couple') {
+                          bgColor = '#F3E5F5';
+                          textColor = '#6a4a00';
+                        }
+                      }
+
+                      return (
+                        <View
                           style={[
-                            styles.userSeatBadge,
+                            styles.userSeatFrame,
                             {
-                              color: variantToken.accent,
-                              fontSize: metrics.badgeSize,
-                              top: metrics.accentHeight + 2,
+                              borderRadius: seat.type === 'couple' ? 6 : 4,
+                              borderColor: borderColor,
+                              borderWidth: borderWidth,
+                              backgroundColor: bgColor,
+                              opacity: opacity,
                             },
                           ]}>
-                          VIP
-                        </Text>
-                      ) : null}
-                      <Text
-                        numberOfLines={1}
-                        style={[
-                          styles.userSeatText,
-                          {
-                            color: statusToken.text,
-                            fontSize: metrics.labelSize,
-                          },
-                        ]}>
-                        {seat.label}
-                      </Text>
-                      <View
-                        style={[
-                          styles.userSeatSilhouette,
-                          {
-                            backgroundColor: variantToken.accentSoft,
-                            width: variantToken.previewWide
-                              ? metrics.silhouetteWideWidth
-                              : metrics.silhouetteWidth,
-                            height: metrics.silhouetteHeight,
-                            marginTop: metrics.subtextMarginTop + 1,
-                          },
-                        ]}>
-                        {seatVariant === 'couple' ? (
-                          <View
-                            style={[
-                              styles.userSeatDivider,
-                              { backgroundColor: variantToken.accent },
-                            ]}
-                          />
-                        ) : null}
-                      </View>
-                    </View>
+                          {isReserved ? (
+                            <Text style={[styles.userSeatText, { color: textColor, fontWeight: '700', fontSize: metrics.labelSize }]}>
+                              X
+                            </Text>
+                          ) : (
+                            <Text
+                              numberOfLines={1}
+                              style={[
+                                styles.userSeatText,
+                                {
+                                  color: textColor,
+                                  fontSize: metrics.labelSize,
+                                  fontWeight: fontWeight,
+                                },
+                              ]}>
+                              {seat.label}
+                            </Text>
+                          )}
+                        </View>
+                      );
+                    })()
                   ) : (
                     <View style={{ flex: 1 }} />
                   )
-                ) : seat.type !== 'space' ? (
+                ) : !isSpaceLike ? (
                   <>
                     <Text style={[styles.cellText, { fontSize: metrics.labelSize }]}>
                       {seat.label}
@@ -291,37 +279,23 @@ const styles = StyleSheet.create({
   userSeatFrame: {
     flex: 1,
     alignSelf: 'stretch',
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
-    position: 'relative',
   },
   userSeatAccent: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
+    height: 0,
   },
   userSeatBadge: {
-    position: 'absolute',
-    right: 4,
-    fontWeight: '800',
-    letterSpacing: 0.2,
+    fontSize: 0,
   },
   userSeatText: {
-    fontWeight: '800',
+    // Sẽ được override động
   },
   userSeatSilhouette: {
-    borderRadius: 999,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
+    height: 0,
   },
   userSeatDivider: {
-    width: 2,
-    alignSelf: 'stretch',
-    opacity: 0.7,
+    width: 0,
   },
   cellText: {
     color: '#F8FAFC',

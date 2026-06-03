@@ -49,9 +49,23 @@ const paymentResultPage = (req, res) => {
   res.status(200).type('html').send(html);
 };
 
+const getPaymentStatus = asyncHandler(async (req, res) => {
+  const data = await paymentService.getPaymentStatus({
+    paymentId: req.params.paymentId,
+    userId: req.user.id,
+  });
+
+  return sendApiResponse(res, {
+    message: 'Payment transaction status fetched successfully',
+    data,
+  });
+});
+
 module.exports = {
   getBill,
   payBill,
   paymentCallback,
   paymentResultPage,
+  getPaymentStatus,
 };
+

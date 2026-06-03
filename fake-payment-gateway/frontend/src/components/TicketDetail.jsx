@@ -7,7 +7,7 @@ import './TicketDetail.css';
  * TicketDetail — Detail view panel (65% bên phải).
  * Hiển thị chi tiết booking: thông tin KH, vé, tổng tiền, bằng chứng CK, actions.
  */
-export default function TicketDetail({ ticket }) {
+export default function TicketDetail({ ticket, onResolve }) {
   const [copied, setCopied] = useState(false);
   const [confirming, setConfirming] = useState(false);
   const [rejecting, setRejecting] = useState(false);
@@ -35,15 +35,28 @@ export default function TicketDetail({ ticket }) {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     setConfirming(true);
-    setTimeout(() => setConfirming(false), 2000);
+    try {
+      if (onResolve) {
+        await onResolve(ticket.id, 'success');
+      }
+    } finally {
+      setConfirming(false);
+    }
   };
 
-  const handleReject = () => {
+  const handleReject = async () => {
     setRejecting(true);
-    setTimeout(() => setRejecting(false), 2000);
+    try {
+      if (onResolve) {
+        await onResolve(ticket.id, 'failed');
+      }
+    } finally {
+      setRejecting(false);
+    }
   };
+
 
   return (
     <section className="ticket-detail-panel animate-slide-right" key={ticket.id} id="ticket-detail-panel">

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementation Plan v2 - Sửa 5 Vấn Đề Kỹ Thuật</title>
+  <style>
+    :root {
+      --color-bg:        #0f172a;
+      --color-surface:   #1e293b;
+      --color-border:    #334155;
+      --color-text:      #f1f5f9;
+      --color-muted:     #94a3b8;
+      --color-accent:    #2563eb;
+      --color-accent-hover: #1d4ed8;
+      --color-danger:    #dc2626;
+      --color-success:   #16a34a;
+      --color-warning:   #f59e0b;
+
+      --font-sans:   'Inter', system-ui, sans-serif;
+      --font-mono:   'JetBrains Mono', 'Fira Code', monospace;
+      --text-xs:     0.75rem;
+      --text-sm:     0.875rem;
+      --text-base:   1rem;
+      --text-lg:     1.125rem;
+      --text-xl:     1.25rem;
+      --text-2xl:    1.5rem;
+
+      --sp-1: 0.25rem;   --sp-2: 0.5rem;    --sp-3: 0.75rem;
+      --sp-4: 1rem;      --sp-6: 1.5rem;    --sp-8: 2rem;
+
+      --r-sm: 4px;   --r-md: 8px;   --r-lg: 12px;   --r-xl: 16px;   --r-full: 9999px;
+      --shadow-sm:  0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:  0 4px 12px rgba(0,0,0,.1);
+      --shadow-lg:  0 8px 24px rgba(0,0,0,.12);
+      --t-base:   250ms ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: var(--sp-8) 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--sp-6);
+    }
+
+    header {
+      margin-bottom: var(--sp-8);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: var(--sp-4);
+    }
+
+    h1 {
+      font-size: var(--text-2xl);
+      color: #fff;
+      margin-bottom: var(--sp-2);
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      color: #fff;
+      margin-top: var(--sp-8);
+      margin-bottom: var(--sp-4);
+      border-left: 4px solid var(--color-accent);
+      padding-left: var(--sp-3);
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      color: #fff;
+      margin-top: var(--sp-6);
+      margin-bottom: var(--sp-2);
+    }
+
+    p {
+      margin-bottom: var(--sp-4);
+      color: var(--color-text);
+    }
+
+    ul, ol {
+      margin-bottom: var(--sp-4);
+      padding-left: var(--sp-6);
+    }
+
+    li {
+      margin-bottom: var(--sp-2);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: var(--r-sm);
+      font-size: var(--text-sm);
+    }
+
+    pre {
+      font-family: var(--font-mono);
+      background-color: #0b0f19;
+      padding: var(--sp-4);
+      border-radius: var(--r-md);
+      border: 1px solid var(--color-border);
+      overflow-x: auto;
+      margin-bottom: var(--sp-4);
+      font-size: var(--text-sm);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-6);
+      margin-bottom: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .alert {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+      padding: var(--sp-4);
+      border-radius: var(--r-md);
+      border-left: 4px solid;
+      margin-bottom: var(--sp-4);
+    }
+
+    .alert-info    { background: #1e293b; border-color: var(--color-accent); color: var(--color-text); }
+    .alert-warning { background: #451a03; border-color: var(--color-warning); color: var(--color-text); }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px var(--sp-2);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      border-radius: var(--r-full);
+      line-height: 1.6;
+    }
+    .badge-blue    { background: #1e3a8a; color: #dbeafe; }
+    .badge-green   { background: #064e3b; color: #dcfce7; }
+  </style>
+</head>
+<body>
+  <div class="container animate-slide-up">
+    <header>
+      <h1>Kế Hoạch Triển Khai v2 - Khắc Phục 5 Vấn Đề Kỹ Thuật</h1>
+      <p>Bản sửa đổi kế hoạch dựa trên 5 phản hồi kỹ thuật về HMAC Contract, QR Code local, Polling Cleanup, Memory Cleanup, và Data thật trên Fake Gateway UI.</p>
+    </header>
+
+    <div class="alert alert-warning">
+      <strong>QUAN TRỌNG:</strong>
+      <p style="margin: 0;">Mọi chỉnh sửa chỉ giới hạn trong phạm vi 5 vấn đề dưới đây. Không thay đổi hoặc chỉnh sửa bất kỳ nghiệp vụ nào khác ngoài phạm vi này.</p>
+    </div>
+
+    <h2>Vấn đề 1: Thống nhất HMAC Signature Contract</h2>
+    <div class="card">
+      <p>Thống nhất cơ chế ký HMAC SHA256 cho Callback IPN từ Fake Gateway về Main Backend:</p>
+      <ul>
+        <li><strong>Payload ký & gửi đi:</strong> <code>{ paymentRequestId, bookingId, status, resolvedAt }</code> (Thứ tự key được sắp xếp cố định).</li>
+        <li><strong>Thuộc tính Status:</strong> Nhận giá trị <code>success</code> hoặc <code>failed</code> (chữ thường).</li>
+        <li><strong>Header chứa chữ ký:</strong> <code>X-Gateway-Signature: &lt;signature&gt;</code>.</li>
+        <li><strong>Xác thực phía Main Backend:</strong> Sử dụng <code>crypto.timingSafeEqual</code> để chống timing attack.</li>
+        <li><strong>Biến môi trường dùng chung:</strong> <code>CALLBACK_SIGNATURE_SECRET</code> ở cả 2 phía.</li>
+      </ul>
+      <p>Cần cập nhật các file:</p>
+      <ul>
+        <li><code>fake-payment-gateway/backend/src/services/callback.service.js</code> (Ký và gửi callback với header và body mới).</li>
+        <li><code>backend/src/validations/payment.validation.js</code> (Sửa <code>callbackSchema</code> để chỉ validate 4 trường mới trong body).</li>
+        <li><code>backend/src/controllers/payment.controller.js</code> (Lấy signature từ headers <code>x-gateway-signature</code> truyền vào service).</li>
+        <li><code>backend/src/services/payment.service.js</code> (Xác thực chữ ký timingSafeEqual, đơn giản hóa <code>finalizeSuccessfulPayment</code> và <code>finalizeUnsuccessfulPayment</code> để không check các trường cũ).</li>
+      </ul>
+    </div>
+
+    <h2>Vấn đề 2: QR Code bằng Thư viện Local</h2>
+    <div class="card">
+      <p>Loại bỏ hoàn toàn việc gọi API online từ <code>qrserver.com</code> vì nguy cơ lỗi khi không có mạng/CI.</p>
+      <ul>
+        <li>Cài đặt các thư viện: <code>react-native-qrcode-svg</code> và <code>react-native-svg</code> trong Expo app.</li>
+        <li>Cập nhật file <code>mobile-app/app/(user)/booking/checkout.tsx</code> để import component <code>QRCode</code> từ <code>react-native-qrcode-svg</code> và hiển thị mã QR trực tiếp tại local.</li>
+      </ul>
+    </div>
+
+    <h2>Vấn đề 3: Polling & Countdown Cleanup trên Mobile App</h2>
+    <div class="card">
+      <p>Tránh memory leak và lỗi cập nhật state trên unmounted component bằng cách thêm cleanup triệt để:</p>
+      <ul>
+        <li>Cập nhật <code>checkout.tsx</code> để thực hiện clear interval khi unmount hoặc khi trạng thái chuyển sang trạng thái cuối cùng (success/failed/expired/cancelled).</li>
+        <li>Tách biệt polling trạng thái và countdown timer thành 2 hook <code>useEffect</code> riêng biệt để quản lý cleanup rõ ràng.</li>
+      </ul>
+    </div>
+
+    <h2>Vấn đề 4: Tự Động Dọn Dẹp Bộ Nhớ (Memory Cleanup) trên Fake Gateway</h2>
+    <div class="card">
+      <p>Tránh tràn RAM khi Fake Gateway chạy trong thời gian dài bằng cơ chế dọn dẹp định kỳ:</p>
+      <ul>
+        <li>Thêm hàm dọn dẹp vào cuối file <code>fake-payment-gateway/backend/src/configs/memoryDb.js</code>.</li>
+        <li>Chạy <code>setInterval</code> định kỳ mỗi 10 phút, xóa toàn bộ giao dịch hết hạn hoặc cũ hơn 1 giờ (60 phút).</li>
+      </ul>
+    </div>
+
+    <h2>Vấn đề 5: Hiển Thị Dữ Liệu Thật trên Fake Gateway UI</h2>
+    <div class="card">
+      <p>Loại bỏ hoàn toàn cơ chế sinh ngẫu nhiên thông tin chi tiết đặt vé. Sử dụng dữ liệu thật được truyền sang từ Backend chính:</p>
+      <ul>
+        <li><strong>Main Backend (payment.service.js):</strong> Khi gọi tạo session sang Fake Gateway, tự động <code>.populate()</code> thông tin User, Movie, Room từ Booking để lấy các trường: <code>userName</code>, <code>movieTitle</code>, <code>showtimeAt</code>, <code>roomName</code>, <code>seats</code> gửi sang Fake Gateway.</li>
+        <li><strong>Fake Gateway Backend (gatewayPayment.service.js):</strong> Chỉ nhận dữ liệu từ request body và lưu trực tiếp vào Map in-memory, không tự sinh ngẫu nhiên.</li>
+        <li><strong>Fake Gateway UI:</strong> Hiển thị trực tiếp dữ liệu thật. Sửa <code>App.jsx</code> và các component liên quan để ánh xạ chính xác thông tin thật này.</li>
+      </ul>
+    </div>
+
+    <h2>3. Kế Hoạch Xác Minh (Verification Plan)</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Verify HMAC:</strong> Bấm Approve trên Gateway UI → Quan sát logs callback thành công 200 trên backend chính, đảm bảo không gặp lỗi signature 401.</li>
+        <li><strong>Verify QR Code:</strong> Chạy mobile app trên môi trường giả lập (hoặc tắt internet giả lập) để xem QR có hiển thị ngay lập tức từ thư viện local hay không.</li>
+        <li><strong>Verify Cleanup:</strong> Điều hướng qua lại giữa màn hình checkout và màn hình chọn ghế nhiều lần, kiểm tra xem có xuất hiện lỗi log memory leak hay không.</li>
+        <li><strong>Verify UI Data:</strong> Đặt vé với phim "Dune: Part Two", ghế "D5, D6" → Mở VeriPay Admin kiểm tra xem UI có hiển thị đúng phim "Dune: Part Two" và ghế "D5, D6" hay không.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

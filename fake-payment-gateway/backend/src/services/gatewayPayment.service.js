@@ -1,5 +1,5 @@
 const QRCode = require('qrcode');
-const GatewayPayment = require('../models/GatewayPayment');
+const { paymentRequests } = require('../configs/memoryDb');
 const ApiError = require('../utils/apiError');
 const env = require('../configs/env');
 const {
@@ -20,6 +20,63 @@ const {
 } = require('./mockBankAccount.service');
 const { sendPaymentCallback } = require('./callback.service');
 
+// Mock Data Pool
+const MOCK_MOVIES = [
+  'Avengers: Endgame',
+  'Spider-Man: No Way Home',
+  'Dune: Part Two',
+  'Oppenheimer',
+  'Inside Out 2',
+  'Interstellar',
+  'The Batman',
+  'Godzilla x Kong'
+];
+const MOCK_CINEMAS = [
+  'CGV Vincom Center',
+  'Lotte Cinema Landmark',
+  'Galaxy Nguyễn Du',
+  'BHD Star Bitexco',
+  'CGV Aeon Mall'
+];
+const MOCK_NAMES = [
+  'Nguyễn Văn A',
+  'Trần Thị B',
+  'Lê Văn C',
+  'Phạm Thị D',
+  'Hoàng Văn E',
+  'Nguyễn Trần ABC',
+  'Lê Thị XYZ',
+  'Phạm Văn DEF'
+];
+const MOCK_SEATS = [
+  ['D5', 'D6'],
+  ['A1', 'A2', 'A3'],
+  ['G10', 'G11'],
+  ['E1', 'E2'],
+  ['C3', 'C4'],
+  ['B2', 'B3']
+];
+
+const generateMockInfo = () => {
+  const movie = MOCK_MOVIES[Math.floor(Math.random() * MOCK_MOVIES.length)];
+  const cinema = MOCK_CINEMAS[Math.floor(Math.random() * MOCK_CINEMAS.length)];
+  const customerName = MOCK_NAMES[Math.floor(Math.random() * MOCK_NAMES.length)];
+  const seats = MOCK_SEATS[Math.floor(Math.random() * MOCK_SEATS.length)];
+  const room = `Phòng 0${Math.floor(Math.random() * 8) + 1}`;
+  const phone = '09' + Math.floor(10000000 + Math.random() * 90000000);
+  const email = `${customerName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/\s+/g, '')}@example.com`;
+  
+  return {
+    customerName,
+    phone,
+    email,
+    movieTitle: movie,
+    cinema,
+    room,
+    seats,
+  };
+};
+
 const buildCreateSessionPayload = (input) => ({
   paymentId: input.paymentId,
   bookingId: input.bookingId,
@@ -34,7 +91,7 @@ const buildCreateSessionPayload = (input) => ({
 });
 
 const getPaymentByIdOrThrow = async (paymentId) => {
-  const payment = await GatewayPayment.findOne({ paymentId }).exec();
+  const payment = paymentRequests.get(paymentId);
 
   if (!payment) {
     throw ApiError.notFound('Gateway payment not found', 'PAYMENT_NOT_FOUND');
@@ -63,6 +120,14 @@ const mapPaymentResponse = (payment, baseUrl = env.gatewayBaseUrl) => ({
   failureReason: payment.failureReason,
   createdAt: payment.createdAt,
   updatedAt: payment.updatedAt,
+  // Thêm các trường mock để FE sử dụng
+  customerName: payment.customerName,
+  phone: payment.phone,
+  email: payment.email,
+  movieTitle: payment.movieTitle,
+  cinema: payment.cinema,
+  room: payment.room,
+  seats: payment.seats,
 });
 
 const expirePaymentIfNeeded = async (payment) => {
@@ -122,11 +187,7 @@ const createPaymentSession = async ({ input, baseUrl }) => {
     );
   }
 
-  const existingPayment = await GatewayPayment.findOne({
-    paymentId: input.paymentId,
-  })
-    .lean()
-    .exec();
+  const existingPayment = paymentRequests.get(input.paymentId);
 
   if (existingPayment) {
     throw ApiError.conflict(
@@ -141,7 +202,9 @@ const createPaymentSession = async ({ input, baseUrl }) => {
     secret: env.mainAppSignatureSecret,
   });
 
-  const payment = await GatewayPayment.create({
+  const mockInfo = generateMockInfo();
+
+  const payment = {
     paymentId: input.paymentId,
     bookingId: input.bookingId,
     amount: input.amount,
@@ -156,7 +219,19 @@ const createPaymentSession = async ({ input, baseUrl }) => {
     requestSignature: signature,
     requestCanonicalString: canonicalString,
     requestPayload: createSessionPayload,
-  });
+    
+    // Mock details for Frontend UI
+    ...mockInfo,
+
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    save: async function () {
+      this.updatedAt = new Date();
+      return this;
+    }
+  };
+
+  paymentRequests.set(input.paymentId, payment);
 
   return mapPaymentResponse(payment, baseUrl);
 };

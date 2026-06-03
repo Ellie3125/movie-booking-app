@@ -32,6 +32,13 @@ router.post(
   paymentController.payBill
 );
 
+router.get(
+  '/:paymentId/status',
+  authMiddleware.protect,
+  validate(paymentValidation.paymentIdParamSchema),
+  paymentController.getPaymentStatus
+);
+
 router.post(
   '/callback',
   validate(paymentValidation.callbackSchema),
@@ -41,3 +48,4 @@ router.post(
 router.get('/result', paymentController.paymentResultPage);
 
 module.exports = router;
+

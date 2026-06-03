@@ -818,6 +818,19 @@ export async function payBookingBill(
   });
 }
 
+export async function getPaymentStatus(token: string, paymentId: string) {
+  return apiRequest<{
+    paymentId: string;
+    bookingId: string;
+    status: string;
+    amount: number;
+    currency: string;
+    paidAt: string | null;
+    expiresAt: string | null;
+  }>(`/payments/${paymentId}/status`, { token });
+}
+
+
 // ─── Tickets ──────────────────────────────────────────────────────────────────
 
 export async function fetchMyTickets(token: string) {

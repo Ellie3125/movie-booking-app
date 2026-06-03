@@ -68,7 +68,15 @@ const callbackSchema = {
   }),
 };
 
+const paymentIdParamSchema = {
+  params: strictObject({
+    paymentId: Joi.string().trim().required().label('paymentId'),
+  }),
+};
+
 module.exports = {
   payBillSchema,
   callbackSchema,
+  paymentIdParamSchema,
 };
+

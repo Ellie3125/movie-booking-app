@@ -25,8 +25,6 @@ import {
   buildSeatVariantLookup,
   formatSeatVisualLabel,
   roomHasVipSeats,
-  seatStatusTokens,
-  seatVariantTokens,
   type SeatVisualStatus,
   type SeatVisualVariant,
 } from '@/lib/seat-appearance';
@@ -120,48 +118,68 @@ function SeatLegendPreview({
   status: SeatVisualStatus;
   compact: boolean;
 }) {
-  const statusToken = seatStatusTokens[status];
-  const variantToken = seatVariantTokens[variant];
-  const width = compact ? 36 : 44;
-  const height = compact ? 32 : 38;
-  const accentHeight = compact ? 4 : 5;
-  const silhouetteHeight = compact ? 7 : 8;
-  const silhouetteWidth = variantToken.previewWide ? (compact ? 18 : 22) : compact ? 12 : 14;
+  const width = compact ? 32 : 36;
+  const height = compact ? 32 : 36;
+
+  const isReserved = status === 'booked' || status === 'held';
+  const isAvailable = status === 'available';
+  const isSelected = status === 'selected';
+
+  let bgColor = '#E8F0FE';
+  let textColor = '#0041c8';
+  let borderColor = 'transparent';
+  let borderWidth = 0;
+  let fontWeight: '500' | '700' = '500';
+  let opacity = 1;
+
+  if (isSelected) {
+    bgColor = '#0041c8';
+    textColor = '#ffffff';
+    fontWeight = '700';
+  } else if (isReserved) {
+    bgColor = '#c3c5d9';
+    textColor = '#9e9e9e';
+    opacity = 0.5;
+  } else if (isAvailable) {
+    if (variant === 'vip') {
+      bgColor = '#D1E3FF';
+      textColor = '#0041c8';
+      borderColor = 'rgba(0, 65, 200, 0.2)';
+      borderWidth = 1;
+      fontWeight = '700';
+    } else if (variant === 'couple') {
+      bgColor = '#F3E5F5';
+      textColor = '#6a4a00';
+    }
+  }
 
   return (
     <View
-      style={[
-        styles.legendSeatFrame,
-        {
-          width,
-          height,
-          backgroundColor: statusToken.fill,
-          borderColor: statusToken.border,
-        },
-      ]}>
-      <View
-        style={[
-          styles.legendSeatAccent,
-          { height: accentHeight, backgroundColor: variantToken.accent },
-        ]}
-      />
-      {variant === 'vip' ? (
-        <Text style={[styles.legendSeatBadge, { color: variantToken.accent }]}>VIP</Text>
-      ) : null}
-      <Text style={[styles.legendSeatText, { color: statusToken.text }]}>A1</Text>
-      <View
-        style={[
-          styles.legendSeatSilhouette,
-          {
-            width: silhouetteWidth,
-            height: silhouetteHeight,
-            backgroundColor: variantToken.accentSoft,
-          },
-        ]}>
-        {variant === 'couple' ? (
-          <View style={[styles.legendSeatDivider, { backgroundColor: variantToken.accent }]} />
-        ) : null}
-      </View>
+      style={{
+        width: variant === 'couple' ? width * 2 + 4 : width,
+        height,
+        borderRadius: variant === 'couple' ? 6 : 4,
+        borderColor,
+        borderWidth,
+        backgroundColor: bgColor,
+        opacity,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      {isReserved ? (
+        <Text style={{ color: textColor, fontWeight: '700', fontSize: compact ? 9 : 11 }}>
+          X
+        </Text>
+      ) : (
+        <Text
+          style={{
+            color: textColor,
+            fontSize: compact ? 9 : 11,
+            fontWeight,
+          }}>
+          A1
+        </Text>
+      )}
     </View>
   );
 }
@@ -308,7 +326,8 @@ export default function SeatSelectionScreen() {
     if (showtimeId && refreshShowtime) {
       refreshShowtime(showtimeId);
     }
-  }, [showtimeId, refreshShowtime]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showtimeId]);
 
   useEffect(() => {
     setSelectedCoordinates([]);

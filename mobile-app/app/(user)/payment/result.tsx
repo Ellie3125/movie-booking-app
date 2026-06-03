@@ -28,7 +28,8 @@ export default function PaymentResultScreen() {
     status?: string;
     transactionCode?: string;
   }>();
-  const { completeRemoteCheckout } = useAppStore();
+  
+  const { completeRemoteCheckout, bookings, movies, cinemas, showtimes } = useAppStore();
   const colors = getTonePalette('user');
   const [error, setError] = useState('');
   const paramsKey = JSON.stringify(params);
@@ -48,6 +49,23 @@ export default function PaymentResultScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paramsKey]);
 
+  // Tìm thông tin booking để hiển thị chi tiết lỗi nếu có
+  const booking = useMemo(() => {
+    return bookings.find((b) => b.id === paymentResult.bookingId);
+  }, [bookings, paymentResult.bookingId]);
+
+  const movie = useMemo(() => {
+    return movies.find((m) => m.id === booking?.movieId);
+  }, [movies, booking?.movieId]);
+
+  const showtime = useMemo(() => {
+    return showtimes.find((s) => s.id === booking?.showtimeId);
+  }, [showtimes, booking?.showtimeId]);
+
+  const cinema = useMemo(() => {
+    return cinemas.find((c) => c.id === showtime?.cinemaId);
+  }, [cinemas, showtime?.cinemaId]);
+
   useEffect(() => {
     let active = true;
 
@@ -58,16 +76,16 @@ export default function PaymentResultScreen() {
       }
 
       try {
-        const booking = await completeRemoteCheckout(paymentResult.bookingId || '');
+        const confirmedBooking = await completeRemoteCheckout(paymentResult.bookingId || '');
 
         if (!active) {
           return;
         }
 
-        if (booking && (booking.paidAt || booking.status === 'confirmed')) {
+        if (confirmedBooking && (confirmedBooking.paidAt || confirmedBooking.status === 'confirmed')) {
           router.replace({
             pathname: '/(user)/bookings/[bookingId]',
-            params: { bookingId: booking.id },
+            params: { bookingId: confirmedBooking.id },
           });
           return;
         }
@@ -100,14 +118,43 @@ export default function PaymentResultScreen() {
         <View style={styles.centerBlock}>
           {error ? null : <ActivityIndicator color={colors.accent} size="large" />}
           <Text style={[styles.title, { color: colors.text }]}>
-            {error ? 'Thanh toán chưa hoàn tất' : 'Đang xác nhận thanh toán'}
+            {error ? 'Thanh toán thất bại / Bị hủy' : 'Đang xác nhận thanh toán'}
           </Text>
           <Text style={[styles.copy, { color: colors.muted }]}>
             {error || 'Hệ thống đang đồng bộ kết quả với backend và cập nhật vé của bạn.'}
           </Text>
         </View>
+
+        {error && booking ? (
+          <View style={[styles.detailsCard, { borderColor: colors.border }]}>
+            <Text style={[styles.detailsTitle, { color: colors.text }]}>
+              Chi tiết giao dịch bị lỗi:
+            </Text>
+            <Text style={[styles.detailsText, { color: colors.muted }]}>
+              Mã đặt vé: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{booking.id}</Text>
+            </Text>
+            <Text style={[styles.detailsText, { color: colors.muted }]}>
+              Phim: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{movie?.title || 'Đang cập nhật'}</Text>
+            </Text>
+            <Text style={[styles.detailsText, { color: colors.muted }]}>
+              Rạp: {cinema?.name || 'Đang cập nhật'}
+            </Text>
+            {showtime ? (
+              <Text style={[styles.detailsText, { color: colors.muted }]}>
+                Suất chiếu: {new Date(showtime.startTime).toLocaleString('vi-VN')}
+              </Text>
+            ) : null}
+            <Text style={[styles.detailsText, { color: colors.muted }]}>
+              Ghế đã chọn: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{booking.seats.map(s => s.seatLabel).join(', ')}</Text>
+            </Text>
+            <Text style={[styles.detailsText, { color: colors.muted }]}>
+              Tổng tiền: <Text style={{ color: colors.accent, fontWeight: 'bold' }}>{booking.totalPrice.toLocaleString('vi-VN')} VND</Text>
+            </Text>
+          </View>
+        ) : null}
+
         {error ? (
-          <>
+          <View style={{ marginTop: 20, gap: 10 }}>
             {paymentResult.bookingId ? (
               <ActionButton
                 tone="user"
@@ -126,7 +173,7 @@ export default function PaymentResultScreen() {
               variant="secondary"
               onPress={() => router.replace('/(user)/(tabs)/bookings')}
             />
-          </>
+          </View>
         ) : null}
       </SectionCard>
     </PageScroll>
@@ -149,5 +196,22 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: Fonts.sans,
     textAlign: 'center',
+  },
+  detailsCard: {
+    marginTop: 15,
+    padding: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    gap: 8,
+  },
+  detailsTitle: {
+    fontSize: 15,
+    fontFamily: Fonts.sansBold,
+    marginBottom: 5,
+  },
+  detailsText: {
+    fontSize: 14,
+    fontFamily: Fonts.sans,
   },
 });
