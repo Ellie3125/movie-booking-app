@@ -3,14 +3,15 @@ from __future__ import annotations
 import json
 import logging
 import re
+import contextvars
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
 
-# ── LangChain core ───────────────────────────────────────────────────────────
+# ── LangChain 1.3.x core ─────────────────────────────────────────────────────
 from langchain.agents import create_agent
 from langchain.agents.middleware import wrap_model_call, ModelRequest, ModelResponse
-from langchain.tools import ToolRuntime, tool
+from langchain.tools import tool
 from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.output_parsers import StrOutputParser
@@ -20,16 +21,18 @@ from typing_extensions import TypedDict
 
 # ── LangChain Groq ────────────────────────────────────────────────────────────
 from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 from typing_extensions import Annotated, TypedDict
 from langgraph.graph.message import add_messages
 from langchain_core.messages import BaseMessage
 
 # ── Local DB ──────────────────────────────────────────────────────────────────
-from backend.seeds.chatresponse import UserRepository, MovieRepository
+from src.data.database import UserRepository, MovieRepository
 
 logger = logging.getLogger(__name__)
-
+_ctx_user_id  = contextvars.ContextVar("user_id",  default="anon")
+_ctx_username = contextvars.ContextVar("username", default="anonymous")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 1. STORE + STATE SCHEMA
@@ -71,6 +74,7 @@ class MovieMemoryData(TypedDict):
     disliked_movies:  list   # ["phim X", ...]
     total_sessions:   int
     last_active:      str
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 2. LTM HELPERS
@@ -131,7 +135,7 @@ def _ltm_summary(ltm: dict) -> str:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 3. SHORT-TERM SESSION MEMORY  (in-RAM)
+# 3. LONG-TERM SESSION MEMORY  (in-RAM)
 # ══════════════════════════════════════════════════════════════════════════════
 
 @dataclass
@@ -238,13 +242,10 @@ def search_movies(query: str) -> str:
 
 
 @tool
-def get_user_profile(runtime: ToolRuntime[Context]) -> str:
-    """Lấy hồ sơ người dùng hiện tại: thể loại yêu thích, lịch sử xem."""
-    assert runtime.store is not None
-    uid  = int(runtime.context.user_id) if runtime.context.user_id != "anon" else None
+def get_user_profile() -> str:
+    """Get current user profile: favorite genres and watch history."""
+    uid  = int(_ctx_user_id.get()) if _ctx_user_id.get() != "anon" else None
     user = UserRepository.find_by_id(uid) if uid else None
-    if not user:
-        return "Chưa có người dùng đăng nhập."
     watched = [
         f"{m.title} ({m.year})"
         for mid in user.watch_history
@@ -265,13 +266,11 @@ def get_user_profile(runtime: ToolRuntime[Context]) -> str:
 
 
 @tool
-def get_recommendations(limit: str = "6", runtime: ToolRuntime[Context] = None) -> str:
-    """Gợi ý phim cá nhân cho user hiện tại. Input: số lượng (mặc định 6)."""
-    uid = None
-    if runtime and runtime.context.user_id != "anon":
-        uid = int(runtime.context.user_id)
+def get_recommendations(limit: str = "6") -> str:
+    """Get 6 personalized movie recommendations for the current logged-in user."""
+    uid = int(_ctx_user_id.get()) if _ctx_user_id.get() != "anon" else None
     if not uid:
-        return "Cần đăng nhập để nhận gợi ý cá nhân."
+        return "Login required."
     try:
         n = min(int(limit), 10)
     except ValueError:
@@ -289,9 +288,9 @@ def get_recommendations(limit: str = "6", runtime: ToolRuntime[Context] = None) 
 
 
 @tool
-def get_movie_detail(movie_id: str) -> str:
-    """Lấy chi tiết phim theo MongoDB _id string."""
-    m = next((x for x in MovieRepository.find_all() if x.id == movie_id), None)
+def get_movie_detail(movie_id: int) -> str:
+    """Lấy chi tiết một phim theo ID. Input: số nguyên, ví dụ '5'."""
+    m = MovieRepository.find_by_id(movie_id)
     if not m:
         return f"Không tìm thấy phim ID={movie_id}."
     return (
@@ -305,26 +304,29 @@ def get_movie_detail(movie_id: str) -> str:
 
 
 @tool
-def get_movie_memory(runtime: ToolRuntime[Context]) -> str:
-    """Đọc bộ nhớ phim dài hạn của user (phim đã thảo luận, thể loại yêu thích)."""
-    assert runtime.store is not None
-    item = runtime.store.get(("movie_memory",), runtime.context.username)
+def get_movie_memory() -> str:
+    """Read user's long-term movie memory: discussed movies and favorite genres."""
+    username = _ctx_username.get()
+    item = store.get(("movie_memory",), username)
     if not item:
-        return "Chưa có lịch sử phim dài hạn nào."
+        return "No long-term memory found."
     return str(item.value)
 
 
 @tool
-def save_movie_memory(movie_memory: MovieMemoryData, runtime: ToolRuntime[Context]) -> str:
-    """Lưu/cập nhật bộ nhớ phim dài hạn của user vào store."""
-    assert runtime.store is not None
-    runtime.store.put(
-        ("movie_memory",),
-        runtime.context.username,
-        dict(movie_memory),
-    )
-    return "Đã lưu bộ nhớ phim thành công."
-
+def save_movie_memory(movie_memory: str) -> str:
+    """Save user's long-term memory. Input: JSON string with fields:
+    discussed_movies (list), preferred_genres (list), 
+    disliked_movies (list), total_sessions (int), last_active (str).
+    Example: '{"discussed_movies": [], "preferred_genres": ["Hành động"]}'
+    """
+    username = _ctx_username.get()
+    try:
+        data = json.loads(movie_memory)
+    except json.JSONDecodeError:
+        return "Error: invalid JSON input."
+    store.put(("movie_memory",), username, data)
+    return "Memory saved successfully."
 
 TOOLS = [
     search_movies,
@@ -332,7 +334,6 @@ TOOLS = [
     get_recommendations,
     get_movie_detail,
     get_movie_memory,
-    save_movie_memory,
 ]
 
 
@@ -340,16 +341,11 @@ TOOLS = [
 # 5. LLM + MIDDLEWARE (dynamic model selection)
 # ══════════════════════════════════════════════════════════════════════════════
 
-_llm_fast = ChatGroq(model="llama-3.1-8b-instant",     max_tokens=1024, temperature=0.7)
-_llm_full = ChatGroq(model="llama-3.3-70b-versatile",  max_tokens=1536, temperature=0.7)
-
-
-@wrap_model_call
-async def dynamic_model_selection(request: ModelRequest, handler) -> ModelResponse:
-    msg_count = len(request.state.get("messages", []))
-    model     = _llm_full if msg_count > 6 else _llm_fast
-    return await handler(request.override(model=model))
-
+_llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0.7,
+    max_output_tokens=1536,
+)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 6. SYSTEM PROMPT
@@ -471,14 +467,14 @@ async def chat(
 
     system_prompt = _build_system(user_id, session_mem, username)
 
-    # Tạo agent với create_agent + middleware + store + context_schema
+    # Tạo agent với create_agent + middleware + store + state_schema
     agent: Runnable = create_agent(
-        model=_llm_fast,                    # default model (middleware sẽ override)
-        tools=TOOLS,
+        model=_llm,                    # default model (middleware sẽ override)
+        tools=TOOLS, 
         system_prompt=system_prompt,
         store=store,                        # InMemoryStore cho LTM
         state_schema=Context,             # schema để agent biết context type
-        middleware=[dynamic_model_selection],
+        # middleware=[dynamic_model_selection],
     )
 
     # Lọc history — chỉ giữ HumanMessage và AIMessage thuần (bỏ tool messages)
@@ -490,11 +486,14 @@ async def chat(
     ]
     input_messages = list(history_msgs) + [HumanMessage(content=message)]
 
+    _ctx_user_id.set(uid_str)
+    _ctx_username.set(username)
+
     # Invoke agent — truyền context để tools truy cập store đúng user
     result = await agent.ainvoke(
         {"messages": input_messages},
-        state=Context(messages=input_messages, 
-                      user_id=uid_str, username=username),
+        # state=Context(messages=input_messages, 
+        #               user_id=uid_str, username=username),
     )
 
     # Trích output
