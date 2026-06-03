@@ -30,6 +30,10 @@ export default function UsersLayout() {
       }}>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen
+        name="profile"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="movies/[id]"
         options={{ headerShown: true, title: 'Chi tiết phim', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
       />
@@ -44,6 +48,10 @@ export default function UsersLayout() {
       <Stack.Screen
         name="booking/checkout"
         options={{ headerShown: true, title: 'Thanh toán', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
+      />
+      <Stack.Screen
+        name="payment/result"
+        options={{ headerShown: true, title: 'Kết quả thanh toán', headerTitleStyle: { fontFamily: Fonts.sansBold } }}
       />
       <Stack.Screen
         name="bookings/[bookingId]"

@@ -16,8 +16,8 @@ export const userService = {
     return response.data;
   },
 
-  changeStatus: async (id: string, status: string) => {
-    const response = await api.patch(`/users/${id}/status`, { status });
+  changeStatus: async (id: string, isActive: boolean) => {
+    const response = await api.patch(`/users/${id}/status`, { isActive });
     return response.data;
   },
 };

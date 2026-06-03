@@ -1,0 +1,242 @@
+/* ============================================================
+ * VeriPay Admin — Design System
+ * Based on: giao diện thanh toán/DESIGN.md
+ * Aesthetic: Corporate / Modern — utility, speed, trust
+ * ============================================================ */
+
+/* ---------- Google Font ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Surface & Background */
+  --surface:                 #f8f9fb;
+  --surface-dim:             #d9dadc;
+  --surface-bright:          #f8f9fb;
+  --surface-container-lowest:#ffffff;
+  --surface-container-low:   #f3f4f6;
+  --surface-container:       #edeef0;
+  --surface-container-high:  #e7e8ea;
+  --surface-container-highest:#e1e2e4;
+
+  /* On Surface */
+  --on-surface:              #191c1e;
+  --on-surface-variant:      #434655;
+  --inverse-surface:         #2e3132;
+  --inverse-on-surface:      #f0f1f3;
+
+  /* Outline */
+  --outline:                 #737686;
+  --outline-variant:         #c3c6d7;
+
+  /* Primary */
+  --primary:                 #004ac6;
+  --on-primary:              #ffffff;
+  --primary-container:       #2563eb;
+  --on-primary-container:    #eeefff;
+  --inverse-primary:         #b4c5ff;
+  --surface-tint:            #0053db;
+
+  /* Secondary */
+  --secondary:               #585f6c;
+  --on-secondary:            #ffffff;
+  --secondary-container:     #dce2f3;
+  --on-secondary-container:  #5e6572;
+
+  /* Tertiary */
+  --tertiary:                #4e565d;
+  --on-tertiary:             #ffffff;
+  --tertiary-container:      #676e76;
+  --on-tertiary-container:   #eaf1fa;
+
+  /* Error */
+  --error:                   #DC2626;
+  --on-error:                #ffffff;
+  --error-container:         #ffdad6;
+  --on-error-container:      #93000a;
+  --error-muted:             #FEE2E2;
+
+  /* Status */
+  --success:                 #16A34A;
+  --success-muted:           #DCFCE7;
+  --success-text:            #166534;
+  --warning:                 #F59E0B;
+  --warning-muted:           #FEF3C7;
+  --warning-text:            #92400E;
+
+  /* Text */
+  --text-primary:            #111827;
+  --border-subtle:           #E5E7EB;
+
+  /* Spacing */
+  --sp-base:    4px;
+  --sp-gutter:  20px;
+  --sp-margin:  24px;
+  --sp-card:    24px;
+  --sp-item:    12px;
+  --max-width:  1100px;
+
+  /* Radius */
+  --r-sm:   0.25rem;
+  --r-def:  0.5rem;
+  --r-md:   0.75rem;
+  --r-lg:   1rem;
+  --r-xl:   1.5rem;
+  --r-full: 9999px;
+
+  /* Shadows */
+  --shadow-panel: 0 10px 25px rgba(0, 0, 0, 0.05);
+  --shadow-sm:    0 1px 3px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  color: var(--on-surface);
+  background: var(--surface-container-low);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Typography ---------- */
+.text-display {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+}
+
+.text-headline-md {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.text-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.text-body-lg {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.text-body-md {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.text-label-sm {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.text-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+/* ---------- Utility ---------- */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Material icon sizing helper */
+.icon-sm { font-size: 16px !important; }
+.icon-md { font-size: 20px !important; }
+.icon-lg { font-size: 24px !important; }
+.icon-xl { font-size: 32px !important; }
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s var(--transition-base) both;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.3s var(--transition-base) both;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.3s var(--transition-base) both;
+}

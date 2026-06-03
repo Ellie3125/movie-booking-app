@@ -11,17 +11,17 @@ router.use(authMiddleware.protect);
 // Admin routes
 router.get(
   '/admin/all',
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   ticketController.listTicketsAdmin
 );
 router.get(
   '/admin/:ticketId',
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   ticketController.getTicketByIdAdmin
 );
 router.post(
   '/admin/:ticketId/use',
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   ticketController.markTicketAsUsed
 );
 

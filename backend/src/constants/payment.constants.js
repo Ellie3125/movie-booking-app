@@ -60,11 +60,6 @@ const PAYMENT_TRANSACTION_STATUS = {
   EXPIRED: 'expired',
 };
 
-const MOCK_BANK_ACCOUNT_STATUS = {
-  ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-};
-
 const CALLBACK_LOG_STATUS = {
   RECEIVED: 'RECEIVED',
   PROCESSED: 'PROCESSED',
@@ -73,15 +68,17 @@ const CALLBACK_LOG_STATUS = {
   FAILED: 'FAILED',
 };
 
-const GATEWAY_PAYMENT_FIELDS = [
+const GATEWAY_CREATE_SESSION_FIELDS = [
   'paymentId',
   'bookingId',
   'amount',
   'currency',
-  'expiredAt',
-  'receiverAccountNo',
+  'receiverBankCode',
+  'receiverAccountNumber',
+  'receiverAccountName',
   'callbackUrl',
   'returnUrl',
+  'expiredAt',
 ];
 
 const PAYMENT_CALLBACK_FIELDS = [
@@ -106,8 +103,7 @@ module.exports = {
   TICKET_STATUS,
   SEAT_TYPE,
   PAYMENT_TRANSACTION_STATUS,
-  MOCK_BANK_ACCOUNT_STATUS,
   CALLBACK_LOG_STATUS,
-  GATEWAY_PAYMENT_FIELDS,
+  GATEWAY_CREATE_SESSION_FIELDS,
   PAYMENT_CALLBACK_FIELDS,
 };

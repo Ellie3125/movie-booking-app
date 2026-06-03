@@ -9,7 +9,7 @@ const router = express.Router();
 router.post(
   '/',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(roomValidation.createRoomSchema),
   roomController.createRoom
 );
@@ -17,14 +17,14 @@ router.get('/', roomController.listRooms);
 router.put(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(roomValidation.updateRoomSchema),
   roomController.updateRoom
 );
 router.delete(
   '/:id',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   validate(roomValidation.roomIdParamSchema),
   roomController.deleteRoom
 );
@@ -33,14 +33,14 @@ router.get('/:id', roomController.getRoomById);
 router.get(
   '/:id/seat-layout',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   roomController.getSeatLayout
 );
 
 router.put(
   '/:id/seat-layout',
   authMiddleware.verifyAccessToken,
-  authMiddleware.requireRole('admin', 'staff'),
+  authMiddleware.requireRole('admin'),
   roomController.updateSeatLayout
 );
 

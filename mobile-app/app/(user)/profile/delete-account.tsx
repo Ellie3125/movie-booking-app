@@ -42,7 +42,11 @@ export default function DeleteAccountScreen() {
           onPress: async () => {
             setDeleting(true);
             const res = await deleteAccount({
+<<<<<<< HEAD
               password,
+=======
+              currentPassword: password,
+>>>>>>> main
               confirmation,
             });
             setDeleting(false);

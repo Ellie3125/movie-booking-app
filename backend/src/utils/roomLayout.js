@@ -55,7 +55,11 @@ const buildShowtimeSeatStatesFromRoomLayout = (
 ) => {
   const allSeats = flattenRoomSeats(seatLayout);
 
-  return allSeats.map((seat) => {
+  const bookableSeats = allSeats.filter(
+    (seat) => !['empty', 'aisle', 'space'].includes(seat.type)
+  );
+
+  return bookableSeats.map((seat) => {
     // Snapshot ALL fields for Showtime
     return {
       seatCode: seat.seatCode,

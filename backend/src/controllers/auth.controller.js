@@ -139,6 +139,53 @@ const updateProfile = asyncHandler(async (req, res) => {
   });
 });
 
+const updateNotificationPreferences = asyncHandler(async (req, res) => {
+  const data = await authService.updateNotificationPreferences(req.body, req.user);
+
+  return sendApiResponse(res, {
+    message: 'Notification preferences updated successfully',
+    data,
+  });
+});
+
+const updatePreferences = asyncHandler(async (req, res) => {
+  const data = await authService.updatePreferences(req.body, req.user);
+
+  return sendApiResponse(res, {
+    message: 'Preferences updated successfully',
+    data,
+  });
+});
+
+const deleteAccount = asyncHandler(async (req, res) => {
+  const data = await authService.deleteAccount(req.body, req.user);
+
+  clearRefreshTokenCookie(res);
+
+  return sendApiResponse(res, {
+    message: 'Account deleted successfully',
+    data,
+  });
+});
+
+const uploadAvatar = asyncHandler(async (req, res) => {
+  if (!req.file) {
+    return sendApiResponse(res, {
+      statusCode: 400,
+      message: 'No file uploaded',
+      errorCode: 'NO_FILE_UPLOADED',
+    });
+  }
+
+  const avatarUrl = `/uploads/avatars/${req.file.filename}`;
+  const data = await authService.updateProfile({ avatarUrl }, req.user);
+
+  return sendApiResponse(res, {
+    message: 'Avatar uploaded successfully',
+    data,
+  });
+});
+
 const getCurrentUser = asyncHandler(async (req, res) => {
   const data = await authService.getCurrentUser(req.user.id);
 
@@ -159,4 +206,8 @@ module.exports = {
   refreshToken,
   getCurrentUser,
   updateProfile,
+  updateNotificationPreferences,
+  updatePreferences,
+  deleteAccount,
+  uploadAvatar,
 };

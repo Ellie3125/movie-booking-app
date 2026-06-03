@@ -1,5 +1,12 @@
 # SKILLS.md - Kỹ năng của Agent
 
+## Luật ưu tiên cao nhất cho SPEC/Plans
+
+* Mọi task code xuất phát từ `<SPEC>` bắt buộc có 4 mục giải trình: **Autonomous Decisions**, **Deviations**, **Trade-offs**, **Context/Notes**.
+* Mọi specs và implementation plans mới trong dự án phải được viết/lưu bằng HTML.
+* Tài liệu HTML spec/plan phải dùng chung CSS variables/classes từ `.agents/skills/html-implement/css-patterns.md`.
+* Các luật trên đứng trước mọi workflow skill khác nếu có xung đột.
+
 ## Kỹ năng quy trình (Workflow Skills)
 
 Vị trí: `.agents/skills/workflow/`
@@ -148,6 +155,24 @@ Yêu cầu:
 ---
 
 ## Phần 2 & 3: Kỹ năng Frontend & Mobile
+
+### html-implement
+Vị trí: `.agents/skills/html-implement/`
+
+Sử dụng cho:
+* Tạo mới file HTML độc lập
+* Sửa hoặc mở rộng file HTML hiện có
+* Áp dụng CSS variables, utilities và component patterns có sẵn
+* Tối ưu token khi chỉnh HTML/CSS bằng cách dùng class pattern thay vì viết lại CSS dài
+
+Yêu cầu:
+* Luôn đọc `.agents/skills/html-implement/css-patterns.md` trước khi sửa HTML/CSS
+* Không tự tạo design tokens mới nếu pattern đã có
+* Khi sửa HTML, dùng thay đổi có mục tiêu (`str_replace`-style; trong Codex dùng `apply_patch` hunk nhỏ), không rewrite toàn bộ file
+* Ưu tiên class như `.btn-primary`, `.badge-green`, `.table`, `.table-wrap`, `.card`, `.input`
+* Kiểm tra checklist HTML/CSS/JS trước khi hoàn tất
+
+---
 
 ### ui-ux-pro-max
 Vị trí: `.agents/skills/ui-ux-pro-max/`

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import PageBreadCrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 import {
@@ -20,6 +21,30 @@ import { Modal } from "../../components/ui/modal";
 import { ConfirmationModal } from "../../components/ui/modal/ConfirmationModal";
 import { MovieDetailModal } from "../../components/ui/modal/MovieDetailModal";
 
+type MovieFormData = {
+  title: string;
+  duration: number;
+  status: string;
+  releaseDate: string;
+  endDate: string;
+  posterUrl: string;
+  backdropUrl: string;
+  trailerUrl: string;
+  genres: string[];
+};
+
+const defaultFormValues: MovieFormData = {
+  title: "",
+  duration: 120,
+  status: "now_showing",
+  releaseDate: new Date().toISOString().split("T")[0],
+  endDate: new Date(Date.now() + 30*24*60*60*1000).toISOString().split("T")[0],
+  posterUrl: "",
+  backdropUrl: "",
+  trailerUrl: "",
+  genres: [],
+};
+
 export default function Movies() {
   const [movies, setMovies] = useState<any[]>([]);
   const [genres, setGenres] = useState<string[]>([]);
@@ -30,17 +55,12 @@ export default function Movies() {
   // Form states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    title: "",
-    duration: 120,
-    status: "active",
-    releaseDate: "",
-    endDate: "",
-    posterUrl: "",
-    backdropUrl: "",
-    trailerUrl: "",
-    genres: [] as string[],
+
+  const { control, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<MovieFormData>({
+    defaultValues: defaultFormValues,
   });
+
+  const watchedGenres = watch("genres");
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -69,7 +89,7 @@ export default function Movies() {
   }, []);
 
   const handleEdit = (movie: any) => {
-    setFormData({
+    reset({
       title: movie.title,
       duration: movie.duration,
       status: movie.status || "active",
@@ -103,8 +123,7 @@ export default function Movies() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (formData: MovieFormData) => {
     try {
       if (editingId) {
         await movieService.updateMovie(editingId, formData);
@@ -121,12 +140,11 @@ export default function Movies() {
   };
 
   const toggleGenre = (g: string) => {
-    setFormData(prev => ({
-      ...prev,
-      genres: prev.genres.includes(g) 
-        ? prev.genres.filter(item => item !== g)
-        : [...prev.genres, g]
-    }));
+    const current = watchedGenres || [];
+    const updated = current.includes(g)
+      ? current.filter(item => item !== g)
+      : [...current, g];
+    setValue("genres", updated);
   };
 
   const filteredMovies = movies.filter(movie => {
@@ -162,17 +180,7 @@ export default function Movies() {
         </div>
         <Button onClick={() => {
           setEditingId(null);
-          setFormData({
-            title: "",
-            duration: 120,
-            status: "now_showing",
-            releaseDate: new Date().toISOString().split("T")[0],
-            endDate: new Date(Date.now() + 30*24*60*60*1000).toISOString().split("T")[0],
-            posterUrl: "",
-            backdropUrl: "",
-            trailerUrl: "",
-            genres: [],
-          });
+          reset(defaultFormValues);
           setIsModalOpen(true);
         }}>
           + Thêm phim
@@ -275,14 +283,22 @@ export default function Movies() {
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} className="max-w-[700px] p-8">
         <h2 className="text-xl font-bold mb-6 text-gray-800 dark:text-white">{editingId ? "Cập nhật phim" : "Thêm phim mới"}</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="grid grid-cols-2 gap-5">
             <div className="col-span-2">
               <Label>Tên phim</Label>
-              <Input
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                required
+              <Controller
+                name="title"
+                control={control}
+                rules={{ required: "Tên phim là bắt buộc" }}
+                render={({ field }) => (
+                  <Input
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={!!errors.title}
+                    hint={errors.title?.message}
+                  />
+                )}
               />
             </div>
           </div>
@@ -296,7 +312,7 @@ export default function Movies() {
                   type="button"
                   onClick={() => toggleGenre(g)}
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                    formData.genres.includes(g)
+                    (watchedGenres || []).includes(g)
                       ? "bg-brand-500 text-white shadow-sm"
                       : "bg-white border border-gray-200 text-gray-600 hover:border-brand-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                   }`}
@@ -310,68 +326,116 @@ export default function Movies() {
           <div className="grid grid-cols-2 gap-5">
             <div>
               <Label>Thời lượng (phút)</Label>
-              <Input
-                type="number"
-                value={formData.duration}
-                onChange={(e) => setFormData({ ...formData, duration: Number(e.target.value) })}
-                required
+              <Controller
+                name="duration"
+                control={control}
+                rules={{ required: "Thời lượng là bắt buộc", min: { value: 1, message: "Tối thiểu 1 phút" } }}
+                render={({ field }) => (
+                  <Input
+                    type="number"
+                    value={field.value}
+                    onChange={(e) => field.onChange(Number(e.target.value))}
+                    error={!!errors.duration}
+                    hint={errors.duration?.message}
+                  />
+                )}
               />
             </div>
             <div>
               <Label>Trạng thái</Label>
-              <Select
-                options={[
-                  { value: "now_showing", label: "Đang chiếu" },
-                  { value: "coming_soon", label: "Sắp chiếu" },
-                  { value: "ended", label: "Đã kết thúc" },
-                ]}
-                value={formData.status}
-                onChange={(val) => setFormData({ ...formData, status: val })}
+              <Controller
+                name="status"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    options={[
+                      { value: "now_showing", label: "Đang chiếu" },
+                      { value: "coming_soon", label: "Sắp chiếu" },
+                      { value: "ended", label: "Đã kết thúc" },
+                    ]}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-5">
             <div>
               <Label>Ngày công chiếu</Label>
-              <Input
-                type="date"
-                value={formData.releaseDate}
-                onChange={(e) => setFormData({ ...formData, releaseDate: e.target.value })}
-                required
+              <Controller
+                name="releaseDate"
+                control={control}
+                rules={{ required: "Ngày công chiếu là bắt buộc" }}
+                render={({ field }) => (
+                  <Input
+                    type="date"
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={!!errors.releaseDate}
+                    hint={errors.releaseDate?.message}
+                  />
+                )}
               />
             </div>
             <div>
               <Label>Ngày kết thúc</Label>
-              <Input
-                type="date"
-                value={formData.endDate}
-                onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                required
+              <Controller
+                name="endDate"
+                control={control}
+                rules={{ required: "Ngày kết thúc là bắt buộc" }}
+                render={({ field }) => (
+                  <Input
+                    type="date"
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={!!errors.endDate}
+                    hint={errors.endDate?.message}
+                  />
+                )}
               />
             </div>
           </div>
           <div>
             <Label>Poster URL</Label>
-            <Input
-              value={formData.posterUrl}
-              onChange={(e) => setFormData({ ...formData, posterUrl: e.target.value })}
-              placeholder="https://image.tmdb.org/t/p/w500/..."
+            <Controller
+              name="posterUrl"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="https://image.tmdb.org/t/p/w500/..."
+                />
+              )}
             />
           </div>
           <div>
             <Label>Backdrop URL</Label>
-            <Input
-              value={formData.backdropUrl}
-              onChange={(e) => setFormData({ ...formData, backdropUrl: e.target.value })}
-              placeholder="https://image.tmdb.org/t/p/w1280/..."
+            <Controller
+              name="backdropUrl"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="https://image.tmdb.org/t/p/w1280/..."
+                />
+              )}
             />
           </div>
           <div>
             <Label>Trailer URL (YouTube)</Label>
-            <Input
-              value={formData.trailerUrl}
-              onChange={(e) => setFormData({ ...formData, trailerUrl: e.target.value })}
-              placeholder="https://www.youtube.com/watch?v=..."
+            <Controller
+              name="trailerUrl"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="https://www.youtube.com/watch?v=..."
+                />
+              )}
             />
           </div>
           <div className="flex justify-end gap-4 mt-8">

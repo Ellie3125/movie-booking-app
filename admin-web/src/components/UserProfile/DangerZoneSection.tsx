@@ -27,7 +27,11 @@ const DangerZoneSection: React.FC = () => {
 
     setLoading(true);
     try {
+<<<<<<< HEAD
       await deleteAccount({ password, confirmation });
+=======
+      await deleteAccount({ currentPassword: password, confirmation });
+>>>>>>> main
       toast.success('Xóa tài khoản thành công!');
     } catch (err: any) {
       toast.error(err.response?.data?.message || 'Không thể xóa tài khoản. Vui lòng kiểm tra lại mật khẩu.');

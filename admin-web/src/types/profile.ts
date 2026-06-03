@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export interface User {
   id: string;
   name: string;
@@ -43,6 +44,14 @@ export interface ProfileUpdateInput {
   address?: string;
   country?: string;
   bio?: string;
+=======
+export type { User } from './user';
+
+export interface ProfileUpdateInput {
+  fullName?: string;
+  phoneNumber?: string;
+  avatarUrl?: string | null;
+>>>>>>> main
 }
 
 export interface NotificationPrefsInput {

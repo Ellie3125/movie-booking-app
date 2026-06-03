@@ -7,6 +7,7 @@ import axios, {
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
+import { shouldAttemptTokenRefresh } from './auth-refresh-policy';
 import { clearTokens, getAccessToken, getRefreshToken, saveAccessToken, saveTokens } from './tokenStorage';
 
 // ─── URL Resolution ───────────────────────────────────────────────────────────
@@ -83,11 +84,20 @@ export class ApiRequestError extends Error {
 
 export type BackendUser = {
   id: string;
-  name: string;
+  fullName: string;
   email: string;
-  role: 'admin' | 'staff' | 'user';
+  phoneNumber?: string;
+  avatarUrl?: string;
+  role: 'admin' | 'user';
+  isActive: boolean;
   createdAt?: string;
   updatedAt?: string;
+};
+
+export type BackendProfileUpdatePayload = {
+  fullName?: string;
+  phoneNumber?: string;
+  avatarUrl?: string | null;
 };
 
 export type BackendAuthResponse = {
@@ -101,8 +111,12 @@ export type BackendMovie = {
   title: string;
   description: string;
   duration: number;
-  genre: string[];
-  poster: string;
+  genres?: string[];
+  genre?: string[];
+  posterUrl?: string;
+  poster_path?: string;
+  posterPath?: string;
+  poster?: string;
   releaseDate: string;
   status: 'now_showing' | 'coming_soon' | 'ended';
   language?: string;
@@ -115,8 +129,8 @@ export type BackendMovieMutationPayload = {
   title: string;
   description: string;
   duration: number;
-  genre: string[];
-  poster: string;
+  genres: string[];
+  posterUrl: string;
   releaseDate: string;
   status: 'now_showing' | 'coming_soon' | 'ended';
   language: string;
@@ -131,8 +145,27 @@ export type BackendCinema = {
   name: string;
   city: string;
   address: string;
+  imageUrl?: string;
   latitude?: number | null;
   longitude?: number | null;
+  location?: {
+    type: string;
+    coordinates: number[];
+  };
+};
+
+export type BackendCinemaBrand = {
+  _id: string;
+  name: string;
+  code: string;
+  logo: string;
+  description?: string;
+  status: string;
+};
+
+export type BackendAvatarOption = {
+  name: string;
+  url: string;
 };
 
 export type BackendNearbyCinema = BackendCinema & {
@@ -179,15 +212,22 @@ export type BackendShowtimeSeatState = {
   rowLabel: string;
   rowIndex: number;
   columnIndex: number;
-  type: 'standard' | 'vip' | 'couple' | 'empty' | 'aisle' | 'disabled';
+  type: 'regular' | 'vip' | 'couple' | 'empty' | 'aisle' | 'disabled' | 'space';
   capacity: number;
   coupleGroupId: string | null;
-  status: 'available' | 'held' | 'booked' | 'disabled';
+  status: 'available' | 'held' | 'booked' | 'disabled' | 'active';
+  priceType?: string;
+  size?: number;
   userId: string | null;
   bookingId: string | null;
   heldAt: string | null;
   holdExpiresAt: string | null;
   bookedAt: string | null;
+};
+
+export type BackendShowtimeSeatRow = {
+  rowLabel: string;
+  seats: BackendShowtimeSeatState[];
 };
 
 export type BackendShowtimeListItem = {
@@ -196,7 +236,10 @@ export type BackendShowtimeListItem = {
     _id: string;
     title: string;
     duration: number;
-    poster: string;
+    posterUrl?: string;
+    poster_path?: string;
+    posterPath?: string;
+    poster?: string;
     status: 'now_showing' | 'coming_soon' | 'ended';
     language?: string;
     formats?: string[];
@@ -219,7 +262,7 @@ export type BackendShowtimeListItem = {
 };
 
 export type BackendShowtimeDetail = BackendShowtimeListItem & {
-  seatStates: BackendShowtimeSeatState[];
+  seatLayout: BackendShowtimeSeatRow[];
 };
 
 export type BackendShowtimeSchedulePayload = {
@@ -248,9 +291,15 @@ export type BackendBookingSeat = {
 export type BackendBooking = {
   bookingId: string;
   bookingCode: string | null;
-  status: 'held' | 'paid' | 'cancelled';
-  paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-  paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY' | null;
+  status: 'pending_payment' | 'confirmed' | 'cancelled' | 'expired';
+  paymentStatus: 'pending' | 'success' | 'failed' | 'expired' | 'refunded';
+  paymentMethod:
+    | 'momo_sandbox'
+    | 'vnpay_sandbox'
+    | 'MOMO_SANDBOX'
+    | 'VNPAY_SANDBOX'
+    | 'MOCK_GATEWAY'
+    | null;
   currency: string;
   totalPrice: number;
   ticketCount: number;
@@ -261,7 +310,10 @@ export type BackendBooking = {
     id: string;
     title: string;
     duration: number;
-    poster: string;
+    posterUrl?: string;
+    poster_path?: string;
+    posterPath?: string;
+    poster?: string;
     status: 'now_showing' | 'coming_soon' | 'ended';
   } | null;
   cinema: {
@@ -288,76 +340,19 @@ export type BackendBooking = {
 
 export type BackendBill = {
   bookingId: string;
-  bookingCode: string | null;
-  movie: {
-    id: string;
-    title: string;
-    duration: number;
-    poster: string;
-    status: 'now_showing' | 'coming_soon' | 'ended';
-  } | null;
-  cinema: {
-    id: string;
-    name: string;
-    brand: string;
-    city: string;
-    address: string;
-  } | null;
-  room: {
-    id: string;
-    name: string;
-    roomType: 'standard' | 'vip' | 'gold' | 'imax';
-    totalRows: number;
-    totalColumns: number;
-  } | null;
-  showtime: {
-    id: string;
-    startTime: string;
-    endTime: string;
-  } | null;
   seats: BackendBookingSeat[];
-  ticketCount: number;
-  totalPrice: number;
+  amount: number;
   currency: string;
-  status: 'held' | 'paid' | 'cancelled';
-  paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-  paymentExpiresAt: string | null;
-  paymentAuth: {
-    algorithm: 'HMAC-SHA256';
-    fields: string[];
-    billId: string;
-    paidAmount: number;
-    currency: string;
-    issuedAt: number;
-    expiresAt: number;
-    rawData: string;
-    signature: string;
-  };
+  expiredAt: string | null;
 };
 
-export type BackendPaymentResult = {
+export type BackendPaymentSession = {
   bookingId: string;
-  bookingCode: string | null;
-  transactionCode: string;
-  status: 'held' | 'paid' | 'cancelled';
-  paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-  paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY';
-  paidAmount: number;
+  paymentId: string;
+  amount: number;
   currency: string;
-  paidAt: string;
-  ticketCount: number;
-  tickets: Array<{
-    ticketCode: string;
-    status: string;
-    seat: {
-      seatCode: string;
-      seatLabel: string;
-      seatType: 'standard' | 'vip' | 'couple';
-      coupleGroupId: string | null;
-    };
-    price: number;
-    issuedAt: string;
-  }>;
+  expiredAt: string | null;
+  paymentUrl: string;
 };
 
 export type BackendTicket = {
@@ -375,9 +370,15 @@ export type BackendTicket = {
   booking: {
     id: string;
     bookingCode: string | null;
-    status: 'held' | 'paid' | 'cancelled';
-    paymentStatus: 'pending' | 'paid' | 'failed' | 'expired';
-    paymentMethod: 'momo_sandbox' | 'vnpay_sandbox' | 'MOCK_GATEWAY' | null;
+    status: 'pending_payment' | 'confirmed' | 'cancelled' | 'expired';
+    paymentStatus: 'pending' | 'success' | 'failed' | 'expired' | 'refunded';
+    paymentMethod:
+      | 'momo_sandbox'
+      | 'vnpay_sandbox'
+      | 'MOMO_SANDBOX'
+      | 'VNPAY_SANDBOX'
+      | 'MOCK_GATEWAY'
+      | null;
     totalPrice: number;
     currency: string;
     paidAt: string | null;
@@ -387,7 +388,10 @@ export type BackendTicket = {
     id: string;
     title: string;
     duration: number;
-    poster: string;
+    posterUrl?: string;
+    poster_path?: string;
+    posterPath?: string;
+    poster?: string;
     status: 'now_showing' | 'coming_soon' | 'ended';
   } | null;
   cinema: {
@@ -452,9 +456,14 @@ apiClient.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-    // Chỉ retry nếu 401, chưa retry trước đó, và không phải chính endpoint refresh-token
-    const isRefreshEndpoint = originalRequest.url?.includes('/auth/refresh-token');
-    if (error.response?.status === 401 && !originalRequest._retry && !isRefreshEndpoint) {
+    // Chỉ retry protected endpoints. Auth credential endpoints cần trả lỗi gốc cho UI.
+    if (
+      shouldAttemptTokenRefresh({
+        statusCode: error.response?.status,
+        requestUrl: originalRequest.url,
+        hasRetried: originalRequest._retry,
+      })
+    ) {
       if (isRefreshing) {
         // Đang refresh → queue request, chờ token mới
         return new Promise((resolve) => {
@@ -557,9 +566,12 @@ async function apiRequest<T>(
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
 export async function registerUser(payload: {
-  name: string;
+  fullName: string;
+  phoneNumber?: string;
   email: string;
   password: string;
+  confirmPassword: string;
+  rememberMe?: boolean;
 }) {
   return apiRequest<BackendAuthResponse>('/auth/register', {
     method: 'POST',
@@ -570,7 +582,8 @@ export async function registerUser(payload: {
 export async function createAdminUser(
   token: string,
   payload: {
-    name: string;
+    fullName: string;
+    phoneNumber?: string;
     email: string;
     password: string;
   },
@@ -582,7 +595,7 @@ export async function createAdminUser(
   });
 }
 
-export async function loginUser(payload: { email: string; password: string }) {
+export async function loginUser(payload: { email: string; password: string; rememberMe?: boolean }) {
   return apiRequest<BackendAuthResponse>('/auth/login', {
     method: 'POST',
     body: payload,
@@ -606,6 +619,54 @@ export async function logoutUser(token: string, refreshToken: string) {
     token,
     body: { refreshToken },
   });
+}
+
+export async function updateUserProfile(payload: BackendProfileUpdatePayload) {
+  return apiRequest<BackendUser>('/auth/update-profile', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function updateUserNotificationPreferences(payload: any) {
+  return apiRequest<BackendUser>('/auth/update-notifications', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function updateUserPreferences(payload: any) {
+  return apiRequest<BackendUser>('/auth/update-preferences', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function deleteUserAccount(payload: any) {
+  return apiRequest<{ message: string }>('/auth/delete-account', {
+    method: 'DELETE',
+    body: payload,
+  });
+}
+
+export async function changeUserPassword(payload: {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}) {
+  return apiRequest<{ message: string }>('/auth/change-password', {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function uploadUserAvatar(formData: FormData) {
+  const response = await apiClient.post<ApiSuccessResponse<BackendUser>>('/auth/upload-avatar', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data.data;
 }
 
 // ─── Movies ───────────────────────────────────────────────────────────────────
@@ -648,7 +709,7 @@ export async function fetchCinemas() {
 }
 
 export async function fetchNearbyCinemas(lat: number, lng: number) {
-  return apiRequest<{ items: BackendNearbyCinema[]; total: number }>('/cinemas/nearby', {
+  return apiRequest<BackendNearbyCinema[]>('/cinemas/nearby', {
     params: { lat, lng },
   });
 }
@@ -748,17 +809,9 @@ export async function fetchPaymentBill(token: string, bookingId: string) {
 export async function payBookingBill(
   token: string,
   bookingId: string,
-  payload: {
-    paymentMethod: 'momo_sandbox' | 'vnpay_sandbox';
-    billId: string;
-    paidAmount: number;
-    currency: string;
-    issuedAt: number;
-    expiresAt: number;
-    signature: string;
-  },
+  payload: { returnUrl?: string } = {},
 ) {
-  return apiRequest<BackendPaymentResult>(`/payments/bills/${bookingId}/pay`, {
+  return apiRequest<BackendPaymentSession>(`/payments/bills/${bookingId}/pay`, {
     method: 'POST',
     token,
     body: payload,
@@ -769,4 +822,12 @@ export async function payBookingBill(
 
 export async function fetchMyTickets(token: string) {
   return apiRequest<{ items: BackendTicket[]; total: number }>('/tickets', { token });
+}
+
+export async function fetchCinemaOptions() {
+  return apiRequest<{ brands: BackendCinemaBrand[]; provinces: string[] }>('/meta/cinema-options');
+}
+
+export async function fetchAvatarOptions() {
+  return apiRequest<BackendAvatarOption[]>('/meta/avatars');
 }

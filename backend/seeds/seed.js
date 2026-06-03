@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const path = require('path');
-const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 const {
@@ -13,7 +11,6 @@ const {
   Booking,
   Ticket,
   PaymentTransaction,
-  MockBankAccount,
   PaymentCallbackLog,
   Session
 } = require('../src/models');
@@ -28,13 +25,7 @@ const showtimesData = require('./data/showtimes.data');
 const bookingsData = require('./data/bookings.data');
 const paymentsData = require('./data/payments.data');
 const ticketsData = require('./data/tickets.data');
-const bankAccountsData = require('./data/bankAccounts.data');
-
-const PASSWORD_SALT_ROUNDS = 10;
-
-const isHashed = (password) => {
-  return /^\$2[ayb]\$.{56}$/.test(password);
-};
+const { prepareUsersForInsert } = require('./prepareSeedUsers');
 
 const seed = async () => {
   try {
@@ -54,35 +45,31 @@ const seed = async () => {
       Booking.deleteMany({}),
       Ticket.deleteMany({}),
       PaymentTransaction.deleteMany({}),
-      MockBankAccount.deleteMany({}),
       PaymentCallbackLog.deleteMany({}),
       Session.deleteMany({})
     ]);
 
     // Drop indexes for collections that had schema changes to avoid E11000 errors from stale indexes
-    try {
-      await Ticket.collection.dropIndexes();
-      await Booking.collection.dropIndexes();
-    } catch (e) {
-      // Ignore if collection doesn't exist or other errors
+    for (const Model of [Ticket, Booking]) {
+      try {
+        await Model.collection.dropIndexes();
+      } catch (e) {
+        // Ignore if collection doesn't exist yet.
+        if (e.codeName !== 'NamespaceNotFound' && e.code !== 26) {
+          throw e;
+        }
+      }
     }
+
+    await Promise.all([
+      Ticket.syncIndexes(),
+      Booking.syncIndexes(),
+    ]);
     console.log('Old data cleared.');
 
-    // 2. Hash User Passwords
-    console.log('Hashing user passwords...');
-    const hashedUsersData = await Promise.all(
-      usersData.map(async (user) => {
-        if (!isHashed(user.password)) {
-          const hashedPassword = await bcrypt.hash(user.password, PASSWORD_SALT_ROUNDS);
-          return { ...user, password: hashedPassword };
-        }
-        return user;
-      })
-    );
-
-    // 3. Insert new data
+    // 2. Insert new data
     console.log('Seeding Users...');
-    await User.insertMany(hashedUsersData);
+    await User.insertMany(await prepareUsersForInsert(usersData));
 
     console.log('Seeding Movies...');
     await Movie.insertMany(moviesData);
@@ -107,9 +94,6 @@ const seed = async () => {
 
     console.log('Seeding Tickets...');
     await Ticket.insertMany(ticketsData);
-
-    console.log('Seeding Bank Accounts...');
-    await MockBankAccount.insertMany(bankAccountsData);
 
     console.log('All data seeded successfully!');
     process.exit(0);

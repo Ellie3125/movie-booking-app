@@ -43,7 +43,7 @@ const getMovieOptions = asyncHandler(async (req, res) => {
  * @access  Public
  */
 const getAvatars = asyncHandler(async (req, res) => {
-  const avatarDir = path.join(__dirname, '../../public/avatars');
+  const avatarDir = path.join(__dirname, '../../public/uploads/avatars');
   const validExtensions = ['.png', '.jpg', '.jpeg', '.webp'];
 
   try {
@@ -52,7 +52,7 @@ const getAvatars = asyncHandler(async (req, res) => {
       .filter((file) => validExtensions.includes(path.extname(file).toLowerCase()))
       .map((file) => ({
         name: file,
-        url: `/avatars/${file}`,
+        url: `/uploads/avatars/${file}`,
       }));
 
     return sendApiResponse(res, {

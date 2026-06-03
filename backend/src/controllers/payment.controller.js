@@ -20,6 +20,7 @@ const payBill = asyncHandler(async (req, res) => {
     bookingId: req.params.bookingId,
     userId: req.user.id,
     baseUrl: getRequestBaseUrl(req),
+    returnUrl: req.body?.returnUrl,
   });
 
   return sendApiResponse(res, {

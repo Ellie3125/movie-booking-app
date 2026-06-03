@@ -1,5 +1,6 @@
 import { Link, Stack, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 
 import {
   EmptyNotice,
@@ -20,13 +21,27 @@ import {
   formatShowtimeDayLabel,
   formatShowtimeTime,
 } from '@/lib/user-display';
+import { API_BASE_URL } from '@/lib/backend-api';
+
+const buildImageUrl = (path?: string | null) => {
+  if (!path) return undefined;
+  if (path.startsWith('http')) return path;
+  const match = API_BASE_URL.match(/^(https?:\/\/[^\/]+)/);
+  const host = match ? match[1] : 'http://localhost:5000';
+  return `${host}${path}`;
+};
 
 export default function CinemaDetailScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
-  const { cinemas, rooms, showtimes, movies } = useAppStore();
+  const { cinemas, rooms, showtimes, movies, brands } = useAppStore();
   const colors = getTonePalette('user');
   const cinema = cinemas.find((item) => item.id === id);
   const cinemaShowtimes = showtimes.filter((item) => item.cinemaId === cinema?.id);
+
+  const brandInfo = cinema
+    ? brands.find((b) => b.code.toLowerCase() === cinema.brand.toLowerCase())
+    : null;
+  const logoUrl = buildImageUrl(cinema?.imageUrl || brandInfo?.logo);
 
   return (
     <PageScroll tone="user">
@@ -45,8 +60,13 @@ export default function CinemaDetailScreen() {
             tone="user"
             eyebrow="Chi tiết rạp"
             title={`${cinema.brand} ${formatLocationName(cinema.name)}`}
-            description={`${formatAddress(cinema.address)}. Hotline ${cinema.hotline}.`}
-          />
+            description={`${formatAddress(cinema.address)}. Hotline ${cinema.hotline}.`}>
+            {logoUrl && (
+              <View style={styles.brandLogoContainer}>
+                <Image source={{ uri: logoUrl }} style={styles.brandLogo} contentFit="contain" />
+              </View>
+            )}
+          </HeroCard>
 
           <SectionCard tone="user">
             <Text style={[styles.cardTitle, { color: colors.text }]}>Tiện ích</Text>
@@ -134,5 +154,22 @@ const styles = StyleSheet.create({
   link: {
     fontSize: 14,
     fontFamily: Fonts.sansBold,
+  },
+  brandLogoContainer: {
+    alignSelf: 'flex-start',
+    width: 60,
+    height: 60,
+    borderRadius: 16,
+    backgroundColor: '#FFFDF7',
+    borderWidth: 1,
+    borderColor: 'rgba(188, 132, 82, 0.18)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    marginTop: 8,
+  },
+  brandLogo: {
+    width: 48,
+    height: 48,
   },
 });

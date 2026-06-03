@@ -7,6 +7,7 @@ import {
   View,
   type PressableProps,
   type ViewStyle,
+  type RefreshControlProps,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -44,7 +45,8 @@ export function getTonePalette(tone: Tone) {
 export function PageScroll({
   children,
   tone,
-}: PropsWithChildren<{ tone: Tone }>) {
+  refreshControl,
+}: PropsWithChildren<{ tone: Tone; refreshControl?: React.ReactElement<RefreshControlProps> }>) {
   const colors = palette[tone];
 
   return (
@@ -67,7 +69,8 @@ export function PageScroll({
       />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}>
+        contentContainerStyle={styles.scrollContent}
+        refreshControl={refreshControl}>
         {children}
       </ScrollView>
     </SafeAreaView>

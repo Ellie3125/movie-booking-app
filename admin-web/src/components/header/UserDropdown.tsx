@@ -35,10 +35,10 @@ export default function UserDropdown() {
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
         <span className="mr-3 overflow-hidden border border-gray-200 rounded-full h-11 w-11 dark:border-gray-800">
-          <img src={buildImageUrl(user?.avatar)} alt="User" className="h-full w-full object-cover" />
+          <img src={buildImageUrl(user?.avatarUrl)} alt="User" className="h-full w-full object-cover" />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">{user?.name || "User"}</span>
+        <span className="block mr-1 font-medium text-theme-sm">{user?.fullName || "User"}</span>
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
@@ -66,7 +66,7 @@ export default function UserDropdown() {
       >
         <div className="px-3 py-2">
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            {user?.name || "Admin"}
+            {user?.fullName || "Admin"}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
             {user?.email || ""}

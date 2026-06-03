@@ -10,9 +10,13 @@ const {
   hashToken,
   verifyRefreshToken,
 } = require('../utils/jwt');
+const {
+  normalizeProfileUpdate,
+  sanitizeUser,
+} = require('../utils/userProfile');
 
 const PASSWORD_SALT_ROUNDS = 10;
-const ADMIN_PORTAL_ROLES = ['admin', 'staff'];
+const ADMIN_PORTAL_ROLES = ['admin'];
 const ADMIN_ACCOUNT_LOGIN_MESSAGE =
   'Tài khoản quản trị vui lòng đăng nhập tại trang admin';
 const ADMIN_LOGIN_FORBIDDEN_MESSAGE =
@@ -20,21 +24,10 @@ const ADMIN_LOGIN_FORBIDDEN_MESSAGE =
 
 const isAdminPortalRole = (role) => ADMIN_PORTAL_ROLES.includes(role);
 
-const sanitizeUser = (user) => ({
-  id: String(user._id),
-  name: user.name,
-  email: user.email,
-  role: user.role,
-  avatar: user.avatar,
-  createdAt: user.createdAt,
-  updatedAt: user.updatedAt,
-});
-
 const buildTokenPayload = (user) => ({
   userId: String(user._id),
   email: user.email,
   role: user.role,
-  authVersion: user.authVersion || 0,
 });
 
 const getAccessTokenExpiresIn = (user) =>
@@ -97,9 +90,15 @@ const assertUserCanAuthenticate = (user) => {
       'INVALID_CREDENTIALS'
     );
   }
+  if (user.isActive === false) {
+    throw ApiError.forbidden(
+      'Tài khoản của bạn đã bị khóa',
+      'ACCOUNT_INACTIVE'
+    );
+  }
 };
 
-const createUserAccount = async ({ name, email, password, role = 'user' }) => {
+const createUserAccount = async ({ fullName, email, phoneNumber, password, role = 'user' }) => {
   const existingUser = await User.findOne({ email }).lean().exec();
 
   if (existingUser) {
@@ -108,17 +107,21 @@ const createUserAccount = async ({ name, email, password, role = 'user' }) => {
 
   const hashedPassword = await bcrypt.hash(password, PASSWORD_SALT_ROUNDS);
   return User.create({
-    name,
+    fullName,
     email,
-    password: hashedPassword,
+    phoneNumber: phoneNumber || '',
+    avatarUrl: null,
+    passwordHash: hashedPassword,
     role,
+    isActive: true,
   });
 };
 
-const register = async ({ name, email, password, rememberMe = false }, metadata) => {
+const register = async ({ fullName, email, phoneNumber, password, rememberMe = false }, metadata) => {
   const user = await createUserAccount({
-    name,
+    fullName,
     email,
+    phoneNumber,
     password,
     role: 'user',
   });
@@ -129,7 +132,7 @@ const register = async ({ name, email, password, rememberMe = false }, metadata)
   });
 };
 
-const createAdmin = async ({ name, email, password }, currentUser) => {
+const createAdmin = async ({ fullName, email, phoneNumber, password }, currentUser) => {
   if (currentUser?.role !== 'admin') {
     throw ApiError.forbidden(
       'Only admins can create another admin account',
@@ -138,8 +141,9 @@ const createAdmin = async ({ name, email, password }, currentUser) => {
   }
 
   const user = await createUserAccount({
-    name,
+    fullName,
     email,
+    phoneNumber,
     password,
     role: 'admin',
   });
@@ -180,11 +184,13 @@ const adminLogin = async ({ email, password, rememberMe = false }, metadata) => 
 };
 
 const authenticateWithPassword = async ({ email, password }) => {
-  const user = await User.findOne({ email }).exec();
+  const user = await User.findOne({ email })
+    .select('+passwordHash')
+    .exec();
 
   assertUserCanAuthenticate(user);
 
-  const isPasswordValid = await bcrypt.compare(password, user.password);
+  const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
 
   if (!isPasswordValid) {
     throw ApiError.unauthorized(
@@ -206,39 +212,20 @@ const validateSessionOwner = (decoded, currentUser) => {
     );
   }
 
-  if ((decoded.authVersion || 0) !== (currentUser.authVersion || 0)) {
-    throw ApiError.unauthorized(
-      'Refresh token has been invalidated. Please log in again.',
-      'REFRESH_TOKEN_REVOKED'
-    );
-  }
 };
 
-const revokeAllUserSessions = async (userId, reason, incrementAuthVersion = false) => {
-  const updates = [
-    Session.updateMany(
-      {
-        userId,
-        isRevoked: false,
-      },
-      {
-        isRevoked: true,
-        revokedAt: new Date(),
-        revokedReason: reason,
-      }
-    ).exec(),
-  ];
-
-  if (incrementAuthVersion) {
-    updates.push(
-      User.findByIdAndUpdate(userId, {
-        $inc: { authVersion: 1 },
-      }).exec()
-    );
-  }
-
-  await Promise.all(updates);
-};
+const revokeAllUserSessions = async (userId, reason) =>
+  Session.updateMany(
+    {
+      userId,
+      isRevoked: false,
+    },
+    {
+      isRevoked: true,
+      revokedAt: new Date(),
+      revokedReason: reason,
+    }
+  ).exec();
 
 const getActiveSessionFromRefreshToken = async (refreshToken) => {
   const decoded = verifyRefreshToken(refreshToken);
@@ -260,8 +247,7 @@ const getActiveSessionFromRefreshToken = async (refreshToken) => {
   if (session.isRevoked) {
     await revokeAllUserSessions(
       session.userId,
-      SESSION_REVOKE_REASON.SECURITY,
-      true
+      SESSION_REVOKE_REASON.SECURITY
     );
 
     throw ApiError.unauthorized(
@@ -283,6 +269,13 @@ const getActiveSessionFromRefreshToken = async (refreshToken) => {
     throw ApiError.unauthorized(
       'Authenticated user no longer exists',
       'AUTH_USER_NOT_FOUND'
+    );
+  }
+
+  if (user.isActive === false) {
+    throw ApiError.unauthorized(
+      'Tài khoản đã bị khoá hoặc đã bị xóa',
+      'ACCOUNT_INACTIVE'
     );
   }
 
@@ -332,17 +325,10 @@ const logout = async ({ refreshToken }, currentUser) => {
 };
 
 const logoutAllDevices = async (currentUser) => {
-  const nextAuthVersion = (currentUser.authVersion || 0) + 1;
-
-  await Promise.all([
-    User.findByIdAndUpdate(currentUser.id || currentUser.userId, {
-      authVersion: nextAuthVersion,
-    }).exec(),
-    revokeAllUserSessions(
-      currentUser.id || currentUser.userId,
-      SESSION_REVOKE_REASON.LOGOUT_ALL
-    ),
-  ]);
+  await revokeAllUserSessions(
+    currentUser.id || currentUser.userId,
+    SESSION_REVOKE_REASON.LOGOUT_ALL
+  );
 
   return {
     loggedOutAllDevices: true,
@@ -353,13 +339,15 @@ const changePassword = async (
   { currentPassword, newPassword },
   currentUser
 ) => {
-  const user = await User.findById(currentUser.id || currentUser.userId).exec();
+  const user = await User.findById(currentUser.id || currentUser.userId)
+    .select('+passwordHash')
+    .exec();
 
   if (!user) {
     throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
   }
 
-  const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+  const isPasswordValid = await bcrypt.compare(currentPassword, user.passwordHash);
 
   if (!isPasswordValid) {
     throw ApiError.unauthorized(
@@ -368,7 +356,7 @@ const changePassword = async (
     );
   }
 
-  const isSamePassword = await bcrypt.compare(newPassword, user.password);
+  const isSamePassword = await bcrypt.compare(newPassword, user.passwordHash);
 
   if (isSamePassword) {
     throw ApiError.conflict(
@@ -377,9 +365,8 @@ const changePassword = async (
     );
   }
 
-  user.password = await bcrypt.hash(newPassword, PASSWORD_SALT_ROUNDS);
-  user.passwordChangedAt = new Date();
-  user.authVersion = (user.authVersion || 0) + 1;
+  const hashedPassword = await bcrypt.hash(newPassword, PASSWORD_SALT_ROUNDS);
+  user.passwordHash = hashedPassword;
   await user.save();
 
   await revokeAllUserSessions(user._id, SESSION_REVOKE_REASON.PASSWORD_CHANGED);
@@ -389,36 +376,78 @@ const changePassword = async (
   };
 };
 
-const updateProfile = async ({ name, avatar }, currentUser) => {
+const updateProfile = async (updateData, currentUser) => {
   const user = await User.findById(currentUser.id || currentUser.userId).exec();
 
   if (!user) {
     throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
   }
 
-  if (name) {
-    user.name = name;
-  }
+  const normalizedUpdate = normalizeProfileUpdate(updateData);
 
-  if (avatar) {
-    // Validate avatar path
-    if (!avatar.startsWith('/avatars/')) {
-      throw ApiError.badRequest(
-        'Invalid avatar path. Must start with /avatars/',
-        'INVALID_AVATAR_PATH'
-      );
-    }
-    user.avatar = avatar;
-  }
+  Object.entries(normalizedUpdate).forEach(([field, value]) => {
+    user[field] = value;
+  });
 
   await user.save();
 
   return sanitizeUser(user);
 };
 
+const updateNotificationPreferences = async (notificationPrefs, currentUser) => {
+  const user = await User.findById(currentUser.id || currentUser.userId).exec();
+  if (!user) {
+    throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
+  }
+
+  return sanitizeUser(user);
+};
+
+const updatePreferences = async (preferencesData, currentUser) => {
+  const user = await User.findById(currentUser.id || currentUser.userId).exec();
+  if (!user) {
+    throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
+  }
+
+  return sanitizeUser(user);
+};
+
+const deleteAccount = async ({ currentPassword, confirmation }, currentUser) => {
+  const user = await User.findById(currentUser.id || currentUser.userId)
+    .select('+passwordHash')
+    .exec();
+  if (!user) {
+    throw ApiError.notFound('User not found', 'USER_NOT_FOUND');
+  }
+
+  const isPasswordValid = await bcrypt.compare(currentPassword, user.passwordHash);
+  if (!isPasswordValid) {
+    throw ApiError.unauthorized('Mật khẩu không chính xác', 'INVALID_PASSWORD');
+  }
+
+  if (confirmation !== 'DELETE') {
+    throw ApiError.badRequest('Chuỗi xác nhận không hợp lệ', 'INVALID_CONFIRMATION');
+  }
+
+  user.isActive = false;
+
+  const randomSuffix = Math.floor(100000 + Math.random() * 900000);
+  user.fullName = `Deleted User ${randomSuffix}`;
+  user.email = `deleted_${user._id}_${randomSuffix}@beatcinema.local`;
+  user.phoneNumber = '';
+  user.avatarUrl = null;
+
+  await user.save();
+  await revokeAllUserSessions(user._id, SESSION_REVOKE_REASON.LOGOUT_ALL);
+
+  return {
+    deleted: true,
+  };
+};
+
 const getCurrentUser = async (userId) => {
   const user = await User.findById(userId)
-    .select('_id name email role avatar authVersion passwordChangedAt createdAt updatedAt')
+    .select('_id fullName email phoneNumber role isActive avatarUrl createdAt updatedAt')
     .lean()
     .exec();
 
@@ -440,4 +469,10 @@ module.exports = {
   refreshAccessToken,
   register,
   updateProfile,
+  updateNotificationPreferences,
+  updatePreferences,
+  deleteAccount,
+  _private: {
+    sanitizeUser,
+  },
 };

@@ -1,7 +1,10 @@
 import { Image } from 'expo-image';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { Fonts } from '@/constants/theme';
+import { API_BASE_URL } from '@/lib/backend-api';
+import { normalizePosterUrl } from '@/lib/image-url';
 
 type Tone = 'admin' | 'user';
 
@@ -19,6 +22,8 @@ const tonePalette = {
     border: 'rgba(140, 104, 86, 0.16)',
   },
 } as const;
+
+const fallbackPosterImage = require('../../assets/images/popcorn-logo-cutout.png');
 
 type Props = {
   uri?: string | null;
@@ -38,7 +43,23 @@ export function MoviePoster({
   borderRadius = 18,
 }: Props) {
   const colors = tonePalette[tone];
-  const hasPoster = Boolean(uri?.trim());
+  const imageUrl = normalizePosterUrl(uri, { backendApiBaseUrl: API_BASE_URL });
+  const [loadState, setLoadState] = useState<'idle' | 'loading' | 'loaded' | 'error'>(
+    imageUrl ? 'loading' : 'idle',
+  );
+
+  useEffect(() => {
+    setLoadState(imageUrl ? 'loading' : 'idle');
+  }, [imageUrl]);
+
+  useEffect(() => {
+    if (imageUrl && process.env.NODE_ENV !== 'production') {
+      console.debug('[MoviePoster] render URL', { title, imageUrl });
+    }
+  }, [imageUrl, title]);
+
+  const showFallback = !imageUrl || loadState === 'error';
+  const showLoader = Boolean(imageUrl && loadState === 'loading');
 
   return (
     <View
@@ -52,13 +73,28 @@ export function MoviePoster({
           backgroundColor: colors.fallback,
         },
       ]}>
-      {hasPoster ? (
-        <Image
-          source={{ uri: uri?.trim() }}
-          contentFit="cover"
-          transition={180}
-          style={StyleSheet.absoluteFillObject}
-        />
+      <Image
+        source={showFallback ? fallbackPosterImage : { uri: imageUrl }}
+        contentFit={showFallback ? 'contain' : 'cover'}
+        transition={180}
+        style={[StyleSheet.absoluteFillObject, showFallback ? styles.fallbackImage : null]}
+        onLoadStart={imageUrl ? () => setLoadState('loading') : undefined}
+        onLoad={imageUrl ? () => setLoadState('loaded') : undefined}
+        onError={
+          imageUrl
+            ? () => {
+                if (process.env.NODE_ENV !== 'production') {
+                  console.warn('[MoviePoster] failed to load URL', { title, imageUrl });
+                }
+                setLoadState('error');
+              }
+            : undefined
+        }
+      />
+      {showLoader ? (
+        <View style={[styles.loadingState, { backgroundColor: colors.fallback }]}>
+          <ActivityIndicator color={colors.text} size="small" />
+        </View>
       ) : null}
       <View
         pointerEvents="none"
@@ -66,11 +102,11 @@ export function MoviePoster({
           styles.overlay,
           {
             borderRadius,
-            backgroundColor: hasPoster ? 'rgba(17, 24, 39, 0.18)' : 'transparent',
+            backgroundColor: showFallback ? 'rgba(255, 255, 255, 0.12)' : 'rgba(17, 24, 39, 0.18)',
           },
         ]}
       />
-      {!hasPoster ? (
+      {showFallback ? (
         <View style={styles.fallbackCopy}>
           <Text numberOfLines={3} style={[styles.fallbackTitle, { color: colors.text }]}>
             {title}
@@ -90,6 +126,15 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
+  },
+  fallbackImage: {
+    opacity: 0.34,
+    margin: 18,
+  },
+  loadingState: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   fallbackCopy: {
     flex: 1,

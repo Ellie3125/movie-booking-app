@@ -15,6 +15,18 @@ const cinemaMutationBodySchema = strictObject({
   longitude: Joi.number().allow(null).default(null).label('longitude'),
 });
 
+const updateLocationBodySchema = strictObject({
+  lat: Joi.number().min(-90).max(90).required().label('lat'),
+  lng: Joi.number().min(-180).max(180).required().label('lng'),
+});
+
+const nearbyQuerySchema = Joi.object({
+  lat: Joi.number().min(-90).max(90).required().label('lat'),
+  lng: Joi.number().min(-180).max(180).required().label('lng'),
+  limit: Joi.number().integer().min(1).max(50).default(5).label('limit'),
+  maxDistance: Joi.number().integer().min(100).max(100000).default(10000).label('maxDistance'),
+}).required();
+
 module.exports = {
   createCinemaSchema: {
     body: cinemaMutationBodySchema,
@@ -25,5 +37,12 @@ module.exports = {
   updateCinemaSchema: {
     params: cinemaIdParamSchema,
     body: cinemaMutationBodySchema,
+  },
+  updateLocationSchema: {
+    params: cinemaIdParamSchema,
+    body: updateLocationBodySchema,
+  },
+  nearbyQuerySchema: {
+    query: nearbyQuerySchema,
   },
 };

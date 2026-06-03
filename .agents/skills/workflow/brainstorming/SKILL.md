@@ -7,6 +7,8 @@ description: "You MUST use this before any creative work - creating features, bu
 
 Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
 
+**PROJECT OVERRIDE - HTML SPEC FORMAT:** For this repository, written specs MUST be saved as HTML documents, not Markdown. Read `.agents/skills/html-implement/css-patterns.md` before writing a spec, reuse its shared CSS variables/classes, and include the four SPEC disclosure sections near the top: Autonomous Decisions, Deviations, Trade-offs, Context/Notes.
+
 Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design and get user approval.
 
 <HARD-GATE>
@@ -26,7 +28,7 @@ You MUST create a task for each of these items and complete them in order:
 3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
-6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
+6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.html` and commit
 7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
 8. **User reviews written spec** — ask user to review the spec file before proceeding
 9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
@@ -108,8 +110,10 @@ digraph brainstorming {
 
 **Documentation:**
 
-- Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+- Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.html`
   - (User preferences for spec location override this default)
+- The spec must be a full HTML document using shared CSS tokens/classes from `.agents/skills/html-implement/css-patterns.md`.
+- Near the top of the spec, include a `SPEC Disclosure` section with `Autonomous Decisions`, `Deviations`, `Trade-offs`, and `Context/Notes`.
 - Use elements-of-style:writing-clearly-and-concisely skill if available
 - Commit the design document to git
 

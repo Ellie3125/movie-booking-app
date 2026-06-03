@@ -5,6 +5,7 @@ const PaymentTransaction = require('../models/PaymentTransaction');
 const ApiError = require('../utils/apiError');
 const env = require('../config/env');
 const { SEAT_PRICE_MAP } = require('../config/seatPricing');
+const { sanitizeUserSummary } = require('../utils/userProfile');
 const {
   BOOKED_SEAT_STATUS,
   BOOKING_STATUS,
@@ -15,6 +16,10 @@ const {
 } = require('../constants/payment.constants');
 
 const BOOKING_POPULATE = [
+  {
+    path: 'userId',
+    select: 'fullName email phoneNumber avatarUrl role',
+  },
   {
     path: 'movieId',
     select: 'title duration poster status',
@@ -174,6 +179,7 @@ const mapBookingResponse = (booking) => ({
   paidAt: booking.paidAt,
   paymentExpiresAt: booking.paymentExpiresAt,
   paymentSummary: booking.paymentSummary || null,
+  user: sanitizeUserSummary(booking.userId),
   movie: booking.movieId
     ? {
         id: String(booking.movieId._id),
@@ -457,7 +463,8 @@ const cancelBooking = async ({ bookingId, userId }) => {
     markBookingTransactionsAsExpired([booking._id]),
   ]);
 
-  return mapBookingResponse(booking);
+  const freshBooking = await getOwnedBookingOrThrow(booking._id, userId);
+  return mapBookingResponse(freshBooking);
 };
 
 const listBookingsAdmin = async (filter) => {
@@ -505,7 +512,9 @@ const cancelBookingAdmin = async (bookingId) => {
   await booking.save();
   await markBookingTransactionsAsExpired([booking._id]);
   
-  return mapBookingResponse(booking);
+  const freshBooking = await getBookingQuery({ _id: bookingId }).limit(1).then(i => i[0] || null);
+  if (!freshBooking) throw ApiError.notFound('Booking not found');
+  return mapBookingResponse(freshBooking);
 };
 
 module.exports = {
@@ -516,4 +525,7 @@ module.exports = {
   listBookingsAdmin,
   getBookingByIdAdmin,
   cancelBookingAdmin,
+  _private: {
+    mapBookingResponse,
+  },
 };

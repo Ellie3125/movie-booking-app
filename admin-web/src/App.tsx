@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import SignIn from "./pages/AuthPages/SignIn";
-import SignUp from "./pages/AuthPages/SignUp";
 import UserProfiles from "./pages/UserProfiles";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
@@ -21,10 +20,15 @@ import Tickets from "./pages/Tickets/Tickets";
 import Payments from "./pages/Payments/Payments";
 import SeatLayoutSettingsPage from "./pages/Rooms/SeatLayoutSettings/SeatLayoutSettingsPage";
 
+import { useFavicon } from "./hooks/useFavicon";
+
 // New Management Pages
 import Admins from "./pages/Users/Admins";
 
 export default function App() {
+  // Favicon dùng file local đã copy sẵn trong public/
+  useFavicon("/favicon.png");
+
   return (
     <AuthProvider>
       <Router>
@@ -62,7 +66,6 @@ export default function App() {
 
           {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </Router>
       <Toaster 
@@ -136,4 +139,3 @@ export default function App() {
     </AuthProvider>
   );
 }
-

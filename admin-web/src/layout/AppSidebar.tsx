@@ -11,11 +11,11 @@ import {
   VideoIcon,
   GroupIcon,
   TaskIcon,
-  DollarLineIcon,
   BoxIcon,
   TimeIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
+import { getDefaultLogoUrl } from "../utils/imageUrl";
 
 type NavItem = {
   name: string;
@@ -97,11 +97,6 @@ const navCategories: NavCategory[] = [
         name: "Vé xem phim",
         path: "/tickets",
       },
-      {
-        icon: <DollarLineIcon />,
-        name: "Thanh toán",
-        path: "/payments",
-      },
     ],
   },
   {
@@ -180,7 +175,7 @@ const AppSidebar: React.FC = () => {
       >
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="/images/logo/logo.png"
+            src={getDefaultLogoUrl()}
             alt="Logo"
             width={80}
             height={80}
@@ -188,7 +183,7 @@ const AppSidebar: React.FC = () => {
           />
           {(isExpanded || isHovered || isMobileOpen) && (
             <span className="text-2xl font-bold text-gray-900 dark:text-white">
-              CineBook Manager
+              Cinema Manager
             </span>
           )}
         </Link>

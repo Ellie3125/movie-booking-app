@@ -111,11 +111,6 @@ const PaymentTransactionSchema = new mongoose.Schema(
       type: BankAccountSnapshotSchema,
       default: null,
     },
-    sourceAccountId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'MockBankAccount',
-      default: null,
-    },
     requestSignature: {
       type: SignatureSnapshotSchema,
       required: [true, 'requestSignature là bắt buộc'],

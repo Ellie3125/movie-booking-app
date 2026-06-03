@@ -13,7 +13,8 @@ const mergeLayoutWithStates = (seatLayout = [], seatStates = []) => {
   return seatLayout.map(row => ({
     rowLabel: row.rowLabel,
     seats: (row.seats || []).map(seat => {
-      const state = stateMap.get(seat.seatCode.toUpperCase());
+      const code = seat.seatCode || '';
+      const state = code ? stateMap.get(code.toUpperCase()) : null;
       
       // If seat has a state entry in Showtime, it means it's a bookable/sellable seat or a disabled seat.
       // For empty/aisle, they might not have states or should be handled correctly.
@@ -48,6 +49,12 @@ const validateSeatLayout = (seatLayout) => {
     if (!Array.isArray(row.seats)) throw new Error(`Row ${row.rowLabel} missing seats array`);
 
     row.seats.forEach((seat, seatIndex) => {
+      // Non-seat types (empty, aisle, space) không có seatCode → bỏ qua validation
+      if (['empty', 'aisle', 'space'].includes(seat.type)) {
+        if (seat.capacity !== 0) throw new Error(`${seat.type} at row ${row.rowLabel} index ${seatIndex} must have capacity = 0`);
+        return; // skip remaining checks
+      }
+
       if (!seat.seatCode) throw new Error(`Seat at row ${row.rowLabel} index ${seatIndex} missing seatCode`);
       
       // 1. Unique seatCode
@@ -72,8 +79,6 @@ const validateSeatLayout = (seatLayout) => {
       } else if (type === 'disabled') {
         if (status !== 'disabled') throw new Error(`Seat ${seat.seatCode} (disabled) must have status = "disabled"`);
         if (capacity !== 0) throw new Error(`Seat ${seat.seatCode} (disabled) must have capacity = 0`);
-      } else if (['empty', 'aisle'].includes(type)) {
-        if (capacity !== 0) throw new Error(`${type} at ${seat.seatCode} must have capacity = 0`);
       }
     });
   });
