@@ -1,201 +1,489 @@
+import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  useWindowDimensions,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import { MoviePoster } from '@/components/ui/movie-poster';
-import {
-  ActionButton,
-  Chip,
-  EmptyNotice,
-  HeroCard,
-  PageScroll,
-  SectionCard,
-  SectionTitle,
-  getTonePalette,
-} from '@/components/ui/experience';
 import { Fonts } from '@/constants/theme';
-import { type MovieStatus, useAppStore } from '@/lib/app-store';
-import {
-  formatFormats,
-  formatGenres,
-  formatLanguage,
-  formatMovieDescription,
-} from '@/lib/user-display';
+import { type Movie, useAppStore } from '@/lib/app-store';
+import { API_BASE_URL } from '@/lib/backend-api';
+import { normalizePosterUrl } from '@/lib/image-url';
+import { formatFeaturedNote, formatGenres, formatLanguage } from '@/lib/user-display';
 
-const filters: { label: string; value: MovieStatus | 'all' }[] = [
-  { label: 'Tất cả', value: 'all' },
-  { label: 'Đang chiếu', value: 'now_showing' },
-  { label: 'Sắp chiếu', value: 'coming_soon' },
-  { label: 'Đã đóng', value: 'ended' },
-];
+const BANNER_HEIGHT = 188;
+const FEATURED_CARD_WIDTH = 246;
+const FEATURED_CARD_GAP = 18;
 
-const movieStatusLabels: Record<MovieStatus, string> = {
-  now_showing: 'Đang mở bán',
+const statusAccent: Record<Movie['status'], string> = {
+  now_showing: 'Đang chiếu',
   coming_soon: 'Sắp chiếu',
-  ended: 'Đã đóng',
+  ended: 'Đã kết thúc',
 };
 
-export default function HomeMoviesTabScreen() {
-  const { movies, showtimes } = useAppStore();
-  const colors = getTonePalette('user');
-  const [filter, setFilter] = useState<MovieStatus | 'all'>('all');
+const statusPillColor: Record<Movie['status'], string> = {
+  now_showing: '#DFF6E7',
+  coming_soon: '#FFF3D6',
+  ended: '#E8EEF5',
+};
 
-  const filteredMovies =
-    filter === 'all' ? movies : movies.filter((movie) => movie.status === filter);
+const formatReleaseDate = (value: string) =>
+  new Date(value).toLocaleDateString('vi-VN', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+
+const getPosterUrl = (movie: Movie) =>
+  normalizePosterUrl(movie.poster, { backendApiBaseUrl: API_BASE_URL });
+
+export default function HomeMoviesTabScreen() {
+  const { movies } = useAppStore();
+  const { width } = useWindowDimensions();
+  const bannerRef = useRef<ScrollView | null>(null);
+  const [bannerIndex, setBannerIndex] = useState(0);
+  const [query, setQuery] = useState('');
+
+  const bannerMovies = useMemo(() => movies.slice(0, 4), [movies]);
+  const featuredMovies = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    if (!normalizedQuery) {
+      return movies;
+    }
+
+    return movies.filter((movie) => {
+      const searchable = [
+        movie.title,
+        movie.rating,
+        movie.language,
+        ...movie.genre,
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      return searchable.includes(normalizedQuery);
+    });
+  }, [movies, query]);
+
+  useEffect(() => {
+    if (bannerMovies.length <= 1) {
+      return undefined;
+    }
+
+    const interval = setInterval(() => {
+      setBannerIndex((current) => {
+        const next = (current + 1) % bannerMovies.length;
+        bannerRef.current?.scrollTo({ y: next * BANNER_HEIGHT, animated: true });
+        return next;
+      });
+    }, 3600);
+
+    return () => clearInterval(interval);
+  }, [bannerMovies.length]);
+
+  const featuredInset = Math.max(20, (width - FEATURED_CARD_WIDTH) / 2);
 
   return (
-    <PageScroll tone="user">
-      <HeroCard
-        tone="user"
-        eyebrow="Khám phá phim"
-        title="Chọn phim bằng poster, thông tin gọn và đường vào đặt vé rõ ràng."
-        description="Màu chủ đạo được chuyển sang tone kem cam sáng. Danh sách phim giờ hiển thị poster nổi bật, meta rõ ràng và CTA đặt vé trực tiếp.">
-        <View style={styles.chipRow}>
-          {filters.map((item) => (
-            <Chip
-              key={item.value}
-              tone="user"
-              label={item.label}
-              active={filter === item.value}
-              onPress={() => setFilter(item.value)}
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.content}>
+        <View style={styles.searchRow}>
+          <View style={styles.searchBox}>
+            <MaterialCommunityIcons name="magnify" size={32} color="#00356F" />
+            <TextInput
+              value={query}
+              onChangeText={setQuery}
+              placeholder="Tìm phim..."
+              placeholderTextColor="#5C6B76"
+              style={styles.searchInput}
+              returnKeyType="search"
             />
-          ))}
+          </View>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Voice search"
+            style={({ pressed }) => [
+              styles.voiceButton,
+              pressed ? styles.voiceButtonPressed : null,
+            ]}>
+            <MaterialCommunityIcons name="microphone-outline" size={32} color="#FFFFFF" />
+          </Pressable>
         </View>
-      </HeroCard>
 
-      <SectionTitle
-        tone="user"
-        title="Danh sách phim"
-        description="Poster, định dạng, số suất đang mở và nút đặt vé được gom chung trong từng card để chọn phim nhanh hơn."
-      />
-      {filteredMovies.length === 0 ? (
-        <EmptyNotice
-          tone="user"
-          title="Không có phim nào trong bộ lọc này"
-          description="Hãy đổi bộ lọc để xem thêm phim đang chiếu, sắp chiếu hoặc đã kết thúc."
-        />
-      ) : (
-        filteredMovies.map((movie) => {
-          const movieShowtimes = showtimes.filter((showtime) => showtime.movieId === movie.id);
-          const totalShowtimes = movieShowtimes.length;
-          const lowestPrice = movieShowtimes.length
-            ? Math.min(...movieShowtimes.map((showtime) => showtime.basePrice))
-            : null;
+        <View style={styles.bannerFrame}>
+          <ScrollView
+            ref={bannerRef}
+            pagingEnabled
+            nestedScrollEnabled
+            showsVerticalScrollIndicator={false}
+            onMomentumScrollEnd={(event) => {
+              const nextIndex = Math.round(
+                event.nativeEvent.contentOffset.y / BANNER_HEIGHT,
+              );
+              setBannerIndex(nextIndex);
+            }}>
+            {bannerMovies.map((movie) => {
+              const posterUrl = getPosterUrl(movie);
 
-          return (
-            <SectionCard key={movie.id} tone="user" style={styles.movieCard}>
-              <MoviePoster
-                uri={movie.poster}
-                title={movie.title}
-                tone="user"
-                width={112}
-                height={162}
-                borderRadius={20}
-              />
-
-              <View style={styles.movieBody}>
-                <View style={styles.metaRail}>
-                  <Chip tone="user" label={movieStatusLabels[movie.status]} active />
-                  <Chip tone="user" label={`${movie.rating} • ${movie.duration} phút`} />
-                </View>
-
-                <View style={styles.copyBlock}>
-                  <Text style={[styles.cardTitle, { color: colors.text }]}>{movie.title}</Text>
-                  <Text style={[styles.cardMeta, { color: colors.muted }]}>
-                    {formatGenres(movie.genre)} • {formatLanguage(movie.language)}
-                  </Text>
-                  <Text style={[styles.cardMeta, { color: colors.muted }]}>
-                    {formatFormats(movie.formats)}
-                  </Text>
-                  <Text numberOfLines={3} style={[styles.cardDescription, { color: colors.muted }]}>
-                    {formatMovieDescription(movie.description)}
-                  </Text>
-                </View>
-
-                <View style={styles.cardFooter}>
-                  <View style={styles.priceBlock}>
-                    <Text style={[styles.inlineMeta, { color: colors.text }]}>
-                      {totalShowtimes} suất đang mở
+              return (
+                <Pressable
+                  key={movie.id}
+                  onPress={() => router.push(`/movies/${movie.id}`)}
+                  style={styles.bannerSlide}>
+                  {posterUrl ? (
+                    <Image
+                      source={{ uri: posterUrl }}
+                      contentFit="cover"
+                      transition={220}
+                      style={styles.bannerImage}
+                    />
+                  ) : null}
+                  <View style={styles.bannerScrim} />
+                  <View style={styles.bannerGlow} />
+                  <View style={styles.bannerCopy}>
+                    <Text style={styles.bannerBadge}>{statusAccent[movie.status]}</Text>
+                    <Text numberOfLines={2} style={styles.bannerTitle}>
+                      {movie.title}
                     </Text>
-                    <Text style={[styles.priceText, { color: colors.muted }]}>
-                      {lowestPrice
-                        ? `Từ ${lowestPrice.toLocaleString('vi-VN')}đ`
-                        : 'Đang cập nhật giá'}
+                    <Text numberOfLines={1} style={styles.bannerSubtitle}>
+                      {formatFeaturedNote(movie.featuredNote || 'Đang mở bán trên hệ thống.')}
                     </Text>
                   </View>
-                  <ActionButton
-                    tone="user"
-                    label="Đặt vé"
-                    onPress={() => router.push(`/movies/${movie.id}`)}
-                    style={styles.ctaButton}
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+
+          <View style={styles.verticalDots}>
+            {bannerMovies.map((movie, index) => (
+              <View
+                key={movie.id}
+                style={[
+                  styles.verticalDot,
+                  index === bannerIndex ? styles.verticalDotActive : null,
+                ]}
+              />
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Chọn phim</Text>
+          <Text style={styles.sectionMeta}>
+            {featuredMovies.length} phim từ dữ liệu quản trị
+          </Text>
+        </View>
+
+        {featuredMovies.length === 0 ? (
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyTitle}>Không tìm thấy phim</Text>
+            <Text style={styles.emptyText}>Thử tìm theo tên phim, thể loại hoặc nhãn tuổi.</Text>
+          </View>
+        ) : (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            snapToInterval={FEATURED_CARD_WIDTH + FEATURED_CARD_GAP}
+            contentContainerStyle={[
+              styles.featuredRail,
+              { paddingLeft: featuredInset, paddingRight: featuredInset },
+            ]}>
+            {featuredMovies.map((movie) => (
+              <Pressable
+                key={movie.id}
+                onPress={() => router.push(`/movies/${movie.id}`)}
+                style={({ pressed }) => [
+                  styles.featuredCard,
+                  pressed ? styles.featuredCardPressed : null,
+                ]}>
+                <View style={styles.posterShell}>
+                  <MoviePoster
+                    uri={movie.poster}
+                    title={movie.title}
+                    tone="admin"
+                    width={FEATURED_CARD_WIDTH}
+                    height={356}
+                    borderRadius={24}
                   />
+                  <View style={styles.ratingBadge}>
+                    <Text style={styles.ratingText}>{movie.rating}</Text>
+                  </View>
                 </View>
-              </View>
-            </SectionCard>
-          );
-        })
-      )}
-    </PageScroll>
+                <View style={styles.featuredInfo}>
+                  <View
+                    style={[
+                      styles.statusPill,
+                      { backgroundColor: statusPillColor[movie.status] },
+                    ]}>
+                    <Text style={styles.statusPillText}>{statusAccent[movie.status]}</Text>
+                  </View>
+                  <Text numberOfLines={1} style={styles.movieTitle}>
+                    {movie.title}
+                  </Text>
+                  <Text numberOfLines={1} style={styles.movieAdminMeta}>
+                    {movie.duration} phút • Khởi chiếu {formatReleaseDate(movie.releaseDate)}
+                  </Text>
+                  <Text numberOfLines={1} style={styles.movieMeta}>
+                    {formatGenres(movie.genre)} • {formatLanguage(movie.language)}
+                  </Text>
+                </View>
+              </Pressable>
+            ))}
+          </ScrollView>
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  chipRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F7FAFD',
   },
-  movieCard: {
+  content: {
+    paddingTop: 18,
+    paddingBottom: 112,
+    gap: 28,
+  },
+  searchRow: {
     flexDirection: 'row',
-    alignItems: 'stretch',
+    alignItems: 'center',
+    gap: 16,
+    paddingHorizontal: 20,
+  },
+  searchBox: {
+    flex: 1,
+    minHeight: 66,
+    borderRadius: 999,
+    backgroundColor: '#D9E7F1',
+    paddingHorizontal: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 14,
   },
-  movieBody: {
+  searchInput: {
     flex: 1,
-    gap: 12,
+    minHeight: 52,
+    color: '#001E42',
+    fontSize: 18,
+    fontFamily: Fonts.sansMedium,
   },
-  metaRail: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
+  voiceButton: {
+    width: 66,
+    height: 66,
+    borderRadius: 33,
+    backgroundColor: '#003D7D',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#003D7D',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.22,
+    shadowRadius: 12,
+    elevation: 6,
   },
-  copyBlock: {
-    gap: 4,
+  voiceButtonPressed: {
+    transform: [{ scale: 0.96 }],
   },
-  cardTitle: {
-    fontSize: 22,
-    lineHeight: 28,
+  bannerFrame: {
+    height: BANNER_HEIGHT,
+    marginHorizontal: 20,
+    borderRadius: 24,
+    overflow: 'hidden',
+    backgroundColor: '#CBD6DE',
+    shadowColor: '#253C52',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
+    elevation: 3,
+  },
+  bannerSlide: {
+    height: BANNER_HEIGHT,
+    overflow: 'hidden',
+    position: 'relative',
+    justifyContent: 'flex-end',
+  },
+  bannerImage: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.78,
+  },
+  bannerScrim: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 35, 72, 0.42)',
+  },
+  bannerGlow: {
+    position: 'absolute',
+    width: 170,
+    height: 260,
+    right: 34,
+    top: -64,
+    borderRadius: 120,
+    backgroundColor: 'rgba(195, 244, 255, 0.24)',
+    transform: [{ rotate: '28deg' }],
+  },
+  bannerCopy: {
+    paddingHorizontal: 28,
+    paddingBottom: 28,
+    gap: 10,
+  },
+  bannerBadge: {
+    alignSelf: 'flex-start',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.72)',
+    borderRadius: 999,
+    paddingHorizontal: 18,
+    paddingVertical: 6,
+    color: '#FFFFFF',
+    fontSize: 12,
+    letterSpacing: 1.1,
+    textTransform: 'uppercase',
+    fontFamily: Fonts.sansBold,
+  },
+  bannerTitle: {
+    maxWidth: 300,
+    color: '#FFFFFF',
+    fontSize: 28,
+    lineHeight: 34,
     fontFamily: Fonts.rounded,
   },
-  cardMeta: {
-    fontSize: 13,
-    lineHeight: 19,
-    fontFamily: Fonts.sans,
+  bannerSubtitle: {
+    maxWidth: 290,
+    color: 'rgba(255,255,255,0.88)',
+    fontSize: 16,
+    fontFamily: Fonts.sansMedium,
   },
-  cardDescription: {
+  verticalDots: {
+    position: 'absolute',
+    right: 18,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  verticalDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255,255,255,0.52)',
+  },
+  verticalDotActive: {
+    width: 9,
+    height: 36,
+    borderRadius: 999,
+    backgroundColor: '#FFFFFF',
+  },
+  sectionHeader: {
+    paddingHorizontal: 20,
+    gap: 4,
+  },
+  sectionTitle: {
+    color: '#001E42',
+    fontSize: 30,
+    lineHeight: 36,
+    fontFamily: Fonts.rounded,
+  },
+  sectionMeta: {
+    color: '#6D7D8A',
+    fontSize: 13,
+    fontFamily: Fonts.sansMedium,
+  },
+  featuredRail: {
+    gap: FEATURED_CARD_GAP,
+    alignItems: 'flex-start',
+    paddingBottom: 22,
+  },
+  featuredCard: {
+    width: FEATURED_CARD_WIDTH,
+    gap: 14,
+  },
+  featuredCardPressed: {
+    transform: [{ scale: 0.98 }],
+  },
+  posterShell: {
+    width: FEATURED_CARD_WIDTH,
+    height: 356,
+    borderRadius: 24,
+    shadowColor: '#002B5C',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    elevation: 5,
+  },
+  ratingBadge: {
+    position: 'absolute',
+    top: 16,
+    right: 14,
+    borderRadius: 10,
+    backgroundColor: '#F7FAFD',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  ratingText: {
+    color: '#001E42',
+    fontSize: 13,
+    fontFamily: Fonts.sansBold,
+  },
+  featuredInfo: {
+    gap: 4,
+  },
+  statusPill: {
+    alignSelf: 'flex-start',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+  },
+  statusPillText: {
+    color: '#00356F',
+    fontSize: 11,
+    fontFamily: Fonts.sansBold,
+  },
+  movieTitle: {
+    color: '#001E42',
+    fontSize: 17,
+    lineHeight: 22,
+    fontFamily: Fonts.sansBold,
+  },
+  movieAdminMeta: {
+    color: '#47677D',
+    fontSize: 12,
+    lineHeight: 17,
+    fontFamily: Fonts.sansBold,
+  },
+  movieMeta: {
+    color: '#7D8B97',
+    fontSize: 13,
+    lineHeight: 18,
+    fontFamily: Fonts.sansMedium,
+  },
+  emptyState: {
+    marginHorizontal: 20,
+    borderRadius: 22,
+    backgroundColor: '#E9F1F7',
+    padding: 22,
+    gap: 8,
+  },
+  emptyTitle: {
+    color: '#001E42',
+    fontSize: 18,
+    fontFamily: Fonts.sansBold,
+  },
+  emptyText: {
+    color: '#647584',
     fontSize: 14,
     lineHeight: 20,
     fontFamily: Fonts.sans,
-  },
-  cardFooter: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    gap: 12,
-  },
-  priceBlock: {
-    flex: 1,
-    gap: 2,
-  },
-  inlineMeta: {
-    fontSize: 14,
-    fontFamily: Fonts.sansBold,
-  },
-  priceText: {
-    fontSize: 13,
-    fontFamily: Fonts.sans,
-  },
-  ctaButton: {
-    minWidth: 108,
   },
 });

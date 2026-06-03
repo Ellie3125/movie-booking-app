@@ -15,6 +15,20 @@ import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
 import { normalizePosterUrl } from '@/lib/image-url';
 
+type ProfileMenuItem = {
+  icon: string;
+  label: string;
+  sublabel: string;
+  route: string;
+  color: string;
+  isDanger?: boolean;
+};
+
+type ProfileMenuGroup = {
+  title: string;
+  items: ProfileMenuItem[];
+};
+
 export default function ProfileScreen() {
   const { currentUser, logout } = useAppStore();
   const router = useRouter();
@@ -41,7 +55,7 @@ export default function ProfileScreen() {
     ? normalizePosterUrl(currentUser.avatarUrl)
     : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80';
 
-  const menuGroups = [
+  const menuGroups: ProfileMenuGroup[] = [
     {
       title: 'Tài khoản & Bảo mật',
       items: [
