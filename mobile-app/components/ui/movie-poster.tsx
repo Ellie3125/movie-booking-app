@@ -52,12 +52,6 @@ export function MoviePoster({
     setLoadState(imageUrl ? 'loading' : 'idle');
   }, [imageUrl]);
 
-  useEffect(() => {
-    if (imageUrl && process.env.NODE_ENV !== 'production') {
-      console.debug('[MoviePoster] render URL', { title, imageUrl });
-    }
-  }, [imageUrl, title]);
-
   const showFallback = !imageUrl || loadState === 'error';
   const showLoader = Boolean(imageUrl && loadState === 'loading');
 
@@ -82,12 +76,7 @@ export function MoviePoster({
         onLoad={imageUrl ? () => setLoadState('loaded') : undefined}
         onError={
           imageUrl
-            ? () => {
-                if (process.env.NODE_ENV !== 'production') {
-                  console.warn('[MoviePoster] failed to load URL', { title, imageUrl });
-                }
-                setLoadState('error');
-              }
+            ? () => setLoadState('error')
             : undefined
         }
       />
