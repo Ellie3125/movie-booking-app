@@ -1,0 +1,143 @@
+/* ============================================================
+ * TopNavBar Styles
+ * ============================================================ */
+
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 64px;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.topnav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--sp-margin);
+  height: 100%;
+}
+
+/* ---------- Brand ---------- */
+.topnav__brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topnav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topnav__logo-mark {
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--r-def);
+  background: var(--primary-container);
+  color: var(--on-primary);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.topnav__title {
+  color: var(--primary);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.topnav__subtitle {
+  color: var(--on-surface-variant);
+  margin-left: 4px;
+  padding-left: 16px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* ---------- Actions ---------- */
+.topnav__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topnav__user-name {
+  color: var(--on-surface-variant);
+  margin-right: 4px;
+}
+
+.topnav__icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-full);
+  color: var(--secondary);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.topnav__icon-btn:hover {
+  background: var(--surface-container-low);
+}
+
+.topnav__icon-btn:active {
+  transform: scale(0.92);
+}
+
+.topnav__notif-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-full);
+  background: var(--error);
+  border: 2px solid var(--surface-container-lowest);
+}
+
+/* ---------- Avatar ---------- */
+.topnav__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-full);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--primary-container), var(--primary));
+}
+
+.topnav__avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--on-primary);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .topnav__subtitle,
+  .topnav__user-name {
+    display: none;
+  }
+
+  .topnav__inner {
+    padding: 0 16px;
+  }
+
+  .topnav__title {
+    font-size: 20px;
+  }
+}

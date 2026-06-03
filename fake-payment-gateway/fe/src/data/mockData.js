@@ -1,0 +1,152 @@
+/**
+ * Mock data cho VeriPay Admin UI.
+ * Dữ liệu giả lập danh sách vé và chi tiết thanh toán.
+ */
+
+export const TICKET_STATUS = {
+  PENDING: 'pending',
+  PAID: 'paid',
+  CANCELLED: 'cancelled',
+  FAILED: 'failed',
+};
+
+export const STATUS_CONFIG = {
+  [TICKET_STATUS.PENDING]: {
+    label: 'Chờ thanh toán',
+    icon: 'pending',
+    bgClass: 'status-pending',
+    bg: 'var(--warning-muted)',
+    color: 'var(--warning-text)',
+  },
+  [TICKET_STATUS.PAID]: {
+    label: 'Đã thanh toán',
+    icon: 'check_circle',
+    bgClass: 'status-paid',
+    bg: 'var(--success-muted)',
+    color: 'var(--success-text)',
+  },
+  [TICKET_STATUS.CANCELLED]: {
+    label: 'Đã huỷ',
+    icon: 'cancel',
+    bgClass: 'status-cancelled',
+    bg: 'var(--error-muted)',
+    color: 'var(--error)',
+  },
+  [TICKET_STATUS.FAILED]: {
+    label: 'Thất bại',
+    icon: 'error',
+    bgClass: 'status-failed',
+    bg: 'var(--error-muted)',
+    color: 'var(--error)',
+  },
+};
+
+export const mockTickets = [
+  {
+    id: 'BK001',
+    customerName: 'Nguyễn Trần ABC',
+    phone: '0901234567',
+    email: 'nguyentran.abc@example.com',
+    amount: 2500000,
+    status: TICKET_STATUS.PENDING,
+    time: '10:45',
+    ticketType: 'Vé Hạng Thương Gia',
+    quantity: 2,
+    date: '25/11/2023',
+    departureTime: '14:30',
+    movieTitle: 'Avengers: Endgame',
+    cinema: 'CGV Vincom Center',
+    room: 'Phòng 05',
+    seats: ['D5', 'D6'],
+    subtotal: 2500000,
+    discount: 0,
+    total: 2500000,
+  },
+  {
+    id: 'BK002',
+    customerName: 'Lê Thị XYZ',
+    phone: '0987654321',
+    email: 'lethi.xyz@example.com',
+    amount: 1200000,
+    status: TICKET_STATUS.PENDING,
+    time: '10:30',
+    ticketType: 'Vé Thường',
+    quantity: 4,
+    date: '25/11/2023',
+    departureTime: '18:00',
+    movieTitle: 'Spider-Man: No Way Home',
+    cinema: 'Lotte Cinema Landmark',
+    room: 'Phòng 03',
+    seats: ['A1', 'A2', 'A3', 'A4'],
+    subtotal: 1200000,
+    discount: 0,
+    total: 1200000,
+  },
+  {
+    id: 'BK003',
+    customerName: 'Phạm Văn DEF',
+    phone: '0912345678',
+    email: 'phamvan.def@example.com',
+    amount: 500000,
+    status: TICKET_STATUS.PAID,
+    time: '09:15',
+    ticketType: 'Vé Thường',
+    quantity: 2,
+    date: '24/11/2023',
+    departureTime: '20:00',
+    movieTitle: 'The Batman',
+    cinema: 'Galaxy Nguyễn Du',
+    room: 'Phòng 02',
+    seats: ['C3', 'C4'],
+    subtotal: 500000,
+    discount: 0,
+    total: 500000,
+  },
+  {
+    id: 'BK004',
+    customerName: 'Trần Minh GHI',
+    phone: '0933456789',
+    email: 'tranminh.ghi@example.com',
+    amount: 850000,
+    status: TICKET_STATUS.CANCELLED,
+    time: '08:50',
+    ticketType: 'Vé VIP',
+    quantity: 1,
+    date: '24/11/2023',
+    departureTime: '15:30',
+    movieTitle: 'Dune: Part Two',
+    cinema: 'BHD Star Bitexco',
+    room: 'Phòng 01',
+    seats: ['VIP-A3'],
+    subtotal: 850000,
+    discount: 0,
+    total: 850000,
+  },
+  {
+    id: 'BK005',
+    customerName: 'Hoàng Thị JKL',
+    phone: '0945678901',
+    email: 'hoangthi.jkl@example.com',
+    amount: 3000000,
+    status: TICKET_STATUS.PENDING,
+    time: '08:20',
+    ticketType: 'Vé Hạng Thương Gia',
+    quantity: 3,
+    date: '26/11/2023',
+    departureTime: '19:00',
+    movieTitle: 'Oppenheimer',
+    cinema: 'CGV Aeon Mall',
+    room: 'Phòng 07',
+    seats: ['E1', 'E2', 'E3'],
+    subtotal: 3000000,
+    discount: 0,
+    total: 3000000,
+  },
+];
+
+/**
+ * Format số tiền theo định dạng VND
+ */
+export function formatCurrency(amount) {
+  return new Intl.NumberFormat('vi-VN').format(amount) + ' đ';
+}

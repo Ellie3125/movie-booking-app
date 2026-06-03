@@ -74,8 +74,6 @@ const SeatToolbar: React.FC<SeatToolbarProps> = ({
       })),
     };
 
-    console.log("📋 Exported seatLayout JSON:", JSON.stringify(exportData, null, 2));
-
     // Download as file
     const blob = new Blob([JSON.stringify(exportData, null, 2)], {
       type: "application/json",

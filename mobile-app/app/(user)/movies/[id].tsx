@@ -1,5 +1,5 @@
-import { router, Stack, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { router, Stack, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Pressable,
   ScrollView,
@@ -21,6 +21,11 @@ import {
 import { Fonts } from '@/constants/theme';
 import { type Showtime, useAppStore } from '@/lib/app-store';
 import {
+  filterAvailableBookingDates,
+  filterAvailableShowtimes,
+  parseShowtimeDateTime,
+} from '@/lib/booking-availability';
+import {
   formatFormats,
   formatLanguage,
   formatLocationName,
@@ -31,7 +36,6 @@ import {
   formatShowtimeDayLabel,
   formatShowtimeFormat,
   formatShowtimeTime,
-  getCalendarDateKey,
 } from '@/lib/user-display';
 
 type ShowtimeDayGroup = {
@@ -61,8 +65,8 @@ const timeWindows: { key: TimeWindow; label: string }[] = [
   { key: 'evening', label: '18:00 - 24:00' },
 ];
 
-const getShowtimeWindow = (startTime: string): TimeWindow => {
-  const hour = new Date(startTime).getHours();
+const getShowtimeWindow = (showtime: Showtime): TimeWindow => {
+  const hour = parseShowtimeDateTime(showtime)?.getHours() ?? 0;
 
   if (hour < 12) {
     return 'morning';
@@ -85,6 +89,9 @@ const splitDayLabel = (label: string) => {
   return { weekdayText, dateText };
 };
 
+const getShowtimeSortTime = (showtime: Showtime) =>
+  parseShowtimeDateTime(showtime)?.getTime() ?? Number.MAX_SAFE_INTEGER;
+
 export default function MovieDetailScreen() {
   const { id, cinemaId } = useLocalSearchParams<{ id?: string; cinemaId?: string }>();
   const { movies, showtimes, cinemas, rooms } = useAppStore();
@@ -92,69 +99,93 @@ export default function MovieDetailScreen() {
   const colors = getTonePalette('user');
   const [selectedDateKey, setSelectedDateKey] = useState('');
   const [selectedTimeWindow, setSelectedTimeWindow] = useState<TimeWindow>('all');
+  const [availabilityNow, setAvailabilityNow] = useState(() => new Date());
 
   const compact = width < 700;
   const movie = movies.find((item) => item.id === id);
   const selectedCinema = cinemaId ? cinemas.find((item) => item.id === cinemaId) : null;
+
+  useFocusEffect(
+    useCallback(() => {
+      setAvailabilityNow(new Date());
+    }, []),
+  );
+
+  useEffect(() => {
+    setAvailabilityNow(new Date());
+  }, [cinemaId, id, showtimes]);
+
   const movieShowtimes = showtimes
     .filter(
       (item) =>
         item.movieId === movie?.id && (!selectedCinema || item.cinemaId === selectedCinema.id),
     )
-    .sort(
-      (first, second) =>
-        new Date(first.startTime).getTime() - new Date(second.startTime).getTime(),
-    );
-  const showtimeGroups: ShowtimeDayGroup[] = [];
+    .sort((first, second) => getShowtimeSortTime(first) - getShowtimeSortTime(second));
+  const availableMovieShowtimes = filterAvailableShowtimes(movieShowtimes, availabilityNow);
+  const availableShowtimeById = new Map(
+    availableMovieShowtimes.map((showtime) => [showtime.id, showtime]),
+  );
+  const showtimeGroups = filterAvailableBookingDates(movieShowtimes, availabilityNow)
+    .map((dateGroup) => {
+      const firstShowtime = dateGroup.showtimeIds
+        .map((showtimeId) => availableShowtimeById.get(showtimeId))
+        .find(Boolean);
 
-  movieShowtimes.forEach((showtime) => {
-    const dateKey = getCalendarDateKey(showtime.startTime);
-    const existingGroup = showtimeGroups.find((group) => group.key === dateKey);
+      if (!firstShowtime) {
+        return null;
+      }
 
-    if (existingGroup) {
-      existingGroup.showtimeIds.push(showtime.id);
-      return;
-    }
+      const label = formatShowtimeDayLabel(firstShowtime.startTime);
+      const { dateText, weekdayText } = splitDayLabel(label);
 
-    const label = formatShowtimeDayLabel(showtime.startTime);
-    const { dateText, weekdayText } = splitDayLabel(label);
+      return {
+        key: dateGroup.key,
+        label,
+        dateText,
+        weekdayText,
+        showtimeIds: dateGroup.showtimeIds,
+      };
+    })
+    .filter((group): group is ShowtimeDayGroup => Boolean(group));
 
-    showtimeGroups.push({
-      key: dateKey,
-      label,
-      dateText,
-      weekdayText,
-      showtimeIds: [showtime.id],
-    });
-  });
-
-  const showtimeGroupSignature = showtimeGroups.map((group) => group.key).join('|');
+  const firstDateKey = showtimeGroups[0]?.key ?? '';
+  const selectedDateIsAvailable = showtimeGroups.some((group) => group.key === selectedDateKey);
 
   useEffect(() => {
-    if (showtimeGroups.length === 0) {
+    if (!firstDateKey) {
       if (selectedDateKey) {
         setSelectedDateKey('');
       }
       return;
     }
 
-    if (!showtimeGroups.some((group) => group.key === selectedDateKey)) {
-      setSelectedDateKey(showtimeGroups[0].key);
+    if (!selectedDateIsAvailable) {
+      setSelectedDateKey(firstDateKey);
     }
-  }, [selectedDateKey, showtimeGroupSignature]);
+  }, [firstDateKey, selectedDateIsAvailable, selectedDateKey]);
 
-  const activeDateKey = showtimeGroups.some((group) => group.key === selectedDateKey)
-    ? selectedDateKey
-    : showtimeGroups[0]?.key ?? '';
+  const activeDateKey = selectedDateIsAvailable ? selectedDateKey : firstDateKey;
   const activeDayGroup = showtimeGroups.find((group) => group.key === activeDateKey) ?? null;
-  const activeShowtimes = movieShowtimes.filter(
-    (showtime) => getCalendarDateKey(showtime.startTime) === activeDateKey,
+  const activeShowtimeIds = new Set(activeDayGroup?.showtimeIds ?? []);
+  const activeShowtimes = availableMovieShowtimes.filter((showtime) =>
+    activeShowtimeIds.has(showtime.id),
   );
+  const activeTimeWindowKeys = new Set(activeShowtimes.map((showtime) => getShowtimeWindow(showtime)));
+  const availableTimeWindows =
+    activeShowtimes.length === 0
+      ? []
+      : timeWindows.filter(
+          (window) => window.key === 'all' || activeTimeWindowKeys.has(window.key),
+        );
+  const selectedTimeWindowIsAvailable = availableTimeWindows.some(
+    (window) => window.key === selectedTimeWindow,
+  );
+  const effectiveTimeWindow = selectedTimeWindowIsAvailable ? selectedTimeWindow : 'all';
   const filteredShowtimes =
-    selectedTimeWindow === 'all'
+    effectiveTimeWindow === 'all'
       ? activeShowtimes
       : activeShowtimes.filter(
-          (showtime) => getShowtimeWindow(showtime.startTime) === selectedTimeWindow,
+          (showtime) => getShowtimeWindow(showtime) === effectiveTimeWindow,
         );
   const cinemaShowtimeGroups: CinemaShowtimeGroup[] = [];
 
@@ -189,7 +220,15 @@ export default function MovieDetailScreen() {
     ? `${selectedCinema.brand} • ${formatLocationName(selectedCinema.name)}`
     : activeCities.length === 1
       ? activeCities[0]
-      : `${activeCities.length || 0} khu vực`;
+      : activeCities.length > 1
+        ? `${activeCities.length} khu vực`
+        : 'Chưa có suất khả dụng';
+
+  useEffect(() => {
+    if (!selectedTimeWindowIsAvailable) {
+      setSelectedTimeWindow('all');
+    }
+  }, [selectedTimeWindowIsAvailable]);
 
   return (
     <PageScroll tone="user">
@@ -259,12 +298,8 @@ export default function MovieDetailScreen() {
           {showtimeGroups.length === 0 ? (
             <EmptyNotice
               tone="user"
-              title="Chưa mở suất chiếu"
-              description={
-                selectedCinema
-                  ? 'Phim này hiện chưa có suất chiếu tại rạp đã chọn.'
-                  : 'Phim này hiện chưa có suất chiếu khả dụng.'
-              }
+              title="Không có suất chiếu khả dụng"
+              description="Hiện chưa có suất chiếu khả dụng."
             />
           ) : (
             <SectionCard tone="user" style={styles.scheduleBoard}>
@@ -306,8 +341,8 @@ export default function MovieDetailScreen() {
 
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <View style={styles.timeWindowRail}>
-                  {timeWindows.map((window) => {
-                    const active = window.key === selectedTimeWindow;
+                  {availableTimeWindows.map((window) => {
+                    const active = window.key === effectiveTimeWindow;
 
                     return (
                       <Pressable

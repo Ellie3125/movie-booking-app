@@ -45,11 +45,15 @@ coverage/
 .cache/
 .parcel-cache/
 .temp/
+tmp/
+temp/
 .fusebox/
 .dynamodb/
 .firebase/
 .tern-port
 .vscode-test/
+__pycache__/
+*.py[cod]
 
 # =========================
 # Package manager / archives
@@ -70,6 +74,12 @@ coverage/
 build/Release/
 dist/
 out/
+web-build/
+.expo/
+**/.expo/
+.metro/
+.metro-health-check*
+.turbo/
 .next/
 .nuxt/
 .svelte-kit/
