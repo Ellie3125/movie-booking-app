@@ -112,6 +112,19 @@ const getCinemaBrandLogoSource = (brand?: string | null) => {
   return undefined;
 };
 
+const formatCinemaTitle = (brandName: string, cinemaName: string) => {
+  const displayName = formatLocationName(cinemaName);
+  const normalizedBrand = normalizeSearchText(brandName);
+  const normalizedName = normalizeSearchText(displayName);
+  const primaryBrand = normalizedBrand.split(/\s+/).filter(Boolean)[0];
+
+  return normalizedBrand &&
+    (normalizedName.includes(normalizedBrand) ||
+      (primaryBrand ? normalizedName.startsWith(primaryBrand) : false))
+    ? displayName
+    : `${brandName} ${displayName}`.trim();
+};
+
 export default function CinemasTabScreen() {
   const { cinemas, rooms, showtimes, brands, refreshData } = useAppStore();
 
@@ -216,8 +229,12 @@ export default function CinemasTabScreen() {
     }
 
     return sortedCinemas.filter((cinema) => {
+      const brandInfo = brands.find(
+        (brand) => brand.code.toLowerCase() === cinema.brand.toLowerCase(),
+      );
       const searchable = [
         cinema.brand,
+        brandInfo?.name,
         formatLocationName(cinema.name),
         formatCity(cinema.city),
         formatAddress(cinema.address),
@@ -227,7 +244,7 @@ export default function CinemasTabScreen() {
 
       return normalizeSearchText(searchable).includes(normalizedQuery);
     });
-  }, [query, sortedCinemas]);
+  }, [brands, query, sortedCinemas]);
 
   const selectedCity = useMemo(() => {
     const firstHaNoiCinema = cinemas.find((cinema) => cinema.city === 'Ha Noi');
@@ -394,8 +411,10 @@ export default function CinemasTabScreen() {
               const brandInfo = brands.find(
                 (brand) => brand.code.toLowerCase() === cinema.brand.toLowerCase(),
               );
+              const brandName = brandInfo?.name || cinema.brand;
               const logoUrl = buildImageUrl(cinema.imageUrl || brandInfo?.logo);
               const localLogoSource = getCinemaBrandLogoSource(cinema.brand);
+              const cinemaTitle = formatCinemaTitle(brandName, cinema.name);
               const areaLabel = getAreaLabel(cinema.address, cinema.city);
               const hasDistance = cinema.distanceKm !== undefined;
               const isNearbyCinema = nearbyCinemaIds.has(cinema.id);
@@ -410,7 +429,7 @@ export default function CinemasTabScreen() {
                 <Pressable
                   key={cinemaId}
                   accessibilityRole="button"
-                  accessibilityLabel={`Xem chi tiết ${cinema.brand} ${formatLocationName(cinema.name)}`}
+                  accessibilityLabel={`Xem chi tiết ${cinemaTitle}`}
                   onPress={() => router.push(`/cinemas/${cinemaId}`)}
                   style={({ pressed }) => [
                     styles.cinemaCard,
@@ -435,7 +454,7 @@ export default function CinemasTabScreen() {
 
                     <View style={styles.cinemaInfo}>
                       <Text numberOfLines={1} style={styles.cinemaName}>
-                        {cinema.brand} {formatLocationName(cinema.name)}
+                        {cinemaTitle}
                       </Text>
                       <Text numberOfLines={1} style={styles.cinemaMeta}>
                         {areaLabel}
@@ -464,7 +483,7 @@ export default function CinemasTabScreen() {
                   </View>
 
                   <Text style={styles.showtimeMeta}>
-                    {roomCount} phòng chiếu • {showtimeCount} suất chiếu
+                    {roomCount} phòng chiếu • {showtimeCount} suất chiếu • Hotline {cinema.hotline}
                   </Text>
                 </Pressable>
               );
