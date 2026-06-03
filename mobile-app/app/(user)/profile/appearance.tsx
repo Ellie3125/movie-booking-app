@@ -34,11 +34,20 @@ const formatDate = (date: Date, format: DateFormat): string => {
 };
 
 export default function AppearanceScreen() {
+<<<<<<< HEAD
+  const { currentUser, updatePreferences } = useAppStore();
+
+  const prefs = currentUser?.preferences;
+  const [language, setLanguage] = useState<Language>(prefs?.language || 'vi');
+  const [theme, setTheme] = useState<Theme>(prefs?.theme || 'system');
+  const [dateFormat, setDateFormat] = useState<DateFormat>(prefs?.dateFormat || 'DD/MM/YYYY');
+=======
   const { updatePreferences } = useAppStore();
 
   const [language, setLanguage] = useState<Language>('vi');
   const [theme, setTheme] = useState<Theme>('system');
   const [dateFormat, setDateFormat] = useState<DateFormat>('DD/MM/YYYY');
+>>>>>>> main
 
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
