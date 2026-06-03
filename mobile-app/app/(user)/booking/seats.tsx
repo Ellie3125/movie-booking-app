@@ -30,7 +30,10 @@ import {
   type SeatVisualStatus,
   type SeatVisualVariant,
 } from '@/lib/seat-appearance';
-import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
+import {
+  OUTER_EDGE_EMPTY_SEAT_WARNING,
+  getEdgeSeatSelectionConflict,
+} from '@/lib/seat-selection-rule';
 import {
   formatLocationName,
   formatRoomName,
@@ -476,17 +479,6 @@ export default function SeatSelectionScreen() {
       }
     }
 
-    const edgeSeatConflict = getEdgeSeatSelectionConflict(
-      room?.seatLayout ?? [],
-      showtime?.seatStates ?? [],
-      nextSelectedCodes,
-    );
-
-    if (edgeSeatConflict) {
-      setSelectionNotice(edgeSeatConflict.message);
-      return;
-    }
-
     setSelectionNotice('');
     setError('');
     setSelectedCoordinates(nextSelectedCodes);
@@ -504,7 +496,7 @@ export default function SeatSelectionScreen() {
     );
 
     if (edgeSeatConflict) {
-      setSelectionNotice(edgeSeatConflict.message);
+      setSelectionNotice(OUTER_EDGE_EMPTY_SEAT_WARNING);
       setError('');
       return;
     }
@@ -519,7 +511,7 @@ export default function SeatSelectionScreen() {
       setError(message);
 
       if (message.includes('ghế ngoài cùng')) {
-        setSelectionNotice(message);
+        setSelectionNotice(OUTER_EDGE_EMPTY_SEAT_WARNING);
       }
 
       return;
@@ -569,20 +561,6 @@ export default function SeatSelectionScreen() {
           </SectionCard>
 
           <SectionCard tone="user" style={styles.workbenchCard}>
-            {selectionNotice ? (
-              <View
-                style={[
-                  styles.noticeBox,
-                  {
-                    backgroundColor: 'rgba(245, 130, 32, 0.1)',
-                    borderColor: 'rgba(245, 130, 32, 0.22)',
-                  },
-                ]}>
-                <Text style={[styles.noticeTitle, { color: colors.text }]}>Lưu ý chọn ghế</Text>
-                <Text style={[styles.noticeText, { color: colors.muted }]}>{selectionNotice}</Text>
-              </View>
-            ) : null}
-
             <View style={[styles.workbenchGrid, wideLayout ? styles.workbenchGridWide : null]}>
               <View style={styles.mapColumn}>
                 <View style={styles.mapColumnHeader}>
@@ -814,6 +792,24 @@ export default function SeatSelectionScreen() {
                       ))
                     )}
                   </View>
+
+                  {selectionNotice ? (
+                    <View
+                      style={[
+                        styles.noticeBox,
+                        {
+                          backgroundColor: 'rgba(245, 130, 32, 0.1)',
+                          borderColor: 'rgba(245, 130, 32, 0.22)',
+                        },
+                      ]}>
+                      <Text style={[styles.noticeTitle, { color: colors.text }]}>
+                        Lưu ý chọn ghế
+                      </Text>
+                      <Text style={[styles.noticeText, { color: colors.muted }]}>
+                        {selectionNotice}
+                      </Text>
+                    </View>
+                  ) : null}
 
                   {error ? (
                     <Text style={[styles.errorText, { color: colors.accent }]}>{error}</Text>

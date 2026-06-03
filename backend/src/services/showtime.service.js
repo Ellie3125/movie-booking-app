@@ -607,9 +607,7 @@ const updateShowtime = async (id, payload) => {
   showtime.startTime = startTime;
   showtime.endTime = endTime;
   showtime.price = payload.price;
-  console.log('UpdateShowtime payload status:', payload.status);
   if (payload.status) showtime.status = payload.status;
-  console.log('Showtime status after assignment:', showtime.status);
 
   // Ideally if room changes, seatStates should be rebuilt, but let's just do a basic assignment
   if (String(showtime.roomId) !== String(payload.roomId)) {
@@ -617,7 +615,6 @@ const updateShowtime = async (id, payload) => {
   }
 
   const saved = await showtime.save();
-  console.log('Showtime saved successfully. New status:', saved.status);
   return saved.toObject();
 };
 
