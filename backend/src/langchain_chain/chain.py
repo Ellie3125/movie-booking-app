@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
 
-# ── LangChain 1.3.x core ─────────────────────────────────────────────────────
+# ── LangChain core ───────────────────────────────────────────────────────────
 from langchain.agents import create_agent
 from langchain.agents.middleware import wrap_model_call, ModelRequest, ModelResponse
 from langchain.tools import ToolRuntime, tool
@@ -21,6 +21,10 @@ from typing_extensions import TypedDict
 # ── LangChain Groq ────────────────────────────────────────────────────────────
 from langchain_groq import ChatGroq
 
+from typing_extensions import Annotated, TypedDict
+from langgraph.graph.message import add_messages
+from langchain_core.messages import BaseMessage
+
 # ── Local DB ──────────────────────────────────────────────────────────────────
 from backend.seeds.chatresponse import UserRepository, MovieRepository
 
@@ -28,18 +32,36 @@ logger = logging.getLogger(__name__)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 1. STORE + CONTEXT SCHEMA
+# 1. STORE + STATE SCHEMA
 # ══════════════════════════════════════════════════════════════════════════════
 
 # InMemoryStore — swap sang DB-backed store (Redis, Postgres...) trong production
 store = InMemoryStore()
 
+# ── Reducer helpers ───────────────────────────────────────────────────────────
 
-@dataclass
-class Context:
-    """Truyền vào agent qua context= khi invoke."""
-    user_id:  str   # ID người dùng (string để match store key)
-    username: str   # username để làm store key
+def _keep_last(current: str, update: str) -> str:
+    """Reducer cho scalar field — luôn lấy giá trị mới nhất."""
+    return update if update is not None else current
+
+
+def _merge_messages(
+    current: list[BaseMessage],
+    update:  list[BaseMessage],
+) -> list[BaseMessage]:
+    """Dùng add_messages của LangGraph — tự dedupe theo id."""
+    return add_messages(current, update)
+
+
+# ── State schema ──────────────────────────────────────────────────────────────
+
+class Context(TypedDict):
+    # Conversation history — append-only, dedupe theo message id
+    messages:  Annotated[list[BaseMessage], _merge_messages]
+
+    # Scalar fields — last-write-wins
+    user_id:   Annotated[str, _keep_last]
+    username:  Annotated[str, _keep_last]
 
 
 # TypedDict định nghĩa cấu trúc LTM để LLM biết cách ghi
@@ -49,7 +71,6 @@ class MovieMemoryData(TypedDict):
     disliked_movies:  list   # ["phim X", ...]
     total_sessions:   int
     last_active:      str
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 2. LTM HELPERS
@@ -456,7 +477,7 @@ async def chat(
         tools=TOOLS,
         system_prompt=system_prompt,
         store=store,                        # InMemoryStore cho LTM
-        context_schema=Context,             # schema để agent biết context type
+        state_schema=Context,             # schema để agent biết context type
         middleware=[dynamic_model_selection],
     )
 
@@ -472,7 +493,8 @@ async def chat(
     # Invoke agent — truyền context để tools truy cập store đúng user
     result = await agent.ainvoke(
         {"messages": input_messages},
-        context=Context(user_id=uid_str, username=username),
+        state=Context(messages=input_messages, 
+                      user_id=uid_str, username=username),
     )
 
     # Trích output
