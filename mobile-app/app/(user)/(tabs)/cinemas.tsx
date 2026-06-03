@@ -2,13 +2,13 @@
  * SPEC Disclosure - CinemasTabScreen:
  * 1. Autonomous Decisions:
  *    - Rebuilt the mobile Cinemas tab UI to match the provided "Chọn theo rạp" reference while keeping existing store/API/location data flow.
- *    - Added a local cinema-logo rail with intentionally blank logoUrl fields so brand logo URLs can be filled in later without backend/admin changes.
+ *    - Added a local cinema-logo rail backed by bundled brand logo assets where available.
  *    - Added client-side search over the already loaded cinema list because the reference screen includes a search bar and this does not call new APIs.
  * 2. Deviations:
  *    - The "Tìm đường" and favorite controls are presented as visual affordances only; no map/favorite persistence logic was added.
  * 3. Trade-offs:
  *    - The screen now uses local layout primitives instead of the shared HeroCard/SectionCard wrappers to more closely match the supplied design.
- *    - Logo placeholders are neutral blocks until URLs are manually supplied in cinemaLogoSlides.
+ *    - BHD remains a neutral placeholder until a matching local logo asset is added.
  * 4. Context/Notes:
  *    - Backend, admin-web, and existing cinema fetch/sort/location logic are unchanged.
  */
@@ -50,13 +50,20 @@ type LocationState =
 type CinemaWithDistance = Cinema & { distanceKm?: number };
 
 const cinemaLogoSlides = [
-  { key: 'suggested', label: 'Đề xuất', logoUrl: '' },
-  { key: 'cgv', label: 'CGV', logoUrl: '' },
-  { key: 'lotte', label: 'Lotte', logoUrl: '' },
-  { key: 'galaxy', label: 'Galaxy', logoUrl: '' },
-  { key: 'beta', label: 'Beta', logoUrl: '' },
-  { key: 'bhd', label: 'BHD', logoUrl: '' },
+  { key: 'suggested', label: 'Đề xuất', logoSource: undefined },
+  { key: 'cgv', label: 'CGV', logoSource: require('../../../assets/images/CGV.png') },
+  { key: 'lotte', label: 'Lotte', logoSource: require('../../../assets/images/Lotte Cinema.png') },
+  { key: 'galaxy', label: 'Galaxy', logoSource: require('../../../assets/images/Galaxy Cinema.png') },
+  { key: 'beta', label: 'Beta', logoSource: require('../../../assets/images/Beta Cinema.png') },
+  { key: 'bhd', label: 'BHD', logoSource: undefined },
 ];
+
+const cinemaBrandLogoSources = {
+  cgv: require('../../../assets/images/CGV.png'),
+  lotte: require('../../../assets/images/Lotte Cinema.png'),
+  galaxy: require('../../../assets/images/Galaxy Cinema.png'),
+  beta: require('../../../assets/images/Beta Cinema.png'),
+};
 
 const calcDistance = (lat1: number, lng1: number, lat2: number, lng2: number) => {
   const R = 6371;
@@ -93,6 +100,17 @@ const normalizeSearchText = (value: string) =>
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
+
+const getCinemaBrandLogoSource = (brand?: string | null) => {
+  const normalizedBrand = normalizeSearchText(brand ?? '');
+
+  if (normalizedBrand.includes('cgv')) return cinemaBrandLogoSources.cgv;
+  if (normalizedBrand.includes('lotte')) return cinemaBrandLogoSources.lotte;
+  if (normalizedBrand.includes('galaxy')) return cinemaBrandLogoSources.galaxy;
+  if (normalizedBrand.includes('beta')) return cinemaBrandLogoSources.beta;
+
+  return undefined;
+};
 
 export default function CinemasTabScreen() {
   const { cinemas, rooms, showtimes, brands, refreshData } = useAppStore();
@@ -287,7 +305,6 @@ export default function CinemasTabScreen() {
             contentContainerStyle={styles.logoRail}>
             {cinemaLogoSlides.map((item, index) => {
               const isSuggested = item.key === 'suggested';
-              const logoUrl = buildImageUrl(item.logoUrl);
 
               return (
                 <View key={item.key} style={styles.logoItem}>
@@ -296,8 +313,8 @@ export default function CinemasTabScreen() {
                       styles.logoTile,
                       isSuggested ? styles.logoTileActive : null,
                     ]}>
-                    {logoUrl ? (
-                      <Image source={{ uri: logoUrl }} style={styles.logoImage} contentFit="contain" />
+                    {item.logoSource ? (
+                      <Image source={item.logoSource} style={styles.logoImage} contentFit="contain" />
                     ) : isSuggested ? (
                       <View style={styles.suggestedLogo}>
                         <MaterialCommunityIcons name="star" size={42} color="#FFD25A" />
@@ -378,6 +395,7 @@ export default function CinemasTabScreen() {
                 (brand) => brand.code.toLowerCase() === cinema.brand.toLowerCase(),
               );
               const logoUrl = buildImageUrl(cinema.imageUrl || brandInfo?.logo);
+              const localLogoSource = getCinemaBrandLogoSource(cinema.brand);
               const areaLabel = getAreaLabel(cinema.address, cinema.city);
               const hasDistance = cinema.distanceKm !== undefined;
               const isNearbyCinema = nearbyCinemaIds.has(cinema.id);
@@ -408,6 +426,8 @@ export default function CinemasTabScreen() {
                     <View style={styles.cinemaLogoBox}>
                       {logoUrl ? (
                         <Image source={{ uri: logoUrl }} style={styles.cinemaLogo} contentFit="contain" />
+                      ) : localLogoSource ? (
+                        <Image source={localLogoSource} style={styles.cinemaLogo} contentFit="contain" />
                       ) : (
                         <View style={styles.cinemaLogoPlaceholder} />
                       )}
