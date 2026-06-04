@@ -43,8 +43,6 @@ const sendPaymentCallback = async (payment) => {
     signature,
   };
 
-  console.log(`[CallbackService] Sending callback for Payment ID: ${callbackPayload.paymentId}, Status: ${status}, Target: ${payment.callbackUrl}`);
-
   let isSuccess = false;
   let statusCode = null;
   let responseData = null;

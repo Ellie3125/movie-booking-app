@@ -493,17 +493,6 @@ export function buildShowtimeSelectionViewModel({
       ? showtime.totalSeats
       : (room.activeSeatCount || showtime.seatStates.length);
 
-    if (typeof __DEV__ !== 'undefined' && __DEV__) {
-      console.log("Movie detail showtime seat summary", {
-        showtimeId: showtime.id,
-        totalSeats: computedTotalSeats,
-        availableSeats: computedAvailableSeats,
-        bookedSeats: showtime.bookedSeats ?? 0,
-        heldSeats: showtime.heldSeats ?? 0,
-        disabledSeats: showtime.disabledSeats ?? 0,
-      });
-    }
-
     showtimeGroup.showtimes.push({
       id: showtime.id,
       startLabel: formatTimeText(showtime.startTime),

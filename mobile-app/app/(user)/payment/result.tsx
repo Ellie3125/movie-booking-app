@@ -82,7 +82,6 @@ export default function PaymentResultScreen() {
       }
 
       try {
-        console.log(`[PaymentResult] Syncing payment status with backend for booking: ${paymentResult.bookingId}`);
         const confirmedBooking = await completeRemoteCheckout(paymentResult.bookingId || '');
 
         if (!active) {

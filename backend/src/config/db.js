@@ -36,7 +36,6 @@ const syncBookingTransactionCodeIndex = async () => {
 
   if (legacyTransactionCodeIndex && !hasDesiredTransactionCodeIndex) {
     await Booking.collection.dropIndex(desiredOptions.name);
-    console.log('Dropped legacy booking transactionCode index');
   }
 
   await Booking.collection.createIndex(

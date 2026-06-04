@@ -384,8 +384,6 @@ const createPaymentTransaction = async ({ booking, baseUrl, returnUrl }) => {
   const room = booking.showtimeId && booking.showtimeId.roomId ? booking.showtimeId.roomId.name : 'N/A';
   const seatLabels = booking.seats ? booking.seats.map(s => s.seatLabel || s.seatCode) : [];
 
-  console.log(`[PaymentService] Creating payment session for Payment ID: ${transaction.paymentId}, Booking ID: ${booking._id}, User: ${email}, Movie: ${movieTitle}`);
-
   const gatewayPayload = buildGatewayCreateSessionPayload(transaction);
   const { canonicalString, signature } = signHmacSha256({
     payload: gatewayPayload,
@@ -1046,4 +1044,3 @@ module.exports = {
   renderPaymentResultPage,
   getPaymentStatus,
 };
-

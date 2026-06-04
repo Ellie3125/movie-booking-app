@@ -123,44 +123,6 @@ export default function SeatSelectionScreen() {
     [showtime?.seatStates],
   );
 
-  useEffect(() => {
-    if (typeof __DEV__ !== 'undefined' && __DEV__ && showtime) {
-      const now = new Date();
-      let available = 0;
-      let booked = 0;
-      let held = 0;
-      let disabled = 0;
-
-      (showtime.seatStates ?? []).forEach((seat) => {
-        const cap = seat.capacity ?? 1;
-        const isHeldExpired =
-          seat.status === 'held' &&
-          seat.holdExpiresAt &&
-          new Date(seat.holdExpiresAt) <= now;
-
-        if (seat.status === 'available' || isHeldExpired) {
-          available += cap;
-        } else if (seat.status === 'booked') {
-          booked += cap;
-        } else if (seat.status === 'held' && !isHeldExpired) {
-          held += cap;
-        } else if (seat.status === 'disabled') {
-          disabled += cap;
-        }
-      });
-      const total = available + booked + held;
-
-      console.log('Seat selection page showtime seat summary', {
-        showtimeId: showtime.id,
-        totalSeats: total,
-        availableSeats: available,
-        bookedSeats: booked,
-        heldSeats: held,
-        disabledSeats: disabled,
-      });
-    }
-  }, [showtime]);
-
   /**
    * Minimap visibility logic:
    * - Layout phải tồn tại và có ít nhất 1 hàng ghế hợp lệ
