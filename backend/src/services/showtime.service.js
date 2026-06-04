@@ -30,7 +30,7 @@ const SHOWTIME_POPULATE = [
   },
   {
     path: 'roomId',
-    select: 'name roomType totalColumns',
+    select: 'name roomType totalColumns activeSeatCount',
   },
 ];
 
@@ -288,7 +288,14 @@ const listShowtimes = async ({ movieId, cinemaId, roomId, date }) => {
       }
     });
     
-    const totalSeats = availableSeats + bookedSeats + heldSeats;
+    // Use Room's current activeSeatCount for totalSeats instead of
+    // computing from stale seatStates snapshot. This ensures accuracy
+    // when room layout has been modified after showtime creation.
+    const roomActiveSeatCount = item.roomId?.activeSeatCount;
+    const seatStatesTotalSeats = availableSeats + bookedSeats + heldSeats;
+    const totalSeats = (typeof roomActiveSeatCount === 'number' && roomActiveSeatCount > 0)
+      ? roomActiveSeatCount
+      : seatStatesTotalSeats;
 
     const mapped = mapShowtime(item);
     delete mapped.seatStates;
@@ -318,7 +325,7 @@ const getShowtimeById = async (id) => {
     throw ApiError.notFound('Showtime not found', 'SHOWTIME_NOT_FOUND');
   }
 
-  const room = await Room.findById(showtime.roomId).select('seatLayout').lean().exec();
+  const room = await Room.findById(showtime.roomId).select('seatLayout activeSeatCount').lean().exec();
   const seatLayout = mergeLayoutWithStates(room?.seatLayout || [], showtime.seatStates);
 
   const now = new Date();
@@ -342,7 +349,13 @@ const getShowtimeById = async (id) => {
     }
   });
   
-  const totalSeats = availableSeats + bookedSeats + heldSeats;
+  // Use Room's current activeSeatCount for totalSeats instead of
+  // computing from stale seatStates snapshot.
+  const roomActiveSeatCount = room?.activeSeatCount;
+  const seatStatesTotalSeats = availableSeats + bookedSeats + heldSeats;
+  const totalSeats = (typeof roomActiveSeatCount === 'number' && roomActiveSeatCount > 0)
+    ? roomActiveSeatCount
+    : seatStatesTotalSeats;
 
   return {
     ...mapShowtime(showtime.toObject()),

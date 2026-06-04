@@ -121,6 +121,41 @@ const getSeatLayout = async (id) => {
   return room.seatLayout || [];
 };
 
+const syncShowtimesForRoom = async (roomId, newSeatLayout) => {
+  const futureShowtimes = await Showtime.find({
+    roomId,
+    startTime: { $gt: new Date() },
+  });
+
+  const newBaseSeatStates = buildShowtimeSeatStatesFromRoomLayout(newSeatLayout);
+
+  for (const showtime of futureShowtimes) {
+    const existingStatesMap = new Map(
+      showtime.seatStates.map(state => [state.seatCode.toUpperCase(), state])
+    );
+
+    const updatedSeatStates = newBaseSeatStates.map(newSeat => {
+      const existing = existingStatesMap.get(newSeat.seatCode.toUpperCase());
+      if (existing) {
+        return {
+          ...newSeat,
+          status: existing.status,
+          userId: existing.userId,
+          bookingId: existing.bookingId,
+          heldAt: existing.heldAt,
+          holdExpiresAt: existing.holdExpiresAt,
+          bookedAt: existing.bookedAt,
+        };
+      }
+      return newSeat;
+    });
+
+    showtime.seatStates = updatedSeatStates;
+    showtime.markModified('seatStates');
+    await showtime.save();
+  }
+};
+
 const updateSeatLayout = async (id, seatLayout) => {
   validateObjectId(id, 'Room');
   const room = await Room.findById(id).exec();
@@ -137,6 +172,10 @@ const updateSeatLayout = async (id, seatLayout) => {
   room.seatLayout = seatLayout;
   room.markModified('seatLayout');
   await room.save();
+
+  // Sync future showtimes' seat states with the new room layout
+  await syncShowtimesForRoom(id, seatLayout);
+
   return room;
 };
 
