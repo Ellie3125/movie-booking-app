@@ -1,4 +1,5 @@
 import { router, Stack, useLocalSearchParams } from 'expo-router';
+import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
@@ -13,6 +14,7 @@ import {
 import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
 import { isSuccessfulPaymentResult, parsePaymentResultUrl } from '@/lib/payment-result';
+import { getSeatDisplayLabel } from '@/lib/seat-display';
 
 if (Platform.OS === 'web' && typeof window !== 'undefined') {
   WebBrowser.maybeCompleteAuthSession({ skipRedirectCheck: true });
@@ -30,9 +32,17 @@ export default function PaymentResultScreen() {
     transactionCode?: string;
   }>();
   
-  const { completeRemoteCheckout, bookings, movies, cinemas, showtimes } = useAppStore();
+  const {
+    completeRemoteCheckout,
+    retryPendingPayment,
+    bookings,
+    movies,
+    cinemas,
+    showtimes,
+  } = useAppStore();
   const colors = getTonePalette('user');
   const [error, setError] = useState('');
+  const [retrying, setRetrying] = useState(false);
   const paramsKey = JSON.stringify(params);
 
   const paymentResult = useMemo(() => {
@@ -70,6 +80,54 @@ export default function PaymentResultScreen() {
   const cinema = useMemo(() => {
     return cinemas.find((c) => c.id === showtime?.cinemaId);
   }, [cinemas, showtime?.cinemaId]);
+
+  const createPaymentReturnUrl = () => {
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
+      return `${window.location.origin}/payment/result`;
+    }
+
+    return Linking.createURL('/payment/result');
+  };
+
+  const handleRetryPayment = async () => {
+    if (!paymentResult.bookingId) {
+      return;
+    }
+
+    try {
+      setRetrying(true);
+      setError('');
+
+      const returnUrl = createPaymentReturnUrl();
+      const confirmation = await retryPendingPayment(paymentResult.bookingId, {
+        returnUrl,
+      });
+
+      if (!confirmation || confirmation.kind !== 'gateway') {
+        setError('Không thể khởi tạo lại cổng thanh toán. Vui lòng thử lại.');
+        return;
+      }
+
+      router.replace({
+        pathname: '/(user)/booking/checkout',
+        params: {
+          resume: 'true',
+          bookingId: confirmation.bookingId,
+          paymentTransactionId: confirmation.paymentId,
+          paymentUrl: confirmation.paymentUrl,
+          expiredAt: confirmation.expiredAt || '',
+        },
+      });
+    } catch (paymentError) {
+      setError(
+        paymentError instanceof Error
+          ? paymentError.message
+          : 'Không thể tiếp tục thanh toán.',
+      );
+    } finally {
+      setRetrying(false);
+    }
+  };
 
   useEffect(() => {
     let active = true;
@@ -184,7 +242,7 @@ export default function PaymentResultScreen() {
               </Text>
             ) : null}
             <Text style={[styles.detailsText, { color: colors.muted }]}>
-              Ghế đã chọn: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{booking.seats.map(s => s.seatLabel).join(', ')}</Text>
+              Ghế đã chọn: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{booking.seats.map(getSeatDisplayLabel).join(', ')}</Text>
             </Text>
             <Text style={[styles.detailsText, { color: colors.muted }]}>
               Tổng tiền: <Text style={{ color: colors.accent, fontWeight: 'bold' }}>{booking.totalPrice.toLocaleString('vi-VN')} VND</Text>
@@ -209,7 +267,17 @@ export default function PaymentResultScreen() {
           {syncStatus === 'failed' && paymentResult.bookingId ? (
             <ActionButton
               tone="user"
+              label={retrying ? 'Đang mở lại cổng thanh toán...' : 'Tiếp tục thanh toán'}
+              onPress={handleRetryPayment}
+              disabled={retrying}
+            />
+          ) : null}
+
+          {syncStatus === 'failed' && paymentResult.bookingId ? (
+            <ActionButton
+              tone="user"
               label="Xem đơn đặt vé"
+              variant="secondary"
               onPress={() =>
                 router.replace({
                   pathname: '/(user)/bookings/[bookingId]',

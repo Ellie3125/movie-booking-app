@@ -4,14 +4,35 @@ const { Joi, strictObject, objectId } = require('./common.validation');
 const bookingStatusValues = Booking.schema.path('status').enumValues;
 const paymentStatusValues = Booking.schema.path('paymentStatus').enumValues;
 
+const singleSeatCodePattern = /^[A-Z]+[1-9]\d*$/;
+const coupleSeatRangePattern = /^([A-Z]+)([1-9]\d*)-\1([1-9]\d*)$/;
+
+const validateSeatCodeFormat = (value, helpers) => {
+  if (singleSeatCodePattern.test(value)) {
+    return value;
+  }
+
+  const coupleRangeMatch = value.match(coupleSeatRangePattern);
+  if (coupleRangeMatch) {
+    const firstSeatNumber = Number(coupleRangeMatch[2]);
+    const secondSeatNumber = Number(coupleRangeMatch[3]);
+
+    if (secondSeatNumber === firstSeatNumber + 1) {
+      return value;
+    }
+  }
+
+  return helpers.error('seatCode.invalidFormat');
+};
+
 const seatCodeSchema = Joi.string()
   .trim()
   .uppercase()
-  .pattern(/^[A-Z]+[1-9]\d*$/)
+  .custom(validateSeatCodeFormat, 'seat code format validation')
   .required()
   .label('seatCode')
   .messages({
-    'string.pattern.base':
+    'seatCode.invalidFormat':
       'seatCode must use a valid seat format such as A1',
   });
 

@@ -6,6 +6,7 @@ const ApiError = require('../utils/apiError');
 const env = require('../config/env');
 const { SEAT_PRICE_MAP } = require('../config/seatPricing');
 const { sanitizeUserSummary } = require('../utils/userProfile');
+const { getSeatDisplayLabel } = require('../utils/seatDisplay');
 const {
   BOOKED_SEAT_STATUS,
   BOOKING_STATUS,
@@ -216,7 +217,7 @@ const mapBookingResponse = (booking) => ({
     : null,
   seats: (booking.seats || []).map((seat) => ({
     seatCode: seat.seatCode,
-    seatLabel: seat.seatLabel,
+    seatLabel: getSeatDisplayLabel(seat),
     seatType: seat.seatType,
     status: seat.status,
     price: seat.price,
@@ -376,7 +377,7 @@ const createBooking = async ({ userId, showtimeId, seatCodes, seatCoordinates })
     const state = seatStateMap.get(code);
     return {
       seatCode: state.seatCode,
-      seatLabel: state.label || state.seatCode,
+      seatLabel: getSeatDisplayLabel(state),
       seatType: state.type,
       status: BOOKED_SEAT_STATUS.PENDING_PAYMENT,
       price: getSeatPrice(state.type, showtime.price, state.capacity || 1),
@@ -601,7 +602,7 @@ const getResumablePaymentData = async (booking) => {
     remainingSeconds,
     seats: booking.seats.map((s) => ({
       seatCode: s.seatCode,
-      seatLabel: s.seatLabel,
+      seatLabel: getSeatDisplayLabel(s),
       seatType: s.seatType,
       status: s.status,
       price: s.price,
@@ -659,6 +660,7 @@ const getPendingBookingMe = async (userId) => {
   let booking = await Booking.findOne({
     userId,
     status: BOOKING_STATUS.PENDING_PAYMENT,
+    paymentStatus: PAYMENT_STATUS.PENDING,
     paymentExpiresAt: { $gt: new Date() },
   }).exec();
 
@@ -683,4 +685,3 @@ module.exports = {
     mapBookingResponse,
   },
 };
-

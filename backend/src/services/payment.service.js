@@ -8,6 +8,7 @@ const PaymentTransaction = require('../models/PaymentTransaction');
 const PaymentCallbackLog = require('../models/PaymentCallbackLog');
 const env = require('../config/env');
 const ApiError = require('../utils/apiError');
+const { getSeatDisplayLabel } = require('../utils/seatDisplay');
 const { signHmacSha256, verifyHmacSha256 } = require('../utils/paymentHmac');
 const { resolvePaymentReturnUrl } = require('../utils/paymentReturnUrl');
 const {
@@ -273,7 +274,7 @@ const mapBillResponse = (booking) => ({
   bookingId: String(booking._id),
   seats: booking.seats.map((seat) => ({
     seatCode: seat.seatCode,
-    seatLabel: seat.seatLabel,
+    seatLabel: getSeatDisplayLabel(seat),
     seatType: seat.seatType,
     price: seat.price,
   })),
@@ -382,7 +383,7 @@ const createPaymentTransaction = async ({ booking, baseUrl, returnUrl }) => {
   const movieTitle = booking.movieId ? booking.movieId.title : 'N/A';
   const cinema = booking.showtimeId && booking.showtimeId.cinemaId ? booking.showtimeId.cinemaId.name : 'N/A';
   const room = booking.showtimeId && booking.showtimeId.roomId ? booking.showtimeId.roomId.name : 'N/A';
-  const seatLabels = booking.seats ? booking.seats.map(s => s.seatLabel || s.seatCode) : [];
+  const seatLabels = booking.seats ? booking.seats.map((seat) => getSeatDisplayLabel(seat)) : [];
 
   const gatewayPayload = buildGatewayCreateSessionPayload(transaction);
   const { canonicalString, signature } = signHmacSha256({
@@ -505,7 +506,7 @@ const upsertTicketsForBooking = async (booking, paidAt) => {
             roomId: getEntityId(booking.roomId),
             seat: {
               seatCode: seat.seatCode,
-              seatLabel: seat.seatLabel,
+              seatLabel: getSeatDisplayLabel(seat),
               seatType: seat.seatType,
               coupleGroupId: seat.coupleGroupId,
             },
@@ -702,6 +703,8 @@ const finalizeUnsuccessfulPayment = async ({
   callbackCanonicalString,
   callbackLog,
 }) => {
+  const booking = await getBookingByIdOrThrow(callbackPayload.bookingId);
+
   if (Number(callbackPayload.paidAmount) !== Number(transaction.amount)) {
     throw ApiError.badRequest(
       'paidAmount does not match the original payment amount',
@@ -738,6 +741,8 @@ const finalizeUnsuccessfulPayment = async ({
   };
   transaction.failureReason = `Gateway returned ${callbackPayload.status}`;
 
+  booking.paymentStatus = PAYMENT_STATUS.FAILED;
+
   if (callbackPayload.transactionCode) {
     transaction.transactionCode = callbackPayload.transactionCode;
   }
@@ -750,7 +755,7 @@ const finalizeUnsuccessfulPayment = async ({
   callbackLog.processedAt = processedAt;
   callbackLog.reason = `Payment callback processed as ${callbackPayload.status}`;
 
-  await Promise.all([transaction.save(), callbackLog.save()]);
+  await Promise.all([booking.save(), transaction.save(), callbackLog.save()]);
 
   return {
     bookingId: String(transaction.bookingId),

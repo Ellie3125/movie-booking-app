@@ -18,6 +18,7 @@ import {
 import { Fonts } from '@/constants/theme';
 import { type PaymentMethod, useAppStore } from '@/lib/app-store';
 import { isSuccessfulPaymentResult, parsePaymentResultUrl } from '@/lib/payment-result';
+import { getSeatDisplayLabel } from '@/lib/seat-display';
 import { formatLocationName, formatPaymentMethod } from '@/lib/user-display';
 import { getPaymentStatus, getBookingPaymentStatus } from '@/lib/backend-api';
 
@@ -68,6 +69,7 @@ export default function CheckoutScreen() {
 
   const pollingIntervalRef = useRef<any>(null);
   const countdownIntervalRef = useRef<any>(null);
+  const resumeSessionKeyRef = useRef('');
 
   const movie = movies.find((item) => item.id === draftCheckout?.movieId);
   const showtime = showtimes.find((item) => item.id === draftCheckout?.showtimeId);
@@ -82,7 +84,18 @@ export default function CheckoutScreen() {
 
   // Nếu điều hướng từ seats với flag resume = true, tự động kích hoạt QR
   useEffect(() => {
-    if (params.resume === 'true' && params.bookingId && params.paymentTransactionId && params.paymentUrl) {
+    const resumeSessionKey =
+      params.bookingId && params.paymentTransactionId && params.paymentUrl
+        ? `${params.bookingId}:${params.paymentTransactionId}:${params.paymentUrl}`
+        : '';
+
+    if (
+      params.resume === 'true' &&
+      resumeSessionKey &&
+      draftCheckout &&
+      resumeSessionKeyRef.current !== resumeSessionKey
+    ) {
+      resumeSessionKeyRef.current = resumeSessionKey;
       const session = {
         bookingId: params.bookingId,
         paymentId: params.paymentTransactionId,
@@ -322,16 +335,21 @@ export default function CheckoutScreen() {
 
           <SectionTitle tone="user" title="Thông tin ghế" />
           <SectionCard tone="user">
-            {draftCheckout.seats.map((seat) => (
-              <View key={seat.seatCode} style={styles.rowBetween}>
-                <Text style={[styles.cardTitle, { color: colors.text }]}>
-                  Ghế {seat.seatLabel}
-                </Text>
-                <Text style={[styles.cardCopy, { color: colors.muted }]}>
-                  {seat.seatCode} • {(seat?.price ?? 0).toLocaleString('vi-VN')} VND
-                </Text>
-              </View>
-            ))}
+            {draftCheckout.seats.map((seat) => {
+              const displayLabel = getSeatDisplayLabel(seat);
+              const seatMeta = seat.seatType === 'couple' ? 'Ghế đôi' : seat.seatCode;
+
+              return (
+                <View key={seat.seatCode} style={styles.rowBetween}>
+                  <Text style={[styles.cardTitle, { color: colors.text }]}>
+                    Ghế {displayLabel}
+                  </Text>
+                  <Text style={[styles.cardCopy, { color: colors.muted }]}>
+                    {seatMeta} • {(seat?.price ?? 0).toLocaleString('vi-VN')} VND
+                  </Text>
+                </View>
+              );
+            })}
             <Text style={[styles.totalPrice, { color: colors.text }]}>
               Tổng tiền {(draftCheckout?.totalPrice ?? 0).toLocaleString('vi-VN')} VND
             </Text>

@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/experience';
 import { Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
+import { getSeatDisplayLabel } from '@/lib/seat-display';
 import {
   formatBookingStatus,
   formatLocationName,
@@ -129,19 +130,27 @@ export default function BookingDetailScreen() {
 
           <SectionTitle tone="user" title="Ghế và thanh toán" />
           <SectionCard tone="user">
-            {booking.seats.map((seat) => (
-              <View key={seat.seatCode} style={styles.seatRow}>
-                <View style={styles.seatCopy}>
-                  <Text style={[styles.seatLabel, { color: colors.text }]}>Ghế {seat.seatLabel}</Text>
-                  <Text style={[styles.seatMeta, { color: colors.muted }]}>
-                    {seat.seatCode} • {formatSeatType(seat.seatType as any)}
+            {booking.seats.map((seat) => {
+              const displayLabel = getSeatDisplayLabel(seat);
+              const seatMeta =
+                seat.seatType === 'couple'
+                  ? formatSeatType(seat.seatType as any)
+                  : `${seat.seatCode} • ${formatSeatType(seat.seatType as any)}`;
+
+              return (
+                <View key={seat.seatCode} style={styles.seatRow}>
+                  <View style={styles.seatCopy}>
+                    <Text style={[styles.seatLabel, { color: colors.text }]}>Ghế {displayLabel}</Text>
+                    <Text style={[styles.seatMeta, { color: colors.muted }]}>
+                      {seatMeta}
+                    </Text>
+                  </View>
+                  <Text style={[styles.seatPrice, { color: colors.text }]}>
+                    {seat.price.toLocaleString('vi-VN')} VND
                   </Text>
                 </View>
-                <Text style={[styles.seatPrice, { color: colors.text }]}>
-                  {seat.price.toLocaleString('vi-VN')} VND
-                </Text>
-              </View>
-            ))}
+              );
+            })}
             <View style={[styles.totalBlock, { borderTopColor: colors.border }]}>
               <Text style={[styles.totalLabel, { color: colors.muted }]}>Tổng thanh toán</Text>
               <Text style={[styles.totalValue, { color: colors.text }]}>

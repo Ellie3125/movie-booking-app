@@ -55,6 +55,7 @@ import {
   setOnTokenRefreshed,
 } from '@/lib/backend-api';
 import { getMoviePosterPath } from '@/lib/image-url';
+import { getSeatDisplayLabel } from '@/lib/seat-display';
 import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
 import {
   clearTokens,
@@ -230,6 +231,10 @@ export type DraftCheckout = {
   heldUntil: string;
 };
 
+type ResumableBookingStatus = NonNullable<
+  Awaited<ReturnType<typeof getBookingPaymentStatus>>
+>;
+
 type MovieInput = Omit<Movie, 'id'> & { id?: string };
 type CinemaInput = Omit<Cinema, 'id'> & { id?: string };
 type ShowtimeScheduleInput = {
@@ -363,6 +368,10 @@ type AppStoreValue = {
   releaseDraftCheckout: () => Promise<void>;
   confirmDraftCheckout: (
     paymentMethod: PaymentMethod,
+    options?: { returnUrl?: string },
+  ) => Promise<CheckoutConfirmationResult | null>;
+  retryPendingPayment: (
+    bookingId: string,
     options?: { returnUrl?: string },
   ) => Promise<CheckoutConfirmationResult | null>;
   completeRemoteCheckout: (bookingId: string) => Promise<Booking | null>;
@@ -565,7 +574,7 @@ const seatSnapshotFromRoom = (
 
   return {
     seatCode: seat.seatCode.toUpperCase(),
-    seatLabel: seat.label,
+    seatLabel: getSeatDisplayLabel(seat),
     seatType: seat.type as 'standard' | 'couple' | 'vip',
     status,
     price: seatPriceMap[seat.type] || 0,
@@ -1828,7 +1837,7 @@ const mapBackendBooking = (
   roomId: booking.room?.id || '',
   seats: booking.seats.map((seat) => ({
     seatCode: seat.seatCode.toUpperCase(),
-    seatLabel: seat.seatLabel,
+    seatLabel: getSeatDisplayLabel(seat),
     seatType: seat.seatType as SeatType,
     status: seat.status as Extract<SeatReservationStatus, 'held' | 'booked'>,
     price: seat.price,
@@ -1859,7 +1868,7 @@ const mapBackendDraftCheckout = (
     seatCodes: booking.seats.map((seat) => seat.seatCode.toUpperCase()),
     seats: booking.seats.map((seat) => ({
       seatCode: seat.seatCode.toUpperCase(),
-      seatLabel: seat.seatLabel,
+      seatLabel: getSeatDisplayLabel(seat),
       seatType: seat.seatType as SeatType,
       status: seat.status as Extract<SeatReservationStatus, 'held' | 'booked'>,
       price: seat.price,
@@ -1869,6 +1878,28 @@ const mapBackendDraftCheckout = (
     heldUntil: booking.paymentExpiresAt || toIsoDate(new Date(Date.now() + 5 * 60 * 1000)),
   };
 };
+
+const mapResumableBookingToDraftCheckout = (
+  booking: ResumableBookingStatus,
+  currentUserId: string,
+): DraftCheckout => ({
+  id: booking.bookingId,
+  userId: currentUserId,
+  showtimeId: booking.showtime.id,
+  movieId: booking.movie.id,
+  roomId: booking.room.id,
+  seatCodes: booking.seats.map((seat: any) => seat.seatCode.toUpperCase()),
+  seats: booking.seats.map((seat: any) => ({
+    seatCode: seat.seatCode.toUpperCase(),
+    seatLabel: getSeatDisplayLabel(seat),
+    seatType: seat.seatType,
+    status: 'held' as const,
+    price: seat.price,
+    coupleGroupId: seat.coupleGroupId ?? null,
+  })),
+  totalPrice: booking.amount,
+  heldUntil: booking.holdExpiresAt,
+});
 
 const sortByDateAscending = <T extends { startTime: string }>(items: T[]) =>
   [...items].sort(
@@ -2066,7 +2097,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
               seatCodes: res.seats.map((s: any) => s.seatCode.toUpperCase()),
               seats: res.seats.map((seat: any) => ({
                 seatCode: seat.seatCode.toUpperCase(),
-                seatLabel: seat.seatLabel,
+                seatLabel: getSeatDisplayLabel(seat),
                 seatType: seat.seatType,
                 status: 'held' as const,
                 price: seat.price,
@@ -2123,7 +2154,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
             seatCodes: res.seats.map((s: any) => s.seatCode.toUpperCase()),
             seats: res.seats.map((seat: any) => ({
               seatCode: seat.seatCode.toUpperCase(),
-              seatLabel: seat.seatLabel,
+              seatLabel: getSeatDisplayLabel(seat),
               seatType: seat.seatType,
               status: 'held' as const,
               price: seat.price,
@@ -2815,7 +2846,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
                 seatCodes: res.seats.map((s: any) => s.seatCode.toUpperCase()),
                 seats: res.seats.map((seat: any) => ({
                   seatCode: seat.seatCode.toUpperCase(),
-                  seatLabel: seat.seatLabel,
+                  seatLabel: getSeatDisplayLabel(seat),
                   seatType: seat.seatType,
                   status: 'held' as const,
                   price: seat.price,
@@ -3080,6 +3111,56 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     };
   };
 
+  const retryPendingPayment = async (
+    bookingId: string,
+    options: { returnUrl?: string } = {},
+  ): Promise<CheckoutConfirmationResult | null> => {
+    if (!authToken || !currentUser) {
+      return null;
+    }
+
+    const resumableBooking = await getBookingPaymentStatus(authToken, bookingId);
+    const normalizedBookingStatus = resumableBooking.status.toLowerCase();
+    const normalizedPaymentStatus = resumableBooking.paymentStatus.toLowerCase();
+
+    if (
+      normalizedBookingStatus === 'confirmed' ||
+      normalizedPaymentStatus === 'success' ||
+      ['expired', 'cancelled'].includes(normalizedBookingStatus) ||
+      ['expired', 'cancelled'].includes(normalizedPaymentStatus)
+    ) {
+      return null;
+    }
+
+    const restoredDraftCheckout = mapResumableBookingToDraftCheckout(
+      resumableBooking,
+      currentUser.id,
+    );
+
+    setDraftCheckout(restoredDraftCheckout);
+
+    const paymentSession = await payBookingBill(authToken, bookingId, {
+      returnUrl: options.returnUrl,
+    });
+
+    await savePendingPayment({
+      bookingId: paymentSession.bookingId,
+      paymentTransactionId: paymentSession.paymentId,
+      holdExpiresAt: paymentSession.expiredAt || restoredDraftCheckout.heldUntil,
+      showtimeId: restoredDraftCheckout.showtimeId,
+      createdAt: new Date().toISOString(),
+    });
+
+    return {
+      kind: 'gateway',
+      bookingId: paymentSession.bookingId,
+      paymentId: paymentSession.paymentId,
+      paymentUrl: paymentSession.paymentUrl,
+      returnUrl: options.returnUrl || '',
+      expiredAt: paymentSession.expiredAt,
+    };
+  };
+
   const value: AppStoreValue = {
     adminUser,
     currentUser,
@@ -3119,6 +3200,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     startCheckout,
     releaseDraftCheckout,
     confirmDraftCheckout,
+    retryPendingPayment,
     completeRemoteCheckout,
     refreshShowtime,
     refreshData,

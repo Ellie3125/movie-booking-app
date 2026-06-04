@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-na
 
 import { AzureColors } from '@/constants/theme';
 import { type RoomSeat, type ShowtimeSeatState } from '@/lib/app-store';
+import { getSeatDisplayLabel } from '@/lib/seat-display';
 import {
   getSeatStyle,
   getSeatVisualStatus,
@@ -112,12 +113,13 @@ export function SeatLayoutGrid({
               (typeLower === 'couple' || typeLower === 'double' || typeLower === 'pair' ? 'couple' :
                typeLower === 'vip' ? 'vip' : 'regular');
             const isCouple = typeLower === 'couple' || typeLower === 'double' || typeLower === 'pair';
+            const displayLabel = getSeatDisplayLabel(seat);
 
             return (
               <Pressable
                 key={`seat-${rowIndex}-${seat.columnIndex}-${seat.seatCode || seat.type}`}
                 accessibilityRole={isSpaceLike ? undefined : 'button'}
-                accessibilityLabel={isSpaceLike ? undefined : `Ghế ${seat.label ?? coordinate}`}
+                accessibilityLabel={isSpaceLike ? undefined : `Ghế ${displayLabel || coordinate}`}
                 accessibilityState={{
                   selected,
                   disabled: isSpaceLike || seat.type === 'disabled' || (isUserMode && isUnavailableSeat),
@@ -190,7 +192,7 @@ export function SeatLayoutGrid({
                                   fontWeight: '500',
                                 },
                               ]}>
-                              {seat.label}
+                              {displayLabel}
                             </Text>
                           )}
                         </View>
@@ -202,7 +204,7 @@ export function SeatLayoutGrid({
                 ) : !isSpaceLike ? (
                   <>
                     <Text style={[styles.cellText, { fontSize: metrics.labelSize }]}>
-                      {seat.label}
+                      {displayLabel}
                     </Text>
                     <Text
                       style={[

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Ticket = require('../models/Ticket');
 const ApiError = require('../utils/apiError');
 const { sanitizeUserSummary } = require('../utils/userProfile');
+const { getSeatDisplayLabel } = require('../utils/seatDisplay');
 
 const TICKET_POPULATE = [
   {
@@ -48,7 +49,7 @@ const mapTicketResponse = (ticket) => ({
   issuedAt: ticket.issuedAt,
   seat: {
     seatCode: ticket.seat.seatCode,
-    seatLabel: ticket.seat.seatLabel,
+    seatLabel: getSeatDisplayLabel(ticket.seat),
     seatType: ticket.seat.seatType,
   },
   user: sanitizeUserSummary(ticket.bookingId?.userId || ticket.userId),

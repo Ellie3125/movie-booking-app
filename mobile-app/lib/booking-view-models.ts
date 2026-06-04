@@ -1,3 +1,5 @@
+import { getSeatDisplayLabel } from './seat-display';
+
 export type TimeRangeKey = 'all' | 'morning' | 'midday' | 'afternoon' | 'evening';
 
 type MovieLike = {
@@ -706,7 +708,7 @@ export function calculateSelectedSeatSummary({
     })
     .map((seat) => ({
       seatCode: normalizeSeatCode(seat.seatCode),
-      label: seat.label || normalizeSeatCode(seat.seatCode),
+      label: getSeatDisplayLabel(seat),
       type: getSeatDisplayType(seat),
       price: getSeatDisplayPrice(seat, basePrice),
       rowIndex: seat.rowIndex ?? Number.MAX_SAFE_INTEGER,

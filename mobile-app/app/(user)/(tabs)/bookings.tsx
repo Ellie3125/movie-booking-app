@@ -10,6 +10,7 @@ import {
   getBookingHistoryStatusPresentation,
   isBookingHistoryDetailDisabled,
 } from '@/lib/booking-history-presentation';
+import { getSeatDisplayLabel } from '@/lib/seat-display';
 import { formatLocationName } from '@/lib/user-display';
 
 const screenColors = {
@@ -212,7 +213,7 @@ export default function BookingsTabScreen() {
                           ]}>
                           Ghế{' '}
                           {booking.seats
-                            .map((seat) => `${seat.seatLabel} (${seat.seatCode})`)
+                            .map(getSeatDisplayLabel)
                             .join(', ')}
                         </Text>
                       </View>

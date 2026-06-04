@@ -1,5 +1,6 @@
 import React from "react";
 import { Seat, SeatType, SEAT_TYPE_CONFIG, NON_SEAT_TYPES } from "../types";
+import { getSeatDisplayLabel } from "../../../../utils/seatDisplay";
 
 interface SeatCellProps {
   seat: Seat;
@@ -28,6 +29,7 @@ const SeatCell: React.FC<SeatCellProps> = ({
 
   const normalizedType = getNormalizedType(seat.type);
   const config = SEAT_TYPE_CONFIG[normalizedType] || SEAT_TYPE_CONFIG.regular;
+  const displayLabel = getSeatDisplayLabel(seat);
 
   const isNonSeat = NON_SEAT_TYPES.includes(normalizedType);
   const isDisabledSeat = normalizedType === "disabled" || String(seat.status).trim().toLowerCase() === "disabled";
@@ -107,7 +109,7 @@ const SeatCell: React.FC<SeatCellProps> = ({
           isDisabledSeat ? "line-through opacity-70" : ""
         }`}
       >
-        {seat.label || seat.seatCode}
+        {displayLabel}
       </span>
 
       {/* VIP indicator dot */}

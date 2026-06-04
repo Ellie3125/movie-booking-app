@@ -17,8 +17,8 @@ const PaymentCallbackLogSchema = new mongoose.Schema(
     },
     transactionCode: {
       type: String,
-      required: [true, 'transactionCode là bắt buộc'],
       trim: true,
+      default: null,
       index: true,
     },
     idempotencyKey: {
