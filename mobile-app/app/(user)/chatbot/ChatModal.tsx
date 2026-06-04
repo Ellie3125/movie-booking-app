@@ -12,7 +12,7 @@ import {
   View,
   useColorScheme,
 } from "react-native";
-import { ThemedText } from "@/components/ThemedText";
+import { ThemedText } from "../../../components/ThemedText";
 import { ChatMessage, Message } from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
 import { TypingIndicator } from "./TypingIndicator";

@@ -51,10 +51,7 @@ export default function ChangePasswordScreen() {
     const res = await changePassword({
       currentPassword,
       newPassword,
-<<<<<<< HEAD
-=======
       confirmPassword,
->>>>>>> main
     });
     setSaving(false);
 

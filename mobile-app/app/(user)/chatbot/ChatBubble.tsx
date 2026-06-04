@@ -13,7 +13,7 @@ export function ChatBubble() {
     <View style={styles.container}>
       <Pressable
         style={styles.bubble}
-        onPress={() => router.push("/(user)/(tabs)/chat")}
+        onPress={() => router.push("../(tabs)/chat")}
       >
         <View style={styles.dot} />
       </Pressable>

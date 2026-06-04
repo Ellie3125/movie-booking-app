@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { Animated, StyleSheet, View, useColorScheme } from "react-native";
-import { ThemedText } from "@/components/ThemedText";
+import { ThemedText } from "../../../components/ThemedText";
 
 export interface Message {
   id: string;

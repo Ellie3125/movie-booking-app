@@ -28,7 +28,7 @@ from langgraph.graph.message import add_messages
 from langchain_core.messages import BaseMessage
 
 # ── Local DB ──────────────────────────────────────────────────────────────────
-from src.data.database import UserRepository, MovieRepository
+from src.config.database import UserRepository, MovieRepository
 
 logger = logging.getLogger(__name__)
 _ctx_user_id  = contextvars.ContextVar("user_id",  default="anon")

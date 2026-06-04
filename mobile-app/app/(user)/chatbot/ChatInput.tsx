@@ -7,7 +7,7 @@ import {
   View,
   useColorScheme,
 } from "react-native";
-import { ThemedText } from "@/components/ThemedText";
+import { ThemedText } from "../../../components/ThemedText";
 
 interface ChatInputProps {
   onSend: (text: string) => void;
