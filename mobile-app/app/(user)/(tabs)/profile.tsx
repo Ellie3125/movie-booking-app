@@ -36,29 +36,29 @@ const QUICK_ACTIONS: QuickAction[] = [
     icon: '✏️',
     label: 'Sửa hồ sơ',
     route: '/profile/edit',
-    color: '#E87A22',
-    bgColor: '#FFF2E0',
+    color: '#FFB247',
+    bgColor: '#FFF9EE',
   },
   {
     icon: '🔑',
     label: 'Đổi mật khẩu',
     route: '/profile/change-password',
-    color: '#3B82F6',
-    bgColor: '#EFF6FF',
+    color: '#003D7D',
+    bgColor: '#D9E7F1',
   },
   {
     icon: '🔔',
     label: 'Thông báo',
     route: '/profile/notifications',
     color: '#10B981',
-    bgColor: '#ECFDF5',
+    bgColor: '#E6F7ED',
   },
   {
     icon: '⚙️',
     label: 'Cài đặt',
     route: '/profile',
     color: '#8B5CF6',
-    bgColor: '#F5F3FF',
+    bgColor: '#F3E8FF',
   },
 ];
 
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 100,
-    backgroundColor: 'rgba(232, 122, 34, 0.08)',
+    backgroundColor: 'rgba(0, 61, 125, 0.05)',
   },
   avatarContainer: {
     marginBottom: 14,
@@ -334,17 +334,17 @@ const styles = StyleSheet.create({
     borderRadius: 48,
     borderWidth: 3,
     borderColor: '#FFFFFF',
-    backgroundColor: '#F3E8DC',
+    backgroundColor: '#E9F1F7',
   },
   avatarPlaceholder: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFF2E0',
+    backgroundColor: '#D9E7F1',
   },
   avatarInitial: {
     fontSize: 36,
     fontFamily: Fonts.sansBold,
-    color: '#E87A22',
+    color: '#003D7D',
   },
   editBadge: {
     position: 'absolute',
@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#E87A22',
+    backgroundColor: '#003D7D',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
@@ -365,14 +365,14 @@ const styles = StyleSheet.create({
   },
   displayName: {
     fontSize: 22,
-    fontFamily: Fonts.sansBold,
-    color: '#5A3E2B',
+    fontFamily: Fonts.rounded,
+    color: '#001E42',
     marginBottom: 2,
   },
   email: {
     fontSize: 14,
-    fontFamily: Fonts.sans,
-    color: '#8A6A50',
+    fontFamily: Fonts.sansMedium,
+    color: '#6D7D8A',
     marginBottom: 10,
   },
   badgeRow: {
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   roleBadge: {
-    backgroundColor: '#FFF2E0',
+    backgroundColor: '#D9E7F1',
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 20,
@@ -388,10 +388,10 @@ const styles = StyleSheet.create({
   roleText: {
     fontSize: 12,
     fontFamily: Fonts.sansBold,
-    color: '#E87A22',
+    color: '#003D7D',
   },
   memberBadge: {
-    backgroundColor: '#F0F9FF',
+    backgroundColor: '#E9F1F7',
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 20,
@@ -399,7 +399,7 @@ const styles = StyleSheet.create({
   memberText: {
     fontSize: 12,
     fontFamily: Fonts.sansMedium,
-    color: '#3B82F6',
+    color: '#003D7D',
   },
 
   // Stats
@@ -407,17 +407,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    borderRadius: 20,
+    borderRadius: 24,
     marginHorizontal: 4,
     marginBottom: 20,
     paddingVertical: 18,
-    shadowColor: '#5A3E2B',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
+    shadowColor: '#002B5C',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
     shadowRadius: 12,
     elevation: 2,
     borderWidth: 1,
-    borderColor: '#F3E8DC',
+    borderColor: '#E9F1F7',
   },
   statCard: {
     flex: 1,
@@ -426,18 +426,18 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 22,
     fontFamily: Fonts.sansBold,
-    color: '#E87A22',
+    color: '#003D7D',
     marginBottom: 2,
   },
   statLabel: {
     fontSize: 12,
     fontFamily: Fonts.sansMedium,
-    color: '#8A6A50',
+    color: '#6D7D8A',
   },
   statDivider: {
     width: 1,
     height: 32,
-    backgroundColor: '#F3E8DC',
+    backgroundColor: '#E9F1F7',
   },
 
   // Quick Actions
@@ -452,16 +452,16 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: '22%',
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: 24,
     paddingVertical: 16,
     alignItems: 'center',
-    shadowColor: '#5A3E2B',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.03,
-    shadowRadius: 8,
-    elevation: 1,
+    shadowColor: '#002B5C',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 2,
     borderWidth: 1,
-    borderColor: '#F3E8DC',
+    borderColor: '#E9F1F7',
   },
   quickActionIcon: {
     width: 44,
@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
   quickActionLabel: {
     fontSize: 12,
     fontFamily: Fonts.sansMedium,
-    color: '#5A3E2B',
+    color: '#001E42',
     textAlign: 'center',
   },
 
@@ -489,7 +489,7 @@ const styles = StyleSheet.create({
   },
   infoRowBorder: {
     borderBottomWidth: 1,
-    borderBottomColor: '#FAF5EF',
+    borderBottomColor: '#E9F1F7',
   },
   infoIcon: {
     fontSize: 18,
@@ -503,16 +503,16 @@ const styles = StyleSheet.create({
   infoLabel: {
     fontSize: 12,
     fontFamily: Fonts.sansMedium,
-    color: '#8A6A50',
+    color: '#6D7D8A',
     marginBottom: 1,
   },
   infoValue: {
     fontSize: 15,
     fontFamily: Fonts.sans,
-    color: '#5A3E2B',
+    color: '#001E42',
   },
   infoValuePlaceholder: {
-    color: '#C7C7CD',
+    color: '#9FB0D0',
     fontStyle: 'italic',
   },
 
@@ -522,7 +522,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#FAF5EF',
+    borderBottomColor: '#E9F1F7',
   },
   lastRow: {
     borderBottomWidth: 0,
@@ -531,7 +531,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: '#FFF2E0',
+    backgroundColor: '#D9E7F1',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -545,12 +545,12 @@ const styles = StyleSheet.create({
   cinemaName: {
     fontSize: 14,
     fontFamily: Fonts.sansBold,
-    color: '#5A3E2B',
+    color: '#001E42',
   },
   cinemaAddress: {
     fontSize: 12,
     fontFamily: Fonts.sans,
-    color: '#8A6A50',
+    color: '#6D7D8A',
     marginTop: 1,
   },
 
@@ -561,15 +561,20 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     minHeight: 52,
-    borderRadius: 16,
+    borderRadius: 24,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
     paddingHorizontal: 16,
-    backgroundColor: '#FEF2F2',
+    backgroundColor: '#FFF2F2',
     borderWidth: 1,
     borderColor: '#FEE2E2',
+    shadowColor: '#EF4444',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 1,
   },
   logoutButtonPressed: {
     opacity: 0.88,

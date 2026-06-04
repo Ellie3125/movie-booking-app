@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Fonts } from '@/constants/theme';
+import { AzureColors, AzureRadius, AzureShadow, Fonts } from '@/constants/theme';
 
 type Tone = 'admin' | 'user';
 
@@ -27,14 +27,14 @@ const palette = {
     border: 'rgba(159, 176, 208, 0.16)',
   },
   user: {
-    canvas: '#FFF8EF',
-    panel: '#FFFFFF',
-    panelAlt: '#FFF9F0',
-    text: '#2F2018',
-    muted: '#7C6655',
-    accent: '#F58220',
-    accentSoft: 'rgba(245, 130, 32, 0.12)',
-    border: 'rgba(188, 132, 82, 0.18)',
+    canvas: AzureColors.appBackground,
+    panel: AzureColors.surface,
+    panelAlt: AzureColors.surface,
+    text: AzureColors.textPrimary,
+    muted: AzureColors.textSecondary,
+    accent: AzureColors.primary,
+    accentSoft: AzureColors.primaryLight,
+    border: AzureColors.border,
   },
 } as const;
 
@@ -51,22 +51,18 @@ export function PageScroll({
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.canvas }]}>
-      <View
-        pointerEvents="none"
-        style={[
-          styles.glow,
-          styles.glowPrimary,
-          { backgroundColor: colors.accentSoft },
-        ]}
-      />
-      <View
-        pointerEvents="none"
-        style={[
-          styles.glow,
-          styles.glowSecondary,
-          { backgroundColor: colors.accentSoft },
-        ]}
-      />
+      {tone === 'admin' ? (
+        <>
+          <View
+            pointerEvents="none"
+            style={[styles.glow, styles.glowPrimary, { backgroundColor: colors.accentSoft }]}
+          />
+          <View
+            pointerEvents="none"
+            style={[styles.glow, styles.glowSecondary, { backgroundColor: colors.accentSoft }]}
+          />
+        </>
+      ) : null}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
@@ -99,6 +95,7 @@ export function HeroCard({
           backgroundColor: colors.panel,
           borderColor: colors.border,
         },
+        tone === 'user' ? styles.shadowUser : null,
       ]}>
       <Text style={[styles.eyebrow, { color: colors.accent }]}>{eyebrow}</Text>
       <Text style={[styles.heroTitle, { color: colors.text }]}>{title}</Text>
@@ -150,6 +147,7 @@ export function SectionCard({
           backgroundColor: colors.panelAlt,
           borderColor: colors.border,
         },
+        tone === 'user' ? styles.shadowUser : null,
         style,
       ]}>
       {children}
@@ -390,7 +388,7 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     minHeight: 48,
-    borderRadius: 16,
+    borderRadius: AzureRadius.lg,
     paddingHorizontal: 16,
     alignItems: 'center',
     justifyContent: 'center',
@@ -414,5 +412,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     fontFamily: Fonts.sans,
+  },
+  shadowUser: {
+    ...AzureShadow.card,
   },
 });

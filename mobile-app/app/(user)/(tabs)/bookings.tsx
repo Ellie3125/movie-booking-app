@@ -74,7 +74,7 @@ export default function BookingsTabScreen() {
           <MaterialCommunityIcons
             name="arrow-left"
             size={30}
-            color={screenColors.primary}
+            color="#001E42"
           />
         </Pressable>
         <Text style={styles.headerTitle}>Lịch sử đặt vé</Text>
@@ -88,13 +88,13 @@ export default function BookingsTabScreen() {
           <MaterialCommunityIcons
             name="magnify"
             size={32}
-            color={screenColors.muted}
+            color="#00356F"
           />
           <TextInput
             accessibilityLabel="Tìm tên phim"
             style={styles.searchInput}
             placeholder="Tìm tên phim..."
-            placeholderTextColor={screenColors.muted}
+            placeholderTextColor="#5C6B76"
             value={searchTerm}
             onChangeText={setSearchTerm}
             autoCorrect={false}
@@ -148,7 +148,7 @@ export default function BookingsTabScreen() {
               const cinema = cinemas.find((item) => item.id === showtime?.cinemaId);
               const statusPresentation = getBookingHistoryStatusPresentation(booking.status);
               const detailDimmed = isBookingHistoryDetailDisabled(booking.status);
-              const detailColor = detailDimmed ? screenColors.disabled : screenColors.primary;
+              const detailColor = detailDimmed ? '#9FB0D0' : '#003D7D';
 
               return (
                 <View
@@ -184,8 +184,8 @@ export default function BookingsTabScreen() {
                       <View style={styles.metaRow}>
                         <MaterialCommunityIcons
                           name="map-marker-outline"
-                          size={22}
-                          color={screenColors.muted}
+                          size={20}
+                          color="#6D7D8A"
                         />
                         <Text
                           numberOfLines={1}
@@ -201,8 +201,8 @@ export default function BookingsTabScreen() {
                       <View style={styles.metaRow}>
                         <MaterialCommunityIcons
                           name="seat-outline"
-                          size={22}
-                          color={screenColors.muted}
+                          size={20}
+                          color="#6D7D8A"
                         />
                         <Text
                           numberOfLines={1}
@@ -219,8 +219,8 @@ export default function BookingsTabScreen() {
                       <View style={styles.metaRow}>
                         <MaterialCommunityIcons
                           name="clock-outline"
-                          size={22}
-                          color={screenColors.muted}
+                          size={20}
+                          color="#6D7D8A"
                         />
                         <Text
                           numberOfLines={1}
@@ -263,7 +263,7 @@ export default function BookingsTabScreen() {
                         </Text>
                         <MaterialCommunityIcons
                           name="chevron-right"
-                          size={24}
+                          size={20}
                           color={detailColor}
                         />
                       </Pressable>
@@ -282,16 +282,14 @@ export default function BookingsTabScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: screenColors.background,
+    backgroundColor: '#F7FAFD',
   },
   header: {
-    minHeight: 76,
-    paddingHorizontal: 24,
+    minHeight: 70,
+    paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: screenColors.outline,
-    backgroundColor: screenColors.background,
+    backgroundColor: 'transparent',
   },
   backButton: {
     width: 44,
@@ -300,95 +298,84 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     flex: 1,
-    color: screenColors.primary,
+    color: '#001E42',
     textAlign: 'center',
     fontSize: 28,
     lineHeight: 34,
-    fontFamily: Fonts.sansBold,
+    fontFamily: Fonts.rounded,
   },
   headerSpacer: {
     width: 44,
   },
   content: {
-    paddingHorizontal: 24,
-    paddingTop: 30,
-    paddingBottom: 32,
+    paddingHorizontal: 20,
+    paddingTop: 14,
+    paddingBottom: 112,
   },
   searchBox: {
-    minHeight: 60,
-    borderWidth: 1,
-    borderColor: screenColors.outline,
-    borderRadius: 12,
-    backgroundColor: screenColors.surface,
-    paddingHorizontal: 20,
+    minHeight: 66,
+    borderRadius: 33,
+    backgroundColor: '#D9E7F1',
+    paddingHorizontal: 22,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
-    shadowColor: '#213145',
-    shadowOpacity: 0.04,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 1,
   },
   searchInput: {
     flex: 1,
-    color: screenColors.text,
+    color: '#001E42',
     fontSize: 18,
-    lineHeight: 24,
-    fontFamily: Fonts.sans,
+    fontFamily: Fonts.sansMedium,
     paddingVertical: 0,
   },
   chipRow: {
-    paddingTop: 20,
-    paddingBottom: 26,
+    paddingTop: 14,
+    paddingBottom: 22,
     flexDirection: 'row',
-    gap: 12,
+    gap: 10,
   },
   chip: {
-    minHeight: 52,
-    paddingHorizontal: 24,
-    borderRadius: 26,
+    minHeight: 38,
+    paddingHorizontal: 16,
+    borderRadius: 19,
     alignItems: 'center',
     justifyContent: 'center',
   },
   chipActive: {
-    backgroundColor: screenColors.primary,
+    backgroundColor: '#003D7D',
   },
   chipInactive: {
-    backgroundColor: screenColors.primaryContainer,
+    backgroundColor: '#E9F1F7',
   },
   chipText: {
-    color: screenColors.text,
-    fontSize: 18,
-    lineHeight: 24,
+    color: '#001E42',
+    fontSize: 13,
     fontFamily: Fonts.sansBold,
   },
   chipTextActive: {
     color: '#FFFFFF',
   },
   ticketList: {
-    gap: 18,
+    gap: 16,
   },
   ticketCard: {
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: screenColors.outline,
-    borderRadius: 12,
-    backgroundColor: screenColors.surface,
-    shadowColor: '#213145',
-    shadowOpacity: 0.06,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 8,
+    borderRadius: 24,
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#002B5C',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
     elevation: 2,
   },
   ticketCardDimmed: {
-    borderColor: screenColors.outlineSoft,
+    opacity: 0.85,
   },
   ticketBody: {
-    paddingHorizontal: 24,
-    paddingTop: 28,
-    paddingBottom: 26,
-    gap: 18,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 18,
+    gap: 14,
   },
   ticketHeader: {
     flexDirection: 'row',
@@ -397,54 +384,51 @@ const styles = StyleSheet.create({
   },
   movieTitle: {
     flex: 1,
-    color: screenColors.text,
-    fontSize: 29,
-    lineHeight: 36,
+    color: '#001E42',
+    fontSize: 17,
+    lineHeight: 22,
     fontFamily: Fonts.sansBold,
   },
   movieTitleDimmed: {
-    color: '#3F4A5A',
+    color: '#6D7D8A',
   },
   statusTag: {
-    maxWidth: 160,
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
   },
   statusText: {
-    fontSize: 16,
-    lineHeight: 18,
+    fontSize: 11,
     fontFamily: Fonts.sansBold,
   },
   metaStack: {
-    gap: 8,
+    gap: 6,
   },
   metaRow: {
-    minHeight: 26,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 8,
   },
   metaText: {
     flex: 1,
-    color: '#34384A',
-    fontSize: 21,
-    lineHeight: 28,
-    fontFamily: Fonts.sans,
+    color: '#6D7D8A',
+    fontSize: 13,
+    lineHeight: 18,
+    fontFamily: Fonts.sansMedium,
   },
   metaTextDimmed: {
-    color: screenColors.disabled,
+    color: '#9FB0D0',
   },
   timeText: {
-    color: screenColors.muted,
+    color: '#003D7D',
   },
   ticketFooter: {
-    minHeight: 82,
+    minHeight: 64,
     borderTopWidth: 1,
     borderStyle: 'dashed',
-    borderColor: screenColors.outline,
-    backgroundColor: screenColors.surfaceSoft,
-    paddingHorizontal: 24,
+    borderColor: '#E9F1F7',
+    backgroundColor: '#F7FAFD',
+    paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -452,44 +436,41 @@ const styles = StyleSheet.create({
   },
   priceText: {
     flexShrink: 1,
-    color: screenColors.primary,
-    fontSize: 29,
-    lineHeight: 36,
+    color: '#FFB247',
+    fontSize: 17,
     fontFamily: Fonts.sansBold,
   },
   priceTextDimmed: {
-    color: screenColors.disabled,
+    color: '#9FB0D0',
   },
   detailLink: {
-    minHeight: 48,
+    minHeight: 38,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
   },
   detailText: {
-    fontSize: 21,
-    lineHeight: 28,
+    fontSize: 13,
     fontFamily: Fonts.sansBold,
   },
   emptyCard: {
-    borderWidth: 1,
-    borderColor: screenColors.outline,
-    borderRadius: 12,
-    backgroundColor: screenColors.surface,
+    borderRadius: 24,
+    backgroundColor: '#D9E7F1',
     padding: 24,
     gap: 8,
+    alignItems: 'center',
   },
   emptyTitle: {
-    color: screenColors.text,
-    fontSize: 20,
-    lineHeight: 28,
+    color: '#001E42',
+    fontSize: 17,
     fontFamily: Fonts.sansBold,
   },
   emptyText: {
-    color: screenColors.muted,
-    fontSize: 16,
-    lineHeight: 24,
+    color: '#6D7D8A',
+    fontSize: 13,
+    lineHeight: 18,
     fontFamily: Fonts.sans,
+    textAlign: 'center',
   },
   pressed: {
     opacity: 0.72,

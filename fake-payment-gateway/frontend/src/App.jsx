@@ -63,9 +63,6 @@ export default function App() {
   useEffect(() => {
     setLoading(true);
     fetchTickets().finally(() => setLoading(false));
-
-    const interval = setInterval(fetchTickets, 3000);
-    return () => clearInterval(interval);
   }, []);
 
   const handleResolve = async (id, status) => {
@@ -102,6 +99,7 @@ export default function App() {
               tickets={tickets}
               selectedId={selectedId}
               onSelect={setSelectedId}
+              onRefresh={fetchTickets}
             />
           </div>
 

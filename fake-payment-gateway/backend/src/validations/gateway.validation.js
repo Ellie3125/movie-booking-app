@@ -1,3 +1,14 @@
+/**
+ * SPEC Disclosure
+ * Autonomous Decisions:
+ * - Marked the extended fields (customerName, phone, email, movieTitle, cinema, room, seats) as optional to guarantee backwards-compatibility with legacy payloads or standard test cases.
+ * Deviations:
+ * - None.
+ * Trade-offs:
+ * - None.
+ * Context/Notes:
+ * - These extended fields are used purely for visual presentation on the gateway UI and do not impact the signature calculation.
+ */
 const Joi = require('joi');
 const { PAYMENT_ACTION } = require('../constants/payment.constants');
 const env = require('../configs/env');
@@ -81,6 +92,14 @@ const createSessionSchema = {
     returnUrl: safeReturnUrlSchema.label('returnUrl'),
     expiredAt: Joi.date().iso().required().label('expiredAt'),
     signature: signatureSchema,
+    // Extended fields for showing real information in Gateway UI
+    customerName: Joi.string().trim().allow('').optional().label('customerName'),
+    phone: Joi.string().trim().allow('').optional().label('phone'),
+    email: Joi.string().trim().allow('').optional().label('email'),
+    movieTitle: Joi.string().trim().allow('').optional().label('movieTitle'),
+    cinema: Joi.string().trim().allow('').optional().label('cinema'),
+    room: Joi.string().trim().allow('').optional().label('room'),
+    seats: Joi.array().items(Joi.string().trim()).allow(null).optional().label('seats'),
   }),
 };
 

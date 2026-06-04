@@ -83,6 +83,27 @@ const cancelBookingAdmin = asyncHandler(async (req, res) => {
   });
 });
 
+const getBookingPaymentStatus = asyncHandler(async (req, res) => {
+  const data = await bookingService.getBookingPaymentStatus(
+    req.params.bookingId,
+    req.user.id
+  );
+
+  return sendApiResponse(res, {
+    message: 'Booking payment status fetched successfully',
+    data,
+  });
+});
+
+const getPendingBookingMe = asyncHandler(async (req, res) => {
+  const data = await bookingService.getPendingBookingMe(req.user.id);
+
+  return sendApiResponse(res, {
+    message: 'Current pending booking fetched successfully',
+    data,
+  });
+});
+
 module.exports = {
   createBooking,
   listMyBookings,
@@ -91,4 +112,7 @@ module.exports = {
   listBookingsAdmin,
   getBookingByIdAdmin,
   cancelBookingAdmin,
+  getBookingPaymentStatus,
+  getPendingBookingMe,
 };
+

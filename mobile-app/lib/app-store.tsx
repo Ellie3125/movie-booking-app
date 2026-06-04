@@ -1,5 +1,6 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -49,6 +50,9 @@ import {
   type BackendProfileUpdatePayload,
   type BackendCinemaBrand,
   fetchCinemaOptions,
+  getBookingPaymentStatus,
+  getPendingBookingMe,
+  setOnTokenRefreshed,
 } from '@/lib/backend-api';
 import { getMoviePosterPath } from '@/lib/image-url';
 import { getEdgeSeatSelectionConflict } from '@/lib/seat-selection-rule';
@@ -57,7 +61,12 @@ import {
   getAccessToken,
   getRefreshToken,
   saveTokens,
+  savePendingPayment,
+  getPendingPayment,
+  clearPendingPayment,
 } from '@/lib/tokenStorage';
+import { AppState } from 'react-native';
+
 
 export type MovieStatus = 'now_showing' | 'coming_soon' | 'ended';
 export type SeatCellType = 'seat' | 'space';
@@ -178,6 +187,11 @@ export type Showtime = {
   language: string;
   basePrice: number;
   seatStates: ShowtimeSeatState[];
+  totalSeats?: number;
+  availableSeats?: number;
+  bookedSeats?: number;
+  heldSeats?: number;
+  disabledSeats?: number;
 };
 
 export type BookingSeatSnapshot = {
@@ -341,6 +355,10 @@ type AppStoreValue = {
   startCheckout: (showtimeId: string, seatCodes: string[]) => Promise<{
     ok: boolean;
     error?: string;
+    bookingId?: string;
+    paymentTransactionId?: string;
+    expiredAt?: string;
+    paymentUrl?: string;
   }>;
   releaseDraftCheckout: () => Promise<void>;
   confirmDraftCheckout: (
@@ -354,6 +372,7 @@ const seatPriceMap: Record<string, number> = {
   couple: 180000,
   vip: 120000,
   standard: 90000,
+  regular: 90000,
 };
 
 const ADMIN_ACCOUNT_LOGIN_MESSAGE =
@@ -1722,7 +1741,7 @@ const getMinimumSeatPrice = (room: Room | undefined) => {
   const prices = room.seatLayout
     .flat()
     .filter((cell) => !['empty', 'aisle', 'space', 'disabled'].includes(cell.type) && cell.type)
-    .map((cell) => seatPriceMap[cell.type as SeatType]);
+    .map((cell) => seatPriceMap[cell.type as SeatType] || seatPriceMap.standard);
 
   return prices.length > 0 ? Math.min(...prices) : seatPriceMap.standard;
 };
@@ -1739,7 +1758,7 @@ const mapBackendShowtime = (
   endTime: showtime.endTime,
   format: showtime.movie.formats?.[0] || '2D',
   language: showtime.movie.language || 'Phụ đề',
-  basePrice: getMinimumSeatPrice(room),
+  basePrice: showtime.price || getMinimumSeatPrice(room),
   seatStates: (showtime.seatLayout || []).flatMap((row) =>
     (row.seats || [])
       .filter((seat) => !['empty', 'aisle', 'space'].includes(seat.type))
@@ -1760,6 +1779,11 @@ const mapBackendShowtime = (
         bookedAt: seat.bookedAt ?? null,
       })),
   ),
+  totalSeats: showtime.totalSeats,
+  availableSeats: showtime.availableSeats,
+  bookedSeats: showtime.bookedSeats,
+  heldSeats: showtime.heldSeats,
+  disabledSeats: showtime.disabledSeats,
 });
 
 const buildMovieMutationPayload = (input: MovieInput): BackendMovieMutationPayload => ({
@@ -1961,11 +1985,16 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     endTime: showtime.endTime,
     format: showtime.movie.formats?.[0] || '2D',
     language: showtime.movie.language || 'Phụ đề',
-    basePrice: getMinimumSeatPrice(room),
+    basePrice: showtime.price || getMinimumSeatPrice(room),
     seatStates: [],
+    totalSeats: showtime.totalSeats,
+    availableSeats: showtime.availableSeats,
+    bookedSeats: showtime.bookedSeats,
+    heldSeats: showtime.heldSeats,
+    disabledSeats: showtime.disabledSeats,
   });
 
-  const syncCatalogState = async () => {
+  const syncCatalogState = useCallback(async () => {
     const [moviesResponse, cinemasResponse, roomsResponse, showtimesResponse, cinemaOptionsResponse] =
       await Promise.all([
         fetchMovies(),
@@ -1995,9 +2024,9 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setRooms(nextRooms);
     setShowtimes(nextShowtimes);
     setBrands(nextBrands);
-  };
+  }, []);
 
-  const refreshShowtime = async (showtimeId: string) => {
+  const refreshShowtime = useCallback(async (showtimeId: string) => {
     try {
       const showtimeDetail = await fetchShowtimeById(showtimeId);
       let room = rooms.find((r) => r.id === showtimeDetail.room._id);
@@ -2005,6 +2034,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       if (!room) {
         const roomDetail = await fetchRoomById(showtimeDetail.room._id);
         room = mapBackendRoom(roomDetail);
+        setRooms((current) => [...current.filter((r) => r.id !== room!.id), room!]);
       }
 
       const updatedShowtime = mapBackendShowtime(showtimeDetail, room);
@@ -2014,9 +2044,109 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     } catch (error) {
       console.warn('Không thể refresh thông tin ghế của suất chiếu.', error);
     }
-  };
+  }, [rooms]);
 
-  const syncRemoteState = async (token: string, user: UserProfile) => {
+  const checkAndUpdatePendingPayment = useCallback(async (optToken?: string, optUser?: UserProfile) => {
+    const activeToken = optToken || authToken;
+    const activeUser = optUser || currentUser;
+    if (!activeToken || !activeUser) return;
+
+    try {
+      const localPending = await getPendingPayment();
+      if (!localPending) {
+        try {
+          const res = await getPendingBookingMe(activeToken);
+          if (res && res.bookingId) {
+            const restoredDraft = {
+              id: res.bookingId,
+              userId: activeUser.id,
+              showtimeId: res.showtime.id,
+              movieId: res.movie.id,
+              roomId: res.room.id,
+              seatCodes: res.seats.map((s: any) => s.seatCode.toUpperCase()),
+              seats: res.seats.map((seat: any) => ({
+                seatCode: seat.seatCode.toUpperCase(),
+                seatLabel: seat.seatLabel,
+                seatType: seat.seatType,
+                status: 'held' as const,
+                price: seat.price,
+                coupleGroupId: seat.coupleGroupId ?? null,
+              })),
+              totalPrice: res.amount,
+              heldUntil: res.holdExpiresAt,
+            };
+            setDraftCheckout(restoredDraft);
+
+            await savePendingPayment({
+              bookingId: res.bookingId,
+              paymentTransactionId: res.paymentTransactionId || '',
+              holdExpiresAt: res.holdExpiresAt,
+              showtimeId: res.showtime.id,
+              createdAt: res.holdExpiresAt,
+            });
+          } else {
+            setDraftCheckout(null);
+            await clearPendingPayment();
+          }
+        } catch (e) {
+          console.warn('Check pending me failed:', e);
+        }
+        return;
+      }
+
+      const now = new Date();
+      const expiresAt = new Date(localPending.holdExpiresAt);
+      if (expiresAt <= now) {
+        setDraftCheckout(null);
+        await clearPendingPayment();
+        return;
+      }
+
+      try {
+        const res = await getBookingPaymentStatus(activeToken, localPending.bookingId);
+        const status = res.status.toLowerCase();
+        const paymentStatus = res.paymentStatus.toLowerCase();
+
+        if (status === 'confirmed' || paymentStatus === 'success') {
+          setDraftCheckout(null);
+          await clearPendingPayment();
+        } else if (['failed', 'expired', 'cancelled'].includes(status) || ['failed', 'expired', 'cancelled'].includes(paymentStatus)) {
+          setDraftCheckout(null);
+          await clearPendingPayment();
+        } else {
+          const restoredDraft = {
+            id: res.bookingId,
+            userId: activeUser.id,
+            showtimeId: res.showtime.id,
+            movieId: res.movie.id,
+            roomId: res.room.id,
+            seatCodes: res.seats.map((s: any) => s.seatCode.toUpperCase()),
+            seats: res.seats.map((seat: any) => ({
+              seatCode: seat.seatCode.toUpperCase(),
+              seatLabel: seat.seatLabel,
+              seatType: seat.seatType,
+              status: 'held' as const,
+              price: seat.price,
+              coupleGroupId: seat.coupleGroupId ?? null,
+            })),
+            totalPrice: res.amount,
+            heldUntil: res.holdExpiresAt,
+          };
+          setDraftCheckout(restoredDraft);
+        }
+      } catch (err) {
+        if (err instanceof ApiRequestError && err.statusCode === 404) {
+          setDraftCheckout(null);
+          await clearPendingPayment();
+        }
+        console.warn('Verify booking payment status error:', err);
+      }
+    } catch (e) {
+      console.warn('checkAndUpdatePendingPayment failed:', e);
+    }
+  }, [authToken, currentUser]);
+
+  const syncRemoteState = useCallback(async (token: string, user: UserProfile) => {
     const [, bookingsResponse] = await Promise.all([
       syncCatalogState(),
       fetchMyBookings(token),
@@ -2026,15 +2156,18 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     );
 
     setBookings(nextBookings);
-  };
 
-  const refreshRemoteState = async () => {
+    // Khôi phục pending payment và đồng bộ với local storage
+    await checkAndUpdatePendingPayment(token, user);
+  }, [syncCatalogState, checkAndUpdatePendingPayment]);
+
+  const refreshRemoteState = useCallback(async () => {
     if (!authToken || !currentUser) {
       return;
     }
 
     await syncRemoteState(authToken, currentUser);
-  };
+  }, [authToken, currentUser, syncRemoteState]);
 
   const refreshData = async () => {
     try {
@@ -2294,6 +2427,35 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       };
     }
   };
+
+  // Đăng ký lắng nghe token refresh để đồng bộ authToken
+  useEffect(() => {
+    setOnTokenRefreshed((newToken) => {
+      if (newToken) {
+        setAuthToken(newToken);
+        setAuthStatus('authenticated');
+      } else {
+        clearSessionState();
+      }
+    });
+
+    return () => {
+      setOnTokenRefreshed(() => {});
+    };
+  }, []);
+
+  // Lắng nghe trạng thái ứng dụng (AppState) để khôi phục pending payment khi active trở lại
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (nextAppState) => {
+      if (nextAppState === 'active') {
+        checkAndUpdatePendingPayment();
+      }
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, [checkAndUpdatePendingPayment]);
 
   useEffect(() => {
     let active = true;
@@ -2565,6 +2727,8 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
       return;
     }
 
+    await clearPendingPayment(); // Xóa pending payment local khi hủy đặt vé
+
     if (authToken) {
       try {
         await cancelBookingRequest(authToken, draftCheckout.id);
@@ -2608,7 +2772,17 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     setDraftCheckout(null);
   };
 
-  const startCheckout = async (showtimeId: string, seatCodes: string[]) => {
+  const startCheckout = async (
+    showtimeId: string,
+    seatCodes: string[],
+  ): Promise<{
+    ok: boolean;
+    error?: string;
+    bookingId?: string;
+    paymentTransactionId?: string;
+    expiredAt?: string;
+    paymentUrl?: string;
+  }> => {
     if (!currentUser) {
       return {
         ok: false,
@@ -2617,6 +2791,61 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     }
 
     const activeUser = currentUser;
+
+    // Check if there is an active pending booking for the same showtime locally or remotely
+    if (authToken) {
+      try {
+        const localPending = await getPendingPayment();
+        if (localPending && localPending.showtimeId === showtimeId) {
+          const now = new Date();
+          const expiresAt = new Date(localPending.holdExpiresAt);
+          if (expiresAt > now) {
+            // Verify with backend
+            const res = await getBookingPaymentStatus(authToken, localPending.bookingId);
+            const status = res.status.toLowerCase();
+            const paymentStatus = res.paymentStatus.toLowerCase();
+
+            if (status === 'pending_payment' && paymentStatus === 'pending' && res.qrCode) {
+              const restoredDraft = {
+                id: res.bookingId,
+                userId: activeUser.id,
+                showtimeId: res.showtime.id,
+                movieId: res.movie.id,
+                roomId: res.room.id,
+                seatCodes: res.seats.map((s: any) => s.seatCode.toUpperCase()),
+                seats: res.seats.map((seat: any) => ({
+                  seatCode: seat.seatCode.toUpperCase(),
+                  seatLabel: seat.seatLabel,
+                  seatType: seat.seatType,
+                  status: 'held' as const,
+                  price: seat.price,
+                  coupleGroupId: seat.coupleGroupId ?? null,
+                })),
+                totalPrice: res.amount,
+                heldUntil: res.holdExpiresAt,
+              };
+              setDraftCheckout(restoredDraft);
+
+              return {
+                ok: true,
+                bookingId: res.bookingId,
+                paymentTransactionId: res.paymentTransactionId || '',
+                expiredAt: res.holdExpiresAt,
+                paymentUrl: res.qrCode,
+              };
+            } else {
+              await clearPendingPayment();
+            }
+          } else {
+            await clearPendingPayment();
+          }
+        }
+      } catch (err) {
+        console.warn('Verify pending booking before checkout failed:', err);
+        await clearPendingPayment();
+      }
+    }
+
     const showtime = showtimes.find((item) => item.id === showtimeId);
     const room = rooms.find((item) => item.id === showtime?.roomId);
 
@@ -2741,10 +2970,12 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     return { ok: true };
   };
 
-  const completeRemoteCheckout = async (bookingId: string) => {
+  const completeRemoteCheckout = useCallback(async (bookingId: string) => {
     if (!authToken || !currentUser) {
       return null;
     }
+
+    await clearPendingPayment(); // Xóa pending payment local khi đã hoàn tất thanh toán thành công/thất bại
 
     const confirmedBooking = await fetchMyBookingById(authToken, bookingId);
     const mappedBooking = mapBackendBooking(confirmedBooking, currentUser.id);
@@ -2758,7 +2989,7 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     }
 
     return mappedBooking;
-  };
+  }, [authToken, currentUser, refreshRemoteState]);
 
   const confirmDraftCheckout = async (
     paymentMethod: PaymentMethod,
@@ -2777,6 +3008,15 @@ export function AppStoreProvider({ children }: PropsWithChildren) {
     if (authToken) {
       const paymentSession = await payBookingBill(authToken, draftCheckout.id, {
         returnUrl: options.returnUrl,
+      });
+
+      // Lưu pending payment local khi bắt đầu thanh toán
+      await savePendingPayment({
+        bookingId: draftCheckout.id,
+        paymentTransactionId: paymentSession.paymentId,
+        holdExpiresAt: paymentSession.expiredAt || draftCheckout.heldUntil,
+        showtimeId: draftCheckout.showtimeId,
+        createdAt: new Date().toISOString(),
       });
 
       return {

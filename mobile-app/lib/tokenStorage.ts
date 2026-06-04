@@ -66,3 +66,42 @@ export async function clearTokens(): Promise<void> {
   await SecureStore.deleteItemAsync(KEYS.ACCESS_TOKEN);
   await SecureStore.deleteItemAsync(KEYS.REFRESH_TOKEN);
 }
+
+const PENDING_PAYMENT_KEY = 'beatcinema.pending-payment';
+
+export type PendingPaymentInfo = {
+  bookingId: string;
+  paymentTransactionId: string;
+  holdExpiresAt: string;
+  showtimeId: string;
+  createdAt: string;
+};
+
+export async function savePendingPayment(info: PendingPaymentInfo): Promise<void> {
+  const dataStr = JSON.stringify(info);
+  if (isWeb) {
+    localStorage.setItem(PENDING_PAYMENT_KEY, dataStr);
+    return;
+  }
+  await SecureStore.setItemAsync(PENDING_PAYMENT_KEY, dataStr);
+}
+
+export async function getPendingPayment(): Promise<PendingPaymentInfo | null> {
+  try {
+    const dataStr = isWeb
+      ? localStorage.getItem(PENDING_PAYMENT_KEY)
+      : await SecureStore.getItemAsync(PENDING_PAYMENT_KEY);
+    return dataStr ? JSON.parse(dataStr) : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function clearPendingPayment(): Promise<void> {
+  if (isWeb) {
+    localStorage.removeItem(PENDING_PAYMENT_KEY);
+    return;
+  }
+  await SecureStore.deleteItemAsync(PENDING_PAYMENT_KEY);
+}
+

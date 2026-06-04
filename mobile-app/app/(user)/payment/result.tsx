@@ -2,6 +2,7 @@ import { router, Stack, useLocalSearchParams } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import {
   ActionButton,
@@ -46,10 +47,14 @@ export default function PaymentResultScreen() {
     });
 
     return parsePaymentResultUrl(`frontend://payment/result?${query.toString()}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paramsKey]);
 
-  // Tìm thông tin booking để hiển thị chi tiết lỗi nếu có
+  // Sync status state: 'pending' (loading), 'success', 'failed'
+  const [syncStatus, setSyncStatus] = useState<'pending' | 'success' | 'failed'>(
+    isSuccessfulPaymentResult(paymentResult) ? 'pending' : 'failed'
+  );
+  
+  // Find booking details to display
   const booking = useMemo(() => {
     return bookings.find((b) => b.id === paymentResult.bookingId);
   }, [bookings, paymentResult.bookingId]);
@@ -71,11 +76,13 @@ export default function PaymentResultScreen() {
 
     const confirmPayment = async () => {
       if (!isSuccessfulPaymentResult(paymentResult)) {
+        setSyncStatus('failed');
         setError(paymentResult.message || 'Thanh toán chưa hoàn tất.');
         return;
       }
 
       try {
+        console.log(`[PaymentResult] Syncing payment status with backend for booking: ${paymentResult.bookingId}`);
         const confirmedBooking = await completeRemoteCheckout(paymentResult.bookingId || '');
 
         if (!active) {
@@ -83,19 +90,19 @@ export default function PaymentResultScreen() {
         }
 
         if (confirmedBooking && (confirmedBooking.paidAt || confirmedBooking.status === 'confirmed')) {
-          router.replace({
-            pathname: '/(user)/bookings/[bookingId]',
-            params: { bookingId: confirmedBooking.id },
-          });
+          setSyncStatus('success');
+          setError('');
           return;
         }
 
+        setSyncStatus('failed');
         setError('Backend chưa xác nhận thanh toán. Vui lòng kiểm tra lại vé sau ít giây.');
       } catch (paymentError) {
         if (!active) {
           return;
         }
 
+        setSyncStatus('failed');
         setError(
           paymentError instanceof Error
             ? paymentError.message
@@ -116,23 +123,56 @@ export default function PaymentResultScreen() {
       <Stack.Screen options={{ title: 'Kết quả thanh toán' }} />
       <SectionCard tone="user">
         <View style={styles.centerBlock}>
-          {error ? null : <ActivityIndicator color={colors.accent} size="large" />}
-          <Text style={[styles.title, { color: colors.text }]}>
-            {error ? 'Thanh toán thất bại / Bị hủy' : 'Đang xác nhận thanh toán'}
+          {syncStatus === 'pending' && <ActivityIndicator color={colors.accent} size="large" />}
+          {syncStatus === 'success' && (
+            <MaterialCommunityIcons name="check-circle" size={72} color="#16A34A" />
+          )}
+          {syncStatus === 'failed' && (
+            <MaterialCommunityIcons name="close-circle" size={72} color="#DC2626" />
+          )}
+          
+          <Text
+            style={[
+              styles.title,
+              {
+                color:
+                  syncStatus === 'success'
+                    ? '#16A34A'
+                    : syncStatus === 'failed'
+                      ? '#DC2626'
+                      : colors.text,
+              },
+            ]}>
+            {syncStatus === 'pending' && 'Đang xác nhận thanh toán'}
+            {syncStatus === 'success' && 'Thanh toán thành công!'}
+            {syncStatus === 'failed' && 'Thanh toán thất bại / Bị hủy'}
           </Text>
+          
           <Text style={[styles.copy, { color: colors.muted }]}>
-            {error || 'Hệ thống đang đồng bộ kết quả với backend và cập nhật vé của bạn.'}
+            {syncStatus === 'pending' && 'Hệ thống đang đồng bộ kết quả với backend và cập nhật vé của bạn.'}
+            {syncStatus === 'success' && 'Giao dịch đã được ghi nhận. Vé của bạn đã được xuất.'}
+            {syncStatus === 'failed' && (error || 'Giao dịch thanh toán chưa được xác nhận hoặc bị hủy.')}
           </Text>
         </View>
 
-        {error && booking ? (
+        {booking ? (
           <View style={[styles.detailsCard, { borderColor: colors.border }]}>
             <Text style={[styles.detailsTitle, { color: colors.text }]}>
-              Chi tiết giao dịch bị lỗi:
+              Chi tiết giao dịch:
             </Text>
             <Text style={[styles.detailsText, { color: colors.muted }]}>
               Mã đặt vé: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{booking.id}</Text>
             </Text>
+            {paymentResult.paymentId ? (
+              <Text style={[styles.detailsText, { color: colors.muted }]}>
+                Mã thanh toán: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{paymentResult.paymentId}</Text>
+              </Text>
+            ) : null}
+            {paymentResult.transactionCode ? (
+              <Text style={[styles.detailsText, { color: colors.muted }]}>
+                Mã giao dịch: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{paymentResult.transactionCode}</Text>
+              </Text>
+            ) : null}
             <Text style={[styles.detailsText, { color: colors.muted }]}>
               Phim: <Text style={{ color: colors.text, fontWeight: 'bold' }}>{movie?.title || 'Đang cập nhật'}</Text>
             </Text>
@@ -153,28 +193,40 @@ export default function PaymentResultScreen() {
           </View>
         ) : null}
 
-        {error ? (
-          <View style={{ marginTop: 20, gap: 10 }}>
-            {paymentResult.bookingId ? (
-              <ActionButton
-                tone="user"
-                label="Xem đơn đặt vé"
-                onPress={() =>
-                  router.replace({
-                    pathname: '/(user)/bookings/[bookingId]',
-                    params: { bookingId: paymentResult.bookingId || '' },
-                  })
-                }
-              />
-            ) : null}
+        <View style={{ marginTop: 24, gap: 12 }}>
+          {syncStatus === 'success' && paymentResult.bookingId ? (
             <ActionButton
               tone="user"
-              label="Về trang đặt vé"
-              variant="secondary"
-              onPress={() => router.replace('/(user)/(tabs)/bookings')}
+              label="Xem chi tiết vé"
+              onPress={() =>
+                router.replace({
+                  pathname: '/(user)/bookings/[bookingId]',
+                  params: { bookingId: paymentResult.bookingId || '' },
+                })
+              }
             />
-          </View>
-        ) : null}
+          ) : null}
+
+          {syncStatus === 'failed' && paymentResult.bookingId ? (
+            <ActionButton
+              tone="user"
+              label="Xem đơn đặt vé"
+              onPress={() =>
+                router.replace({
+                  pathname: '/(user)/bookings/[bookingId]',
+                  params: { bookingId: paymentResult.bookingId || '' },
+                })
+              }
+            />
+          ) : null}
+
+          <ActionButton
+            tone="user"
+            label="Quay lại trang chủ"
+            variant="secondary"
+            onPress={() => router.replace('/')}
+          />
+        </View>
       </SectionCard>
     </PageScroll>
   );
@@ -183,35 +235,42 @@ export default function PaymentResultScreen() {
 const styles = StyleSheet.create({
   centerBlock: {
     alignItems: 'center',
-    gap: 10,
-    paddingVertical: 12,
+    gap: 14,
+    paddingVertical: 14,
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     fontFamily: Fonts.rounded,
     textAlign: 'center',
+    marginTop: 6,
   },
   copy: {
     fontSize: 14,
-    lineHeight: 21,
-    fontFamily: Fonts.sans,
+    lineHeight: 20,
+    fontFamily: Fonts.sansMedium,
     textAlign: 'center',
+    paddingHorizontal: 12,
   },
   detailsCard: {
-    marginTop: 15,
-    padding: 15,
-    borderRadius: 12,
+    marginTop: 20,
+    padding: 20,
+    borderRadius: 24,
     borderWidth: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#002B5C',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 2,
     gap: 8,
   },
   detailsTitle: {
     fontSize: 15,
     fontFamily: Fonts.sansBold,
-    marginBottom: 5,
+    marginBottom: 4,
   },
   detailsText: {
-    fontSize: 14,
-    fontFamily: Fonts.sans,
+    fontSize: 13,
+    fontFamily: Fonts.sansMedium,
   },
 });

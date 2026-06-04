@@ -2,7 +2,7 @@ import { Image } from 'expo-image';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
-import { Fonts } from '@/constants/theme';
+import { AzureColors, Fonts } from '@/constants/theme';
 import { API_BASE_URL } from '@/lib/backend-api';
 import { normalizePosterUrl } from '@/lib/image-url';
 
@@ -16,10 +16,10 @@ const tonePalette = {
     border: 'rgba(159, 176, 208, 0.16)',
   },
   user: {
-    fallback: '#FFE7BE',
-    text: '#4B2E22',
-    muted: '#8C6856',
-    border: 'rgba(140, 104, 86, 0.16)',
+    fallback: AzureColors.primaryLight,
+    text: AzureColors.textPrimary,
+    muted: AzureColors.textSecondary,
+    border: AzureColors.border,
   },
 } as const;
 

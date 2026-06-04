@@ -1,3 +1,22 @@
+/**
+ * Autonomous Decisions:
+ * - Giữ nguyên AzureColors làm token gốc (khớp với toàn bộ app theme)
+ * - Thêm getSeatStyle() là single source of truth cho seat color logic
+ * - seatVariantTokens và seatStatusTokens giữ để tương thích ngược (admin/display)
+ *
+ * Deviations:
+ * - Không dùng VibrantColors cho seat rendering nữa (đã có AzureColors đầy đủ)
+ *
+ * Trade-offs:
+ * - getSeatStyle() ưu tiên status trước variant (selected/booked/held override type colors)
+ * - VIP giữ green border ngay cả khi selected để user vẫn nhận ra type
+ *
+ * Context/Notes:
+ * - Dùng bởi: seat-layout-grid.tsx (user mode), components/booking/seats.tsx (Legend + MiniMap)
+ * - Admin mode KHÔNG dùng getSeatStyle() (admin có palette riêng)
+ */
+
+import { AzureColors } from '@/constants/theme';
 import { type Room, type RoomSeat, type ShowtimeSeatState } from '@/lib/app-store';
 
 export type SeatVisualVariant = 'regular' | 'vip' | 'couple';
@@ -7,6 +26,8 @@ export type SeatVisualStatus =
   | 'held'
   | 'booked'
   | 'disabled';
+
+/* ── Variant tokens (dùng cho legend label + previewWide) ── */
 
 export const seatVariantTokens: Record<
   SeatVisualVariant,
@@ -18,24 +39,26 @@ export const seatVariantTokens: Record<
   }
 > = {
   regular: {
-    accent: '#1D8B4D',
-    accentSoft: 'rgba(29, 139, 77, 0.22)',
+    accent: AzureColors.primary,
+    accentSoft: AzureColors.normalSeat,
     label: 'Ghế thường',
     previewWide: false,
   },
   vip: {
-    accent: '#F0C14A',
-    accentSoft: 'rgba(240, 193, 74, 0.24)',
+    accent: AzureColors.vipBorder,
+    accentSoft: AzureColors.normalSeat,
     label: 'Ghế VIP',
     previewWide: false,
   },
   couple: {
-    accent: '#D46B9A',
-    accentSoft: 'rgba(212, 107, 154, 0.24)',
+    accent: AzureColors.secondary,
+    accentSoft: AzureColors.coupleSeat,
     label: 'Ghế cặp đôi',
     previewWide: true,
   },
 };
+
+/* ── Status tokens (dùng cho documentation/display) ── */
 
 export const seatStatusTokens: Record<
   SeatVisualStatus,
@@ -48,41 +71,177 @@ export const seatStatusTokens: Record<
   }
 > = {
   available: {
-    fill: '#2CC56F',
-    border: '#24A85D',
-    text: '#FFFDF8',
+    fill: AzureColors.normalSeat,
+    border: AzureColors.border,
+    text: AzureColors.textPrimary,
     label: 'Ghế còn trống',
     description: 'Có thể chọn ngay.',
   },
   selected: {
-    fill: '#1573D6',
-    border: '#115FB4',
-    text: '#F7FBFF',
+    fill: AzureColors.selectedSeat,
+    border: AzureColors.selectedSeat,
+    text: '#FFFFFF',                    // white trên amber #D97706 — contrast đủ tốt
     label: 'Ghế đang chọn',
     description: 'Ghế bạn đang giữ trong phiên hiện tại.',
   },
   held: {
-    fill: '#8FD2FF',
-    border: '#58B4F0',
-    text: '#18405C',
+    fill: AzureColors.bookedSeat,
+    border: AzureColors.bookedSeat,
+    text: '#FFFFFF',
     label: 'Ghế đang được giữ',
     description: 'Đang được giữ tạm trong phiên của người khác.',
   },
   booked: {
-    fill: '#F05B4F',
-    border: '#D74439',
-    text: '#FFF8F6',
+    fill: AzureColors.bookedSeat,
+    border: AzureColors.bookedSeat,
+    text: '#FFFFFF',
     label: 'Ghế đã bán',
     description: 'Ghế đã thanh toán xong, không thể chọn.',
   },
   disabled: {
-    fill: '#E2E8F0',
-    border: '#CBD5E1',
-    text: '#64748B',
+    fill: AzureColors.disabledSurface,
+    border: AzureColors.border,
+    text: AzureColors.textSecondary,
     label: 'Ghế không sử dụng',
     description: 'Ghế đã bị khóa hoặc hư hỏng.',
   },
 };
+
+/* ── getSeatStyle() — Single source of truth cho seat rendering ── */
+
+export type SeatStyleResult = {
+  /** Màu nền ghế */
+  bg: string;
+  /** Màu chữ / icon label */
+  text: string;
+  /** Màu border (transparent nếu không có) */
+  borderColor: string;
+  /** Độ dày border */
+  borderWidth: number;
+  /** Opacity tổng của ghế (1 = bình thường, < 1 = mờ) */
+  opacity: number;
+};
+
+/**
+ * Trả về style tổng hợp cho một ghế dựa trên variant + status.
+ *
+ * Priority order:
+ * 1. selected → luôn dùng màu primary (navy)
+ * 2. booked / held → luôn dùng màu bookedSeat (grey)
+ * 3. disabled → mờ
+ * 4. available → dựa theo variant (regular / vip / couple)
+ */
+export const getSeatStyle = (
+  variant: SeatVisualVariant,
+  status: SeatVisualStatus,
+): SeatStyleResult => {
+  // ── Selected: override tất cả variant, dùng amber ấm ──
+  if (status === 'selected') {
+    return {
+      bg: AzureColors.selectedSeat,   // #D97706 amber ấm
+      text: '#FFFFFF',
+      borderColor: AzureColors.selectedSeat,
+      borderWidth: 0,
+      opacity: 1,
+    };
+  }
+
+  // ── Booked: không thể đặt, màu xám trung tính ──
+  if (status === 'booked') {
+    return {
+      bg: AzureColors.bookedSeat,     // #B8C5D3
+      text: 'rgba(255,255,255,0.7)',
+      borderColor: 'transparent',
+      borderWidth: 0,
+      opacity: 1,
+    };
+  }
+
+  // ── Held: đang giữ tạm bởi người khác ──
+  if (status === 'held') {
+    return {
+      bg: AzureColors.bookedSeat,     // #B8C5D3 (giống booked nhưng mờ hơn)
+      text: 'rgba(255,255,255,0.7)',
+      borderColor: 'transparent',
+      borderWidth: 0,
+      opacity: 0.65,
+    };
+  }
+
+  // ── Disabled: ghế bị khóa ──
+  if (status === 'disabled') {
+    return {
+      bg: AzureColors.disabledSurface, // #E2EAF3
+      text: AzureColors.mutedText,
+      borderColor: 'transparent',
+      borderWidth: 0,
+      opacity: 0.45,
+    };
+  }
+
+  // ── Available: dựa theo variant ──
+  switch (variant) {
+    case 'vip':
+      return {
+        bg: '#f59e0b',    // vàng cam
+        text: '#FFFFFF',
+        borderColor: 'transparent',
+        borderWidth: 0,
+        opacity: 1,
+      };
+
+    case 'couple':
+      return {
+        bg: '#f472b6',   // hồng
+        text: '#FFFFFF',
+        borderColor: 'transparent',
+        borderWidth: 0,
+        opacity: 1,
+      };
+
+    case 'regular':
+    default:
+      return {
+        bg: '#4c6ef5',   // xanh dương
+        text: '#FFFFFF',
+        borderColor: 'transparent',
+        borderWidth: 0,
+        opacity: 1,
+      };
+  }
+};
+
+/* ── Màu cho Legend và MiniMap (tiện dùng trực tiếp) ── */
+
+export const SEAT_LEGEND_COLORS = {
+  normal: {
+    bg: '#4c6ef5',
+    border: 'transparent',
+    text: '#FFFFFF',
+  },
+  vip: {
+    bg: '#f59e0b',
+    border: 'transparent',
+    text: '#FFFFFF',
+  },
+  couple: {
+    bg: '#f472b6',
+    border: 'transparent',
+    text: '#FFFFFF',
+  },
+  selected: {
+    bg: AzureColors.selectedSeat,
+    border: 'transparent',
+    text: '#FFFFFF',
+  },
+  booked: {
+    bg: AzureColors.bookedSeat,
+    border: 'transparent',
+    text: 'rgba(255,255,255,0.7)',
+  },
+} as const;
+
+/* ── Helpers ── */
 
 const premiumRoomPattern = /\b(gold|premium|vip|imax)\b/i;
 
@@ -102,16 +261,21 @@ export const getSeatVisualVariant = (
   seat: Pick<RoomSeat, 'type'>,
   room?: Pick<Room, 'name' | 'roomType'> | null,
 ): SeatVisualVariant => {
-  if (seat.type === 'space' || seat.type === 'disabled') {
+  const type = String(seat.type || '').trim().toLowerCase();
+  if (type === 'space' || type === 'disabled') {
     return 'regular';
   }
 
-  if (seat.type === 'couple') {
+  if (type === 'couple' || type === 'double' || type === 'pair') {
     return 'couple';
   }
 
-  if (seat.type === 'vip') {
+  if (type === 'vip') {
     return 'vip';
+  }
+
+  if (type === 'regular' || type === 'standard' || type === 'normal') {
+    return 'regular';
   }
 
   return roomHasVipSeats(room) ? 'vip' : 'regular';
@@ -128,15 +292,17 @@ export const getSeatVisualStatus = ({
     return 'selected';
   }
 
-  if (!seatState || seatState.status === 'available') {
+  const status = String(seatState?.status || '').trim().toLowerCase();
+
+  if (!seatState || status === 'available') {
     return 'available';
   }
 
-  if (seatState.status === 'held') {
+  if (status === 'held' || status === 'holding') {
     return 'held';
   }
 
-  if (seatState.status === 'booked') {
+  if (status === 'booked' || status === 'sold') {
     return 'booked';
   }
 
@@ -151,7 +317,8 @@ export const buildSeatVariantLookup = (room?: Room | null) => {
   }
 
   room.seatLayout.flat().forEach((seat) => {
-    if (seat.type === 'space') {
+    const typeLower = String(seat.type || '').trim().toLowerCase();
+    if (['space', 'empty', 'aisle'].includes(typeLower)) {
       return;
     }
 
@@ -163,3 +330,15 @@ export const buildSeatVariantLookup = (room?: Room | null) => {
 
 export const formatSeatVisualLabel = (variant: SeatVisualVariant) =>
   seatVariantTokens[variant].label;
+
+/**
+ * Shadow ấm cho ghế đang được chọn (amber glow).
+ * Dùng trong seat-layout-grid.tsx thay AzureShadow.floating.
+ */
+export const SELECTED_SEAT_SHADOW = {
+  shadowColor: '#D97706',
+  shadowOffset: { width: 0, height: 3 },
+  shadowOpacity: 0.45,
+  shadowRadius: 8,
+  elevation: 5,
+} as const;

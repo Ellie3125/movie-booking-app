@@ -1,5 +1,5 @@
 import React from "react";
-import { Seat, SEAT_TYPE_CONFIG, NON_SEAT_TYPES } from "../types";
+import { Seat, SeatType, SEAT_TYPE_CONFIG, NON_SEAT_TYPES } from "../types";
 
 interface SeatCellProps {
   seat: Seat;
@@ -14,32 +14,45 @@ const SeatCell: React.FC<SeatCellProps> = ({
   isPreview,
   isSelected,
 }) => {
-  const config = SEAT_TYPE_CONFIG[seat.type] || SEAT_TYPE_CONFIG.regular;
+  const getNormalizedType = (type: string): SeatType => {
+    const t = String(type || "").trim().toLowerCase();
+    if (t === "standard" || t === "normal" || t === "regular") return "regular";
+    if (t === "double" || t === "pair" || t === "couple") return "couple";
+    if (t === "vip") return "vip";
+    if (t === "empty") return "empty";
+    if (t === "aisle") return "aisle";
+    if (t === "disabled") return "disabled";
+    if (t === "space") return "space";
+    return "regular";
+  };
 
-  const isNonSeat = NON_SEAT_TYPES.includes(seat.type);
-  const isDisabledSeat = seat.type === "disabled" || seat.status === "disabled";
+  const normalizedType = getNormalizedType(seat.type);
+  const config = SEAT_TYPE_CONFIG[normalizedType] || SEAT_TYPE_CONFIG.regular;
+
+  const isNonSeat = NON_SEAT_TYPES.includes(normalizedType);
+  const isDisabledSeat = normalizedType === "disabled" || String(seat.status).trim().toLowerCase() === "disabled";
 
   const getWidth = (): string => {
-    if (seat.type === "couple") return "84px";
-    if (seat.type === "aisle") return "48px";
+    if (normalizedType === "couple") return "84px";
+    if (normalizedType === "aisle") return "48px";
     return "40px";
   };
 
   const HEIGHT = "40px";
 
   const getBackground = (): string => {
-    if (seat.type === "space") return "transparent";
-    if (seat.type === "empty") return "transparent";
-    if (seat.type === "aisle") return "#0c4a6e";
+    if (normalizedType === "space") return "transparent";
+    if (normalizedType === "empty") return "transparent";
+    if (normalizedType === "aisle") return "#0c4a6e";
     if (isDisabledSeat) return "#475569";
     return config.color;
   };
 
   const getBorder = (): string => {
     if (isSelected) return "2px solid #3b82f6";
-    if (seat.type === "space") return "1px dashed #374151";
-    if (seat.type === "empty") return "1px dotted #4b5563";
-    if (seat.type === "aisle") return "1px solid #0369a1";
+    if (normalizedType === "space") return "1px dashed #374151";
+    if (normalizedType === "empty") return "1px dotted #4b5563";
+    if (normalizedType === "aisle") return "1px solid #0369a1";
     return "1px solid transparent";
   };
 
@@ -59,7 +72,7 @@ const SeatCell: React.FC<SeatCellProps> = ({
           flexShrink: 0,
         }}
       >
-        {seat.type === "aisle" && (
+        {normalizedType === "aisle" && (
           <span className="text-[9px] font-medium text-sky-400/60 select-none">
             ≡
           </span>
@@ -98,12 +111,12 @@ const SeatCell: React.FC<SeatCellProps> = ({
       </span>
 
       {/* VIP indicator dot */}
-      {seat.type === "vip" && !isDisabledSeat && (
+      {normalizedType === "vip" && !isDisabledSeat && (
         <div className="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-yellow-300 rounded-full animate-pulse" />
       )}
 
       {/* Couple heart indicator */}
-      {seat.type === "couple" && (
+      {normalizedType === "couple" && (
         <div className="absolute -top-1 left-1/2 -translate-x-1/2 text-[8px] text-pink-300">
           ♥
         </div>

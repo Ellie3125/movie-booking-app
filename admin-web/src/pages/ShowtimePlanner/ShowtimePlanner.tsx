@@ -180,19 +180,15 @@ const ShowtimePlanner: React.FC = () => {
   };
 
   useEffect(() => {
-    if (watchedBrands.length > 0 || watchedCities.length > 0) {
-      const loadCinemas = async () => {
-        try {
-          const cinemaList = await fetchCinemas(watchedBrands, watchedCities);
-          setCinemas(cinemaList);
-        } catch (err) {
-          console.error('Failed to load cinemas', err);
-        }
-      };
-      loadCinemas();
-    } else {
-      setCinemas([]);
-    }
+    const loadCinemas = async () => {
+      try {
+        const cinemaList = await fetchCinemas(watchedBrands, watchedCities);
+        setCinemas(cinemaList);
+      } catch (err) {
+        console.error('Failed to load cinemas', err);
+      }
+    };
+    loadCinemas();
   }, [watchedBrands, watchedCities]);
 
   useEffect(() => {

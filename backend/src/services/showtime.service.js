@@ -257,7 +257,7 @@ const listShowtimes = async ({ movieId, cinemaId, roomId, date }) => {
   }
 
   const itemsQuery = applyShowtimePopulate(
-    Showtime.find(filter).select(SHOWTIME_LIST_FIELDS).sort({ startTime: 1 })
+    Showtime.find(filter).select(SHOWTIME_LIST_FIELDS + ' seatStates').sort({ startTime: 1 })
   );
 
   const [items, total] = await Promise.all([
@@ -265,8 +265,46 @@ const listShowtimes = async ({ movieId, cinemaId, roomId, date }) => {
     Showtime.countDocuments(filter),
   ]);
 
+  const now = new Date();
+  const mappedItems = items.map(item => {
+    const seatStates = item.seatStates || [];
+    let availableSeats = 0;
+    let bookedSeats = 0;
+    let heldSeats = 0;
+    let disabledSeats = 0;
+    
+    seatStates.forEach(seat => {
+      const cap = seat.capacity ?? 1;
+      const isHeldExpired = seat.status === 'held' && seat.holdExpiresAt && new Date(seat.holdExpiresAt) <= now;
+      
+      if (seat.status === 'available' || isHeldExpired) {
+        availableSeats += cap;
+      } else if (seat.status === 'booked') {
+        bookedSeats += cap;
+      } else if (seat.status === 'held' && !isHeldExpired) {
+        heldSeats += cap;
+      } else if (seat.status === 'disabled' || seat.status === 'unavailable') {
+        disabledSeats += cap;
+      }
+    });
+    
+    const totalSeats = availableSeats + bookedSeats + heldSeats;
+
+    const mapped = mapShowtime(item);
+    delete mapped.seatStates;
+    
+    return {
+      ...mapped,
+      totalSeats,
+      availableSeats,
+      bookedSeats,
+      heldSeats,
+      disabledSeats,
+    };
+  });
+
   return {
-    items: items.map(mapShowtime),
+    items: mappedItems,
     total,
   };
 };
@@ -283,9 +321,37 @@ const getShowtimeById = async (id) => {
   const room = await Room.findById(showtime.roomId).select('seatLayout').lean().exec();
   const seatLayout = mergeLayoutWithStates(room?.seatLayout || [], showtime.seatStates);
 
+  const now = new Date();
+  let availableSeats = 0;
+  let bookedSeats = 0;
+  let heldSeats = 0;
+  let disabledSeats = 0;
+  
+  showtime.seatStates.forEach(seat => {
+    const cap = seat.capacity ?? 1;
+    const isHeldExpired = seat.status === 'held' && seat.holdExpiresAt && new Date(seat.holdExpiresAt) <= now;
+    
+    if (seat.status === 'available' || isHeldExpired) {
+      availableSeats += cap;
+    } else if (seat.status === 'booked') {
+      bookedSeats += cap;
+    } else if (seat.status === 'held' && !isHeldExpired) {
+      heldSeats += cap;
+    } else if (seat.status === 'disabled' || seat.status === 'unavailable') {
+      disabledSeats += cap;
+    }
+  });
+  
+  const totalSeats = availableSeats + bookedSeats + heldSeats;
+
   return {
     ...mapShowtime(showtime.toObject()),
     seatLayout,
+    totalSeats,
+    availableSeats,
+    bookedSeats,
+    heldSeats,
+    disabledSeats,
   };
 };
 

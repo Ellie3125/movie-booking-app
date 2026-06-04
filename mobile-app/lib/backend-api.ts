@@ -8,7 +8,7 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
 import { shouldAttemptTokenRefresh } from './auth-refresh-policy';
-import { clearTokens, getAccessToken, getRefreshToken, saveAccessToken, saveTokens } from './tokenStorage';
+import { clearTokens, getAccessToken, getRefreshToken, saveAccessToken, saveTokens, savePendingPayment, getPendingPayment, clearPendingPayment } from './tokenStorage';
 
 // ─── URL Resolution ───────────────────────────────────────────────────────────
 
@@ -261,6 +261,12 @@ export type BackendShowtimeListItem = {
   };
   startTime: string;
   endTime: string;
+  price: number;
+  totalSeats?: number;
+  availableSeats?: number;
+  bookedSeats?: number;
+  heldSeats?: number;
+  disabledSeats?: number;
 };
 
 export type BackendShowtimeDetail = BackendShowtimeListItem & {
@@ -417,6 +423,13 @@ export type BackendTicket = {
   } | null;
 };
 
+// ─── Token Change Listener ──────────────────────────────────────────────────
+let onTokenRefreshedCallback: ((token: string) => void) | null = null;
+
+export const setOnTokenRefreshed = (cb: (token: string) => void) => {
+  onTokenRefreshedCallback = cb;
+};
+
 // ─── Axios Instance ───────────────────────────────────────────────────────────
 
 // Flag để tránh loop vô hạn khi đang refresh
@@ -503,6 +516,10 @@ apiClient.interceptors.response.use(
           refreshToken: newRefreshToken,
         });
 
+        if (onTokenRefreshedCallback) {
+          onTokenRefreshedCallback(newAccessToken);
+        }
+
         notifyRefreshSubscribers(newAccessToken);
 
         if (originalRequest.headers) {
@@ -513,11 +530,15 @@ apiClient.interceptors.response.use(
       } catch {
         // Refresh thất bại → xóa token, để UI xử lý
         await clearTokens();
+        if (onTokenRefreshedCallback) {
+          onTokenRefreshedCallback('');
+        }
         notifyRefreshSubscribers('');
         return Promise.reject(error);
       } finally {
         isRefreshing = false;
       }
+
     }
 
     // Chuyển lỗi axios thành ApiRequestError
@@ -846,3 +867,40 @@ export async function fetchCinemaOptions() {
 export async function fetchAvatarOptions() {
   return apiRequest<BackendAvatarOption[]>('/meta/avatars');
 }
+
+export async function getBookingPaymentStatus(token: string, bookingId: string) {
+  return apiRequest<{
+    bookingId: string;
+    paymentTransactionId: string | null;
+    status: string;
+    paymentStatus: string;
+    qrCode: string | null;
+    amount: number;
+    holdExpiresAt: string;
+    remainingSeconds: number;
+    seats: any[];
+    movie: any;
+    cinema: any;
+    room: any;
+    showtime: any;
+  }>(`/bookings/${bookingId}/payment-status`, { token });
+}
+
+export async function getPendingBookingMe(token: string) {
+  return apiRequest<{
+    bookingId: string;
+    paymentTransactionId: string | null;
+    status: string;
+    paymentStatus: string;
+    qrCode: string | null;
+    amount: number;
+    holdExpiresAt: string;
+    remainingSeconds: number;
+    seats: any[];
+    movie: any;
+    cinema: any;
+    room: any;
+    showtime: any;
+  } | null>('/bookings/pending/me', { token });
+}
+

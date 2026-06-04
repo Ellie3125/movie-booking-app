@@ -40,10 +40,19 @@ const listCinemas = async ({ city, brand }) => {
   }
 
   if (brand) {
+    const isObjectId = (val) => mongoose.isValidObjectId(val);
     if (Array.isArray(brand)) {
-      filter.brand = { $in: brand };
+      if (brand.every(isObjectId)) {
+        filter.brandId = { $in: brand.map(b => new mongoose.Types.ObjectId(b)) };
+      } else {
+        filter.brand = { $in: brand };
+      }
     } else {
-      filter.brand = brand;
+      if (isObjectId(brand)) {
+        filter.brandId = new mongoose.Types.ObjectId(brand);
+      } else {
+        filter.brand = brand;
+      }
     }
   }
 

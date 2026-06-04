@@ -1,39 +1,60 @@
-const crypto = require('crypto');
+/**
+ * SPEC Disclosure
+ * Autonomous Decisions:
+ * - Kept the X-Gateway-Signature header for backward compatibility, while successfully embedding the signature in the body as required by the backend.
+ * Deviations:
+ * - None.
+ * Trade-offs:
+ * - None.
+ * Context/Notes:
+ * - The signature is generated via createSignature helper using the official CALLBACK_FIELDS list of key names.
+ */
 const axios = require('axios');
 const { callbackLogs } = require('../configs/memoryDb');
 const env = require('../configs/env');
+const { createSignature } = require('../utils/hmac.util');
+const { CALLBACK_FIELDS } = require('../constants/signature.constants');
 
 const sendPaymentCallback = async (payment) => {
-  const paymentRequestId = String(payment.paymentId);
-  const bookingId = String(payment.bookingId);
-  // Status gửi đi bắt buộc là 'success' hoặc 'failed'
-  const status = payment.status.toLowerCase() === 'success' ? 'success' : 'failed';
-  const resolvedAt = payment.paidAt ? new Date(payment.paidAt).toISOString() : new Date().toISOString();
+  // Status gửi đi bắt buộc là in hoa: SUCCESS, FAILED, CANCELLED, EXPIRED
+  const status = payment.status.toUpperCase();
 
-  // Payload được ký & gửi đi (đúng thứ tự key)
   const callbackPayload = {
-    paymentRequestId,
-    bookingId,
+    paymentId: String(payment.paymentId),
+    bookingId: String(payment.bookingId),
+    paidAmount: Number(payment.amount),
+    currency: String(payment.currency || 'VND').toUpperCase(),
+    transactionCode: payment.transactionCode ? String(payment.transactionCode) : '',
     status,
-    resolvedAt,
+    paidAt: payment.paidAt ? new Date(payment.paidAt).toISOString() : '',
+    sourceAccountNo: payment.payerAccountNumber ? String(payment.payerAccountNumber) : '',
+    receiverAccountNo: String(payment.receiverAccountNumber || ''),
   };
 
-  // Tính chữ ký HMAC
-  const signature = crypto
-    .createHmac('sha256', env.callbackSignatureSecret)
-    .update(JSON.stringify(callbackPayload))
-    .digest('hex');
+  // Tính chữ ký HMAC bằng cách sử dụng utility của gateway với CALLBACK_FIELDS
+  const { signature } = createSignature({
+    payload: callbackPayload,
+    fields: CALLBACK_FIELDS,
+    secret: env.callbackSignatureSecret,
+  });
+
+  const requestBody = {
+    ...callbackPayload,
+    signature,
+  };
+
+  console.log(`[CallbackService] Sending callback for Payment ID: ${callbackPayload.paymentId}, Status: ${status}, Target: ${payment.callbackUrl}`);
 
   let isSuccess = false;
   let statusCode = null;
   let responseData = null;
 
   try {
-    const response = await axios.post(payment.callbackUrl, callbackPayload, {
+    const response = await axios.post(payment.callbackUrl, requestBody, {
       timeout: env.callbackTimeoutMs,
       headers: {
         'Content-Type': 'application/json',
-        'X-Gateway-Signature': signature,
+        'X-Gateway-Signature': signature, // Gửi kèm header để tương thích nếu cần
       },
       validateStatus: () => true,
     });
@@ -52,7 +73,7 @@ const sendPaymentCallback = async (payment) => {
   const logId = `LOG-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
   callbackLogs.set(logId, {
     paymentId: payment.paymentId,
-    payload: callbackPayload,
+    payload: requestBody,
     signature,
     callbackUrl: payment.callbackUrl,
     isSuccess,

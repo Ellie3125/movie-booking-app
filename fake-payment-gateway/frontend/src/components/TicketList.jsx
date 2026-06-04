@@ -13,7 +13,7 @@ const FILTER_OPTIONS = [
  * TicketList — Master list panel (35% bên trái).
  * Bao gồm SearchBox, filter chips, và danh sách ticket items.
  */
-export default function TicketList({ tickets, selectedId, onSelect }) {
+export default function TicketList({ tickets, selectedId, onSelect, onRefresh }) {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
 
@@ -37,7 +37,29 @@ export default function TicketList({ tickets, selectedId, onSelect }) {
     <section className="ticket-list-panel animate-slide-left" id="ticket-list-panel">
       {/* Search Header */}
       <div className="ticket-list__header">
-        <h2 className="text-section-title ticket-list__title">Danh sách vé</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <h2 className="text-section-title" style={{ margin: 0, color: 'var(--on-surface)' }}>Danh sách vé</h2>
+          <button
+            onClick={onRefresh}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--primary)',
+              padding: 4,
+              borderRadius: 4,
+              transition: 'background 0.2s',
+            }}
+            onMouseOver={(e) => e.currentTarget.style.background = 'var(--surface-container)'}
+            onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
+            title="Làm mới"
+          >
+            <span className="material-symbols-outlined">refresh</span>
+          </button>
+        </div>
 
         {/* SearchBox */}
         <div className="search-box" id="search-box">

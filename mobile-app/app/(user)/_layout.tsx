@@ -1,7 +1,7 @@
 import { Redirect, Stack } from 'expo-router';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
-import { Fonts } from '@/constants/theme';
+import { AzureColors, Fonts } from '@/constants/theme';
 import { useAppStore } from '@/lib/app-store';
 
 export default function UsersLayout() {
@@ -10,7 +10,7 @@ export default function UsersLayout() {
   if (authStatus === 'bootstrapping') {
     return (
       <View style={styles.loadingShell}>
-        <ActivityIndicator color="#E87A22" size="large" />
+        <ActivityIndicator color={AzureColors.primary} size="large" />
         <Text style={styles.loadingTitle}>Đang khởi tạo phiên người dùng</Text>
         <Text style={styles.loadingCopy}>
           Đang xác thực token đã lưu và đồng bộ dữ liệu người dùng từ backend.
@@ -67,20 +67,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 28,
-    backgroundColor: '#FFF7EC',
+    backgroundColor: AzureColors.appBackground,
     gap: 10,
   },
   loadingTitle: {
     fontSize: 20,
     fontFamily: Fonts.rounded,
-    color: '#5A3E2B',
+    color: AzureColors.textPrimary,
     textAlign: 'center',
   },
   loadingCopy: {
     fontSize: 14,
     lineHeight: 21,
     fontFamily: Fonts.sans,
-    color: '#8A6A50',
+    color: AzureColors.textSecondary,
     textAlign: 'center',
   },
 });

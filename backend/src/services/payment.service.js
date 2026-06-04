@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Booking = require('../models/Booking');
 const Showtime = require('../models/Showtime');
 const Ticket = require('../models/Ticket');
+const User = require('../models/User');
 const PaymentTransaction = require('../models/PaymentTransaction');
 const PaymentCallbackLog = require('../models/PaymentCallbackLog');
 const env = require('../config/env');
@@ -372,6 +373,19 @@ const createPaymentTransaction = async ({ booking, baseUrl, returnUrl }) => {
     },
   });
 
+  // Fetch real details from User and Booking to display on the Gateway UI
+  const user = await User.findById(booking.userId).exec();
+  const customerName = user ? user.fullName : 'N/A';
+  const phone = user ? user.phoneNumber || 'N/A' : 'N/A';
+  const email = user ? user.email : 'N/A';
+
+  const movieTitle = booking.movieId ? booking.movieId.title : 'N/A';
+  const cinema = booking.showtimeId && booking.showtimeId.cinemaId ? booking.showtimeId.cinemaId.name : 'N/A';
+  const room = booking.showtimeId && booking.showtimeId.roomId ? booking.showtimeId.roomId.name : 'N/A';
+  const seatLabels = booking.seats ? booking.seats.map(s => s.seatLabel || s.seatCode) : [];
+
+  console.log(`[PaymentService] Creating payment session for Payment ID: ${transaction.paymentId}, Booking ID: ${booking._id}, User: ${email}, Movie: ${movieTitle}`);
+
   const gatewayPayload = buildGatewayCreateSessionPayload(transaction);
   const { canonicalString, signature } = signHmacSha256({
     payload: gatewayPayload,
@@ -384,6 +398,13 @@ const createPaymentTransaction = async ({ booking, baseUrl, returnUrl }) => {
     payload: {
       ...gatewayPayload,
       signature,
+      customerName,
+      phone,
+      email,
+      movieTitle,
+      cinema,
+      room,
+      seats: seatLabels,
     },
   });
 

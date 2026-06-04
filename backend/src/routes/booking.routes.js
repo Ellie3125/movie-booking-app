@@ -40,6 +40,10 @@ router.post(
 
 // User routes
 router.get(
+  '/pending/me',
+  bookingController.getPendingBookingMe
+);
+router.get(
   '/',
   validate({ query: bookingValidation.listBookingsQuerySchema }),
   bookingController.listMyBookings
@@ -49,6 +53,11 @@ router.post(
   bookingActionRateLimiter,
   validate(bookingValidation.createBookingSchema),
   bookingController.createBooking
+);
+router.get(
+  '/:bookingId/payment-status',
+  validate({ params: bookingValidation.bookingIdParamSchema }),
+  bookingController.getBookingPaymentStatus
 );
 router.get(
   '/:bookingId',
@@ -61,5 +70,6 @@ router.post(
   validate({ params: bookingValidation.bookingIdParamSchema }),
   bookingController.cancelBooking
 );
+
 
 module.exports = router;

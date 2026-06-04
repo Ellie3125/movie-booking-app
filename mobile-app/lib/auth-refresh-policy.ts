@@ -11,9 +11,13 @@ const normalizeRequestPath = (requestUrl?: string) => {
   }
 
   try {
-    return new URL(requestUrl, 'http://localhost').pathname.replace(/\/+$/, '') || '/';
+    let pathname = new URL(requestUrl, 'http://localhost').pathname;
+    pathname = pathname.replace(/^\/api\/v1/, '');
+    return pathname.replace(/\/+$/, '') || '/';
   } catch {
-    return requestUrl.split(/[?#]/)[0]?.replace(/\/+$/, '') || requestUrl;
+    let pathname = requestUrl.split(/[?#]/)[0] || requestUrl;
+    pathname = pathname.replace(/^\/api\/v1/, '');
+    return pathname.replace(/\/+$/, '') || pathname;
   }
 };
 

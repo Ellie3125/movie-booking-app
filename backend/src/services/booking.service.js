@@ -140,15 +140,15 @@ const getEdgeSeatSelectionConflict = ({
   return null;
 };
 
-const getSeatPrice = (seatType) => {
-  const price = SEAT_PRICE_MAP[seatType];
-  if (typeof price !== 'number') {
-    throw ApiError.internal(
-      `Seat price is not configured for seat type: ${seatType}`,
-      'SEAT_PRICE_NOT_CONFIGURED'
-    );
+const getSeatPrice = (seatType, basePrice, capacity = 1) => {
+  const normalizedType = String(seatType).trim().toLowerCase();
+  if (normalizedType === 'vip') {
+    return basePrice + 30000;
   }
-  return price;
+  if (normalizedType === 'couple') {
+    return basePrice * Math.max(capacity, 1);
+  }
+  return basePrice;
 };
 
 const getEffectivePaymentStatus = (booking) => {
@@ -379,7 +379,7 @@ const createBooking = async ({ userId, showtimeId, seatCodes, seatCoordinates })
       seatLabel: state.label || state.seatCode,
       seatType: state.type,
       status: BOOKED_SEAT_STATUS.PENDING_PAYMENT,
-      price: getSeatPrice(state.type),
+      price: getSeatPrice(state.type, showtime.price, state.capacity || 1),
       coupleGroupId: state.coupleGroupId,
     };
   });
@@ -517,6 +517,158 @@ const cancelBookingAdmin = async (bookingId) => {
   return mapBookingResponse(freshBooking);
 };
 
+const checkAndExpireBooking = async (booking) => {
+  if (
+    booking.status === BOOKING_STATUS.PENDING_PAYMENT &&
+    booking.paymentExpiresAt &&
+    new Date(booking.paymentExpiresAt).getTime() <= Date.now()
+  ) {
+    const showtime = await Showtime.findById(booking.showtimeId).exec();
+    if (showtime) {
+      const bookingSeatCodes = new Set(booking.seats.map((s) => s.seatCode.toUpperCase()));
+      showtime.seatStates.forEach((seatState) => {
+        if (
+          bookingSeatCodes.has(seatState.seatCode.toUpperCase()) &&
+          seatState.status === SHOWTIME_SEAT_STATUS.HELD &&
+          String(seatState.bookingId) === String(booking._id)
+        ) {
+          seatState.status = SHOWTIME_SEAT_STATUS.AVAILABLE;
+          seatState.userId = null;
+          seatState.bookingId = null;
+          seatState.heldAt = null;
+          seatState.holdExpiresAt = null;
+        }
+      });
+      await showtime.save();
+    }
+
+    booking.status = BOOKING_STATUS.EXPIRED;
+    booking.paymentStatus = PAYMENT_STATUS.EXPIRED;
+    booking.paymentExpiresAt = null;
+    await booking.save();
+
+    await PaymentTransaction.updateMany(
+      {
+        bookingId: booking._id,
+        status: {
+          $in: [
+            PAYMENT_TRANSACTION_STATUS.PENDING,
+            PAYMENT_TRANSACTION_STATUS.GATEWAY_OPENED,
+            PAYMENT_TRANSACTION_STATUS.CALLBACK_PENDING,
+          ],
+        },
+      },
+      {
+        $set: {
+          status: PAYMENT_TRANSACTION_STATUS.EXPIRED,
+          failureReason: 'Booking payment window expired',
+        },
+      }
+    ).exec();
+  }
+};
+
+const getResumablePaymentData = async (booking) => {
+  const transaction = await PaymentTransaction.findOne({ bookingId: booking._id })
+    .sort({ createdAt: -1 })
+    .exec();
+
+  const now = Date.now();
+  const holdExpiresAt = booking.paymentExpiresAt;
+  const remainingSeconds = holdExpiresAt
+    ? Math.max(0, Math.floor((new Date(holdExpiresAt).getTime() - now) / 1000))
+    : 0;
+
+  const populated = await Booking.findById(booking._id)
+    .populate('movieId')
+    .populate('roomId')
+    .populate({
+      path: 'showtimeId',
+      populate: {
+        path: 'cinemaId',
+      },
+    })
+    .exec();
+
+  return {
+    bookingId: String(booking._id),
+    paymentTransactionId: transaction ? transaction.paymentId : null,
+    status: booking.status,
+    paymentStatus: getEffectivePaymentStatus(booking),
+    qrCode: transaction ? transaction.paymentUrl : null,
+    amount: booking.totalAmount,
+    holdExpiresAt,
+    remainingSeconds,
+    seats: booking.seats.map((s) => ({
+      seatCode: s.seatCode,
+      seatLabel: s.seatLabel,
+      seatType: s.seatType,
+      status: s.status,
+      price: s.price,
+      coupleGroupId: s.coupleGroupId,
+    })),
+    movie: populated.movieId
+      ? {
+          id: String(populated.movieId._id),
+          title: populated.movieId.title,
+          duration: populated.movieId.duration,
+          poster: populated.movieId.poster,
+          status: populated.movieId.status,
+        }
+      : null,
+    cinema: populated.showtimeId?.cinemaId
+      ? {
+          id: String(populated.showtimeId.cinemaId._id),
+          name: populated.showtimeId.cinemaId.name,
+          brand: populated.showtimeId.cinemaId.brand,
+          city: populated.showtimeId.cinemaId.city,
+          address: populated.showtimeId.cinemaId.address,
+        }
+      : null,
+    room: populated.roomId
+      ? {
+          id: String(populated.roomId._id),
+          name: populated.roomId.name,
+          roomType: populated.roomId.roomType,
+          totalRows: populated.roomId.totalRows,
+          totalColumns: populated.roomId.totalColumns,
+        }
+      : null,
+    showtime: populated.showtimeId
+      ? {
+          id: String(populated.showtimeId._id),
+          startTime: populated.showtimeId.startTime,
+          endTime: populated.showtimeId.endTime,
+        }
+      : null,
+  };
+};
+
+const getBookingPaymentStatus = async (bookingId, userId) => {
+  const booking = await Booking.findOne({ _id: bookingId, userId }).exec();
+  if (!booking) {
+    throw ApiError.notFound('Booking not found', 'BOOKING_NOT_FOUND');
+  }
+
+  await checkAndExpireBooking(booking);
+
+  return getResumablePaymentData(booking);
+};
+
+const getPendingBookingMe = async (userId) => {
+  let booking = await Booking.findOne({
+    userId,
+    status: BOOKING_STATUS.PENDING_PAYMENT,
+    paymentExpiresAt: { $gt: new Date() },
+  }).exec();
+
+  if (!booking) {
+    return null;
+  }
+
+  return getResumablePaymentData(booking);
+};
+
 module.exports = {
   createBooking,
   listMyBookings,
@@ -525,7 +677,10 @@ module.exports = {
   listBookingsAdmin,
   getBookingByIdAdmin,
   cancelBookingAdmin,
+  getBookingPaymentStatus,
+  getPendingBookingMe,
   _private: {
     mapBookingResponse,
   },
 };
+

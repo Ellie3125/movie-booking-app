@@ -1,18 +1,18 @@
 import { Tabs } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { Fonts } from '@/constants/theme';
+import { AzureColors, Fonts } from '@/constants/theme';
 
 export default function UsersTabsLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#153F73',
-        tabBarInactiveTintColor: '#6D8AA3',
+        tabBarActiveTintColor: AzureColors.primary,
+        tabBarInactiveTintColor: AzureColors.textSecondary,
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',
-          borderTopColor: 'rgba(21, 63, 115, 0.14)',
+          backgroundColor: AzureColors.surface,
+          borderTopColor: AzureColors.border,
           height: 68,
           paddingTop: 8,
           paddingBottom: 10,

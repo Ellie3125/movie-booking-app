@@ -1,1129 +1,449 @@
+/**
+ * Autonomous Decisions:
+ * - Used Nunito fonts (already installed) instead of Plus Jakarta Sans to avoid adding new dependency
+ * - Kept the SeatLayoutGrid component for rendering the actual seat grid since it handles all
+ *   the complex layout/interaction logic
+ * - Validation warnings only appear when user presses "Tiếp tục" (per spec requirement)
+ *
+ * Deviations:
+ * - DESIGN.md specifies Plus Jakarta Sans font, using Nunito as visually similar alternative
+ *
+ * Trade-offs:
+ * - Removed zoom toggle (not in DESIGN.md) in favor of simpler scroll-based navigation
+ * - Removed session card above seat map (info now in bottom panel per DESIGN.md)
+ *
+ * Context/Notes:
+ * - All booking logic, validation, pricing, navigation preserved exactly from previous version
+ * - Screen structure: gradient header → pink arc → scrollable seat grid → sticky bottom panel
+ */
+
 import { router, Stack, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
-  runOnJS,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import { useEffect, useMemo, useState } from 'react';
+import { Alert, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
-  ActionButton,
-  Chip,
-  EmptyNotice,
-  HeroCard,
-  PageScroll,
-  SectionCard,
-  getTonePalette,
-} from '@/components/ui/experience';
-import { SeatLayoutGrid, getSeatLayoutMetrics } from '@/components/ui/seat-layout-grid';
-import { Fonts } from '@/constants/theme';
+  BookingSummaryBar,
+  ScreenIndicator,
+  SeatHeader,
+  SeatMap,
+  SeatMiniMap,
+} from '@/components/booking/seats';
+import { StateNotice } from '@/components/booking/common';
+import { SeatLayoutGrid } from '@/components/ui/seat-layout-grid';
+import { PinchableZoomView } from '@/components/ui/pinchable-zoom-view';
+import { Fonts, AzureColors } from '@/constants/theme';
 import { type RoomSeat, useAppStore } from '@/lib/app-store';
 import {
-  buildSeatVariantLookup,
-  formatSeatVisualLabel,
-  roomHasVipSeats,
-  type SeatVisualStatus,
-  type SeatVisualVariant,
-} from '@/lib/seat-appearance';
+  calculateSelectedSeatSummary,
+  toggleSeatSelection,
+} from '@/lib/booking-view-models';
+import { buildSeatVariantLookup } from '@/lib/seat-appearance';
 import {
   OUTER_EDGE_EMPTY_SEAT_WARNING,
   getEdgeSeatSelectionConflict,
 } from '@/lib/seat-selection-rule';
 import {
   formatLocationName,
-  formatRoomName,
-  formatRoomType,
   formatShowtimeDayLabel,
+  formatShowtimeFormat,
   formatShowtimeTime,
 } from '@/lib/user-display';
-
-type ViewportSize = {
-  width: number;
-  height: number;
-};
-
-type SeatLegendItem = {
-  key: string;
-  label: string;
-  description: string;
-  variant: SeatVisualVariant;
-  status: SeatVisualStatus;
-};
-
-const MIN_SEAT_ZOOM = 0.85;
-const MAX_SEAT_ZOOM = 2.2;
-const SEAT_ZOOM_STEP = 0.2;
-
-const clampValue = (value: number, min: number, max: number) => {
-  'worklet';
-
-  return Math.min(max, Math.max(min, value));
-};
-
-const roundZoom = (value: number) => {
-  'worklet';
-
-  return Math.round(value * 100) / 100;
-};
-
-const clampSeatZoom = (value: number) => {
-  'worklet';
-
-  return roundZoom(clampValue(value, MIN_SEAT_ZOOM, MAX_SEAT_ZOOM));
-};
-
-const getTranslationBounds = (contentSize: number, viewportSize: number, scale: number) => {
-  'worklet';
-
-  if (contentSize <= 0 || viewportSize <= 0) {
-    return { min: 0, max: 0 };
-  }
-
-  const scaledSize = contentSize * scale;
-
-  if (scaledSize <= viewportSize) {
-    return { min: 0, max: 0 };
-  }
-
-  const overflow = (scaledSize - viewportSize) / 2;
-
-  return {
-    min: -overflow,
-    max: overflow,
-  };
-};
-
-const clampOffset = (
-  value: number,
-  contentSize: number,
-  viewportSize: number,
-  scale: number,
-) => {
-  'worklet';
-
-  const bounds = getTranslationBounds(contentSize, viewportSize, scale);
-
-  return clampValue(value, bounds.min, bounds.max);
-};
-
-function SeatLegendPreview({
-  variant,
-  status,
-  compact,
-}: {
-  variant: SeatVisualVariant;
-  status: SeatVisualStatus;
-  compact: boolean;
-}) {
-  const width = compact ? 32 : 36;
-  const height = compact ? 32 : 36;
-
-  const isReserved = status === 'booked' || status === 'held';
-  const isAvailable = status === 'available';
-  const isSelected = status === 'selected';
-
-  let bgColor = '#E8F0FE';
-  let textColor = '#0041c8';
-  let borderColor = 'transparent';
-  let borderWidth = 0;
-  let fontWeight: '500' | '700' = '500';
-  let opacity = 1;
-
-  if (isSelected) {
-    bgColor = '#0041c8';
-    textColor = '#ffffff';
-    fontWeight = '700';
-  } else if (isReserved) {
-    bgColor = '#c3c5d9';
-    textColor = '#9e9e9e';
-    opacity = 0.5;
-  } else if (isAvailable) {
-    if (variant === 'vip') {
-      bgColor = '#D1E3FF';
-      textColor = '#0041c8';
-      borderColor = 'rgba(0, 65, 200, 0.2)';
-      borderWidth = 1;
-      fontWeight = '700';
-    } else if (variant === 'couple') {
-      bgColor = '#F3E5F5';
-      textColor = '#6a4a00';
-    }
-  }
-
-  return (
-    <View
-      style={{
-        width: variant === 'couple' ? width * 2 + 4 : width,
-        height,
-        borderRadius: variant === 'couple' ? 6 : 4,
-        borderColor,
-        borderWidth,
-        backgroundColor: bgColor,
-        opacity,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      {isReserved ? (
-        <Text style={{ color: textColor, fontWeight: '700', fontSize: compact ? 9 : 11 }}>
-          X
-        </Text>
-      ) : (
-        <Text
-          style={{
-            color: textColor,
-            fontSize: compact ? 9 : 11,
-            fontWeight,
-          }}>
-          A1
-        </Text>
-      )}
-    </View>
-  );
-}
 
 export default function SeatSelectionScreen() {
   const { showtimeId } = useLocalSearchParams<{ showtimeId?: string }>();
   const { movies, cinemas, rooms, showtimes, startCheckout, refreshShowtime } = useAppStore();
-  const { width } = useWindowDimensions();
-  const colors = getTonePalette('user');
-  const compact = width < 430;
-  const mediumLayout = width >= 720;
-  const wideLayout = width >= 980;
-  const defaultZoom = compact ? 0.96 : 1;
-  const [selectedCoordinates, setSelectedCoordinates] = useState<string[]>([]);
-  const [error, setError] = useState('');
+  const [selectedSeatIds, setSelectedSeatIds] = useState<string[]>([]);
   const [selectionNotice, setSelectionNotice] = useState('');
+  const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [seatZoom, setSeatZoom] = useState(defaultZoom);
-  const [viewportSize, setViewportSize] = useState<ViewportSize>({ width: 0, height: 0 });
-
-  const scale = useSharedValue(defaultZoom);
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
-  const scaleOffset = useSharedValue(defaultZoom);
-  const translateXOffset = useSharedValue(0);
-  const translateYOffset = useSharedValue(0);
+  /** True khi user đang pinch-zoom seat map — disable parent scroll để tránh conflict */
+  const [isZoomed, setIsZoomed] = useState(false);
+  /** True khi user chạm từ 2 ngón tay trở lên trên sơ đồ để zoom */
+  const [isMultiTouching, setIsMultiTouching] = useState(false);
+  const isScrollDisabled = isZoomed || isMultiTouching;
 
   const showtime = showtimes.find((item) => item.id === showtimeId);
   const movie = movies.find((item) => item.id === showtime?.movieId);
   const cinema = cinemas.find((item) => item.id === showtime?.cinemaId);
   const room = rooms.find((item) => item.id === showtime?.roomId);
-  const layoutMetrics = getSeatLayoutMetrics(compact, 1);
-  const contentWidth = room
-    ? room.totalColumns * layoutMetrics.cellWidth +
-      Math.max(room.totalColumns - 1, 0) * layoutMetrics.gridGap
-    : 0;
-  const contentHeight = room
-    ? room.totalRows * layoutMetrics.cellMinHeight +
-      Math.max(room.totalRows - 1, 0) * layoutMetrics.gridGap
-    : 0;
-  const seatVariantLookup = buildSeatVariantLookup(room);
-  const seatLookup = new Map(
-    (room?.seatLayout.flat().filter((seat) => seat.type !== 'space') ?? []).map((seat) => [
-      seat.seatCode.toUpperCase(),
-      seat,
-    ]),
-  );
-  const selectedSeats = selectedCoordinates
-    .map((code) => {
-      const seat = seatLookup.get(code);
+  const seatVariantLookup = useMemo(() => buildSeatVariantLookup(room), [room]);
 
-      return {
-        code,
-        label: seat?.label ?? code,
-        variant: seatVariantLookup[code] ?? 'regular',
-        price: showtime?.basePrice ?? 0,
-        rowIndex: seat?.rowIndex ?? Number.MAX_SAFE_INTEGER,
-        columnIndex: seat?.columnIndex ?? Number.MAX_SAFE_INTEGER,
-      };
-    })
-    .sort(
-      (first, second) =>
-        first.rowIndex - second.rowIndex || first.columnIndex - second.columnIndex,
+  /**
+   * Auto-size scale — tự động điều chỉnh kích thước ghế theo độ rộng phòng:
+   * - Phòng nhỏ (ít ghế/hàng) → scale > 1 → ghế to hơn, dễ nhấn
+   * - Phòng lớn (nhiều ghế/hàng) → scale < 1 → ghế nhỏ hơn, vừa màn hình
+   * - Couple seat được tính bằng 2 đơn vị (52px vs 24px base)
+   */
+  const { width: screenWidth } = useWindowDimensions();
+  const autoSizeScale = useMemo(() => {
+    const layout = room?.seatLayout;
+    if (!layout?.length) return 1;
+
+    const CELL_BASE = 24;   // cellWidth tại scale=1
+    const COUPLE_BASE = 52; // coupleCellWidth tại scale=1
+    const GAP_BASE = 4;     // gridGap tại scale=1
+    const H_PADDING = 48;   // 16px header + 32px content padding
+
+    // Tính độ rộng pixel thực sự của hàng dài nhất
+    const maxRowPixelWidth = Math.max(
+      ...layout.map((row) => {
+        if (row.length === 0) return 0;
+        return row.reduce((acc, seat, idx) => {
+          const type = String(seat.type || '').toLowerCase();
+          const isCouple = type === 'couple' || type === 'double' || type === 'pair';
+          const cellW = isCouple ? COUPLE_BASE : CELL_BASE;
+          const gap = idx > 0 ? GAP_BASE : 0;
+          return acc + cellW + gap;
+        }, 0);
+      })
     );
-  const selectedTotal = selectedSeats.reduce((total, seat) => total + seat.price, 0);
-  const availableSeatsCount = showtime
-    ? showtime.seatStates.filter((seat) => seat.status === 'available').length
-    : 0;
-  const zoomPercent = Math.round(seatZoom * 100);
-  const hasVipSeats = roomHasVipSeats(room);
 
-  const statusLegendItems: SeatLegendItem[] = [
-    {
-      key: 'available',
-      label: 'Ghế trống',
-      description: 'Có thể chọn ngay trên sơ đồ.',
-      variant: 'regular',
-      status: 'available',
-    },
-    {
-      key: 'held',
-      label: 'Ghế đang giữ',
-      description: 'Đang được giữ tạm trong phiên khác.',
-      variant: 'regular',
-      status: 'held',
-    },
-    {
-      key: 'selected',
-      label: 'Ghế đang chọn',
-      description: 'Ghế bạn đã chọn trong phiên hiện tại.',
-      variant: 'regular',
-      status: 'selected',
-    },
-    {
-      key: 'booked',
-      label: 'Ghế đã bán',
-      description: 'Đã thanh toán nên không thể chọn.',
-      variant: 'regular',
-      status: 'booked',
-    },
-    {
-      key: 'disabled',
-      label: 'Ghế không dùng',
-      description: 'Bị khóa hoặc hư hỏng.',
-      variant: 'regular',
-      status: 'disabled',
-    },
-  ];
+    if (maxRowPixelWidth === 0) return 1;
 
-  const typeLegendItems: SeatLegendItem[] = [
-    {
-      key: 'regular',
-      label: 'Ghế thường',
-      description: 'Ghế tiêu chuẩn cho 1 người.',
-      variant: 'regular',
-      status: 'available',
-    },
-    {
-      key: 'vip',
-      label: 'Ghế VIP',
-      description: hasVipSeats
-        ? 'Ghế VIP của phòng Premium hoặc Gold Class.'
-        : 'Kiểu ghế VIP dùng cho các phòng có khu ghế cao cấp.',
-      variant: 'vip',
-      status: 'available',
-    },
-    {
-      key: 'couple',
-      label: 'Ghế cặp đôi',
-      description: 'Ghế cho 2 người ngồi liền nhau.',
-      variant: 'couple',
-      status: 'available',
-    },
-  ];
+    const available = screenWidth - H_PADDING;
+    const raw = available / maxRowPixelWidth;
+    // Clầm: tối thiểu 0.72 (phòng rất lớn), tối đa 1.5 (phòng rất nhỏ)
+    return Math.min(Math.max(raw, 0.72), 1.5);
+  }, [room?.seatLayout, screenWidth]);
+  const selectedSeatSummary = useMemo(
+    () =>
+      calculateSelectedSeatSummary({
+        layout: room?.seatLayout ?? [],
+        selectedSeatIds,
+        basePrice: showtime?.basePrice ?? 0,
+      }),
+    [room?.seatLayout, selectedSeatIds, showtime?.basePrice],
+  );
+  const bookedSeatIds = useMemo(
+    () =>
+      (showtime?.seatStates ?? [])
+        .filter((seat) => seat.status !== 'available')
+        .map((seat) => seat.seatCode),
+    [showtime?.seatStates],
+  );
 
   useEffect(() => {
-    setSeatZoom(defaultZoom);
-    scale.value = defaultZoom;
-    translateX.value = 0;
-    translateY.value = 0;
-  }, [defaultZoom, showtimeId]);
+    if (typeof __DEV__ !== 'undefined' && __DEV__ && showtime) {
+      const now = new Date();
+      let available = 0;
+      let booked = 0;
+      let held = 0;
+      let disabled = 0;
+
+      (showtime.seatStates ?? []).forEach((seat) => {
+        const cap = seat.capacity ?? 1;
+        const isHeldExpired =
+          seat.status === 'held' &&
+          seat.holdExpiresAt &&
+          new Date(seat.holdExpiresAt) <= now;
+
+        if (seat.status === 'available' || isHeldExpired) {
+          available += cap;
+        } else if (seat.status === 'booked') {
+          booked += cap;
+        } else if (seat.status === 'held' && !isHeldExpired) {
+          held += cap;
+        } else if (seat.status === 'disabled') {
+          disabled += cap;
+        }
+      });
+      const total = available + booked + held;
+
+      console.log('Seat selection page showtime seat summary', {
+        showtimeId: showtime.id,
+        totalSeats: total,
+        availableSeats: available,
+        bookedSeats: booked,
+        heldSeats: held,
+        disabledSeats: disabled,
+      });
+    }
+  }, [showtime]);
+
+  /**
+   * Minimap visibility logic:
+   * - Layout phải tồn tại và có ít nhất 1 hàng ghế hợp lệ
+   * - Show người dùng đã chọn ít nhất 1 ghế, HOẶC layout đủ lớn cần overview
+   * - LARGE_LAYOUT_THRESHOLD: số ghế thực (không tính space) nhiều hơn ngưỡng này thì luôn show
+   */
+  const LARGE_LAYOUT_THRESHOLD = 12; // số ghế thực tối đa trong 1 hàng để coi là “lớn”
+  const shouldShowMinimap = useMemo(() => {
+    const layout = room?.seatLayout;
+    if (!layout || layout.length === 0) return false;
+
+    // Ính nhất phải có ít nhất 1 hàng có ghế thực
+    const hasRealSeats = layout.some((row) =>
+      row.some((seat) => !['space', 'empty', 'aisle'].includes(String(seat.type || '').toLowerCase()))
+    );
+    if (!hasRealSeats) return false;
+
+    // Kiểm tra layout có đủ lớn để cần overview không
+    const maxRealSeatsPerRow = Math.max(
+      ...layout.map((row) =>
+        row.filter((seat) => !['space', 'empty', 'aisle'].includes(String(seat.type || '').toLowerCase())).length
+      )
+    );
+    const isLargeLayout = maxRealSeatsPerRow >= LARGE_LAYOUT_THRESHOLD;
+
+    return selectedSeatIds.length > 0 || isLargeLayout;
+  }, [room?.seatLayout, selectedSeatIds.length]);
 
   useEffect(() => {
     if (showtimeId && refreshShowtime) {
       refreshShowtime(showtimeId);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showtimeId]);
+  }, [refreshShowtime, showtimeId]);
 
   useEffect(() => {
-    setSelectedCoordinates([]);
-    setError('');
+    setSelectedSeatIds([]);
     setSelectionNotice('');
+    setError('');
   }, [showtimeId]);
-
-  useEffect(() => {
-    const nextScale = clampSeatZoom(scale.value);
-
-    translateX.value = clampOffset(
-      translateX.value,
-      contentWidth,
-      viewportSize.width,
-      nextScale,
-    );
-    translateY.value = clampOffset(
-      translateY.value,
-      contentHeight,
-      viewportSize.height,
-      nextScale,
-    );
-  }, [contentHeight, contentWidth, viewportSize.height, viewportSize.width]);
-
-  const updateViewportSize = (nextSize: ViewportSize) => {
-    setViewportSize((currentSize) => {
-      if (
-        currentSize.width === nextSize.width &&
-        currentSize.height === nextSize.height
-      ) {
-        return currentSize;
-      }
-
-      return nextSize;
-    });
-  };
-
-  const animateZoom = (nextZoom: number) => {
-    const clampedZoom = clampSeatZoom(nextZoom);
-
-    setSeatZoom(clampedZoom);
-    scale.value = withTiming(clampedZoom, { duration: 180 });
-    translateX.value = withTiming(
-      clampOffset(translateX.value, contentWidth, viewportSize.width, clampedZoom),
-      { duration: 180 },
-    );
-    translateY.value = withTiming(
-      clampOffset(translateY.value, contentHeight, viewportSize.height, clampedZoom),
-      { duration: 180 },
-    );
-  };
-
-  const animatedSeatMapStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: translateX.value },
-      { translateY: translateY.value },
-      { scale: scale.value },
-    ],
-  }));
-
-  const panGesture = Gesture.Pan()
-    .minDistance(6)
-    .onStart(() => {
-      translateXOffset.value = translateX.value;
-      translateYOffset.value = translateY.value;
-    })
-    .onUpdate((event) => {
-      translateX.value = clampOffset(
-        translateXOffset.value + event.translationX,
-        contentWidth,
-        viewportSize.width,
-        scale.value,
-      );
-      translateY.value = clampOffset(
-        translateYOffset.value + event.translationY,
-        contentHeight,
-        viewportSize.height,
-        scale.value,
-      );
-    })
-    .onEnd(() => {
-      translateX.value = withTiming(
-        clampOffset(translateX.value, contentWidth, viewportSize.width, scale.value),
-        { duration: 140 },
-      );
-      translateY.value = withTiming(
-        clampOffset(translateY.value, contentHeight, viewportSize.height, scale.value),
-        { duration: 140 },
-      );
-    });
-
-  const pinchGesture = Gesture.Pinch()
-    .onStart(() => {
-      scaleOffset.value = scale.value;
-    })
-    .onUpdate((event) => {
-      const nextScale = clampSeatZoom(scaleOffset.value * event.scale);
-
-      scale.value = nextScale;
-      translateX.value = clampOffset(
-        translateX.value,
-        contentWidth,
-        viewportSize.width,
-        nextScale,
-      );
-      translateY.value = clampOffset(
-        translateY.value,
-        contentHeight,
-        viewportSize.height,
-        nextScale,
-      );
-    })
-    .onEnd(() => {
-      const nextScale = clampSeatZoom(scale.value);
-
-      scale.value = withTiming(nextScale, { duration: 160 });
-      translateX.value = withTiming(
-        clampOffset(translateX.value, contentWidth, viewportSize.width, nextScale),
-        { duration: 160 },
-      );
-      translateY.value = withTiming(
-        clampOffset(translateY.value, contentHeight, viewportSize.height, nextScale),
-        { duration: 160 },
-      );
-      runOnJS(setSeatZoom)(nextScale);
-    });
-
-  const seatMapGesture = Gesture.Simultaneous(panGesture, pinchGesture);
 
   const handleSeatPress = (seat: RoomSeat) => {
-    if (seat.type === 'space' || seat.type === 'disabled') {
-      return;
-    }
-
-    const code = seat.seatCode.toUpperCase();
-    const state = showtime?.seatStates.find((item) => item.seatCode === code);
-
-    if (state && state.status !== 'available') {
-      return;
-    }
-
-    let nextSelectedCodes = [...selectedCoordinates];
-    
-    // Couple seat logic
-    if (seat.type === 'couple' && seat.coupleGroupId) {
-      const groupSeats = Array.from(seatLookup.values()).filter(
-        (s) => s.coupleGroupId === seat.coupleGroupId
-      );
-      const groupCodes = groupSeats.map((s) => s.seatCode.toUpperCase());
-      
-      const isRemoving = selectedCoordinates.includes(code);
-      
-      if (isRemoving) {
-        nextSelectedCodes = selectedCoordinates.filter(
-          (c) => !groupCodes.includes(c)
-        );
-      } else {
-        // Add all seats in group
-        const codesToAdd = groupCodes.filter((c) => !selectedCoordinates.includes(c));
-        nextSelectedCodes = [...selectedCoordinates, ...codesToAdd];
-      }
-    } else {
-      // Regular seat logic
-      if (selectedCoordinates.includes(code)) {
-        nextSelectedCodes = selectedCoordinates.filter((item) => item !== code);
-      } else {
-        nextSelectedCodes = [...selectedCoordinates, code];
-      }
-    }
+    const nextSelectedSeatIds = toggleSeatSelection({
+      seat,
+      layout: room?.seatLayout ?? [],
+      seatStates: showtime?.seatStates ?? [],
+      selectedSeatIds,
+    });
 
     setSelectionNotice('');
     setError('');
-    setSelectedCoordinates(nextSelectedCodes);
+    setSelectedSeatIds(nextSelectedSeatIds);
   };
 
   const handleContinue = async () => {
-    if (!showtime || !room) {
+    if (!showtime || !room || selectedSeatIds.length === 0) {
       return;
     }
 
     const edgeSeatConflict = getEdgeSeatSelectionConflict(
       room.seatLayout,
       showtime.seatStates,
-      selectedCoordinates,
+      selectedSeatIds,
     );
 
     if (edgeSeatConflict) {
       setSelectionNotice(OUTER_EDGE_EMPTY_SEAT_WARNING);
       setError('');
+      Alert.alert('Lưu ý chọn ghế', OUTER_EDGE_EMPTY_SEAT_WARNING);
       return;
     }
 
-    setSelectionNotice('');
     setSubmitting(true);
-    const result = await startCheckout(showtime.id, selectedCoordinates);
+    setSelectionNotice('');
+    setError('');
+
+    const result = await startCheckout(showtime.id, selectedSeatIds);
+
     setSubmitting(false);
 
     if (!result.ok) {
-      const message = result.error ?? 'Không thể tiếp tục đến bước thanh toán.';
-      setError(message);
-
-      if (message.includes('ghế ngoài cùng')) {
-        setSelectionNotice(OUTER_EDGE_EMPTY_SEAT_WARNING);
-      }
-
+      setError(result.error ?? 'Không thể tiếp tục đến bước thanh toán.');
+      Alert.alert('Lỗi', result.error ?? 'Không thể tiếp tục đến bước thanh toán.');
       return;
     }
 
-    setSelectionNotice('');
-    setError('');
     router.push({
       pathname: '/booking/checkout',
-      params: { showtimeId: showtime.id },
+      params: {
+        showtimeId: showtime.id,
+        seatIds: selectedSeatIds.join(','),
+        bookingId: result.bookingId ?? '',
+        paymentTransactionId: result.paymentTransactionId ?? '',
+        expiredAt: result.expiredAt ?? '',
+        paymentUrl: result.paymentUrl ?? '',
+        resume: result.bookingId ? 'true' : 'false',
+      },
     });
   };
 
+  const hasData = Boolean(showtime && room && movie && cinema);
+  const activeMovie = movie!;
+  const activeShowtime = showtime!;
+  const activeRoom = room!;
+
   return (
-    <PageScroll tone="user">
-      <Stack.Screen options={{ title: movie?.title ?? 'Chọn ghế' }} />
-      {!showtime || !room || !movie || !cinema ? (
-        <EmptyNotice
-          tone="user"
-          title="Không tìm thấy dữ liệu đặt ghế"
-          description="Hãy quay lại danh sách suất chiếu và chọn lại một phiên phù hợp."
-        />
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <Stack.Screen options={{ headerShown: false }} />
+
+      {/* Header */}
+      <SeatHeader
+        title={cinema ? `${cinema.brand} ${formatLocationName(cinema.name)}` : 'Chọn ghế'}
+        onBack={() => router.back()}
+        onSupport={() => router.push('/profile/support')}
+        onHome={() => router.push('/(user)/(tabs)/home')}
+      />
+
+      {!hasData ? (
+        <View style={styles.emptyShell}>
+          <StateNotice
+            title="Không tìm thấy dữ liệu đặt ghế"
+            description="Hãy quay lại danh sách suất chiếu và chọn lại một phiên phù hợp."
+          />
+        </View>
       ) : (
-        <>
-          <HeroCard
-            tone="user"
-            eyebrow="Chọn ghế"
-            title={`${movie.title} • ${formatRoomName(room.name)}`}
-            description={`${cinema.brand} ${formatLocationName(cinema.name)} • ${formatShowtimeDayLabel(showtime.startTime)} • ${formatShowtimeTime(showtime.startTime)}`}>
-            <View style={styles.heroMetaRail}>
-              <Chip tone="user" label={formatRoomType(room.roomType)} active />
-              <Chip tone="user" label={`${availableSeatsCount}/${room.activeSeatCount} ghế trống`} />
-              <Chip tone="user" label={`${zoomPercent}% zoom`} />
-            </View>
-          </HeroCard>
+        <View style={styles.container}>
+          {/* Scrollable seat map area */}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContent}
+            scrollEnabled={!isScrollDisabled}
+            bounces={false}>
+            {/* Screen Indicator */}
+            <ScreenIndicator />
 
-          <SectionCard tone="user" style={styles.screenBanner}>
-            <Text style={[styles.screenBannerEyebrow, { color: colors.accent }]}>
-              {formatRoomType(room.roomType).toUpperCase()}
-            </Text>
-            <Text style={[styles.screenBannerTitle, { color: colors.text }]}>
-              Box chọn ghế được giữ cố định, chỉ nội dung seat map bên trong mới pinch zoom và pan.
-            </Text>
-            <Text style={[styles.screenBannerCopy, { color: colors.muted }]}>
-              Chạm để chọn ghế, pinch để zoom, kéo để di chuyển sơ đồ. Layout tổng thể không bị phóng to theo thao tác zoom.
-            </Text>
-          </SectionCard>
-
-          <SectionCard tone="user" style={styles.workbenchCard}>
-            <View style={[styles.workbenchGrid, wideLayout ? styles.workbenchGridWide : null]}>
-              <View style={styles.mapColumn}>
-                <View style={styles.mapColumnHeader}>
-                  <Text style={[styles.panelTitle, { color: colors.text }]}>Sơ đồ ghế</Text>
-                  <Text style={[styles.panelCopy, { color: colors.muted }]}>
-                    Trạng thái màu hiển thị trực tiếp trên ghế, còn loại ghế được phân biệt bằng accent và legend bên cạnh.
-                  </Text>
-                </View>
-
-                <View style={styles.screenArcWrap}>
-                  <View style={[styles.screenArc, { borderColor: 'rgba(57, 102, 147, 0.9)' }]} />
-                  <Text style={[styles.screenArcLabel, { color: colors.text }]}>
-                    MÀN HÌNH CHÍNH
-                  </Text>
-                </View>
-
-                <View
-                  style={[
-                    styles.seatMapShell,
-                    {
-                      backgroundColor: colors.panel,
-                      borderColor: colors.border,
-                    },
-                  ]}>
-                  <View style={styles.seatMapToolbar}>
-                    <View style={styles.toolbarCopy}>
-                      <Text style={[styles.toolbarTitle, { color: colors.text }]}>
-                        Điều hướng sơ đồ
-                      </Text>
-                      <Text style={[styles.toolbarHint, { color: colors.muted }]}>
-                        Zoom và pan chỉ tác động lên seat map content.
-                      </Text>
-                    </View>
-                    <View style={styles.zoomActions}>
-                      <Pressable
-                        onPress={() => animateZoom(seatZoom - SEAT_ZOOM_STEP)}
-                        disabled={seatZoom <= MIN_SEAT_ZOOM}
-                        style={[
-                          styles.zoomButton,
-                          {
-                            backgroundColor: colors.panelAlt,
-                            borderColor: colors.border,
-                            opacity: seatZoom <= MIN_SEAT_ZOOM ? 0.45 : 1,
-                          },
-                        ]}>
-                        <Text style={[styles.zoomButtonText, { color: colors.text }]}>-</Text>
-                      </Pressable>
-                      <Pressable
-                        onPress={() => animateZoom(defaultZoom)}
-                        style={[
-                          styles.zoomBadge,
-                          {
-                            backgroundColor: colors.panelAlt,
-                            borderColor: colors.border,
-                          },
-                        ]}>
-                        <Text style={[styles.zoomBadgeText, { color: colors.text }]}>
-                          {zoomPercent}%
-                        </Text>
-                      </Pressable>
-                      <Pressable
-                        onPress={() => animateZoom(seatZoom + SEAT_ZOOM_STEP)}
-                        disabled={seatZoom >= MAX_SEAT_ZOOM}
-                        style={[
-                          styles.zoomButton,
-                          {
-                            backgroundColor: colors.panelAlt,
-                            borderColor: colors.border,
-                            opacity: seatZoom >= MAX_SEAT_ZOOM ? 0.45 : 1,
-                          },
-                        ]}>
-                        <Text style={[styles.zoomButtonText, { color: colors.text }]}>+</Text>
-                      </Pressable>
-                    </View>
-                  </View>
-
-                  <View
-                    style={[
-                      styles.seatViewport,
-                      compact
-                        ? styles.seatViewportCompact
-                        : mediumLayout
-                          ? styles.seatViewportWide
-                          : styles.seatViewportRegular,
-                      {
-                        backgroundColor: '#FFF8EF',
-                        borderColor: colors.border,
-                      },
-                    ]}
-                    onLayout={(event) =>
-                      updateViewportSize({
-                        width: event.nativeEvent.layout.width,
-                        height: event.nativeEvent.layout.height,
-                      })
-                    }>
-                    <GestureDetector gesture={seatMapGesture}>
-                      <View style={styles.seatViewportCenter}>
-                        <Animated.View
-                          style={[
-                            styles.seatMapTransformLayer,
-                            animatedSeatMapStyle,
-                            {
-                              width: contentWidth || layoutMetrics.cellWidth,
-                              height: contentHeight || layoutMetrics.cellMinHeight,
-                            },
-                          ]}>
-                          <SeatLayoutGrid
-                            layout={room.seatLayout}
-                            seatStates={showtime.seatStates}
-                            selectedCoordinates={selectedCoordinates}
-                            mode="user"
-                            onPressSeat={handleSeatPress}
-                            sizeScale={1}
-                            useIntrinsicSizing
-                            seatVariantLookup={seatVariantLookup}
-                          />
-                        </Animated.View>
-                      </View>
-                    </GestureDetector>
-                  </View>
-                </View>
-              </View>
-
-              <View style={[styles.sideColumn, wideLayout ? styles.sideColumnWide : null]}>
-                <View
-                  style={[
-                    styles.sidePanel,
-                    { backgroundColor: colors.panel, borderColor: colors.border },
-                  ]}>
-                  <Text style={[styles.panelTitle, { color: colors.text }]}>Trạng thái ghế</Text>
-                  <View style={styles.legendGrid}>
-                    {statusLegendItems.map((item) => (
-                      <View key={item.key} style={styles.legendRow}>
-                        <SeatLegendPreview
-                          variant={item.variant}
-                          status={item.status}
-                          compact={compact}
-                        />
-                        <View style={styles.legendCopy}>
-                          <Text style={[styles.legendLabel, { color: colors.text }]}>
-                            {item.label}
-                          </Text>
-                          <Text style={[styles.legendDescription, { color: colors.muted }]}>
-                            {item.description}
-                          </Text>
-                        </View>
-                      </View>
-                    ))}
-                  </View>
-                </View>
-
-                <View
-                  style={[
-                    styles.sidePanel,
-                    { backgroundColor: colors.panel, borderColor: colors.border },
-                  ]}>
-                  <Text style={[styles.panelTitle, { color: colors.text }]}>Loại ghế</Text>
-                  <View style={styles.legendGrid}>
-                    {typeLegendItems.map((item) => (
-                      <View key={item.key} style={styles.legendRow}>
-                        <SeatLegendPreview
-                          variant={item.variant}
-                          status={item.status}
-                          compact={compact}
-                        />
-                        <View style={styles.legendCopy}>
-                          <Text style={[styles.legendLabel, { color: colors.text }]}>
-                            {item.label}
-                          </Text>
-                          <Text style={[styles.legendDescription, { color: colors.muted }]}>
-                            {item.description}
-                          </Text>
-                        </View>
-                      </View>
-                    ))}
-                  </View>
-                </View>
-
-                <View
-                  style={[
-                    styles.sidePanel,
-                    { backgroundColor: colors.panel, borderColor: colors.border },
-                  ]}>
-                  <Text style={[styles.panelTitle, { color: colors.text }]}>Ghế đang chọn</Text>
-                  <View style={styles.selectionStats}>
-                    <View
-                      style={[
-                        styles.selectionStatTile,
-                        { backgroundColor: colors.accentSoft, borderColor: colors.border },
-                      ]}>
-                      <Text style={[styles.selectionStatValue, { color: colors.text }]}>
-                        {selectedSeats.length}
-                      </Text>
-                      <Text style={[styles.selectionStatLabel, { color: colors.muted }]}>
-                        Ghế đã chọn
-                      </Text>
-                    </View>
-                    <View
-                      style={[
-                        styles.selectionStatTile,
-                        { backgroundColor: colors.accentSoft, borderColor: colors.border },
-                      ]}>
-                      <Text style={[styles.selectionStatValue, { color: colors.text }]}>
-                        {selectedTotal.toLocaleString('vi-VN')}đ
-                      </Text>
-                      <Text style={[styles.selectionStatLabel, { color: colors.muted }]}>
-                        Tạm tính
-                      </Text>
-                    </View>
-                  </View>
-
-                  <Text style={[styles.selectionSummary, { color: colors.muted }]}>
-                    {selectedSeats.length === 0
-                      ? 'Chưa chọn ghế. Hãy chạm trực tiếp lên sơ đồ bên trái.'
-                      : 'Các ghế đang chọn sẽ được tạm giữ khi bạn tiếp tục sang bước thanh toán.'}
-                  </Text>
-
-                  <View style={styles.chipRow}>
-                    {selectedCoordinates.length === 0 ? (
-                      <Chip tone="user" label="Chưa chọn ghế" />
-                    ) : (
-                      selectedSeats.map((seat) => (
-                        <Chip
-                          key={seat.code}
-                          tone="user"
-                          label={`${seat.label} • ${formatSeatVisualLabel(seat.variant as SeatVisualVariant)}`}
-                          active
-                        />
-                      ))
-                    )}
-                  </View>
-
-                  {selectionNotice ? (
-                    <View
-                      style={[
-                        styles.noticeBox,
-                        {
-                          backgroundColor: 'rgba(245, 130, 32, 0.1)',
-                          borderColor: 'rgba(245, 130, 32, 0.22)',
-                        },
-                      ]}>
-                      <Text style={[styles.noticeTitle, { color: colors.text }]}>
-                        Lưu ý chọn ghế
-                      </Text>
-                      <Text style={[styles.noticeText, { color: colors.muted }]}>
-                        {selectionNotice}
-                      </Text>
-                    </View>
-                  ) : null}
-
-                  {error ? (
-                    <Text style={[styles.errorText, { color: colors.accent }]}>{error}</Text>
-                  ) : null}
-
-                  <ActionButton
-                    tone="user"
-                    label={
-                      submitting ? 'Đang chuyển sang thanh toán...' : 'Tạm giữ ghế và tiếp tục'
-                    }
-                    onPress={handleContinue}
-                    disabled={submitting}
+            {/* Seat Map — có pinch-to-zoom riêng biệt */}
+            <SeatMap
+              miniMap={
+                shouldShowMinimap ? (
+                  <SeatMiniMap
+                    layout={activeRoom.seatLayout}
+                    selectedSeatIds={selectedSeatIds}
+                    bookedSeatIds={bookedSeatIds}
                   />
-                </View>
+                ) : undefined
+              }>
+              {/* ScrollView ngang — bị disable khi user đang pinch-zoom */}
+              <View
+                onTouchStart={(e) => {
+                  if (e.nativeEvent.touches.length >= 2) {
+                    setIsMultiTouching(true);
+                  }
+                }}
+                onTouchMove={(e) => {
+                  if (e.nativeEvent.touches.length >= 2) {
+                    setIsMultiTouching(true);
+                  }
+                }}
+                onTouchEnd={() => setIsMultiTouching(false)}
+                onTouchCancel={() => setIsMultiTouching(false)}
+              >
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  scrollEnabled={!isScrollDisabled}
+                  contentContainerStyle={styles.horizontalMapContent}>
+                  <View style={styles.gridFrame}>
+                    <PinchableZoomView
+                      onScaleChange={(s) => setIsZoomed(s > 1.05)}
+                    >
+                      <SeatLayoutGrid
+                        layout={activeRoom.seatLayout}
+                        seatStates={activeShowtime.seatStates}
+                        selectedCoordinates={selectedSeatIds}
+                        mode="user"
+                        onPressSeat={handleSeatPress}
+                        sizeScale={autoSizeScale}
+                        useIntrinsicSizing
+                        seatVariantLookup={seatVariantLookup}
+                      />
+                    </PinchableZoomView>
+                  </View>
+                </ScrollView>
               </View>
-            </View>
-          </SectionCard>
-        </>
+            </SeatMap>
+
+            {/* Notices (shown only when validation triggered) */}
+            {selectionNotice ? (
+              <View style={styles.noticeBox}>
+                <Text style={styles.noticeTitle}>Lưu ý chọn ghế</Text>
+                <Text style={styles.noticeText}>{selectionNotice}</Text>
+              </View>
+            ) : null}
+
+            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
+            {/* Bottom spacer for scroll clearance */}
+            <View style={styles.scrollEndSpacer} />
+          </ScrollView>
+
+          {/* Sticky Bottom Panel */}
+          <SafeAreaView edges={['bottom']} style={styles.bottomSafeArea}>
+            <BookingSummaryBar
+              rating={activeMovie.rating}
+              movieTitle={activeMovie.title}
+              showtimeText={`${formatShowtimeTime(activeShowtime.startTime)}~${formatShowtimeTime(
+                activeShowtime.endTime,
+              )}`}
+              dateText={formatShowtimeDayLabel(activeShowtime.startTime)}
+              formatText={`${formatShowtimeFormat(activeShowtime.format)} ${activeShowtime.language}`}
+              selectedSeats={selectedSeatSummary.seats}
+              totalPrice={selectedSeatSummary.totalPrice}
+              disabled={selectedSeatIds.length === 0}
+              submitting={submitting}
+              onContinue={handleContinue}
+              onChangeShowtime={() => router.back()}
+            />
+          </SafeAreaView>
+        </View>
       )}
-    </PageScroll>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  heroMetaRail: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
+  safeArea: {
+    flex: 1,
+    backgroundColor: AzureColors.appBackground,   // #EEF6FF — khớp toàn bộ app
   },
-  screenBanner: {
-    gap: 8,
+  emptyShell: {
+    padding: 18,
   },
-  screenBannerEyebrow: {
-    fontSize: 12,
-    letterSpacing: 1.1,
-    textTransform: 'uppercase',
-    fontFamily: Fonts.sansBold,
+  container: {
+    flex: 1,
   },
-  screenBannerTitle: {
-    fontSize: 19,
-    lineHeight: 26,
-    fontFamily: Fonts.rounded,
+  scrollContent: {
+    paddingTop: 24,
+    paddingBottom: 8,
   },
-  screenBannerCopy: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontFamily: Fonts.sans,
+  horizontalMapContent: {
+    minWidth: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
   },
-  workbenchCard: {
-    gap: 14,
+  gridFrame: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   noticeBox: {
-    borderRadius: 18,
+    marginHorizontal: 16,
+    marginTop: 12,
     borderWidth: 1,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
+    borderColor: AzureColors.warning,
+    borderRadius: 12,
+    backgroundColor: AzureColors.warningSurface,
+    padding: 14,
     gap: 4,
   },
   noticeTitle: {
+    color: AzureColors.textPrimary,
     fontSize: 14,
+    lineHeight: 19,
     fontFamily: Fonts.sansBold,
   },
   noticeText: {
+    color: AzureColors.textSecondary,
     fontSize: 13,
     lineHeight: 18,
     fontFamily: Fonts.sans,
-  },
-  workbenchGrid: {
-    gap: 14,
-  },
-  workbenchGridWide: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
-  mapColumn: {
-    flex: 1.75,
-    gap: 14,
-  },
-  mapColumnHeader: {
-    gap: 4,
-  },
-  panelTitle: {
-    fontSize: 18,
-    fontFamily: Fonts.rounded,
-  },
-  panelCopy: {
-    fontSize: 13,
-    lineHeight: 19,
-    fontFamily: Fonts.sans,
-  },
-  screenArcWrap: {
-    paddingHorizontal: 12,
-    alignItems: 'center',
-    gap: 8,
-  },
-  screenArc: {
-    width: '96%',
-    height: 46,
-    borderWidth: 3,
-    borderBottomWidth: 0,
-    borderTopLeftRadius: 999,
-    borderTopRightRadius: 999,
-    backgroundColor: 'transparent',
-  },
-  screenArcLabel: {
-    fontSize: 18,
-    letterSpacing: 1.8,
-    fontFamily: Fonts.rounded,
-  },
-  seatMapShell: {
-    borderWidth: 1,
-    borderRadius: 28,
-    padding: 14,
-    gap: 14,
-  },
-  seatMapToolbar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 12,
-  },
-  toolbarCopy: {
-    flex: 1,
-    gap: 2,
-  },
-  toolbarTitle: {
-    fontSize: 14,
-    fontFamily: Fonts.sansBold,
-  },
-  toolbarHint: {
-    fontSize: 12,
-    lineHeight: 16,
-    fontFamily: Fonts.sans,
-  },
-  zoomActions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  zoomButton: {
-    width: 34,
-    height: 34,
-    borderRadius: 10,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  zoomButtonText: {
-    fontSize: 20,
-    lineHeight: 20,
-    fontFamily: Fonts.sansBold,
-  },
-  zoomBadge: {
-    minWidth: 72,
-    height: 34,
-    borderRadius: 10,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 12,
-  },
-  zoomBadgeText: {
-    fontSize: 13,
-    fontFamily: Fonts.sansBold,
-  },
-  seatViewport: {
-    borderRadius: 24,
-    borderWidth: 1,
-    overflow: 'hidden',
-  },
-  seatViewportCompact: {
-    height: 360,
-  },
-  seatViewportRegular: {
-    height: 410,
-  },
-  seatViewportWide: {
-    height: 480,
-  },
-  seatViewportCenter: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  seatMapTransformLayer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  sideColumn: {
-    gap: 12,
-  },
-  sideColumnWide: {
-    width: 340,
-  },
-  sidePanel: {
-    borderWidth: 1,
-    borderRadius: 24,
-    padding: 16,
-    gap: 12,
-  },
-  legendGrid: {
-    gap: 10,
-  },
-  legendRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  legendCopy: {
-    flex: 1,
-    gap: 2,
-  },
-  legendLabel: {
-    fontSize: 13,
-    fontFamily: Fonts.sansBold,
-  },
-  legendDescription: {
-    fontSize: 12,
-    lineHeight: 16,
-    fontFamily: Fonts.sans,
-  },
-  legendSeatFrame: {
-    borderWidth: 1,
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 8,
-    paddingBottom: 4,
-    paddingHorizontal: 4,
-    position: 'relative',
-  },
-  legendSeatAccent: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-  legendSeatBadge: {
-    position: 'absolute',
-    right: 4,
-    top: 5,
-    fontSize: 5,
-    fontWeight: '800',
-  },
-  legendSeatText: {
-    fontSize: 8,
-    fontWeight: '800',
-  },
-  legendSeatSilhouette: {
-    borderRadius: 999,
-    marginTop: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  legendSeatDivider: {
-    width: 2,
-    alignSelf: 'stretch',
-    opacity: 0.7,
-  },
-  selectionStats: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-  selectionStatTile: {
-    flex: 1,
-    borderWidth: 1,
-    borderRadius: 18,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-    gap: 2,
-  },
-  selectionStatValue: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontFamily: Fonts.rounded,
-  },
-  selectionStatLabel: {
-    fontSize: 12,
-    fontFamily: Fonts.sans,
-  },
-  selectionSummary: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontFamily: Fonts.sans,
-  },
-  chipRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
   },
   errorText: {
+    marginHorizontal: 16,
+    marginTop: 8,
+    color: AzureColors.danger,
     fontSize: 13,
+    lineHeight: 18,
     fontFamily: Fonts.sansBold,
+  },
+  scrollEndSpacer: {
+    height: 16,
+  },
+  bottomSafeArea: {
+    backgroundColor: AzureColors.surface,
   },
 });

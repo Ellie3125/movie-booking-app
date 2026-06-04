@@ -1,4 +1,4 @@
-import { router, Stack } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 import { useState, useEffect, useRef } from 'react';
@@ -19,7 +19,8 @@ import { Fonts } from '@/constants/theme';
 import { type PaymentMethod, useAppStore } from '@/lib/app-store';
 import { isSuccessfulPaymentResult, parsePaymentResultUrl } from '@/lib/payment-result';
 import { formatLocationName, formatPaymentMethod } from '@/lib/user-display';
-import { getPaymentStatus } from '@/lib/backend-api';
+import { getPaymentStatus, getBookingPaymentStatus } from '@/lib/backend-api';
+
 
 const paymentMethods: { label: string; value: PaymentMethod }[] = [
   { label: 'Cổng thanh toán', value: 'mock_gateway' },
@@ -30,6 +31,16 @@ type CheckoutFormData = {
 };
 
 export default function CheckoutScreen() {
+  const params = useLocalSearchParams<{
+    showtimeId?: string;
+    seatIds?: string;
+    bookingId?: string;
+    paymentTransactionId?: string;
+    expiredAt?: string;
+    paymentUrl?: string;
+    resume?: string;
+  }>();
+
   const {
     draftCheckout,
     movies,
@@ -52,6 +63,9 @@ export default function CheckoutScreen() {
   const [showQR, setShowQR] = useState(false);
   const [qrSession, setQrSession] = useState<any>(null);
   const [timeLeft, setTimeLeft] = useState(600); // 10 phút (600 giây)
+  const [activeTransaction, setActiveTransaction] = useState<any>(null);
+  const [checkingActive, setCheckingActive] = useState(false);
+
   const pollingIntervalRef = useRef<any>(null);
   const countdownIntervalRef = useRef<any>(null);
 
@@ -65,6 +79,43 @@ export default function CheckoutScreen() {
       if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
     };
   }, []);
+
+  // Nếu điều hướng từ seats với flag resume = true, tự động kích hoạt QR
+  useEffect(() => {
+    if (params.resume === 'true' && params.bookingId && params.paymentTransactionId && params.paymentUrl) {
+      const session = {
+        bookingId: params.bookingId,
+        paymentId: params.paymentTransactionId,
+        paymentUrl: params.paymentUrl,
+        expiredAt: params.expiredAt,
+        amount: draftCheckout?.totalPrice ?? 0,
+      };
+      startPaymentFlow(session);
+    }
+  }, [params, draftCheckout]);
+
+  // Nếu mở checkout bình thường, tự động check backend xem đơn hàng này đã có QR/transaction active hay chưa
+  useEffect(() => {
+    const checkActiveTransaction = async () => {
+      if (!authToken || !draftCheckout || params.resume === 'true') return;
+      try {
+        setCheckingActive(true);
+        const res = await getBookingPaymentStatus(authToken, draftCheckout.id);
+        if (res.status === 'pending_payment' && res.paymentTransactionId && res.qrCode) {
+          const now = Date.now();
+          const expiresAt = new Date(res.holdExpiresAt).getTime();
+          if (expiresAt > now) {
+            setActiveTransaction(res);
+          }
+        }
+      } catch (e) {
+        console.warn('Check active transaction failed:', e);
+      } finally {
+        setCheckingActive(false);
+      }
+    };
+    checkActiveTransaction();
+  }, [draftCheckout, authToken, params.resume]);
 
   const handleCancel = async () => {
     await releaseDraftCheckout();
@@ -123,8 +174,15 @@ export default function CheckoutScreen() {
           clearInterval(pollingIntervalRef.current);
           clearInterval(countdownIntervalRef.current);
 
-          await completeRemoteCheckout(session.bookingId);
-          navigateToBooking(session.bookingId);
+          router.replace({
+            pathname: '/(user)/payment/result',
+            params: {
+              status,
+              bookingId: session.bookingId,
+              paymentId: session.paymentId,
+              message: 'Thanh toán thành công.',
+            },
+          });
         } else if (['failed', 'expired', 'cancelled'].includes(status)) {
           clearInterval(pollingIntervalRef.current);
           clearInterval(countdownIntervalRef.current);
@@ -303,14 +361,35 @@ export default function CheckoutScreen() {
               )}
             />
             {error ? (
-              <Text style={[styles.cardCopy, { color: colors.accent }]}>{error}</Text>
+              <Text style={[styles.cardCopy, { color: colors.accent, marginBottom: 8 }]}>{error}</Text>
             ) : null}
-            <ActionButton
-              tone="user"
-              label={isSubmitting ? 'Đang mở cổng thanh toán...' : 'Mở cổng thanh toán'}
-              onPress={handleSubmit(onConfirm)}
-              disabled={isSubmitting}
-            />
+
+            {activeTransaction ? (
+              <>
+                <Text style={[styles.cardCopy, { color: colors.accent, marginBottom: 10, fontStyle: 'italic' }]}>
+                  * Bạn đang có một giao dịch thanh toán QR còn hiệu lực cho vé này.
+                </Text>
+                <ActionButton
+                  tone="user"
+                  label="Tiếp tục thanh toán QR"
+                  onPress={() => startPaymentFlow({
+                    bookingId: activeTransaction.bookingId,
+                    paymentId: activeTransaction.paymentTransactionId,
+                    paymentUrl: activeTransaction.qrCode,
+                    expiredAt: activeTransaction.holdExpiresAt,
+                    amount: activeTransaction.amount,
+                  })}
+                />
+              </>
+            ) : (
+              <ActionButton
+                tone="user"
+                label={isSubmitting ? 'Đang mở cổng thanh toán...' : 'Mở cổng thanh toán'}
+                onPress={handleSubmit(onConfirm)}
+                disabled={isSubmitting || checkingActive}
+              />
+            )}
+
             <ActionButton
               tone="user"
               label={isSubmitting ? 'Đang xử lý...' : 'Hủy thanh toán'}
@@ -338,45 +417,57 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   cardTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontFamily: Fonts.sansBold,
   },
   cardCopy: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontFamily: Fonts.sans,
+    fontSize: 13,
+    lineHeight: 18,
+    fontFamily: Fonts.sansMedium,
   },
   totalPrice: {
     fontSize: 16,
     fontFamily: Fonts.sansBold,
+    marginTop: 6,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#E9F1F7',
   },
   qrContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 20,
+    paddingVertical: 14,
     gap: 12,
   },
   qrImage: {
     width: 240,
     height: 240,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    padding: 14,
+    shadowColor: '#002B5C',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
+    elevation: 4,
+    borderWidth: 1.5,
+    borderColor: '#E9F1F7',
   },
   timerText: {
     fontSize: 18,
-    fontFamily: Fonts.sansBold,
+    fontFamily: Fonts.rounded,
+    color: '#EF4444',
     marginTop: 10,
   },
   amountText: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: Fonts.sansBold,
   },
   loaderRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    marginTop: 10,
-    marginBottom: 20,
+    marginTop: 8,
+    marginBottom: 16,
   },
 });

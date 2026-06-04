@@ -1,3 +1,14 @@
+/**
+ * SPEC Disclosure
+ * Autonomous Decisions:
+ * - Handled missing values by falling back to mockInfo, ensuring robustness during development and tests.
+ * Deviations:
+ * - None.
+ * Trade-offs:
+ * - None.
+ * Context/Notes:
+ * - The gateway still checks and requires the baseline fields. Extended user and booking details are only saved for visual representation.
+ */
 const QRCode = require('qrcode');
 const { paymentRequests } = require('../configs/memoryDb');
 const ApiError = require('../utils/apiError');
@@ -204,6 +215,15 @@ const createPaymentSession = async ({ input, baseUrl }) => {
 
   const mockInfo = generateMockInfo();
 
+  // Nhận thông tin thật từ Backend chính, nếu không có mới dùng mockInfo dự phòng
+  const customerName = input.customerName || mockInfo.customerName;
+  const phone = input.phone || mockInfo.phone;
+  const email = input.email || mockInfo.email;
+  const movieTitle = input.movieTitle || mockInfo.movieTitle;
+  const cinema = input.cinema || mockInfo.cinema;
+  const room = input.room || mockInfo.room;
+  const seats = input.seats || mockInfo.seats;
+
   const payment = {
     paymentId: input.paymentId,
     bookingId: input.bookingId,
@@ -220,8 +240,14 @@ const createPaymentSession = async ({ input, baseUrl }) => {
     requestCanonicalString: canonicalString,
     requestPayload: createSessionPayload,
     
-    // Mock details for Frontend UI
-    ...mockInfo,
+    // Lưu trữ thông tin thực tế/mock cho Frontend UI
+    customerName,
+    phone,
+    email,
+    movieTitle,
+    cinema,
+    room,
+    seats,
 
     createdAt: new Date(),
     updatedAt: new Date(),

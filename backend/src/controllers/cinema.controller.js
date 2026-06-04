@@ -4,8 +4,8 @@ const cinemaService = require('../services/cinema.service');
 
 const listCinemas = asyncHandler(async (req, res) => {
   const data = await cinemaService.listCinemas({
-    city: req.query.city,
-    brand: req.query.brand,
+    city: req.query.city || req.query['city[]'],
+    brand: req.query.brand || req.query['brand[]'],
   });
 
   return sendApiResponse(res, {
